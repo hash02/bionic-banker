@@ -503,13 +503,9 @@
     <a href="/index.html" class="nav-back">← All Articles</a>
   </nav>
 
-  <!-- HERO IMAGE — replace background with a real dark/tech image -->
-  <div class="hero-image">
-    <div class="hero-image-inner">
-      <div class="hero-image-label">AML · Blockchain · AI</div>
-      <div class="hero-image-title">Following the money — one transaction at a time</div>
-      <div class="hero-image-note">📸 Replace this with a dark tech / blockchain aesthetic image</div>
-    </div>
+  <!-- HERO IMAGE -->
+  <div style="width:100%; max-height:440px; overflow:hidden; border-bottom:1px solid var(--border);">
+    <img src="dashboard-hero.png.png" alt="NEXUS-RISK AML Engine — 94.9% detection rate, 22 rules, 813 transactions" style="width:100%; display:block; object-fit:cover; object-position:top;" />
   </div>
 
   <div class="article-header">
@@ -566,12 +562,8 @@
 
     <!-- INLINE IMAGE 1 -->
     <div class="article-image">
-      <div class="article-image-inner">
-        <div class="img-icon">🔍</div>
-        <div class="img-title">Etherscan Transaction View</div>
-        <div class="img-desc">📸 Add screenshot: Etherscan showing a Tornado Cash interaction or wallet cluster — the "this is where I started" visual</div>
-      </div>
-      <div class="image-caption">Etherscan — where every blockchain transaction ever made is publicly visible. This is where the engine was born.</div>
+      <img src="case-scorecard.png.png" alt="Case study scorecard — all 9 incidents with v7/v8/v9/v10 detection rates" style="width:100%; display:block; border-radius: var(--radius) var(--radius) 0 0;" />
+      <div class="image-caption">Case study scorecard — 9 real incidents, detection rates across all 4 engine versions. Ronin went from 6.1% to 100% in a single version jump.</div>
     </div>
 
     <h2>What I Do at the Bank vs. What I Built at Home</h2>
@@ -629,12 +621,8 @@
 
     <!-- INLINE IMAGE 2 -->
     <div class="article-image">
-      <div class="article-image-inner">
-        <div class="img-icon">⚡</div>
-        <div class="img-title">Case Studies Dashboard</div>
-        <div class="img-desc">📸 Add screenshot: the engine output showing detected cases — the results table from nexus_dashboard.html or a terminal output showing detections</div>
-      </div>
-      <div class="image-caption">The engine running against 7 real-world cases — Ronin, Tornado Cash, Wormhole, Nomad, Euler, and two control wallets.</div>
+      <img src="ai-detection-charts.png.png" alt="Detection rate by case study across engine versions — bar chart showing v7 to v11 evolution" style="width:100%; display:block; border-radius: var(--radius) var(--radius) 0 0;" />
+      <div class="image-caption">Detection % by case study across all versions. Each version jump reflects a new rule category — v9 was the biggest leap: OFAC screening alone jumped detection from 70% to 93.1%.</div>
     </div>
 
     <div class="case-grid">
@@ -698,12 +686,8 @@
 
     <!-- INLINE IMAGE 3 -->
     <div class="article-image">
-      <div class="article-image-inner">
-        <div class="img-icon">🤖</div>
-        <div class="img-title">AI Layer — Isolation Forest Results</div>
-        <div class="img-desc">📸 Add image: visualization of the AI detection results — anomaly score distribution, or the scorecard output showing 21 AI-only detections</div>
-      </div>
-      <div class="image-caption">The AI layer found 21 transactions that zero rules had flagged. The most interesting: a $1B wallet with no rule hits, AI confidence score of 79.8.</div>
+      <img src="dashboard-hero.png.png" alt="NEXUS-RISK full dashboard — AI layer results, triage system, ensemble decision breakdown" style="width:100%; display:block; border-radius: var(--radius) var(--radius) 0 0;" />
+      <div class="image-caption">The full engine dashboard — rule engine, AI layer, and triage system all running together. 695 flagged → 256 high-priority → 63% analyst queue reduction.</div>
     </div>
 
     <p>The AI found 21 transactions that zero rules had touched. Pure statistical outliers. The most interesting one: a single billion-dollar transaction, no OFAC match, no mixer interaction, no velocity pattern. Just a wallet doing something statistically impossible given everything else in the dataset. AI confidence: 79.8. Rule hits: zero.</p>
