@@ -544,6 +544,19 @@
         <div class="stat-lbl">Cases Cracked</div>
       </div>
     </div>
+
+    <!-- DEMO BUTTON — hero level -->
+    <div style="margin-top: 1.75rem; display: flex; gap: 0.875rem; flex-wrap: wrap;">
+      <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank"
+        style="display:inline-flex;align-items:center;gap:0.4rem;background:linear-gradient(135deg,#5b73f8,#8b6cf7);color:#fff;font-size:0.875rem;font-weight:700;padding:0.75rem 1.75rem;border-radius:10px;text-decoration:none;box-shadow:0 4px 20px rgba(91,115,248,0.3);letter-spacing:0.01em;">
+        🚀 Try the Live Demo
+      </a>
+      <a href="https://github.com/hash02/aml-detection-engine" target="_blank"
+        style="display:inline-flex;align-items:center;gap:0.4rem;background:transparent;color:var(--text-muted);font-size:0.875rem;font-weight:500;padding:0.75rem 1.5rem;border-radius:10px;text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+        View on GitHub →
+      </a>
+    </div>
+
   </div>
 
   <div class="article-body">
@@ -708,7 +721,9 @@
 
     <p>The engine is at v11. The architecture is three layers deep. But this is still version one of a bigger thing.</p>
 
-    <p>Next: a live Streamlit demo where anyone can upload a CSV or enter a wallet address and get a real-time risk assessment. After that: connecting to live blockchain data so the engine runs continuously. After that: a symbolic reasoning layer — something I've been building in parallel — that audits AI reasoning chains the same way this engine audits transaction chains. Same architecture, different domain.</p>
+    <p>The live demo is now up — you can run the engine on real transaction data, right in your browser. Upload a CSV or hit the sample data button and watch Wormhole, Ronin, and Lazarus Group get flagged in real time. Every rule that fires is explained. Every score is broken down. No setup, no install.</p>
+
+    <p>Next: connecting to live blockchain data so the engine runs continuously, not just on batch uploads. After that: a symbolic reasoning layer — something I've been building in parallel — that audits AI reasoning chains the same way this engine audits transaction chains. Same architecture, different domain.</p>
 
     <p>The full codebase is open on GitHub. Every rule, every version, every case study documented. If you're building in this space, it's yours to learn from.</p>
 
@@ -720,16 +735,48 @@
 
     <p>And if you're a millennial or Gen Z reading this at night, wondering if you can build something that actually matters without a big team or a title — yeah. You can. The blockchain is public. The data is there. The tools are free. The only thing between you and catching real financial crime is curiosity and enough patience to follow the dots.</p>
 
+    <!-- LIVE DEMO CTA -->
+    <div style="
+      background: linear-gradient(135deg, rgba(91,115,248,0.08) 0%, rgba(139,108,247,0.06) 100%);
+      border: 1px solid rgba(91,115,248,0.25);
+      border-radius: 16px;
+      padding: 2.25rem;
+      text-align: center;
+      margin: 2.5rem 0;
+      position: relative;
+      overflow: hidden;
+    ">
+      <!-- gradient top line -->
+      <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,115,248,0.6),rgba(139,108,247,0.6),transparent);"></div>
+
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;">
+        🚀 Live Now
+      </div>
+      <h3 style="font-size:1.35rem;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:0.75rem;line-height:1.3;">
+        Run the Engine — Right Now, In Your Browser
+      </h3>
+      <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;max-width:480px;margin:0 auto 1.75rem;">
+        Upload any transaction CSV or load the sample Wormhole/Ronin/Lazarus dataset.
+        Watch 22 rules fire in real time. See every flagged wallet, every rule that triggered, every score.
+        No install. No setup.
+      </p>
+      <div style="display:flex;gap:0.875rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank"
+          style="display:inline-block;background:linear-gradient(135deg,#5b73f8,#8b6cf7);color:#fff;font-size:0.875rem;font-weight:700;padding:0.8rem 2rem;border-radius:10px;text-decoration:none;box-shadow:0 4px 20px rgba(91,115,248,0.35);letter-spacing:0.01em;transition:opacity 0.2s;">
+          Try the Live Demo →
+        </a>
+        <a href="https://github.com/hash02/aml-detection-engine" target="_blank"
+          style="display:inline-block;background:transparent;color:var(--text-muted);font-size:0.875rem;font-weight:500;padding:0.8rem 1.75rem;border-radius:10px;text-decoration:none;border:1px solid rgba(255,255,255,0.08);">
+          View on GitHub →
+        </a>
+      </div>
+    </div>
+
     <div class="article-newsletter">
       <h3>Want the next deep dive?</h3>
       <p>One piece per week. Blockchain mechanics, AI in finance, and the signals most people miss. No fluff.</p>
-      <a href="/index.html#newsletter" class="btn-primary">Subscribe to Bionic Banker →</a>
+      <a href="index.html#newsletter" class="btn-primary">Subscribe to Bionic Banker →</a>
     </div>
-
-    <p style="font-size: 0.85rem; color: var(--text-dim); text-align: center; margin-top: 1rem;">
-      Full engine on GitHub →
-      <a href="https://github.com/hash02/aml-detection-engine" style="color: var(--accent);">github.com/hash02/aml-detection-engine</a>
-    </p>
 
   </div>
 
