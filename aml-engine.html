@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Built a Blockchain AML Engine From Scratch — Bionic Banker</title>
+  <meta name="description" content="94.9% detection rate. 22 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group. Here's what a bank employee learned building what compliance teams actually need." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YS428H3H44');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #0f0f1a;
+      --bg3: #141428;
+      --accent: #4f6ef7;
+      --accent-glow: rgba(79, 110, 247, 0.12);
+      --text: #e8e8f0;
+      --text-muted: #888899;
+      --text-dim: #555566;
+      --border: rgba(79, 110, 247, 0.15);
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 15, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* ── HERO IMAGE ── */
+    .hero-image {
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(135deg, #0a0a1f 0%, #0f1535 40%, #1a1040 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-inner {
+      text-align: center;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    /* Animated grid background */
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(79, 110, 247, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 110, 247, 0.08) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridmove 20s linear infinite;
+    }
+
+    @keyframes gridmove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(50px); }
+    }
+
+    .hero-image-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .hero-image-title {
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      max-width: 600px;
+      line-height: 1.3;
+    }
+
+    .hero-image-note {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ── ARTICLE HEADER ── */
+    .article-header {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 2rem 2rem;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .article-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+    }
+
+    .article-date { font-size: 0.82rem; color: var(--text-dim); }
+
+    .article-header h1 {
+      font-size: clamp(1.65rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-header .lede {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ── AUTHOR ── */
+    .author-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 2px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .author-info .name { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .author-info .title { font-size: 0.78rem; color: var(--text-dim); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 1rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+    .stat-val { font-size: 1.35rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+    .stat-lbl { font-size: 0.68rem; color: var(--text-dim); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* ── BODY ── */
+    .article-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.88;
+      color: #cccce0;
+      margin-bottom: 1.75rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 3.5rem 0 1.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .article-body h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+
+    /* ── INLINE IMAGE ── */
+    .article-image {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+    }
+
+    .article-image-inner {
+      background: linear-gradient(135deg, var(--bg2), var(--bg3));
+      height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      gap: 0.75rem;
+    }
+
+    .article-image-inner .img-icon {
+      font-size: 2rem;
+      opacity: 0.4;
+    }
+
+    .article-image-inner .img-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .article-image-inner .img-desc {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      max-width: 360px;
+    }
+
+    .image-caption {
+      padding: 0.6rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-align: center;
+      background: var(--bg2);
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      background: var(--accent-glow);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ── CASE CARDS ── */
+    .case-grid {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .case-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .case-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(255, 100, 100, 0.1);
+      border: 1px solid rgba(255, 100, 100, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .case-info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .case-info p {
+      font-size: 0.83rem !important;
+      color: var(--text-muted) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.55 !important;
+    }
+
+    .case-amount {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── ARCHITECTURE VIZ ── */
+    .arch-viz {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .arch-layer {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .arch-layer-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .arch-layer-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .arch-layer-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .arch-arrow {
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin: 0.25rem 0;
+      opacity: 0.5;
+    }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2.25rem 0;
+    }
+
+    .highlight-box .label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-box p {
+      font-size: 0.95rem !important;
+      margin-bottom: 0 !important;
+      line-height: 1.65 !important;
+    }
+
+    /* ── NEWSLETTER ── */
+    .article-newsletter {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .article-newsletter h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; margin-top: 0; }
+
+    .article-newsletter p {
+      color: var(--text-muted) !important;
+      font-size: 0.9rem !important;
+      margin-bottom: 1.5rem !important;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-copy { font-size: 0.8rem; color: var(--text-dim); }
+
+    @media (max-width: 640px) {
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { min-width: 50%; border-bottom: 1px solid var(--border); }
+      .article-header, .article-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .case-card { grid-template-columns: 1fr; }
+      .case-amount { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html" class="nav-logo">Bionic <span>Banker</span></a>
+    <a href="/index.html" class="nav-back">← All Articles</a>
+  </nav>
+
+  <!-- HERO IMAGE — replace background with a real dark/tech image -->
+  <div class="hero-image">
+    <div class="hero-image-inner">
+      <div class="hero-image-label">AML · Blockchain · AI</div>
+      <div class="hero-image-title">Following the money — one transaction at a time</div>
+      <div class="hero-image-note">📸 Replace this with a dark tech / blockchain aesthetic image</div>
+    </div>
+  </div>
+
+  <div class="article-header">
+    <div class="article-meta">
+      <span class="article-tag">AML · Blockchain · AI</span>
+      <span class="article-date">February 2026 · 12 min read</span>
+    </div>
+
+    <h1>I Built a Blockchain AML Engine From Scratch — Here's What a Bank Employee Learned</h1>
+
+    <p class="lede">I work at a bank. I had no plan to build a fraud detection system. I just started asking questions — and one question led to another, led to another, until I was literally looking at the wallets Lazarus Group used to move $625 million in stolen funds. This is that story.</p>
+
+    <div class="author-bar">
+      <div class="author-avatar">H</div>
+      <div class="author-info">
+        <div class="name">HASH — The Bionic Banker</div>
+        <div class="title">Computer Engineer · Financial Advisor · Blockchain Builder</div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-val">94.9%</div>
+        <div class="stat-lbl">Detection Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">22</div>
+        <div class="stat-lbl">Rules Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">v11</div>
+        <div class="stat-lbl">Engine Version</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">7</div>
+        <div class="stat-lbl">Cases Cracked</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>Okay so — I need to be honest about how this actually started. There was no grand plan. No "I'm going to build a fraud detection engine" moment. It started way more simply than that.</p>
+
+    <p>I was just curious about Tornado Cash. The US Treasury had sanctioned it in 2022 and I kept seeing it in the news, but nobody was really explaining <em>why</em>. Like, what is it actually doing? What does the transaction look like? So I went to Etherscan — the public blockchain explorer — and just... started reading transactions.</p>
+
+    <p>That's it. That was the beginning. One question about a mixer.</p>
+
+    <p>And then one question became another. Okay, how do you actually hide money on a blockchain if everything is public? And then — if I can see these patterns, can I write rules to catch them? And then — what other crimes have left traces on-chain that nobody's officially analyzed? One dot to the next to the next to the next. Before I knew what was happening, I had 22 detection rules, a machine learning layer on top, and I was sitting at night looking at actual criminal wallets.</p>
+
+    <div class="pull-quote">
+      "It's a Batman thing. You're sitting in your apartment at night, no badge, no authority, no warrant — just code and curiosity — and suddenly you're looking at $625 million in stolen funds moving across the blockchain in real time."
+    </div>
+
+    <!-- INLINE IMAGE 1 -->
+    <div class="article-image">
+      <div class="article-image-inner">
+        <div class="img-icon">🔍</div>
+        <div class="img-title">Etherscan Transaction View</div>
+        <div class="img-desc">📸 Add screenshot: Etherscan showing a Tornado Cash interaction or wallet cluster — the "this is where I started" visual</div>
+      </div>
+      <div class="image-caption">Etherscan — where every blockchain transaction ever made is publicly visible. This is where the engine was born.</div>
+    </div>
+
+    <h2>What I Do at the Bank vs. What I Built at Home</h2>
+
+    <p>Here's the thing about working in financial services — you see compliance every day. The reports, the reviews, the checkbox exercises. And there's a reason they exist. The regulations are serious, the stakes are real.</p>
+
+    <p>But there's also a gap. A big one. The way institutions monitor for financial crime and the way money actually moves on-chain — those two things are operating at completely different speeds. Banks run batch processes. Blockchain settles in seconds. That mismatch is where billions of dollars go missing every year.</p>
+
+    <p>I'm not saying the banks are doing it wrong. I'm saying the problem is genuinely hard, and the tools haven't caught up yet. That's actually what made me want to build something — not to criticize what already exists, but to understand what the next version of it could look like.</p>
+
+    <h2>How the Rules Work — and How I Built Them</h2>
+
+    <p>Version 1 of the engine was embarrassingly simple. Three rules. Flag high-value transactions, check against known blacklists, flag high-risk country interactions. Done.</p>
+
+    <p>The thing is — that's exactly where you should start. When your system is that simple, every mistake teaches you something clean. No complexity to hide behind. Every false positive is a lesson. Every miss is a lesson. You figure out exactly why a rule works, and exactly where it breaks.</p>
+
+    <!-- ARCHITECTURE VIZ -->
+    <div class="arch-viz">
+      <h3 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 1.25rem; margin-top: 0;">Engine Architecture — 3 Layers</h3>
+      <div class="arch-layer">
+        <div class="arch-layer-num">1</div>
+        <div>
+          <div class="arch-layer-name">Rule Engine</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">22 rules · v1 → v11 · 6 attack categories</div>
+        </div>
+        <div class="arch-layer-desc">Structuring · Mixing · Bridging<br>Velocity · OFAC · Blockchain-specific</div>
+      </div>
+      <div class="arch-arrow">↓</div>
+      <div class="arch-layer">
+        <div class="arch-layer-num">2</div>
+        <div>
+          <div class="arch-layer-name">AI Detection Layer</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Isolation Forest · 13 graph features · zero-day anomalies</div>
+        </div>
+        <div class="arch-layer-desc">Catches what rules miss<br>21 novel detections</div>
+      </div>
+      <div class="arch-arrow">↓</div>
+      <div class="arch-layer">
+        <div class="arch-layer-num">3</div>
+        <div>
+          <div class="arch-layer-name">Dynamic Triage</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">LEGENDARY · RARE · MAGIC · COMMON</div>
+        </div>
+        <div class="arch-layer-desc">63% queue reduction<br>139 Legendary cases</div>
+      </div>
+    </div>
+
+    <p>By version 6 the engine was covering the major attack categories — structuring (breaking large amounts into smaller pieces to avoid detection thresholds), mixing (Tornado Cash and similar tools that sever the transaction trail), cross-chain bridging (moving funds across different blockchains to lose the trail), velocity attacks (flooding a system with rapid transactions), OFAC-listed wallets, and blockchain-specific patterns like flash loans.</p>
+
+    <p>Every new version came from a new case study. Read the case. Understand the pattern. Write the rule. Test it against the data. Repeat. Eleven versions later — 22 rules, covering 6 attack categories, running against real Etherscan data.</p>
+
+    <h2>The Cases — When It Got Real</h2>
+
+    <p>This is where the project changed for me. Testing against real blockchain data from actual hacks — not simulated, not theoretical. Real events, real wallets, real money.</p>
+
+    <!-- INLINE IMAGE 2 -->
+    <div class="article-image">
+      <div class="article-image-inner">
+        <div class="img-icon">⚡</div>
+        <div class="img-title">Case Studies Dashboard</div>
+        <div class="img-desc">📸 Add screenshot: the engine output showing detected cases — the results table from nexus_dashboard.html or a terminal output showing detections</div>
+      </div>
+      <div class="image-caption">The engine running against 7 real-world cases — Ronin, Tornado Cash, Wormhole, Nomad, Euler, and two control wallets.</div>
+    </div>
+
+    <div class="case-grid">
+
+      <div class="case-card">
+        <div class="case-icon">🎯</div>
+        <div class="case-info">
+          <h4>Ronin Network — Lazarus Group (North Korea)</h4>
+          <p>$625M stolen by compromising validator keys on the Ronin bridge. The engine caught the wallet cluster patterns and cross-chain movement. Each hop through multiple wallets triggered a different rule — it was like following a trail that was trying not to be a trail.</p>
+        </div>
+        <div class="case-amount">$625M</div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-icon">🌀</div>
+        <div class="case-info">
+          <h4>Tornado Cash — OFAC-Sanctioned Mixer</h4>
+          <p>Direct hits on the Tornado Cash contract flagged immediately. The more interesting part was detecting wallets one hop removed — wallets that had already been "cleaned." The engine learned to recognize the shape of a post-mixer wallet, not just the mixer itself.</p>
+        </div>
+        <div class="case-amount">$7B+</div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-icon">🌉</div>
+        <div class="case-info">
+          <h4>Wormhole Bridge Exploit</h4>
+          <p>$320M via a cross-chain bridge vulnerability. The tell was the velocity — abnormal burst of high-value transactions in a short window, destination wallets with zero prior history. Two rules firing at the same time: velocity anomaly + new wallet cluster.</p>
+        </div>
+        <div class="case-amount">$320M</div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-icon">🐝</div>
+        <div class="case-info">
+          <h4>Nomad Bridge — The Copycat Attack</h4>
+          <p>What made Nomad interesting was the crowd effect. Once one hacker found the vulnerability, hundreds of copycat wallets drained the bridge within hours. The signature: dozens of different wallets, same destination contracts, same time window. Organized opportunism.</p>
+        </div>
+        <div class="case-amount">$190M</div>
+      </div>
+
+    </div>
+
+    <h2>The Ceiling — and Why It's Actually the Most Interesting Part</h2>
+
+    <p>At 94.9% detection, I hit a wall. Two cases the engine couldn't fully crack. And honestly — this is where I learned the most.</p>
+
+    <p>Euler Finance used a flash loan attack. One atomic transaction: borrow, exploit, repay, all within a single block. The engine's rules look at sequences of transactions over time. A single-block attack has no sequence. There's nothing to follow because it all happened in one moment — faster than any monitoring system can track.</p>
+
+    <p>That's not a rule problem. That's a data problem. To catch flash loan attacks you need block-level data, not just transaction-level data. I was looking at the right thing at the wrong resolution.</p>
+
+    <div class="highlight-box">
+      <div class="label">🔑 The thing I actually learned</div>
+      <p>94.9% isn't a failure at 5.1% — it's a diagnosis. The missing 5.1% told me exactly what data I needed next. Every ceiling in detection is a map to the next layer of the problem. You can't write your way past a data gap with more rules. You have to go get the data.</p>
+    </div>
+
+    <h2>Adding the AI Layer — Teaching the Machine What Normal Looks Like</h2>
+
+    <p>Rules catch what you already know. The AI layer was about catching what I didn't know I didn't know.</p>
+
+    <p>I used an Isolation Forest — an unsupervised machine learning model. The way it works is almost elegant in its simplicity: show it thousands of normal transactions until it understands what normal looks like, then let it flag whatever doesn't fit that shape. No labels needed. No examples of fraud needed. Just pattern recognition over a massive normal baseline.</p>
+
+    <!-- INLINE IMAGE 3 -->
+    <div class="article-image">
+      <div class="article-image-inner">
+        <div class="img-icon">🤖</div>
+        <div class="img-title">AI Layer — Isolation Forest Results</div>
+        <div class="img-desc">📸 Add image: visualization of the AI detection results — anomaly score distribution, or the scorecard output showing 21 AI-only detections</div>
+      </div>
+      <div class="image-caption">The AI layer found 21 transactions that zero rules had flagged. The most interesting: a $1B wallet with no rule hits, AI confidence score of 79.8.</div>
+    </div>
+
+    <p>The AI found 21 transactions that zero rules had touched. Pure statistical outliers. The most interesting one: a single billion-dollar transaction, no OFAC match, no mixer interaction, no velocity pattern. Just a wallet doing something statistically impossible given everything else in the dataset. AI confidence: 79.8. Rule hits: zero.</p>
+
+    <p>That's the whole point of having both. Rules catch known patterns. AI catches unknown shapes. You genuinely need both — they're not competing, they're covering different parts of the problem space.</p>
+
+    <h2>The Triage System — I Stole This From Gaming</h2>
+
+    <p>695 flagged transactions. One analyst. Where do you start?</p>
+
+    <p>If you've played any RPG you already know the answer. Items have rarity tiers — Legendary, Rare, Magic, Common. You always open the Legendary items first. Not because the others don't matter, but because expected value is highest at the top tier.</p>
+
+    <p>So I built a scoring system that maps directly to that logic. Every flagged transaction gets a confidence score across four dimensions: how many rules fired, how large the amount, how frequently the sender shows up in other suspicious activity, and what the AI layer said. When multiple dimensions fire at the same time, the score escalates — not linearly, but with a combination bonus. The more signals converging, the higher the tier.</p>
+
+    <p>Result: out of 695 flagged cases, 256 genuinely needed immediate human attention. 63% queue reduction without losing a single high-priority case. The analyst goes straight to the Legendary tier and knows they're looking at the real risk first.</p>
+
+    <h2>What I'm Building Next</h2>
+
+    <p>The engine is at v11. The architecture is three layers deep. But this is still version one of a bigger thing.</p>
+
+    <p>Next: a live Streamlit demo where anyone can upload a CSV or enter a wallet address and get a real-time risk assessment. After that: connecting to live blockchain data so the engine runs continuously. After that: a symbolic reasoning layer — something I've been building in parallel — that audits AI reasoning chains the same way this engine audits transaction chains. Same architecture, different domain.</p>
+
+    <p>The full codebase is open on GitHub. Every rule, every version, every case study documented. If you're building in this space, it's yours to learn from.</p>
+
+    <div class="pull-quote">
+      "It started as an innocent question about how stablecoins work. I had no plan. I was just following one dot to the next to the next. That's the whole point — you don't need to know where you're going. You just need to be curious enough to follow the trail."
+    </div>
+
+    <p>If you're reading this and you work in compliance, fintech, or blockchain — the gap between how fast money moves on-chain and how fast institutions respond is real, and it's closing whether everyone's ready or not. The tools to close it exist. They're just not in the compliance handbook yet.</p>
+
+    <p>And if you're a millennial or Gen Z reading this at night, wondering if you can build something that actually matters without a big team or a title — yeah. You can. The blockchain is public. The data is there. The tools are free. The only thing between you and catching real financial crime is curiosity and enough patience to follow the dots.</p>
+
+    <div class="article-newsletter">
+      <h3>Want the next deep dive?</h3>
+      <p>One piece per week. Blockchain mechanics, AI in finance, and the signals most people miss. No fluff.</p>
+      <a href="/index.html#newsletter" class="btn-primary">Subscribe to Bionic Banker →</a>
+    </div>
+
+    <p style="font-size: 0.85rem; color: var(--text-dim); text-align: center; margin-top: 1rem;">
+      Full engine on GitHub →
+      <a href="https://github.com/hash02/aml-detection-engine" style="color: var(--accent);">github.com/hash02/aml-detection-engine</a>
+    </p>
+
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Bionic Banker · <a href="/index.html" style="color: var(--accent);">bionicbanker.tech</a></p>
+  </footer>
+
+</body>
+</html>
