@@ -22,7 +22,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #04040a;
+      --bg:#050508;
       --bg2: #0f0f1a;
       --bg3: #141428;
       --accent: #4f6ef7;
@@ -64,7 +64,7 @@
     }
 
     .nav-logo { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; }
-    .nav-logo span { color: var(--gold); }
+    .nav-logo span{color:rgba(255,255,255,0.55);}
     .nav-back { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
     .nav-back:hover { color: var(--accent); }
 
@@ -170,7 +170,7 @@
       font-size: 1.1rem;
       color: var(--text-muted);
       line-height: 1.7;
-      border-left: 3px solid var(--gold);
+      border-left:3px solid rgba(255,255,255,0.18);
       padding-left: 1.25rem;
       margin-bottom: 2rem;
     }
@@ -306,7 +306,7 @@
     /* ── PULL QUOTE ── */
     .pull-quote {
       background: var(--accent-glow);
-      border-left: 4px solid var(--gold);
+      border-left:4px solid rgba(255,255,255,0.18);
       border-radius: 0 var(--radius) var(--radius) 0;
       padding: 1.5rem 2rem;
       margin: 2.5rem 0;
@@ -496,6 +496,11 @@
       .case-card { grid-template-columns: 1fr; }
       .case-amount { font-size: 0.9rem; }
     }
+/* Glow system */
+h1,h2,h3 { text-shadow: 0 0 40px rgba(255,255,255,0.14); }
+.nav-logo { text-shadow: 0 0 32px rgba(255,255,255,0.18); }
+.lede { text-shadow: 0 0 28px rgba(255,255,255,0.10); }
+.article-title { text-shadow: 0 0 60px rgba(255,255,255,0.18); }
   </style>
 </head>
 <body>

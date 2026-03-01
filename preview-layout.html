@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bionic Banker — Layout Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── BACKGROUNDS ── */
+      --bg:   #050508;
+      --bg2:  #0b0b0f;
+      --bg3:  #111116;
+      --bg4:  #17171e;
+
+      /* ── TEXT HIERARCHY ── */
+      --text:       #f0f0f5;
+      --text-2:     #a0a0b0;
+      --text-3:     #606070;
+      --text-4:     #303040;
+
+      /* ── BORDERS — light only, no color ── */
+      --b1: rgba(255,255,255,0.06);   /* default card border */
+      --b2: rgba(255,255,255,0.10);   /* hover / focus */
+      --b3: rgba(255,255,255,0.16);   /* active / featured */
+      --b4: rgba(255,255,255,0.03);   /* very subtle divider */
+
+      /* ── ONE BRAND ACCENT — forest, muted, used sparingly ── */
+      --green:      rgba(31,160,104,0.55);  /* only for 1px feature lines */
+      --green-dim:  rgba(31,160,104,0.15);  /* very dim bg tint */
+
+      --radius:    11px;
+      --radius-lg: 16px;
+      --max:       1160px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3, h4, .nav-logo, .footer-brand {
+      font-family: 'Bricolage Grotesque', sans-serif;
+    }
+
+    /* ── PREVIEW BANNER ── */
+    .preview-banner {
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border-bottom: 1px solid var(--b4);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5,5,8,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--b1);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    /* "Banker" slightly dimmer — subtle dual identity without color */
+    .nav-logo span { color: var(--text-2); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      color: var(--text-3);
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    .nav-links a:hover { color: var(--text-2); }
+
+    /* Nav CTA — white bordered, no color fill */
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      background: transparent;
+      border: 1px solid var(--b2);
+      color: var(--text-2);
+      padding: 0.32rem 0.9rem;
+      border-radius: 8px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { border-color: var(--b3); color: var(--text); }
+
+    /* ── HERO ── */
+    .hero-wrap {
+      border-bottom: 1px solid var(--b1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Extremely subtle dot grid */
+    .hero-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 90% 80% at 60% 0%, black 10%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 60% 0%, black 10%, transparent 75%);
+      pointer-events: none;
+    }
+
+    /* Very faint white glow at top */
+    .hero-wrap::after {
+      content: '';
+      position: absolute;
+      top: -80px; left: 0; right: 0;
+      height: 400px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.035) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3.5rem 2rem 3.25rem;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── GLOW SYSTEM — soft backlight on all key text ── */
+
+    /* Hero headline glow */
+    .hero h1 {
+      text-shadow:
+        0 0 80px rgba(255,255,255,0.22),
+        0 0 160px rgba(255,255,255,0.10);
+    }
+
+    /* Section titles */
+    .section-title-text {
+      text-shadow: 0 0 50px rgba(255,255,255,0.16);
+    }
+
+    /* Card headings */
+    .article-card h3,
+    .article-card-featured h3,
+    .thoughts-card h3,
+    .about-name,
+    .hcard-title,
+    .nl-text h3 {
+      text-shadow: 0 0 35px rgba(255,255,255,0.14);
+    }
+
+    /* Stat numbers — brightest glow */
+    .hstat-n, .astat-n {
+      text-shadow: 0 0 40px rgba(255,255,255,0.30);
+    }
+
+    /* Section labels */
+    .section-label-text, .hero-card-label,
+    .about-role, .hcard-tag,
+    .featured-badge {
+      text-shadow: 0 0 28px rgba(255,255,255,0.18);
+    }
+
+    /* Tag pills — subtle glow on the text */
+    .tag-pill {
+      text-shadow: 0 0 18px rgba(255,255,255,0.18);
+    }
+
+    /* Eyebrow pill — glow behind the whole pill */
+    .hero-eyebrow {
+      box-shadow:
+        0 0 20px rgba(255,255,255,0.04),
+        inset 0 0 16px rgba(255,255,255,0.03);
+    }
+
+    /* Nav logo glow */
+    .nav-logo {
+      text-shadow: 0 0 32px rgba(255,255,255,0.18);
+    }
+
+    /* Eyebrow tag — no color, just border */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border: 1px solid var(--b2);
+      border-radius: 999px;
+      padding: 0.22rem 0.85rem;
+      margin-bottom: 1.4rem;
+    }
+
+    /* Two tiny dots — one slightly lighter for the dual identity */
+    .hero-eyebrow::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--text-2);
+      border-radius: 50%;
+    }
+    .hero-eyebrow::after {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--text-4);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.0;
+      margin-bottom: 1.1rem;
+      color: var(--text);
+    }
+
+    /* "Building" — white to slightly warm white, no bright color */
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #ffffff 0%, #c8c8d8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      line-height: 1.78;
+      max-width: 460px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Stats row — subdued */
+    .hero-stats-row {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.25rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--b1);
+    }
+
+    .hstat { display: flex; flex-direction: column; gap: 0.1rem; }
+    .hstat-n {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .hstat-l {
+      font-size: 0.66rem;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* ── HERO RIGHT PANEL ── */
+    .hero-card-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-card-label::before {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--b1);
+    }
+
+    .hero-article-card {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    /* Green 1px top line — only place green appears prominently */
+    .hero-article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--green);
+    }
+    .hero-article-card:hover {
+      border-color: var(--b2);
+      transform: translateY(-2px);
+    }
+
+    .hcard-tag {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.5rem;
+    }
+    .hcard-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 0.55rem;
+    }
+    .hcard-desc {
+      font-size: 0.8rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+    .hcard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--b1);
+    }
+    .hcard-read {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .hcard-read:hover { color: var(--text); }
+    .hcard-time { font-size: 0.7rem; color: var(--text-3); }
+
+    /* Mini stack */
+    .hero-mini-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+    }
+    .hero-mini-card {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: 9px;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .hero-mini-card:hover { border-color: var(--b2); }
+
+    .mini-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--b3);
+      flex-shrink: 0;
+    }
+    .mini-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-2);
+      line-height: 1.3;
+      flex: 1;
+    }
+    .mini-time { font-size: 0.68rem; color: var(--text-3); flex-shrink: 0; }
+
+    /* ── BUTTONS ── */
+    /* Primary: white fill */
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 0.62rem 1.4rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* Ghost: white border */
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-2);
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 0.62rem 1.4rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--b2);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-ghost:hover { border-color: var(--b3); color: var(--text); }
+
+    /* ── MAIN CONTENT ── */
+    .content-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2.75rem 2rem 3rem;
+    }
+
+    /* Section header */
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .section-label-text {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.2rem;
+    }
+
+    .section-title-text {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      color: var(--text);
+    }
+
+    .view-all {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 0.2s;
+    }
+    .view-all:hover { color: var(--text-2); }
+
+    /* ── MAGAZINE GRID ── */
+    .mag-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+    }
+
+    .mag-featured { grid-row: 1 / 3; }
+
+    /* Featured card */
+    .article-card-featured {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+      cursor: pointer;
+    }
+    /* Green 1px line — barely there, just identity */
+    .article-card-featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--green);
+    }
+    .article-card-featured:hover {
+      border-color: var(--b2);
+      box-shadow:
+        0 8px 40px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(255,255,255,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .article-card-featured:hover h3 {
+      text-shadow: 0 0 50px rgba(255,255,255,0.22);
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.63rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border: 1px solid var(--b1);
+      border-radius: 999px;
+      padding: 0.17rem 0.6rem;
+      margin-bottom: 0.8rem;
+      width: fit-content;
+    }
+
+    /* Tags — no bright colors */
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .tag-pill {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.17rem 0.55rem;
+      border-radius: 999px;
+      line-height: 1.4;
+      background: var(--bg3);
+      color: var(--text-3);
+      border: 1px solid var(--b1);
+    }
+    /* One subtle tint per category — barely visible */
+    .tag-blue   { border-color: rgba(91,115,248,0.18); }
+    .tag-purple { border-color: rgba(139,108,247,0.18); }
+    .tag-amber  { border-color: rgba(245,158,11,0.15); }
+    .tag-cyan   { border-color: rgba(6,182,212,0.15); }
+    .tag-rose   { border-color: rgba(236,72,153,0.15); }
+    .tag-green  { border-color: rgba(16,185,129,0.15); }
+    .tag-red    { border-color: rgba(239,68,68,0.15); }
+
+    .article-card-featured h3 {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .article-card-featured p {
+      font-size: 0.86rem;
+      color: var(--text-2);
+      line-height: 1.72;
+      flex: 1;
+      margin-bottom: 1.2rem;
+    }
+
+    .featured-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--b1);
+    }
+
+    .featured-stats { display: flex; gap: 1.25rem; }
+    .featured-stat { font-size: 0.73rem; color: var(--text-3); }
+    .featured-stat strong { color: var(--text-2); font-weight: 600; }
+
+    .read-more {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .read-more:hover { color: var(--text); gap: 0.4rem; }
+
+    /* Demo badge — white bordered, no color */
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-2);
+      border: 1px solid var(--b2);
+      background: var(--bg3);
+      padding: 0.28rem 0.75rem;
+      border-radius: 7px;
+      transition: border-color 0.2s;
+    }
+    .demo-badge:hover { border-color: var(--b3); color: var(--text); }
+
+    /* Regular card */
+    .article-card {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+      cursor: pointer;
+    }
+    .article-card:hover {
+      border-color: var(--b2);
+      box-shadow:
+        0 4px 24px rgba(0,0,0,0.35),
+        0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+
+    .article-card:hover h3 {
+      text-shadow: 0 0 36px rgba(255,255,255,0.22);
+    }
+
+    .article-card h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.38;
+      color: var(--text);
+    }
+    .article-card p {
+      font-size: 0.8rem;
+      color: var(--text-2);
+      line-height: 1.64;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--b1);
+    }
+    .read-time { font-size: 0.68rem; color: var(--text-3); }
+
+    /* ── BOTTOM SPLIT ── */
+    .bottom-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .thoughts-card {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .thoughts-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+    .thoughts-card:hover { border-color: var(--b2); transform: translateY(-2px); }
+
+    .thoughts-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+    }
+    .thoughts-card p {
+      font-size: 0.83rem;
+      color: var(--text-2);
+      line-height: 1.68;
+    }
+
+    .tc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--b1);
+    }
+
+    /* About column */
+    .about-col {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .about-col::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .about-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.25rem;
+    }
+    .about-role {
+      font-size: 0.73rem;
+      color: var(--text-3);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    .about-bio {
+      font-size: 0.83rem;
+      color: var(--text-2);
+      line-height: 1.72;
+    }
+
+    .about-stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+      margin-top: 1.1rem;
+    }
+
+    .astat {
+      background: var(--bg3);
+      border: 1px solid var(--b1);
+      border-radius: 9px;
+      padding: 0.8rem 0.9rem;
+    }
+    .astat-n {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .astat-l {
+      font-size: 0.63rem;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.12rem;
+    }
+
+    /* ── NEWSLETTER STRIP ── */
+    .newsletter-strip {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle white shimmer top border */
+    .newsletter-strip::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+    }
+
+    .nl-text h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .nl-text p {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .nl-form {
+      display: flex;
+      gap: 0.55rem;
+      flex-shrink: 0;
+    }
+    .nl-input {
+      background: var(--bg3);
+      border: 1px solid var(--b1);
+      border-radius: 9px;
+      padding: 0.6rem 1rem;
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.84rem;
+      outline: none;
+      width: 210px;
+      transition: border-color 0.2s;
+    }
+    .nl-input:focus { border-color: var(--b3); }
+    .nl-input::placeholder { color: var(--text-3); }
+
+    /* ── DIVIDER ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--b1);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--b1);
+      padding: 1.5rem 2rem;
+      margin-top: 3rem;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-2);
+      letter-spacing: -0.01em;
+    }
+    .footer-brand span { color: var(--text-3); }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 0.76rem;
+      color: var(--text-3);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text-2); }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: var(--text-4);
+      width: 100%;
+      margin-top: 0.4rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .mag-grid { grid-template-columns: 1fr; }
+      .mag-featured { grid-row: auto; }
+      .bottom-split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .content-wrap { padding: 2rem 1.25rem; }
+      .newsletter-strip { flex-direction: column; }
+      .nl-form { width: 100%; }
+      .nl-input { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="preview-banner">Preview — not live yet</div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Bionic <span>Banker</span></div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#">All Articles</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <a href="#" class="nav-cta">Subscribe</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="hero">
+
+      <div class="hero-left">
+        <div class="hero-eyebrow">Finance · Code · Both</div>
+        <h1>Inside Finance.<br><em>Building</em> Its Future.</h1>
+        <p class="hero-sub">I work inside financial systems and build on top of them. Two sides of the same thing — the industry access, the code, the questions I can't stop asking.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary">Subscribe →</a>
+          <a href="#" class="btn-ghost">Read Articles</a>
+        </div>
+        <div class="hero-stats-row">
+          <div class="hstat">
+            <span class="hstat-n">13</span>
+            <span class="hstat-l">Articles</span>
+          </div>
+          <div class="hstat">
+            <span class="hstat-n">3</span>
+            <span class="hstat-l">Live Projects</span>
+          </div>
+          <div class="hstat">
+            <span class="hstat-n">5+</span>
+            <span class="hstat-l">Years Building</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card-label">Latest</div>
+        <div class="hero-article-card">
+          <div class="hcard-tag">Featured · AML · Blockchain · AI</div>
+          <div class="hcard-title">I Built a Blockchain AML Engine From Scratch — Here's What I Found</div>
+          <div class="hcard-desc">94.9% detection rate. 22 rules. Caught Tornado Cash, Ronin, Lazarus Group. Then added an AI layer that thinks for itself.</div>
+          <div class="hcard-footer">
+            <span class="hcard-read">Read the full story →</span>
+            <span class="hcard-time">12 min</span>
+          </div>
+        </div>
+        <div class="hero-mini-stack">
+          <div class="hero-mini-card">
+            <div class="mini-dot"></div>
+            <div class="mini-title">SYOS — Making an LLM Think About Its Own Thinking</div>
+            <span class="mini-time">9 min</span>
+          </div>
+          <div class="hero-mini-card">
+            <div class="mini-dot"></div>
+            <div class="mini-title">The Anchor Problem</div>
+            <span class="mini-time">6 min</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-wrap">
+
+    <div class="section-header">
+      <div>
+        <div class="section-label-text">Deep Dives</div>
+        <div class="section-title-text">Articles</div>
+      </div>
+      <a href="#" class="view-all">View all 13 →</a>
+    </div>
+
+    <div class="mag-grid">
+
+      <div class="mag-featured">
+        <div class="article-card-featured">
+          <div class="featured-badge">★ Featured</div>
+          <div class="article-tags">
+            <span class="tag-pill tag-red">AML</span>
+            <span class="tag-pill tag-blue">Blockchain</span>
+            <span class="tag-pill tag-purple">AI</span>
+          </div>
+          <h3>I Built a Blockchain AML Engine From Scratch — Here's What I Found</h3>
+          <p>94.9% detection rate. 22 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group, Wormhole, and Nomad. Then added an AI layer that thinks for itself. Here's the whole story — honest start to finish.</p>
+          <div class="featured-footer">
+            <div class="featured-stats">
+              <span class="featured-stat"><strong>94.9%</strong> accuracy</span>
+              <span class="featured-stat"><strong>12 min</strong> read</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span class="read-more">Full story →</span>
+              <span class="demo-badge">↗ Live Demo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-tags">
+          <span class="tag-pill tag-purple">AI</span>
+          <span class="tag-pill tag-purple">SYOS</span>
+        </div>
+        <h3>SYOS — What Happens When You Try to Make an LLM Think About Its Own Thinking</h3>
+        <p>No code written. No fine-tuning. Just questions — and somewhere in those months, a reasoning system started evolving on its own.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">9 min</span>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-tags">
+          <span class="tag-pill tag-purple">AI</span>
+          <span class="tag-pill tag-cyan">Physics</span>
+        </div>
+        <h3>The Physics of AI — Why the 2024 Nobel Prize Changes Everything</h3>
+        <p>Neural networks don't think. They roll downhill. The same equation behind spin glass physics is identical to the math training GPT-4.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">8 min</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-split">
+
+      <div>
+        <div class="section-header" style="margin-bottom:0.75rem;">
+          <div>
+            <div class="section-label-text">Personal Writing</div>
+            <div class="section-title-text">Thoughts</div>
+          </div>
+        </div>
+        <div class="thoughts-card">
+          <div class="article-tags">
+            <span class="tag-pill tag-rose">Thoughts</span>
+            <span class="tag-pill tag-purple">AI</span>
+          </div>
+          <h3>The Anchor Problem</h3>
+          <p>I went looking for a template for life. Found a return mechanism instead. Then realized I'd built the exact same structure into my AI systems — without ever consciously making the connection.</p>
+          <div class="tc-footer">
+            <span class="read-more">Read →</span>
+            <span class="read-time">6 min · March 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-header" style="margin-bottom:0.75rem;">
+          <div>
+            <div class="section-label-text">Who</div>
+            <div class="section-title-text">About</div>
+          </div>
+        </div>
+        <div class="about-col">
+          <div>
+            <div class="about-name">HASH</div>
+            <div class="about-role">Finance · Blockchain · Builder</div>
+            <p class="about-bio">I work inside financial systems and build on what I see from the inside. Computer engineer exploring what happens when finance meets code at the edge.</p>
+          </div>
+          <div class="about-stat-row">
+            <div class="astat">
+              <div class="astat-n">13</div>
+              <div class="astat-l">Articles</div>
+            </div>
+            <div class="astat">
+              <div class="astat-n">3</div>
+              <div class="astat-l">Projects</div>
+            </div>
+            <div class="astat">
+              <div class="astat-n">5+</div>
+              <div class="astat-l">Years</div>
+            </div>
+            <div class="astat">
+              <div class="astat-n">∞</div>
+              <div class="astat-l">Questions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter-strip">
+      <div class="nl-text">
+        <h3>Stay in the loop</h3>
+        <p>Finance, blockchain, AI — one piece at a time. No fluff, no schedule, just when it's worth saying.</p>
+      </div>
+      <div class="nl-form">
+        <input class="nl-input" type="email" placeholder="your@email.com" />
+        <a href="#" class="btn-primary">Subscribe →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Bionic <span>Banker</span></div>
+      <div class="footer-links">
+        <a href="#">Articles</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">GitHub</a>
+      </div>
+      <div class="footer-copy">© 2026 Bionic Banker · Built from inside finance.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
