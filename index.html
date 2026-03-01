@@ -23,17 +23,25 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:          #08080e;
-      --bg2:         #0e0e1c;
-      --bg3:         #13132a;
+      /* ── BATMAN: the builder, the tech side ── */
+      --bg:          #04040a;
+      --bg2:         #09090f;
+      --bg3:         #0e0e1a;
       --accent:      #5b73f8;
-      --accent2:     #8b6cf7;
-      --accent-glow: rgba(91, 115, 248, 0.1);
-      --text:        #ededf5;
-      --text-muted:  #8a8aa0;
-      --text-dim:    #505068;
-      --border:      rgba(91, 115, 248, 0.14);
-      --border-soft: rgba(255,255,255,0.05);
+      --accent2:     #7c6cf7;
+      --accent-glow: rgba(91, 115, 248, 0.08);
+      --border:      rgba(91, 115, 248, 0.12);
+
+      /* ── BRUCE WAYNE: the finance side, gold ── */
+      --gold:        #c9a84c;
+      --gold2:       #e8c96a;
+      --gold-glow:   rgba(201, 168, 76, 0.10);
+      --gold-border: rgba(201, 168, 76, 0.20);
+
+      --text:        #eeeef5;
+      --text-muted:  #7a7a90;
+      --text-dim:    #404055;
+      --border-soft: rgba(255,255,255,0.04);
       --radius:      14px;
       --radius-lg:   20px;
     }
@@ -82,7 +90,7 @@
       color: var(--text);
     }
 
-    .nav-logo span { color: var(--accent); }
+    .nav-logo span { color: var(--gold); }
 
     .nav-links {
       display: flex;
@@ -130,15 +138,17 @@
       z-index: 1;
     }
 
-    /* Blue radial glow — sits on top of the dot grid */
+    /* Dual glow — gold (Bruce) left, blue (Batman) right */
     .hero::before {
       content: '';
       position: absolute;
       top: 0; left: 50%;
       transform: translateX(-50%);
-      width: 800px;
-      height: 500px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(91,115,248,0.13) 0%, rgba(139,108,247,0.06) 40%, transparent 70%);
+      width: 900px;
+      height: 560px;
+      background:
+        radial-gradient(ellipse at 30% 0%, rgba(201,168,76,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 0%, rgba(91,115,248,0.12) 0%, transparent 55%);
       pointer-events: none;
       z-index: 0;
     }
@@ -148,20 +158,27 @@
     .hero-tag {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent);
-      background: var(--accent-glow);
-      border: 1px solid var(--border);
+      color: var(--gold);
+      background: var(--gold-glow);
+      border: 1px solid var(--gold-border);
       border-radius: 999px;
-      padding: 0.3rem 1rem;
+      padding: 0.3rem 1.1rem;
       margin-bottom: 2rem;
     }
 
+    /* Gold dot left, blue dot right — two identities */
     .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .hero-tag::after {
       content: '';
       width: 6px; height: 6px;
       background: var(--accent);
@@ -177,10 +194,10 @@
       color: var(--text);
     }
 
-    /* Gradient text for the accent word */
+    /* Gold gradient — Bruce Wayne side */
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -220,15 +237,18 @@
       font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text);
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       letter-spacing: -0.03em;
       display: block;
     }
 
     .hero-stat-label {
-      font-size: 0.75rem;
+      font-size: 0.73rem;
       color: var(--text-dim);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       display: block;
       margin-top: 0.15rem;
@@ -236,23 +256,23 @@
 
     /* ── BUTTONS ── */
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-      color: #fff;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+      color: #0a0805;
       font-size: 0.875rem;
-      font-weight: 600;
+      font-weight: 700;
       padding: 0.75rem 1.75rem;
       border-radius: var(--radius);
       border: none;
       cursor: pointer;
       transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(91,115,248,0.3);
-      letter-spacing: 0.01em;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.25);
+      letter-spacing: 0.02em;
     }
 
     .btn-primary:hover {
       opacity: 0.92;
       transform: translateY(-1px);
-      box-shadow: 0 6px 28px rgba(91,115,248,0.4);
+      box-shadow: 0 6px 28px rgba(201,168,76,0.35);
     }
 
     .btn-ghost {
@@ -290,10 +310,10 @@
 
     .section-label {
       font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--gold);
       margin-bottom: 0.6rem;
     }
 
@@ -330,13 +350,13 @@
       text-decoration: none;
     }
 
-    /* gradient top-line accent */
+    /* Gold → Blue — Bruce to Batman */
     .article-card-featured::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+      background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold2));
     }
 
     .article-card-featured:hover {
@@ -511,7 +531,7 @@
     .read-more {
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--gold);
       display: inline-flex;
       align-items: center;
       gap: 0.2rem;
@@ -582,10 +602,9 @@
     .stat-number {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--text);
       letter-spacing: -0.04em;
       line-height: 1;
-      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -616,7 +635,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(91,115,248,0.5), rgba(139,108,247,0.5), transparent);
+      background: linear-gradient(90deg, transparent, var(--gold), var(--accent), var(--gold2), transparent);
     }
 
     .newsletter-box h2 {
@@ -700,7 +719,7 @@
       letter-spacing: -0.01em;
     }
 
-    .footer-brand span { color: var(--accent); }
+    .footer-brand span { color: var(--gold); }
 
     .footer-links {
       display: flex;
@@ -751,9 +770,9 @@
   <!-- ── HERO ── -->
   <div class="hero-bg">
   <div class="hero">
-    <div class="hero-tag">Engineer · Builder · Thinker</div>
+    <div class="hero-tag">Finance · Code · Both</div>
     <h1>Inside Finance.<br><em>Building</em> Its Future.</h1>
-    <p>I work inside financial systems by day and build on top of them by choice. Bionic Banker is where both sides meet — the industry access, the code, the questions I can't stop asking.</p>
+    <p>I work inside financial systems and build on top of them. Two sides of the same thing — the industry access, the code, the questions I can't stop asking.</p>
     <div class="hero-cta">
       <a href="#newsletter" class="btn-primary">Subscribe →</a>
       <a href="#articles" class="btn-ghost">Read Articles</a>
