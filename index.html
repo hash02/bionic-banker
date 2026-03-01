@@ -451,11 +451,40 @@
 
     .article-tag {
       font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
     }
+
+    /* ── COLOURED TAG PILLS ── */
+    .tag-pill {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      line-height: 1.4;
+    }
+    /* Blockchain / DeFi / Crypto */
+    .tag-blue  { background: rgba(91,115,248,0.15); color: #7b8ff9; border: 1px solid rgba(91,115,248,0.25); }
+    /* AI / Reasoning / SYOS */
+    .tag-purple{ background: rgba(139,108,247,0.15); color: #a78bfa; border: 1px solid rgba(139,108,247,0.25); }
+    /* Finance / Fintech / Banking */
+    .tag-amber { background: rgba(245,158,11,0.12);  color: #fbbf24; border: 1px solid rgba(245,158,11,0.22); }
+    /* Payments / PayPal */
+    .tag-cyan  { background: rgba(6,182,212,0.12);   color: #22d3ee; border: 1px solid rgba(6,182,212,0.22); }
+    /* Thoughts / Philosophy */
+    .tag-rose  { background: rgba(236,72,153,0.12);  color: #f472b6; border: 1px solid rgba(236,72,153,0.22); }
+    /* Crypto / Beginner */
+    .tag-green { background: rgba(16,185,129,0.12);  color: #34d399; border: 1px solid rgba(16,185,129,0.22); }
+    /* AML */
+    .tag-red   { background: rgba(239,68,68,0.12);   color: #f87171; border: 1px solid rgba(239,68,68,0.22); }
 
     .article-card h3 {
       font-size: 1rem;
@@ -761,7 +790,7 @@
       <a href="aml-engine.html" class="article-card-featured">
         <div>
           <div class="featured-badge">★ Featured</div>
-          <div class="article-tag">AML · Blockchain · AI</div>
+          <div class="article-tag"><span class="tag-pill tag-red">AML</span><span class="tag-pill tag-blue">Blockchain</span><span class="tag-pill tag-purple">AI</span></div>
           <h3>I Built a Blockchain AML Engine From Scratch — Here's What I Found</h3>
           <p>94.9% detection rate. 22 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group, Wormhole, and Nomad. Then added an AI layer that thinks for itself. Here's the whole story — honest start to finish.</p>
           <div class="featured-meta">
@@ -783,7 +812,7 @@
       <div class="articles-grid">
 
         <a href="syos.html" class="article-card">
-          <div class="article-tag">AI · Reasoning · SYOS</div>
+          <div class="article-tag"><span class="tag-pill tag-purple">AI</span><span class="tag-pill tag-purple">Reasoning</span><span class="tag-pill tag-purple">SYOS</span></div>
           <h3>SYOS — What Happens When You Try to Make an LLM Think About Its Own Thinking</h3>
           <p>No code written. No fine-tuning. Just questions — and somewhere in those months, a reasoning system started evolving on its own.</p>
           <div class="card-footer">
@@ -793,7 +822,7 @@
         </a>
 
         <a href="physics-of-ai.html" class="article-card">
-          <div class="article-tag">AI · Physics · Nobel Prize</div>
+          <div class="article-tag"><span class="tag-pill tag-purple">AI</span><span class="tag-pill tag-cyan">Physics</span><span class="tag-pill tag-amber">Nobel Prize</span></div>
           <h3>The Physics of AI — Why the 2024 Nobel Prize Changes Everything</h3>
           <p>Neural networks don't think. They roll downhill. The same equation behind spin glass physics is identical to the math training GPT-4.</p>
           <div class="card-footer">
@@ -803,7 +832,7 @@
         </a>
 
         <a href="zkp-explained.html" class="article-card">
-          <div class="article-tag">Blockchain · Privacy · Banking</div>
+          <div class="article-tag"><span class="tag-pill tag-blue">Blockchain</span><span class="tag-pill tag-cyan">Privacy</span><span class="tag-pill tag-amber">Banking</span></div>
           <h3>AI in Banking Needs Privacy — Enter Zero-Knowledge Proofs</h3>
           <p>The cryptographic solution that's been sitting since 1985. Banks are deploying AI at scale. Privacy measures aren't keeping up.</p>
           <div class="card-footer">
@@ -828,7 +857,7 @@
       <a href="the-anchor.html" class="article-card-featured">
         <div>
           <div class="featured-badge">✦ New</div>
-          <div class="article-tag">Thoughts · AI · Philosophy</div>
+          <div class="article-tag"><span class="tag-pill tag-rose">Thoughts</span><span class="tag-pill tag-purple">AI</span><span class="tag-pill tag-rose">Philosophy</span></div>
           <h3>The Anchor Problem</h3>
           <p>I went looking for a template for life. Found a return mechanism instead. Then realized I'd built the exact same structure into my AI systems — years later, without ever consciously making the connection.</p>
           <div class="featured-meta">
@@ -854,7 +883,7 @@
     <div class="articles-grid">
 
       <a href="blockchain-trends.html" class="article-card">
-        <div class="article-tag">Blockchain · Trends</div>
+        <div class="article-tag"><span class="tag-pill tag-blue">Blockchain</span><span class="tag-pill tag-cyan">Trends</span></div>
         <h3>Top 10 Latest Trends in Blockchain Technology: 2024 Update</h3>
         <p>Layer 2 scaling, real-world asset tokenization, DePIN, and the protocols quietly reshaping the stack.</p>
         <div class="card-footer">
@@ -864,7 +893,7 @@
       </a>
 
       <a href="defi.html" class="article-card">
-        <div class="article-tag">DeFi · Finance</div>
+        <div class="article-tag"><span class="tag-pill tag-green">DeFi</span><span class="tag-pill tag-amber">Finance</span></div>
         <h3>DeFi: The Future of Finance</h3>
         <p>What decentralized finance actually is, why it matters, and what TradFi can't replicate — yet.</p>
         <div class="card-footer">
@@ -874,7 +903,7 @@
       </a>
 
       <a href="uniswap.html" class="article-card">
-        <div class="article-tag">DeFi · DEX · Blockchain</div>
+        <div class="article-tag"><span class="tag-pill tag-green">DeFi</span><span class="tag-pill tag-green">DEX</span><span class="tag-pill tag-blue">Blockchain</span></div>
         <h3>Understanding Uniswap: The Leading Decentralized Exchange</h3>
         <p>How automated market makers replaced order books — and why that's one of the cleanest pieces of financial engineering in crypto.</p>
         <div class="card-footer">
@@ -884,7 +913,7 @@
       </a>
 
       <a href="aave.html" class="article-card">
-        <div class="article-tag">DeFi · Lending · Blockchain</div>
+        <div class="article-tag"><span class="tag-pill tag-green">DeFi</span><span class="tag-pill tag-cyan">Lending</span><span class="tag-pill tag-blue">Blockchain</span></div>
         <h3>Exploring Aave: A Pillar of Decentralized Finance</h3>
         <p>Borrow, lend, earn — without a bank in the middle. How Aave works and why it's still standing when others aren't.</p>
         <div class="card-footer">
@@ -894,7 +923,7 @@
       </a>
 
       <a href="fintech.html" class="article-card">
-        <div class="article-tag">Fintech · Finance</div>
+        <div class="article-tag"><span class="tag-pill tag-amber">Fintech</span><span class="tag-pill tag-amber">Finance</span></div>
         <h3>The Transformative Power of Fintech in Modern Financial Services</h3>
         <p>From mobile payments to embedded finance — how technology is rewiring the plumbing of money movement.</p>
         <div class="card-footer">
@@ -904,7 +933,7 @@
       </a>
 
       <a href="paypal.html" class="article-card">
-        <div class="article-tag">Fintech · Payments</div>
+        <div class="article-tag"><span class="tag-pill tag-amber">Fintech</span><span class="tag-pill tag-cyan">Payments</span></div>
         <h3>Unveiling the Mysteries of PayPal</h3>
         <p>How a startup that almost didn't survive became the rails millions of people don't realize they're standing on.</p>
         <div class="card-footer">
@@ -914,7 +943,7 @@
       </a>
 
       <a href="how-to-start-crypto.html" class="article-card">
-        <div class="article-tag">Crypto · Beginner</div>
+        <div class="article-tag"><span class="tag-pill tag-green">Crypto</span><span class="tag-pill tag-green">Beginner</span></div>
         <h3>How to Start With Crypto in 2024</h3>
         <p>Not investment advice. Just the honest version of what I wish someone had told me before I started following this rabbit hole.</p>
         <div class="card-footer">
@@ -924,7 +953,7 @@
       </a>
 
       <a href="gen-z-finance.html" class="article-card">
-        <div class="article-tag">Finance · Gen Z</div>
+        <div class="article-tag"><span class="tag-pill tag-amber">Finance</span><span class="tag-pill tag-rose">Gen Z</span></div>
         <h3>How to Start Your Financial Journey as Gen Z in 2024</h3>
         <p>The financial system wasn't built for you. Here's how to build your own version of it — starting with nothing but a phone and some questions.</p>
         <div class="card-footer">
