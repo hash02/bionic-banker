@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Articles — Bionic Banker</title>
+  <meta name="description" content="Every article from Bionic Banker — deep dives on blockchain, AI, finance, and the questions worth asking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#08080e;--bg2:#0e0e1c;--bg3:#13132a;
+      --accent:#5b73f8;--accent2:#8b6cf7;--accent-glow:rgba(91,115,248,0.1);
+      --text:#ededf5;--text-muted:#8a8aa0;--text-dim:#505068;
+      --border:rgba(91,115,248,0.14);--border-soft:rgba(255,255,255,0.05);
+      --radius:14px;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    h1,h2,h3,.nav-logo{font-family:'Bricolage Grotesque','Inter',sans-serif;letter-spacing:-0.025em;}
+    a{color:inherit;text-decoration:none;}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;background:rgba(8,8,14,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-soft);padding:0 2rem;height:62px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-size:1.05rem;font-weight:700;}
+    .nav-logo span{color:var(--accent);}
+    .nav-back{font-size:0.85rem;color:var(--text-muted);transition:color 0.2s;}
+    .nav-back:hover{color:var(--accent);}
+
+    /* HEADER */
+    .page-header{max-width:1140px;margin:0 auto;padding:4rem 2rem 2rem;}
+    .page-label{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+    .page-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:0.75rem;}
+    .page-sub{color:var(--text-muted);font-size:0.95rem;line-height:1.7;margin-bottom:2.5rem;}
+
+    /* FILTER TABS */
+    .filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+    .filter-btn{font-size:0.75rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding:0.35rem 0.9rem;border-radius:999px;border:1px solid var(--border-soft);background:transparent;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:'Plus Jakarta Sans',sans-serif;}
+    .filter-btn:hover,.filter-btn.active{background:var(--accent-glow);border-color:var(--border);color:var(--accent);}
+
+    /* GRID */
+    .articles-container{max-width:1140px;margin:0 auto;padding:0 2rem 5rem;}
+    .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+
+    /* CARD */
+    .article-card{background:var(--bg2);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.75rem;transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s;display:flex;flex-direction:column;gap:0.65rem;position:relative;overflow:hidden;}
+    .article-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,115,248,0.25),transparent);opacity:0;transition:opacity 0.25s;}
+    .article-card:hover{border-color:var(--border);box-shadow:0 6px 28px rgba(91,115,248,0.08);transform:translateY(-3px);}
+    .article-card:hover::before{opacity:1;}
+
+    /* FEATURED CARD */
+    .article-card.featured{border-color:var(--border);background:var(--bg2);position:relative;}
+    .article-card.featured::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));}
+
+    .article-tags{display:inline-flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.1rem;}
+    .tag-pill{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:999px;line-height:1.4;}
+    .tag-blue  {background:rgba(91,115,248,0.15);color:#7b8ff9;border:1px solid rgba(91,115,248,0.25);}
+    .tag-purple{background:rgba(139,108,247,0.15);color:#a78bfa;border:1px solid rgba(139,108,247,0.25);}
+    .tag-amber {background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.22);}
+    .tag-cyan  {background:rgba(6,182,212,0.12);color:#22d3ee;border:1px solid rgba(6,182,212,0.22);}
+    .tag-rose  {background:rgba(236,72,153,0.12);color:#f472b6;border:1px solid rgba(236,72,153,0.22);}
+    .tag-green {background:rgba(16,185,129,0.12);color:#34d399;border:1px solid rgba(16,185,129,0.22);}
+    .tag-red   {background:rgba(239,68,68,0.12);color:#f87171;border:1px solid rgba(239,68,68,0.22);}
+
+    .article-card h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;font-weight:600;letter-spacing:-0.015em;line-height:1.4;color:var(--text);}
+    .article-card p{font-size:0.855rem;color:var(--text-muted);line-height:1.65;flex:1;}
+    .card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:0.25rem;}
+    .read-more{font-size:0.8rem;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:0.2rem;transition:gap 0.2s;}
+    .read-more:hover{gap:0.45rem;}
+    .read-time{font-size:0.73rem;color:var(--text-dim);}
+    .featured-badge{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);border:1px solid var(--border);border-radius:999px;padding:0.18rem 0.55rem;margin-bottom:0.25rem;}
+
+    /* SECTION LABEL inside grid */
+    .section-divider{grid-column:1/-1;padding-top:1rem;}
+    .section-divider h2{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);padding-bottom:0.75rem;border-bottom:1px solid var(--border-soft);}
+
+    /* HIDDEN state for filter */
+    .article-card.hidden{display:none;}
+
+    footer{border-top:1px solid var(--border-soft);padding:2rem;text-align:center;}
+    .footer-copy{font-size:0.8rem;color:var(--text-dim);}
+
+    @media(max-width:640px){
+      .page-header,.articles-container{padding-left:1.25rem;padding-right:1.25rem;}
+      .page-header{padding-top:2.5rem;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html" class="nav-logo">Bionic <span>Banker</span></a>
+    <a href="/index.html" class="nav-back">← Home</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-label">Everything</div>
+    <h1 class="page-title">All Articles</h1>
+    <p class="page-sub">13 pieces across blockchain, AI, finance, and the questions I can't stop asking.</p>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="blockchain">Blockchain</button>
+      <button class="filter-btn" data-filter="ai">AI</button>
+      <button class="filter-btn" data-filter="defi">DeFi</button>
+      <button class="filter-btn" data-filter="finance">Finance</button>
+      <button class="filter-btn" data-filter="thoughts">Thoughts</button>
+    </div>
+  </div>
+
+  <div class="articles-container">
+    <div class="articles-grid" id="grid">
+
+      <!-- ── DEEP DIVES ── -->
+      <div class="section-divider"><h2>Deep Dives</h2></div>
+
+      <a href="aml-engine.html" class="article-card featured" data-tags="blockchain ai">
+        <span class="featured-badge">★ Featured</span>
+        <div class="article-tags">
+          <span class="tag-pill tag-red">AML</span>
+          <span class="tag-pill tag-blue">Blockchain</span>
+          <span class="tag-pill tag-purple">AI</span>
+        </div>
+        <h3>I Built a Blockchain AML Engine From Scratch — Here's What I Found</h3>
+        <p>94.9% detection rate. 22 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group, Wormhole, and Nomad.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">12 min</span>
+        </div>
+      </a>
+
+      <a href="syos.html" class="article-card" data-tags="ai">
+        <div class="article-tags">
+          <span class="tag-pill tag-purple">AI</span>
+          <span class="tag-pill tag-purple">Reasoning</span>
+          <span class="tag-pill tag-purple">SYOS</span>
+        </div>
+        <h3>SYOS — What Happens When You Try to Make an LLM Think About Its Own Thinking</h3>
+        <p>No code written. No fine-tuning. Just questions — and somewhere in those months, a reasoning system started evolving on its own.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">9 min</span>
+        </div>
+      </a>
+
+      <a href="physics-of-ai.html" class="article-card" data-tags="ai">
+        <div class="article-tags">
+          <span class="tag-pill tag-purple">AI</span>
+          <span class="tag-pill tag-cyan">Physics</span>
+          <span class="tag-pill tag-amber">Nobel Prize</span>
+        </div>
+        <h3>The Physics of AI — Why the 2024 Nobel Prize Changes Everything</h3>
+        <p>Neural networks don't think. They roll downhill. The same equation behind spin glass physics is identical to the math training GPT-4.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">8 min</span>
+        </div>
+      </a>
+
+      <a href="zkp-explained.html" class="article-card" data-tags="blockchain finance">
+        <div class="article-tags">
+          <span class="tag-pill tag-blue">Blockchain</span>
+          <span class="tag-pill tag-cyan">Privacy</span>
+          <span class="tag-pill tag-amber">Banking</span>
+        </div>
+        <h3>AI in Banking Needs Privacy — Enter Zero-Knowledge Proofs</h3>
+        <p>The cryptographic solution that's been sitting since 1985. Banks are deploying AI at scale. Privacy measures aren't keeping up.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">7 min</span>
+        </div>
+      </a>
+
+      <!-- ── THOUGHTS ── -->
+      <div class="section-divider"><h2>Thoughts</h2></div>
+
+      <a href="the-anchor.html" class="article-card" data-tags="thoughts ai">
+        <div class="article-tags">
+          <span class="tag-pill tag-rose">Thoughts</span>
+          <span class="tag-pill tag-purple">AI</span>
+          <span class="tag-pill tag-rose">Philosophy</span>
+        </div>
+        <h3>The Anchor Problem</h3>
+        <p>I went looking for a template for life. Found a return mechanism instead. Then realized I'd built the exact same structure into my AI systems — years later, without knowing it.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">6 min</span>
+        </div>
+      </a>
+
+      <!-- ── ARCHIVE ── -->
+      <div class="section-divider"><h2>Archive</h2></div>
+
+      <a href="blockchain-trends.html" class="article-card" data-tags="blockchain">
+        <div class="article-tags">
+          <span class="tag-pill tag-blue">Blockchain</span>
+          <span class="tag-pill tag-cyan">Trends</span>
+        </div>
+        <h3>Top 10 Latest Trends in Blockchain Technology: 2024 Update</h3>
+        <p>Layer 2 scaling, real-world asset tokenization, DePIN, and the protocols quietly reshaping the stack.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">7 min</span>
+        </div>
+      </a>
+
+      <a href="defi.html" class="article-card" data-tags="defi finance">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">DeFi</span>
+          <span class="tag-pill tag-amber">Finance</span>
+        </div>
+        <h3>DeFi: The Future of Finance</h3>
+        <p>What decentralized finance actually is, why it matters, and what TradFi can't replicate — yet.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">5 min</span>
+        </div>
+      </a>
+
+      <a href="uniswap.html" class="article-card" data-tags="defi blockchain">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">DeFi</span>
+          <span class="tag-pill tag-green">DEX</span>
+          <span class="tag-pill tag-blue">Blockchain</span>
+        </div>
+        <h3>Understanding Uniswap: The Leading Decentralized Exchange</h3>
+        <p>How automated market makers replaced order books — and why that's one of the cleanest pieces of financial engineering in crypto.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">4 min</span>
+        </div>
+      </a>
+
+      <a href="aave.html" class="article-card" data-tags="defi blockchain">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">DeFi</span>
+          <span class="tag-pill tag-cyan">Lending</span>
+          <span class="tag-pill tag-blue">Blockchain</span>
+        </div>
+        <h3>Exploring Aave: A Pillar of Decentralized Finance</h3>
+        <p>Borrow, lend, earn — without a bank in the middle. How Aave works and why it's still standing when others aren't.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">4 min</span>
+        </div>
+      </a>
+
+      <a href="fintech.html" class="article-card" data-tags="finance">
+        <div class="article-tags">
+          <span class="tag-pill tag-amber">Fintech</span>
+          <span class="tag-pill tag-amber">Finance</span>
+        </div>
+        <h3>The Transformative Power of Fintech in Modern Financial Services</h3>
+        <p>From mobile payments to embedded finance — how technology is rewiring the plumbing of money movement.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">5 min</span>
+        </div>
+      </a>
+
+      <a href="paypal.html" class="article-card" data-tags="finance">
+        <div class="article-tags">
+          <span class="tag-pill tag-amber">Fintech</span>
+          <span class="tag-pill tag-cyan">Payments</span>
+        </div>
+        <h3>Unveiling the Mysteries of PayPal</h3>
+        <p>How a startup that almost didn't survive became the rails millions of people don't realize they're standing on.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">5 min</span>
+        </div>
+      </a>
+
+      <a href="how-to-start-crypto.html" class="article-card" data-tags="blockchain finance">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">Crypto</span>
+          <span class="tag-pill tag-green">Beginner</span>
+        </div>
+        <h3>How to Start With Crypto in 2024</h3>
+        <p>Not investment advice. Just the honest version of what I wish someone had told me before I started following this rabbit hole.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">6 min</span>
+        </div>
+      </a>
+
+      <a href="gen-z-finance.html" class="article-card" data-tags="finance thoughts">
+        <div class="article-tags">
+          <span class="tag-pill tag-amber">Finance</span>
+          <span class="tag-pill tag-rose">Gen Z</span>
+        </div>
+        <h3>How to Start Your Financial Journey as Gen Z in 2024</h3>
+        <p>The financial system wasn't built for you. Here's how to build your own version — starting with nothing but a phone and some questions.</p>
+        <div class="card-footer">
+          <span class="read-more">Read →</span>
+          <span class="read-time">6 min</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-copy">© 2026 Bionic Banker · <a href="/index.html" style="color:var(--accent);">bionicbanker.tech</a></div>
+  </footer>
+
+  <script>
+    // Filter functionality
+    const btns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.article-card');
+    const dividers = document.querySelectorAll('.section-divider');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        cards.forEach(card => {
+          if (filter === 'all') {
+            card.classList.remove('hidden');
+          } else {
+            const tags = card.dataset.tags || '';
+            card.classList.toggle('hidden', !tags.includes(filter));
+          }
+        });
+
+        // Hide dividers if all cards below them are hidden
+        dividers.forEach(div => {
+          let next = div.nextElementSibling;
+          let allHidden = true;
+          while (next && !next.classList.contains('section-divider')) {
+            if (!next.classList.contains('hidden')) allHidden = false;
+            next = next.nextElementSibling;
+          }
+          div.style.display = allHidden ? 'none' : '';
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
