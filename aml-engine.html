@@ -23,7 +23,7 @@
 
     :root {
       --bg:#050508;
-      --bg2: #0f0f1a;
+      --bg2: #0b0b0f;
       --bg3: #141428;
       --accent: #4f6ef7;
       --accent-glow: rgba(79, 110, 247, 0.12);
@@ -53,11 +53,11 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10, 10, 15, 0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(5,5,8,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       padding: 0 2rem;
-      height: 60px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -67,6 +67,12 @@
     .nav-logo span{color:rgba(255,255,255,0.55);}
     .nav-back { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
     .nav-back:hover { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 1.75rem; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); font-weight: 500; transition: color 0.18s; }
+    .nav-links a:hover { color: rgba(255,255,255,0.7); }
+    .nav-cta { font-size: 0.76rem; font-weight: 600; background: transparent; border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.55); padding: 0.3rem 0.85rem; border-radius: 8px; transition: border-color 0.2s, color 0.2s; }
+    .nav-cta:hover { border-color: rgba(255,255,255,0.16); color: rgba(255,255,255,0.8); }
 
     /* ── HERO IMAGE ── */
     .hero-image {
@@ -182,7 +188,7 @@
       gap: 1rem;
       padding: 1rem 0;
       border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       margin-bottom: 2.5rem;
     }
 
@@ -491,7 +497,7 @@
 
     @media (max-width: 640px) {
       .stats-bar { flex-wrap: wrap; }
-      .stat-item { min-width: 50%; border-bottom: 1px solid var(--border); }
+      .stat-item { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,0.06); }
       .article-header, .article-body { padding-left: 1.25rem; padding-right: 1.25rem; }
       .case-card { grid-template-columns: 1fr; }
       .case-amount { font-size: 0.9rem; }
@@ -505,13 +511,19 @@ h1,h2,h3 { text-shadow: 0 0 40px rgba(255,255,255,0.14); }
 </head>
 <body>
 
-  <nav>
-    <a href="/index.html" class="nav-logo">Bionic <span>Banker</span></a>
-    <a href="/index.html" class="nav-back">← All Articles</a>
+      <nav>
+    <a href="index.html" class="nav-logo">Bionic <span>Banker</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="articles.html">All Articles</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
+    </div>
   </nav>
 
   <!-- HERO IMAGE -->
-  <div style="width:100%; max-height:440px; overflow:hidden; border-bottom:1px solid var(--border);">
+  <div style="width:100%; max-height:440px; overflow:hidden; border-bottom: 1px solid rgba(255,255,255,0.06);">
     <img src="dashboard-hero.png.png" alt="NEXUS-RISK AML Engine — 94.9% detection rate, 22 rules, 813 transactions" style="width:100%; display:block; object-fit:cover; object-position:top;" />
   </div>
 
