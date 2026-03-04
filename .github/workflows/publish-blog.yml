@@ -1,0 +1,59 @@
+name: Publish Blog Article
+
+on:
+  workflow_dispatch:
+    inputs:
+      draft_file:
+        description: 'Draft filename in drafts/ folder (e.g. my-new-post.md)'
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install markdown PyYAML
+
+      - name: Verify draft exists
+        run: |
+          if [ ! -f "drafts/${{ github.event.inputs.draft_file }}" ]; then
+            echo "❌ ERROR: drafts/${{ github.event.inputs.draft_file }} not found"
+            echo "Make sure the file is committed to the drafts/ folder before running this workflow."
+            exit 1
+          fi
+          echo "✅ Draft found: drafts/${{ github.event.inputs.draft_file }}"
+
+      - name: Convert and publish article
+        run: python scripts/publish_article.py "${{ github.event.inputs.draft_file }}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "Bionic Banker Publisher"
+          git config user.email "actions@bionicbanker.tech"
+
+          STEM="${{ github.event.inputs.draft_file }}"
+          STEM="${STEM%.md}"
+
+          git add "${STEM}.html" articles.html
+          git status
+
+          if git diff --staged --quiet; then
+            echo "⚠️  No changes to commit — article may already exist."
+          else
+            git commit -m "publish: ${STEM} via GitHub Actions"
+            git push origin main
+            echo "🚀 Article published! Cloudflare will deploy in ~1 minute."
+            echo "Live at: https://bionicbanker.tech/${STEM}.html"
+          fi
