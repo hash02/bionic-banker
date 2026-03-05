@@ -10,143 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-
-    :root {
-      --bg:  #050508;
-      --bg2: #0b0b0f;
-      --bg3: #111116;
-      --text:   #f0f0f5;
-      --text-2: #a0a0b0;
-      --text-3: #606070;
-      --text-4: #303040;
-      --b1: rgba(255,255,255,0.06);
-      --b2: rgba(255,255,255,0.10);
-      --b3: rgba(255,255,255,0.16);
-      --green: rgba(31,160,104,0.55);
-      --radius: 11px;
-      --radius-lg: 16px;
-      --max: 1160px;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
-    a { color:inherit; text-decoration:none; }
-    h1,h2,h3,.nav-logo { font-family:'Bricolage Grotesque',sans-serif; }
-
-    /* ── GLOW ── */
-    h1 { text-shadow: 0 0 60px rgba(255,255,255,0.18); }
-    h3 { text-shadow: 0 0 35px rgba(255,255,255,0.14); }
-    .nav-logo { text-shadow: 0 0 32px rgba(255,255,255,0.18); }
-    .article-card:hover h3 { text-shadow: 0 0 36px rgba(255,255,255,0.22); }
-
-    /* ── NAV ── */
-    nav { position:sticky; top:0; z-index:100; background:rgba(5,5,8,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--b1); padding:0 2rem; height:56px; display:flex; align-items:center; justify-content:space-between; }
-    .nav-logo { font-size:0.98rem; font-weight:700; letter-spacing:-0.03em; color:var(--text); }
-    .nav-logo span { color:var(--text-2); }
-    .nav-right { display:flex; align-items:center; gap:1.75rem; }
-    .nav-links { display:flex; gap:1.5rem; list-style:none; }
-    .nav-links a { font-size:0.82rem; color:var(--text-3); font-weight:500; transition:color 0.18s; }
-    .nav-links a:hover { color:var(--text-2); }
-    .nav-cta { font-size:0.76rem; font-weight:600; background:transparent; border:1px solid var(--b2); color:var(--text-2); padding:0.3rem 0.85rem; border-radius:8px; transition:border-color 0.2s,color 0.2s; }
-    .nav-cta:hover { border-color:var(--b3); color:var(--text); }
-
-    /* ── PAGE HEADER ── */
-    .page-header { max-width:var(--max); margin:0 auto; padding:3.5rem 2rem 2rem; border-bottom:1px solid var(--b1); }
-    .page-label { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:0.35rem; text-shadow:0 0 28px rgba(255,255,255,0.18); }
-    .page-title { font-size:clamp(2rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.045em; margin-bottom:0.6rem; color:var(--text); }
-    .page-sub { color:var(--text-2); font-size:0.92rem; line-height:1.7; margin-bottom:2rem; }
-
-    /* ── FILTER TABS ── */
-    .filter-bar { display:flex; gap:0.4rem; flex-wrap:wrap; }
-    .filter-btn {
-      font-size:0.7rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
-      padding:0.3rem 0.85rem; border-radius:999px; border:1px solid var(--b1);
-      background:transparent; color:var(--text-3); cursor:pointer;
-      transition:all 0.18s; font-family:'Plus Jakarta Sans',sans-serif;
-    }
-    .filter-btn:hover { border-color:var(--b2); color:var(--text-2); }
-    .filter-btn.active { background:var(--b1); border-color:var(--b2); color:var(--text); }
-
-    /* ── GRID ── */
-    .articles-wrap { max-width:var(--max); margin:0 auto; padding:2.5rem 2rem 4rem; }
-    .articles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:0.75rem; }
-
-    /* ── SECTION DIVIDER ── */
-    .section-divider { grid-column:1/-1; padding-top:0.5rem; }
-    .section-divider h2 {
-      font-size:0.63rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--text-3); padding-bottom:0.65rem; border-bottom:1px solid var(--b1);
-      text-shadow:0 0 20px rgba(255,255,255,0.14);
-    }
-
-    /* ── CARDS ── */
-    .article-card {
-      background:var(--bg2); border:1px solid var(--b1); border-radius:var(--radius);
-      padding:1.35rem 1.4rem; display:flex; flex-direction:column; gap:0.5rem;
-      transition:border-color 0.22s,box-shadow 0.22s,transform 0.22s;
-      position:relative; overflow:hidden;
-    }
-    .article-card:hover {
-      border-color:var(--b2);
-      box-shadow:0 4px 24px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.04),inset 0 1px 0 rgba(255,255,255,0.05);
-      transform:translateY(-2px);
-    }
-
-    /* Featured top line */
-    .article-card.featured::before {
-      content:''; position:absolute; top:0; left:0; right:0;
-      height:1px; background:var(--green);
-    }
-
-    /* Tag pills — dark mono */
-    .article-tags { display:inline-flex; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.1rem; }
-    .tag-pill {
-      display:inline-block; font-size:0.58rem; font-weight:600; letter-spacing:0.07em;
-      text-transform:uppercase; padding:0.17rem 0.55rem; border-radius:999px; line-height:1.4;
-      background:var(--bg3); color:var(--text-3); border:1px solid var(--b1);
-      text-shadow:0 0 18px rgba(255,255,255,0.18);
-    }
-    .tag-blue   { border-color:rgba(91,115,248,0.18); }
-    .tag-purple { border-color:rgba(139,108,247,0.18); }
-    .tag-amber  { border-color:rgba(245,158,11,0.15); }
-    .tag-cyan   { border-color:rgba(6,182,212,0.15); }
-    .tag-rose   { border-color:rgba(236,72,153,0.15); }
-    .tag-green  { border-color:rgba(16,185,129,0.15); }
-    .tag-red    { border-color:rgba(239,68,68,0.15); }
-
-    .article-card h3 { font-size:0.92rem; font-weight:600; letter-spacing:-0.015em; line-height:1.38; color:var(--text); }
-    .article-card p  { font-size:0.8rem; color:var(--text-2); line-height:1.64; flex:1; }
-
-    .card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:0.5rem; border-top:1px solid var(--b1); margin-top:0.25rem; }
-    .featured-badge {
-      display:inline-block; font-size:0.6rem; font-weight:600; letter-spacing:0.1em;
-      text-transform:uppercase; color:var(--text-3); border:1px solid var(--b1);
-      border-radius:999px; padding:0.17rem 0.6rem; margin-bottom:0.25rem;
-      text-shadow:0 0 20px rgba(255,255,255,0.18);
-    }
-    .read-more { font-size:0.78rem; font-weight:600; color:var(--text-2); display:inline-flex; align-items:center; gap:0.2rem; transition:color 0.2s,gap 0.2s; }
-    .read-more:hover { color:var(--text); gap:0.4rem; }
-    .read-time { font-size:0.68rem; color:var(--text-3); }
-
-    /* Hidden for filter */
-    .article-card.hidden { display:none; }
-
-    /* ── FOOTER ── */
-    footer { border-top:1px solid var(--b1); padding:1.5rem 2rem; }
-    .footer-inner { max-width:var(--max); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
-    .footer-brand { font-size:0.86rem; font-weight:700; font-family:'Bricolage Grotesque',sans-serif; color:var(--text-2); }
-    .footer-brand span { color:var(--text-3); }
-    .footer-copy { font-size:0.7rem; color:var(--text-4); }
-
-    @media(max-width:640px) {
-      nav { padding:0 1.25rem; }
-      .nav-links { display:none; }
-      .page-header,.articles-wrap { padding-left:1.25rem; padding-right:1.25rem; }
-      .page-header { padding-top:2.5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -164,7 +28,7 @@
   <div class="page-header">
     <div class="page-label">Everything</div>
     <h1 class="page-title">All Articles</h1>
-    <p class="page-sub">13 pieces across blockchain, AI, finance, and the questions I can't stop asking.</p>
+    <p class="page-sub">14 pieces across blockchain, AI, finance, and the questions I can't stop asking.</p>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="blockchain">Blockchain</button>
@@ -204,6 +68,18 @@
         <div class="card-footer"><span class="read-more">Read →</span><span class="read-time">9 min</span></div>
       </a>
 
+      <a href="nexus-agent.html" class="article-card" data-tags="ai blockchain">
+        <span class="featured-badge">★ New</span>
+        <div class="article-tags">
+          <span class="tag-pill tag-purple">AI</span>
+          <span class="tag-pill tag-red">Agents</span>
+          <span class="tag-pill tag-blue">Blockchain</span>
+        </div>
+        <h3>I Built 3 AI Agents. Here's What Broke Each Time.</h3>
+        <p>Three versions of an AI investigation agent. Each broke differently — memory creates bias, fallback creates blindness, adversarial architecture creates honesty.</p>
+        <div class="card-footer"><span class="read-more">Read →</span><span class="read-time">7 min</span></div>
+      </a>
+
       <a href="physics-of-ai.html" class="article-card" data-tags="ai">
         <div class="article-tags">
           <span class="tag-pill tag-purple">AI</span>
@@ -229,8 +105,7 @@
       <!-- ── THOUGHTS ── -->
       <div class="section-divider"><h2>Thoughts</h2></div>
 
-      <a href="the-anchor.html" class="article-card featured" data-tags="thoughts ai">
-        <span class="featured-badge">★ New</span>
+      <a href="the-anchor.html" class="article-card" data-tags="thoughts ai">
         <div class="article-tags">
           <span class="tag-pill tag-purple">AI</span>
           <span class="tag-pill tag-rose">Philosophy</span>
