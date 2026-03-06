@@ -130,7 +130,7 @@ def build_article_html(fm, body_html, output_filename):
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
   <style>
     *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0;}}
-    :root{{--bg:#050508;--bg2:#0b0b0f;--bg3:#141428;--accent:#5b73f8;--accent-glow:rgba(91,115,248,0.1);--text:#e8e8f0;--text-muted:#888899;--text-dim:#555566;--border:rgba(91,115,248,0.14);--radius:12px;}}
+    :root{{--bg:#050508;--bg2:#0b0b0f;--bg3:#111116;--accent:#1fa068;--accent-glow:rgba(31,160,104,0.10);--text:#f0f0f5;--text-2:#a0a0b0;--text-3:#606070;--b1:rgba(255,255,255,0.10);--radius:12px;}}
     html{{scroll-behavior:smooth;}}
     h1,h2,h3,h4,.nav-logo,.article-header h1{{font-family:'Bricolage Grotesque','Inter',sans-serif;letter-spacing:-0.025em;}}body{{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}}
     a{{color:inherit;text-decoration:none;}}
@@ -167,7 +167,7 @@ def build_article_html(fm, body_html, output_filename):
     .article-body pre code{{background:none;border:none;padding:0;font-size:0.9rem;}}
     .pull-quote{{background:var(--accent-glow);border-left:4px solid rgba(255,255,255,0.18);border-radius:0 var(--radius) var(--radius) 0;padding:1.5rem 2rem;margin:2.5rem 0;font-size:1.1rem;font-weight:500;color:var(--text);line-height:1.65;font-style:italic;}}
     .insight-box{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin:2rem 0;}}
-    .insight-box .label{{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#c9a84c;margin-bottom:0.75rem;}}
+    .insight-box .label{{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#1fa068;margin-bottom:0.75rem;}}
     .insight-box p{{font-size:0.95rem!important;margin-bottom:0!important;line-height:1.65!important;}}
     .article-newsletter{{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0;}}
     .article-newsletter h3{{font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;margin-top:0;}}
