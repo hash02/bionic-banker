@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css" />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Built 3 AI Agents. Here's What Broke Each Time. — Bionic Banker</title>
+  <meta name="description" content="I built three versions of an AI investigation agent. Each one broke differently. Here's what the architecture diagrams don't tell you about memory, bias, and adversarial reasoning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
+
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Bionic <span>Banker</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="articles.html">All Articles</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
+    </div>
+  </nav>
+
+  <div class="article-header">
+    <div class="article-meta">
+      <span class="article-tag">AI · Agents · Blockchain</span>
+      <span class="article-date">March 2026 · 7 min read</span>
+    </div>
+    <h1>I Built 3 AI Agents. Here's What Broke Each Time.</h1>
+    <p class="lede">I didn't set out to build three versions. I set out to build ONE thing — an AI that could investigate blockchain fraud. Then it broke. Then I rebuilt it. Then it broke my assumptions about what an AI agent even is.</p>
+    <div class="author-bar">
+      <div class="author-avatar">H</div>
+      <div class="author-info">
+        <div class="name">HASH — The Bionic Banker</div>
+        <div class="title">Computer Engineer · Financial Advisor · Blockchain Builder</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>Okay so — I need to be honest about how this started.</p>
+
+    <p>I didn't set out to build three versions of anything. I set out to build ONE thing — an AI that could investigate blockchain fraud. Like actually investigate it, not just flag transactions and hand you a spreadsheet. I wanted something that could look at a wallet address and tell me a story. Who moved what, when, why it looks suspicious, and what I should do about it.</p>
+
+    <p>Version 1 did that. Kind of. And then it broke. So I built version 2. That broke differently. And version 3 — the one that's actually running right now — broke my assumptions about what an AI agent even is.</p>
+
+    <p>Here's what the architecture diagrams don't tell you.</p>
+
+    <h2>v1: The One-Brain Problem</h2>
+
+    <p>The first version was the simplest thing possible. One prompt, one model, one shot. You give it a wallet address and some transaction data, it thinks about it, and it gives you a report.</p>
+
+    <p>And honestly? It worked way better than it should have.</p>
+
+    <p>The reports were decent. It caught obvious patterns — high-frequency transfers, round-number movements, the stuff that any rules-based system would flag. But here's the thing about AI agents that nobody talks about in the threads — the first version is always suspiciously good. Because you're testing it on the cases you already know the answer to.</p>
+
+    <p>The moment I threw something ambiguous at it — a wallet that MIGHT be structuring, or a pattern that looks like layering but could just be DeFi yield farming — it fell apart. Not because the model was dumb. Because it had no memory. Every investigation started from zero. No context about what it saw five minutes ago. No ability to say "wait, I've seen this pattern before."</p>
+
+    <div class="insight-box">
+      <div class="label">What broke</div>
+      <p>Memory. Or rather, the complete absence of it. A single-shot agent is just a fancy prompt. The difference between a prompt and an agent is the ability to carry context forward. Without that, you're not investigating — you're just asking a really expensive Magic 8-Ball.</p>
+    </div>
+
+    <h2>v2: Memory Makes Everything Harder</h2>
+
+    <p>So I added memory. And a fallback system — if the primary model couldn't handle something, it would route to a different one.</p>
+
+    <p>This is the version where things got interesting. And by interesting I mean it started failing in ways I couldn't predict.</p>
+
+    <p>The memory worked. It could reference previous investigations, build on patterns it had seen before. But it introduced a new problem that I didn't see coming: the agent started getting confident about things it shouldn't be confident about.</p>
+
+    <p>This is the thing about giving an AI memory — it doesn't just remember facts. It remembers its own conclusions. And once it has a conclusion in memory, it treats it like evidence. So if v2 decided a wallet was suspicious in Investigation #3, and then saw a similar pattern in Investigation #7, it wouldn't freshly evaluate — it would anchor on its previous conclusion.</p>
+
+    <div class="pull-quote">I literally designed a machine that could develop the same cognitive bias that I was trying to eliminate.</div>
+
+    <p>Sound familiar? It should. This is confirmation bias. The same thing that makes human investigators dangerous after too many years on the job.</p>
+
+    <p>The fallback system had its own problem. When Model A couldn't handle a question, it would pass to Model B. But Model B had no idea WHY Model A failed. It just got the raw question with no context about what went wrong. So it would either repeat the same failure or give a completely different answer with zero acknowledgment that there was a disagreement.</p>
+
+    <div class="insight-box">
+      <div class="label">What broke</div>
+      <p>Memory isn't just storage. It's a liability you have to design around. And multi-model fallback without shared reasoning is just two strangers guessing independently.</p>
+    </div>
+
+    <h2>v3: Two Brains Arguing With Each Other</h2>
+
+    <p>This is where it gets weird. Because the solution to v2's problems wasn't better memory or smarter fallback. It was adversarial architecture.</p>
+
+    <p>v3 has two brains. A Reasoner and a Synthesizer.</p>
+
+    <p>The Reasoner does the investigation. It looks at the data, forms hypotheses, pulls patterns from memory. But — and this is the key — it doesn't produce the final report. It produces a structured reasoning chain. Basically, it shows its work.</p>
+
+    <p>The Synthesizer then takes that reasoning chain and stress-tests it. It's not trying to agree. It's trying to find holes. Where did the Reasoner make an assumption? Where did it skip a step? Where did it lean on a cached conclusion instead of fresh evidence?</p>
+
+    <p>Then the Synthesizer produces the report, incorporating its critique of the Reasoner's logic.</p>
+
+    <div class="pull-quote">Two models, one pipeline, zero trust between them.</div>
+
+    <p>And here's what happened: the quality of the reports went up, but the confidence scores went down. v3 is less certain about its conclusions than v1 was. Which sounds like a step backward — until you realize that v1's confidence was fake. It was certain because it didn't know what it didn't know.</p>
+
+    <p>v3 is uncertain because it DOES know what it doesn't know. It says things like "this pattern is consistent with layering, but the timing could also indicate automated DeFi position management. Confidence: moderate. Recommend: manual review of transaction timestamps."</p>
+
+    <p>That's not a worse agent. That's a more honest one.</p>
+
+    <h2>What the Architecture Diagrams Don't Show</h2>
+
+    <p>Every AI agent tutorial on YouTube shows you the boxes and arrows. Input goes here, model processes there, output comes out. Clean. Linear. Makes sense.</p>
+
+    <p>Here's what they don't show:</p>
+
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="num">01</div>
+        <h4>The First Version Lies</h4>
+        <p>It looks good because you're testing it on your own assumptions. You designed the test, you know the answer, and the agent confirms it. That's not validation — that's a mirror.</p>
+      </div>
+      <div class="score-card">
+        <div class="num">02</div>
+        <h4>Memory Is a Double-Edged Sword</h4>
+        <p>Without it, your agent is useless across sessions. With it, your agent develops cognitive biases that compound over time. The solution isn't better memory — it's adversarial auditing.</p>
+      </div>
+      <div class="score-card">
+        <div class="num">03</div>
+        <h4>Multi-Model = Disagreement</h4>
+        <p>If your second model just agrees with the first, you've built a more expensive version of the same problem. The value is in structured disagreement.</p>
+      </div>
+      <div class="score-card">
+        <div class="num">04</div>
+        <h4>Lower Confidence Is a Feature</h4>
+        <p>The best report doesn't say "DEFINITELY FRAUD." It says "here's what the evidence supports, here's where it's ambiguous, here are the things a human should check."</p>
+      </div>
+    </div>
+
+    <h2>Where This Goes</h2>
+
+    <p>I run this against real blockchain data now. The Lazarus Group — North Korea's state-sponsored hacking unit — moved $373 million through a specific set of wallets. I fed those transactions through my AML engine (22 detection rules, 94.9% accuracy) and then had NEXUS investigate the flagged patterns.</p>
+
+    <p>It caught everything. 100% CRITICAL classification. Not because the AI is brilliant — because the architecture forces honesty. The Reasoner can't hide behind confidence. The Synthesizer won't let it.</p>
+
+    <p>I'm not going to pretend this is production-ready for a bank. It's not. But the architecture — adversarial reasoning, structured disagreement, honest uncertainty — that's the thing worth paying attention to.</p>
+
+    <p>Every AI agent you see online is v1. Confident, clean, suspiciously good. The real question is: what happens when you let it remember? And what happens when you make two of them argue?</p>
+
+    <p>That's where it gets interesting.</p>
+
+    <div class="article-newsletter">
+      <h3>Building in public</h3>
+      <p>I write about AI, blockchain, and finance — from inside the industry, not above it. Technical deep dives on what it actually looks like to build these systems.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+        <a href="index.html#newsletter" class="btn-primary">Subscribe</a>
+        <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" class="btn-ghost">Try the AML Engine →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="footer-copy">&copy; 2026 Bionic Banker. Built by HASH.</p>
+  </footer>
+
+</body>
+</html>
