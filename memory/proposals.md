@@ -19,3 +19,7 @@
 **To reject:** Change [PENDING] to [REJECTED] and optionally add a reason below
 
 ---
+
+## OBSERVATION — 2026-03-08
+- test validation — headings failed 4x
+- Awaiting rule-proposer.py to generate formal proposal
