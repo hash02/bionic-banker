@@ -39,7 +39,7 @@ def read_file(path):
     except Exception:
         return ""
 
-def audit_file(filepath):
+def audit_file(filepath, fix_mode=False):
     """Run all 8 checks on a single HTML file. Returns (passes, failures)."""
     content = read_file(filepath)
     if not content:
@@ -112,10 +112,17 @@ def audit_file(filepath):
         else:
             failures.append(("img alt", f"{len(imgs)} images, none have alt attribute"))
 
-    # Check 7: No empty <h1> or <h2> tags
+    # Check 7: No empty <h1> or <h2> tags (RULE-001: auto-fix if --fix)
     empty_headings = re.findall(r"<h[12][^>]*>\s*</h[12]>", content)
     if not empty_headings:
         passes.append("headings")
+    elif fix_mode:
+        fixed_content = re.sub(r"<h[12][^>]*>\s*</h[12]>\n?", "", content)
+        with open(filepath, "w", encoding="utf-8") as fw:
+            fw.write(fixed_content)
+        content = fixed_content  # update for remaining checks
+        passes.append("headings (auto-fixed)")
+        print(f"  Auto-fixed: removed {len(empty_headings)} empty heading(s) in {os.path.basename(filepath)}")
     else:
         failures.append(("headings", f"{len(empty_headings)} empty h1/h2 tags"))
 
@@ -129,6 +136,7 @@ def audit_file(filepath):
 
 def main():
     mode = "changed" if "--changed" in sys.argv else "all"
+    fix_mode = "--fix" in sys.argv
     files = get_html_files(mode)
 
     if not files:
@@ -143,7 +151,7 @@ def main():
     for f in sorted(files):
         filepath = os.path.join(BB, f) if not os.path.isabs(f) else f
         basename = os.path.basename(f)
-        passes, failures = audit_file(filepath)
+        passes, failures = audit_file(filepath, fix_mode=fix_mode)
         score = len(passes)
         results.append((basename, score, total_checks, passes, failures))
         if not failures:

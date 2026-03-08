@@ -8,7 +8,7 @@
 - headings failed 5x across aave.html, defi.html
 - Awaiting rule-proposer.py to generate formal proposal
 
-## RULE-001 — [PENDING]
+## RULE-001 — [APPROVED]
 **Pattern:** headings check failed 4 times (2026-03-06 to 2026-03-08)
 **Affected files:** aave.html, defi.html
 **Proposed fix:** Auto-remove empty heading tags — Add auto-fix to content-audit-auto.py that detects and removes empty <h1></h1> and <h2></h2> tags (WordPress migration artifacts with no content).

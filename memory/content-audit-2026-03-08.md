@@ -2,8 +2,7 @@
 
 **Mode:** all | **Files audited:** 16
 
-### ⚠️ aave.html — 1 issue(s)
-- **headings:** 1 empty h1/h2 tags
+### ✅ aave.html — PASS (8/8 checks)
 
 ### ✅ aml-engine.html — PASS (8/8 checks)
 
@@ -11,8 +10,7 @@
 
 ### ✅ blockchain-trends.html — PASS (8/8 checks)
 
-### ⚠️ defi.html — 1 issue(s)
-- **headings:** 1 empty h1/h2 tags
+### ✅ defi.html — PASS (8/8 checks)
 
 ### ✅ fintech.html — PASS (8/8 checks)
 
@@ -36,4 +34,4 @@
 
 ### ✅ zkp-explained.html — PASS (8/8 checks)
 
-### Summary: 14/16 pass, 2 need attention
+### Summary: 16/16 pass
