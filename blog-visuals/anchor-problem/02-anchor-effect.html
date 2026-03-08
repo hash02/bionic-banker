@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anchor Effect — Drift Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020204;color:#e4e4ec;font-family:'Plus Jakarta Sans',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;overflow:hidden}
+h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.2rem,2.5vw,1.6rem);margin-bottom:2rem;text-align:center;letter-spacing:-0.02em}
+.comparison{display:flex;gap:2rem;width:100%;max-width:800px;flex-wrap:wrap;justify-content:center}
+.panel{flex:1;min-width:280px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden}
+.panel-label{font-family:'Bricolage Grotesque',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+.panel-label .dot{width:8px;height:8px;border-radius:50%}
+.panel.bad .dot{background:#ff4444}
+.panel.good .dot{background:#1fa068}
+.panel.bad{border-color:rgba(255,68,68,0.15)}
+.panel.good{border-color:rgba(31,160,104,0.15)}
+.metric{margin-bottom:1.25rem}
+.metric-name{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(228,228,236,0.5);margin-bottom:0.5rem}
+.bar-bg{height:8px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1.5s cubic-bezier(0.22,1,0.36,1)}
+.bar-fill.red{background:linear-gradient(90deg,#ff4444,#ff6b6b)}
+.bar-fill.green{background:linear-gradient(90deg,#1fa068,#2ecc71)}
+.metric-val{font-size:0.8rem;font-weight:600;margin-top:0.35rem}
+.drift-viz{height:80px;position:relative;margin-top:1rem;border-radius:8px;overflow:hidden;background:rgba(255,255,255,0.02)}
+.drift-line{position:absolute;top:50%;width:100%;height:2px}
+.panel.bad .drift-line{background:rgba(255,68,68,0.15)}
+.panel.good .drift-line{background:rgba(31,160,104,0.15)}
+canvas{width:100%;height:100%}
+.watermark{position:fixed;bottom:8px;right:12px;font-size:0.6rem;color:rgba(228,228,236,0.15);letter-spacing:0.1em}
+</style>
+</head>
+<body>
+<h2>The Anchor Effect<span style="color:rgba(228,228,236,0.3);font-weight:400"> — what happens with and without one</span></h2>
+<div class="comparison">
+  <div class="panel bad">
+    <div class="panel-label"><span class="dot"></span> Without Anchor</div>
+    <div class="metric">
+      <div class="metric-name">Response Accuracy</div>
+      <div class="bar-bg"><div class="bar-fill red" style="width:0%" data-target="38"></div></div>
+      <div class="metric-val" style="color:#ff4444">38%</div>
+    </div>
+    <div class="metric">
+      <div class="metric-name">Hallucination Rate</div>
+      <div class="bar-bg"><div class="bar-fill red" style="width:0%" data-target="72"></div></div>
+      <div class="metric-val" style="color:#ff4444">72%</div>
+    </div>
+    <div class="metric">
+      <div class="metric-name">Identity Consistency</div>
+      <div class="bar-bg"><div class="bar-fill red" style="width:0%" data-target="25"></div></div>
+      <div class="metric-val" style="color:#ff4444">2.5/10</div>
+    </div>
+    <div class="drift-viz">
+      <div class="drift-line"></div>
+      <canvas id="drift-bad"></canvas>
+    </div>
+    <div style="text-align:center;font-size:0.65rem;color:rgba(255,68,68,0.5);margin-top:0.5rem">Signal drift over 10 turns</div>
+  </div>
+  <div class="panel good">
+    <div class="panel-label"><span class="dot"></span> With Anchor</div>
+    <div class="metric">
+      <div class="metric-name">Response Accuracy</div>
+      <div class="bar-bg"><div class="bar-fill green" style="width:0%" data-target="91"></div></div>
+      <div class="metric-val" style="color:#1fa068">91%</div>
+    </div>
+    <div class="metric">
+      <div class="metric-name">Hallucination Rate</div>
+      <div class="bar-bg"><div class="bar-fill green" style="width:0%" data-target="12"></div></div>
+      <div class="metric-val" style="color:#1fa068">12%</div>
+    </div>
+    <div class="metric">
+      <div class="metric-name">Identity Consistency</div>
+      <div class="bar-bg"><div class="bar-fill green" style="width:0%" data-target="86"></div></div>
+      <div class="metric-val" style="color:#1fa068">8.6/10</div>
+    </div>
+    <div class="drift-viz">
+      <div class="drift-line"></div>
+      <canvas id="drift-good"></canvas>
+    </div>
+    <div style="text-align:center;font-size:0.65rem;color:rgba(31,160,104,0.5);margin-top:0.5rem">Signal drift over 10 turns</div>
+  </div>
+</div>
+<div class="watermark">Bionic Banker</div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-fill').forEach(b=>{
+      b.style.width=b.dataset.target+'%';
+    });
+  },300);
+
+  function drawDrift(id,chaotic){
+    const c=document.getElementById(id);
+    const ctx=c.getContext('2d');
+    const w=c.width=c.offsetWidth*2;
+    const h=c.height=c.offsetHeight*2;
+    ctx.scale(2,2);
+    const rw=c.offsetWidth,rh=c.offsetHeight;
+    const mid=rh/2;
+    let pts=[];
+    const steps=60;
+    for(let i=0;i<=steps;i++){
+      const x=(i/steps)*rw;
+      let y;
+      if(chaotic){
+        y=mid+Math.sin(i*0.5)*mid*0.3+Math.sin(i*1.3)*mid*0.25+(Math.random()-0.5)*mid*0.4;
+        y+=i/steps*mid*0.3;
+      }else{
+        y=mid+Math.sin(i*0.3)*mid*0.08+(Math.random()-0.5)*mid*0.05;
+      }
+      pts.push({x,y:Math.max(4,Math.min(rh-4,y))});
+    }
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x,pts[0].y);
+    for(let i=1;i<pts.length;i++){
+      const xc=(pts[i-1].x+pts[i].x)/2;
+      const yc=(pts[i-1].y+pts[i].y)/2;
+      ctx.quadraticCurveTo(pts[i-1].x,pts[i-1].y,xc,yc);
+    }
+    ctx.strokeStyle=chaotic?'rgba(255,68,68,0.6)':'rgba(31,160,104,0.6)';
+    ctx.lineWidth=1.5;
+    ctx.stroke();
+  }
+  drawDrift('drift-bad',true);
+  drawDrift('drift-good',false);
+});
+</script>
+</body>
+</html>

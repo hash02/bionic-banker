@@ -24,6 +24,13 @@
   <meta name="twitter:title" content="I Built 3 AI Agents. Here's What Broke Each Time. — Bionic Banker" />
   <meta name="twitter:description" content="I built three versions of an AI investigation agent. Each one broke differently. Here's what the architecture diagrams don't tell you about memory, bias, and adversarial reasoning." />
   <link rel="canonical" href="https://bionicbanker.tech/nexus-agent.html" />
+
+  <style>
+    .embed-visual{width:100%;margin:2.5rem 0;border-radius:12px;overflow:hidden;border:1px solid rgba(31,160,104,0.1);background:#020204}
+    .embed-visual iframe{width:100%;height:500px;border:none;display:block}
+    .embed-caption{padding:0.75rem 1.25rem;background:rgba(31,160,104,0.03);border-top:1px solid rgba(31,160,104,0.06);font-size:0.78rem;color:var(--text-3);font-family:var(--mono);display:flex;justify-content:space-between;align-items:center}
+    .embed-caption .interactive-badge{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#1fa068;background:rgba(31,160,104,0.08);padding:3px 8px;border-radius:4px}
+  </style>
 </head>
 <body>
 
@@ -51,6 +58,15 @@
         <div class="name">HASH — The Bionic Banker</div>
         <div class="title">Computer Engineer · Financial Advisor · Blockchain Builder</div>
       </div>
+    </div>
+  </div>
+
+
+  <div class="embed-visual">
+    <iframe src="blog-visuals/nexus-agent/01-hero-evolution.html" style="width:100%;height:500px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>NEXUS Agent evolution — from single prompt to split-brain architecture</span>
+      <span class="interactive-badge">Interactive</span>
     </div>
   </div>
 
@@ -100,6 +116,15 @@
       <p>Memory isn't just storage. It's a liability you have to design around. And multi-model fallback without shared reasoning is just two strangers guessing independently.</p>
     </div>
 
+    
+  <div class="embed-visual">
+    <iframe src="blog-visuals/nexus-agent/02-split-brain.html" style="width:100%;height:500px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>v3 split-brain architecture — Reasoner and Synthesizer working together</span>
+      <span class="interactive-badge">Interactive</span>
+    </div>
+  </div>
+
     <h2>v3: Two Brains Arguing With Each Other</h2>
 
     <p>This is where it gets weird. Because the solution to v2's problems wasn't better memory or smarter fallback. It was adversarial architecture.</p>
@@ -148,6 +173,15 @@
         <p>The best report doesn't say "DEFINITELY FRAUD." It says "here's what the evidence supports, here's where it's ambiguous, here are the things a human should check."</p>
       </div>
     </div>
+
+    
+  <div class="embed-visual">
+    <iframe src="blog-visuals/nexus-agent/03-failure-lessons.html" style="width:100%;height:480px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>What broke at each version — and what each failure taught us</span>
+      <span class="interactive-badge">Interactive</span>
+    </div>
+  </div>
 
     <h2>Where This Goes</h2>
 

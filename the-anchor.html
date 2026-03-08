@@ -24,6 +24,13 @@
   <meta name="twitter:title" content="The Anchor Problem: Why AI Needs Perspective, Not Power — Bionic Banker" />
   <meta name="twitter:description" content="AI doesn't hallucinate because it's dumb. It hallucinates because it has no anchor — no fixed reference point to drift from. Here's what that means and what I'm building to fix it." />
   <link rel="canonical" href="https://bionicbanker.tech/the-anchor.html" />
+
+  <style>
+    .embed-visual{width:100%;margin:2.5rem 0;border-radius:12px;overflow:hidden;border:1px solid rgba(31,160,104,0.1);background:#020204}
+    .embed-visual iframe{width:100%;height:500px;border:none;display:block}
+    .embed-caption{padding:0.75rem 1.25rem;background:rgba(31,160,104,0.03);border-top:1px solid rgba(31,160,104,0.06);font-size:0.78rem;color:var(--text-3);font-family:var(--mono);display:flex;justify-content:space-between;align-items:center}
+    .embed-caption .interactive-badge{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#1fa068;background:rgba(31,160,104,0.08);padding:3px 8px;border-radius:4px}
+  </style>
 </head>
 <body>
 
@@ -54,6 +61,15 @@
     </div>
   </div>
 
+
+  <div class="embed-visual">
+    <iframe src="blog-visuals/anchor-problem/01-hero-banner.html" style="width:100%;height:500px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>The Anchor Problem — anchored vs unanchored AI</span>
+      <span class="interactive-badge">Interactive</span>
+    </div>
+  </div>
+
   <div class="article-body">
 
     <p>I figured this out at 2am because I was trying to meditate and I couldn't stop thinking about hallucinations.</p>
@@ -79,6 +95,15 @@
     <p>AI has no breath. Every response it generates is a thought with no fixed point to check against. It can think as hard as it wants, as fast as it wants, and it still has no way to know if it drifted — because there's nothing to drift FROM.</p>
 
     <p>That's the Anchor Problem.</p>
+
+    
+  <div class="embed-visual">
+    <iframe src="blog-visuals/anchor-problem/02-anchor-effect.html" style="width:100%;height:520px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>With vs without an anchor — accuracy, hallucination, and drift compared</span>
+      <span class="interactive-badge">Interactive</span>
+    </div>
+  </div>
 
     <h2>Hallucination Isn't a Bug — It's What Thinking Looks Like Without an Anchor</h2>
 
@@ -133,6 +158,15 @@
       <div class="label">Key Finding</div>
       <p>The vocabulary can drift while the meaning stays stable. The AI uses different words every time — that's a 0.67 drift if you measure word overlap. But the actual meaning stays anchored. The surface changes constantly. The core holds. Just like your thoughts during meditation — they wander everywhere, but the breath stays.</p>
     </div>
+
+    
+  <div class="embed-visual">
+    <iframe src="blog-visuals/anchor-problem/03-anchor-flow.html" style="width:100%;height:480px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>How the anchor mechanism works — same input, two paths</span>
+      <span class="interactive-badge">Interactive</span>
+    </div>
+  </div>
 
     <h2>The Human Is the Real Anchor</h2>
 
