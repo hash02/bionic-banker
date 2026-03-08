@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Interactive embed container */
+    .embed-visual {
+      width: 100%;
+      margin: 2.5rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(31,160,104,0.1);
+      background: #020204;
+    }
+    .embed-visual iframe {
+      width: 100%;
+      height: 630px;
+      border: none;
+      display: block;
+    }
+    .embed-caption {
+      padding: 0.75rem 1.25rem;
+      background: rgba(31,160,104,0.03);
+      border-top: 1px solid rgba(31,160,104,0.06);
+      font-size: 0.78rem;
+      color: var(--text-3);
+      font-family: var(--mono);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .embed-caption .interactive-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #1fa068;
+      background: rgba(31,160,104,0.08);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    /* Fallback image for email/RSS */
+    .embed-fallback {
+      display: none;
+    }
+    /* Hero override for first embed */
+    .hero-embed {
+      margin-top: 0;
+      border-radius: 0;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-embed iframe {
+      height: 630px;
+    }
+    /* Stats highlight in text */
+    .stat-inline {
+      color: #ff4444;
+      font-weight: 700;
+    }
+    .stat-green {
+      color: #1fa068;
+      font-weight: 700;
+    }
+    /* Roast block styling */
+    .roast-block {
+      background: #08080e;
+      border: 1px solid rgba(31,160,104,0.12);
+      border-radius: 10px;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+      font-family: 'Courier New', monospace;
+      position: relative;
+    }
+    .roast-block::before {
+      content: 'ROAST OUTPUT';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: #08080e;
+      padding: 0 8px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #1fa068;
+      font-family: var(--mono);
+    }
+    .roast-block p {
+      font-family: 'Courier New', monospace !important;
+      font-size: 0.95rem !important;
+      line-height: 1.7 !important;
+      color: #e4e4ec !important;
+      margin-bottom: 0 !important;
+    }
+    .roast-score {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #7a7a8c;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .roast-score .critical {
+      color: #ff4444;
+      font-weight: 700;
+    }
+    /* CTA buttons */
+    .cta-row {
+      margin-top: 1.75rem;
+      display: flex;
+      gap: 0.875rem;
+      flex-wrap: wrap;
+    }
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1fa068;
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(31,160,104,0.3);
+      letter-spacing: 0.01em;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(31,160,104,0.4);
+    }
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: var(--text-2);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.2s;
+    }
+    .cta-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+    }
+  </style>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My AML Engine Doesn't Just Flag Wallets. It Roasts Them. — Bionic Banker</title>
+  <meta name="description" content="$82 billion laundered through crypto in 2025. Less than 1% caught. I built an AML engine that scans Ethereum every 30 minutes and roasts suspicious wallets — because the problem isn't intelligence, it's making humans actually read the report." />
+  <meta property="og:title" content="My AML Engine Doesn't Just Flag Wallets. It Roasts Them." />
+  <meta property="og:description" content="$82B laundered. Less than 1% caught. I built an engine that roasts the wallets doing it." />
+  <meta property="og:image" content="blog-visuals/png/01-hero-banner.png" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="My AML Engine Doesn't Just Flag Wallets. It Roasts Them." />
+  <meta name="twitter:image" content="blog-visuals/png/01-hero-banner.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YS428H3H44');
+  </script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Bionic <span>Banker</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="articles.html">All Articles</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO — INTERACTIVE EMBED ═══════════════ -->
+  <div class="embed-visual hero-embed">
+    <iframe src="blog-visuals/01-hero-banner.html" loading="eager" title="AML Roaster Hero — My AML Engine Doesn't Just Flag Wallets. It Roasts Them."></iframe>
+  </div>
+
+  <!-- ═══════════════ ARTICLE HEADER ═══════════════ -->
+  <div class="article-header">
+    <div class="article-meta">
+      <span class="article-tag">AML · AI · Blockchain</span>
+      <span class="article-date">March 2026 · 8 min read</span>
+    </div>
+
+    <h1>My AML Engine Doesn't Just Flag Wallets. It Roasts Them.</h1>
+
+    <p class="lede">$82 billion laundered through crypto in 2025. Less than 1% caught. I built an engine that scans Ethereum every 30 minutes and turns dry compliance reports into roasts you actually want to read — because the problem was never intelligence. It was making humans pay attention.</p>
+
+    <div class="author-bar">
+      <div class="author-avatar">H</div>
+      <div class="author-info">
+        <div class="name">HASH — The Bionic Banker</div>
+        <div class="title">Computer Engineer · Financial Services · Blockchain Builder</div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-val">13</div>
+        <div class="stat-lbl">Detection Rules</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">11</div>
+        <div class="stat-lbl">Watched Addresses</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">30m</div>
+        <div class="stat-lbl">Scan Interval</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">$0</div>
+        <div class="stat-lbl">Infra Cost</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://github.com/hash02/aml-roaster" target="_blank" class="cta-primary">
+        View on GitHub
+      </a>
+      <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" class="cta-secondary">
+        Try the AML Engine Demo →
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════ ARTICLE BODY ═══════════════ -->
+  <div class="article-body">
+
+    <p>Okay so — here's a number that should bother you more than it does.</p>
+
+    <p><span class="stat-inline">$82 billion</span> was laundered through cryptocurrency in 2025. That's up from $40 billion the year before — a 105% jump. And globally, somewhere between $800 billion and $2 trillion gets laundered every year across all channels. The UN estimates less than 1% of it gets caught.</p>
+
+    <p>Let that sit for a second. Less than one percent.</p>
+
+    <p>The systems we have for catching money laundering — the compliance reports, the transaction monitoring, the risk scores — they exist. They work, technically. But they generate reports that nobody actually reads. Same corporate font, same passive voice, same "the transaction exhibited characteristics consistent with potential structuring activity." The compliance officer skims it, checks a box, moves on. The investigator glances at the score and goes with gut feel anyway.</p>
+
+    <p>Crime is evolving faster than compliance can keep up. And the gap isn't intelligence — we have the data, we have the models, we have the rules. The gap is that the output is so boring that the humans in the loop check out before the signal lands.</p>
+
+    <p>So I did something kind of stupid. I built an AML engine that roasts suspicious wallets. Like, actually roasts them — sarcastic, pointed, impossible to ignore.</p>
+
+    <p>And somehow it's the best compliance tool I've ever made.</p>
+
+    <!-- ═══════════════ STATS EMBED ═══════════════ -->
+    <div class="embed-visual">
+      <iframe src="blog-visuals/02-aml-stats.html" loading="lazy" title="AML Statistics — $82B laundered, less than 1% caught"></iframe>
+      <div class="embed-caption">
+        <span>2024/2025 Crypto AML data — CoinLaw, Chainalysis, UN/UNODC, TRM Labs</span>
+        <span class="interactive-badge">Interactive</span>
+      </div>
+    </div>
+
+    <h2>The scale of what we're fighting</h2>
+
+    <p>Before I get into the build, you need context on why this matters beyond a fun side project.</p>
+
+    <p>The Lazarus Group — North Korea's state-sponsored hacking operation — has stolen over <span class="stat-inline">$6.75 billion</span> in crypto since 2017. In February 2025 alone, they hit Bybit for $1.5 billion. One hack. That single heist was bigger than everything they stole across 47 separate incidents in all of 2024.</p>
+
+    <p>Tornado Cash — one of the main mixers my engine watches — processed over $7 billion in transactions before OFAC sanctioned it in 2022. Here's the twist though: in March 2025, OFAC actually removed Tornado Cash from the sanctions list after a court ruled they overstepped their authority. But the criminal prosecutions continue. Roman Storm got convicted. Samourai Wallet founders got 4-5 years each.</p>
+
+    <p>The regulatory landscape is shifting under everyone's feet while the crime scales exponentially. That's the environment this engine operates in.</p>
+
+    <!-- ═══════════════ TORNADO CASH EMBED ═══════════════ -->
+    <div class="embed-visual">
+      <iframe src="blog-visuals/04-tornado-cash.html" loading="lazy" title="Tornado Cash — How a crypto mixer works and why it matters"></iframe>
+      <div class="embed-caption">
+        <span>How a crypto mixer works — Tornado Cash timeline and watchlist</span>
+        <span class="interactive-badge">Interactive</span>
+      </div>
+    </div>
+
+    <h2>What the engine actually does</h2>
+
+    <p>The AML Roaster is a real detection system. 13 active rules, scanning Ethereum mainnet every 30 minutes via GitHub Actions. It watches 11 addresses — Tornado Cash pools, OFAC-flagged entities, Lazarus Group wallets, the Ronin Bridge exploiter.</p>
+
+    <p>When it finds something suspicious, it does what any AML system does: assigns a risk score, tags the rules that fired, generates a report.</p>
+
+    <p>But then it does something different. It sends the finding to an LLM and says: explain what happened like you're telling a friend at a bar. Then roast them.</p>
+
+    <p>Here's an actual roast from a real scan — a wallet that sent five identical zero-value transactions to Tornado Cash's 0.1 ETH pool:</p>
+
+    <div class="roast-block">
+      <p>"It takes a special kind of genius to send five identical transactions of 0.0000 ETH to a sanctioned mixer — I mean, who needs actual money when you can just smurf your way to OFAC's bad side? The structuring pattern is just the cherry on top, because who doesn't love a good game of 'let's make all our transactions look identical.'"</p>
+      <div class="roast-score">
+        <span>Risk Score: <span class="critical">530 — CRITICAL</span></span>
+        <span>Rules fired: 6/13</span>
+        <span>Mixer + OFAC + Structuring</span>
+      </div>
+    </div>
+
+    <p>That's not a report you skim.</p>
+
+    <h2>Why humor is actually the missing layer</h2>
+
+    <p>This isn't a gimmick. There's a real insight underneath it.</p>
+
+    <p>The problem with traditional AML output isn't that it lacks information — it has too much. A wall of technical text triggers the same response in everyone: glazed eyes, checkbox mentality, move to the next one. The signal drowns in its own formatting.</p>
+
+    <p>The roast forces the AI to actually understand what happened. You can't roast something you don't understand. Try writing a sarcastic take on "the wallet exhibited layering characteristics" — you can't. But if you understand that someone sent five empty transactions to a mixer like they're testing the waters before doing something real? Now you've got material.</p>
+
+    <p>And the person reading it? They remember it. You'll forget "risk score 530, OFAC sanctions match, structuring detected" by tomorrow. You won't forget the wallet that smurfed its way to OFAC's bad side.</p>
+
+    <div class="pull-quote">
+      "The hard part was never making the AI smarter. It's making the output worth a human's time. We're drowning in AI-generated text that nobody reads. The bottleneck isn't intelligence. It's engagement."
+    </div>
+
+    <h2>The pipeline</h2>
+
+    <!-- ═══════════════ PIPELINE EMBED ═══════════════ -->
+    <div class="embed-visual">
+      <iframe src="blog-visuals/03-pipeline.html" loading="lazy" title="AML Roaster Pipeline — Scan to Report in 30 minutes"></iframe>
+      <div class="embed-caption">
+        <span>From Ethereum block to roast report — the 5-stage pipeline</span>
+        <span class="interactive-badge">Interactive</span>
+      </div>
+    </div>
+
+    <p><strong>Scan</strong> — Python script, every 30 minutes via GitHub Actions. Hits Etherscan for recent blocks, checks transactions against 11 watched addresses. Applies 13 detection rules: mixer contact, sanctions match, structuring, peel chains, exchange avoidance, stablecoin mixing, contract interaction patterns.</p>
+
+    <p><strong>Score</strong> — Each rule has a weight. Mixer touch is +100, OFAC hit is +200, structuring is +70. Scores compound. A wallet hitting multiple rules climbs fast — 400+ is CRITICAL.</p>
+
+    <p><strong>Roast</strong> — The finding goes to an LLM with context: rules triggered, scores, transaction details. It generates a plain-English summary, the roast, and a risk verdict with recommended action. This is where the dry data becomes something you actually want to read.</p>
+
+    <p><strong>Dashboard</strong> — Single-page HTML, auto-updates from the scan data. Three stats, roast cards with the actual text, two charts. Minimal, clean.</p>
+
+    <p><strong>Storage</strong> — Every scan appends to a JSON file. Markdown reports get generated per scan. The whole thing runs on GitHub Actions' free tier — <span class="stat-green">zero infrastructure cost</span>.</p>
+
+    <p>The entire system is automated. I don't touch it. Every 30 minutes it wakes up, scans Ethereum, checks the watchlist, and if it finds something, it roasts it.</p>
+
+    <h2>What it caught</h2>
+
+    <p>In 24 scans so far, it found 2 CRITICAL wallets — both interacting with Tornado Cash's 0.1 ETH pool. One sent 5 identical zero-value transactions (score: 530, six rules fired). Another sent 2 zero-value calls (score: 400, four rules).</p>
+
+    <p>Zero-value transactions to a mixer are interesting because they're not moving money. They're probing — testing the contract, or relaying for someone else. The engine caught both and the roasts made the difference obvious: one was "smurfing to OFAC's bad side," the other was "spinning dirty laundry on a budget."</p>
+
+    <p>That kind of plain-language distinction is what turns a detection system into an investigation tool. The rules catch the pattern. The roast explains why you should care.</p>
+
+    <h2>AI is about to change how we interact with crime data</h2>
+
+    <p>Here's the bigger picture and why I think this matters beyond one engine.</p>
+
+    <p>We're at this weird inflection point where AI can process massive amounts of financial data in real-time — but the way we present that information to humans hasn't changed since the 90s. Same spreadsheets, same PDF reports, same dashboards with red and green numbers.</p>
+
+    <p>What happens when AI doesn't just detect patterns but explains them in a way that makes investigators actually engage? What happens when every suspicious transaction comes with context, personality, and a recommendation that reads like a colleague briefing you instead of a system alert?</p>
+
+    <p>The way we interact with crime data — and honestly, with all monitoring data — is about to fundamentally change. Not because the models get smarter, but because someone finally makes the output worth reading.</p>
+
+    <p>That's what the Roaster proved to me. The detection was always possible. The rules work. The scoring works. The thing that was missing — the thing that makes a human actually stop and pay attention — is voice.</p>
+
+    <p>And once you see that, you start seeing it everywhere. Security alerts nobody reads. Fraud flags that get auto-dismissed. Monitoring dashboards that exist to satisfy auditors, not to actually inform anyone. The problem is always the same: the output doesn't respect the human's attention.</p>
+
+    <p><span class="stat-inline">$82 billion</span> laundered through crypto last year. Less than 1% caught globally. Maybe the answer isn't better algorithms. Maybe it's making the existing ones impossible to ignore.</p>
+
+    <!-- ═══════════════ FOOTER CTA ═══════════════ -->
+    <div style="margin-top: 3rem; padding: 2rem; background: rgba(31,160,104,0.04); border: 1px solid rgba(31,160,104,0.1); border-radius: 12px;">
+      <p style="margin-bottom: 1rem !important; color: var(--text); font-weight: 600; font-size: 1.1rem;">The AML Roaster is open source and runs live.</p>
+      <p style="margin-bottom: 1.5rem !important; color: var(--text-2); font-size: 0.95rem;">The roaster scans Ethereum every 30 minutes. The full AML Detection Engine (22 rules, 94.9% detection rate) has a live demo. I write about building at the intersection of AI, blockchain, and finance.</p>
+      <div class="cta-row" style="margin-top: 0;">
+        <a href="https://github.com/hash02/aml-roaster" target="_blank" class="cta-primary">
+          AML Roaster — GitHub
+        </a>
+        <a href="https://github.com/hash02/aml-detection-engine" target="_blank" class="cta-secondary">
+          Full AML Engine →
+        </a>
+        <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" class="cta-secondary">
+          Live Demo →
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">Bionic <span>Banker</span></a>
+        <p class="footer-tagline">Inside Finance. Building Its Future.</p>
+      </div>
+      <div class="footer-links">
+        <a href="articles.html">Articles</a>
+        <a href="index.html#about">About</a>
+        <a href="https://github.com/hash02" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank">LinkedIn</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Bionic Banker. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

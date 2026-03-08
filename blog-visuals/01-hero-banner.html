@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AML Roaster Hero</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #020204; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+  .hero {
+    width: 1200px;
+    height: 630px;
+    background: #020204;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  /* Grid overlay */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(31,160,104,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31,160,104,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Glow orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+  }
+  .orb-1 {
+    width: 400px; height: 400px;
+    background: #1fa068;
+    top: -100px; right: -50px;
+    opacity: 0.15;
+  }
+  .orb-2 {
+    width: 300px; height: 300px;
+    background: #ff4444;
+    bottom: -80px; left: 100px;
+    opacity: 0.1;
+  }
+  .orb-3 {
+    width: 200px; height: 200px;
+    background: #1fa068;
+    top: 50%; left: 30%;
+    opacity: 0.08;
+  }
+
+  /* Content wrapper - two column layout */
+  .content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 60px 60px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* Content */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1fa068;
+    margin-bottom: 24px;
+    padding: 6px 14px;
+    border: 1px solid rgba(31,160,104,0.3);
+    border-radius: 4px;
+    width: fit-content;
+  }
+
+  h1 {
+    font-size: 44px;
+    font-weight: 800;
+    color: #e4e4ec;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  h1 span {
+    color: #1fa068;
+  }
+  h1 .red {
+    color: #ff4444;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: #7a7a8c;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  /* Terminal block on right */
+  .terminal {
+    width: 360px;
+    flex-shrink: 0;
+    background: #08080e;
+    border: 1px solid rgba(31,160,104,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 3;
+  }
+  .terminal-bar {
+    height: 32px;
+    background: rgba(31,160,104,0.05);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 6px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-r { background: #ff4444; }
+  .dot-y { background: #7a7a8c; }
+  .dot-g { background: #1fa068; }
+  .terminal-body {
+    padding: 16px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+  .t-green { color: #1fa068; }
+  .t-red { color: #ff4444; }
+  .t-white { color: #e4e4ec; }
+  .t-dim { color: #7a7a8c; }
+  .t-line { margin-bottom: 2px; }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    border-top: 1px solid rgba(31,160,104,0.08);
+    z-index: 3;
+  }
+  .brand {
+    font-size: 14px;
+    font-weight: 600;
+    color: #7a7a8c;
+    letter-spacing: 1px;
+  }
+  .brand span { color: #1fa068; }
+  .stats-row {
+    display: flex;
+    gap: 30px;
+  }
+  .stat-item {
+    font-size: 12px;
+    color: #444454;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .stat-item strong {
+    color: #e4e4ec;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="content-wrapper">
+  <div class="content">
+    <div class="tag">AML × AI × Blockchain</div>
+    <h1>My AML Engine Doesn't Just Flag Wallets.<br><span>It </span><span class="red">Roasts</span><span> Them.</span></h1>
+    <p class="subtitle">13 rules. Live Ethereum scanning. And a compliance report you'll actually want to read.</p>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+    </div>
+    <div class="terminal-body">
+      <div class="t-line"><span class="t-dim">$</span> <span class="t-green">roaster scan</span> <span class="t-dim">--chain eth</span></div>
+      <div class="t-line"><span class="t-dim">scanning 200 blocks...</span></div>
+      <div class="t-line"><span class="t-red">⚠ CRITICAL</span> <span class="t-white">Score: 530</span></div>
+      <div class="t-line"><span class="t-dim">rules: 6/13 triggered</span></div>
+      <div class="t-line"><span class="t-dim">addr:</span> <span class="t-white">0xd90e...4f31b</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line"><span class="t-green">ROAST:</span></div>
+      <div class="t-line"><span class="t-white" style="font-size:11px">"It takes a special kind of</span></div>
+      <div class="t-line"><span class="t-white" style="font-size:11px">genius to send 5 identical txns</span></div>
+      <div class="t-line"><span class="t-white" style="font-size:11px">of 0.0000 ETH to a sanctioned</span></div>
+      <div class="t-line"><span class="t-white" style="font-size:11px">mixer — smurf your way to</span></div>
+      <div class="t-line"><span class="t-white" style="font-size:11px">OFAC's bad side..."</span></div>
+    </div>
+  </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="brand"><span>bionic</span>banker<span>.tech</span></div>
+    <div class="stats-row">
+      <div class="stat-item"><strong>13</strong> rules</div>
+      <div class="stat-item"><strong>11</strong> watched</div>
+      <div class="stat-item"><strong>30min</strong> intervals</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

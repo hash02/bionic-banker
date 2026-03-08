@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roaster Pipeline</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #020204; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+  .card {
+    width: 1200px;
+    height: 630px;
+    background: #020204;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(31,160,104,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31,160,104,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .header {
+    padding: 35px 60px 0;
+    z-index: 2;
+    position: relative;
+  }
+  .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1fa068;
+    margin-bottom: 6px;
+  }
+  .header h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #e4e4ec;
+  }
+
+  /* Pipeline */
+  .pipeline {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 10px 40px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+  }
+
+  .stage-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .stage-icon.scan { background: rgba(31,160,104,0.1); border: 1px solid rgba(31,160,104,0.25); }
+  .stage-icon.score { background: rgba(31,160,104,0.1); border: 1px solid rgba(31,160,104,0.25); }
+  .stage-icon.roast { background: rgba(255,68,68,0.08); border: 1px solid rgba(255,68,68,0.2); }
+  .stage-icon.dash { background: rgba(228,228,236,0.05); border: 1px solid rgba(228,228,236,0.12); }
+  .stage-icon.store { background: rgba(31,160,104,0.06); border: 1px solid rgba(31,160,104,0.15); }
+
+  .stage-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e4e4ec;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+
+  .stage-detail {
+    font-size: 11.5px;
+    color: #7a7a8c;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 160px;
+  }
+  .stage-detail .highlight { color: #1fa068; font-weight: 600; }
+  .stage-detail .red { color: #ff4444; font-weight: 600; }
+
+  /* Arrows between stages */
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    margin-bottom: 50px;
+  }
+  .arrow svg {
+    width: 40px;
+    height: 20px;
+  }
+  .arrow path {
+    fill: none;
+    stroke: rgba(31,160,104,0.3);
+    stroke-width: 2;
+  }
+  .arrow polygon {
+    fill: rgba(31,160,104,0.4);
+  }
+
+  /* Timer badge */
+  .timer {
+    position: absolute;
+    top: 30px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(31,160,104,0.2);
+    border-radius: 20px;
+    background: rgba(31,160,104,0.05);
+    z-index: 3;
+  }
+  .timer-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1fa068;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .timer-text {
+    font-size: 12px;
+    color: #1fa068;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Bottom */
+  .bottom {
+    padding: 0 60px 25px;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tech-stack {
+    display: flex;
+    gap: 20px;
+  }
+  .tech-tag {
+    font-size: 11px;
+    color: #444454;
+    padding: 4px 10px;
+    border: 1px solid rgba(122,122,140,0.1);
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .brand {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444454;
+    letter-spacing: 1px;
+  }
+  .brand span { color: #1fa068; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid"></div>
+
+  <div class="header">
+    <div class="label">How The Roaster Works</div>
+    <h2>From Ethereum Block → Roast Report in 30 Minutes</h2>
+  </div>
+
+  <div class="timer">
+    <div class="timer-dot"></div>
+    <span class="timer-text">Runs every 30 min via GitHub Actions</span>
+  </div>
+
+  <div class="pipeline">
+    <!-- SCAN -->
+    <div class="stage">
+      <div class="stage-icon scan">🔍</div>
+      <div class="stage-name">Scan</div>
+      <div class="stage-detail">
+        Etherscan API<br>
+        <span class="highlight">200 blocks</span> per run<br>
+        <span class="highlight">11 addresses</span> watched
+      </div>
+    </div>
+
+    <div class="arrow">
+      <svg viewBox="0 0 40 20"><path d="M0 10 L30 10"/><polygon points="30,5 40,10 30,15"/></svg>
+    </div>
+
+    <!-- DETECT -->
+    <div class="stage">
+      <div class="stage-icon score">⚡</div>
+      <div class="stage-name">Detect</div>
+      <div class="stage-detail">
+        <span class="highlight">13 rules</span> applied<br>
+        Mixer, OFAC, structuring,<br>
+        peel chains, exchange avoid
+      </div>
+    </div>
+
+    <div class="arrow">
+      <svg viewBox="0 0 40 20"><path d="M0 10 L30 10"/><polygon points="30,5 40,10 30,15"/></svg>
+    </div>
+
+    <!-- SCORE -->
+    <div class="stage">
+      <div class="stage-icon score">📊</div>
+      <div class="stage-name">Score</div>
+      <div class="stage-detail">
+        Weighted compound scoring<br>
+        Mixer: <span class="highlight">+100</span> | OFAC: <span class="red">+200</span><br>
+        400+ = <span class="red">CRITICAL</span>
+      </div>
+    </div>
+
+    <div class="arrow">
+      <svg viewBox="0 0 40 20"><path d="M0 10 L30 10" style="stroke: rgba(255,68,68,0.3)"/><polygon points="30,5 40,10 30,15" style="fill: rgba(255,68,68,0.4)"/></svg>
+    </div>
+
+    <!-- ROAST -->
+    <div class="stage">
+      <div class="stage-icon roast">🔥</div>
+      <div class="stage-name">Roast</div>
+      <div class="stage-detail">
+        LLM generates:<br>
+        <span class="red">What happened</span> (plain English)<br>
+        <span class="red">The roast</span> + verdict
+      </div>
+    </div>
+
+    <div class="arrow">
+      <svg viewBox="0 0 40 20"><path d="M0 10 L30 10"/><polygon points="30,5 40,10 30,15"/></svg>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="stage">
+      <div class="stage-icon dash">📋</div>
+      <div class="stage-name">Report</div>
+      <div class="stage-detail">
+        Dashboard + Markdown<br>
+        Auto-updates on push<br>
+        <span class="highlight">data.json</span> cumulative
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="tech-stack">
+      <span class="tech-tag">Python</span>
+      <span class="tech-tag">GitHub Actions</span>
+      <span class="tech-tag">Etherscan API</span>
+      <span class="tech-tag">Groq LLM</span>
+      <span class="tech-tag">$0 infra cost</span>
+    </div>
+    <div class="brand"><span>bionic</span>banker<span>.tech</span></div>
+  </div>
+</div>
+</body>
+</html>
