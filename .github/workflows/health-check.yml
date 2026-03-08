@@ -23,15 +23,31 @@ jobs:
           python scripts/health-check-auto.py --repo 2>&1 | tee /tmp/health-output.txt
           if grep -q "ISSUES FOUND" /tmp/health-output.txt; then
             echo "has_issues=true" >> $GITHUB_OUTPUT
+          elif grep -q "AUTO-FIXED" /tmp/health-output.txt; then
+            echo "has_issues=false" >> $GITHUB_OUTPUT
+            echo "self_healed=true" >> $GITHUB_OUTPUT
           else
             echo "has_issues=false" >> $GITHUB_OUTPUT
+            echo "self_healed=false" >> $GITHUB_OUTPUT
             echo "All healthy - no action needed"
           fi
 
-      - name: Commit health report if issues found
+      - name: Route health_fail event
         if: steps.healthcheck.outputs.has_issues == 'true'
+        run: |
+          SUMMARY=$(grep -E "^- " /tmp/health-output.txt | head -5 | tr '\n' '; ')
+          python scripts/event-router.py --repo --event health_fail --detail "$SUMMARY"
+
+      - name: Route self-heal event
+        if: steps.healthcheck.outputs.self_healed == 'true'
+        run: |
+          HEALED=$(grep "AUTO-FIXED" /tmp/health-output.txt | wc -l)
+          python scripts/event-router.py --repo --event push_success --detail "Health check self-healed $HEALED issue(s)"
+
+      - name: Commit changes
+        if: steps.healthcheck.outputs.has_issues == 'true' || steps.healthcheck.outputs.self_healed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add memory/health-check-auto-*.md
-          git diff --staged --quiet || (git commit -m "health-check: issues detected $(date +%Y-%m-%d)" && git push)
+          git add memory/ CLAUDE.md QUICK_CONTEXT.md
+          git diff --staged --quiet || (git commit -m "health-check: $(date +%Y-%m-%d) [auto]" && git push)
