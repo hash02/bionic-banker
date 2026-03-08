@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Six Layers of Autonomy</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 900px;
+    width: 100%;
+  }
+  .title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #5b73f8, #8b6cf7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 40px;
+  }
+  .layers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .layer {
+    display: grid;
+    grid-template-columns: 60px 1fr 200px;
+    align-items: center;
+    padding: 18px 24px;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .layer:hover {
+    background: rgba(91, 115, 248, 0.04);
+  }
+  .layer.active {
+    background: rgba(91, 115, 248, 0.08);
+    border-left-color: #5b73f8;
+  }
+  .layer-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .l0 .layer-num { color: #444; }
+  .l1 .layer-num { color: #555; }
+  .l2 .layer-num { color: #1fa068; }
+  .l3 .layer-num { color: #1fa068; }
+  .l4 .layer-num { color: #5b73f8; }
+  .l5 .layer-num { color: #8b6cf7; }
+  .layer-info {
+    padding: 0 20px;
+  }
+  .layer-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .layer-desc {
+    font-size: 0.75rem;
+    color: #888;
+    line-height: 1.4;
+  }
+  .layer-type {
+    text-align: right;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    justify-self: end;
+  }
+  .type-auto {
+    color: #1fa068;
+    background: rgba(31, 160, 104, 0.1);
+  }
+  .type-adapt {
+    color: #8b6cf7;
+    background: rgba(139, 108, 247, 0.1);
+  }
+  .type-base {
+    color: #666;
+    background: rgba(102, 102, 102, 0.1);
+  }
+  .divider {
+    height: 1px;
+    background: rgba(255,255,255,0.04);
+    margin: 0 24px;
+  }
+  .threshold {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    margin: 4px 0;
+  }
+  .threshold-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ff4444 50%, transparent);
+  }
+  .threshold-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #ff4444;
+    white-space: nowrap;
+  }
+  .detail-panel {
+    margin-top: 20px;
+    padding: 24px;
+    background: rgba(91, 115, 248, 0.04);
+    border: 1px solid rgba(91, 115, 248, 0.1);
+    border-radius: 12px;
+    min-height: 100px;
+    transition: all 0.3s ease;
+  }
+  .detail-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .detail-body {
+    font-size: 0.8rem;
+    color: #aaa;
+    line-height: 1.6;
+  }
+  .detail-body .key {
+    color: #5b73f8;
+    font-weight: 600;
+  }
+  .footer-note {
+    text-align: center;
+    font-size: 0.65rem;
+    color: #444;
+    margin-top: 30px;
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .layer { grid-template-columns: 40px 1fr; padding: 14px 16px; }
+    .layer-type { display: none; }
+    .layer-name { font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="title">The Six Layers of System Autonomy</div>
+  <div class="subtitle">Click any layer to explore — from manual operations to self-improvement</div>
+
+  <div class="layers">
+    <div class="layer l0" onclick="showDetail(0)">
+      <div class="layer-num">L0</div>
+      <div class="layer-info">
+        <div class="layer-name">Manual</div>
+        <div class="layer-desc">Human does everything. Zero automation.</div>
+      </div>
+      <span class="layer-type type-base">Foundation</span>
+    </div>
+    <div class="divider"></div>
+    <div class="layer l1" onclick="showDetail(1)">
+      <div class="layer-num">L1</div>
+      <div class="layer-info">
+        <div class="layer-name">Assisted</div>
+        <div class="layer-desc">Tools exist. Human decides when to use them.</div>
+      </div>
+      <span class="layer-type type-base">Foundation</span>
+    </div>
+    <div class="divider"></div>
+    <div class="layer l2" onclick="showDetail(2)">
+      <div class="layer-num">L2</div>
+      <div class="layer-info">
+        <div class="layer-name">Scripted</div>
+        <div class="layer-desc">Workflows encoded. Repeatable without thinking.</div>
+      </div>
+      <span class="layer-type type-auto">Automation</span>
+    </div>
+    <div class="divider"></div>
+    <div class="layer l3" onclick="showDetail(3)">
+      <div class="layer-num">L3</div>
+      <div class="layer-info">
+        <div class="layer-name">Scheduled</div>
+        <div class="layer-desc">System runs itself on a clock. No trigger needed.</div>
+      </div>
+      <span class="layer-type type-auto">Automation</span>
+    </div>
+    <div class="divider"></div>
+    <div class="layer l4 active" onclick="showDetail(4)">
+      <div class="layer-num">L4</div>
+      <div class="layer-info">
+        <div class="layer-name">Reactive</div>
+        <div class="layer-desc">Responds to events. Self-heals known failures.</div>
+      </div>
+      <span class="layer-type type-auto">Automation</span>
+    </div>
+
+    <div class="threshold">
+      <div class="threshold-line"></div>
+      <div class="threshold-label">↑ Automation · Adaptation ↓</div>
+      <div class="threshold-line"></div>
+    </div>
+
+    <div class="layer l5" onclick="showDetail(5)">
+      <div class="layer-num">L5</div>
+      <div class="layer-info">
+        <div class="layer-name">Adaptive</div>
+        <div class="layer-desc">Detects its own failure patterns. Proposes new rules.</div>
+      </div>
+      <span class="layer-type type-adapt">Adaptation</span>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="detail">
+    <div class="detail-title" id="detail-title">L4 — Reactive</div>
+    <div class="detail-body" id="detail-body">
+      The system has a <span class="key">nervous system</span>. Events fire → the right handler runs → results feed back. A push triggers an audit. A failure triggers a self-heal. No human needed for the known cases.<br><br>
+      But here's the ceiling: <span class="key">it only knows what you taught it</span>. New failure modes go unnoticed. The system can't learn from its own history. That's the gap L5 fills.
+    </div>
+  </div>
+
+  <div class="footer-note">bionicbanker.tech — The difference between automation and adaptation is a feedback loop.</div>
+</div>
+
+<script>
+const details = [
+  {
+    title: "L0 — Manual",
+    body: `Every action requires a human. Copy-paste commands, manually check files, remember what you did last time. <span class="key">This is where everyone starts.</span> No shame in it — but it doesn't scale, and it forgets.`
+  },
+  {
+    title: "L1 — Assisted",
+    body: `Tools exist but the human decides when to use them. You have a script that deploys, but you run it manually. You have a checklist, but you check it yourself. <span class="key">The knowledge lives in your head, not in the system.</span>`
+  },
+  {
+    title: "L2 — Scripted",
+    body: `Workflows are encoded into skills. "Publish a blog post" becomes a repeatable process: template → infographics → meta tags → deploy. <span class="key">The system knows HOW.</span> But it only runs when you tell it to.`
+  },
+  {
+    title: "L3 — Scheduled",
+    body: `The system runs itself on a clock. Health checks every Sunday. Staleness detection daily. <span class="key">You don't need to remember to check — it checks itself.</span> But it only checks what you pre-programmed. No surprises.`
+  },
+  {
+    title: "L4 — Reactive",
+    body: `The system has a <span class="key">nervous system</span>. Events fire → the right handler runs → results feed back. A push triggers an audit. A failure triggers a self-heal. No human needed for the known cases.<br><br>But here's the ceiling: <span class="key">it only knows what you taught it</span>. New failure modes go unnoticed. The system can't learn from its own history. That's the gap L5 fills.`
+  },
+  {
+    title: "L5 — Adaptive",
+    body: `The output of one run becomes the input for the next. Failures accumulate. Patterns surface. The system <span class="key">proposes its own improvements</span> — but the human approves before anything changes.<br><br>This is where automation becomes adaptation. The system isn't just doing what you told it. It's telling you <span class="key">what it noticed</span>.`
+  }
+];
+
+function showDetail(idx) {
+  document.querySelectorAll('.layer').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('.layer')[idx].classList.add('active');
+  document.getElementById('detail-title').textContent = details[idx].title;
+  document.getElementById('detail-body').innerHTML = details[idx].body;
+}
+</script>
+</body>
+</html>
