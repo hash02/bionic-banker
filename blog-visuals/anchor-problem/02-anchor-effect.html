@@ -135,5 +135,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   drawDrift('drift-good',false);
 });
 </script>
+
+<script>
+function sendHeight(){
+  var h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+  window.parent.postMessage({type:'iframeResize',height:h,src:location.pathname},'*');
+}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
 </body>
 </html>

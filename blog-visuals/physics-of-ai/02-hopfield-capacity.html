@@ -65,5 +65,15 @@ function drawCap(){draw("capacity",function(ctx,p,cw,ch,w,h){ctx.beginPath();for
 function drawEn(){draw("energy",function(ctx,p,cw,ch,w,h){var pts=[];for(var i=0;i<=100;i++){var t=i/100,e=100*Math.exp(-t*3);if(t>0.25&&t<0.5)e+=8*Math.sin((t-0.25)*Math.PI/0.25);e=Math.max(5,e);pts.push({x:p.l+t*cw,y:p.t+(1-e/100)*ch})}ctx.beginPath();ctx.moveTo(pts[0].x,h-p.b);pts.forEach(function(pt){ctx.lineTo(pt.x,pt.y)});ctx.lineTo(pts[pts.length-1].x,h-p.b);ctx.closePath();ctx.fillStyle="rgba(255,68,68,0.06)";ctx.fill();ctx.beginPath();pts.forEach(function(pt,i){i===0?ctx.moveTo(pt.x,pt.y):ctx.lineTo(pt.x,pt.y)});ctx.strokeStyle="#ff4444";ctx.lineWidth=2;ctx.stroke();ctx.font='600 8px "Plus Jakarta Sans"';ctx.fillStyle="rgba(255,170,68,0.7)";ctx.textAlign="center";ctx.fillText("LOCAL MIN TRAP",p.l+0.38*cw,p.t+(1-15/100)*ch-10)})}
 drawCap();drawEn();window.addEventListener("resize",function(){drawCap();drawEn()});
 </script>
+
+<script>
+function sendHeight(){
+  var h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+  window.parent.postMessage({type:'iframeResize',height:h,src:location.pathname},'*');
+}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
 </body>
 </html>

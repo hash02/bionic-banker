@@ -27,7 +27,7 @@
 
   <style>
     .embed-visual{width:100%;margin:2.5rem 0;border-radius:12px;overflow:hidden;border:1px solid rgba(31,160,104,0.1);background:#020204}
-    .embed-visual iframe{width:100%;height:550px;border:none;display:block}
+    .embed-visual iframe{width:100%;min-height:400px;border:none;display:block}
     .embed-caption{padding:0.75rem 1.25rem;background:rgba(31,160,104,0.03);border-top:1px solid rgba(31,160,104,0.06);font-size:0.78rem;color:var(--text-3);font-family:var(--mono);display:flex;justify-content:space-between;align-items:center}
     .embed-caption .interactive-badge{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#1fa068;background:rgba(31,160,104,0.08);padding:3px 8px;border-radius:4px}
   </style>
@@ -95,7 +95,7 @@
     <p>That's not a metaphor. That's literal physics. The same math that describes how magnetic materials cool into stable states is the same math that describes how a neural network learns to recognize a face.</p>
 
     <div class="embed-visual">
-    <iframe src="blog-visuals/physics-of-ai/01-energy-landscape.html" style="width:100%;height:550px;border:none;border-radius:12px;"></iframe>
+    <iframe src="blog-visuals/physics-of-ai/01-energy-landscape.html" style="width:100%;min-height:400px;border:none;border-radius:12px;"></iframe>
     <div class="embed-caption">
       <span>Energy landscape with animated training ball, local minima traps, and the Hopfield/Spin Glass equation comparison</span>
       <span class="interactive-badge">Interactive</span>
@@ -103,7 +103,7 @@
   </div>
 
       <div class="embed-visual">
-    <iframe src="blog-visuals/physics-of-ai/02-hopfield-capacity.html" style="width:100%;height:520px;border:none;border-radius:12px;"></iframe>
+    <iframe src="blog-visuals/physics-of-ai/02-hopfield-capacity.html" style="width:100%;min-height:400px;border:none;border-radius:12px;"></iframe>
     <div class="embed-caption">
       <span>Hopfield memory capacity (0.138N hard limit) and energy decay with local minimum traps</span>
       <span class="interactive-badge">Interactive</span>
@@ -138,7 +138,7 @@
     <p>And this is what powers everything now. ChatGPT, Claude, GPT-4 — every training loop is: start chaotic, show examples, lower the energy, repeat. Pure physics.</p>
 
     <div class="embed-visual">
-    <iframe src="blog-visuals/physics-of-ai/03-timeline.html" style="width:100%;height:550px;border:none;border-radius:12px;"></iframe>
+    <iframe src="blog-visuals/physics-of-ai/03-timeline.html" style="width:100%;min-height:400px;border:none;border-radius:12px;"></iframe>
     <div class="embed-caption">
       <span>From Hopfield 1982 to Nobel Prize 2024: 40 years of physics becoming AI</span>
       <span class="interactive-badge">Interactive</span>
@@ -167,5 +167,19 @@
     <p class="footer-copy">© 2026 Bionic Banker · <a href="/index.html" style="color:var(--accent);">bionicbanker.tech</a></p>
   </footer>
 
+
+  <script>
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='iframeResize'){
+      var iframes=document.querySelectorAll('.embed-visual iframe');
+      for(var i=0;i<iframes.length;i++){
+        if(iframes[i].contentWindow===e.source){
+          iframes[i].style.height=e.data.height+'px';
+          break;
+        }
+      }
+    }
+  });
+  </script>
 </body>
 </html>

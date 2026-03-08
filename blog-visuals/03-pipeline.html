@@ -288,5 +288,15 @@ html{scrollbar-width:thin;scrollbar-color:rgba(31,160,104,0.3) #020204}
     <div class="brand"><span>bionic</span>banker<span>.tech</span></div>
   </div>
 </div>
+
+<script>
+function sendHeight(){
+  var h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+  window.parent.postMessage({type:'iframeResize',height:h,src:location.pathname},'*');
+}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
 </body>
 </html>

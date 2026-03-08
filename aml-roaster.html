@@ -407,5 +407,19 @@
     </div>
   </footer>
 
+
+  <script>
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='iframeResize'){
+      var iframes=document.querySelectorAll('.embed-visual iframe');
+      for(var i=0;i<iframes.length;i++){
+        if(iframes[i].contentWindow===e.source){
+          iframes[i].style.height=e.data.height+'px';
+          break;
+        }
+      }
+    }
+  });
+  </script>
 </body>
 </html>
