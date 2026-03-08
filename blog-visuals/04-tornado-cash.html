@@ -9,11 +9,12 @@
   body { background: #020204; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
 
   .card {
-    width: 1200px;
-    height: 630px;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 630px;
     background: #020204;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     font-family: 'Segoe UI', system-ui, sans-serif;
   }
 
@@ -201,11 +202,7 @@
 
   /* Bottom */
   .bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0 60px 25px;
+    padding: 20px 60px 25px;
     z-index: 2;
     display: flex;
     justify-content: space-between;
@@ -222,6 +219,28 @@
     letter-spacing: 1px;
   }
   .brand span { color: #1fa068; }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .content {
+      flex-direction: column;
+      gap: 30px;
+      padding: 0 30px;
+    }
+    .right {
+      width: 100%;
+    }
+    .header {
+      padding: 25px 30px 15px;
+    }
+    .header h2 {
+      font-size: 20px;
+    }
+    .bottom {
+      position: relative;
+      padding: 20px 30px;
+    }
+  }
 </style>
 </head>
 <body>
