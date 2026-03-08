@@ -44,6 +44,19 @@ jobs:
           HEALED=$(grep "AUTO-FIXED" /tmp/health-output.txt | wc -l)
           python scripts/event-router.py --repo --event push_success --detail "Health check self-healed $HEALED issue(s)"
 
+      - name: Track outcomes (L5)
+        if: always()
+        run: |
+          REPORT=$(ls -t memory/health-check-auto-*.md memory/health-report-*.md 2>/dev/null | head -1)
+          if [ -n "$REPORT" ]; then
+            python scripts/outcome-tracker.py --source health-check --report "$REPORT"
+          fi
+
+      - name: Check rule proposals (L5)
+        run: |
+          python scripts/rule-proposer.py --check
+          python scripts/rule-proposer.py
+
       - name: Commit changes
         if: steps.healthcheck.outputs.has_issues == 'true' || steps.healthcheck.outputs.self_healed == 'true'
         run: |

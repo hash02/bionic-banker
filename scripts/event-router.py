@@ -8,6 +8,12 @@ Usage:
   python scripts/event-router.py --event health_fail --detail "Article count mismatch"
   python scripts/event-router.py --event push_success --detail "Deployed 2 files"
   python scripts/event-router.py --event stale_detected --detail "TASK-025 idle 12 days"
+  python scripts/event-router.py --event pattern_detected --detail "headings failed 5x"
+  python scripts/event-router.py --event rule_proposed --detail "Auto-fix empty headings" --target content-audit-auto.py
+  python scripts/event-router.py --event rule_activated --detail "Empty heading rule added" --target content-audit-auto.py
+
+Events: new_article, health_fail, push_success, stale_detected (L4)
+        pattern_detected, rule_proposed, rule_activated (L5)
 
 Modes: --local (Windows paths) | --repo (relative paths for GitHub Actions)
 """
@@ -148,12 +154,78 @@ def handle_stale_detected():
     )
     print("Recommendation written to OUTBOX")
 
+
+def handle_pattern_detected():
+    """L5: Pattern detected by outcome tracker. Write to OUTBOX + proposals."""
+    desc = detail or "Recurring pattern detected"
+    print(f"[EVENT] pattern_detected: {desc}")
+
+    # Write to OUTBOX
+    append_file(
+        OUTBOX,
+        f"\n## 🔍 Pattern Detected — {TIME_STR}\n- {desc}\n- Action: rule-proposer.py will generate a fix proposal\n"
+    )
+
+    # Write raw observation to proposals.md
+    proposals_path = os.path.join(MEMORY, "proposals.md") if MODE == "repo" else os.path.join(WS, "bionic-banker", "memory", "proposals.md")
+    if not os.path.exists(proposals_path):
+        append_file(proposals_path, "# Rule Proposals — L5 Adaptive\n\n> HASH marks proposals [APPROVED] or [REJECTED] inline.\n\n---\n")
+    append_file(
+        proposals_path,
+        f"\n## OBSERVATION — {DATE_STR}\n- {desc}\n- Awaiting rule-proposer.py to generate formal proposal\n"
+    )
+    print("Pattern logged to OUTBOX + proposals.md")
+
+
+def handle_rule_proposed():
+    """L5: Rule proposer generated a new rule. Alert OUTBOX."""
+    desc = detail or "New rule proposed"
+    tgt = target or "unknown"
+    print(f"[EVENT] rule_proposed: {desc}")
+
+    append_file(
+        OUTBOX,
+        f"\n## 📝 Rule Proposed — {TIME_STR}\n- {desc}\n- Target: {tgt}\n- Action: HASH review needed in memory/proposals.md\n"
+    )
+    print("Proposal alert written to OUTBOX")
+
+
+def handle_rule_activated():
+    """L5: Rule approved and implemented. Log everywhere."""
+    desc = detail or "Rule activated"
+    tgt = target or "unknown"
+    print(f"[EVENT] rule_activated: {desc}")
+
+    # Log to OUTBOX
+    append_file(
+        OUTBOX,
+        f"\n## ⚡ Rule Activated — {TIME_STR}\n- {desc}\n- Target: {tgt}\n- The agent just improved itself.\n"
+    )
+
+    # Log to SESSION_LOG (local mode)
+    if SESSLOG:
+        append_file(
+            SESSLOG,
+            f"\n- **{DATE_STR}** [L5-AUTO] Rule activated: {desc} → {tgt}\n"
+        )
+        print("Logged to SESSION_LOG")
+    else:
+        append_file(
+            os.path.join(MEMORY, "outbox-events.md"),
+            f"\n## [L5] Rule Activated — {TIME_STR}\n- {desc}\n- Target: {tgt}\n"
+        )
+        print("Logged to memory/outbox-events.md")
+
+
 # Route events
 ROUTES = {
     "new_article": handle_new_article,
     "health_fail": handle_health_fail,
     "push_success": handle_push_success,
     "stale_detected": handle_stale_detected,
+    "pattern_detected": handle_pattern_detected,
+    "rule_proposed": handle_rule_proposed,
+    "rule_activated": handle_rule_activated,
 }
 
 handler = ROUTES.get(event)

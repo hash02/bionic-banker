@@ -388,24 +388,24 @@
 <div class="container">
   <h1>Folder Agent Architecture</h1>
   <p class="subtitle">hash 2026 — The workspace IS the agent</p>
-  <p class="updated">Last updated: March 8, 2026 — Level 4 (Reactive) complete</p>
+  <p class="updated">Last updated: March 8, 2026 — Level 5 (Adaptive) in progress</p>
 
   <!-- Stats Banner -->
   <div class="stats-banner">
     <div class="stat">
-      <div class="stat-value">31</div>
+      <div class="stat-value">38</div>
       <div class="stat-label">Tasks Shipped</div>
     </div>
     <div class="stat">
-      <div class="stat-value">5</div>
-      <div class="stat-label">Batches Complete</div>
+      <div class="stat-value">6</div>
+      <div class="stat-label">Batches</div>
     </div>
     <div class="stat">
       <div class="stat-value">15+</div>
       <div class="stat-label">Skills Installed</div>
     </div>
     <div class="stat">
-      <div class="stat-value">L4</div>
+      <div class="stat-value">L5</div>
       <div class="stat-label">Autonomy Level</div>
     </div>
     <div class="stat">
@@ -413,7 +413,7 @@
       <div class="stat-label">Articles Live</div>
     </div>
     <div class="stat">
-      <div class="stat-value">7</div>
+      <div class="stat-value">9</div>
       <div class="stat-label">Scripts Built</div>
     </div>
   </div>
@@ -498,7 +498,7 @@
       </div>
       <p class="layer-desc">The nervous system. Agent detects events and responds — push-triggered content audits, event routing, self-healing health checks. Fires on change, not on schedule.</p>
       <div class="files-grid">
-        <div class="file-card"><div class="fname">event-router.py</div><div class="fdesc">Central event dispatcher (4 event types)</div></div>
+        <div class="file-card"><div class="fname">event-router.py</div><div class="fdesc">Central event dispatcher (7 event types)</div></div>
         <div class="file-card"><div class="fname">content-audit-auto.py</div><div class="fdesc">8-point article audit (SEO, meta, links)</div></div>
         <div class="file-card"><div class="fname">content-audit-on-push.yml</div><div class="fdesc">GitHub Action: fires on HTML push</div></div>
         <div class="file-card"><div class="fname">generate-social-images.py</div><div class="fdesc">Branded 1200×630 social preview PNGs</div></div>
@@ -508,13 +508,19 @@
 
     <div class="connection"></div>
 
-    <div class="layer future">
+    <div class="layer partial">
       <div class="layer-header">
         <div class="layer-num">6</div>
         <div class="layer-title">Adaptive</div>
-        <div class="layer-status">🔵 FUTURE</div>
+        <div class="layer-status">🟡 IN PROGRESS</div>
       </div>
-      <p class="layer-desc">Agent improves its own skills based on outcomes. Reviews output quality, identifies gaps, proposes new capabilities. The inside-out growth layer.</p>
+      <p class="layer-desc">Agent improves its own skills based on outcomes. Tracks failures in outcomes.json, detects recurring patterns, auto-proposes rules for HASH to approve or reject.</p>
+      <div class="files-grid">
+        <div class="file-card"><div class="fname">outcome-tracker.py</div><div class="fdesc">Logs failures, detects recurring patterns (3+)</div></div>
+        <div class="file-card"><div class="fname">rule-proposer.py</div><div class="fdesc">Auto-generates fix proposals from patterns</div></div>
+        <div class="file-card"><div class="fname">outcomes.json</div><div class="fdesc">Structured failure history + pattern state</div></div>
+        <div class="file-card"><div class="fname">proposals.md</div><div class="fdesc">HASH approves/rejects proposed rules inline</div></div>
+      </div>
     </div>
 
   </div>
@@ -641,8 +647,8 @@
       <div class="level-segment done">L1<br>Assisted</div>
       <div class="level-segment done">L2<br>Scripted</div>
       <div class="level-segment done">L3<br>Scheduled</div>
-      <div class="level-segment current">L4<br>Reactive</div>
-      <div class="level-segment next">L5<br>Adaptive</div>
+      <div class="level-segment done">L4<br>Reactive</div>
+      <div class="level-segment current">L5<br>Adaptive</div>
     </div>
     <div class="levels-row">
       <div class="level-label">HASH tells Claude<br>what to do</div>
@@ -658,6 +664,11 @@
   <div class="batch-section">
     <h2>Build Log</h2>
     <div class="batch-timeline">
+      <div class="batch-item">
+        <div class="batch-id">BATCH 6</div>
+        <div class="batch-desc">Level 5 Adaptive — Self-improving agent<br><small>Outcome tracker, rule proposer, pattern detection, approval workflow</small></div>
+        <div class="batch-status partial">🟡 7 tasks</div>
+      </div>
       <div class="batch-item">
         <div class="batch-id">BATCH 5</div>
         <div class="batch-desc">SEO Gap Fix — og:image + JSON-LD for all 16 articles<br><small>Social preview images (1200×630) + structured data injection</small></div>
