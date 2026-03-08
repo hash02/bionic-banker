@@ -24,6 +24,13 @@
   <meta name="twitter:title" content="The Physics of AI — Bionic Banker" />
   <meta name="twitter:description" content="Two scientists just won the Nobel Prize in Physics for AI. Not computer science. Physics. Here's what that actually means." />
   <link rel="canonical" href="https://bionicbanker.tech/physics-of-ai.html" />
+
+  <style>
+    .embed-visual{width:100%;margin:2.5rem 0;border-radius:12px;overflow:hidden;border:1px solid rgba(31,160,104,0.1);background:#020204}
+    .embed-visual iframe{width:100%;height:550px;border:none;display:block}
+    .embed-caption{padding:0.75rem 1.25rem;background:rgba(31,160,104,0.03);border-top:1px solid rgba(31,160,104,0.06);font-size:0.78rem;color:var(--text-3);font-family:var(--mono);display:flex;justify-content:space-between;align-items:center}
+    .embed-caption .interactive-badge{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#1fa068;background:rgba(31,160,104,0.08);padding:3px 8px;border-radius:4px}
+  </style>
 </head>
 <body>
 
@@ -87,10 +94,21 @@
 
     <p>That's not a metaphor. That's literal physics. The same math that describes how magnetic materials cool into stable states is the same math that describes how a neural network learns to recognize a face.</p>
 
-    <div class="article-image">
-      <img src="physics-diagrams.png" alt="Physics of AI — energy landscape diagrams showing how neural networks minimize energy like physical systems" />
-      <div class="image-caption">Energy landscape visualization — training a neural network is finding the lowest valley. Same mechanics as water flowing downhill.</div>
+    <div class="embed-visual">
+    <iframe src="blog-visuals/physics-of-ai/01-energy-landscape.html" style="width:100%;height:550px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>Energy landscape with animated training ball, local minima traps, and the Hopfield/Spin Glass equation comparison</span>
+      <span class="interactive-badge">Interactive</span>
     </div>
+  </div>
+
+      <div class="embed-visual">
+    <iframe src="blog-visuals/physics-of-ai/02-hopfield-capacity.html" style="width:100%;height:520px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>Hopfield memory capacity (0.138N hard limit) and energy decay with local minimum traps</span>
+      <span class="interactive-badge">Interactive</span>
+    </div>
+  </div>
 
     <h2>The Limits This Creates — And Why They're Physical, Not Engineering</h2>
 
@@ -119,10 +137,13 @@
 
     <p>And this is what powers everything now. ChatGPT, Claude, GPT-4 — every training loop is: start chaotic, show examples, lower the energy, repeat. Pure physics.</p>
 
-    <div class="article-image">
-      <img src="physics-timeline.png" alt="Timeline of physics-AI connection from Hopfield 1982 to Nobel Prize 2024" />
-      <div class="image-caption">From Hopfield's 1982 paper to the 2024 Nobel Prize — 40 years of the same physics becoming the foundation of modern AI.</div>
+    <div class="embed-visual">
+    <iframe src="blog-visuals/physics-of-ai/03-timeline.html" style="width:100%;height:550px;border:none;border-radius:12px;"></iframe>
+    <div class="embed-caption">
+      <span>From Hopfield 1982 to Nobel Prize 2024: 40 years of physics becoming AI</span>
+      <span class="interactive-badge">Interactive</span>
     </div>
+  </div>
 
     <h2>Why This Changes How You Think About AI Safety</h2>
 

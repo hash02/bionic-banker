@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Landscape — Neural Network Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020204;color:#e4e4ec;font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);margin-bottom:0.3rem;text-align:center;letter-spacing:-0.02em}
+.subtitle{font-size:0.78rem;color:rgba(228,228,236,0.4);margin-bottom:2rem;text-align:center}
+.viz-container{width:100%;max-width:700px;position:relative}
+canvas{width:100%;height:300px;display:block;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04)}
+.legend{display:flex;gap:1.5rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:rgba(228,228,236,0.6)}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.equations{display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:700px}
+.eq-box{flex:1;min-width:200px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:1rem 1.25rem;text-align:center}
+.eq-label{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(228,228,236,0.4);margin-bottom:0.5rem;font-weight:600}
+.eq-formula{font-size:1rem;font-weight:600;letter-spacing:0.02em}
+.eq-formula.neural{color:#5b73f8}
+.eq-formula.physics{color:#1fa068}
+.eq-note{font-size:0.68rem;color:rgba(228,228,236,0.35);margin-top:0.4rem}
+.same-badge{display:inline-block;margin-top:1rem;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:#ff4444;background:rgba(255,68,68,0.08);padding:4px 10px;border-radius:4px}
+.watermark{position:fixed;bottom:8px;right:12px;font-size:0.6rem;color:rgba(228,228,236,0.15);letter-spacing:0.1em}
+</style>
+</head>
+<body>
+<h2>The Energy Landscape</h2>
+<p class="subtitle">Training a neural network = finding the lowest valley. Same mechanics as water flowing downhill.</p>
+
+<div class="viz-container">
+  <canvas id="landscape"></canvas>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#5b73f8"></div> Energy landscape</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ff4444"></div> Local minimum (trap)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1fa068"></div> Global minimum (goal)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ffaa44"></div> Ball (training)</div>
+  </div>
+</div>
+
+<div class="equations">
+  <div class="eq-box">
+    <div class="eq-label">Hopfield Network (1982)</div>
+    <div class="eq-formula neural">E = −∑ wᵢⱼ sᵢ sⱼ</div>
+    <div class="eq-note">w = weights · s = neurons</div>
+  </div>
+  <div class="eq-box">
+    <div class="eq-label">Spin Glass Physics</div>
+    <div class="eq-formula physics">H = −∑ Jᵢⱼ σᵢ σⱼ</div>
+    <div class="eq-note">J = coupling · σ = spins</div>
+  </div>
+</div>
+<div style="text-align:center"><span class="same-badge">Same equation. Different domain.</span></div>
+
+<div class="watermark">Bionic Banker</div>
+
+<script>
+const canvas = document.getElementById('landscape');
+const ctx = canvas.getContext('2d');
+let w, h, ball, frame = 0;
+
+function resize() {
+  const r = window.devicePixelRatio || 1;
+  w = canvas.offsetWidth;
+  h = canvas.offsetHeight;
+  canvas.width = w * r;
+  canvas.height = h * r;
+  ctx.scale(r, r);
+}
+
+function landscape(x) {
+  return 0.4 + 0.15*Math.sin(x*0.012) + 0.1*Math.sin(x*0.025+1) + 0.08*Math.cos(x*0.04-0.5) + 0.05*Math.sin(x*0.065+2);
+}
+
+function init() {
+  resize();
+  ball = { x: w * 0.1, vx: 0.5 };
+  animate();
+}
+
+function animate() {
+  frame++;
+  ctx.clearRect(0, 0, w, h);
+
+  // Draw landscape
+  ctx.beginPath();
+  ctx.moveTo(0, h);
+  for (let x = 0; x <= w; x++) {
+    const y = landscape(x) * h;
+    ctx.lineTo(x, y);
+  }
+  ctx.lineTo(w, h);
+  ctx.closePath();
+
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(91,115,248,0.15)');
+  grad.addColorStop(1, 'rgba(91,115,248,0.02)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  ctx.beginPath();
+  for (let x = 0; x <= w; x++) {
+    const y = landscape(x) * h;
+    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = 'rgba(91,115,248,0.5)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Mark local minima (traps)
+  const localMins = [];
+  for (let x = 10; x < w - 10; x += 5) {
+    const prev = landscape(x - 5);
+    const curr = landscape(x);
+    const next = landscape(x + 5);
+    if (curr < prev && curr < next) localMins.push({ x, y: curr * h });
+  }
+
+  // Find global min
+  let globalMin = localMins[0] || { x: w/2, y: h/2 };
+  localMins.forEach(m => { if (m.y > globalMin.y) globalMin = m; });
+
+  localMins.forEach(m => {
+    const isGlobal = m === globalMin;
+    ctx.beginPath();
+    ctx.arc(m.x, m.y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = isGlobal ? '#1fa068' : '#ff4444';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(m.x, m.y, 8, 0, Math.PI * 2);
+    ctx.strokeStyle = isGlobal ? 'rgba(31,160,104,0.3)' : 'rgba(255,68,68,0.3)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Animate ball
+  const by = landscape(ball.x) * h;
+  const slope = (landscape(ball.x + 1) - landscape(ball.x - 1)) * h * 0.5;
+  ball.vx += -slope * 0.001;
+  ball.vx *= 0.995;
+
+  // Add occasional temperature kick
+  if (frame % 120 === 0) ball.vx += (Math.random() - 0.5) * 3;
+
+  ball.x += ball.vx;
+  if (ball.x < 5) { ball.x = 5; ball.vx = Math.abs(ball.vx) * 0.5; }
+  if (ball.x > w - 5) { ball.x = w - 5; ball.vx = -Math.abs(ball.vx) * 0.5; }
+
+  // Draw ball
+  ctx.beginPath();
+  ctx.arc(ball.x, by - 6, 6, 0, Math.PI * 2);
+  ctx.fillStyle = '#ffaa44';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(ball.x, by - 6, 10, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(255,170,68,0.3)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // Labels
+  ctx.font = '600 10px "Plus Jakarta Sans"';
+  ctx.textAlign = 'center';
+  if (globalMin) {
+    ctx.fillStyle = 'rgba(31,160,104,0.6)';
+    ctx.fillText('GLOBAL MIN', globalMin.x, globalMin.y + 16);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => { resize(); });
+init();
+</script>
+</body>
+</html>
