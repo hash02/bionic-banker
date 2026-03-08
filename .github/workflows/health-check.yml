@@ -1,0 +1,37 @@
+name: Weekly Health Check
+
+on:
+  schedule:
+    - cron: '0 14 * * 0'  # Every Sunday at 9 AM EST (14:00 UTC)
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run health check
+        id: healthcheck
+        run: |
+          python scripts/health-check-auto.py --repo 2>&1 | tee /tmp/health-output.txt
+          if grep -q "ISSUES FOUND" /tmp/health-output.txt; then
+            echo "has_issues=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_issues=false" >> $GITHUB_OUTPUT
+            echo "All healthy - no action needed"
+          fi
+
+      - name: Commit health report if issues found
+        if: steps.healthcheck.outputs.has_issues == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add memory/health-check-auto-*.md
+          git diff --staged --quiet || (git commit -m "health-check: issues detected $(date +%Y-%m-%d)" && git push)
