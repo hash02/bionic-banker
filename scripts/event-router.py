@@ -20,8 +20,12 @@ Modes: --local (Windows paths) | --repo (relative paths for GitHub Actions)
 import os, sys, subprocess, io
 from datetime import datetime
 
-# Fix Windows console encoding
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+# Fix Windows console encoding (skip if already wrapped or on CI)
+try:
+    if hasattr(sys.stdout, 'buffer'):
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
 NOW = datetime.now()
 DATE_STR = NOW.strftime("%Y-%m-%d")

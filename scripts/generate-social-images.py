@@ -6,7 +6,12 @@ Uses Pillow — pip install Pillow
 import os, re, sys, io
 from PIL import Image, ImageDraw, ImageFont
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+# Fix Windows console encoding (skip if already wrapped or on CI)
+try:
+    if hasattr(sys.stdout, 'buffer'):
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
 BB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VISUALS = os.path.join(BB, "blog-visuals")

@@ -6,7 +6,12 @@ Pure Python — no external dependencies.
 """
 import os, re, sys, io, json
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+# Fix Windows console encoding (skip if already wrapped or on CI)
+try:
+    if hasattr(sys.stdout, 'buffer'):
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
 BB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP = {"index.html", "articles.html", "preview-layout.html", "agent-architecture.html", "dashboard_preview.html"}

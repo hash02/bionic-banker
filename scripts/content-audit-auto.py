@@ -6,14 +6,18 @@ Pure Python — no external dependencies.
 """
 import os, re, sys, subprocess, io
 
-# Fix Windows console encoding
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+# Fix Windows console encoding (skip if already wrapped or on CI)
+try:
+    if hasattr(sys.stdout, 'buffer'):
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
 DATE_STR = __import__("datetime").datetime.now().strftime("%Y-%m-%d")
 BB = os.getcwd()
 
 # Exclusions — structural pages, not articles
-SKIP = {"index.html", "articles.html", "preview-layout.html", "agent-architecture.html", "dashboard_preview.html"}
+SKIP = {"index.html", "articles.html", "preview-layout.html", "agent-architecture.html", "dashboard_preview.html", "dashboard.html"}
 
 def get_html_files(mode):
     """Get list of HTML files to audit."""
