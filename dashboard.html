@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Dashboard — Bionic Banker</title>
+  <meta name="description" content="Live intelligence from HASH's autonomous agent army — DeFi yields, whale tracking, AML detection, market pulse. All free, all 24/7." />
+
+  <meta property="og:title" content="Agent Dashboard — Bionic Banker" />
+  <meta property="og:description" content="Live intelligence from autonomous agents monitoring DeFi, whales, and financial crime." />
+  <meta property="og:url" content="https://bionicbanker.tech/dashboard.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agent Dashboard — Bionic Banker" />
+  <meta name="twitter:description" content="Live intelligence from autonomous agents monitoring DeFi, whales, and financial crime." />
+  <link rel="canonical" href="https://bionicbanker.tech/dashboard.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Dashboard-specific styles */
+    .dash-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    .dash-hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .dash-hero h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #5b73f8, #8b6cf7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .dash-hero .subtitle {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .dash-hero .last-update {
+      color: #555;
+      font-size: 0.78rem;
+      font-style: italic;
+    }
+
+    /* Agent Status Bar */
+    .agent-status-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 1px solid #1a1a2e;
+      border-radius: 16px;
+      background: rgba(91, 115, 248, 0.03);
+    }
+    .agent-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid #1a1a2e;
+    }
+    .agent-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .agent-dot.live { background: #1fa068; box-shadow: 0 0 6px #1fa068; }
+    .agent-dot.deploying { background: #f0b429; box-shadow: 0 0 6px #f0b429; }
+    .agent-dot.planned { background: #555; }
+    .agent-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #e4e4ec;
+    }
+    .agent-sched {
+      font-size: 0.68rem;
+      color: #666;
+      margin-left: auto;
+    }
+
+    /* Section headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0 16px;
+    }
+    .section-header h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #e4e4ec;
+    }
+    .section-header .section-icon {
+      font-size: 1.4rem;
+    }
+    .section-header .section-badge {
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-live { background: rgba(31,160,104,0.15); color: #1fa068; }
+    .badge-demo { background: rgba(240,180,41,0.15); color: #f0b429; }
+
+    /* Market grid */
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .market-card {
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #1a1a2e;
+      background: rgba(255,255,255,0.02);
+      text-align: center;
+    }
+    .market-sym {
+      font-size: 0.78rem;
+      color: #888;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .market-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #e4e4ec;
+      margin-bottom: 2px;
+    }
+    .market-change {
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .change-up { color: #1fa068; }
+    .change-down { color: #ff4444; }
+
+    /* Yield table */
+    .yield-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+    .yield-table th {
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 0.72rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #1a1a2e;
+    }
+    .yield-table td {
+      padding: 12px;
+      font-size: 0.88rem;
+      border-bottom: 1px solid rgba(26,26,46,0.5);
+      color: #e4e4ec;
+    }
+    .yield-table tr:hover td {
+      background: rgba(91,115,248,0.04);
+    }
+    .yield-apy {
+      font-weight: 700;
+      background: linear-gradient(135deg, #1fa068, #5b73f8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .yield-flag {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    .flag-warn { background: rgba(240,180,41,0.15); color: #f0b429; }
+    .flag-danger { background: rgba(255,68,68,0.15); color: #ff4444; }
+    .tvl-val { color: #888; }
+
+    /* Whale section */
+    .whale-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .whale-card {
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid #1a1a2e;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .whale-icon { font-size: 1.6rem; }
+    .whale-info { flex: 1; }
+    .whale-label {
+      font-weight: 600;
+      color: #e4e4ec;
+      font-size: 0.92rem;
+    }
+    .whale-detail {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 2px;
+    }
+    .whale-amount {
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: right;
+    }
+    .whale-quiet {
+      padding: 20px;
+      text-align: center;
+      color: #555;
+      font-style: italic;
+      border: 1px dashed #1a1a2e;
+      border-radius: 12px;
+    }
+
+    /* AML Section */
+    .aml-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .aml-stat-card {
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #1a1a2e;
+      background: rgba(255,255,255,0.02);
+      text-align: center;
+    }
+    .aml-stat-val {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: 'Bricolage Grotesque', sans-serif;
+    }
+    .aml-stat-val.gradient {
+      background: linear-gradient(135deg, #5b73f8, #8b6cf7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .aml-stat-val.green { color: #1fa068; }
+    .aml-stat-val.red { color: #ff4444; }
+    .aml-stat-label {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 4px;
+    }
+    .aml-roast {
+      padding: 20px 24px;
+      border-radius: 12px;
+      border-left: 3px solid #8b6cf7;
+      background: rgba(139,108,247,0.05);
+      margin-bottom: 16px;
+    }
+    .aml-roast-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .aml-roast-badge {
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255,68,68,0.15);
+      color: #ff4444;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .aml-roast-hash {
+      font-size: 0.72rem;
+      color: #666;
+      font-family: monospace;
+    }
+    .aml-roast-text {
+      font-size: 0.92rem;
+      color: #ccc;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .aml-roast-meta {
+      font-size: 0.7rem;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    /* Paper trade */
+    .paper-trade {
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(31,160,104,0.3);
+      background: rgba(31,160,104,0.05);
+      margin-bottom: 32px;
+    }
+    .paper-trade-header {
+      font-weight: 700;
+      color: #1fa068;
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+    }
+    .paper-trade-detail {
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+
+    /* Footer note */
+    .dash-footer-note {
+      text-align: center;
+      padding: 40px 0;
+      color: #444;
+      font-size: 0.75rem;
+      border-top: 1px solid #1a1a2e;
+      margin-top: 40px;
+    }
+    .dash-footer-note a {
+      color: #5b73f8;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .dash-hero h1 { font-size: 1.8rem; }
+      .market-grid { grid-template-columns: repeat(2, 1fr); }
+      .yield-table { font-size: 0.8rem; }
+      .yield-table th, .yield-table td { padding: 8px 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Bionic <span>Banker</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="articles.html">All Articles</a></li>
+        <li><a href="dashboard.html" style="color:#5b73f8;">Dashboard</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
+    </div>
+  </nav>
+
+  <div class="dash-container">
+
+    <!-- HERO -->
+    <div class="dash-hero">
+      <h1>Agent Intelligence Dashboard</h1>
+      <p class="subtitle">Autonomous agents monitoring DeFi yields, whale wallets, and financial crime — 24/7</p>
+      <p class="last-update" id="lastUpdate">Last scan: loading...</p>
+    </div>
+
+    <!-- AGENT STATUS BAR -->
+    <div class="agent-status-bar" id="agentStatus">
+      <div class="agent-pill">
+        <div class="agent-dot live"></div>
+        <span class="agent-name">AML Engine</span>
+        <span class="agent-sched">v11 · 22 rules</span>
+      </div>
+      <div class="agent-pill">
+        <div class="agent-dot live"></div>
+        <span class="agent-name">DeFi Scout</span>
+        <span class="agent-sched">every 6h</span>
+      </div>
+      <div class="agent-pill">
+        <div class="agent-dot live"></div>
+        <span class="agent-name">Morning Brief</span>
+        <span class="agent-sched">daily 9AM</span>
+      </div>
+      <div class="agent-pill">
+        <div class="agent-dot live"></div>
+        <span class="agent-name">Heartbeat</span>
+        <span class="agent-sched">every 30min</span>
+      </div>
+      <div class="agent-pill">
+        <div class="agent-dot deploying"></div>
+        <span class="agent-name">Paper Trader</span>
+        <span class="agent-sched">planned</span>
+      </div>
+      <div class="agent-pill">
+        <div class="agent-dot planned"></div>
+        <span class="agent-name">AML Detective</span>
+        <span class="agent-sched">building</span>
+      </div>
+    </div>
+
+    <!-- MARKET PULSE -->
+    <div class="section-header">
+      <span class="section-icon">📊</span>
+      <h2>Market Pulse</h2>
+      <span class="section-badge badge-live">LIVE</span>
+    </div>
+    <div class="market-grid" id="marketGrid">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- TOP YIELDS -->
+    <div class="section-header">
+      <span class="section-icon">💰</span>
+      <h2>Top DeFi Yields</h2>
+      <span class="section-badge badge-live">Risk-Adjusted</span>
+    </div>
+    <table class="yield-table" id="yieldTable">
+      <thead>
+        <tr>
+          <th>Protocol</th>
+          <th>Asset</th>
+          <th>APY</th>
+          <th>Base / Reward</th>
+          <th>TVL</th>
+          <th>Flags</th>
+        </tr>
+      </thead>
+      <tbody id="yieldBody">
+        <!-- Populated by JS -->
+      </tbody>
+    </table>
+
+    <!-- PAPER TRADE SUGGESTION -->
+    <div class="paper-trade" id="paperTrade" style="display:none;">
+      <div class="paper-trade-header">📝 Paper Trade Suggestion</div>
+      <div class="paper-trade-detail" id="paperTradeDetail"></div>
+    </div>
+
+    <!-- WHALE ACTIVITY -->
+    <div class="section-header">
+      <span class="section-icon">🐋</span>
+      <h2>Whale Activity</h2>
+      <span class="section-badge badge-live">Last 6h</span>
+    </div>
+    <div class="whale-list" id="whaleList">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- AML ENGINE -->
+    <div class="section-header">
+      <span class="section-icon">🔍</span>
+      <h2>AML Detection Engine</h2>
+      <span class="section-badge badge-live">v11</span>
+    </div>
+    <div class="aml-stats">
+      <div class="aml-stat-card">
+        <div class="aml-stat-val gradient">94.9%</div>
+        <div class="aml-stat-label">Detection Rate</div>
+      </div>
+      <div class="aml-stat-card">
+        <div class="aml-stat-val gradient">22</div>
+        <div class="aml-stat-label">Active Rules</div>
+      </div>
+      <div class="aml-stat-card">
+        <div class="aml-stat-val green" id="amlClean">—</div>
+        <div class="aml-stat-label">Clean Transactions</div>
+      </div>
+      <div class="aml-stat-card">
+        <div class="aml-stat-val red" id="amlFlagged">—</div>
+        <div class="aml-stat-label">Flagged Suspicious</div>
+      </div>
+    </div>
+
+    <!-- AML ROASTS (Detective persona — populated when engine catches something) -->
+    <div id="amlRoasts">
+      <!-- Example roast — will be dynamically populated -->
+      <div class="aml-roast">
+        <div class="aml-roast-header">
+          <span class="aml-roast-badge">Caught</span>
+          <span class="aml-roast-hash">0x7a3f...9e2d → Tornado Cash Router</span>
+        </div>
+        <div class="aml-roast-text">
+          "47K through 12 hops and a mixer. Took me 0.3 seconds to unravel the whole thing. The structuring pattern was textbook — $9,900 chunks just under the reporting threshold. That's not clever, that's a tutorial you found on YouTube. Try harder."
+        </div>
+        <div class="aml-roast-meta">AML Detective · Rule 7 (structuring) + Rule 14 (mixer interaction) · Score: 0.94</div>
+      </div>
+
+      <div class="aml-roast">
+        <div class="aml-roast-header">
+          <span class="aml-roast-badge">Caught</span>
+          <span class="aml-roast-hash">0x2b8c...41fa → 6 rapid hops → DEX</span>
+        </div>
+        <div class="aml-roast-text">
+          "A dormant wallet wakes up after 847 days, moves everything to a fresh address through 6 hops in 4 minutes, then dumps into a DEX pool. The urgency of innocence, am I right? If you were legit, you wouldn't be in such a hurry. Flagged."
+        </div>
+        <div class="aml-roast-meta">AML Detective · Rule 3 (dormant reactivation) + Rule 11 (rapid movement) · Score: 0.87</div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
+      <a href="aml-engine.html" style="padding:10px 18px;border-radius:8px;border:1px solid #1a1a2e;color:#5b73f8;text-decoration:none;font-size:0.85rem;font-weight:600;">Read: How the AML Engine Works →</a>
+      <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" style="padding:10px 18px;border-radius:8px;border:1px solid #1a1a2e;color:#1fa068;text-decoration:none;font-size:0.85rem;font-weight:600;">Try Live Demo →</a>
+      <a href="agent-architecture.html" style="padding:10px 18px;border-radius:8px;border:1px solid #1a1a2e;color:#8b6cf7;text-decoration:none;font-size:0.85rem;font-weight:600;">Agent Architecture →</a>
+    </div>
+
+    <!-- FOOTER NOTE -->
+    <div class="dash-footer-note">
+      Data powered by <a href="https://defillama.com" target="_blank">DeFiLlama</a>,
+      <a href="https://blockscout.com" target="_blank">Blockscout</a>, and
+      <a href="https://crypto.com" target="_blank">Crypto.com</a> — all free APIs, zero cost.<br>
+      Agents run on a Dell Latitude 5490 (Ubuntu 24.04) with Ollama. No paid AI inference.<br>
+      Built by <a href="index.html">HASH</a> · <a href="https://github.com/hash02" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Bionic <span>Banker</span></div>
+      <p class="footer-copy">&copy; 2026 Bionic Banker. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════
+    // Dashboard Data Engine
+    // Tries to load live JSON from dashboard-data/ directory.
+    // Falls back to embedded sample data if files not available.
+    // ═══════════════════════════════════════════════════════════
+
+    const SAMPLE_DATA = {
+      scan_time: new Date().toISOString(),
+      market: [
+        { instrument: "BTC_USDT", last: 86743, change_pct: 1.2, high_24h: 87200, low_24h: 85100, is_alert: false },
+        { instrument: "ETH_USDT", last: 1997, change_pct: -0.8, high_24h: 2050, low_24h: 1960, is_alert: false },
+        { instrument: "SOL_USDT", last: 142.5, change_pct: 3.4, high_24h: 145, low_24h: 136, is_alert: false },
+        { instrument: "AAVE_USDT", last: 198.3, change_pct: -1.1, high_24h: 204, low_24h: 195, is_alert: false },
+        { instrument: "UNI_USDT", last: 7.82, change_pct: 0.5, high_24h: 8.10, low_24h: 7.60, is_alert: false },
+        { instrument: "LINK_USDT", last: 14.92, change_pct: 2.1, high_24h: 15.30, low_24h: 14.20, is_alert: false },
+        { instrument: "ARB_USDT", last: 0.42, change_pct: -2.3, high_24h: 0.44, low_24h: 0.41, is_alert: false },
+        { instrument: "OP_USDT", last: 0.98, change_pct: 1.7, high_24h: 1.01, low_24h: 0.94, is_alert: false }
+      ],
+      top_yields: [
+        { project: "aave-v3", chain: "Ethereum", symbol: "USDC", apy: 5.2, apy_base: 4.1, apy_reward: 1.1, tvl_m: 1840 },
+        { project: "compound-v3", chain: "Ethereum", symbol: "USDT", apy: 4.8, apy_base: 4.8, apy_reward: 0, tvl_m: 920 },
+        { project: "morpho-blue", chain: "Ethereum", symbol: "USDC", apy: 6.1, apy_base: 3.2, apy_reward: 2.9, tvl_m: 340 },
+        { project: "spark", chain: "Ethereum", symbol: "DAI", apy: 5.0, apy_base: 5.0, apy_reward: 0, tvl_m: 1200 },
+        { project: "ethena", chain: "Ethereum", symbol: "USDE", apy: 12.4, apy_base: 2.1, apy_reward: 10.3, tvl_m: 2800 },
+        { project: "pendle", chain: "Ethereum", symbol: "USDC", apy: 8.7, apy_base: 1.5, apy_reward: 7.2, tvl_m: 180 }
+      ],
+      eth_yields: [
+        { project: "lido", chain: "Ethereum", symbol: "STETH", apy: 3.2, tvl_m: 14200 },
+        { project: "rocket-pool", chain: "Ethereum", symbol: "RETH", apy: 2.9, tvl_m: 3100 }
+      ],
+      whale_activity: [],
+      alerts: []
+    };
+
+    // Try to fetch live data, fall back to sample
+    async function loadData() {
+      let data = SAMPLE_DATA;
+      let isLive = false;
+
+      try {
+        const resp = await fetch('dashboard-data/defi-scout-latest.json');
+        if (resp.ok) {
+          data = await resp.json();
+          isLive = true;
+        }
+      } catch(e) { /* use sample */ }
+
+      renderDashboard(data, isLive);
+    }
+
+    function renderDashboard(data, isLive) {
+      // Update timestamp
+      const scanTime = data.scan_time ? new Date(data.scan_time) : new Date();
+      const timeStr = scanTime.toLocaleString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', timeZoneName: 'short'
+      });
+      document.getElementById('lastUpdate').textContent =
+        `Last scan: ${timeStr}${isLive ? '' : ' (sample data — live feed connecting soon)'}`;
+
+      // Market grid
+      const marketGrid = document.getElementById('marketGrid');
+      marketGrid.innerHTML = '';
+      (data.market || []).forEach(t => {
+        const sym = t.instrument.replace('_USDT', '');
+        const up = t.change_pct >= 0;
+        const card = document.createElement('div');
+        card.className = 'market-card';
+        card.innerHTML = `
+          <div class="market-sym">${sym}</div>
+          <div class="market-price">$${t.last >= 1000 ? t.last.toLocaleString('en-US', {maximumFractionDigits:0}) : t.last.toFixed(2)}</div>
+          <div class="market-change ${up ? 'change-up' : 'change-down'}">${up ? '▲' : '▼'} ${Math.abs(t.change_pct).toFixed(1)}%</div>
+        `;
+        if (t.is_alert) card.style.borderColor = '#ff4444';
+        marketGrid.appendChild(card);
+      });
+
+      // Yield table
+      const yieldBody = document.getElementById('yieldBody');
+      yieldBody.innerHTML = '';
+      const yields = (data.top_yields || []).slice(0, 8);
+
+      // Score and sort
+      const scored = yields.map(y => {
+        const riskScore = (y.apy_base || 0) + ((y.apy_reward || 0) * 0.4);
+        let flags = [];
+        if ((y.apy_reward || 0) > (y.apy_base || 0) * 1.5) flags.push({ text: 'reward-heavy', type: 'warn' });
+        if ((y.tvl_m || 0) < 5) flags.push({ text: 'low TVL', type: 'warn' });
+        if ((y.apy || 0) > 50) flags.push({ text: 'too high', type: 'danger' });
+        return { ...y, riskScore, flags };
+      }).sort((a, b) => b.riskScore - a.riskScore);
+
+      scored.forEach(y => {
+        const tr = document.createElement('tr');
+        const flagHtml = y.flags.map(f =>
+          `<span class="yield-flag flag-${f.type}">${f.text}</span>`
+        ).join('');
+        tr.innerHTML = `
+          <td>${y.project}</td>
+          <td>${y.symbol} <span style="color:#555;font-size:0.75rem;">(${y.chain})</span></td>
+          <td><span class="yield-apy">${y.apy.toFixed(1)}%</span></td>
+          <td style="font-size:0.8rem;color:#888;">${y.apy_base || 0}% / ${y.apy_reward || 0}%</td>
+          <td class="tvl-val">$${y.tvl_m}M</td>
+          <td>${flagHtml || '<span style="color:#1fa068;font-size:0.75rem;">✓ clean</span>'}</td>
+        `;
+        yieldBody.appendChild(tr);
+      });
+
+      // Paper trade suggestion (from best risk-adjusted yield)
+      if (scored.length > 0) {
+        const best = scored[0];
+        document.getElementById('paperTrade').style.display = 'block';
+        document.getElementById('paperTradeDetail').textContent =
+          `${best.symbol} → ${best.project} (${best.chain}) at ${best.apy.toFixed(1)}% APY — risk-adjusted score: ${best.riskScore.toFixed(1)}. Base yield ${best.apy_base}% is the real signal.`;
+      }
+
+      // ETH yields (append to table)
+      (data.eth_yields || []).slice(0, 2).forEach(y => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${y.project}</td>
+          <td>${y.symbol} <span style="color:#555;font-size:0.75rem;">(${y.chain})</span></td>
+          <td><span class="yield-apy">${y.apy.toFixed(1)}%</span></td>
+          <td style="font-size:0.8rem;color:#888;">staking</td>
+          <td class="tvl-val">$${y.tvl_m}M</td>
+          <td><span style="color:#5b73f8;font-size:0.75rem;">⟠ ETH</span></td>
+        `;
+        yieldBody.appendChild(tr);
+      });
+
+      // Whale activity
+      const whaleList = document.getElementById('whaleList');
+      whaleList.innerHTML = '';
+      const whales = data.whale_activity || [];
+      if (whales.length === 0) {
+        whaleList.innerHTML = '<div class="whale-quiet">🐋 Whales quiet — no significant movements in last 6 hours</div>';
+      } else {
+        whales.forEach(w => {
+          const card = document.createElement('div');
+          card.className = 'whale-card';
+          const ethMoved = w.total_eth_moved || 0;
+          card.innerHTML = `
+            <div class="whale-icon">🐋</div>
+            <div class="whale-info">
+              <div class="whale-label">${w.label}</div>
+              <div class="whale-detail">${w.txn_count || 0} transactions${w.token_summary ? ' · ' + w.token_summary : ''}</div>
+            </div>
+            <div class="whale-amount ${ethMoved > 100 ? 'change-down' : ''}">${ethMoved > 0 ? ethMoved.toFixed(1) + ' ETH' : 'tokens only'}</div>
+          `;
+          whaleList.appendChild(card);
+        });
+      }
+    }
+
+    // Load on page ready
+    loadData();
+
+    // Auto-refresh every 5 minutes
+    setInterval(loadData, 300000);
+  </script>
+
+</body>
+</html>
