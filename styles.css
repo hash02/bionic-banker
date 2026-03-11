@@ -687,9 +687,16 @@ nav {
 }
 .nl-text p { font-size: 0.82rem; color: var(--text-2); line-height: 1.6; }
 
-/* Beehiiv embed */
-.beehiiv-wrap { flex: 1; min-width: 280px; max-width: 500px; }
-.beehiiv-wrap iframe { border-radius: var(--radius) !important; background: var(--bg2) !important; }
+/* Telegram CTA */
+.telegram-cta-wrap { flex: 1; min-width: 280px; max-width: 500px; display: flex; justify-content: center; }
+.telegram-cta {
+  display: inline-block; padding: 0.9rem 2.2rem; font-size: 1rem; font-weight: 700;
+  font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: -0.01em;
+  color: #fff; background: linear-gradient(135deg, #5b73f8, #8b6cf7);
+  border-radius: var(--radius); text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.telegram-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(91,115,248,0.35); }
 
 /* Contact form */
 .contact-section {

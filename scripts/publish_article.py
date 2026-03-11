@@ -218,7 +218,7 @@ def build_article_html(fm, body_html, output_filename):
     <div class="article-newsletter">
       <h3>More from Bionic Banker</h3>
       <p>Tech, finance, blockchain, and building in public — from inside the industry.</p>
-      <a href="index.html#newsletter" class="btn-primary">Subscribe</a>
+      <a href="https://t.me/BionicBanker" class="btn-primary" target="_blank" rel="noopener">Join the Telegram &rarr;</a>
     </div>
 
   </div>
