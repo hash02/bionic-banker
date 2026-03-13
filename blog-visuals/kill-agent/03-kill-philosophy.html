@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kill Protocol Philosophy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 2.5rem;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 860px; margin: 0 auto; }
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: #e4e4ec;
+  }
+  .subtitle {
+    font-size: 0.75rem;
+    color: #444454;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Comparison: Everyone else vs This system */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 3rem;
+  }
+
+  .comp-panel {
+    background: #080810;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.03);
+    position: relative;
+  }
+  .comp-panel.theirs {
+    border-color: rgba(255,68,68,0.1);
+  }
+  .comp-panel.ours {
+    border-color: rgba(31,160,104,0.15);
+  }
+
+  .comp-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .comp-panel.theirs .comp-header { color: #ff4444; }
+  .comp-panel.ours .comp-header { color: #1fa068; }
+
+  .comp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .comp-list li {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .comp-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .comp-panel.theirs .comp-list li::before { background: #ff4444; opacity: 0.5; }
+  .comp-panel.ours .comp-list li::before { background: #1fa068; opacity: 0.7; }
+  .comp-list li .dim { color: #444454; }
+
+  .vs-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+  }
+  .vs-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #222230;
+    font-weight: 600;
+  }
+
+  /* Flow: Kill → Learn → Harden → Repeat */
+  .flow-title {
+    font-size: 0.8rem;
+    color: #7a7a8c;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+  }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flow-step {
+    background: #080810;
+    border: 1px solid rgba(31,160,104,0.1);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    min-width: 150px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .flow-step:hover {
+    border-color: rgba(31,160,104,0.3);
+    background: #0c0c14;
+  }
+  .flow-step .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #444454;
+    margin-bottom: 0.3rem;
+  }
+  .flow-step .step-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .flow-step .step-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .flow-step .step-desc {
+    font-size: 0.7rem;
+    color: #444454;
+    line-height: 1.4;
+  }
+  .flow-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    color: #222230;
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+    flex-shrink: 0;
+  }
+  .flow-step:nth-child(1) .step-name { color: #ff4444; }
+  .flow-step:nth-child(3) .step-name { color: #f5a623; }
+  .flow-step:nth-child(5) .step-name { color: #5b73f8; }
+  .flow-step:nth-child(7) .step-name { color: #1fa068; }
+  .flow-step:nth-child(9) .step-name { color: #ff4444; }
+
+  /* Bottom quote */
+  .quote-box {
+    background: rgba(31,160,104,0.03);
+    border-left: 3px solid rgba(31,160,104,0.3);
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .quote-text {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #7a7a8c;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+  .quote-attr {
+    font-size: 0.7rem;
+    color: #444454;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 700px) {
+    .comparison { grid-template-columns: 1fr; }
+    .vs-divider { padding: 1rem 0; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Why Build an AI That Attacks Itself?</h1>
+  <p class="subtitle">The philosophy behind running a dedicated kill agent against your own system</p>
+
+  <div class="comparison">
+    <div class="comp-panel theirs">
+      <div class="comp-header">❌ Everyone Else</div>
+      <ul class="comp-list">
+        <li>Build the system</li>
+        <li>Hope nothing breaks</li>
+        <li>Claim 99.9% uptime <span class="dim">(untested)</span></li>
+        <li>Find bugs in production <span class="dim">(users find them)</span></li>
+        <li>Patch after the fire</li>
+        <li>Same failure next quarter</li>
+      </ul>
+    </div>
+    <div class="vs-divider"><span class="vs-text">VS</span></div>
+    <div class="comp-panel ours">
+      <div class="comp-header">✓ This System</div>
+      <ul class="comp-list">
+        <li>Build the system</li>
+        <li>Attack it every hour</li>
+        <li>Report 20% survival <span class="dim">(honest)</span></li>
+        <li>Find bugs before production <span class="dim">(KALA finds them)</span></li>
+        <li>Fix before the fire starts</li>
+        <li>Immune memory prevents repeat</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow-title">The Kill → Learn → Harden Loop</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="step-num">01</div>
+      <div class="step-icon">💀</div>
+      <div class="step-name">ATTACK</div>
+      <div class="step-desc">KALA runs a stress scenario against the live system</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">02</div>
+      <div class="step-icon">📋</div>
+      <div class="step-name">RECORD</div>
+      <div class="step-desc">What broke, why it broke, how deep the damage goes</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">03</div>
+      <div class="step-icon">🧬</div>
+      <div class="step-name">LEARN</div>
+      <div class="step-desc">Extract the rule. Add to MISTAKES.md. Immune memory.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">04</div>
+      <div class="step-icon">🛡️</div>
+      <div class="step-name">HARDEN</div>
+      <div class="step-desc">Patch the vulnerability. Verify the fix. Deploy.</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">05</div>
+      <div class="step-icon">🔥</div>
+      <div class="step-name">ESCALATE</div>
+      <div class="step-desc">Next test is harder. If it survived, KALA wasn't trying hard enough.</div>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <div class="quote-text">"Resilience isn't built by hoping nothing breaks — it's built by breaking things intentionally and surviving."</div>
+    <div class="quote-attr">— Kill Protocol Doctrine, Mar 10, 2026</div>
+  </div>
+</div>
+</body>
+</html>

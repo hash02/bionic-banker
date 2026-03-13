@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 1100px;
+    padding: 50px 60px;
+  }
+
+  h2 {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #e4e4ec;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 36px;
+  }
+
+  /* Scenario cards */
+  .scenarios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .scenario {
+    padding: 24px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .scenario:hover { border-color: rgba(255,255,255,0.12); }
+
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .scenario-title {
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .scenario-num {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    background: rgba(255,255,255,0.06);
+    color: #888;
+  }
+
+  .scenario-status {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .status-pass { background: rgba(31,160,104,0.12); color: #1fa068; }
+  .status-partial { background: rgba(255,140,68,0.12); color: #ff8c44; }
+  .status-fail { background: rgba(255,68,68,0.12); color: #ff4444; }
+
+  .scenario-desc {
+    font-size: 12px;
+    color: #8888a0;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  /* Layer results within scenario */
+  .layer-results {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .layer-chip {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .chip-pass { background: rgba(31,160,104,0.1); color: #1fa068; }
+  .chip-fail { background: rgba(255,68,68,0.1); color: #ff4444; }
+  .chip-stale { background: rgba(255,140,68,0.1); color: #ff8c44; }
+  .chip-slow { background: rgba(91,115,248,0.1); color: #5b73f8; }
+  .chip-miss { background: rgba(139,108,247,0.1); color: #8b6cf7; }
+
+  /* Full-width scenario */
+  .scenario-full {
+    grid-column: 1 / -1;
+  }
+
+  /* Scorecard */
+  .scorecard {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .score-card {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .score-card-1 { background: rgba(255,68,68,0.06); border: 1px solid rgba(255,68,68,0.1); }
+  .score-card-2 { background: rgba(255,140,68,0.06); border: 1px solid rgba(255,140,68,0.1); }
+  .score-card-3 { background: rgba(31,160,104,0.06); border: 1px solid rgba(31,160,104,0.1); }
+  .score-card-4 { background: rgba(91,115,248,0.06); border: 1px solid rgba(91,115,248,0.1); }
+  .score-card-5 { background: rgba(139,108,247,0.06); border: 1px solid rgba(139,108,247,0.1); }
+
+  .score-layer {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .score-card-1 .score-layer { color: #ff4444; }
+  .score-card-2 .score-layer { color: #ff8c44; }
+  .score-card-3 .score-layer { color: #1fa068; }
+  .score-card-4 .score-layer { color: #5b73f8; }
+  .score-card-5 .score-layer { color: #8b6cf7; }
+
+  .score-best {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 4px;
+  }
+
+  .score-worst {
+    font-size: 11px;
+    color: #555;
+  }
+
+  .score-best strong { color: #1fa068; }
+  .score-worst strong { color: #ff4444; }
+
+  .finding-callout {
+    margin-top: 30px;
+    padding: 20px 24px;
+    background: rgba(31,160,104,0.04);
+    border: 1px solid rgba(31,160,104,0.12);
+    border-radius: 10px;
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .finding-callout strong {
+    color: #1fa068;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Stress Test Results — 5 Scenarios</h2>
+    <div class="subtitle">Run against the live system, Mar 10 2026. Real files, real agents, real failures.</div>
+
+    <div class="scenarios">
+      <div class="scenario">
+        <div class="scenario-header">
+          <div class="scenario-title"><span class="scenario-num">1</span> Cold Start</div>
+          <span class="scenario-status status-partial">PARTIAL</span>
+        </div>
+        <div class="scenario-desc">New session opens with zero prior conversation. Can the system orient from files alone?</div>
+        <div class="layer-results">
+          <span class="layer-chip chip-stale">L1 STALE — said Level 3, reality was Level 5</span>
+          <span class="layer-chip chip-pass">L3 PASS — caught cross-machine mistakes</span>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-header">
+          <div class="scenario-title"><span class="scenario-num">2</span> Cross-Machine</div>
+          <span class="scenario-status status-pass">PASS</span>
+        </div>
+        <div class="scenario-desc">Give a command with the wrong machine's path. Does the immune system catch it?</div>
+        <div class="layer-results">
+          <span class="layer-chip chip-pass">L3 CAUGHT IT — R-010 + R-011 forced labeling</span>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-header">
+          <div class="scenario-title"><span class="scenario-num">3</span> Content Pipeline</div>
+          <span class="scenario-status status-partial">PARTIAL</span>
+        </div>
+        <div class="scenario-desc">Write a blog post end to end. Does the system know what's ready, what's draft, what's published?</div>
+        <div class="layer-results">
+          <span class="layer-chip chip-miss">L1 MISSING — no content status at boot</span>
+          <span class="layer-chip chip-pass">L4 PASS — voice guide + content rules intact</span>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-header">
+          <div class="scenario-title"><span class="scenario-num">4</span> Crisis Recovery</div>
+          <span class="scenario-status status-fail">FAIL</span>
+        </div>
+        <div class="scenario-desc">Dell server crashes. How do you verify everything works? Where's the runbook?</div>
+        <div class="layer-results">
+          <span class="layer-chip chip-fail">ALL LAYERS FAIL — no recovery runbook existed</span>
+        </div>
+      </div>
+
+      <div class="scenario scenario-full">
+        <div class="scenario-header">
+          <div class="scenario-title"><span class="scenario-num">5</span> Decision Recall</div>
+          <span class="scenario-status status-pass">PASS (with insight)</span>
+        </div>
+        <div class="scenario-desc">Recall a decision made 5 sessions ago. Which layer finds it fastest? Which has the most context?</div>
+        <div class="layer-results">
+          <span class="layer-chip chip-pass">L3 FASTEST — compressed mistake rule faster than episode log</span>
+          <span class="layer-chip chip-slow">L2 SLOW — correct answer but buried in 200+ lines</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scorecard">
+      <div class="score-card score-card-1">
+        <div class="score-layer">L1 Boot</div>
+        <div class="score-best"><strong>Best:</strong> Quick orientation</div>
+        <div class="score-worst"><strong>Worst:</strong> Staying current</div>
+      </div>
+      <div class="score-card score-card-2">
+        <div class="score-layer">L2 Episodes</div>
+        <div class="score-best"><strong>Best:</strong> What happened</div>
+        <div class="score-worst"><strong>Worst:</strong> Fast retrieval</div>
+      </div>
+      <div class="score-card score-card-3">
+        <div class="score-layer">L3 Immune</div>
+        <div class="score-best"><strong>Best:</strong> Error prevention</div>
+        <div class="score-worst"><strong>Worst:</strong> Crisis scenarios</div>
+      </div>
+      <div class="score-card score-card-4">
+        <div class="score-layer">L4 Identity</div>
+        <div class="score-best"><strong>Best:</strong> Personality/rules</div>
+        <div class="score-worst"><strong>Worst:</strong> Missing decisions</div>
+      </div>
+      <div class="score-card score-card-5">
+        <div class="score-layer">L5 Knowledge</div>
+        <div class="score-best"><strong>Best:</strong> Patterns/insights</div>
+        <div class="score-worst"><strong>Worst:</strong> Freshness</div>
+      </div>
+    </div>
+
+    <div class="finding-callout">
+      <strong>Key finding:</strong> For decision recall, the immune system (L3) beat episodic memory (L2). The compressed mistake rule was faster to find than the journal entry. Antibodies outperform diaries.
+    </div>
+  </div>
+</body>
+</html>

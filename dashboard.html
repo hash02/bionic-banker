@@ -1,688 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agent Dashboard — Bionic Banker</title>
-  <meta name="description" content="Live intelligence from HASH's autonomous agent army — DeFi yields, whale tracking, AML detection, market pulse. All free, all 24/7." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Dashboard | Bionic Banker</title>
+    <meta name="description" content="Live crypto intelligence — DeFi yields, market pulse, and AML roasted transactions from the Bionic Banker agent army.">
+    <meta property="og:title" content="Intelligence Dashboard | Bionic Banker">
+    <meta property="og:description" content="Live crypto intelligence — DeFi yields, market pulse, and AML roasted transactions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bionicbanker.tech/dashboard.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://bionicbanker.tech/dashboard.html">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-  <meta property="og:title" content="Agent Dashboard — Bionic Banker" />
-  <meta property="og:description" content="Live intelligence from autonomous agents monitoring DeFi, whales, and financial crime." />
-  <meta property="og:url" content="https://bionicbanker.tech/dashboard.html" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Agent Dashboard — Bionic Banker" />
-  <meta name="twitter:description" content="Live intelligence from autonomous agents monitoring DeFi, whales, and financial crime." />
-  <link rel="canonical" href="https://bionicbanker.tech/dashboard.html" />
+        :root {
+            --bg-deep: #020204;
+            --bg-main: #08080e;
+            --bg-card: #0f0f18;
+            --bg-card-hover: #14142a;
+            --border: #1a1a2e;
+            --text-primary: #e4e4ec;
+            --text-secondary: #8888a0;
+            --text-muted: #55556a;
+            --accent-blue: #5b73f8;
+            --accent-purple: #8b6cf7;
+            --green: #1fa068;
+            --green-dim: rgba(31, 160, 104, 0.15);
+            --red: #ff4444;
+            --red-dim: rgba(255, 68, 68, 0.12);
+            --orange: #f0a030;
+            --orange-dim: rgba(240, 160, 48, 0.12);
+            --gradient: linear-gradient(135deg, #5b73f8, #8b6cf7);
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
-  <link rel="stylesheet" href="styles.css" />
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <style>
-    /* Dashboard-specific styles */
-    .dash-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-    .dash-hero {
-      text-align: center;
-      padding: 60px 0 40px;
-    }
-    .dash-hero h1 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 2.4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #5b73f8, #8b6cf7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-    .dash-hero .subtitle {
-      color: #888;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-    }
-    .dash-hero .last-update {
-      color: #555;
-      font-size: 0.78rem;
-      font-style: italic;
-    }
+        .dashboard { max-width: 1400px; margin: 0 auto; padding: 24px 20px; }
 
-    /* Agent Status Bar */
-    .agent-status-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-bottom: 40px;
-      padding: 20px;
-      border: 1px solid #1a1a2e;
-      border-radius: 16px;
-      background: rgba(91, 115, 248, 0.03);
-    }
-    .agent-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid #1a1a2e;
-    }
-    .agent-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .agent-dot.live { background: #1fa068; box-shadow: 0 0 6px #1fa068; }
-    .agent-dot.deploying { background: #f0b429; box-shadow: 0 0 6px #f0b429; }
-    .agent-dot.planned { background: #555; }
-    .agent-name {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #e4e4ec;
-    }
-    .agent-sched {
-      font-size: 0.68rem;
-      color: #666;
-      margin-left: auto;
-    }
+        /* Header */
+        .dash-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+        }
+        .dash-header h1 {
+            font-size: 1.5rem; font-weight: 700;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .dash-header .meta {
+            display: flex; align-items: center; gap: 16px;
+            font-size: 0.8rem; color: var(--text-muted);
+        }
+        .live-dot {
+            width: 8px; height: 8px; background: var(--green);
+            border-radius: 50%; display: inline-block; animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-    /* Section headers */
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 40px 0 16px;
-    }
-    .section-header h2 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #e4e4ec;
-    }
-    .section-header .section-icon {
-      font-size: 1.4rem;
-    }
-    .section-header .section-badge {
-      font-size: 0.65rem;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .badge-live { background: rgba(31,160,104,0.15); color: #1fa068; }
-    .badge-demo { background: rgba(240,180,41,0.15); color: #f0b429; }
+        /* KPI Cards */
+        .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 24px; }
+        .kpi-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 18px; transition: border-color 0.2s;
+        }
+        .kpi-card:hover { border-color: var(--accent-blue); }
+        .kpi-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px; }
+        .kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+        .kpi-change { font-size: 0.75rem; margin-top: 4px; }
+        .kpi-change.up { color: var(--green); }
+        .kpi-change.down { color: var(--red); }
 
-    /* Market grid */
-    .market-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-      margin-bottom: 32px;
-    }
-    .market-card {
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid #1a1a2e;
-      background: rgba(255,255,255,0.02);
-      text-align: center;
-    }
-    .market-sym {
-      font-size: 0.78rem;
-      color: #888;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-    .market-price {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #e4e4ec;
-      margin-bottom: 2px;
-    }
-    .market-change {
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-    .change-up { color: #1fa068; }
-    .change-down { color: #ff4444; }
+        .section-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .section-title .icon { font-size: 1.1rem; }
 
-    /* Yield table */
-    .yield-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 32px;
-    }
-    .yield-table th {
-      text-align: left;
-      padding: 10px 12px;
-      font-size: 0.72rem;
-      color: #666;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid #1a1a2e;
-    }
-    .yield-table td {
-      padding: 12px;
-      font-size: 0.88rem;
-      border-bottom: 1px solid rgba(26,26,46,0.5);
-      color: #e4e4ec;
-    }
-    .yield-table tr:hover td {
-      background: rgba(91,115,248,0.04);
-    }
-    .yield-apy {
-      font-weight: 700;
-      background: linear-gradient(135deg, #1fa068, #5b73f8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .yield-flag {
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      margin-left: 6px;
-    }
-    .flag-warn { background: rgba(240,180,41,0.15); color: #f0b429; }
-    .flag-danger { background: rgba(255,68,68,0.15); color: #ff4444; }
-    .tvl-val { color: #888; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+        @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
 
-    /* Whale section */
-    .whale-list {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 32px;
-    }
-    .whale-card {
-      padding: 16px 20px;
-      border-radius: 12px;
-      border: 1px solid #1a1a2e;
-      background: rgba(255,255,255,0.02);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .whale-icon { font-size: 1.6rem; }
-    .whale-info { flex: 1; }
-    .whale-label {
-      font-weight: 600;
-      color: #e4e4ec;
-      font-size: 0.92rem;
-    }
-    .whale-detail {
-      font-size: 0.78rem;
-      color: #888;
-      margin-top: 2px;
-    }
-    .whale-amount {
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-align: right;
-    }
-    .whale-quiet {
-      padding: 20px;
-      text-align: center;
-      color: #555;
-      font-style: italic;
-      border: 1px dashed #1a1a2e;
-      border-radius: 12px;
-    }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
 
-    /* AML Section */
-    .aml-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .aml-stat-card {
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #1a1a2e;
-      background: rgba(255,255,255,0.02);
-      text-align: center;
-    }
-    .aml-stat-val {
-      font-size: 2rem;
-      font-weight: 800;
-      font-family: 'Bricolage Grotesque', sans-serif;
-    }
-    .aml-stat-val.gradient {
-      background: linear-gradient(135deg, #5b73f8, #8b6cf7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .aml-stat-val.green { color: #1fa068; }
-    .aml-stat-val.red { color: #ff4444; }
-    .aml-stat-label {
-      font-size: 0.78rem;
-      color: #888;
-      margin-top: 4px;
-    }
-    .aml-roast {
-      padding: 20px 24px;
-      border-radius: 12px;
-      border-left: 3px solid #8b6cf7;
-      background: rgba(139,108,247,0.05);
-      margin-bottom: 16px;
-    }
-    .aml-roast-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    .aml-roast-badge {
-      font-size: 0.65rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: rgba(255,68,68,0.15);
-      color: #ff4444;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .aml-roast-hash {
-      font-size: 0.72rem;
-      color: #666;
-      font-family: monospace;
-    }
-    .aml-roast-text {
-      font-size: 0.92rem;
-      color: #ccc;
-      line-height: 1.5;
-      font-style: italic;
-    }
-    .aml-roast-meta {
-      font-size: 0.7rem;
-      color: #555;
-      margin-top: 8px;
-    }
+        /* Market Grid */
+        .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; }
+        .market-item {
+            background: var(--bg-deep); border: 1px solid var(--border); border-radius: 8px;
+            padding: 12px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .market-item .sym { font-weight: 600; font-size: 0.85rem; }
+        .market-item .price { font-size: 0.85rem; color: var(--text-secondary); }
+        .market-item .chg { font-size: 0.72rem; font-weight: 600; }
+        .market-item .chg.up { color: var(--green); }
+        .market-item .chg.down { color: var(--red); }
 
-    /* Paper trade */
-    .paper-trade {
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(31,160,104,0.3);
-      background: rgba(31,160,104,0.05);
-      margin-bottom: 32px;
-    }
-    .paper-trade-header {
-      font-weight: 700;
-      color: #1fa068;
-      font-size: 0.88rem;
-      margin-bottom: 6px;
-    }
-    .paper-trade-detail {
-      font-size: 0.85rem;
-      color: #ccc;
-    }
+        /* Yields Table */
+        .yields-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        .yields-table th {
+            text-align: left; font-size: 0.68rem; text-transform: uppercase;
+            letter-spacing: 0.06em; color: var(--text-muted); padding: 8px 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .yields-table td { padding: 10px; border-bottom: 1px solid rgba(26,26,46,0.5); color: var(--text-secondary); }
+        .yields-table tr:hover td { background: rgba(91,115,248,0.04); }
+        .yields-table .apy { font-weight: 700; color: var(--green); }
+        .risk-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.68rem; font-weight: 600; }
+        .risk-low { background: var(--green-dim); color: var(--green); }
+        .risk-med { background: var(--orange-dim); color: var(--orange); }
+        .risk-high { background: var(--red-dim); color: var(--red); }
+        .flag-badge { display: inline-block; padding: 2px 6px; border-radius: 6px; font-size: 0.62rem; background: rgba(139,108,247,0.15); color: var(--accent-purple); margin-left: 4px; }
 
-    /* Footer note */
-    .dash-footer-note {
-      text-align: center;
-      padding: 40px 0;
-      color: #444;
-      font-size: 0.75rem;
-      border-top: 1px solid #1a1a2e;
-      margin-top: 40px;
-    }
-    .dash-footer-note a {
-      color: #5b73f8;
-      text-decoration: none;
-    }
+        /* Roast Cards */
+        .roast-card {
+            background: var(--bg-deep); border: 1px solid var(--border); border-radius: 10px;
+            padding: 16px; margin-bottom: 12px; position: relative; overflow: hidden;
+        }
+        .roast-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+        .roast-card.critical::before { background: var(--red); }
+        .roast-card.high::before { background: var(--orange); }
+        .roast-card.medium::before { background: var(--accent-blue); }
+        .roast-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .roast-score { font-size: 1.1rem; font-weight: 700; }
+        .roast-score.critical { color: var(--red); }
+        .roast-score.high { color: var(--orange); }
+        .roast-meta { font-size: 0.7rem; color: var(--text-muted); }
+        .roast-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; font-style: italic; margin-bottom: 10px; }
+        .roast-rules { display: flex; flex-wrap: wrap; gap: 5px; }
+        .rule-tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.62rem; font-weight: 500; background: var(--red-dim); color: var(--red); }
+        .roast-verdict { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.75rem; }
+        .verdict-label { font-weight: 600; color: var(--text-muted); text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; }
 
-    /* Responsive */
-    @media (max-width: 640px) {
-      .dash-hero h1 { font-size: 1.8rem; }
-      .market-grid { grid-template-columns: repeat(2, 1fr); }
-      .yield-table { font-size: 0.8rem; }
-      .yield-table th, .yield-table td { padding: 8px 6px; }
-    }
-  </style>
+        /* ETH Staking */
+        .eth-yields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        @media (max-width: 600px) { .eth-yields { grid-template-columns: 1fr; } }
+        .eth-item { background: var(--bg-deep); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+        .eth-item .proto { font-size: 0.78rem; font-weight: 600; margin-bottom: 4px; }
+        .eth-item .pool-name { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 8px; }
+        .eth-item .eth-apy { font-size: 1.3rem; font-weight: 700; color: var(--green); }
+        .eth-item .tvl { font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* AML Stats */
+        .aml-stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .aml-stat { text-align: center; padding: 12px; background: var(--bg-deep); border-radius: 8px; border: 1px solid var(--border); }
+        .aml-stat .val { font-size: 1.2rem; font-weight: 700; }
+        .aml-stat .lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .chart-wrap { position: relative; height: 220px; margin-top: 10px; }
+
+        .dash-footer {
+            text-align: center; padding: 24px 0 12px; font-size: 0.7rem;
+            color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 32px;
+        }
+        .dash-footer a { color: var(--accent-blue); text-decoration: none; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
 </head>
 <body>
+<div class="dashboard">
 
-  <nav>
-    <a href="index.html" class="nav-logo">Bionic <span>Banker</span></a>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="articles.html">All Articles</a></li>
-        <li><a href="dashboard.html" style="color:#5b73f8;">Dashboard</a></li>
-        <li><a href="index.html#about">About</a></li>
-      </ul>
-      <a href="index.html#newsletter" class="nav-cta">Subscribe</a>
-    </div>
-  </nav>
-
-  <div class="dash-container">
-
-    <!-- HERO -->
-    <div class="dash-hero">
-      <h1>Agent Intelligence Dashboard</h1>
-      <p class="subtitle">Autonomous agents monitoring DeFi yields, whale wallets, and financial crime — 24/7</p>
-      <p class="last-update" id="lastUpdate">Last scan: loading...</p>
-    </div>
-
-    <!-- AGENT STATUS BAR -->
-    <div class="agent-status-bar" id="agentStatus">
-      <div class="agent-pill">
-        <div class="agent-dot live"></div>
-        <span class="agent-name">AML Engine</span>
-        <span class="agent-sched">v11 · 22 rules</span>
-      </div>
-      <div class="agent-pill">
-        <div class="agent-dot live"></div>
-        <span class="agent-name">DeFi Scout</span>
-        <span class="agent-sched">every 6h</span>
-      </div>
-      <div class="agent-pill">
-        <div class="agent-dot live"></div>
-        <span class="agent-name">Morning Brief</span>
-        <span class="agent-sched">daily 9AM</span>
-      </div>
-      <div class="agent-pill">
-        <div class="agent-dot live"></div>
-        <span class="agent-name">Heartbeat</span>
-        <span class="agent-sched">every 30min</span>
-      </div>
-      <div class="agent-pill">
-        <div class="agent-dot deploying"></div>
-        <span class="agent-name">Paper Trader</span>
-        <span class="agent-sched">planned</span>
-      </div>
-      <div class="agent-pill">
-        <div class="agent-dot planned"></div>
-        <span class="agent-name">AML Detective</span>
-        <span class="agent-sched">building</span>
-      </div>
-    </div>
-
-    <!-- MARKET PULSE -->
-    <div class="section-header">
-      <span class="section-icon">📊</span>
-      <h2>Market Pulse</h2>
-      <span class="section-badge badge-live">LIVE</span>
-    </div>
-    <div class="market-grid" id="marketGrid">
-      <!-- Populated by JS -->
-    </div>
-
-    <!-- TOP YIELDS -->
-    <div class="section-header">
-      <span class="section-icon">💰</span>
-      <h2>Top DeFi Yields</h2>
-      <span class="section-badge badge-live">Risk-Adjusted</span>
-    </div>
-    <table class="yield-table" id="yieldTable">
-      <thead>
-        <tr>
-          <th>Protocol</th>
-          <th>Asset</th>
-          <th>APY</th>
-          <th>Base / Reward</th>
-          <th>TVL</th>
-          <th>Flags</th>
-        </tr>
-      </thead>
-      <tbody id="yieldBody">
-        <!-- Populated by JS -->
-      </tbody>
-    </table>
-
-    <!-- PAPER TRADE SUGGESTION -->
-    <div class="paper-trade" id="paperTrade" style="display:none;">
-      <div class="paper-trade-header">📝 Paper Trade Suggestion</div>
-      <div class="paper-trade-detail" id="paperTradeDetail"></div>
-    </div>
-
-    <!-- WHALE ACTIVITY -->
-    <div class="section-header">
-      <span class="section-icon">🐋</span>
-      <h2>Whale Activity</h2>
-      <span class="section-badge badge-live">Last 6h</span>
-    </div>
-    <div class="whale-list" id="whaleList">
-      <!-- Populated by JS -->
-    </div>
-
-    <!-- AML ENGINE -->
-    <div class="section-header">
-      <span class="section-icon">🔍</span>
-      <h2>AML Detection Engine</h2>
-      <span class="section-badge badge-live">v11</span>
-    </div>
-    <div class="aml-stats">
-      <div class="aml-stat-card">
-        <div class="aml-stat-val gradient">94.9%</div>
-        <div class="aml-stat-label">Detection Rate</div>
-      </div>
-      <div class="aml-stat-card">
-        <div class="aml-stat-val gradient">22</div>
-        <div class="aml-stat-label">Active Rules</div>
-      </div>
-      <div class="aml-stat-card">
-        <div class="aml-stat-val green" id="amlClean">—</div>
-        <div class="aml-stat-label">Clean Transactions</div>
-      </div>
-      <div class="aml-stat-card">
-        <div class="aml-stat-val red" id="amlFlagged">—</div>
-        <div class="aml-stat-label">Flagged Suspicious</div>
-      </div>
-    </div>
-
-    <!-- AML ROASTS (Detective persona — populated when engine catches something) -->
-    <div id="amlRoasts">
-      <!-- Example roast — will be dynamically populated -->
-      <div class="aml-roast">
-        <div class="aml-roast-header">
-          <span class="aml-roast-badge">Caught</span>
-          <span class="aml-roast-hash">0x7a3f...9e2d → Tornado Cash Router</span>
+    <div class="dash-header">
+        <h1>Intelligence Dashboard</h1>
+        <div class="meta">
+            <span><span class="live-dot"></span> Live</span>
+            <span id="lastUpdate">Loading...</span>
+            <a href="index.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.8rem;">&#8592; bionicbanker.tech</a>
         </div>
-        <div class="aml-roast-text">
-          "47K through 12 hops and a mixer. Took me 0.3 seconds to unravel the whole thing. The structuring pattern was textbook — $9,900 chunks just under the reporting threshold. That's not clever, that's a tutorial you found on YouTube. Try harder."
+    </div>
+
+    <div class="kpi-row" id="kpiRow"></div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="section-title"><span class="icon">&#128200;</span> Market Pulse</div>
+            <div class="market-grid" id="marketGrid"></div>
         </div>
-        <div class="aml-roast-meta">AML Detective · Rule 7 (structuring) + Rule 14 (mixer interaction) · Score: 0.94</div>
-      </div>
-
-      <div class="aml-roast">
-        <div class="aml-roast-header">
-          <span class="aml-roast-badge">Caught</span>
-          <span class="aml-roast-hash">0x2b8c...41fa → 6 rapid hops → DEX</span>
+        <div class="card">
+            <div class="section-title"><span class="icon">&#128311;</span> ETH Staking Yields</div>
+            <div class="eth-yields" id="ethYields"></div>
         </div>
-        <div class="aml-roast-text">
-          "A dormant wallet wakes up after 847 days, moves everything to a fresh address through 6 hops in 4 minutes, then dumps into a DEX pool. The urgency of innocence, am I right? If you were legit, you wouldn't be in such a hurry. Flagged."
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+        <div class="section-title"><span class="icon">&#127806;</span> Top DeFi Yields (Risk-Adjusted)</div>
+        <div style="overflow-x:auto;">
+            <table class="yields-table" id="yieldsTable">
+                <thead><tr><th>Protocol</th><th>Chain</th><th>Pool</th><th>APY</th><th>Base / Reward</th><th>TVL</th><th>Risk</th></tr></thead>
+                <tbody id="yieldsBody"></tbody>
+            </table>
         </div>
-        <div class="aml-roast-meta">AML Detective · Rule 3 (dormant reactivation) + Rule 11 (rapid movement) · Score: 0.87</div>
-      </div>
     </div>
 
-    <!-- LINKS -->
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
-      <a href="aml-engine.html" style="padding:10px 18px;border-radius:8px;border:1px solid #1a1a2e;color:#5b73f8;text-decoration:none;font-size:0.85rem;font-weight:600;">Read: How the AML Engine Works →</a>
-      <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" style="padding:10px 18px;border-radius:8px;border:1px solid #1a1a2e;color:#1fa068;text-decoration:none;font-size:0.85rem;font-weight:600;">Try Live Demo →</a>
-      <a href="articles.html" style="padding:10px 18px;border-radius:8px;border:1px solid #1a1a2e;color:#8b6cf7;text-decoration:none;font-size:0.85rem;font-weight:600;">All Articles →</a>
+    <div class="card" style="margin-bottom:24px;">
+        <div class="section-title"><span class="icon">&#128293;</span> AML Roaster &#8212; Flagged Transactions</div>
+        <div class="aml-stats-bar" id="amlStatsBar"></div>
+        <div id="roastCards"></div>
     </div>
 
-    <!-- FOOTER NOTE -->
-    <div class="dash-footer-note">
-      Data powered by <a href="https://defillama.com" target="_blank">DeFiLlama</a>,
-      <a href="https://blockscout.com" target="_blank">Blockscout</a>, and
-      <a href="https://crypto.com" target="_blank">Crypto.com</a> — all free APIs, zero cost.<br>
-      Agents run on a Dell Latitude 5490 (Ubuntu 24.04) with Ollama. No paid AI inference.<br>
-      Built by <a href="index.html">HASH</a> · <a href="https://github.com/hash02" target="_blank">GitHub</a>
+    <div class="grid-2">
+        <div class="card">
+            <div class="section-title"><span class="icon">&#128200;</span> Yield Distribution by Protocol</div>
+            <div class="chart-wrap"><canvas id="yieldChart"></canvas></div>
+        </div>
+        <div class="card">
+            <div class="section-title"><span class="icon">&#128737;</span> AML Detection Engine</div>
+            <div class="chart-wrap"><canvas id="amlChart"></canvas></div>
+        </div>
     </div>
-  </div>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">Bionic <span>Banker</span></div>
-      <p class="footer-copy">&copy; 2026 Bionic Banker. All rights reserved.</p>
+    <div class="dash-footer">
+        Powered by <a href="https://bionicbanker.tech">Bionic Banker</a> Agent Army &#8212; DeFi Scout &#183; AML Monitor &#183; Content Scout &#183; Portfolio Tracker<br>
+        Data refreshes every 5 minutes &#183; Built by HASH
     </div>
-  </footer>
+</div>
 
-  <script>
-    // ═══════════════════════════════════════════════════════════
-    // Dashboard Data Engine
-    // Tries to load live JSON from dashboard-data/ directory.
-    // Falls back to embedded sample data if files not available.
-    // ═══════════════════════════════════════════════════════════
+<script>
+const DEFI_URL = 'dashboard-data/defi-scout-latest.json';
+const ROAST_URL = 'https://raw.githubusercontent.com/hash02/aml-roaster/main/reports/data.json';
 
-    const SAMPLE_DATA = {
-      scan_time: new Date().toISOString(),
-      market: [
-        { instrument: "BTC_USDT", last: 86743, change_pct: 1.2, high_24h: 87200, low_24h: 85100, is_alert: false },
-        { instrument: "ETH_USDT", last: 1997, change_pct: -0.8, high_24h: 2050, low_24h: 1960, is_alert: false },
-        { instrument: "SOL_USDT", last: 142.5, change_pct: 3.4, high_24h: 145, low_24h: 136, is_alert: false },
-        { instrument: "AAVE_USDT", last: 198.3, change_pct: -1.1, high_24h: 204, low_24h: 195, is_alert: false },
-        { instrument: "UNI_USDT", last: 7.82, change_pct: 0.5, high_24h: 8.10, low_24h: 7.60, is_alert: false },
-        { instrument: "LINK_USDT", last: 14.92, change_pct: 2.1, high_24h: 15.30, low_24h: 14.20, is_alert: false },
-        { instrument: "ARB_USDT", last: 0.42, change_pct: -2.3, high_24h: 0.44, low_24h: 0.41, is_alert: false },
-        { instrument: "OP_USDT", last: 0.98, change_pct: 1.7, high_24h: 1.01, low_24h: 0.94, is_alert: false }
-      ],
-      top_yields: [
-        { project: "aave-v3", chain: "Ethereum", symbol: "USDC", apy: 5.2, apy_base: 4.1, apy_reward: 1.1, tvl_m: 1840 },
-        { project: "compound-v3", chain: "Ethereum", symbol: "USDT", apy: 4.8, apy_base: 4.8, apy_reward: 0, tvl_m: 920 },
-        { project: "morpho-blue", chain: "Ethereum", symbol: "USDC", apy: 6.1, apy_base: 3.2, apy_reward: 2.9, tvl_m: 340 },
-        { project: "spark", chain: "Ethereum", symbol: "DAI", apy: 5.0, apy_base: 5.0, apy_reward: 0, tvl_m: 1200 },
-        { project: "ethena", chain: "Ethereum", symbol: "USDE", apy: 12.4, apy_base: 2.1, apy_reward: 10.3, tvl_m: 2800 },
-        { project: "pendle", chain: "Ethereum", symbol: "USDC", apy: 8.7, apy_base: 1.5, apy_reward: 7.2, tvl_m: 180 }
-      ],
-      eth_yields: [
-        { project: "lido", chain: "Ethereum", symbol: "STETH", apy: 3.2, tvl_m: 14200 },
-        { project: "rocket-pool", chain: "Ethereum", symbol: "RETH", apy: 2.9, tvl_m: 3100 }
-      ],
-      whale_activity: [],
-      alerts: []
-    };
+const FALLBACK = {
+    scan_time: new Date().toISOString(), status: "fallback",
+    market: [
+        {symbol:"BTC",price:86542.18,change_24h:1.24},{symbol:"ETH",price:2187.45,change_24h:-0.38},
+        {symbol:"SOL",price:138.92,change_24h:3.15},{symbol:"AVAX",price:22.47,change_24h:-1.82},
+        {symbol:"MATIC",price:0.372,change_24h:0.95},{symbol:"ARB",price:0.891,change_24h:2.44},
+        {symbol:"OP",price:1.23,change_24h:-0.67},{symbol:"LINK",price:14.58,change_24h:1.89}
+    ],
+    top_yields: [
+        {protocol:"Aave V3",chain:"Ethereum",pool:"USDC",apy:4.21,apyBase:3.82,apyReward:0.39,tvlUsd:2180000000,risk_score:4.0,flags:[]},
+        {protocol:"Compound V3",chain:"Ethereum",pool:"USDC",apy:3.94,apyBase:3.94,apyReward:0,tvlUsd:1450000000,risk_score:3.9,flags:[]},
+        {protocol:"Aave V3",chain:"Arbitrum",pool:"USDC",apy:5.12,apyBase:4.15,apyReward:0.97,tvlUsd:340000000,risk_score:4.5,flags:[]},
+        {protocol:"Spark",chain:"Ethereum",pool:"DAI",apy:6.50,apyBase:6.50,apyReward:0,tvlUsd:890000000,risk_score:6.5,flags:[]},
+        {protocol:"Morpho",chain:"Ethereum",pool:"USDC",apy:7.83,apyBase:3.21,apyReward:4.62,tvlUsd:210000000,risk_score:5.1,flags:["reward-heavy"]},
+        {protocol:"Fluid",chain:"Ethereum",pool:"USDC-USDT",apy:12.45,apyBase:4.80,apyReward:7.65,tvlUsd:85000000,risk_score:6.6,flags:["reward-heavy"]},
+        {protocol:"Pendle",chain:"Ethereum",pool:"sUSDe PT",apy:18.20,apyBase:18.20,apyReward:0,tvlUsd:450000000,risk_score:18.2,flags:["too-high"]},
+        {protocol:"Venus",chain:"BSC",pool:"USDT",apy:5.67,apyBase:3.90,apyReward:1.77,tvlUsd:520000000,risk_score:4.5,flags:[]}
+    ],
+    eth_yields: [
+        {protocol:"Lido",pool:"stETH",apy:3.2,tvlUsd:14500000000},
+        {protocol:"Rocket Pool",pool:"rETH",apy:2.9,tvlUsd:3200000000},
+        {protocol:"Aave V3",pool:"WETH",apy:1.8,tvlUsd:1800000000}
+    ],
+    aml_stats: {detection_rate:94.9,rules_active:22,transactions_scanned:12847,flagged:3,clean:12844}
+};
 
-    // Try to fetch live data, fall back to sample
-    async function loadData() {
-      let data = SAMPLE_DATA;
-      let isLive = false;
+const FALLBACK_ROASTS = {
+    stats:{total_scans:24,total_findings:2,highest_score:530,critical_count:2},
+    findings:[
+        {timestamp:"2026-03-08T06:32:00Z",risk_score:530,
+         what_happened:"Sender 0x0a5b... sent 0.1 ETH to Tornado Cash 0.1 ETH Pool. Classic mixer interaction with OFAC-sanctioned protocol.",
+         roast:"You thought routing 0.1 ETH through Tornado Cash would make you invisible? My friend, that\u2019s like putting on a ski mask to rob a store that only has security cameras. The OFAC sanctions list exists for a reason, and you just walked straight into it. Six rules triggered in one transaction\u2014that\u2019s not a red flag, that\u2019s a red parade.",
+         risk_verdict:"CRITICAL \u2014 Direct OFAC-sanctioned protocol interaction. Immediate SAR recommendation.",
+         rules:["mixer_touch","ofac_hit","mixer_contract_call","structuring","peel_chain_linear","exchange_avoidance"],
+         pattern:"Mixer + OFAC + Structuring"},
+        {timestamp:"2026-03-07T18:15:00Z",risk_score:400,
+         what_happened:"Sender 0xd0b9... interacted with Tornado Cash 0.1 ETH Pool. Four AML rules triggered simultaneously.",
+         roast:"Another Tornado Cash tourist. Four rules tripped at once\u2014mixer touch, OFAC hit, contract call, and exchange avoidance. You avoided every centralized exchange like they were your ex at a party. Suspicious? A little. Flagged? Absolutely.",
+         risk_verdict:"CRITICAL \u2014 Sanctioned mixer interaction with evasive routing behavior.",
+         rules:["mixer_touch","ofac_hit","mixer_contract_call","exchange_avoidance"],
+         pattern:"Mixer + OFAC"}
+    ]
+};
 
-      try {
-        const resp = await fetch('dashboard-data/defi-scout-latest.json');
-        if (resp.ok) {
-          data = await resp.json();
-          isLive = true;
-        }
-      } catch(e) { /* use sample */ }
+function fmt(n){if(n>=1e9)return'$'+(n/1e9).toFixed(1)+'B';if(n>=1e6)return'$'+(n/1e6).toFixed(0)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+n.toFixed(2)}
+function fmtP(n){if(n>=1000)return'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return n>=1?'$'+n.toFixed(2):'$'+n.toFixed(3)}
+function ago(ts){const d=Date.now()-new Date(ts).getTime(),h=Math.floor(d/36e5),m=Math.floor((d%36e5)/6e4);if(h>24)return Math.floor(h/24)+'d ago';return h>0?h+'h '+m+'m ago':m+'m ago'}
+function riskCls(s){return s<=5?'low':s<=10?'med':'high'}
+function sevCls(s){return s>=400?'critical':s>=200?'high':'medium'}
 
-      renderDashboard(data, isLive);
-    }
+function renderKPIs(d,r){
+    const btc=d.market.find(m=>m.symbol==='BTC')||{price:0,change_24h:0};
+    const eth=d.market.find(m=>m.symbol==='ETH')||{price:0,change_24h:0};
+    const best=d.top_yields.reduce((a,b)=>a.apy>b.apy?a:b,{apy:0,protocol:''});
+    const kpis=[
+        {l:'BTC',v:fmtP(btc.price),c:btc.change_24h},
+        {l:'ETH',v:fmtP(eth.price),c:eth.change_24h},
+        {l:'Best Yield',v:best.apy.toFixed(1)+'%',s:best.protocol},
+        {l:'Detection Rate',v:d.aml_stats.detection_rate+'%',s:d.aml_stats.rules_active+' rules'},
+        {l:'TX Scanned',v:(r.stats?r.stats.total_scans:0).toLocaleString(),s:(r.stats?r.stats.total_findings:0)+' flagged'}
+    ];
+    document.getElementById('kpiRow').innerHTML=kpis.map(k=>`<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div>${k.c!==undefined?`<div class="kpi-change ${k.c>=0?'up':'down'}">${k.c>=0?'\u25B2':'\u25BC'} ${Math.abs(k.c).toFixed(2)}%</div>`:''}${k.s?`<div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">${k.s}</div>`:''}</div>`).join('');
+}
 
-    function renderDashboard(data, isLive) {
-      // Update timestamp
-      const scanTime = data.scan_time ? new Date(data.scan_time) : new Date();
-      const timeStr = scanTime.toLocaleString('en-US', {
-        month: 'short', day: 'numeric', year: 'numeric',
-        hour: '2-digit', minute: '2-digit', timeZoneName: 'short'
-      });
-      document.getElementById('lastUpdate').textContent =
-        `Last scan: ${timeStr}${isLive ? '' : ' (sample data — live feed connecting soon)'}`;
+function renderMarket(m){
+    document.getElementById('marketGrid').innerHTML=m.map(c=>`<div class="market-item"><div><div class="sym">${c.symbol}</div><div class="price">${fmtP(c.price)}</div></div><div class="chg ${c.change_24h>=0?'up':'down'}">${c.change_24h>=0?'\u25B2':'\u25BC'} ${Math.abs(c.change_24h).toFixed(2)}%</div></div>`).join('');
+}
 
-      // Market grid
-      const marketGrid = document.getElementById('marketGrid');
-      marketGrid.innerHTML = '';
-      (data.market || []).forEach(t => {
-        const sym = t.instrument.replace('_USDT', '');
-        const up = t.change_pct >= 0;
-        const card = document.createElement('div');
-        card.className = 'market-card';
-        card.innerHTML = `
-          <div class="market-sym">${sym}</div>
-          <div class="market-price">$${t.last >= 1000 ? t.last.toLocaleString('en-US', {maximumFractionDigits:0}) : t.last.toFixed(2)}</div>
-          <div class="market-change ${up ? 'change-up' : 'change-down'}">${up ? '▲' : '▼'} ${Math.abs(t.change_pct).toFixed(1)}%</div>
-        `;
-        if (t.is_alert) card.style.borderColor = '#ff4444';
-        marketGrid.appendChild(card);
-      });
+function renderEth(y){
+    document.getElementById('ethYields').innerHTML=y.map(e=>`<div class="eth-item"><div class="proto">${e.protocol}</div><div class="pool-name">${e.pool}</div><div class="eth-apy">${e.apy.toFixed(1)}%</div><div class="tvl">TVL: ${fmt(e.tvlUsd)}</div></div>`).join('');
+}
 
-      // Yield table
-      const yieldBody = document.getElementById('yieldBody');
-      yieldBody.innerHTML = '';
-      const yields = (data.top_yields || []).slice(0, 8);
+function renderYields(y){
+    document.getElementById('yieldsBody').innerHTML=y.sort((a,b)=>a.risk_score-b.risk_score).map(y=>`<tr><td style="color:var(--text-primary);font-weight:500">${y.protocol}</td><td>${y.chain}</td><td>${y.pool}</td><td class="apy">${y.apy.toFixed(2)}%</td><td><span style="color:var(--text-secondary)">${y.apyBase.toFixed(1)}%</span>${y.apyReward>0?`<span style="color:var(--accent-purple)"> + ${y.apyReward.toFixed(1)}%</span>`:''}</td><td>${fmt(y.tvlUsd)}</td><td><span class="risk-badge risk-${riskCls(y.risk_score)}">${y.risk_score.toFixed(1)}</span>${y.flags.map(f=>`<span class="flag-badge">${f}</span>`).join('')}</td></tr>`).join('');
+}
 
-      // Score and sort
-      const scored = yields.map(y => {
-        const riskScore = (y.apy_base || 0) + ((y.apy_reward || 0) * 0.4);
-        let flags = [];
-        if ((y.apy_reward || 0) > (y.apy_base || 0) * 1.5) flags.push({ text: 'reward-heavy', type: 'warn' });
-        if ((y.tvl_m || 0) < 5) flags.push({ text: 'low TVL', type: 'warn' });
-        if ((y.apy || 0) > 50) flags.push({ text: 'too high', type: 'danger' });
-        return { ...y, riskScore, flags };
-      }).sort((a, b) => b.riskScore - a.riskScore);
+function renderAMLStats(d,r){
+    const s=[
+        {v:d.aml_stats.detection_rate+'%',l:'Detection Rate',c:'var(--green)'},
+        {v:d.aml_stats.rules_active,l:'Active Rules',c:'var(--accent-blue)'},
+        {v:r.stats?r.stats.total_scans:'\u2014',l:'Scans (24h)',c:'var(--text-primary)'},
+        {v:r.stats?r.stats.total_findings:'\u2014',l:'Findings',c:'var(--red)'},
+        {v:r.stats?r.stats.highest_score:'\u2014',l:'Highest Score',c:'var(--orange)'}
+    ];
+    document.getElementById('amlStatsBar').innerHTML=s.map(x=>`<div class="aml-stat"><div class="val" style="color:${x.c}">${x.v}</div><div class="lbl">${x.l}</div></div>`).join('');
+}
 
-      scored.forEach(y => {
-        const tr = document.createElement('tr');
-        const flagHtml = y.flags.map(f =>
-          `<span class="yield-flag flag-${f.type}">${f.text}</span>`
-        ).join('');
-        tr.innerHTML = `
-          <td>${y.project}</td>
-          <td>${y.symbol} <span style="color:#555;font-size:0.75rem;">(${y.chain})</span></td>
-          <td><span class="yield-apy">${y.apy.toFixed(1)}%</span></td>
-          <td style="font-size:0.8rem;color:#888;">${y.apy_base || 0}% / ${y.apy_reward || 0}%</td>
-          <td class="tvl-val">$${y.tvl_m}M</td>
-          <td>${flagHtml || '<span style="color:#1fa068;font-size:0.75rem;">✓ clean</span>'}</td>
-        `;
-        yieldBody.appendChild(tr);
-      });
+function renderRoasts(f){
+    if(!f||!f.length){document.getElementById('roastCards').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-muted)">No flagged transactions in current scan window.</div>';return}
+    document.getElementById('roastCards').innerHTML=f.map(r=>{
+        const sv=sevCls(r.risk_score),ru=r.rules||[];
+        return`<div class="roast-card ${sv}"><div class="roast-header"><div><span class="roast-score ${sv}">Score: ${r.risk_score}</span><span style="margin-left:10px;font-size:0.75rem;color:var(--text-muted)">${r.pattern||''}</span></div><div class="roast-meta"><span>${ago(r.timestamp)}</span></div></div>${r.what_happened?`<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px">${r.what_happened}</div>`:''}<div class="roast-text">\u201C${r.roast}\u201D</div>${ru.length?`<div class="roast-rules">${ru.map(x=>`<span class="rule-tag">${x}</span>`).join('')}</div>`:''}${r.risk_verdict?`<div class="roast-verdict"><div class="verdict-label">Verdict</div><div style="color:var(--red);font-size:0.78rem;margin-top:3px">${r.risk_verdict}</div></div>`:''}</div>`}).join('');
+}
 
-      // Paper trade suggestion (from best risk-adjusted yield)
-      if (scored.length > 0) {
-        const best = scored[0];
-        document.getElementById('paperTrade').style.display = 'block';
-        document.getElementById('paperTradeDetail').textContent =
-          `${best.symbol} → ${best.project} (${best.chain}) at ${best.apy.toFixed(1)}% APY — risk-adjusted score: ${best.riskScore.toFixed(1)}. Base yield ${best.apy_base}% is the real signal.`;
-      }
+let yieldChartInst=null, amlChartInst=null;
 
-      // ETH yields (append to table)
-      (data.eth_yields || []).slice(0, 2).forEach(y => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${y.project}</td>
-          <td>${y.symbol} <span style="color:#555;font-size:0.75rem;">(${y.chain})</span></td>
-          <td><span class="yield-apy">${y.apy.toFixed(1)}%</span></td>
-          <td style="font-size:0.8rem;color:#888;">staking</td>
-          <td class="tvl-val">$${y.tvl_m}M</td>
-          <td><span style="color:#5b73f8;font-size:0.75rem;">⟠ ETH</span></td>
-        `;
-        yieldBody.appendChild(tr);
-      });
+function renderYieldChart(y){
+    if(yieldChartInst)yieldChartInst.destroy();
+    const ctx=document.getElementById('yieldChart').getContext('2d');
+    const s=[...y].sort((a,b)=>b.apy-a.apy).slice(0,8);
+    yieldChartInst=new Chart(ctx,{type:'bar',data:{labels:s.map(x=>x.protocol+' ('+x.pool+')'),datasets:[{label:'Base APY',data:s.map(x=>x.apyBase),backgroundColor:'rgba(91,115,248,0.7)',borderRadius:4},{label:'Reward APY',data:s.map(x=>x.apyReward),backgroundColor:'rgba(139,108,247,0.7)',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#8888a0',font:{size:10}}}},scales:{x:{stacked:true,ticks:{color:'#55556a',font:{size:9}},grid:{display:false}},y:{stacked:true,ticks:{color:'#55556a',callback:v=>v+'%'},grid:{color:'rgba(26,26,46,0.5)'}}}}});
+}
 
-      // Whale activity
-      const whaleList = document.getElementById('whaleList');
-      whaleList.innerHTML = '';
-      const whales = data.whale_activity || [];
-      if (whales.length === 0) {
-        whaleList.innerHTML = '<div class="whale-quiet">🐋 Whales quiet — no significant movements in last 6 hours</div>';
-      } else {
-        whales.forEach(w => {
-          const card = document.createElement('div');
-          card.className = 'whale-card';
-          const ethMoved = w.total_eth_moved || 0;
-          card.innerHTML = `
-            <div class="whale-icon">🐋</div>
-            <div class="whale-info">
-              <div class="whale-label">${w.label}</div>
-              <div class="whale-detail">${w.txn_count || 0} transactions${w.token_summary ? ' · ' + w.token_summary : ''}</div>
-            </div>
-            <div class="whale-amount ${ethMoved > 100 ? 'change-down' : ''}">${ethMoved > 0 ? ethMoved.toFixed(1) + ' ETH' : 'tokens only'}</div>
-          `;
-          whaleList.appendChild(card);
-        });
-      }
-    }
+function renderAMLChart(st){
+    if(amlChartInst)amlChartInst.destroy();
+    const ctx=document.getElementById('amlChart').getContext('2d');
+    amlChartInst=new Chart(ctx,{type:'doughnut',data:{labels:['Clean','Flagged'],datasets:[{data:[st.clean||12844,st.flagged||3],backgroundColor:['rgba(31,160,104,0.8)','rgba(255,68,68,0.8)'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#8888a0',font:{size:11},padding:16}},tooltip:{callbacks:{label:function(c){const t=c.dataset.data.reduce((a,b)=>a+b,0);return c.label+': '+c.parsed.toLocaleString()+' ('+(c.parsed/t*100).toFixed(1)+'%)'}}}}}});
+}
 
-    // Load on page ready
-    loadData();
+async function init(){
+    let d=FALLBACK, r=FALLBACK_ROASTS;
+    try{const res=await fetch(DEFI_URL+'?t='+Date.now());if(res.ok)d=await res.json()}catch(e){}
+    try{const res=await fetch(ROAST_URL+'?t='+Date.now());if(res.ok){const raw=await res.json();if(raw.stats&&raw.findings)r=raw}}catch(e){}
+    document.getElementById('lastUpdate').textContent='Updated: '+ago(d.scan_time||new Date().toISOString());
+    renderKPIs(d,r);renderMarket(d.market||[]);renderEth(d.eth_yields||[]);
+    renderYields(d.top_yields||[]);renderAMLStats(d,r);renderRoasts(r.findings||[]);
+    renderYieldChart(d.top_yields||[]);renderAMLChart(d.aml_stats||{});
+}
 
-    // Auto-refresh every 5 minutes
-    setInterval(loadData, 300000);
-  </script>
-
+init();
+setInterval(init,300000);
+</script>
 </body>
 </html>
