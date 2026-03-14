@@ -232,10 +232,10 @@
 <body>
 <div class="dashboard">
   <div class="title-row">
-    <h1>KALA — Kill Agent Survival Report</h1>
-    <span class="live-badge">● HOURLY</span>
+    <h1>Kill Agent — Survival Report</h1>
+    <span class="live-badge">● SCHEDULED</span>
   </div>
-  <p class="subtitle">5 kill attempts logged · 12 attack modules · Dell Latitude 5490</p>
+  <p class="subtitle">5 kill attempts logged · rotating attack modules · dedicated server</p>
 
   <div class="stats-row">
     <div class="stat-card danger">
@@ -267,14 +267,14 @@
     <div class="kill-event failed">
       <span class="kill-time">Mar 11 02:17</span>
       <span class="kill-result fail">KILLED</span>
-      <span class="kill-module">ssh_config</span>
-      <span class="kill-detail">Password auth was enabled</span>
+      <span class="kill-module">auth_config</span>
+      <span class="kill-detail">Weak auth was enabled</span>
     </div>
     <div class="kill-event survived">
       <span class="kill-time">Mar 11 03:17</span>
       <span class="kill-result pass">SURVIVED</span>
       <span class="kill-module">memory_integrity</span>
-      <span class="kill-detail">QUICK_CONTEXT verified</span>
+      <span class="kill-detail">Boot context verified</span>
     </div>
     <div class="kill-event failed">
       <span class="kill-time">Mar 11 04:17</span>
@@ -301,7 +301,7 @@
       </div>
     </div>
     <div class="module-card">
-      <div class="module-name">ssh_config</div>
+      <div class="module-name">auth_config</div>
       <div class="module-bar-bg"><div class="module-bar-fill" style="width:0%;background:#ff4444;"></div></div>
       <div class="module-stats">
         <span>0/1 survived · NOW FIXED</span>
@@ -345,7 +345,7 @@
   <div class="insight">
     <span class="insight-icon">💀</span>
     <div class="insight-text">
-      <strong>20% survival is the real number.</strong> Most teams would hide this. We publish it. The system that attacks itself and reports honestly is more trustworthy than the system that claims 99.9% uptime and hopes nobody checks. SSH has been fixed since this burn-in. The next run will be different — but the principle stays: <strong>every survival makes the next test harder.</strong>
+      <strong>20% survival is the real number.</strong> Most teams would hide this. We publish it. The system that attacks itself and reports honestly is more trustworthy than the system that claims 99.9% uptime and hopes nobody checks. Auth has been hardened since this burn-in. The next run will be different — but the principle stays: <strong>every survival makes the next test harder.</strong>
     </div>
   </div>
 </div>

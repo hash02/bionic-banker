@@ -127,7 +127,7 @@
 
       <p>Not intentionally. Not maliciously. But if you build a system and then ask that same system if it's working correctly, you're going to get a yes. Always. Because the system can only evaluate itself using its own broken assumptions. It's like asking someone who's having a psychotic episode if they're thinking clearly. The answer is always "of course I am."</p>
 
-      <p>I hit this wall about a week ago. I've got six AI agents running on a Dell laptop in my room—monitoring DeFi protocols, scanning for money laundering patterns, tracking portfolio movements, scouting content, deploying my website, and coordinating the whole operation. Everything was reporting green. Every health check passed. The coordinator said all agents were fresh and active.</p>
+      <p>I hit this wall about a week ago. I've got a multi-agent system running—monitoring DeFi protocols, scanning for money laundering patterns, tracking portfolio movements, scouting content, deploying my website, and coordinating the whole operation. Everything was reporting green. Every health check passed. The coordinator said all agents were fresh and active.</p>
 
       <p>And I had this moment where I thought—how do I actually know that's true?</p>
 
@@ -141,19 +141,19 @@
 
       <p>So I did something that felt a little unhinged at the time: I built an agent whose entire job is to try to kill the other agents.</p>
 
-      <h2>Meet KALA</h2>
+      <h2>Meet the Kill Agent</h2>
 
-      <p>KALA runs every hour on cron. It has 12 attack modules that rotate through the week. Webhook malformation, SSH configuration probing, memory integrity checks, agent health staleness injection, process auditing, data credibility testing—the full menu of ways a system can be broken.</p>
+      <p>The kill agent runs on a schedule. It has rotating attack modules that cycle through the week—input validation testing, authentication probing, memory integrity checks, health staleness injection, process auditing, data credibility testing—the full menu of ways a system can be broken.</p>
 
-      <p>Each attack is designed to test one specific assumption the system makes about itself. The webhook module sends deliberately malformed payloads to see if the API validates input correctly. The SSH module checks if password authentication has been quietly re-enabled. The memory module injects wrong data into the context files and checks if the next session catches the discrepancy.</p>
+      <p>Each attack is designed to test one specific assumption the system makes about itself. One module sends deliberately malformed payloads to see if the API validates input correctly. Another checks if authentication has been quietly weakened. Another injects wrong data into context files and checks if the next session catches the discrepancy.</p>
 
-      <p>The name comes from Sanskrit—काल (Kāla) means time, death, the destroyer aspect of Shiva. In Hawaiian, Kala means to release, to unbind, to forgive. In Filipino, it means "I thought"—the moment a belief gets shattered. Every meaning orbits the same center: what survives when everything else is stripped away.</p>
+      <p>The concept borrows from every tradition that understood the same thing: what survives when everything else is stripped away? Not stability—adaptability. Not uptime—recovery speed.</p>
 
       <div class="embed-visual">
         <iframe src="blog-visuals/kill-agent/02-triad-architecture.html"
                 style="width:100%;height:650px;border:none;border-radius:12px;">
         </iframe>
-        <p class="embed-caption"><span class="interactive-badge">INTERACTIVE</span> The three-agent triad: MAYA designs, KAYA builds, KALA proves — or disproves</p>
+        <p class="embed-caption"><span class="interactive-badge">INTERACTIVE</span> The three-agent triad: one designs, one builds, one proves — or disproves</p>
       </div>
 
       <h2>The First Burn-In: 20% Survival</h2>
@@ -162,32 +162,32 @@
 
       <p>The first five kill tests came back brutal. One out of five survived. Twenty percent survival rate. Here's what happened:</p>
 
-      <p><strong>Kill 1 — webhook_malformed:</strong> KALA sent a garbage JSON payload to the webhook endpoint. The endpoint accepted it. It shouldn't have. That's an injection vector. <em>System killed.</em></p>
+      <p><strong>Kill 1 — Input Validation:</strong> The kill agent sent a garbage JSON payload to an API endpoint. The endpoint accepted it. It shouldn't have. That's an injection vector. <em>System killed.</em></p>
 
-      <p><strong>Kill 2 — ssh_config:</strong> KALA checked if SSH password authentication was enabled. It was. We thought it was off—it wasn't. Anyone on the network could try password brute-force. <em>System killed.</em></p>
+      <p><strong>Kill 2 — Auth Config:</strong> The kill agent checked if authentication was properly locked down. It wasn't. A configuration we thought was secure had silently regressed. <em>System killed.</em></p>
 
-      <p><strong>Kill 3 — memory_integrity:</strong> KALA checked whether the context files matched reality. They did. The memory layer held. <em>System survived.</em></p>
+      <p><strong>Kill 3 — Memory Integrity:</strong> The kill agent checked whether context files matched reality. They did. The memory layer held. <em>System survived.</em></p>
 
-      <p><strong>Kill 4 — agent_health:</strong> KALA checked if the coordinator could detect a stale agent. It couldn't. An agent could have been dead for hours and the coordinator would still report "all green." <em>System killed.</em></p>
+      <p><strong>Kill 4 — Staleness Detection:</strong> The kill agent checked if the coordinator could detect a stale agent. It couldn't. An agent could have been dead for hours and the coordinator would still report "all green." <em>System killed.</em></p>
 
-      <p><strong>Kill 5 — process_audit:</strong> KALA scanned for suspicious processes. It flagged <code>tracker-miner-fs-3</code>—a legitimate GNOME file indexer. False positive, but the module didn't have enough context to distinguish legit from suspicious. <em>System killed (incorrectly).</em></p>
+      <p><strong>Kill 5 — Process Audit:</strong> The kill agent scanned for suspicious processes. It flagged a legitimate system service as suspicious. False positive, but the module didn't have enough context to distinguish legit from suspicious. <em>System killed (incorrectly).</em></p>
 
       <div class="embed-visual">
         <iframe src="blog-visuals/kill-agent/01-kill-survival-dashboard.html"
                 style="width:100%;height:700px;border:none;border-radius:12px;">
         </iframe>
-        <p class="embed-caption"><span class="interactive-badge">INTERACTIVE</span> KALA's survival dashboard — real data, real failures, nothing hidden</p>
+        <p class="embed-caption"><span class="interactive-badge">INTERACTIVE</span> The kill agent's survival dashboard — real data, real failures, nothing hidden</p>
       </div>
 
       <h2>Why I'm Publishing This</h2>
 
       <p>Most people building agent systems would hide this data. Twenty percent survival sounds terrible. It sounds like the system is broken. It sounds like you shouldn't trust anything it does.</p>
 
-      <p>But here's what I actually learned: the system was always this fragile. KALA didn't create the vulnerabilities—it revealed them. The SSH misconfiguration existed before KALA found it. The webhook was accepting garbage before KALA tested it. The coordinator's blind spot for stale agents was always there.</p>
+      <p>But here's what I actually learned: the system was always this fragile. The kill agent didn't create the vulnerabilities—it revealed them. The auth misconfiguration existed before it was found. The API was accepting garbage before it was tested. The coordinator's blind spot for stale agents was always there.</p>
 
       <p>The difference is now I know.</p>
 
-      <p>And within hours of KALA's first burn-in, the SSH was hardened (key-only access, root login disabled), the coordinator was upgraded to save JSON reports with real timestamps, and all five remaining agents got wrapped in crash-detection shells that alert me via Telegram if anything dies.</p>
+      <p>And within hours of the first burn-in, authentication was hardened, the coordinator was upgraded to save JSON reports with real timestamps, and every agent got wrapped in crash-detection monitoring that alerts me if anything dies.</p>
 
       <p>The next burn-in will show different numbers. But the principle stays the same: every survival makes the next test harder.</p>
 
@@ -195,9 +195,9 @@
 
       <p>In Star Trek, the Kobayashi Maru is a no-win scenario at Starfleet Academy. It's a simulated rescue mission designed so that every possible choice leads to failure. The test doesn't measure whether you can win—it measures how you handle losing. How you respond when the situation is impossible.</p>
 
-      <p>Kirk famously cheated the test by reprogramming the simulation. But here's the thing—you can't cheat KALA. Because KALA IS the system testing itself. You can't reprogram your own immune system to stop finding problems. The moment you disable the kill agent, you've just created a new vulnerability: the absence of testing.</p>
+      <p>Kirk famously cheated the test by reprogramming the simulation. But here's the thing—you can't cheat a kill agent. Because it IS the system testing itself. You can't reprogram your own immune system to stop finding problems. The moment you disable the adversarial layer, you've just created a new vulnerability: the absence of testing.</p>
 
-      <p>KALA embodies the idea that the system's value isn't in its uptime number—it's in its recovery speed. How fast can it detect a break? How fast can it isolate the damage? How accurately can it diagnose the root cause? Those metrics matter more than any survival percentage.</p>
+      <p>The kill agent embodies the idea that the system's value isn't in its uptime number—it's in its recovery speed. How fast can it detect a break? How fast can it isolate the damage? How accurately can it diagnose the root cause? Those metrics matter more than any survival percentage.</p>
 
       <div class="embed-visual short">
         <iframe src="blog-visuals/kill-agent/03-kill-philosophy.html"
@@ -212,29 +212,29 @@
 
       <p>Google DeepMind published a paper recently on scaling multi-agent systems. The key finding: in unstructured agent networks, errors amplify 17.2x. Seventeen times. But with centralized coordination—which is what we use—error amplification drops to 4.4x. Add a kill agent that catches the remaining errors before they compound, and you've got something genuinely different from what everyone else is building.</p>
 
-      <p>The architecture is three agents working as one system: MAYA (the mind—designs, analyzes, writes content), KAYA (the body—executes code, runs agents, deploys services), and KALA (the immune system—attacks, tests, breaks). What MAYA imagines and KAYA builds, KALA proves or disproves. Remove any one vertex and the triangle collapses.</p>
+      <p>The architecture is three agents working as one system: a strategist (designs, analyzes, creates content), an executor (runs code, deploys services, manages infrastructure), and an adversary (attacks, tests, breaks). What the strategist imagines and the executor builds, the adversary proves or disproves. Remove any one vertex and the triangle collapses.</p>
 
       <h2>The Immune Memory</h2>
 
-      <p>Here's the part that actually makes this a system and not just chaos: every kill produces a rule. The rule goes into MISTAKES.md—the system's immune memory. Next session, every Claude instance reads that file before doing anything else. The mistake literally cannot be repeated because the knowledge of the mistake is hardcoded into the boot sequence.</p>
+      <p>Here's the part that actually makes this a system and not just chaos: every kill produces a rule. The rule goes into an immune memory file. Next session, every agent reads that file before doing anything else. The mistake literally cannot be repeated because the knowledge of the mistake is hardcoded into the boot sequence.</p>
 
-      <p>SSH was re-enabled somehow? Rule R-004 says check it. Webhook accepted bad input? Rule says validate. Coordinator missed a stale agent? Rule says verify timestamps.</p>
+      <p>Auth regressed? There's a rule for that. API accepted bad input? Rule says validate. Coordinator missed a stale agent? Rule says verify timestamps.</p>
 
-      <p>Over time, the kill agent generates fewer kills—not because it's testing less hard, but because the system has built antibodies against everything KALA has thrown at it. When that happens, KALA escalates. Harder tests. Multi-vector attacks. Full system kill simulations where everything fails simultaneously.</p>
+      <p>Over time, the kill agent generates fewer kills—not because it's testing less hard, but because the system has built antibodies against everything it's thrown at it. When that happens, it escalates. Harder tests. Multi-vector attacks. Full system kill simulations where everything fails simultaneously.</p>
 
       <p>The system either gets stronger or it reveals a new category of weakness. Both outcomes are wins.</p>
 
       <h2>The Honest Pitch</h2>
 
-      <p>I'm not going to pretend this is a finished product. It's a $200 laptop running six Python scripts on cron with an Ollama instance for local AI reasoning. The kill agent has been active for less than a week. The survival rate is embarrassing by any traditional metric.</p>
+      <p>I'm not going to pretend this is a finished product. It's a local server running specialized agents with a local AI reasoning layer. The kill agent has been active for less than a week. The survival rate is embarrassing by any traditional metric.</p>
 
-      <p>But traditional metrics are measuring the wrong thing. They measure stability—how long can you go without a failure? KALA measures something different: how fast can you recover from one? And how many potential failures did you prevent by finding them first?</p>
+      <p>But traditional metrics are measuring the wrong thing. They measure stability—how long can you go without a failure? The kill agent measures something different: how fast can you recover from one? And how many potential failures did you prevent by finding them first?</p>
 
       <p>I'd rather run a system with 20% survival that's honest about its weaknesses and improving daily than a system claiming 99.9% that's one untested assumption away from a real failure nobody planned for.</p>
 
-      <p>The numbers will get better. They already are—SSH is fixed, crash alerting is live, the coordinator now produces real reports. But the principle won't change: resilience isn't built by hoping nothing breaks. It's built by breaking things intentionally and surviving.</p>
+      <p>The numbers will get better. They already are—auth is hardened, crash alerting is live, the coordinator now produces real reports. But the principle won't change: resilience isn't built by hoping nothing breaks. It's built by breaking things intentionally and surviving.</p>
 
-      <p>That's what KALA does. Every hour. And the system is better for it every time.</p>
+      <p>That's what the kill agent does. On schedule. And the system is better for it every time.</p>
 
     </div>
   </article>

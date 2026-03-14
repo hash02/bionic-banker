@@ -167,7 +167,7 @@
 
     <div class="article-body">
 
-      <p>Okay so here's where this started—I had six AI agents running on a Dell laptop. Cron jobs, a Telegram bot, a RAG pipeline, the whole thing. And every time I opened a new Claude session to work on the system, it was like talking to someone with amnesia. Same agent, same files, same projects—but zero memory of what we'd done 30 minutes ago.</p>
+      <p>Okay so here's where this started—I had a multi-agent system running. Automated jobs, notification pipelines, a RAG layer, the whole thing. And every time I opened a new Claude session to work on the system, it was like talking to someone with amnesia. Same agent, same files, same projects—but zero memory of what we'd done 30 minutes ago.</p>
 
       <p>The context window resets. Everyone knows this. But knowing it and <em>feeling</em> it when your agent asks you what the AML engine version is for the fifth time—those are different things.</p>
 
@@ -189,7 +189,7 @@
 
       <p>Before I break down the five layers—I need to be honest about prior art. Three established approaches do pieces of what I built.</p>
 
-      <p>Stormy AI coined "Compound Engineering"—the idea that an agents.md file gets smarter every time the AI makes a mistake. That's functionally what my MISTAKES.md does. GuardLoop built an open-source tool around the same concept. And the A-MEM paper from February 2025 described an agent that autonomously connects new memories to existing ones—which is what my MEMORY_CORE.md does.</p>
+      <p>Stormy AI coined "Compound Engineering"—the idea that an agents.md file gets smarter every time the AI makes a mistake. That's functionally what my immune memory file does. GuardLoop built an open-source tool around the same concept. And the A-MEM paper from February 2025 described an agent that autonomously connects new memories to existing ones—which is what my knowledge base layer does.</p>
 
       <p>So no, I didn't invent mistake logging. I didn't invent agent memory files.</p>
 
@@ -203,43 +203,43 @@
 
       <h2>Layer 1—Boot Memory (The Most Important, Least Respected Layer)</h2>
 
-      <p>QUICK_CONTEXT.md. That's it. One markdown file. Takes 10 seconds to read. Contains: who I am, what's live, what's broken, what the last few sessions did, and known traps to avoid.</p>
+      <p>One markdown file. That's it. Takes 10 seconds to read. Contains: who the agent is, what's live, what's broken, what the last few sessions did, and known traps to avoid. I call it the boot file.</p>
 
       <p>Think of it like glancing at your desk before starting work. You don't read your entire diary. You look at what's in front of you—the sticky notes, the open tabs, the coffee that's gone cold. That's boot memory.</p>
 
-      <p>Here's why this matters more than you'd think—without it, every new session starts by asking questions the files already answer. "What version is the AML engine?" "How many articles are live on the site?" "What's the Dell server's IP address?" All of that is answered in QUICK_CONTEXT. And without it, the first 5-10 minutes of every session are wasted on orientation.</p>
+      <p>Here's why this matters more than you'd think—without it, every new session starts by asking questions the files already answer. "What version is the engine?" "How many articles are live?" "What's the current priority?" All of that is in the boot file. Without it, the first 5-10 minutes of every session are wasted on orientation.</p>
 
-      <p>The stress test showed this is also the <em>most fragile</em> layer. When I ran the cold start scenario, QUICK_CONTEXT said the system was at Level 3 when reality was Level 5. The file existed, it was being read—but nobody was updating it. The most-read file was the least-written file.</p>
+      <p>The stress test showed this is also the <em>most fragile</em> layer. When I ran the cold start scenario, the boot file said the system was at Level 3 when reality was Level 5. The file existed, it was being read—but nobody was updating it. The most-read file was the least-written file.</p>
 
       <p>That's the first design lesson: boot memory needs forced refresh. It can't be optional. If your session-end protocol doesn't update the boot file, you're building on stale ground next time.</p>
 
       <h2>Layer 2—Episodes (Your Journal, Not Your Textbook)</h2>
 
-      <p>SESSION_LOG.md. Append-only log of what happened in each session. Not what's true—what <em>occurred</em>. Decisions made, actions taken, files modified, things that broke.</p>
+      <p>An append-only session log. What happened in each session. Not what's true—what <em>occurred</em>. Decisions made, actions taken, files modified, things that broke.</p>
 
       <p>The human equivalent is a journal. You don't open it to learn facts. You open it to remember the sequence of events. Why did we make that architectural decision three sessions ago? What led to the rule change? Episodic memory captures causality, not just content.</p>
 
       <p>And this is exactly why RAG can't replace it. RAG retrieves by semantic similarity—"find me things related to AML rules." But the question "what did we decide about the bridge design in Session 22?" requires temporal context. It requires knowing that Session 22 came after the stress test and before the bridge deployment. Keyword matching doesn't capture that.</p>
 
-      <p>The weakness I found: episodic memory grows but never compresses. SESSION_LOG hit 200+ lines. When I tested decision recall, the correct answer was in there—but finding it took scanning 200 lines of chronological entries. The immune system found the same answer faster because it was compressed into a one-line rule.</p>
+      <p>The weakness I found: episodic memory grows but never compresses. The session log hit 200+ lines. When I tested decision recall, the correct answer was in there—but finding it took scanning 200 lines of chronological entries. The immune system found the same answer faster because it was compressed into a one-line rule.</p>
 
       <h2>Layer 3—The Immune System (This Is the Actually Novel Part)</h2>
 
       <p>Okay so this is the piece I think matters most. And it's also the piece that sounds the most boring when you describe it.</p>
 
-      <p>MISTAKES.md is a file where every error gets logged. When something breaks—wrong path given, wrong machine's command used, stale data relied on—it goes in the file. Then the lesson gets extracted into a numbered rule: R-001, R-002, R-003. And those rules get hardcoded into the agent's startup protocol. Every new session inherits every lesson from every past failure.</p>
+      <p>The immune memory file is where every error gets logged. When something breaks—wrong path given, wrong machine's command used, stale data relied on—it goes in the file. Then the lesson gets extracted into a numbered rule. And those rules get hardcoded into the agent's startup protocol. Every new session inherits every lesson from every past failure.</p>
 
       <p>That's it. That's the whole thing. It sounds mundane.</p>
 
       <p>But think about what it actually <em>does</em>. Most memory systems store what worked. This one stores what <em>failed</em> and builds prevention rules. That's not knowledge storage—that's antibody generation. The system literally gets harder to break over time.</p>
 
-      <p>Example. Early on, I gave a Dell server command using a Windows path. The agent executed it. It broke. Mistake logged. Rule extracted: "R-010—Label EVERY command with which machine it runs on." Now every session, before any command executes, the system checks whether the machine context is labeled. One mistake—one antibody—permanent immunity.</p>
+      <p>Example. Early on, I gave a server command using the wrong OS path syntax. The agent executed it. It broke. Mistake logged. Rule extracted: "Label EVERY command with which machine it runs on." Now every session, before any command executes, the system checks whether the machine context is labeled. One mistake—one antibody—permanent immunity.</p>
 
       <p>When I stress-tested decision recall, the immune system beat episodic memory. The compressed rule was faster to locate than the full journal entry. Antibodies outperform diaries for the same reason vaccines outperform medical records—they're pre-processed for action, not archived for reference.</p>
 
       <h2>Layer 4—Identity</h2>
 
-      <p>CLAUDE.md. The big one. This is procedural memory plus declarative memory—the rules, the personality, the voice guide, the project states, the decision-making frameworks. It's what makes a new session feel like the same agent instead of a stranger who has access to your files.</p>
+      <p>The identity file. The big one. This is procedural memory plus declarative memory—the rules, the personality, the voice guide, the project states, the decision-making frameworks. It's what makes a new session feel like the same agent instead of a stranger who has access to your files.</p>
 
       <p>Without this layer, you get technically correct responses with zero personality. The code works but the agent doesn't feel like <em>your</em> agent. It doesn't know your communication style, your project naming conventions, your philosophical framework, your content voice.</p>
 
@@ -247,7 +247,7 @@
 
       <h2>Layer 5—Knowledge Base (The Layer Everyone Builds First and Should Build Last)</h2>
 
-      <p>MEMORY_CORE.md, STOLEN_IDEAS.md, content queues, pattern libraries. Long-term semantic memory. The stuff most people think of when they hear "AI memory."</p>
+      <p>The knowledge base. Curated insights, content queues, pattern libraries. Long-term semantic memory. The stuff most people think of when they hear "AI memory."</p>
 
       <p>And look—it matters. Having a persistent knowledge base means the system doesn't re-discover insights. But here's the counterintuitive finding from actually running this architecture: <em>the system works without Layer 5.</em> Remove the knowledge base and the agent still boots, still knows what it was doing, still avoids past mistakes, still maintains personality. Remove Layer 1 (boot) or Layer 3 (immune) and the system breaks immediately.</p>
 
@@ -269,7 +269,7 @@
 
       <p><strong>Content Pipeline:</strong> Tried to write a blog post end-to-end. Boot memory had no content status. Identity layer had the voice guide and rules intact. Partial pass. Finding: content state needs a home in the boot sequence.</p>
 
-      <p><strong>Crisis Recovery:</strong> Simulated a Dell server crash. Every single layer failed. No recovery runbook anywhere in the system. Total fail. This was the biggest gap—five layers of memory and none of them handle "everything is broken, what do I check first?" Fixed this with a dedicated RECOVERY.md after the test.</p>
+      <p><strong>Crisis Recovery:</strong> Simulated a full server crash. Every single layer failed. No recovery runbook anywhere in the system. Total fail. This was the biggest gap—five layers of memory and none of them handle "everything is broken, what do I check first?" Fixed this with a dedicated recovery protocol after the test.</p>
 
       <p><strong>Decision Recall:</strong> "What did we decide about X?" The immune system found it in 2 seconds (compressed rule). The episode log found it in 30 seconds (buried in 200+ lines). For fast recall, antibodies beat journals.</p>
 
@@ -279,7 +279,7 @@
 
       <p>There's a missing layer between immune and identity—recovery memory. None of the five layers handle "everything is broken." That's a sixth layer I'm adding: the runbook layer. Pre-written recovery procedures for every critical subsystem.</p>
 
-      <p>Episodic memory needs compression. SESSION_LOG grows forever. It should periodically compress—like how MEMORY_CORE distills knowledge. Old episodes should be summarized, not deleted.</p>
+      <p>Episodic memory needs compression. The session log grows forever. It should periodically compress—like how the knowledge base distills insights. Old episodes should be summarized, not deleted.</p>
 
       <p>And the whole thing is file-based. Markdown. No database, no API, no infrastructure dependency. That's a feature. It means the memory system is portable—drop the files into any new agent and it inherits everything. Portability over sophistication. The simplest implementation that actually works will outlast the most sophisticated implementation that requires setup.</p>
 
@@ -299,7 +299,7 @@
 
       <h2>Where This Goes Next</h2>
 
-      <p>Right now I'm running a 14-day independence test. The goal is to build the system to the point where it runs without me—six agents on cron, self-check on boot, a triple-redundancy bridge between machines, and enough content stockpiled to keep publishing for weeks.</p>
+      <p>Right now I'm running an independence test. The goal is to build the system to the point where it runs without me—automated agents, self-check on boot, redundant communication between components, and enough content stockpiled to keep publishing for weeks.</p>
 
       <p>The memory system is the foundation all of that sits on. Without continuity, every session starts from scratch. With it, the system compounds. Every mistake makes it stronger. Every session leaves it smarter. Every failure builds an antibody.</p>
 
