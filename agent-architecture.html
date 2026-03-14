@@ -716,5 +716,24 @@
   </div>
 
 </div>
+
+  <script>
+  function toggleNav() {
+    const nav = document.querySelector('.nav-right');
+    const overlay = document.getElementById('navOverlay');
+    nav.classList.toggle('open');
+    overlay.classList.toggle('active');
+    overlay.onclick = function() {
+      nav.classList.remove('open');
+      overlay.classList.remove('active');
+    };
+    nav.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        nav.classList.remove('open');
+        overlay.classList.remove('active');
+      });
+    });
+  }
+  </script>
 </body>
 </html>

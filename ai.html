@@ -711,44 +711,36 @@ async function loadYields() {
   }
 }
 
-// Agent reports — static for now, Kaya will push JSON later
-function loadReports() {
-  const feed = document.getElementById('reportFeed');
-  const reports = [
-    {
-      type: 'market',
-      agent: 'Market Intel',
-      time: 'Today',
-      title: 'Market Sentiment: Extreme Fear (16)',
-      body: 'Fear & Greed Index has been below 20 for 7 consecutive days. Reddit buzzing about Iran crypto movements during blackout and Bessent remarks pushing BTC to $71K. Ollama analysis suggests cautious optimism (60/100) despite index reading — the delta between index fear and actual news tone is the signal.',
-      tags: ['sentiment', 'fear-greed', 'macro']
-    },
-    {
-      type: 'research',
-      agent: 'Research',
-      time: 'Today',
-      title: 'Circle Overtakes BlackRock in Tokenized Treasuries',
-      body: 'Tokenized treasury market hit $11B. Circle\'s USYC fund at $2.2B surpassed BlackRock\'s BUIDL. Investors seeking onchain yield + collateral. This is the RWA thesis materializing — the bridge between TradFi and DeFi is being built with treasury bills.',
-      tags: ['RWA', 'tokenization', 'treasuries', 'circle']
-    },
-    {
-      type: 'security',
-      agent: 'AML Monitor',
-      time: 'Today',
-      title: '2 CRITICAL Wallets Flagged',
-      body: 'Lazarus Group (Ronin Bridge) — 3 rule triggers. Tornado Cash Router — 14 rule triggers. Both flagged CRITICAL. 3 wallets monitored, 18 total risk flags across the watchlist.',
-      tags: ['lazarus', 'tornado-cash', 'OFAC', 'critical']
-    },
-    {
-      type: 'trading',
-      agent: 'Paper Trader',
-      time: 'Today',
-      title: 'DCA Buys Triggered — BTC + ETH',
-      body: '$25 DCA into BTC at $70,679 and $25 into ETH at $2,077. Trail entry positions from earlier today still holding. Total capital deployed: $250 of $1,000. Conservative positioning in Extreme Fear — textbook accumulation.',
-      tags: ['DCA', 'BTC', 'ETH', 'accumulation']
-    }
-  ];
+// Fallback report data (used when JSON fetch fails)
+const FALLBACK_REPORTS = [
+  {
+    type: 'market', agent: 'Market Intel', time: 'Today',
+    title: 'Market Sentiment: Extreme Fear (16)',
+    body: 'Fear & Greed Index has been below 20 for 7 consecutive days. Reddit buzzing about Iran crypto movements during blackout and Bessent remarks pushing BTC to $71K. Ollama analysis suggests cautious optimism (60/100) despite index reading — the delta between index fear and actual news tone is the signal.',
+    tags: ['sentiment', 'fear-greed', 'macro']
+  },
+  {
+    type: 'research', agent: 'Research', time: 'Today',
+    title: 'Circle Overtakes BlackRock in Tokenized Treasuries',
+    body: 'Tokenized treasury market hit $11B. Circle\'s USYC fund at $2.2B surpassed BlackRock\'s BUIDL. Investors seeking onchain yield + collateral. This is the RWA thesis materializing — the bridge between TradFi and DeFi is being built with treasury bills.',
+    tags: ['RWA', 'tokenization', 'treasuries', 'circle']
+  },
+  {
+    type: 'security', agent: 'AML Monitor', time: 'Today',
+    title: '2 CRITICAL Wallets Flagged',
+    body: 'Lazarus Group (Ronin Bridge) — 3 rule triggers. Tornado Cash Router — 14 rule triggers. Both flagged CRITICAL. 3 wallets monitored, 18 total risk flags across the watchlist.',
+    tags: ['lazarus', 'tornado-cash', 'OFAC', 'critical']
+  },
+  {
+    type: 'trading', agent: 'Paper Trader', time: 'Today',
+    title: 'DCA Buys Triggered — BTC + ETH',
+    body: '$25 DCA into BTC at $70,679 and $25 into ETH at $2,077. Trail entry positions from earlier today still holding. Total capital deployed: $250 of $1,000. Conservative positioning in Extreme Fear — textbook accumulation.',
+    tags: ['DCA', 'BTC', 'ETH', 'accumulation']
+  }
+];
 
+function renderReports(reports) {
+  const feed = document.getElementById('reportFeed');
   feed.innerHTML = '';
   reports.forEach(r => {
     feed.innerHTML += `
@@ -764,6 +756,99 @@ function loadReports() {
     `;
   });
 }
+
+// Load live data from ai-report-latest.json, fallback to hardcoded
+async function loadLiveData() {
+  try {
+    const res = await fetch(DATA_BASE + 'ai-report-latest.json');
+    if (!res.ok) throw new Error('No live data');
+    const data = await res.json();
+
+    // Update Fear & Greed if present
+    if (data.fear_greed) {
+      const fg = data.fear_greed;
+      if (fg.score !== undefined) {
+        document.getElementById('fgScore').textContent = fg.score;
+        document.getElementById('fgScore').style.color = fgColor(fg.score);
+        document.getElementById('fgLabel').textContent = fg.label || '';
+        document.getElementById('fgLabel').style.color = fgColor(fg.score);
+        const angle = (fg.score / 100) * 180 - 90;
+        document.getElementById('gaugeNeedle').style.transform = `translateX(-50%) rotate(${angle}deg)`;
+      }
+    }
+
+    // Update Market Watch if present
+    if (data.market_prices && Object.keys(data.market_prices).length > 0) {
+      const grid = document.getElementById('marketGrid');
+      grid.innerHTML = '';
+      Object.entries(data.market_prices).forEach(([sym, d]) => {
+        const change = d.change_24h || 0;
+        const cls = change >= 0 ? 'up' : 'down';
+        const arrow = change >= 0 ? '+' : '';
+        const price = d.price || 0;
+        grid.innerHTML += `
+          <div class="market-card">
+            <div>
+              <div class="symbol">${sym}</div>
+              <div class="thesis">${TOKEN_THESIS[sym] || ''}</div>
+            </div>
+            <div class="price-col">
+              <div class="price">$${price >= 1 ? price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) : price.toFixed(4)}</div>
+              <div class="change ${cls}">${arrow}${change.toFixed(1)}%</div>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('marketTime').textContent = new Date().toLocaleTimeString();
+    }
+
+    // Update Agent Reports if present
+    if (data.agent_highlights && data.agent_highlights.length > 0) {
+      renderReports(data.agent_highlights);
+    } else {
+      renderReports(FALLBACK_REPORTS);
+    }
+
+    // Update Paper Trading if present
+    if (data.paper_trade_summary) {
+      const pts = data.paper_trade_summary;
+      const summary = document.getElementById('tradeSummary');
+      const positions = document.getElementById('tradePositions');
+      const returnPct = pts.return_pct || 0;
+      const color = returnPct >= 0 ? 'var(--green)' : 'var(--red)';
+      summary.innerHTML = `
+        <div class="trade-stat"><div class="val" style="color:${color}">$${(pts.value || 0).toFixed(0)}</div><div class="lbl">Portfolio</div></div>
+        <div class="trade-stat"><div class="val" style="color:${color}">${returnPct > 0 ? '+' : ''}${returnPct.toFixed(1)}%</div><div class="lbl">Return</div></div>
+        <div class="trade-stat"><div class="val">$${pts.cash || 0}</div><div class="lbl">Cash</div></div>
+        <div class="trade-stat"><div class="val">${pts.trades || 0}</div><div class="lbl">Trades</div></div>
+      `;
+      if (pts.positions && pts.positions.length > 0) {
+        positions.innerHTML = '<div style="margin-top:10px;font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">Open Positions</div>';
+        pts.positions.forEach(p => {
+          positions.innerHTML += `<div style="padding:6px 0;border-bottom:1px solid var(--border);">${p.sym}: ${p.qty.toFixed(6)} @ $${p.entry.toLocaleString('en-US',{minimumFractionDigits:2})}</div>`;
+        });
+      }
+    }
+
+    // Update last-updated timestamp
+    if (data.generated_at) {
+      const genDate = new Date(data.generated_at);
+      const minsAgo = Math.round((Date.now() - genDate.getTime()) / 60000);
+      document.getElementById('footerTime').textContent = minsAgo < 60
+        ? `Last updated: ${minsAgo} minutes ago`
+        : `Last updated: ${Math.round(minsAgo/60)} hours ago`;
+    }
+
+    return true;
+  } catch(e) {
+    // Fallback — use hardcoded data
+    renderReports(FALLBACK_REPORTS);
+    return false;
+  }
+}
+
+// Legacy function name kept for boot sequence
+function loadReports() { renderReports(FALLBACK_REPORTS); }
 
 // Paper trade data
 function loadPaperTrade() {
@@ -833,14 +918,24 @@ function loadRoasts() {
 }
 
 // Boot
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
+  // Try live data first — it can override Fear&Greed, Market, Reports, and Paper Trade
+  const liveLoaded = await loadLiveData();
+
+  // Always fetch live Fear & Greed and Market from APIs (authoritative, free)
   loadFearGreed();
   loadMarket();
   loadYields();
-  loadReports();
-  loadPaperTrade();
+
+  // Only load hardcoded paper trade if live data didn't have it
+  if (!liveLoaded) {
+    loadPaperTrade();
+  }
+
   loadRoasts();
-  document.getElementById('footerTime').textContent = 'Last loaded: ' + new Date().toLocaleString();
+  if (!liveLoaded) {
+    document.getElementById('footerTime').textContent = 'Last loaded: ' + new Date().toLocaleString();
+  }
 });
 </script>
 
