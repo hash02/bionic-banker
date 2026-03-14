@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
     
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,22 +54,7 @@
   </head>
 <body>
 
-        <nav>
-    <a href="index.html" class="nav-logo">Bionic <span>Banker</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="articles.html">All Articles</a></li>
-        <li><a href="ai.html">AI Intelligence</a></li>
-        <li><a href="investigate.html">Investigate</a></li>
-        <li><a href="index.html#about">About</a></li>
-      </ul>
-      <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a>
-    </div>
-  </nav>
-  <div class="nav-overlay" id="navOverlay"></div>
+        <nav></nav>
 
   <div class="article-header">
     <div class="article-meta">
@@ -203,25 +188,6 @@
   <footer>
     <p class="footer-copy">© 2026 Bionic Banker · <a href="/index.html" style="color:var(--accent);">bionicbanker.tech</a></p>
   </footer>
-
-
-  <script>
-  function toggleNav() {
-    const nav = document.querySelector('.nav-right');
-    const overlay = document.getElementById('navOverlay');
-    nav.classList.toggle('open');
-    overlay.classList.toggle('active');
-    overlay.onclick = function() {
-      nav.classList.remove('open');
-      overlay.classList.remove('active');
-    };
-    nav.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        nav.classList.remove('open');
-        overlay.classList.remove('active');
-      });
-    });
-  }
-  </script>
+  <script src="nav.js"></script>
 </body>
 </html>

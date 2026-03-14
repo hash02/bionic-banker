@@ -780,7 +780,7 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
 .nav-overlay.active { display: block; }
 
 @media (max-width: 640px) {
-  nav { padding: 0 1.25rem; }
+  nav { padding: 0 1.25rem; backdrop-filter: none; -webkit-backdrop-filter: none; }
 
   .nav-toggle { display: block; }
 
@@ -807,10 +807,29 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   .nav-links {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.5rem;
   }
   .nav-links a {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
+    color: #e4e4ec !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+    padding: 0.5rem 0;
+    display: block;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #1fa068 !important;
+  }
+  .nav-cta {
+    color: #1fa068 !important;
+    border-color: #1fa068 !important;
+    font-size: 0.8rem !important;
+    padding: 0.6rem 1.2rem !important;
+    display: inline-block;
+    text-align: center;
+    margin-top: 0.5rem;
   }
   .nav-cta {
     margin-top: 0.5rem;
