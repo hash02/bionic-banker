@@ -36,7 +36,7 @@
   <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">Bionic <span>Banker</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-right').classList.toggle('open')">
+    <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-right">
@@ -50,6 +50,7 @@
       <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a>
     </div>
   </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- HERO -->
   <div class="hero-wrap">
@@ -280,5 +281,27 @@
     </div>
   </footer>
 
+
+  <script>
+  function toggleNav() {
+    const nav = document.querySelector('.nav-right');
+    const overlay = document.getElementById('navOverlay');
+    const btn = document.querySelector('.nav-toggle');
+    nav.classList.toggle('open');
+    overlay.classList.toggle('active');
+    // Close when clicking overlay
+    overlay.onclick = function() {
+      nav.classList.remove('open');
+      overlay.classList.remove('active');
+    };
+    // Close when clicking a link
+    nav.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        nav.classList.remove('open');
+        overlay.classList.remove('active');
+      });
+    });
+  }
+  </script>
 </body>
 </html>

@@ -757,18 +757,27 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
   z-index: 1001;
+  position: relative;
 }
 .nav-toggle span {
   display: block;
-  width: 22px;
+  width: 24px;
   height: 2px;
   background: var(--text, #e4e4ec);
   margin: 5px 0;
   border-radius: 2px;
   transition: transform 0.3s, opacity 0.3s;
 }
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 998;
+}
+.nav-overlay.active { display: block; }
 
 @media (max-width: 640px) {
   nav { padding: 0 1.25rem; }
@@ -778,19 +787,22 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   .nav-right {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 260px;
     height: 100vh;
-    background: var(--bg, #08080e);
+    height: 100dvh;
+    background: #08080e;
     border-left: 1px solid rgba(31,160,104,0.15);
     flex-direction: column;
     padding: 4rem 1.5rem 2rem;
-    transition: right 0.3s ease;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
     z-index: 1000;
     gap: 1.5rem;
+    display: flex !important;
   }
   .nav-right.open {
-    right: 0;
+    transform: translateX(0);
   }
   .nav-links {
     display: flex;
