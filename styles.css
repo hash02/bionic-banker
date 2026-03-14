@@ -751,9 +751,59 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   .trait-grid { grid-template-columns: 1fr; }
 }
 
+/* ─── Hamburger Menu Button ─── */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1001;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text, #e4e4ec);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
 @media (max-width: 640px) {
   nav { padding: 0 1.25rem; }
-  .nav-links { display: none; }
+
+  .nav-toggle { display: block; }
+
+  .nav-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: var(--bg, #08080e);
+    border-left: 1px solid rgba(31,160,104,0.15);
+    flex-direction: column;
+    padding: 4rem 1.5rem 2rem;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    gap: 1.5rem;
+  }
+  .nav-right.open {
+    right: 0;
+  }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .nav-links a {
+    font-size: 0.9rem !important;
+  }
+  .nav-cta {
+    margin-top: 0.5rem;
+  }
+
   .hero { padding: 2.5rem 1.25rem 2rem; }
   .content-wrap { padding: 2rem 1.25rem; }
   .newsletter-strip { flex-direction: column; }
