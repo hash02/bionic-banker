@@ -1,112 +1,96 @@
 {
-  "generated_at": "2026-03-15T15:38:15Z",
+  "generated_at": "2026-03-15T19:45:00+00:00",
   "fear_greed": {
     "value": 15,
-    "label": "Extreme Fear",
-    "trend": "stable"
+    "label": "Extreme Fear"
   },
-  "market_pulse": "Everything's green on the day but nobody's buying it\u2014Extreme Fear at 15 while the board paints relief. BTC holding above 71k, ETH nudging 2095, and the smaller caps are actually outperforming. OP leading the charge at +2.4%, LINK at +2%. The DCA engine keeps stacking into this\u2014exactly what you want when sentiment is this detached from price action. Two critical AML flags came through the monitor, verification system shows zero drift across all 16 checks. System's running clean.",
+  "market_pulse": "Prices are quietly green across the board—BTC holding above $71K, ETH recovering past $2,100—but the sentiment index is screaming extreme fear at 15. That divergence is the story right now: price action says bounce, the crowd says run. LINK is the quiet outperformer at +1.96% while everything else moves in a tight cluster. Two critical AML wallets re-flagged. Verification system clean—16/16, zero drift.",
   "top_movers": [
     {
-      "token": "OP",
-      "price": 0.1255,
-      "change_24h": 2.4,
-      "why": "L2 narrative holding\u2014outperforming L1s on a green day"
-    },
-    {
       "token": "LINK",
-      "price": 9.16,
-      "change_24h": 2.02,
-      "why": "Oracle demand thesis intact\u2014steady accumulation zone"
+      "price": 9.20,
+      "change_24h": 1.96
     },
     {
       "token": "AVAX",
       "price": 9.73,
-      "change_24h": 1.74,
-      "why": "Subnet activity ticking up\u2014modest recovery from multi-month lows"
-    },
-    {
-      "token": "SOL",
-      "price": 87.96,
-      "change_24h": 1.36,
-      "why": "Holding 85+ support\u2014volume still thin relative to the bounce"
-    },
-    {
-      "token": "BTC",
-      "price": 71535,
-      "change_24h": 1.34,
-      "why": "Grinding above 71k\u2014sentiment disconnect suggests either capitulation exhaustion or a trap"
+      "change_24h": 1.73
     },
     {
       "token": "ETH",
-      "price": 2095.11,
-      "change_24h": 0.98,
-      "why": "Underperforming BTC\u2014ratio weakness continues but 2000 floor holding"
+      "price": 2112.34,
+      "change_24h": 1.67
+    },
+    {
+      "token": "SOL",
+      "price": 88.20,
+      "change_24h": 1.40
+    },
+    {
+      "token": "BTC",
+      "price": 71539,
+      "change_24h": 1.21
     }
   ],
   "agent_highlights": [
     {
-      "agent": "threat monitor",
-      "headline": "2 critical AML flags detected",
-      "detail": "Scanned 3 addresses, 15 total flags with 2 at critical severity. Patterns consistent with layering activity.",
-      "timestamp": "2026-03-15T15:01:01Z"
+      "source": "the AML monitor",
+      "headline": "Tornado Cash router re-flagged — 11 risk indicators active",
+      "detail": "0xd90e2f925DA726 triggered 11 flags including mixer deposit patterns and repeat offending (39 cycles). Risk score 360. Lazarus Group Ronin Bridge wallet also active with 3 critical flags.",
+      "time": "2026-03-15T15:01:00+00:00"
     },
     {
-      "agent": "verification system",
-      "headline": "16/16 checks verified\u2014zero drift",
-      "detail": "All data integrity checks passed. No hallucination or drift detected across the full agent pipeline.",
-      "timestamp": "2026-03-15T15:15:04Z"
+      "source": "the yield scanner",
+      "headline": "Hyperliquid L1 USDC pool holding 345% APY — DeFiLlama verified",
+      "detail": "Top three: Hyperliquid L1 (345.2% APY, $8.4M TVL), Base aerodrome-slipstream (331.27% APY, $1.27M TVL), Ethereum Curve DEX (163.89% APY, $1.54M TVL). No alerts raised.",
+      "time": "2026-03-15T19:00:52+00:00"
     },
     {
-      "agent": "yield scanner",
-      "headline": "Top stablecoin yields identified",
-      "detail": "Base USDZ-SUSDZ at 406% APY ($1.27M TVL), Hyperliquid USDC at 192% APY ($8.4M TVL). High APY pools flagged\u2014verify sustainability before allocation.",
-      "timestamp": "2026-03-15T15:00:47Z"
+      "source": "the sentiment engine",
+      "headline": "Fear composite 26.5 — Reddit scanning Iran crypto surge and BlackRock ETF flows",
+      "detail": "25 Reddit posts scanned, 703 total comments. Top signals: Iran crypto movement, Strategy's BTC losses, Trump crypto venture. Ollama analysis scores 65/100—cautiously optimistic.",
+      "time": "2026-03-15T19:30:24+00:00"
     },
     {
-      "agent": "trading engine",
-      "headline": "DCA cycle executed\u2014BTC + ETH stacked",
-      "detail": "Latest DCA buys: $25 BTC at $71,680 and $25 ETH at $2,115. Running DCA strategy with $25 per asset per cycle.",
-      "timestamp": "2026-03-15T11:41:37Z"
-    }
-  ],
-  "yield_snapshot": [
-    {
-      "protocol": "Base (USDZ-SUSDZ)",
-      "pool": "USDZ-SUSDZ",
-      "apy": 406.07,
-      "tvl": 1274063
-    },
-    {
-      "protocol": "Hyperliquid L1",
-      "pool": "USDC",
-      "apy": 191.99,
-      "tvl": 8441736
-    },
-    {
-      "protocol": "Curve-Dex (Ethereum)",
-      "pool": "IDAI-IUSDC-IUSDT",
-      "apy": null,
-      "tvl": null
+      "source": "the verification system",
+      "headline": "16/16 checks verified — zero drift across full pipeline",
+      "detail": "All agent crons active and running. Price claims within 2% tolerance. Yield data confirmed on DeFiLlama. No hallucination or drift detected.",
+      "time": "2026-03-15T19:15:03+00:00"
     }
   ],
   "paper_trade_summary": {
-    "portfolio_value": 1002.39,
-    "return_pct": 0.24,
-    "top_position": "USDT ($700 cash)\u201469.8% of portfolio",
-    "latest_trade": "DCA buy $25 ETH at $2,115.71 (Mar 15)"
+    "portfolio_value": 826.07,
+    "return_pct": -17.39
+  },
+  "latest_roasts": [
+    {
+      "address": "0xe708f172",
+      "roast": "You've got a wallet with a risk score of 381, triggering every red flag in the book, including a hefty $7,230,320.89 in suspicious transactions—apparently layering cycles and novel wallet dumps just weren't enough to keep you under the radar, especially with an OFAC SDN match hanging over your head.",
+      "risk_score": 381
+    },
+    {
+      "address": "0xd90e2f92",
+      "roast": "You've managed to trigger every high value ETH rule in the book with your wallet, including a nice $218.20 flagged amount, and to top it off you've got a lovely history of repeat offending—39 times to be exact—because who needs subtlety when you're laundering crypto.",
+      "risk_score": 360
+    },
+    {
+      "address": "0x5a5444f6",
+      "roast": "You've got a wallet with a risk score of 330, triggering seven rules including OFAC_SDN_MATCH and structuring, all for a paltry $15.34—which makes me question whether you're a money launderer or just really bad at it.",
+      "risk_score": 330
+    }
+  ],
+  "system_health": {
+    "agents_online": 9,
+    "satya_verified": 16,
+    "satya_drift": 0
   },
   "meta": {
-    "data_freshness": "all sources < 45min old",
-    "next_update": "2026-03-15T19:38:15Z",
+    "next_update": "2026-03-15T23:45:00+00:00",
     "sources": [
       "CoinGecko API",
-      "Alternative.me F&G",
+      "Alternative.me Fear & Greed",
       "kaya.db agent reports",
       "paper-trader state"
-    ],
-    "unverified": [
-      "Curve-Dex yield data incomplete\u2014flagged UNVERIFIED"
     ]
   }
 }
