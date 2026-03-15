@@ -815,6 +815,31 @@ async function loadLiveData() {
       }
     }
 
+    // Update Wallet Roasts if present
+    if (data.latest_roasts && data.latest_roasts.length > 0) {
+      const feed = document.getElementById('roastFeed');
+      feed.innerHTML = '';
+      data.latest_roasts.forEach(r => {
+        const score = r.risk_score || 0;
+        const addr = r.address || '0x????';
+        const text = r.roast || '';
+        const rules = r.rules || [];
+        const verdict = r.verdict || (score >= 400 ? 'CRITICAL' : score >= 200 ? 'HIGH RISK' : 'FLAGGED');
+        feed.innerHTML += `
+          <div class="roast-card">
+            <div class="report-header">
+              <div class="roast-score">${score}/1000</div>
+              <span class="report-time">${addr}</span>
+            </div>
+            <div class="roast-text">"${text}"</div>
+            ${rules.length > 0 ? `<div class="roast-rules">${rules.map(t => `<span class="rule-tag">${t}</span>`).join('')}</div>` : ''}
+            <div style="margin-top:8px;font-size:0.72rem;color:var(--red);font-weight:600;">${verdict}</div>
+          </div>
+        `;
+      });
+      window._roastsFromLive = true;
+    }
+
     // Update last-updated timestamp
     if (data.generated_at) {
       const genDate = new Date(data.generated_at);
@@ -917,7 +942,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     loadPaperTrade();
   }
 
-  loadRoasts();
+  if (!window._roastsFromLive) loadRoasts();
   if (!liveLoaded) {
     document.getElementById('footerTime').textContent = 'Last loaded: ' + new Date().toLocaleString();
   }
