@@ -9,7 +9,7 @@
     '<div class="nav-right">' +
       '<ul class="nav-links">' +
         '<li><a href="articles.html">All Articles</a></li>' +
-        '<li><a href="intelligence.html">Intelligence Brief</a></li><li><a href="ai.html">AI Intelligence</a></li>' +
+        '<li><a href="ai.html">AI Intelligence</a></li>' +
         '<li><a href="investigate.html">Investigate</a></li>' +
         '<li><a href="index.html#about">About</a></li>' +
       '</ul>' +
@@ -45,7 +45,7 @@
   panel.innerHTML =
     '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
     '<a href="articles.html">All Articles</a>' +
-    '<a href="intelligence.html">Intelligence Brief</a><a href="ai.html">AI Intelligence</a>' +
+    '<a href="ai.html">AI Intelligence</a>' +
     '<a href="investigate.html">Investigate</a>' +
     '<a href="index.html#about">About</a>' +
     '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
