@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 1100px;
+    padding: 50px 60px;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #e4e4ec;
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    font-size: 11px;
+    color: #666;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  /* Layer stack */
+  .layers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .layer {
+    display: grid;
+    grid-template-columns: 50px 180px 1fr 200px;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .layer:hover {
+    transform: translateX(4px);
+  }
+
+  .layer::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .layer-1 { background: rgba(255,68,68,0.06); border: 1px solid rgba(255,68,68,0.12); }
+  .layer-1::before { background: #ff4444; }
+  .layer-1 .layer-num { color: #ff4444; }
+
+  .layer-2 { background: rgba(255,140,68,0.06); border: 1px solid rgba(255,140,68,0.12); }
+  .layer-2::before { background: #ff8c44; }
+  .layer-2 .layer-num { color: #ff8c44; }
+
+  .layer-3 { background: rgba(31,160,104,0.06); border: 1px solid rgba(31,160,104,0.12); }
+  .layer-3::before { background: #1fa068; }
+  .layer-3 .layer-num { color: #1fa068; }
+
+  .layer-4 { background: rgba(91,115,248,0.06); border: 1px solid rgba(91,115,248,0.12); }
+  .layer-4::before { background: #5b73f8; }
+  .layer-4 .layer-num { color: #5b73f8; }
+
+  .layer-5 { background: rgba(139,108,247,0.06); border: 1px solid rgba(139,108,247,0.12); }
+  .layer-5::before { background: #8b6cf7; }
+  .layer-5 .layer-num { color: #8b6cf7; }
+
+  .layer-num {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .layer-name {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  .layer-file {
+    font-size: 11px;
+    color: #666;
+    font-family: 'Courier New', monospace;
+    margin-top: 3px;
+  }
+
+  .layer-desc {
+    font-size: 13px;
+    color: #8888a0;
+    line-height: 1.5;
+  }
+
+  .layer-analogy {
+    font-size: 12px;
+    color: #555;
+    text-align: right;
+    font-style: italic;
+  }
+
+  .layer-analogy span {
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+
+  /* Priority arrow */
+  .priority-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0 10px 0;
+    gap: 4px;
+  }
+
+  .priority-arrow .arrow-line {
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, #ff4444, #8b6cf7);
+    border-radius: 1px;
+  }
+
+  .priority-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 80px;
+  }
+
+  .priority-label .high { color: #ff4444; }
+  .priority-label .low { color: #8b6cf7; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 11px;
+    color: #444;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-row">
+      <h2>The Five-Layer Memory Architecture</h2>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#ff4444"></div> Critical (read every session)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1fa068"></div> Novel (immune system)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8b6cf7"></div> Supporting</div>
+      </div>
+    </div>
+
+    <div class="priority-label">
+      <span class="high">▲ HIGHEST PRIORITY</span>
+      <span class="low">LOWEST PRIORITY ▼</span>
+    </div>
+
+    <div class="layers">
+      <div class="layer layer-1">
+        <div class="layer-num">L1</div>
+        <div>
+          <div class="layer-name">Boot Memory</div>
+          <div class="layer-file">boot_context.md</div>
+        </div>
+        <div class="layer-desc">Working memory. 10-second orientation. What matters right now, what's broken, what's live. Read before anything else.</div>
+        <div class="layer-analogy"><span>Human equivalent</span>Glancing at your desk before starting work</div>
+      </div>
+
+      <div class="layer layer-2">
+        <div class="layer-num">L2</div>
+        <div>
+          <div class="layer-name">Episodes</div>
+          <div class="layer-file">session_log.md</div>
+        </div>
+        <div class="layer-desc">Episodic memory. What happened, in order. Decisions made, context of WHY. RAG can't replace temporal sequence.</div>
+        <div class="layer-analogy"><span>Human equivalent</span>Your journal — not what's true, but what occurred</div>
+      </div>
+
+      <div class="layer layer-3">
+        <div class="layer-num">L3</div>
+        <div>
+          <div class="layer-name">Immune System</div>
+          <div class="layer-file">immune_log.md → rules</div>
+        </div>
+        <div class="layer-desc">Antibody memory. Mistakes logged → lessons extracted → rules hardcoded → startup inherits them. System gets harder to break.</div>
+        <div class="layer-analogy"><span>Human equivalent</span>Your body remembering a virus and building defenses</div>
+      </div>
+
+      <div class="layer layer-4">
+        <div class="layer-num">L4</div>
+        <div>
+          <div class="layer-name">Identity</div>
+          <div class="layer-file">identity.md</div>
+        </div>
+        <div class="layer-desc">Procedural + declarative. Rules, personality, project state, voice. What makes a new session feel like the same agent.</div>
+        <div class="layer-analogy"><span>Human equivalent</span>Your values, habits, expertise — what makes you YOU</div>
+      </div>
+
+      <div class="layer layer-5">
+        <div class="layer-num">L5</div>
+        <div>
+          <div class="layer-name">Knowledge Base</div>
+          <div class="layer-file">knowledge_base.md</div>
+        </div>
+        <div class="layer-desc">Semantic long-term memory. Patterns, mental models, connections. The system works without it — it's the least critical layer.</div>
+        <div class="layer-analogy"><span>Human equivalent</span>Your library, bookmarks, notes</div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      The counterintuitive insight: everyone builds Layer 5 first (vector databases, embeddings). The top three layers matter more for actual continuity.
+    </div>
+  </div>
+</body>
+</html>

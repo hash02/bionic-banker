@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hopfield Network Limits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:rgba(31,160,104,0.3) #020204}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#020204}
+::-webkit-scrollbar-thumb{background:rgba(31,160,104,0.3);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(31,160,104,0.5)}
+
+body{background:#020204;color:#e4e4ec;font-family:"Plus Jakarta Sans",sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+h2{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);margin-bottom:0.3rem;text-align:center;letter-spacing:-0.02em}
+.subtitle{font-size:0.78rem;color:rgba(228,228,236,0.4);margin-bottom:2rem;text-align:center}
+.charts{display:flex;gap:1.5rem;width:100%;max-width:750px;flex-wrap:wrap;justify-content:center}
+.chart-box{flex:1;min-width:280px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:12px;padding:1.25rem}
+.chart-title{font-family:"Bricolage Grotesque",sans-serif;font-size:0.8rem;font-weight:700;margin-bottom:0.25rem}
+.chart-subtitle{font-size:0.65rem;color:rgba(228,228,236,0.4);margin-bottom:1rem}
+canvas{width:100%;height:200px;display:block}
+.axis-label{font-size:0.55rem;color:rgba(228,228,236,0.3);text-transform:uppercase;letter-spacing:0.1em;text-align:center;margin-top:0.5rem}
+.limit-badge{display:inline-block;font-size:0.6rem;font-weight:600;color:#ff4444;background:rgba(255,68,68,0.08);padding:3px 8px;border-radius:4px;margin-top:0.75rem}
+.stats{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:750px}
+.stat{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:1rem;text-align:center;flex:1;min-width:140px}
+.stat-num{font-family:"Bricolage Grotesque",sans-serif;font-size:1.3rem;font-weight:800}
+.stat-num.blue{color:#5b73f8}
+.stat-num.red{color:#ff4444}
+.stat-num.green{color:#1fa068}
+.stat-label{font-size:0.65rem;color:rgba(228,228,236,0.4);margin-top:0.25rem}
+.watermark{position:fixed;bottom:8px;right:12px;font-size:0.6rem;color:rgba(228,228,236,0.15);letter-spacing:0.1em}
+</style>
+</head>
+<body>
+<h2>Hopfield Network Limits</h2>
+<p class="subtitle">Memory capacity and energy decay are hard limits from physics, not engineering</p>
+<div class="charts">
+  <div class="chart-box">
+    <div class="chart-title" style="color:#5b73f8">Pattern Storage vs Neurons</div>
+    <div class="chart-subtitle">Reliable storage maxes out at 0.138N</div>
+    <canvas id="capacity"></canvas>
+    <div class="axis-label">Number of Neurons (N)</div>
+    <div class="limit-badge">Hard limit: 0.138 x N patterns</div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title" style="color:#ff4444">Energy During Learning</div>
+    <div class="chart-subtitle">Network settles into valleys, sometimes the wrong one</div>
+    <canvas id="energy"></canvas>
+    <div class="axis-label">Training Steps</div>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><div class="stat-num blue">0.138N</div><div class="stat-label">Max reliable patterns</div></div>
+  <div class="stat"><div class="stat-num red">Local Min</div><div class="stat-label">Networks get stuck</div></div>
+  <div class="stat"><div class="stat-num green">Temperature</div><div class="stat-label">Shake to escape traps</div></div>
+</div>
+<div class="watermark">Bionic Banker</div>
+<script>
+function draw(id,fn){var c=document.getElementById(id),ctx=c.getContext("2d"),r=window.devicePixelRatio||1,w=c.offsetWidth,h=c.offsetHeight;c.width=w*r;c.height=h*r;ctx.scale(r,r);var p={l:30,r:10,t:10,b:25},cw=w-p.l-p.r,ch=h-p.t-p.b;ctx.strokeStyle="rgba(228,228,236,0.1)";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p.l,p.t);ctx.lineTo(p.l,h-p.b);ctx.lineTo(w-p.r,h-p.b);ctx.stroke();fn(ctx,p,cw,ch,w,h)}
+function drawCap(){draw("capacity",function(ctx,p,cw,ch,w,h){ctx.beginPath();for(var i=0;i<=50;i++){var n=i/50*1000,pat=0.138*n,x=p.l+n/1000*cw,y=h-p.b-pat/140*ch;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.strokeStyle="#5b73f8";ctx.lineWidth=2;ctx.stroke();ctx.beginPath();ctx.moveTo(p.l,h-p.b);for(var i=0;i<=50;i++){var n=i/50*1000,pat=0.138*n,x=p.l+n/1000*cw,y=h-p.b-pat/140*ch;ctx.lineTo(x,y)}ctx.lineTo(w-p.r,h-p.b);ctx.closePath();ctx.fillStyle="rgba(31,160,104,0.08)";ctx.fill();ctx.font='600 9px "Plus Jakarta Sans"';ctx.fillStyle="rgba(91,115,248,0.7)";ctx.textAlign="right";ctx.fillText("0.138N limit",w-p.r-5,p.t+20)})}
+function drawEn(){draw("energy",function(ctx,p,cw,ch,w,h){var pts=[];for(var i=0;i<=100;i++){var t=i/100,e=100*Math.exp(-t*3);if(t>0.25&&t<0.5)e+=8*Math.sin((t-0.25)*Math.PI/0.25);e=Math.max(5,e);pts.push({x:p.l+t*cw,y:p.t+(1-e/100)*ch})}ctx.beginPath();ctx.moveTo(pts[0].x,h-p.b);pts.forEach(function(pt){ctx.lineTo(pt.x,pt.y)});ctx.lineTo(pts[pts.length-1].x,h-p.b);ctx.closePath();ctx.fillStyle="rgba(255,68,68,0.06)";ctx.fill();ctx.beginPath();pts.forEach(function(pt,i){i===0?ctx.moveTo(pt.x,pt.y):ctx.lineTo(pt.x,pt.y)});ctx.strokeStyle="#ff4444";ctx.lineWidth=2;ctx.stroke();ctx.font='600 8px "Plus Jakarta Sans"';ctx.fillStyle="rgba(255,170,68,0.7)";ctx.textAlign="center";ctx.fillText("LOCAL MIN TRAP",p.l+0.38*cw,p.t+(1-15/100)*ch-10)})}
+drawCap();drawEn();window.addEventListener("resize",function(){drawCap();drawEn()});
+</script>
+
+<script>
+function sendHeight(){
+  var h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+  window.parent.postMessage({type:'iframeResize',height:h,src:location.pathname},'*');
+}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
+</body>
+</html>

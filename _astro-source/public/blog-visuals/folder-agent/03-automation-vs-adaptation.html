@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automation vs Adaptation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 860px; width: 100%; }
+  .title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #5b73f8, #8b6cf7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: start;
+  }
+  .side {
+    padding: 30px;
+    border-radius: 16px;
+    position: relative;
+  }
+  .side-auto {
+    background: rgba(31, 160, 104, 0.04);
+    border: 1px solid rgba(31, 160, 104, 0.12);
+  }
+  .side-adapt {
+    background: rgba(139, 108, 247, 0.04);
+    border: 1px solid rgba(139, 108, 247, 0.12);
+  }
+  .side-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  .label-auto {
+    color: #1fa068;
+    background: rgba(31, 160, 104, 0.1);
+  }
+  .label-adapt {
+    color: #8b6cf7;
+    background: rgba(139, 108, 247, 0.1);
+  }
+  .side-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .side-hook {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 24px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .trait {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .trait-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+    margin-top: 2px;
+  }
+  .trait-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #bbb;
+  }
+  .trait-text strong {
+    color: #e4e4ec;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.85rem;
+  }
+  .vs-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+  }
+  .vs-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);
+  }
+  .vs-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #444;
+    padding: 8px 0;
+    letter-spacing: 0.1em;
+  }
+  .bottom-bar {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .stat-card {
+    padding: 20px 24px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  .stat-card:hover { transform: translateY(-2px); }
+  .stat-auto {
+    background: rgba(31, 160, 104, 0.06);
+    border: 1px solid rgba(31, 160, 104, 0.1);
+  }
+  .stat-adapt {
+    background: rgba(139, 108, 247, 0.06);
+    border: 1px solid rgba(139, 108, 247, 0.1);
+  }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .stat-auto .stat-num { color: #1fa068; }
+  .stat-adapt .stat-num { color: #8b6cf7; }
+  .stat-label {
+    font-size: 0.7rem;
+    color: #888;
+  }
+  .stat-detail {
+    font-size: 0.65rem;
+    color: #555;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .footer-note {
+    text-align: center;
+    font-size: 0.65rem;
+    color: #444;
+    margin-top: 30px;
+    font-style: italic;
+  }
+  @media (max-width: 700px) {
+    .comparison { grid-template-columns: 1fr; gap: 16px; }
+    .vs-col { display: none; }
+    .bottom-bar { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="title">Automation vs. Adaptation</div>
+  <div class="subtitle">Same folder. Fundamentally different operating systems.</div>
+
+  <div class="comparison">
+    <div class="side side-auto">
+      <span class="side-label label-auto">L0 → L4</span>
+      <div class="side-title">Automation</div>
+      <div class="side-hook">"Do what I said, better and faster."</div>
+      <div class="trait">
+        <div class="trait-icon">📋</div>
+        <div class="trait-text"><strong>Follows rules</strong>Executes pre-written checks. Can't create new ones.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">🔄</div>
+        <div class="trait-text"><strong>Stateless runs</strong>Every execution starts from zero. No memory of yesterday.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">🔧</div>
+        <div class="trait-text"><strong>Fixed capability</strong>Run it 100 times — same checks, same rules, same blind spots.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">⚡</div>
+        <div class="trait-text"><strong>Reacts to events</strong>Knows what to do when something happens. But can't learn from what happened.</div>
+      </div>
+    </div>
+
+    <div class="vs-col">
+      <div class="vs-line"></div>
+      <div class="vs-badge">VS</div>
+      <div class="vs-line"></div>
+    </div>
+
+    <div class="side side-adapt">
+      <span class="side-label label-adapt">L5+</span>
+      <div class="side-title">Adaptation</div>
+      <div class="side-hook">"Notice what I missed and tell me about it."</div>
+      <div class="trait">
+        <div class="trait-icon">🧠</div>
+        <div class="trait-text"><strong>Proposes rules</strong>Detects patterns in its own failures. Generates new checks.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">📊</div>
+        <div class="trait-text"><strong>Stateful memory</strong>Every run builds on the last. Outcomes accumulate. Patterns emerge.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">🌱</div>
+        <div class="trait-text"><strong>Growing capability</strong>Run it 100 times — each run makes the next one smarter.</div>
+      </div>
+      <div class="trait">
+        <div class="trait-icon">🎯</div>
+        <div class="trait-text"><strong>Learns from outcomes</strong>Doesn't just react. Remembers, correlates, and improves.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="stat-card stat-auto">
+      <div class="stat-num">100×</div>
+      <div class="stat-label">Same output every run</div>
+      <div class="stat-detail">Reliable. Predictable. Blind.</div>
+    </div>
+    <div class="stat-card stat-adapt">
+      <div class="stat-num">100×</div>
+      <div class="stat-label">Each run builds on the last</div>
+      <div class="stat-detail">Compounding. Evolving. Aware.</div>
+    </div>
+  </div>
+
+  <div class="footer-note">bionicbanker.tech — The system that remembers is the system that improves.</div>
+</div>
+</body>
+</html>

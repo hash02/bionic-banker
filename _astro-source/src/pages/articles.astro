@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const articleCount = allPosts.length;
+
+// Sort by date descending
+const sortedPosts = allPosts.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Get unique tags for filter
+const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort();
+
+// Group by category
+const categories = ['AI', 'Blockchain', 'Finance', 'Tech'];
+---
+<BaseLayout title="All Articles" description={`${articleCount} pieces on finance, blockchain, AI, and what happens when they collide.`}>
+
+  <div class="page-header">
+    <div class="page-label">Archive</div>
+    <h1 class="page-title">All Articles</h1>
+    <p class="page-sub">{articleCount} pieces on finance, blockchain, AI, and what happens when they collide.</p>
+
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      {categories.map(cat => (
+        <button class="filter-btn" data-filter={cat}>{cat}</button>
+      ))}
+    </div>
+  </div>
+
+  <div class="articles-wrap">
+    <div class="articles-grid stagger-children" id="articles-grid">
+      {sortedPosts.map((post) => (
+        <a href={`/blog/${post.data.slug || post.id}`} class="article-card animate-on-scroll" data-category={post.data.category}>
+          <div class="article-tags">
+            {post.data.tags.slice(0, 3).map((tag: string) => (
+              <span class="tag-pill tag-green">{tag}</span>
+            ))}
+          </div>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          <div class="card-footer">
+            <span class="read-more">Read →</span>
+            <span class="read-time">{post.data.readTime}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <script is:inline>
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.getAttribute('data-filter');
+        document.querySelectorAll('.article-card').forEach(function(card) {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>

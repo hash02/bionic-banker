@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NEXUS-RISK — Investigate Any Wallet — Bionic Banker</title><meta name="description" content="Paste any Ethereum wallet address. 22 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK."><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YS428H3H44');
+  </script><!-- Open Graph --><meta property="og:title" content="NEXUS-RISK — Investigate Any Wallet — Bionic Banker"><meta property="og:description" content="Paste any Ethereum wallet address. 22 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK."><meta property="og:type" content="website"><meta property="og:url" content="https://bionicbanker.tech/investigate/"><meta property="og:site_name" content="Bionic Banker"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NEXUS-RISK — Investigate Any Wallet — Bionic Banker"><meta name="twitter:description" content="Paste any Ethereum wallet address. 22 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK."><link rel="canonical" href="https://bionicbanker.tech/investigate/"><!-- Styles --><link rel="stylesheet" href="/styles/global.css"><link rel="stylesheet" href="/_astro/investigate@_@astro.DQwGoh_A.css"></head> <body> <!-- NAV --> <nav> <a href="/" class="nav-logo">Bionic <span>Banker</span></a> <div class="nav-right"> <ul class="nav-links"> <li><a href="/articles">All Articles</a></li> <li><a href="/intelligence">AI Intelligence</a></li> <li><a href="/investigate">Investigate</a></li> <li><a href="/#about">About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu">&#9776;</button> </nav> <!-- MAIN CONTENT -->  <div class="investigate-wrap" data-astro-cid-tz22b2cn> <div class="raksha-badge" data-astro-cid-tz22b2cn>NEXUS-RISK — Wallet Investigator</div> <h1 data-astro-cid-tz22b2cn>Investigate Any <span data-astro-cid-tz22b2cn>Wallet</span></h1> <p class="investigate-sub" data-astro-cid-tz22b2cn>
+Paste an Ethereum address. 22 AML detection rules fire in real time against live blockchain data.
+      Then an AI agent roasts whatever it finds.
+</p> <div class="input-group" data-astro-cid-tz22b2cn> <input type="text" class="address-input" id="walletInput" placeholder="0x742d35Cc6634C0532925a3b844Bc9e7595f2bD28" spellcheck="false" autocomplete="off" data-astro-cid-tz22b2cn> <button class="investigate-btn" id="investigateBtn" onclick="investigate()" data-astro-cid-tz22b2cn>
+Investigate
+</button> </div> <div class="input-hint" data-astro-cid-tz22b2cn> <span data-astro-cid-tz22b2cn>Or try:</span> <button class="sample-btn" onclick="runSample()" data-astro-cid-tz22b2cn>Run Sample (Lazarus Group)</button> <button class="sample-btn" onclick="fillExample('0x098B716B8Aaf21512996dC57EB0615e2383E2f96')" data-astro-cid-tz22b2cn>Ronin Exploiter</button> <button class="sample-btn" onclick="fillExample('0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f')" data-astro-cid-tz22b2cn>Tornado Cash</button> </div> <!-- Scanning State --> <div class="scan-container" id="scanContainer" data-astro-cid-tz22b2cn> <div class="scan-spinner" data-astro-cid-tz22b2cn></div> <div class="scan-text" id="scanText" data-astro-cid-tz22b2cn>Fetching blockchain data...</div> <div class="scan-sub" data-astro-cid-tz22b2cn>This may take 30–60 seconds for live addresses</div> </div> <!-- Error State --> <div class="error-box" id="errorBox" data-astro-cid-tz22b2cn> <p id="errorText" data-astro-cid-tz22b2cn></p> </div> <!-- Results --> <div class="results" id="results" data-astro-cid-tz22b2cn> <div class="result-header" data-astro-cid-tz22b2cn> <div data-astro-cid-tz22b2cn> <div class="result-address" id="resultAddress" data-astro-cid-tz22b2cn></div> <div class="risk-badge" id="riskScore" data-astro-cid-tz22b2cn></div> <div class="risk-label" id="riskLevel" data-astro-cid-tz22b2cn></div> </div> </div> <!-- Roast --> <div class="roast-card" data-astro-cid-tz22b2cn> <div class="roast-label" data-astro-cid-tz22b2cn>🔥 NEXUS-RISK says</div> <p class="roast-text" id="roastText" data-astro-cid-tz22b2cn></p> </div> <!-- Stats --> <div class="stats-row" id="statsRow" data-astro-cid-tz22b2cn></div> <!-- Signals --> <div class="signals-section" id="signalsSection" data-astro-cid-tz22b2cn> <div class="signals-title" data-astro-cid-tz22b2cn>Triggered Signals</div> <div class="signals-grid" id="signalsGrid" data-astro-cid-tz22b2cn></div> </div> <!-- Risk Distribution --> <div class="signals-section" id="distSection" data-astro-cid-tz22b2cn> <div class="signals-title" data-astro-cid-tz22b2cn>Risk Distribution</div> <div id="distContainer" data-astro-cid-tz22b2cn></div> </div> <!-- Engine info --> <div class="engine-info" data-astro-cid-tz22b2cn> <span class="engine-label" id="engineLabel" data-astro-cid-tz22b2cn></span> <span class="engine-label" id="elapsedLabel" data-astro-cid-tz22b2cn></span> </div> </div> </div> <script type="module" src="/_astro/investigate.astro_astro_type_script_index_0_lang.cBv58Tgb.js"></script>  <!-- NEWSLETTER --> <section id="newsletter" class="newsletter-section"> <div class="newsletter-wrap"> <h2>Stay in the Loop</h2> <p>Finance meets the future — every week. No spam, just signal.</p> <iframe src="https://embeds.beehiiv.com/2e494e41-d023-44a0-8a2e-42e0e0d13e6d?slim=true" data-test-id="beehiiv-embed" height="52" frameborder="0" scrolling="no" style="margin:0;border-radius:0;background-color:transparent;width:100%;max-width:480px;"></iframe> </div> </section> <!-- FOOTER --> <footer class="site-footer"> <div class="footer-wrap"> <div class="footer-brand"> <a href="/" class="footer-logo">Bionic <span>Banker</span></a> <p class="footer-tagline">Inside finance. Building its future.</p> </div> <div class="footer-links"> <div class="footer-col"> <h4>Explore</h4> <a href="/articles">All Articles</a> <a href="/intelligence">AI Intelligence</a> <a href="/investigate">Investigate</a> </div> <div class="footer-col"> <h4>Connect</h4> <a href="https://t.me/BionicBanker" target="_blank" rel="noopener">Telegram</a> <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener">LinkedIn</a> <a href="https://github.com/hash02" target="_blank" rel="noopener">GitHub</a> </div> </div> <div class="footer-bottom"> <p>&copy; 2026 Bionic Banker. All rights reserved.</p> </div> </div> </footer> <!-- Mobile Menu --> <script>
+  (function() {
+    var hamburger = document.getElementById('bb-hamburger');
+    if (!hamburger) return;
+
+    var overlay = document.createElement('div');
+    overlay.id = 'bb-overlay';
+    document.body.appendChild(overlay);
+
+    var panel = document.createElement('div');
+    panel.id = 'bb-panel';
+    panel.innerHTML =
+      '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
+      '<a href="/articles">All Articles</a>' +
+      '<a href="/intelligence">AI Intelligence</a>' +
+      '<a href="/investigate">Investigate</a>' +
+      '<a href="/#about">About</a>' +
+      '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
+    document.body.appendChild(panel);
+
+    function openMenu() { panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+    hamburger.addEventListener('click', openMenu);
+    document.getElementById('bb-panel-close').addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+    panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+  })();
+  </script> <!-- Scroll Animations --> <script>
+  (function() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+  </script> </body> </html>

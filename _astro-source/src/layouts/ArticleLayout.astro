@@ -1,0 +1,52 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+  readTime: string;
+  image?: string;
+  category?: string;
+}
+
+const { title, description, date, tags, readTime, image, category = 'Tech' } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+<BaseLayout title={title} description={description} ogImage={image}>
+  <article class="article-page">
+    <div class="article-hero animate-on-scroll">
+      <div class="article-meta-top">
+        <span class="article-category">{category}</span>
+        <span class="article-date">{formattedDate}</span>
+        <span class="article-read-time">{readTime} read</span>
+      </div>
+      <h1 class="article-title">{title}</h1>
+      <p class="article-desc">{description}</p>
+      <div class="article-tags">
+        {tags.map((tag: string) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="article-body animate-on-scroll">
+      <slot />
+    </div>
+
+    <div class="article-footer animate-on-scroll">
+      <div class="article-share">
+        <span>Share this:</span>
+        <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://bionicbanker.tech${Astro.url.pathname}`)}`} target="_blank" rel="noopener" class="share-btn">X / Twitter</a>
+        <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://bionicbanker.tech${Astro.url.pathname}`)}`} target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
+      </div>
+      <a href="/articles" class="back-to-articles">&larr; All Articles</a>
+    </div>
+  </article>
+</BaseLayout>

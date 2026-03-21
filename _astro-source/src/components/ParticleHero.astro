@@ -1,0 +1,118 @@
+---
+// Neural network particle animation for hero section
+---
+<canvas id="particle-canvas"></canvas>
+<script is:inline>
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mouse = { x: -1000, y: -1000 };
+  const PARTICLE_COUNT = 80;
+  const CONNECTION_DIST = 140;
+  const MOUSE_DIST = 200;
+
+  function resize() {
+    const parent = canvas.parentElement;
+    w = canvas.width = parent.offsetWidth;
+    h = canvas.height = parent.offsetHeight;
+  }
+
+  function createParticle() {
+    return {
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 1.5 + 0.5,
+      pulse: Math.random() * Math.PI * 2
+    };
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(createParticle());
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Update + draw particles
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.pulse += 0.02;
+
+      // Bounce off edges
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+
+      // Mouse interaction — gentle repel
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MOUSE_DIST) {
+        const force = (MOUSE_DIST - dist) / MOUSE_DIST * 0.02;
+        p.vx += dx / dist * force;
+        p.vy += dy / dist * force;
+      }
+
+      // Speed limit
+      const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+      if (speed > 0.8) {
+        p.vx *= 0.8 / speed;
+        p.vy *= 0.8 / speed;
+      }
+
+      // Draw particle with pulse
+      const alpha = 0.3 + Math.sin(p.pulse) * 0.15;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(31, 160, 104, ${alpha})`;
+      ctx.fill();
+    }
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECTION_DIST) {
+          const alpha = (1 - dist / CONNECTION_DIST) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(31, 160, 104, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  canvas.parentElement.addEventListener('mousemove', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+
+  canvas.parentElement.addEventListener('mouseleave', function() {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  window.addEventListener('resize', function() {
+    resize();
+  });
+
+  init();
+  draw();
+})();
+</script>
