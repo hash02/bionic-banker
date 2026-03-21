@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>The Technical Blueprint — How to Actually Build a Folder Agent — Bionic Banker</title><meta name="description" content="Part 2: The honest technical blueprint. What makes a folder an agent, what's still missing, and the 50-line Python script that changes everything."><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YS428H3H44');
+  </script><!-- Open Graph --><meta property="og:title" content="The Technical Blueprint — How to Actually Build a Folder Agent — Bionic Banker"><meta property="og:description" content="Part 2: The honest technical blueprint. What makes a folder an agent, what's still missing, and the 50-line Python script that changes everything."><meta property="og:type" content="website"><meta property="og:url" content="https://bionicbanker.tech/blog/folder-agent-part2/"><meta property="og:site_name" content="Bionic Banker"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The Technical Blueprint — How to Actually Build a Folder Agent — Bionic Banker"><meta name="twitter:description" content="Part 2: The honest technical blueprint. What makes a folder an agent, what's still missing, and the 50-line Python script that changes everything."><link rel="canonical" href="https://bionicbanker.tech/blog/folder-agent-part2/"><!-- View Transitions — app-like page navigation --><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DmQZLfuR.js"></script><!-- Styles --><link rel="stylesheet" href="/styles/global.css"><style>.astro-route-announcer{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}
+</style></head> <body> <!-- NAV --> <nav> <a href="/" class="nav-logo">Bionic <span>Banker</span></a> <div class="nav-right"> <ul class="nav-links"> <li><a href="/articles">All Articles</a></li> <li><a href="/intelligence">AI Intelligence</a></li> <li><a href="/investigate">Investigate</a></li> <li><a href="/#about">About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu">&#9776;</button> </nav> <!-- MAIN CONTENT -->  <article class="article-page"> <div class="article-hero animate-on-scroll"> <div class="article-meta-top"> <span class="article-category">AI</span> <span class="article-date">March 8, 2026</span> <span class="article-read-time">12 min read</span> </div> <h1 class="article-title">The Technical Blueprint — How to Actually Build a Folder Agent</h1> <p class="article-desc">Part 2: The honest technical blueprint. What makes a folder an agent, what&#39;s still missing, and the 50-line Python script that changes everything.</p> <div class="article-tags"> <span class="tag">AI</span><span class="tag">Agents</span><span class="tag">Code</span> </div> </div> <div class="article-body animate-on-scroll">  <h2 id="the-honest-confession">The Honest Confession</h2>
+<p>After I published Part 1, I asked myself a question that I should’ve asked before writing a single word: <em>is this actually an agent?</em></p>
+<p>And the honest answer is — no. Not yet.</p>
+<p>What I built in Part 1 is a really well-organized set of scripts with good file hygiene. The outcome tracker detects patterns. The rule proposer generates proposals. The event router logs everything. It looks like agency. It <em>feels</em> like agency. But here’s the test that breaks the illusion:</p>
+<p><strong>If I close my laptop and walk away for a week, does anything happen?</strong></p>
+<p>No. Nothing runs unless I open a chat window and trigger it. That’s not an agent — that’s a toolkit. A really good toolkit, but a toolkit. The difference between a toolkit and an agent is the same difference between a car with no ignition and a car that drives itself. The engine is there. The transmission works. But nothing moves until someone push-starts it.</p>
+<p>So this article is about building the ignition.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>    &#x3C;/iframe></span></span>
+<span class="line"><span>    </span></span></code></pre>
+<p>INTERACTIVE What separates scripts from agents — the four missing pieces</p>  </div> <div class="article-footer animate-on-scroll"> <div class="article-share"> <span>Share this:</span> <a href="https://twitter.com/intent/tweet?text=The%20Technical%20Blueprint%20%E2%80%94%20How%20to%20Actually%20Build%20a%20Folder%20Agent&#38;url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Ffolder-agent-part2%2F" target="_blank" rel="noopener" class="share-btn">X / Twitter</a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Ffolder-agent-part2%2F" target="_blank" rel="noopener" class="share-btn">LinkedIn</a> </div> <a href="/articles" class="back-to-articles">&larr; All Articles</a> </div> </article>  <!-- NEWSLETTER --> <section id="newsletter" class="newsletter-section"> <div class="newsletter-wrap"> <h2>Stay in the Loop</h2> <p>Finance meets the future — one piece at a time. No fluff, just signal.</p> <div class="newsletter-actions"> <a href="https://t.me/BionicBanker" class="nl-btn primary" target="_blank" rel="noopener">Join Telegram →</a> <a href="https://linkedin.com/in/himanshu-h-a357684a" class="nl-btn secondary" target="_blank" rel="noopener">Follow on LinkedIn</a> </div> </div> </section> <!-- FOOTER --> <footer class="site-footer"> <div class="footer-wrap"> <div class="footer-brand"> <a href="/" class="footer-logo">Bionic <span>Banker</span></a> <p class="footer-tagline">Inside finance. Building its future.</p> </div> <div class="footer-links"> <div class="footer-col"> <h4>Explore</h4> <a href="/articles">All Articles</a> <a href="/intelligence">AI Intelligence</a> <a href="/investigate">Investigate</a> </div> <div class="footer-col"> <h4>Connect</h4> <a href="https://t.me/BionicBanker" target="_blank" rel="noopener">Telegram</a> <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener">LinkedIn</a> <a href="https://github.com/hash02" target="_blank" rel="noopener">GitHub</a> </div> </div> <div class="footer-bottom"> <p>&copy; 2026 Bionic Banker. All rights reserved.</p> </div> </div> </footer> <!-- All Interactive Scripts — re-run on View Transition navigation --> <script>
+  function bbInit() {
+    // ── Mobile Menu (idempotent — safe to re-run) ──
+    var hamburger = document.getElementById('bb-hamburger');
+    if (hamburger) {
+      // Create overlay + panel only once
+      var overlay = document.getElementById('bb-overlay');
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'bb-overlay';
+        document.body.appendChild(overlay);
+      }
+      var panel = document.getElementById('bb-panel');
+      if (!panel) {
+        panel = document.createElement('div');
+        panel.id = 'bb-panel';
+        panel.innerHTML =
+          '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
+          '<a href="/articles">All Articles</a>' +
+          '<a href="/intelligence">AI Intelligence</a>' +
+          '<a href="/investigate">Investigate</a>' +
+          '<a href="/#about">About</a>' +
+          '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
+        document.body.appendChild(panel);
+      }
+      // Close any open menu state on navigation
+      panel.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+
+      function openMenu() { panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function closeMenu() { panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+      // Clone + replace to remove old listeners, then add fresh ones
+      var newHamburger = hamburger.cloneNode(true);
+      hamburger.parentNode.replaceChild(newHamburger, hamburger);
+      newHamburger.addEventListener('click', openMenu);
+
+      var closeBtn = document.getElementById('bb-panel-close');
+      if (closeBtn) {
+        var newClose = closeBtn.cloneNode(true);
+        closeBtn.parentNode.replaceChild(newClose, closeBtn);
+        newClose.addEventListener('click', closeMenu);
+      }
+      overlay.onclick = closeMenu;
+      panel.querySelectorAll('a').forEach(function(a) {
+        a.onclick = closeMenu;
+      });
+    }
+
+    // ── Scroll Animations (enhanced with stagger) ──
+    var delay = 0;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var d = delay;
+          delay += 80;
+          setTimeout(function() {
+            entry.target.classList.add('animate-in');
+          }, d);
+          observer.unobserve(entry.target);
+          clearTimeout(window._staggerReset);
+          window._staggerReset = setTimeout(function() { delay = 0; }, 200);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+      el.classList.remove('animate-in');
+      observer.observe(el);
+    });
+
+    // ── Cursor-Tracking Card Glow ──
+    var cards = document.querySelectorAll('.article-card, .intel-card, .hero-article-card, .thoughts-card, .writing-card');
+    cards.forEach(function(card) {
+      card.onmousemove = function(e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--glow-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--glow-y', (e.clientY - rect.top) + 'px');
+        card.style.setProperty('--glow-opacity', '1');
+      };
+      card.onmouseleave = function() {
+        card.style.setProperty('--glow-opacity', '0');
+      };
+    });
+
+    // ── Reading Progress Bar (article pages only) ──
+    var oldBar = document.querySelector('.reading-progress');
+    if (oldBar) oldBar.remove();
+    var body = document.querySelector('.article-body');
+    if (body) {
+      var bar = document.createElement('div');
+      bar.className = 'reading-progress';
+      document.body.appendChild(bar);
+      window.onscroll = function() {
+        var rect = body.getBoundingClientRect();
+        var bodyTop = rect.top + window.scrollY;
+        var bodyHeight = rect.height;
+        var scrolled = window.scrollY - bodyTop;
+        var progress = Math.max(0, Math.min(100, (scrolled / (bodyHeight - window.innerHeight)) * 100));
+        bar.style.width = progress + '%';
+      };
+    }
+  }
+
+  // Run on initial load
+  bbInit();
+  // Re-run after every View Transition navigation
+  document.addEventListener('astro:page-load', bbInit);
+  </script> </body> </html>

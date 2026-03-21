@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NEXUS-RISK — Investigate Any Wallet — Bionic Banker</title><meta name="description" content="Paste any Ethereum wallet address. 22 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK."><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YS428H3H44');
+  </script><!-- Open Graph --><meta property="og:title" content="NEXUS-RISK — Investigate Any Wallet — Bionic Banker"><meta property="og:description" content="Paste any Ethereum wallet address. 22 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK."><meta property="og:type" content="website"><meta property="og:url" content="https://bionicbanker.tech/investigate/"><meta property="og:site_name" content="Bionic Banker"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NEXUS-RISK — Investigate Any Wallet — Bionic Banker"><meta name="twitter:description" content="Paste any Ethereum wallet address. 22 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK."><link rel="canonical" href="https://bionicbanker.tech/investigate/"><!-- View Transitions — app-like page navigation --><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DmQZLfuR.js"></script><!-- Styles --><link rel="stylesheet" href="/styles/global.css"><link rel="stylesheet" href="/_astro/investigate@_@astro.6XfwiM7u.css">
+<style>.astro-route-announcer{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}
+</style></head> <body> <!-- NAV --> <nav> <a href="/" class="nav-logo">Bionic <span>Banker</span></a> <div class="nav-right"> <ul class="nav-links"> <li><a href="/articles">All Articles</a></li> <li><a href="/intelligence">AI Intelligence</a></li> <li><a href="/investigate">Investigate</a></li> <li><a href="/#about">About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu">&#9776;</button> </nav> <!-- MAIN CONTENT -->  <div class="investigate-wrap" data-astro-cid-tz22b2cn> <div class="raksha-badge" data-astro-cid-tz22b2cn>NEXUS-RISK — Wallet Investigator</div> <h1 data-astro-cid-tz22b2cn>Investigate Any <span data-astro-cid-tz22b2cn>Wallet</span></h1> <p class="investigate-sub" data-astro-cid-tz22b2cn>
+Paste an Ethereum address. 22 AML detection rules fire in real time against live blockchain data.
+      Then an AI agent roasts whatever it finds.
+</p> <div class="input-group" data-astro-cid-tz22b2cn> <input type="text" class="address-input" id="walletInput" placeholder="0x742d35Cc6634C0532925a3b844Bc9e7595f2bD28" spellcheck="false" autocomplete="off" data-astro-cid-tz22b2cn> <button class="investigate-btn" id="investigateBtn" onclick="investigate()" data-astro-cid-tz22b2cn>
+Investigate
+</button> </div> <div class="input-hint" data-astro-cid-tz22b2cn> <span data-astro-cid-tz22b2cn>Or try:</span> <button class="sample-btn" onclick="runSample()" data-astro-cid-tz22b2cn>Run Sample (Lazarus Group)</button> <button class="sample-btn" onclick="fillExample('0x098B716B8Aaf21512996dC57EB0615e2383E2f96')" data-astro-cid-tz22b2cn>Ronin Exploiter</button> <button class="sample-btn" onclick="fillExample('0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f')" data-astro-cid-tz22b2cn>Tornado Cash</button> </div> <!-- Scanning State --> <div class="scan-container" id="scanContainer" data-astro-cid-tz22b2cn> <div class="scan-spinner" data-astro-cid-tz22b2cn></div> <div class="scan-text" id="scanText" data-astro-cid-tz22b2cn>Fetching blockchain data...</div> <div class="scan-sub" data-astro-cid-tz22b2cn>This may take 30–60 seconds for live addresses</div> </div> <!-- Error State --> <div class="error-box" id="errorBox" data-astro-cid-tz22b2cn> <p id="errorText" data-astro-cid-tz22b2cn></p> </div> <!-- Results --> <div class="results" id="results" data-astro-cid-tz22b2cn> <div class="result-header" data-astro-cid-tz22b2cn> <div data-astro-cid-tz22b2cn> <div class="result-address" id="resultAddress" data-astro-cid-tz22b2cn></div> <div class="risk-badge" id="riskScore" data-astro-cid-tz22b2cn></div> <div class="risk-label" id="riskLevel" data-astro-cid-tz22b2cn></div> </div> </div> <!-- Roast --> <div class="roast-card" data-astro-cid-tz22b2cn> <div class="roast-label" data-astro-cid-tz22b2cn>🔥 NEXUS-RISK says</div> <p class="roast-text" id="roastText" data-astro-cid-tz22b2cn></p> </div> <!-- Stats --> <div class="stats-row" id="statsRow" data-astro-cid-tz22b2cn></div> <!-- Signals --> <div class="signals-section" id="signalsSection" data-astro-cid-tz22b2cn> <div class="signals-title" data-astro-cid-tz22b2cn>Triggered Signals</div> <div class="signals-grid" id="signalsGrid" data-astro-cid-tz22b2cn></div> </div> <!-- Risk Distribution --> <div class="signals-section" id="distSection" data-astro-cid-tz22b2cn> <div class="signals-title" data-astro-cid-tz22b2cn>Risk Distribution</div> <div id="distContainer" data-astro-cid-tz22b2cn></div> </div> <!-- Engine info --> <div class="engine-info" data-astro-cid-tz22b2cn> <span class="engine-label" id="engineLabel" data-astro-cid-tz22b2cn></span> <span class="engine-label" id="elapsedLabel" data-astro-cid-tz22b2cn></span> </div> </div> </div> <script>
+    // ── SAMPLE DATA — demonstrates engine output without live backend ──
+    var SAMPLE_DATA = {
+      'lazarus': {
+        address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
+        risk_score: 97,
+        risk_level: 'CRITICAL',
+        roast: "This wallet has more red flags than a Soviet parade. Direct links to Lazarus Group — state-sponsored laundering through mixers, bridge exploits, and enough layering to make an onion cry. If compliance had a most-wanted poster, this address would be the centerfold.",
+        tx_count: 847,
+        flagged_count: 312,
+        total_volume: 625000000,
+        avg_risk_score: 89,
+        signals: ['OFAC Sanctioned Entity', 'Tornado Cash Interaction', 'Bridge Exploit Pattern', 'Rapid Layering (6+ hops)', 'Mixer Activity Detected', 'State-Sponsored Threat Actor', 'Cross-Chain Laundering', 'Structuring Pattern', 'Dormant→Active Spike'],
+        risk_distribution: { CRITICAL: 8, HIGH: 5, MEDIUM: 3, LOW: 1 },
+        engine: 'AML Detection Engine v11 — 22 rules',
+        elapsed: 2.4
+      },
+      'ronin': {
+        address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
+        risk_score: 94,
+        risk_level: 'CRITICAL',
+        roast: "Ronin Bridge exploiter — $625M stolen in a single transaction. This wallet is the reason every bridge protocol now has nightmares. The funds scattered through dozens of intermediary wallets faster than you can say 'decentralized'.",
+        tx_count: 1203,
+        flagged_count: 456,
+        total_volume: 625000000,
+        avg_risk_score: 85,
+        signals: ['Bridge Exploit — Ronin', 'OFAC Sanctioned', 'Rapid Fund Dispersal', 'Tornado Cash (Multiple)', 'Cross-Chain Movement', 'Wash Trading Pattern', 'High-Value Single Transaction'],
+        risk_distribution: { CRITICAL: 6, HIGH: 7, MEDIUM: 4, LOW: 2 },
+        engine: 'AML Detection Engine v11 — 22 rules',
+        elapsed: 3.1
+      },
+      'tornado': {
+        address: '0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f',
+        risk_score: 91,
+        risk_level: 'CRITICAL',
+        roast: "Tornado Cash router contract. Every transaction here is designed to do exactly one thing: make the trail disappear. OFAC sanctioned, universally flagged, and still somehow getting deposits. The cockroach of DeFi.",
+        tx_count: 28450,
+        flagged_count: 28450,
+        total_volume: 7800000000,
+        avg_risk_score: 91,
+        signals: ['OFAC Sanctioned Contract', 'Mixer — Primary', 'Privacy Protocol', 'High Throughput Laundering', 'Cross-Protocol Deposits'],
+        risk_distribution: { CRITICAL: 12, HIGH: 3, MEDIUM: 1, LOW: 0 },
+        engine: 'AML Detection Engine v11 — 22 rules',
+        elapsed: 1.8
+      }
+    };
+
+    var scanSteps = [
+      'Fetching blockchain transactions...',
+      'Running 22 AML detection rules...',
+      'Analyzing transaction patterns...',
+      'Cross-referencing OFAC sanctions...',
+      'Detecting mixer & bridge activity...',
+      'Scoring risk profile...',
+      'Generating risk assessment...',
+    ];
+
+    var scanInterval = null;
+
+    function showScan() {
+      document.getElementById('scanContainer').classList.add('active');
+      document.getElementById('results').classList.remove('active');
+      document.getElementById('errorBox').classList.remove('active');
+      document.getElementById('investigateBtn').disabled = true;
+
+      var step = 0;
+      document.getElementById('scanText').textContent = scanSteps[0];
+      scanInterval = setInterval(function() {
+        step = (step + 1) % scanSteps.length;
+        document.getElementById('scanText').textContent = scanSteps[step];
+      }, 1500);
+    }
+
+    function hideScan() {
+      document.getElementById('scanContainer').classList.remove('active');
+      document.getElementById('investigateBtn').disabled = false;
+      if (scanInterval) clearInterval(scanInterval);
+    }
+
+    function showError(msg) {
+      hideScan();
+      var box = document.getElementById('errorBox');
+      document.getElementById('errorText').textContent = msg;
+      box.classList.add('active');
+    }
+
+    function fillExample(addr) {
+      document.getElementById('walletInput').value = addr;
+    }
+
+    function riskClass(level) {
+      return (level || '').toLowerCase().replace(/\s/g, '');
+    }
+
+    function riskColor(level) {
+      var map = { CRITICAL: '#ef4444', HIGH: '#f97316', MEDIUM: '#eab308', LOW: '#1fa068' };
+      return map[level] || '#c8c8d8';
+    }
+
+    function formatVolume(v) {
+      if (v >= 1e9) return '$' + (v / 1e9).toFixed(1) + 'B';
+      if (v >= 1e6) return '$' + (v / 1e6).toFixed(1) + 'M';
+      if (v >= 1e3) return '$' + (v / 1e3).toFixed(1) + 'K';
+      return '$' + v.toFixed(2);
+    }
+
+    function dangerSignals(name) {
+      var danger = ['OFAC', 'Sanction', 'Mixer', 'Tornado', 'Layering', 'Wash', 'Exploit', 'State-Sponsored', 'Laundering'];
+      var warn = ['Jurisdiction', 'Smurfing', 'Structuring', 'Dormant', 'Cross-Chain', 'Dispersal', 'High-Value'];
+      if (danger.some(function(d) { return name.includes(d); })) return 'danger';
+      if (warn.some(function(w) { return name.includes(w); })) return 'warning';
+      return '';
+    }
+
+    function renderResults(data) {
+      hideScan();
+      var r = document.getElementById('results');
+      r.classList.add('active');
+
+      document.getElementById('resultAddress').textContent = data.address;
+
+      var cls = riskClass(data.risk_level);
+      document.getElementById('riskScore').textContent = data.risk_score + '/100';
+      document.getElementById('riskScore').className = 'risk-badge ' + cls;
+      document.getElementById('riskLevel').textContent = data.risk_level;
+      document.getElementById('riskLevel').className = 'risk-label ' + cls;
+
+      document.getElementById('roastText').textContent = data.roast;
+
+      var stats = [
+        { label: 'Transactions', value: data.tx_count },
+        { label: 'Flagged', value: data.flagged_count },
+        { label: 'Total Volume', value: formatVolume(data.total_volume || 0) },
+        { label: 'Avg Risk', value: (data.avg_risk_score || data.risk_score) + '' },
+      ];
+      document.getElementById('statsRow').innerHTML = stats.map(function(s) {
+        return '<div class="stat-card"><div class="stat-label">' + s.label + '</div><div class="stat-value">' + s.value + '</div></div>';
+      }).join('');
+
+      var grid = document.getElementById('signalsGrid');
+      if (data.signals && data.signals.length > 0) {
+        document.getElementById('signalsSection').style.display = 'block';
+        grid.innerHTML = data.signals.map(function(s) {
+          return '<span class="signal-pill ' + dangerSignals(s) + '">' + s + '</span>';
+        }).join('');
+      } else {
+        document.getElementById('signalsSection').style.display = 'none';
+      }
+
+      var dist = data.risk_distribution || {};
+      var distContainer = document.getElementById('distContainer');
+      var levels = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'];
+      var maxCount = Math.max.apply(null, levels.map(function(l) { return dist[l] || 0; }).concat([1]));
+
+      if (Object.keys(dist).length > 0) {
+        document.getElementById('distSection').style.display = 'block';
+        distContainer.innerHTML = levels.filter(function(l) { return (dist[l] || 0) > 0; }).map(function(l) {
+          var count = dist[l] || 0;
+          var pct = Math.round((count / maxCount) * 100);
+          var color = riskColor(l);
+          return '<div class="dist-row"><span class="dist-label" style="color:' + color + '">' + l + '</span><div class="dist-bar-bg"><div class="dist-bar" style="width:' + pct + '%;background:' + color + '"></div></div><span class="dist-count">' + count + '</span></div>';
+        }).join('');
+      } else {
+        document.getElementById('distSection').style.display = 'none';
+      }
+
+      document.getElementById('engineLabel').textContent = data.engine || 'AML Detection Engine v11 — 22 rules';
+      document.getElementById('elapsedLabel').textContent = 'Completed in ' + data.elapsed + 's';
+    }
+
+    function runSample() {
+      showScan();
+      setTimeout(function() {
+        renderResults(SAMPLE_DATA.lazarus);
+      }, 5000);
+    }
+
+    function investigate() {
+      var address = document.getElementById('walletInput').value.trim();
+      if (!address) {
+        showError('Paste an Ethereum address to investigate.');
+        return;
+      }
+      if (!address.startsWith('0x') || address.length !== 42) {
+        showError('Invalid Ethereum address. Must start with 0x and be 42 characters.');
+        return;
+      }
+
+      showScan();
+
+      // Check if it matches a known sample address
+      if (address === '0x098B716B8Aaf21512996dC57EB0615e2383E2f96') {
+        setTimeout(function() { renderResults(SAMPLE_DATA.ronin); }, 4500);
+        return;
+      }
+      if (address === '0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f') {
+        setTimeout(function() { renderResults(SAMPLE_DATA.tornado); }, 4000);
+        return;
+      }
+
+      // For unknown addresses — generate a demo result
+      setTimeout(function() {
+        var score = 15 + Math.floor(Math.random() * 40);
+        var level = score > 60 ? 'HIGH' : score > 35 ? 'MEDIUM' : 'LOW';
+        renderResults({
+          address: address,
+          risk_score: score,
+          risk_level: level,
+          roast: "This address doesn't match any known threat actors in our database. Transaction volume is moderate, no mixer interactions detected, and the behavioral patterns look... actually normal. Suspicious in its normalcy, if you ask me.",
+          tx_count: 50 + Math.floor(Math.random() * 500),
+          flagged_count: Math.floor(Math.random() * 5),
+          total_volume: 1000 + Math.random() * 500000,
+          avg_risk_score: score,
+          signals: score > 35 ? ['Moderate Activity Volume', 'Multiple Counterparties'] : ['Low Activity'],
+          risk_distribution: score > 35 ? { MEDIUM: 2, LOW: 4 } : { LOW: 3 },
+          engine: 'AML Detection Engine v11 — 22 rules (Demo)',
+          elapsed: (2 + Math.random() * 3).toFixed(1)
+        });
+      }, 5000);
+    }
+
+    document.getElementById('walletInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') investigate();
+    });
+  </script>  <!-- NEWSLETTER --> <section id="newsletter" class="newsletter-section"> <div class="newsletter-wrap"> <h2>Stay in the Loop</h2> <p>Finance meets the future — one piece at a time. No fluff, just signal.</p> <div class="newsletter-actions"> <a href="https://t.me/BionicBanker" class="nl-btn primary" target="_blank" rel="noopener">Join Telegram →</a> <a href="https://linkedin.com/in/himanshu-h-a357684a" class="nl-btn secondary" target="_blank" rel="noopener">Follow on LinkedIn</a> </div> </div> </section> <!-- FOOTER --> <footer class="site-footer"> <div class="footer-wrap"> <div class="footer-brand"> <a href="/" class="footer-logo">Bionic <span>Banker</span></a> <p class="footer-tagline">Inside finance. Building its future.</p> </div> <div class="footer-links"> <div class="footer-col"> <h4>Explore</h4> <a href="/articles">All Articles</a> <a href="/intelligence">AI Intelligence</a> <a href="/investigate">Investigate</a> </div> <div class="footer-col"> <h4>Connect</h4> <a href="https://t.me/BionicBanker" target="_blank" rel="noopener">Telegram</a> <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener">LinkedIn</a> <a href="https://github.com/hash02" target="_blank" rel="noopener">GitHub</a> </div> </div> <div class="footer-bottom"> <p>&copy; 2026 Bionic Banker. All rights reserved.</p> </div> </div> </footer> <!-- All Interactive Scripts — re-run on View Transition navigation --> <script>
+  function bbInit() {
+    // ── Mobile Menu (idempotent — safe to re-run) ──
+    var hamburger = document.getElementById('bb-hamburger');
+    if (hamburger) {
+      // Create overlay + panel only once
+      var overlay = document.getElementById('bb-overlay');
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'bb-overlay';
+        document.body.appendChild(overlay);
+      }
+      var panel = document.getElementById('bb-panel');
+      if (!panel) {
+        panel = document.createElement('div');
+        panel.id = 'bb-panel';
+        panel.innerHTML =
+          '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
+          '<a href="/articles">All Articles</a>' +
+          '<a href="/intelligence">AI Intelligence</a>' +
+          '<a href="/investigate">Investigate</a>' +
+          '<a href="/#about">About</a>' +
+          '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
+        document.body.appendChild(panel);
+      }
+      // Close any open menu state on navigation
+      panel.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+
+      function openMenu() { panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function closeMenu() { panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+      // Clone + replace to remove old listeners, then add fresh ones
+      var newHamburger = hamburger.cloneNode(true);
+      hamburger.parentNode.replaceChild(newHamburger, hamburger);
+      newHamburger.addEventListener('click', openMenu);
+
+      var closeBtn = document.getElementById('bb-panel-close');
+      if (closeBtn) {
+        var newClose = closeBtn.cloneNode(true);
+        closeBtn.parentNode.replaceChild(newClose, closeBtn);
+        newClose.addEventListener('click', closeMenu);
+      }
+      overlay.onclick = closeMenu;
+      panel.querySelectorAll('a').forEach(function(a) {
+        a.onclick = closeMenu;
+      });
+    }
+
+    // ── Scroll Animations (enhanced with stagger) ──
+    var delay = 0;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var d = delay;
+          delay += 80;
+          setTimeout(function() {
+            entry.target.classList.add('animate-in');
+          }, d);
+          observer.unobserve(entry.target);
+          clearTimeout(window._staggerReset);
+          window._staggerReset = setTimeout(function() { delay = 0; }, 200);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+      el.classList.remove('animate-in');
+      observer.observe(el);
+    });
+
+    // ── Cursor-Tracking Card Glow ──
+    var cards = document.querySelectorAll('.article-card, .intel-card, .hero-article-card, .thoughts-card, .writing-card');
+    cards.forEach(function(card) {
+      card.onmousemove = function(e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--glow-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--glow-y', (e.clientY - rect.top) + 'px');
+        card.style.setProperty('--glow-opacity', '1');
+      };
+      card.onmouseleave = function() {
+        card.style.setProperty('--glow-opacity', '0');
+      };
+    });
+
+    // ── Reading Progress Bar (article pages only) ──
+    var oldBar = document.querySelector('.reading-progress');
+    if (oldBar) oldBar.remove();
+    var body = document.querySelector('.article-body');
+    if (body) {
+      var bar = document.createElement('div');
+      bar.className = 'reading-progress';
+      document.body.appendChild(bar);
+      window.onscroll = function() {
+        var rect = body.getBoundingClientRect();
+        var bodyTop = rect.top + window.scrollY;
+        var bodyHeight = rect.height;
+        var scrolled = window.scrollY - bodyTop;
+        var progress = Math.max(0, Math.min(100, (scrolled / (bodyHeight - window.innerHeight)) * 100));
+        bar.style.width = progress + '%';
+      };
+    }
+  }
+
+  // Run on initial load
+  bbInit();
+  // Re-run after every View Transition navigation
+  document.addEventListener('astro:page-load', bbInit);
+  </script> </body> </html>

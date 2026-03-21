@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #e4e4ec;
+    padding: 40px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #1fa068;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .subtitle {
+    font-size: 0.8rem;
+    color: #6a6a82;
+    margin-bottom: 32px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .card {
+    border: 1px solid rgba(31,160,104,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    background: rgba(31,160,104,0.02);
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .card:hover {
+    border-color: rgba(31,160,104,0.25);
+    background: rgba(31,160,104,0.04);
+    transform: translateY(-2px);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .card-count {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1fa068;
+  }
+  .card-desc {
+    font-size: 0.72rem;
+    color: #6a6a82;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .bar-container {
+    height: 4px;
+    background: rgba(31,160,104,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #1fa068, #1fa068aa);
+    transition: width 1s ease;
+  }
+  .divider {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(31,160,104,0.1);
+  }
+  .divider-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #6a6a82;
+  }
+  .bottom-note {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255,140,68,0.15);
+    border-radius: 8px;
+    background: rgba(255,140,68,0.03);
+    font-size: 0.75rem;
+    color: #9a9ab0;
+    line-height: 1.5;
+  }
+  .bottom-note strong {
+    color: #ff8c44;
+  }
+  .medium-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+  .tag-md { background: rgba(91,115,248,0.1); color: #5b73f8; }
+  .tag-db { background: rgba(31,160,104,0.1); color: #1fa068; }
+  .tag-both { background: rgba(255,140,68,0.1); color: #ff8c44; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">What the Database Actually Contains — 30 Days of Agent Memory</div>
+    <div class="subtitle">The original system was all markdown. Reality demanded a database. Now it's both.</div>
+
+    <div class="grid">
+      <!-- Markdown files -->
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-label">File-Based Memory (Markdown)</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Boot File <span class="medium-tag tag-md">MARKDOWN</span></span>
+          <span class="card-count" style="font-size:0.9rem; color:#ff4444;">7 DAYS STALE</span>
+        </div>
+        <div class="card-desc">The most critical file. The least updated. Exactly the failure mode predicted in the original article.</div>
+        <div class="bar-container"><div class="bar-fill" style="width: 15%; background: #ff4444;"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Immune Rules <span class="medium-tag tag-md">MARKDOWN</span></span>
+          <span class="card-count">19</span>
+        </div>
+        <div class="card-desc">Mistake-derived prevention rules. Works perfectly. The only component that didn't change from theory.</div>
+        <div class="bar-container"><div class="bar-fill" style="width: 100%;"></div></div>
+      </div>
+
+      <!-- Database tables -->
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-label">Database Memory (SQLite)</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Agent Reports <span class="medium-tag tag-db">DATABASE</span></span>
+          <span class="card-count">272</span>
+        </div>
+        <div class="card-desc">Kill tests, memory sweeps, market pulses, verifications. Every agent files a structured report.</div>
+        <div class="bar-container"><div class="bar-fill" style="width: 90%;"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Tracked Wallets <span class="medium-tag tag-db">DATABASE</span></span>
+          <span class="card-count">190</span>
+        </div>
+        <div class="card-desc">AML monitoring — risk scores, rules triggered, volume tracked, profiles built over time.</div>
+        <div class="bar-container"><div class="bar-fill" style="width: 70%;"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Event Bus <span class="medium-tag tag-db">DATABASE</span></span>
+          <span class="card-count">74</span>
+        </div>
+        <div class="card-desc">Every agent action logged with hashes and severity. The nervous system — didn't exist in the original design.</div>
+        <div class="bar-container"><div class="bar-fill" style="width: 55%;"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Chat History <span class="medium-tag tag-db">DATABASE</span></span>
+          <span class="card-count">329</span>
+        </div>
+        <div class="card-desc">Telegram messages — where personality forms. The interaction history that compounds character.</div>
+        <div class="bar-container"><div class="bar-fill" style="width: 85%;"></div></div>
+      </div>
+
+      <!-- Both -->
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-label">Personality Layer (Files + Interactions)</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-header">
+          <span class="card-title">Soul Files + Daily Memory <span class="medium-tag tag-both">HYBRID</span></span>
+          <span class="card-count" style="font-size: 0.9rem;">LAYER 8</span>
+        </div>
+        <div class="card-desc">The layer that didn't exist in the theory. SOUL.md defines who the agent is. IDENTITY.md holds the name and vibe. Daily memory files auto-append. Over 329 interactions, a personality emerges — not from rules, but from accumulated behavior. This is the gap between "AI memory" and "AI identity."</div>
+        <div class="bar-container"><div class="bar-fill" style="width: 40%; background: linear-gradient(90deg, #ff8c44, #1fa068);"></div></div>
+      </div>
+
+      <div class="bottom-note">
+        <strong>The finding:</strong> Markdown files handle identity, immune memory, and boot sequences. Databases handle operational state, event streams, and interaction history. Trying to put everything in one medium fails. The original "all markdown" thesis was wrong — but the hierarchy was right. Boot memory and immune rules still matter more than the database. They just aren't the whole story.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

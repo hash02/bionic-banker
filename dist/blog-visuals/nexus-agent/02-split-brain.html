@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS v3 — Split-Brain Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:rgba(31,160,104,0.3) #020204}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#020204}
+::-webkit-scrollbar-thumb{background:rgba(31,160,104,0.3);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(31,160,104,0.5)}
+
+body{background:#020204;color:#e4e4ec;font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;overflow:hidden}
+h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);margin-bottom:0.3rem;text-align:center;letter-spacing:-0.02em}
+.subtitle{font-size:0.78rem;color:rgba(228,228,236,0.4);margin-bottom:2.5rem;text-align:center}
+.arch{display:flex;gap:2rem;width:100%;max-width:800px;justify-content:center;align-items:stretch;flex-wrap:wrap;position:relative}
+.brain{flex:1;min-width:260px;max-width:350px;border-radius:16px;padding:1.5rem;position:relative;opacity:0;animation:slideIn 0.8s ease forwards}
+.brain.reasoner{background:rgba(91,115,248,0.04);border:1px solid rgba(91,115,248,0.15);animation-delay:0.2s}
+.brain.synthesizer{background:rgba(31,160,104,0.04);border:1px solid rgba(31,160,104,0.15);animation-delay:0.4s}
+.brain-icon{font-size:1.5rem;margin-bottom:0.75rem}
+.brain-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.25rem}
+.brain.reasoner .brain-title{color:#8b9cf7}
+.brain.synthesizer .brain-title{color:#1fa068}
+.brain-role{font-size:0.7rem;color:rgba(228,228,236,0.4);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1.25rem}
+.task{display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.75rem;font-size:0.78rem;line-height:1.4;color:rgba(228,228,236,0.7)}
+.task-dot{width:5px;height:5px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.brain.reasoner .task-dot{background:#5b73f8}
+.brain.synthesizer .task-dot{background:#1fa068}
+.connection{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:0.25rem;z-index:2;opacity:0;animation:fadeIn 1s ease 0.8s forwards}
+.conn-line{width:40px;height:2px;position:relative;overflow:hidden}
+.conn-line::after{content:'';position:absolute;width:10px;height:2px;border-radius:1px;animation:flow 1.5s linear infinite}
+.conn-line.right::after{background:#5b73f8;left:-10px;animation-name:flowRight}
+.conn-line.left::after{background:#1fa068;right:-10px;animation-name:flowLeft}
+.conn-label{font-size:0.55rem;color:rgba(228,228,236,0.3);text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes flowRight{from{left:-10px}to{left:40px}}
+@keyframes flowLeft{from{right:-10px}to{right:40px}}
+.input-output{display:flex;justify-content:center;gap:3rem;margin-top:2rem;opacity:0;animation:fadeIn 0.6s ease 1s forwards;flex-wrap:wrap}
+.io-box{text-align:center;font-size:0.7rem;color:rgba(228,228,236,0.4)}
+.io-box span{display:block;font-size:0.85rem;margin-bottom:0.25rem}
+.watermark{position:fixed;bottom:8px;right:12px;font-size:0.6rem;color:rgba(228,228,236,0.15);letter-spacing:0.1em}
+@media(max-width:600px){.connection{display:none}}
+</style>
+</head>
+<body>
+<h2>Split-Brain Architecture</h2>
+<p class="subtitle">v3 separates thinking from writing — two specialized models, one investigation</p>
+
+<div class="arch">
+  <div class="brain reasoner">
+    <div class="brain-icon">🔍</div>
+    <div class="brain-title">Reasoner</div>
+    <div class="brain-role">Analysis Engine</div>
+    <div class="task"><span class="task-dot"></span><span>Scans transaction patterns across wallets</span></div>
+    <div class="task"><span class="task-dot"></span><span>Applies 22 AML detection rules</span></div>
+    <div class="task"><span class="task-dot"></span><span>Identifies risk clusters and anomalies</span></div>
+    <div class="task"><span class="task-dot"></span><span>Flags evidence chains for investigation</span></div>
+    <div class="task"><span class="task-dot"></span><span>Generates structured risk assessment</span></div>
+  </div>
+
+  <div class="connection">
+    <div class="conn-line right"></div>
+    <div class="conn-label">evidence</div>
+    <div class="conn-line left"></div>
+    <div class="conn-label">queries</div>
+  </div>
+
+  <div class="brain synthesizer">
+    <div class="brain-icon">📝</div>
+    <div class="brain-title">Synthesizer</div>
+    <div class="brain-role">Report Generator</div>
+    <div class="task"><span class="task-dot"></span><span>Translates patterns into human narrative</span></div>
+    <div class="task"><span class="task-dot"></span><span>Writes investigation-grade reports</span></div>
+    <div class="task"><span class="task-dot"></span><span>Generates roast-format summaries</span></div>
+    <div class="task"><span class="task-dot"></span><span>Prioritizes findings by severity</span></div>
+    <div class="task"><span class="task-dot"></span><span>Formats for compliance team readability</span></div>
+  </div>
+</div>
+
+<div class="input-output">
+  <div class="io-box"><span>📥</span>Wallet Address In</div>
+  <div class="io-box"><span>⚙️</span>22 Rules Applied</div>
+  <div class="io-box"><span>📊</span>Risk Report Out</div>
+</div>
+
+<div class="watermark">Bionic Banker</div>
+
+<script>
+function sendHeight(){
+  var h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+  window.parent.postMessage({type:'iframeResize',height:h,src:location.pathname},'*');
+}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
+</body>
+</html>
