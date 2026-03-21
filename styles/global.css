@@ -939,6 +939,26 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
 .newsletter-section p {
   font-size: 0.88rem; color: var(--text-2); margin-bottom: 1.5rem;
 }
+.newsletter-actions {
+  display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+}
+.nl-btn {
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 600;
+  padding: 0.65rem 1.5rem; border-radius: 8px; text-decoration: none;
+  transition: all 0.2s; white-space: nowrap;
+}
+.nl-btn.primary {
+  background: var(--accent); color: #fff;
+}
+.nl-btn.primary:hover {
+  opacity: 0.9; box-shadow: 0 0 20px rgba(31,160,104,0.3);
+}
+.nl-btn.secondary {
+  color: var(--accent); border: 1px solid var(--accent-border); background: transparent;
+}
+.nl-btn.secondary:hover {
+  border-color: var(--accent); box-shadow: 0 0 12px rgba(31,160,104,0.1);
+}
 
 /* ═══════════════════════════════════════════════════════════════
    ARTICLE PAGE — Redesigned layout for Astro ArticleLayout

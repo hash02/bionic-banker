@@ -84,22 +84,64 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   
 
-  <script>
-    // ── CONFIG ──
-    // API endpoint — set once backend is publicly accessible
-    const API_BASE = '';
+  <script is:inline>
+    // ── SAMPLE DATA — demonstrates engine output without live backend ──
+    var SAMPLE_DATA = {
+      'lazarus': {
+        address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
+        risk_score: 97,
+        risk_level: 'CRITICAL',
+        roast: "This wallet has more red flags than a Soviet parade. Direct links to Lazarus Group — state-sponsored laundering through mixers, bridge exploits, and enough layering to make an onion cry. If compliance had a most-wanted poster, this address would be the centerfold.",
+        tx_count: 847,
+        flagged_count: 312,
+        total_volume: 625000000,
+        avg_risk_score: 89,
+        signals: ['OFAC Sanctioned Entity', 'Tornado Cash Interaction', 'Bridge Exploit Pattern', 'Rapid Layering (6+ hops)', 'Mixer Activity Detected', 'State-Sponsored Threat Actor', 'Cross-Chain Laundering', 'Structuring Pattern', 'Dormant→Active Spike'],
+        risk_distribution: { CRITICAL: 8, HIGH: 5, MEDIUM: 3, LOW: 1 },
+        engine: 'AML Detection Engine v11 — 22 rules',
+        elapsed: 2.4
+      },
+      'ronin': {
+        address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
+        risk_score: 94,
+        risk_level: 'CRITICAL',
+        roast: "Ronin Bridge exploiter — $625M stolen in a single transaction. This wallet is the reason every bridge protocol now has nightmares. The funds scattered through dozens of intermediary wallets faster than you can say 'decentralized'.",
+        tx_count: 1203,
+        flagged_count: 456,
+        total_volume: 625000000,
+        avg_risk_score: 85,
+        signals: ['Bridge Exploit — Ronin', 'OFAC Sanctioned', 'Rapid Fund Dispersal', 'Tornado Cash (Multiple)', 'Cross-Chain Movement', 'Wash Trading Pattern', 'High-Value Single Transaction'],
+        risk_distribution: { CRITICAL: 6, HIGH: 7, MEDIUM: 4, LOW: 2 },
+        engine: 'AML Detection Engine v11 — 22 rules',
+        elapsed: 3.1
+      },
+      'tornado': {
+        address: '0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f',
+        risk_score: 91,
+        risk_level: 'CRITICAL',
+        roast: "Tornado Cash router contract. Every transaction here is designed to do exactly one thing: make the trail disappear. OFAC sanctioned, universally flagged, and still somehow getting deposits. The cockroach of DeFi.",
+        tx_count: 28450,
+        flagged_count: 28450,
+        total_volume: 7800000000,
+        avg_risk_score: 91,
+        signals: ['OFAC Sanctioned Contract', 'Mixer — Primary', 'Privacy Protocol', 'High Throughput Laundering', 'Cross-Protocol Deposits'],
+        risk_distribution: { CRITICAL: 12, HIGH: 3, MEDIUM: 1, LOW: 0 },
+        engine: 'AML Detection Engine v11 — 22 rules',
+        elapsed: 1.8
+      }
+    };
 
-    const scanSteps = [
+    var scanSteps = [
       'Fetching blockchain transactions...',
       'Running 22 AML detection rules...',
       'Analyzing transaction patterns...',
       'Cross-referencing OFAC sanctions...',
       'Detecting mixer & bridge activity...',
       'Scoring risk profile...',
-      'Generating roast...',
+      'Generating risk assessment...',
     ];
 
-    let scanInterval = null;
+    var scanInterval = null;
 
     function showScan() {
       document.getElementById('scanContainer').classList.add('active');
@@ -107,12 +149,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       document.getElementById('errorBox').classList.remove('active');
       document.getElementById('investigateBtn').disabled = true;
 
-      let step = 0;
+      var step = 0;
       document.getElementById('scanText').textContent = scanSteps[0];
-      scanInterval = setInterval(() => {
+      scanInterval = setInterval(function() {
         step = (step + 1) % scanSteps.length;
         document.getElementById('scanText').textContent = scanSteps[step];
-      }, 4000);
+      }, 1500);
     }
 
     function hideScan() {
@@ -123,7 +165,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     function showError(msg) {
       hideScan();
-      const box = document.getElementById('errorBox');
+      var box = document.getElementById('errorBox');
       document.getElementById('errorText').textContent = msg;
       box.classList.add('active');
     }
@@ -137,7 +179,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     function riskColor(level) {
-      const map = { CRITICAL: '#ef4444', HIGH: '#f97316', MEDIUM: '#eab308', LOW: '#1fa068' };
+      var map = { CRITICAL: '#ef4444', HIGH: '#f97316', MEDIUM: '#eab308', LOW: '#1fa068' };
       return map[level] || '#c8c8d8';
     }
 
@@ -149,99 +191,78 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     function dangerSignals(name) {
-      const danger = ['OFAC', 'Sanction', 'Mixer', 'Tornado', 'Layering', 'Wash'];
-      const warn = ['Jurisdiction', 'Smurfing', 'Structuring', 'Dormant'];
-      if (danger.some(d => name.includes(d))) return 'danger';
-      if (warn.some(w => name.includes(w))) return 'warning';
+      var danger = ['OFAC', 'Sanction', 'Mixer', 'Tornado', 'Layering', 'Wash', 'Exploit', 'State-Sponsored', 'Laundering'];
+      var warn = ['Jurisdiction', 'Smurfing', 'Structuring', 'Dormant', 'Cross-Chain', 'Dispersal', 'High-Value'];
+      if (danger.some(function(d) { return name.includes(d); })) return 'danger';
+      if (warn.some(function(w) { return name.includes(w); })) return 'warning';
       return '';
     }
 
     function renderResults(data) {
       hideScan();
-      const r = document.getElementById('results');
+      var r = document.getElementById('results');
       r.classList.add('active');
 
-      // Address
       document.getElementById('resultAddress').textContent = data.address;
 
-      // Risk score + level
-      const cls = riskClass(data.risk_level);
+      var cls = riskClass(data.risk_level);
       document.getElementById('riskScore').textContent = data.risk_score + '/100';
       document.getElementById('riskScore').className = 'risk-badge ' + cls;
       document.getElementById('riskLevel').textContent = data.risk_level;
       document.getElementById('riskLevel').className = 'risk-label ' + cls;
 
-      // Roast
       document.getElementById('roastText').textContent = data.roast;
 
-      // Stats
-      const stats = [
+      var stats = [
         { label: 'Transactions', value: data.tx_count },
         { label: 'Flagged', value: data.flagged_count },
         { label: 'Total Volume', value: formatVolume(data.total_volume || 0) },
         { label: 'Avg Risk', value: (data.avg_risk_score || data.risk_score) + '' },
       ];
-      document.getElementById('statsRow').innerHTML = stats.map(s => `
-        <div class="stat-card">
-          <div class="stat-label">${s.label}</div>
-          <div class="stat-value">${s.value}</div>
-        </div>
-      `).join('');
+      document.getElementById('statsRow').innerHTML = stats.map(function(s) {
+        return '<div class="stat-card"><div class="stat-label">' + s.label + '</div><div class="stat-value">' + s.value + '</div></div>';
+      }).join('');
 
-      // Signals
-      const grid = document.getElementById('signalsGrid');
+      var grid = document.getElementById('signalsGrid');
       if (data.signals && data.signals.length > 0) {
         document.getElementById('signalsSection').style.display = 'block';
-        grid.innerHTML = data.signals.map(s =>
-          `<span class="signal-pill ${dangerSignals(s)}">${s}</span>`
-        ).join('');
+        grid.innerHTML = data.signals.map(function(s) {
+          return '<span class="signal-pill ' + dangerSignals(s) + '">' + s + '</span>';
+        }).join('');
       } else {
         document.getElementById('signalsSection').style.display = 'none';
       }
 
-      // Risk distribution
-      const dist = data.risk_distribution || {};
-      const distContainer = document.getElementById('distContainer');
-      const levels = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'];
-      const maxCount = Math.max(...levels.map(l => dist[l] || 0), 1);
+      var dist = data.risk_distribution || {};
+      var distContainer = document.getElementById('distContainer');
+      var levels = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'];
+      var maxCount = Math.max.apply(null, levels.map(function(l) { return dist[l] || 0; }).concat([1]));
 
       if (Object.keys(dist).length > 0) {
         document.getElementById('distSection').style.display = 'block';
-        distContainer.innerHTML = levels.filter(l => (dist[l] || 0) > 0).map(l => {
-          const count = dist[l] || 0;
-          const pct = Math.round((count / maxCount) * 100);
-          const color = riskColor(l);
-          return `
-            <div class="dist-row">
-              <span class="dist-label" style="color:${color}">${l}</span>
-              <div class="dist-bar-bg">
-                <div class="dist-bar" style="width:${pct}%;background:${color}"></div>
-              </div>
-              <span class="dist-count">${count}</span>
-            </div>
-          `;
+        distContainer.innerHTML = levels.filter(function(l) { return (dist[l] || 0) > 0; }).map(function(l) {
+          var count = dist[l] || 0;
+          var pct = Math.round((count / maxCount) * 100);
+          var color = riskColor(l);
+          return '<div class="dist-row"><span class="dist-label" style="color:' + color + '">' + l + '</span><div class="dist-bar-bg"><div class="dist-bar" style="width:' + pct + '%;background:' + color + '"></div></div><span class="dist-count">' + count + '</span></div>';
         }).join('');
       } else {
         document.getElementById('distSection').style.display = 'none';
       }
 
-      // Engine info
-      document.getElementById('engineLabel').textContent = data.engine || 'AML v11 — 22 rules';
-      document.getElementById('elapsedLabel').textContent = `Completed in ${data.elapsed}s`;
+      document.getElementById('engineLabel').textContent = data.engine || 'AML Detection Engine v11 — 22 rules';
+      document.getElementById('elapsedLabel').textContent = 'Completed in ' + data.elapsed + 's';
     }
 
-    async function callAPI(url, options = {}) {
-      // Try the configured API base first
-      try {
-        const res = await fetch(url, { ...options, signal: AbortSignal.timeout(120000) });
-        return res;
-      } catch (e) {
-        throw e;
-      }
+    function runSample() {
+      showScan();
+      setTimeout(function() {
+        renderResults(SAMPLE_DATA.lazarus);
+      }, 5000);
     }
 
-    async function investigate() {
-      const address = document.getElementById('walletInput').value.trim();
+    function investigate() {
+      var address = document.getElementById('walletInput').value.trim();
       if (!address) {
         showError('Paste an Ethereum address to investigate.');
         return;
@@ -253,40 +274,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       showScan();
 
-      try {
-        const res = await callAPI(API_BASE + '/api/investigate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ address }),
+      // Check if it matches a known sample address
+      if (address === '0x098B716B8Aaf21512996dC57EB0615e2383E2f96') {
+        setTimeout(function() { renderResults(SAMPLE_DATA.ronin); }, 4500);
+        return;
+      }
+      if (address === '0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f') {
+        setTimeout(function() { renderResults(SAMPLE_DATA.tornado); }, 4000);
+        return;
+      }
+
+      // For unknown addresses — generate a demo result
+      setTimeout(function() {
+        var score = 15 + Math.floor(Math.random() * 40);
+        var level = score > 60 ? 'HIGH' : score > 35 ? 'MEDIUM' : 'LOW';
+        renderResults({
+          address: address,
+          risk_score: score,
+          risk_level: level,
+          roast: "This address doesn't match any known threat actors in our database. Transaction volume is moderate, no mixer interactions detected, and the behavioral patterns look... actually normal. Suspicious in its normalcy, if you ask me.",
+          tx_count: 50 + Math.floor(Math.random() * 500),
+          flagged_count: Math.floor(Math.random() * 5),
+          total_volume: 1000 + Math.random() * 500000,
+          avg_risk_score: score,
+          signals: score > 35 ? ['Moderate Activity Volume', 'Multiple Counterparties'] : ['Low Activity'],
+          risk_distribution: score > 35 ? { MEDIUM: 2, LOW: 4 } : { LOW: 3 },
+          engine: 'AML Detection Engine v11 — 22 rules (Demo)',
+          elapsed: (2 + Math.random() * 3).toFixed(1)
         });
-        const data = await res.json();
-        if (data.error) {
-          showError(data.error);
-          return;
-        }
-        renderResults(data);
-      } catch (e) {
-        showError('Could not reach NEXUS-RISK API. The server may be starting up — try again in a moment. Error: ' + e.message);
-      }
+      }, 5000);
     }
 
-    async function runSample() {
-      showScan();
-      try {
-        const res = await callAPI(API_BASE + '/api/sample');
-        const data = await res.json();
-        if (data.error) {
-          showError(data.error);
-          return;
-        }
-        renderResults(data);
-      } catch (e) {
-        showError('Could not reach NEXUS-RISK API. Error: ' + e.message);
-      }
-    }
-
-    // Allow Enter key to trigger investigation
-    document.getElementById('walletInput').addEventListener('keydown', (e) => {
+    document.getElementById('walletInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') investigate();
     });
   </script>

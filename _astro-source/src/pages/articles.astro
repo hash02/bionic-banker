@@ -15,6 +15,15 @@ const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort();
 
 // Group by category
 const categories = ['AI', 'Blockchain', 'Finance', 'Tech'];
+
+// Tag color mapping
+const tagColorMap: Record<string, string> = {
+  'AI': 'tag-purple', 'Agents': 'tag-red', 'SYOS': 'tag-purple',
+  'Blockchain': 'tag-blue', 'DeFi': 'tag-blue', 'AML': 'tag-red',
+  'Finance': 'tag-amber', 'Fintech': 'tag-amber', 'Crypto': 'tag-blue',
+  'Tech': 'tag-cyan', 'Thoughts': 'tag-rose', 'Gaming': 'tag-cyan',
+  'Nobel Prize': 'tag-amber', 'Physics': 'tag-cyan',
+};
 ---
 <BaseLayout title="All Articles" description={`${articleCount} pieces on finance, blockchain, AI, and what happens when they collide.`}>
 
@@ -37,7 +46,7 @@ const categories = ['AI', 'Blockchain', 'Finance', 'Tech'];
         <a href={`/blog/${post.data.slug || post.id}`} class="article-card animate-on-scroll" data-category={post.data.category}>
           <div class="article-tags">
             {post.data.tags.slice(0, 3).map((tag: string) => (
-              <span class="tag-pill tag-green">{tag}</span>
+              <span class={`tag-pill ${tagColorMap[tag] || 'tag-green'}`}>{tag}</span>
             ))}
           </div>
           <h3>{post.data.title}</h3>
