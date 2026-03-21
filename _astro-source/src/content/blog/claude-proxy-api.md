@@ -1,7 +1,7 @@
 ---
 title: "Claude Max as Your Personal API"
 description: "$100/month flat rate. Unlimited API requests. Here's how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint."
-date: "2026-03-01"
+date: "2026-03-17"
 tags: ["AI · Economics · Code"]
 readTime: "11 min"
 category: "Tech"

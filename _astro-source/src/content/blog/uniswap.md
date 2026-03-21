@@ -1,7 +1,7 @@
 ---
 title: "Understanding Uniswap: The Leading Decentralized Exchange"
 description: "Uniswap has emerged as a pioneering decentralized exchange (DEX), revolutionizing how cryptocurrencies are traded through smart contracts on the Ethereum blockc"
-date: "2026-03-01"
+date: "2024-05-25"
 tags: ["DeFi · Blockchain · DEX"]
 readTime: "2 min"
 category: "Tech"

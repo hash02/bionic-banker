@@ -1,7 +1,7 @@
 ---
 title: "The Technical Blueprint — How to Actually Build a Folder Agent"
 description: "Part 2: The honest technical blueprint. What makes a folder an agent, what's still missing, and the 50-line Python script that changes everything."
-date: "2026-03-01"
+date: "2026-03-09"
 tags: ["AI", "Agents", "Code"]
 readTime: "12 min"
 category: "AI"

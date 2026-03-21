@@ -1,7 +1,7 @@
 ---
 title: "From One Script to 14 Agents in 15 Days"
 description: "I started with a Python script that checked a few blockchain transactions. 15 days later I had 14 autonomous agents, a three-brain architecture, and a system that runs while I sleep. Here's the real story."
-date: "2026-03-01"
+date: "2026-03-17"
 tags: ["AI", "Blockchain", "Builder"]
 readTime: "12 min"
 category: "Blockchain"

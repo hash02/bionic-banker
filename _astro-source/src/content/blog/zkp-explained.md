@@ -1,7 +1,7 @@
 ---
 title: "AI in Banking Needs Privacy — Enter Zero-Knowledge Proofs"
 description: "Banks are deploying AI at scale. Privacy measures aren't keeping up. Here's the cryptographic solution that's been around since the 1980s."
-date: "2026-03-01"
+date: "2026-02-28"
 tags: ["Blockchain · Privacy · Banking"]
 readTime: "7 min"
 category: "Tech"

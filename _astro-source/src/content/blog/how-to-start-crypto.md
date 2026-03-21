@@ -1,7 +1,7 @@
 ---
 title: "How to start with crypto in 2024"
 description: "Imagine you’re sitting in a cozy, sunlit café, and your friend, who knows next to nothing about crypto, asks you to explain it. Channeling your inner Richard Fe"
-date: "2026-03-01"
+date: "2024-06-01"
 tags: ["Blockchain · Crypto · Guide"]
 readTime: "4 min"
 category: "Tech"

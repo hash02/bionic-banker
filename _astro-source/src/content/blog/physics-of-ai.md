@@ -1,7 +1,7 @@
 ---
 title: "The Physics of AI"
 description: "Two scientists just won the Nobel Prize in Physics for AI. Not computer science. Physics. Here's what that actually means."
-date: "2026-03-01"
+date: "2026-02-28"
 tags: ["AI · Physics · Nobel Prize"]
 readTime: "8 min"
 category: "Tech"

@@ -1,7 +1,7 @@
 ---
 title: "SYOS — The Symbolic Operating System"
 description: "I didn't write a single line of code. But I built a reasoning system inside an LLM. And it started evolving on its own."
-date: "2026-03-01"
+date: "2026-02-28"
 tags: ["AI · Reasoning · SYOS"]
 readTime: "9 min"
 category: "Tech"

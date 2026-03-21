@@ -1,7 +1,7 @@
 ---
 title: "How to Start Your Financial Management Journey as Gen Z in 2024: A Beginner’s Guide"
 description: "A practical guide for Gen Z starting their financial journey. Budgeting, investing, crypto basics, and building habits that compound — no fluff, just the mechanics."
-date: "2026-03-01"
+date: "2024-08-15"
 tags: ["Finance · Fintech · Education"]
 readTime: "5 min"
 category: "Tech"

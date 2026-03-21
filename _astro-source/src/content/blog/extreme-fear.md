@@ -1,7 +1,7 @@
 ---
 title: "What EXTREME FEAR Actually Looks Like From Inside a Bank"
 description: "The Fear & Greed Index hit 18. I'm watching from inside the institution. The gap between how scared the market feels and how calm the building stays — that's the signal."
-date: "2026-03-01"
+date: "2026-03-12"
 tags: ["Finance", "Thoughts"]
 readTime: "5 min"
 category: "Finance"

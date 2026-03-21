@@ -1,7 +1,7 @@
 ---
 title: "I Wrote a Theory About AI Memory. Then I Ran It For a Month."
 description: "A case study in AI agent memory architecture. Five layers became eight. The boot file stayed stale. The immune system was the only thing that worked exactly as designed."
-date: "2026-03-01"
+date: "2026-03-15"
 tags: ["AI", "Agents", "Case Study"]
 readTime: "12 min"
 category: "AI"

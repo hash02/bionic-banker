@@ -1,7 +1,7 @@
 ---
 title: "The Kill Agent: Why I Built an AI That Attacks Itself Every Hour"
 description: "20% survival rate. Published honestly. I built a dedicated kill agent that stress-tests my entire AI system every hour — and the failures are the whole point."
-date: "2026-03-01"
+date: "2026-03-13"
 tags: ["AI Agents", "Security"]
 readTime: "9 min"
 category: "Tech"

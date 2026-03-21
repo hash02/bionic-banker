@@ -1,7 +1,7 @@
 ---
 title: "I Tested My Own Framework Wrong — Then Right — Then Tried to Break It"
 description: "I ran 6 rounds of falsification tests on SYOS. The first one said it was broken. The second one said it wasn't. Both were right — and that's the whole point."
-date: "2026-03-01"
+date: "2026-03-04"
 tags: ["AI · Testing · SYOS"]
 readTime: "12 min"
 category: "Tech"

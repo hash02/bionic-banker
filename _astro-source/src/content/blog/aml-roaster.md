@@ -1,7 +1,7 @@
 ---
 title: "My AML Engine Doesn't Just Flag Wallets. It Roasts Them."
 description: "94.9% detection rate meets zero patience. The AML Roaster scans Ethereum wallets, flags suspicious patterns, and delivers compliance-grade analysis with attitude."
-date: "2026-03-01"
+date: "2026-03-08"
 tags: ["AML · AI · Blockchain"]
 readTime: "8 min"
 category: "Tech"

@@ -1,7 +1,7 @@
 ---
 title: "I Built 3 AI Agents. Here's What Broke Each Time."
 description: "I built three versions of an AI investigation agent. Each one broke differently. Here's what the architecture diagrams don't tell you about memory, bias, and adversarial reasoning."
-date: "2026-03-01"
+date: "2026-03-05"
 tags: ["AI · Agents · Blockchain"]
 readTime: "7 min"
 category: "Tech"

@@ -1,7 +1,7 @@
 ---
 title: "How I Built a Memory System That Survives AI Context Death"
 description: "Everyone building AI memory is solving retrieval. The actual problem is continuity — and the fix is an immune system, not a database. Five layers, markdown files, real stress test results."
-date: "2026-03-01"
+date: "2026-03-13"
 tags: ["AI", "Agents", "Builder"]
 readTime: "10 min"
 category: "AI"
