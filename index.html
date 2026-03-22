@@ -7,10 +7,10 @@
 </style><link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 <link rel="stylesheet" href="/styles/animations.css?v8fcace7">
 <!-- 3D Engine + Animation Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head> <body>
 <div id="bb-progress-bar" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:9999;background:linear-gradient(90deg,#0d7a4a,#1fa068,#34d399);box-shadow:0 0 12px rgba(31,160,104,0.3);transition:width 0.1s linear;pointer-events:none;"></div> <!-- NAV --> <nav> <a href="/" class="nav-logo">Bionic <span>Banker</span></a> <div class="nav-right"> <ul class="nav-links"> <li><a href="/articles">All Articles</a></li> <li><a href="/intelligence">AI Intelligence</a></li> <li><a href="/#about">About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu">&#9776;</button> </nav> <!-- MOBILE MENU (in HTML, not dynamically created) --> <div id="bb-overlay"></div> <div id="bb-panel"> <button id="bb-panel-close" aria-label="Close menu">&times;</button> <a href="/articles">All Articles</a> <a href="/intelligence">AI Intelligence</a> <a href="/#about">About</a> <a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a> </div> <!-- MAIN CONTENT -->   <div class="hero-wrap"> <div class="glow-orb glow-orb-1"></div> <div class="glow-orb glow-orb-2"></div> <div class="glow-orb glow-orb-3"></div> <canvas id="particle-canvas"></canvas> <script>
 (function() {
@@ -219,16 +219,17 @@ Join the Telegram &rarr;
   </script> <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="/js/animations.js"></script>
 
-<!-- Vanta.js 3D NET background + GSAP scroll animations -->
+<!-- Vanta.js 3D NET + GSAP ScrollTrigger — waits for all deferred scripts to load -->
 <script>
-(function() {
-  // Only init Vanta on desktop (mobile gets CSS-only effects)
+window.addEventListener('load', function() {
+  // ═══ VANTA.JS 3D NET ═══
+  // Only init on desktop (mobile gets CSS-only effects for performance)
   if (window.innerWidth > 768 && typeof VANTA !== 'undefined') {
     try {
       var heroWrap = document.querySelector('.hero-wrap');
       if (heroWrap) {
-        heroWrap.classList.add("vanta-initialized");
-        VANTA.NET({
+        heroWrap.classList.add('vanta-initialized');
+        window._vantaEffect = VANTA.NET({
           el: heroWrap,
           mouseControls: true,
           touchControls: false,
@@ -239,67 +240,91 @@ Join the Telegram &rarr;
           scaleMobile: 0.5,
           color: 0x1fa068,
           backgroundColor: 0x020204,
-          points: 8,
-          maxDistance: 22,
-          spacing: 18,
+          points: 10,
+          maxDistance: 25,
+          spacing: 16,
           showDots: true
         });
       }
-    } catch(e) { console.log('Vanta init skipped:', e); }
+    } catch(e) { console.log('Vanta init error:', e); }
   }
 
-  // GSAP ScrollTrigger animations (progressive enhancement)
+  // ═══ GSAP SCROLLTRIGGER ═══
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Staggered article card entrance
-    gsap.utils.toArray('.article-card, .article-card-featured').forEach(function(card, i) {
+    // Staggered card entrances
+    gsap.utils.toArray('.article-card, .article-card-featured, .thoughts-card').forEach(function(card, i) {
       gsap.from(card, {
-        scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' },
-        opacity: 0, y: 40, duration: 0.6, delay: i * 0.08, ease: 'power2.out'
+        scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' },
+        opacity: 0, y: 50, duration: 0.7, delay: i * 0.1, ease: 'power3.out'
       });
     });
 
-    // Hero text entrance (staggered)
+    // Hero entrance sequence
+    var tl = gsap.timeline({ delay: 0.2 });
+    var heroEyebrow = document.querySelector('.hero-eyebrow');
     var heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-      gsap.from(heroTitle, { opacity: 0, y: 30, duration: 0.8, delay: 0.3, ease: 'power3.out' });
-    }
     var heroSub = document.querySelector('.hero-sub');
-    if (heroSub) {
-      gsap.from(heroSub, { opacity: 0, y: 20, duration: 0.7, delay: 0.5, ease: 'power2.out' });
-    }
+    var heroActions = document.querySelector('.hero-actions');
+    var heroStats = document.querySelector('.hero-stats-row');
+    var heroRight = document.querySelector('.hero-right');
 
-    // Parallax on glow orbs
+    if (heroEyebrow) tl.from(heroEyebrow, { opacity: 0, y: -10, duration: 0.4, ease: 'power2.out' });
+    if (heroTitle) tl.from(heroTitle, { opacity: 0, y: 30, duration: 0.7, ease: 'power3.out' }, '-=0.1');
+    if (heroSub) tl.from(heroSub, { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.3');
+    if (heroActions) tl.from(heroActions, { opacity: 0, y: 15, duration: 0.4, ease: 'power2.out' }, '-=0.2');
+    if (heroStats) tl.from(heroStats, { opacity: 0, y: 15, duration: 0.4, ease: 'power2.out' }, '-=0.2');
+    if (heroRight) tl.from(heroRight, { opacity: 0, x: 40, duration: 0.8, ease: 'power3.out' }, '-=0.5');
+
+    // Parallax glow orbs
     gsap.utils.toArray('.glow-orb').forEach(function(orb, i) {
       gsap.to(orb, {
-        scrollTrigger: { trigger: '.hero-wrap', start: 'top top', end: 'bottom top', scrub: 1 },
-        y: (i + 1) * -60, ease: 'none'
+        scrollTrigger: { trigger: '.hero-wrap', start: 'top top', end: 'bottom top', scrub: 1.5 },
+        y: (i + 1) * -80, ease: 'none'
       });
     });
 
-    // Section labels slide in
+    // Section labels slide in from left
     gsap.utils.toArray('.section-label-text').forEach(function(el) {
       gsap.from(el, {
-        scrollTrigger: { trigger: el, start: 'top 90%' },
-        opacity: 0, x: -20, duration: 0.5, ease: 'power2.out'
+        scrollTrigger: { trigger: el, start: 'top 92%' },
+        opacity: 0, x: -25, duration: 0.5, ease: 'power2.out'
       });
     });
 
-    // Stats counter (override AOS for smoother GSAP version)
-    gsap.utils.toArray('.astat-n').forEach(function(el) {
-      var target = el.textContent.replace(/[^0-9]/g, '');
-      var suffix = el.textContent.replace(/[0-9]/g, '');
+    // Section titles fade up
+    gsap.utils.toArray('.section-title-text').forEach(function(el) {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 90%' },
+        opacity: 0, y: 20, duration: 0.6, ease: 'power2.out'
+      });
+    });
+
+    // About section stats counter
+    gsap.utils.toArray('.astat-n, .hstat-n').forEach(function(el) {
+      var text = el.textContent;
+      var target = text.replace(/[^0-9]/g, '');
+      var suffix = text.replace(/[0-9]/g, '');
       if (target && !isNaN(parseInt(target))) {
         var obj = { val: 0 };
         gsap.to(obj, {
-          scrollTrigger: { trigger: el, start: 'top 85%' },
-          val: parseInt(target), duration: 1.5, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+          val: parseInt(target), duration: 1.8, ease: 'power2.out',
           onUpdate: function() { el.textContent = Math.round(obj.val) + suffix; }
         });
       }
     });
+
+    // Newsletter section entrance
+    var nlStrip = document.querySelector('.newsletter-strip');
+    if (nlStrip) {
+      gsap.from(nlStrip, {
+        scrollTrigger: { trigger: nlStrip, start: 'top 90%' },
+        opacity: 0, y: 30, duration: 0.7, ease: 'power2.out'
+      });
+    }
   }
-})();
+});
 </script>
 </body> </html>
