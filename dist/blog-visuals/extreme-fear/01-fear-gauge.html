@@ -25,7 +25,7 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #8b6cf7;
+    color: #34d399;
     margin-bottom: 0.5rem;
   }
   .subtitle {
@@ -79,7 +79,7 @@
     letter-spacing: 0.1em;
     margin-bottom: 0.75rem;
   }
-  .comp-card.retail h3 { color: #ff4444; }
+  .comp-card.retail h3 { color: #1fa068; }
   .comp-card.institutional h3 { color: #1fa068; }
   .comp-item {
     font-size: 0.82rem;
@@ -117,7 +117,7 @@
     -webkit-appearance: none;
     width: 100%;
     height: 4px;
-    background: linear-gradient(to right, #ff4444, #ff8844, #ffcc00, #88cc44, #1fa068);
+    background: linear-gradient(to right, #1fa068, #ff8844, #ffcc00, #88cc44, #1fa068);
     border-radius: 4px;
     outline: none;
   }
@@ -151,7 +151,7 @@
     </svg>
     <div class="gauge-value" id="gaugeValue">18</div>
   </div>
-  <div class="gauge-label" id="gaugeLabel" style="color: #ff4444;">EXTREME FEAR</div>
+  <div class="gauge-label" id="gaugeLabel" style="color: #1fa068;">EXTREME FEAR</div>
 
   <div class="slider-wrap">
     <div class="slider-label">Adjust to explore sentiment zones</div>
@@ -196,7 +196,7 @@ const totalLength = 251.3; // approximate arc length
 path.style.strokeDasharray = totalLength;
 
 function getZone(val) {
-  if (val <= 24) return { label: 'EXTREME FEAR', color: '#ff4444' };
+  if (val <= 24) return { label: 'EXTREME FEAR', color: '#1fa068' };
   if (val <= 44) return { label: 'FEAR', color: '#ff8844' };
   if (val <= 55) return { label: 'NEUTRAL', color: '#ffcc00' };
   if (val <= 74) return { label: 'GREED', color: '#88cc44' };
