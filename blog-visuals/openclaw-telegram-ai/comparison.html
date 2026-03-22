@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #e4e4ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 2.5rem;
+  }
+  .title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(91,115,248,0.6);
+    margin-bottom: 0.4rem;
+  }
+  .subtitle {
+    font-size: 0.78rem;
+    color: rgba(228,228,236,0.35);
+    margin-bottom: 2rem;
+  }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 0;
+  }
+
+  .col-header {
+    padding: 1rem 1.2rem;
+    border-bottom: 2px solid rgba(255,255,255,0.06);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .col-header.self-hosted {
+    color: #1fa068;
+    border-bottom-color: rgba(31,160,104,0.3);
+  }
+  .col-header.commercial {
+    color: rgba(228,228,236,0.4);
+    border-bottom-color: rgba(255,255,255,0.06);
+  }
+  .col-header.dimension {
+    color: rgba(228,228,236,0.3);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .row-label {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: rgba(228,228,236,0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .row-label .icon {
+    font-size: 1rem;
+  }
+
+  .cell {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    transition: background 0.2s ease;
+  }
+  .cell:hover {
+    background: rgba(255,255,255,0.01);
+  }
+
+  .cell.win {
+    color: #1fa068;
+  }
+  .cell.lose {
+    color: rgba(228,228,236,0.35);
+  }
+  .cell.neutral {
+    color: rgba(228,228,236,0.5);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 0.4rem;
+  }
+  .badge-green {
+    color: #1fa068;
+    background: rgba(31,160,104,0.1);
+  }
+  .badge-red {
+    color: #ff4444;
+    background: rgba(255,68,68,0.1);
+  }
+  .badge-yellow {
+    color: #ffb432;
+    background: rgba(255,180,50,0.1);
+  }
+
+  /* Bottom insight */
+  .insight {
+    margin-top: 2rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(31,160,104,0.12);
+    background: rgba(31,160,104,0.03);
+  }
+  .insight-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #1fa068;
+    margin-bottom: 0.4rem;
+  }
+  .insight-text {
+    font-size: 0.85rem;
+    color: rgba(228,228,236,0.6);
+    line-height: 1.6;
+  }
+
+  /* Score bar visualization */
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+  .bar-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+  .bar-fill.green { background: #1fa068; }
+  .bar-fill.red { background: #ff4444; }
+  .bar-fill.dim { background: rgba(228,228,236,0.15); }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Self-Hosted vs Commercial AI Assistants</div>
+    <div class="subtitle">Why owning the infrastructure changes everything</div>
+
+    <div class="comparison">
+      <!-- Headers -->
+      <div class="col-header dimension">Dimension</div>
+      <div class="col-header self-hosted">&#x1F6E0;&#xFE0F; Self-Hosted Companion</div>
+      <div class="col-header commercial">&#x2601;&#xFE0F; Commercial Assistant</div>
+
+      <!-- Cost -->
+      <div class="row-label"><span class="icon">&#x1F4B0;</span> Cost</div>
+      <div class="cell win">
+        $0/month after setup <span class="badge badge-green">free</span>
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill green" style="width:95%"></div></div></div>
+      </div>
+      <div class="cell lose">
+        $20-200/mo per seat, per-token fees
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill dim" style="width:30%"></div></div></div>
+      </div>
+
+      <!-- Privacy -->
+      <div class="row-label"><span class="icon">&#x1F512;</span> Privacy</div>
+      <div class="cell win">
+        Data never leaves your hardware <span class="badge badge-green">local</span>
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div></div>
+      </div>
+      <div class="cell lose">
+        Conversations stored on third-party servers
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill dim" style="width:20%"></div></div></div>
+      </div>
+
+      <!-- Memory -->
+      <div class="row-label"><span class="icon">&#x1F9E0;</span> Memory</div>
+      <div class="cell win">
+        Persistent, editable, versioned markdown <span class="badge badge-green">yours</span>
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill green" style="width:90%"></div></div></div>
+      </div>
+      <div class="cell lose">
+        Context window resets per session
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill dim" style="width:15%"></div></div></div>
+      </div>
+
+      <!-- Customization -->
+      <div class="row-label"><span class="icon">&#x1F527;</span> Customize</div>
+      <div class="cell win">
+        Change anything: loop, memory, skills, UI
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div></div>
+      </div>
+      <div class="cell lose">
+        Wait for vendor's product roadmap
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill dim" style="width:10%"></div></div></div>
+      </div>
+
+      <!-- Multi-Agent -->
+      <div class="row-label"><span class="icon">&#x1F916;</span> Multi-Agent</div>
+      <div class="cell win">
+        Specialized agents, shared memory, delegation
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill green" style="width:85%"></div></div></div>
+      </div>
+      <div class="cell lose">
+        One general-purpose assistant <span class="badge badge-yellow">limited</span>
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill dim" style="width:25%"></div></div></div>
+      </div>
+
+      <!-- Setup -->
+      <div class="row-label"><span class="icon">&#x23F1;&#xFE0F;</span> Setup</div>
+      <div class="cell neutral">
+        Requires technical knowledge <span class="badge badge-yellow">effort</span>
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill dim" style="width:35%"></div></div></div>
+      </div>
+      <div class="cell win" style="color:#5b73f8;">
+        Sign up and start chatting <span class="badge badge-green">easy</span>
+        <div class="score-bar"><div class="bar-track"><div class="bar-fill green" style="width:95%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Key Insight</div>
+      <div class="insight-text">Memory quality matters more than model quality. A smaller model with good memory beats a smarter model that doesn't know you. The barrier isn't technical — it's mindset.</div>
+    </div>
+  </div>
+</body>
+</html>

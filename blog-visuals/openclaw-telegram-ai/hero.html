@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #e4e4ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .hero {
+    width: 100%;
+    max-width: 1200px;
+    padding: 3rem 2.5rem;
+    position: relative;
+  }
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  .hero-text {
+    flex: 1;
+    max-width: 550px;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #1fa068;
+    background: rgba(31,160,104,0.1);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #5b73f8, #8b6cf7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(228,228,236,0.6);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1fa068;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(228,228,236,0.4);
+    margin-top: 0.25rem;
+  }
+
+  /* Architecture diagram on the right */
+  .hero-diagram {
+    flex: 1;
+    max-width: 500px;
+    position: relative;
+  }
+  .layer-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .layer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  .layer:hover {
+    border-color: rgba(91,115,248,0.3);
+    background: rgba(91,115,248,0.04);
+    transform: translateX(4px);
+  }
+  .layer-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .layer-icon.gateway { background: rgba(91,115,248,0.15); }
+  .layer-icon.brain { background: rgba(139,108,247,0.15); }
+  .layer-icon.memory { background: rgba(31,160,104,0.15); }
+  .layer-icon.skills { background: rgba(255,180,50,0.15); }
+  .layer-icon.heartbeat { background: rgba(255,68,68,0.15); }
+  .layer-num {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgba(228,228,236,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    width: 20px;
+  }
+  .layer-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #e4e4ec;
+  }
+  .layer-desc {
+    font-size: 0.75rem;
+    color: rgba(228,228,236,0.45);
+    margin-left: auto;
+  }
+
+  /* Connector lines */
+  .connector {
+    width: 2px;
+    height: 6px;
+    background: rgba(91,115,248,0.15);
+    margin-left: 2.7rem;
+  }
+
+  /* Pulse animation on heartbeat */
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff4444;
+    margin-left: auto;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  /* Floating particles */
+  .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(91,115,248,0.2);
+    animation: float 8s ease-in-out infinite;
+  }
+  .particle:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+  .particle:nth-child(2) { top: 30%; left: 95%; animation-delay: 1.5s; }
+  .particle:nth-child(3) { top: 60%; left: 10%; animation-delay: 3s; background: rgba(31,160,104,0.2); }
+  .particle:nth-child(4) { top: 80%; left: 85%; animation-delay: 4.5s; background: rgba(139,108,247,0.2); }
+  .particle:nth-child(5) { top: 45%; left: 50%; animation-delay: 6s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+    25% { transform: translateY(-20px) translateX(10px); opacity: 0.7; }
+    50% { transform: translateY(-10px) translateX(-15px); opacity: 0.5; }
+    75% { transform: translateY(-30px) translateX(5px); opacity: 0.8; }
+  }
+
+  .bottom-bar {
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bottom-bar span {
+    font-size: 0.7rem;
+    color: rgba(228,228,236,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .bottom-bar .site {
+    color: rgba(91,115,248,0.5);
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <div class="hero-top">
+      <div class="hero-text">
+        <div class="hero-badge">AI Companion Architecture</div>
+        <h1 class="hero-title">I Built My Own AI That Lives on Telegram</h1>
+        <p class="hero-sub">Not a chatbot. A companion. Five layers, markdown memory, and a heartbeat that never stops. Self-hosted, private, always learning.</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Layers</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">0</div>
+            <div class="stat-label">Cloud Deps</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-diagram">
+        <div class="layer-stack">
+          <div class="layer">
+            <div class="layer-num">L1</div>
+            <div class="layer-icon gateway">&#x1F4E8;</div>
+            <div class="layer-name">Gateway</div>
+            <div class="layer-desc">Telegram, Slack, Discord</div>
+          </div>
+          <div class="connector"></div>
+          <div class="layer">
+            <div class="layer-num">L2</div>
+            <div class="layer-icon brain">&#x1F9E0;</div>
+            <div class="layer-name">Brain</div>
+            <div class="layer-desc">ReAct reasoning loop</div>
+          </div>
+          <div class="connector"></div>
+          <div class="layer">
+            <div class="layer-num">L3</div>
+            <div class="layer-icon memory">&#x1F4BE;</div>
+            <div class="layer-name">Memory</div>
+            <div class="layer-desc">Markdown files, versioned</div>
+          </div>
+          <div class="connector"></div>
+          <div class="layer">
+            <div class="layer-num">L4</div>
+            <div class="layer-icon skills">&#x26A1;</div>
+            <div class="layer-name">Skills</div>
+            <div class="layer-desc">Modular, hot-reloadable</div>
+          </div>
+          <div class="connector"></div>
+          <div class="layer">
+            <div class="layer-num">L5</div>
+            <div class="layer-icon heartbeat">&#x1F493;</div>
+            <div class="layer-name">Heartbeat</div>
+            <div class="pulse-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <span>March 2026</span>
+      <span class="site">bionicbanker.tech</span>
+    </div>
+  </div>
+</body>
+</html>
