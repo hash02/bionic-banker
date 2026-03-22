@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bionic Banker — Article Image Generator</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #020204; color: #e4e4ec; font-family: 'Plus Jakarta Sans', sans-serif; padding: 2rem; }
+h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: #1fa068; }
+.controls { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.control { display: flex; flex-direction: column; gap: 0.3rem; }
+label { font-size: 0.75rem; color: #8888a0; text-transform: uppercase; letter-spacing: 0.1em; }
+input, select, textarea { background: #080810; border: 1px solid rgba(31,160,104,0.2); border-radius: 6px; padding: 0.5rem 0.75rem; color: #e4e4ec; font-size: 0.85rem; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: #1fa068; }
+textarea { width: 400px; height: 60px; resize: vertical; }
+button { background: #1fa068; color: white; border: none; border-radius: 6px; padding: 0.6rem 1.5rem; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+button:hover { background: #34d399; }
+.preview { margin-top: 1rem; }
+canvas { border: 1px solid rgba(31,160,104,0.15); border-radius: 8px; max-width: 100%; }
+.download-row { margin-top: 1rem; display: flex; gap: 0.75rem; }
+.templates { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.template-btn { background: #0c0c14; border: 1px solid rgba(31,160,104,0.15); border-radius: 6px; padding: 0.4rem 0.8rem; color: #8888a0; font-size: 0.72rem; cursor: pointer; }
+.template-btn:hover, .template-btn.active { border-color: #1fa068; color: #1fa068; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1>Article Image Generator</h1>
+<p style="color:#8888a0;margin-bottom:1.5rem;font-size:0.85rem;">Generate hero images for bionicbanker.tech articles. All green/black/white theme.</p>
+
+<div class="templates">
+  <button class="template-btn active" onclick="setTemplate('circuit')">Circuit Board</button>
+  <button class="template-btn" onclick="setTemplate('matrix')">Matrix Rain</button>
+  <button class="template-btn" onclick="setTemplate('network')">Neural Network</button>
+  <button class="template-btn" onclick="setTemplate('blockchain')">Blockchain</button>
+  <button class="template-btn" onclick="setTemplate('waves')">Data Waves</button>
+  <button class="template-btn" onclick="setTemplate('grid')">Tech Grid</button>
+</div>
+
+<div class="controls">
+  <div class="control">
+    <label>Title</label>
+    <textarea id="title">I Built a Blockchain AML Engine From Scratch</textarea>
+  </div>
+  <div class="control">
+    <label>Tags</label>
+    <input id="tags" value="AML · Blockchain · AI">
+  </div>
+  <div class="control">
+    <label>Size</label>
+    <select id="size">
+      <option value="1200x630" selected>1200×630 (OG/Social)</option>
+      <option value="1600x900">1600×900 (Hero)</option>
+      <option value="800x400">800×400 (Card)</option>
+      <option value="1080x1080">1080×1080 (Square)</option>
+    </select>
+  </div>
+  <div class="control" style="align-self:flex-end;">
+    <button onclick="generate()">Generate →</button>
+  </div>
+</div>
+
+<div class="preview">
+  <canvas id="canvas" width="1200" height="630"></canvas>
+</div>
+<div class="download-row">
+  <button onclick="download()">Download PNG</button>
+  <button onclick="downloadAll()" style="background:#0c0c14;border:1px solid #1fa068;color:#1fa068;">Generate All Articles</button>
+</div>
+
+<script>
+var currentTemplate = 'circuit';
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+// All 27 articles
+var articles = [
+  { title: "I Built a Blockchain AML Engine From Scratch", tags: "AML · Blockchain · AI", template: "circuit" },
+  { title: "SYOS — Making an LLM Think About Its Own Thinking", tags: "AI · SYOS", template: "network" },
+  { title: "I Built 3 AI Agents. Here's What Broke Each Time.", tags: "AI · Agents · Blockchain", template: "network" },
+  { title: "The Physics of AI — Why the 2024 Nobel Prize Changes Everything", tags: "AI · Physics · Nobel Prize", template: "waves" },
+  { title: "The Anchor Problem", tags: "Thoughts · AI", template: "waves" },
+  { title: "The Agent Wake-Up Call — Why Your Experience Alone Won't Save You", tags: "AI · Agents · Future of Work", template: "matrix" },
+  { title: "From One Script to 14 Agents in 15 Days", tags: "AI · Blockchain", template: "network" },
+  { title: "How I Built a Memory System That Survives AI Context Death", tags: "AI · Agents", template: "circuit" },
+  { title: "I Wrote a Theory About AI Memory. Then I Ran It For a Month.", tags: "AI · Agents · Case Study", template: "circuit" },
+  { title: "The Technical Blueprint — How to Actually Build a Folder Agent", tags: "AI · Agents", template: "grid" },
+  { title: "Your Folder Is Already an Agent", tags: "AI · Agents", template: "grid" },
+  { title: "The Kill Agent — Building a System That Stress-Tests Itself to Death", tags: "AI · Security", template: "matrix" },
+  { title: "SYOS Falsification — Can My Theory Survive Its Own Test?", tags: "AI · SYOS · Research", template: "network" },
+  { title: "Claude Max as Your Personal API", tags: "AI · Economics · Code", template: "blockchain" },
+  { title: "Roast Gallery — Where Suspicious Wallets Get What They Deserve", tags: "Tech", template: "blockchain" },
+  { title: "How My AI Agent Went From Broken to Autonomous in 30 Days", tags: "AI · Agents", template: "network" },
+  { title: "How to Start Your Crypto Journey in Canada", tags: "Blockchain · Finance", template: "blockchain" },
+  { title: "DeFi Explained — What It Is and Why It Matters", tags: "DeFi · Blockchain", template: "blockchain" },
+  { title: "What Is Aave? The Bank That Never Closes", tags: "DeFi · Blockchain", template: "waves" },
+  { title: "What Is Uniswap? The Exchange Without an Exchange", tags: "DeFi · Blockchain", template: "waves" },
+  { title: "Blockchain Trends to Watch", tags: "Blockchain · Finance", template: "blockchain" },
+  { title: "PayPal and the Future of Payments", tags: "Finance · Fintech", template: "grid" },
+  { title: "Fintech — Where Finance Meets Technology", tags: "Finance · Tech", template: "grid" },
+  { title: "Gen Z and the New Financial Playbook", tags: "Finance · Culture", template: "waves" },
+  { title: "When the Market Screams — Extreme Fear as a Signal", tags: "Finance · Psychology", template: "matrix" },
+  { title: "Zero Knowledge Proofs — Proving Without Revealing", tags: "Blockchain · Cryptography", template: "circuit" },
+  { title: "The Architecture of a Folder Agent", tags: "AI · Agents · Builder", template: "grid" }
+];
+
+function setTemplate(t) {
+  currentTemplate = t;
+  document.querySelectorAll('.template-btn').forEach(function(b) { b.classList.remove('active'); });
+  event.target.classList.add('active');
+  generate();
+}
+
+function generate() {
+  var title = document.getElementById('title').value;
+  var tags = document.getElementById('tags').value;
+  var dims = document.getElementById('size').value.split('x');
+  canvas.width = parseInt(dims[0]);
+  canvas.height = parseInt(dims[1]);
+  drawImage(ctx, canvas.width, canvas.height, title, tags, currentTemplate);
+}
+
+function drawImage(ctx, w, h, title, tags, template) {
+  // Background
+  ctx.fillStyle = '#020204';
+  ctx.fillRect(0, 0, w, h);
+
+  // Template-specific background art
+  switch(template) {
+    case 'circuit': drawCircuit(ctx, w, h); break;
+    case 'matrix': drawMatrix(ctx, w, h); break;
+    case 'network': drawNetwork(ctx, w, h); break;
+    case 'blockchain': drawBlockchain(ctx, w, h); break;
+    case 'waves': drawWaves(ctx, w, h); break;
+    case 'grid': drawGrid(ctx, w, h); break;
+  }
+
+  // Overlay gradient (darken bottom for text)
+  var grad = ctx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, 'rgba(2,2,4,0.3)');
+  grad.addColorStop(0.5, 'rgba(2,2,4,0.5)');
+  grad.addColorStop(1, 'rgba(2,2,4,0.92)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+
+  // Left accent line
+  ctx.fillStyle = '#1fa068';
+  ctx.fillRect(60, h * 0.55, 3, h * 0.3);
+
+  // Tags
+  ctx.font = '500 ' + Math.round(w * 0.012) + 'px "JetBrains Mono", monospace';
+  ctx.fillStyle = '#1fa068';
+  ctx.letterSpacing = '2px';
+  ctx.fillText(tags.toUpperCase(), 80, h * 0.6);
+
+  // Title — word wrap
+  ctx.font = '800 ' + Math.round(w * 0.032) + 'px "Bricolage Grotesque", sans-serif';
+  ctx.fillStyle = '#e4e4ec';
+  wrapText(ctx, title, 80, h * 0.68, w - 160, Math.round(w * 0.04));
+
+  // Bottom bar
+  ctx.fillStyle = 'rgba(31,160,104,0.15)';
+  ctx.fillRect(0, h - 4, w, 4);
+
+  // Logo
+  ctx.font = '700 ' + Math.round(w * 0.014) + 'px "Bricolage Grotesque", sans-serif';
+  ctx.fillStyle = '#8888a0';
+  ctx.fillText('bionicbanker.tech', w - 200, h - 20);
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  var words = text.split(' ');
+  var line = '';
+  for (var i = 0; i < words.length; i++) {
+    var test = line + words[i] + ' ';
+    if (ctx.measureText(test).width > maxWidth && i > 0) {
+      ctx.fillText(line, x, y);
+      line = words[i] + ' ';
+      y += lineHeight;
+    } else {
+      line = test;
+    }
+  }
+  ctx.fillText(line, x, y);
+}
+
+// ═══ TEMPLATE DRAWINGS ═══
+
+function drawCircuit(ctx, w, h) {
+  ctx.strokeStyle = 'rgba(31,160,104,0.12)';
+  ctx.lineWidth = 1;
+  for (var i = 0; i < 30; i++) {
+    var x = Math.random() * w;
+    var y = Math.random() * h * 0.6;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    for (var j = 0; j < 4; j++) {
+      if (Math.random() > 0.5) x += (Math.random() * 80 + 20) * (Math.random() > 0.5 ? 1 : -1);
+      else y += (Math.random() * 60 + 20) * (Math.random() > 0.5 ? 1 : -1);
+      ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    // Node dots
+    ctx.fillStyle = 'rgba(31,160,104,0.25)';
+    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fill();
+  }
+  // Glow orbs
+  var grd = ctx.createRadialGradient(w * 0.7, h * 0.25, 0, w * 0.7, h * 0.25, 200);
+  grd.addColorStop(0, 'rgba(31,160,104,0.08)');
+  grd.addColorStop(1, 'transparent');
+  ctx.fillStyle = grd; ctx.fillRect(0, 0, w, h);
+}
+
+function drawMatrix(ctx, w, h) {
+  ctx.font = '12px "JetBrains Mono", monospace';
+  var chars = '01アイウエオカキクケコ'.split('');
+  for (var i = 0; i < 60; i++) {
+    var x = Math.random() * w;
+    var colH = Math.random() * h * 0.5 + 50;
+    for (var j = 0; j < colH; j += 16) {
+      var alpha = (1 - j / colH) * 0.15;
+      ctx.fillStyle = 'rgba(31,160,104,' + alpha + ')';
+      ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, Math.random() * h * 0.6 + j);
+    }
+  }
+}
+
+function drawNetwork(ctx, w, h) {
+  var points = [];
+  for (var i = 0; i < 40; i++) {
+    points.push({ x: Math.random() * w, y: Math.random() * h * 0.55 });
+  }
+  // Connections
+  ctx.strokeStyle = 'rgba(31,160,104,0.08)';
+  ctx.lineWidth = 1;
+  for (var i = 0; i < points.length; i++) {
+    for (var j = i + 1; j < points.length; j++) {
+      var d = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y);
+      if (d < 200) {
+        ctx.beginPath();
+        ctx.moveTo(points[i].x, points[i].y);
+        ctx.lineTo(points[j].x, points[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  // Nodes
+  points.forEach(function(p) {
+    ctx.fillStyle = 'rgba(52,211,153,0.3)';
+    ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = 'rgba(31,160,104,0.06)';
+    ctx.beginPath(); ctx.arc(p.x, p.y, 15, 0, Math.PI * 2); ctx.fill();
+  });
+}
+
+function drawBlockchain(ctx, w, h) {
+  var blockSize = 50;
+  for (var i = 0; i < 8; i++) {
+    var x = 100 + i * 130;
+    var y = h * 0.2 + Math.sin(i * 0.8) * 30;
+    // Block
+    ctx.strokeStyle = 'rgba(31,160,104,0.2)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x, y, blockSize, blockSize);
+    // Hash inside
+    ctx.font = '10px "JetBrains Mono", monospace';
+    ctx.fillStyle = 'rgba(31,160,104,0.15)';
+    ctx.fillText('0x' + Math.random().toString(16).substr(2, 6), x + 5, y + 30);
+    // Chain link
+    if (i > 0) {
+      ctx.strokeStyle = 'rgba(31,160,104,0.1)';
+      ctx.beginPath();
+      ctx.moveTo(x, y + blockSize / 2);
+      ctx.lineTo(x - 80, h * 0.2 + Math.sin((i - 1) * 0.8) * 30 + blockSize / 2);
+      ctx.stroke();
+    }
+  }
+}
+
+function drawWaves(ctx, w, h) {
+  for (var wave = 0; wave < 5; wave++) {
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(31,160,104,' + (0.03 + wave * 0.02) + ')';
+    ctx.lineWidth = 2;
+    for (var x = 0; x < w; x += 2) {
+      var y = h * 0.3 + Math.sin(x * 0.01 + wave * 1.5) * (30 + wave * 15) + wave * 25;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+}
+
+function drawGrid(ctx, w, h) {
+  ctx.strokeStyle = 'rgba(31,160,104,0.06)';
+  ctx.lineWidth = 1;
+  var gap = 40;
+  for (var x = 0; x < w; x += gap) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h * 0.5); ctx.stroke();
+  }
+  for (var y = 0; y < h * 0.5; y += gap) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+  }
+  // Highlight some intersections
+  for (var i = 0; i < 15; i++) {
+    var gx = Math.floor(Math.random() * (w / gap)) * gap;
+    var gy = Math.floor(Math.random() * (h * 0.5 / gap)) * gap;
+    ctx.fillStyle = 'rgba(31,160,104,0.2)';
+    ctx.beginPath(); ctx.arc(gx, gy, 4, 0, Math.PI * 2); ctx.fill();
+  }
+}
+
+function download() {
+  var link = document.createElement('a');
+  var title = document.getElementById('title').value.replace(/[^a-z0-9]/gi, '-').toLowerCase().replace(/-+/g, '-');
+  link.download = title + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function downloadAll() {
+  var offCanvas = document.createElement('canvas');
+  offCanvas.width = 1200;
+  offCanvas.height = 630;
+  var offCtx = offCanvas.getContext('2d');
+  
+  articles.forEach(function(a, i) {
+    drawImage(offCtx, 1200, 630, a.title, a.tags, a.template);
+    var link = document.createElement('a');
+    var slug = a.title.replace(/[^a-z0-9]/gi, '-').toLowerCase().replace(/-+/g, '-').substring(0, 50);
+    link.download = slug + '.png';
+    link.href = offCanvas.toDataURL('image/png');
+    setTimeout(function() { link.click(); }, i * 300);
+  });
+}
+
+// Initial render
+generate();
+</script>
+</body>
+</html>
