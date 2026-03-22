@@ -1343,3 +1343,30 @@ a:focus-visible, button:focus-visible {
   color: var(--accent);
   box-shadow: 0 0 12px rgba(31,160,104,0.1);
 }
+
+/* ── Article Card Thumbnails ── */
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  margin: -1.25rem -1.25rem 1rem -1.25rem;
+  width: calc(100% + 2.5rem);
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.article-card:hover .card-thumb img,
+.article-card-featured:hover .card-thumb img {
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  .card-thumb {
+    margin: -1rem -1rem 0.75rem -1rem;
+    width: calc(100% + 2rem);
+    border-radius: 8px 8px 0 0;
+  }
+}
