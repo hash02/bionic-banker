@@ -1,0 +1,281 @@
+/* ============================================
+   BIONIC BANKER — ANIMATION UPGRADE LAYER
+   3D Depth + Scroll Reveals + Magnetic Cards
+   ============================================ */
+
+/* ===== AOS OVERRIDES — Match Site Theme ===== */
+[data-aos] {
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+/* ===== NAV LINK ANIMATED UNDERLINES ===== */
+.nav-links a {
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green, #1fa068), var(--accent, #5b73f8));
+  transition: width 0.35s cubic-bezier(0.23, 1, 0.32, 1), left 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+}
+.nav-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ===== CTA BUTTON GRADIENT SWEEP ===== */
+.btn-primary,
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after,
+.nav-cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::after,
+.nav-cta:hover::after {
+  left: 100%;
+}
+.nav-cta:hover {
+  box-shadow: 0 0 25px rgba(31,160,104,0.25);
+}
+
+/* ===== 3D MAGNETIC CARD PERSPECTIVE ===== */
+.article-card,
+.article-card-featured,
+.hero-article-card,
+.hero-mini-card,
+.thoughts-card,
+.intel-card,
+.writing-card,
+.about-col,
+.newsletter-strip {
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.5s ease,
+              border-color 0.5s ease !important;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Enhanced hover depth — cards lift TOWARD you */
+.article-card:hover,
+.thoughts-card:hover,
+.writing-card:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(31,160,104,0.06) !important;
+}
+
+.article-card-featured:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.5), 0 0 50px rgba(31,160,104,0.08) !important;
+}
+
+.hero-article-card:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 35px rgba(31,160,104,0.08) !important;
+}
+
+/* Card image gradient header — adds visual weight to cards */
+.article-card::after,
+.article-card-featured::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(31,160,104,0.6), rgba(91,115,248,0.6), rgba(139,108,247,0.4));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
+}
+.article-card:hover::after,
+.article-card-featured:hover::after {
+  opacity: 1;
+}
+
+/* Tag pill hover glow */
+.tag-pill {
+  transition: all 0.3s ease !important;
+  cursor: default;
+}
+.tag-pill:hover {
+  box-shadow: 0 0 12px rgba(31,160,104,0.25);
+  transform: scale(1.05);
+}
+
+/* ===== READ ARROW ANIMATION ===== */
+.read-more span,
+.card-link span,
+.hcard-read {
+  transition: letter-spacing 0.3s ease !important;
+}
+.article-card:hover .read-more,
+.hero-article-card:hover .hcard-read {
+  letter-spacing: 0.5px;
+}
+
+/* ===== SECTION TITLE GROWING UNDERLINE ===== */
+.section-title-text {
+  position: relative;
+  display: inline-block;
+}
+.section-title-text::after {
+  content: "";
+  display: block;
+  height: 2px;
+  margin-top: 0.4rem;
+  background: linear-gradient(90deg, rgba(31,160,104,0.8), rgba(91,115,248,0.6), transparent);
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+}
+.section-title-text.line-animate::after {
+  width: 100%;
+}
+
+/* ===== SECTION DIVIDERS ===== */
+.section-divider-line {
+  height: 1px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), rgba(31,160,104,0.2), rgba(255,255,255,0.06), transparent);
+  transform: scaleX(0);
+  transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.section-divider-line.divider-animate {
+  transform: scaleX(1);
+}
+
+/* ===== STAT COUNTER ENHANCEMENT ===== */
+.hstat-n, .astat-n, .stat-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== HERO ENTRANCE STAGGER ===== */
+.hero-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: heroSlideRight 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+}
+.hero-right {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: heroSlideLeft 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+}
+@keyframes heroSlideRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes heroSlideLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== EYEBROW DOT PULSE ===== */
+.hero-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #1fa068;
+  margin-right: 0.5rem;
+  animation: dotPulse 2s ease-in-out infinite;
+  vertical-align: middle;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(31,160,104,0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px 4px rgba(31,160,104,0.3); }
+}
+
+/* ===== ABOUT SECTION NAME GLOW ===== */
+.about-name {
+  transition: text-shadow 0.4s ease;
+}
+.about-col:hover .about-name {
+  text-shadow: 0 0 30px rgba(31,160,104,0.3);
+}
+
+/* ===== NEWSLETTER STRIP GLOW BORDER ===== */
+.newsletter-strip {
+  position: relative;
+}
+.newsletter-strip::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(31,160,104,0.3), transparent 40%, transparent 60%, rgba(91,115,248,0.2));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.newsletter-strip:hover::before {
+  opacity: 1;
+}
+
+/* ===== CONTACT FORM — FLOAT LABELS + FOCUS GLOW ===== */
+.form-group input:focus,
+.form-group textarea:focus {
+  box-shadow: 0 0 0 2px rgba(31,160,104,0.2), 0 0 20px rgba(31,160,104,0.08) !important;
+}
+
+/* ===== 3D DEPTH SHADOW LAYERS ===== */
+.hero-wrap {
+  perspective: 1200px;
+}
+
+/* ===== FOOTER LINKS HOVER ===== */
+.footer-links a {
+  transition: color 0.3s ease, padding-left 0.3s ease !important;
+}
+.footer-links a:hover {
+  padding-left: 4px;
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  .hero-left {
+    animation-delay: 0.1s;
+    transform: translateY(30px);
+    animation-name: heroSlideUp;
+  }
+  .hero-right {
+    animation-delay: 0.3s;
+    transform: translateY(30px);
+    animation-name: heroSlideUp;
+  }
+  @keyframes heroSlideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero-left, .hero-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
