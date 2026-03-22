@@ -145,3 +145,18 @@
   }
 
 })();
+
+// ===== MOBILE: KILL PARTICLE CANVAS =====
+// Particles are CPU-heavy and have no interaction on touch
+(function() {
+  var isMobile = window.innerWidth <= 768 || ("ontouchstart" in window);
+  if (isMobile) {
+    var canvas = document.getElementById("particle-canvas");
+    if (canvas) {
+      canvas.style.display = "none";
+      // Clear any running animation frame
+      var ctx = canvas.getContext("2d");
+      if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+})();

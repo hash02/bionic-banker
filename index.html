@@ -9,6 +9,8 @@
 </head> <body>
 <div id="bb-progress-bar" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:9999;background:linear-gradient(90deg,#1fa068,#5b73f8,#8b6cf7);box-shadow:0 0 12px rgba(31,160,104,0.3);transition:width 0.1s linear;pointer-events:none;"></div> <!-- NAV --> <nav> <a href="/" class="nav-logo">Bionic <span>Banker</span></a> <div class="nav-right"> <ul class="nav-links"> <li><a href="/articles">All Articles</a></li> <li><a href="/intelligence">AI Intelligence</a></li> <li><a href="/#about">About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu">&#9776;</button> </nav> <!-- MOBILE MENU (in HTML, not dynamically created) --> <div id="bb-overlay"></div> <div id="bb-panel"> <button id="bb-panel-close" aria-label="Close menu">&times;</button> <a href="/articles">All Articles</a> <a href="/intelligence">AI Intelligence</a> <a href="/#about">About</a> <a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a> </div> <!-- MAIN CONTENT -->   <div class="hero-wrap"> <div class="glow-orb glow-orb-1"></div> <div class="glow-orb glow-orb-2"></div> <div class="glow-orb glow-orb-3"></div> <canvas id="particle-canvas"></canvas> <script>
 (function() {
+  // Skip particles on mobile — no hover interaction, saves GPU
+  if (window.innerWidth <= 768 || 'ontouchstart' in window) return;
   const canvas = document.getElementById('particle-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
