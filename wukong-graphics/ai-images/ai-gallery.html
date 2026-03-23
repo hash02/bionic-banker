@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>body,html{background:#08080e!important}canvas,canvas.vanta-canvas{background:#08080e!important}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bionic Banker - AI Generated Images</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a; font-family: 'Segoe UI', sans-serif;
+    color: #fff; padding: 2rem;
+  }
+  h1 { color: #1fa068; margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+  .sub { color: rgba(255,255,255,0.4); margin-bottom: 2rem; font-size: 0.85rem; }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    border: 1px solid rgba(31,160,104,0.2); border-radius: 12px;
+    overflow: hidden; background: rgba(31,160,104,0.03);
+    transition: border-color 0.3s;
+  }
+  .card:hover { border-color: rgba(31,160,104,0.5); }
+  .card img {
+    width: 100%; height: 300px; object-fit: cover;
+    background: #111; display: block;
+  }
+  .card .info { padding: 1rem; }
+  .card h3 { color: #1fa068; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .card p { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+  .card .prompt {
+    margin-top: 0.5rem; padding: 0.5rem; background: rgba(0,0,0,0.3);
+    border-radius: 6px; font-family: monospace; font-size: 0.65rem;
+    color: rgba(31,160,104,0.6); word-break: break-all;
+  }
+  .status { text-align: center; padding: 2rem; color: rgba(255,255,255,0.3); }
+  .loading { animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+  .btn {
+    display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1.5rem;
+    background: rgba(31,160,104,0.15); border: 1px solid #1fa068;
+    color: #1fa068; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  .btn:hover { background: #1fa068; color: #fff; }
+</style>
+</head>
+<body>
+<h1>AI IMAGE GALLERY</h1>
+<p class="sub">Generated via Pollinations.ai — free, no API key required. Click "Generate All" to create images.</p>
+<button class="btn" onclick="generateAll()">⚡ Generate All Images</button>
+<br><br>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const prompts = [
+  {
+    title: "Hero Banner — Finance Meets Future",
+    prompt: "3D render futuristic financial technology holographic dashboard, dark background, green neon glow, blockchain nodes connected by light beams, neural network visualization, cyberpunk banking concept, octane render, cinematic lighting",
+    width: 1024, height: 576
+  },
+  {
+    title: "AML Shield — Anti Money Laundering",
+    prompt: "3D isometric shield protecting blockchain transactions, green accent color on dark background, anti money laundering AI detection system, digital art, clean minimal, glowing green circuits",
+    width: 1024, height: 1024
+  },
+  {
+    title: "AI Agent Swarm",
+    prompt: "3D render autonomous AI robots analyzing financial data streams, green neon glow, dark background, swarm intelligence, futuristic digital art, octane render, clean composition",
+    width: 1024, height: 1024
+  },
+  {
+    title: "Social Card — Bionic Banker Brand",
+    prompt: "3D chrome metallic text BIONIC BANKER floating in dark space, green glowing particles, finance technology aesthetic, cinematic lighting, professional logo design",
+    width: 1200, height: 630
+  },
+  {
+    title: "Blockchain Network",
+    prompt: "3D visualization of interconnected blockchain nodes, green wireframe on black background, decentralized network topology, data flowing between nodes, tech illustration",
+    width: 1024, height: 1024
+  },
+  {
+    title: "Article Thumbnail — The Anchor Problem",
+    prompt: "3D abstract anchor made of green digital code dissolving into particles, dark background, philosophical concept art, minimal, contemplative mood, green accent lighting",
+    width: 1024, height: 1024
+  }
+];
+
+const grid = document.getElementById('grid');
+
+// Build cards
+prompts.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <img id="img-${i}" src="" alt="${p.title}" style="display:none">
+    <div id="status-${i}" class="status"><span class="loading">Waiting to generate...</span></div>
+    <div class="info">
+      <h3>${p.title}</h3>
+      <p>${p.width}×${p.height}</p>
+      <div class="prompt">${p.prompt}</div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+async function generateImage(index) {
+  const p = prompts[index];
+  const status = document.getElementById(`status-${index}`);
+  const img = document.getElementById(`img-${index}`);
+
+  status.innerHTML = '<span class="loading">Generating...</span>';
+
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(p.prompt)}?width=${p.width}&height=${p.height}&nologo=true&seed=${index * 42}`;
+
+  return new Promise((resolve) => {
+    img.onload = () => {
+      status.style.display = 'none';
+      img.style.display = 'block';
+      resolve(true);
+    };
+    img.onerror = () => {
+      status.innerHTML = `<span>Failed — <a href="${url}" target="_blank" style="color:#1fa068">try direct link</a></span>`;
+      resolve(false);
+    };
+    img.src = url;
+  });
+}
+
+async function generateAll() {
+  for (let i = 0; i < prompts.length; i++) {
+    generateImage(i); // fire all in parallel
+  }
+}
+</script>
+</body>
+</html>

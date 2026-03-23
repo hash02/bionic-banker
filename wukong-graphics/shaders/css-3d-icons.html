@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>body,html{background:#08080e!important}canvas,canvas.vanta-canvas{background:#08080e!important}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bionic Banker - 3D CSS Icons</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a; min-height: 100vh;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    gap: 3rem; padding: 3rem; font-family: 'Segoe UI', sans-serif;
+  }
+
+  .icon-wrapper {
+    perspective: 600px; cursor: pointer;
+  }
+
+  .icon-3d {
+    width: 160px; height: 160px; position: relative;
+    transform-style: preserve-3d;
+    animation: float 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+
+  .icon-3d:hover { transform: scale(1.1); }
+
+  .icon-3d .face {
+    position: absolute; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 3rem; border-radius: 20px;
+    backface-visibility: hidden;
+  }
+
+  /* --- Blockchain Cube --- */
+  .cube { animation: spin-cube 8s linear infinite, float 4s ease-in-out infinite; }
+  .cube .face {
+    width: 120px; height: 120px; left: 20px; top: 20px;
+    border: 1px solid rgba(31,160,104,0.3);
+    background: rgba(31,160,104,0.05);
+  }
+  .cube .front  { transform: translateZ(60px); }
+  .cube .back   { transform: rotateY(180deg) translateZ(60px); }
+  .cube .right  { transform: rotateY(90deg) translateZ(60px); }
+  .cube .left   { transform: rotateY(-90deg) translateZ(60px); }
+  .cube .top    { transform: rotateX(90deg) translateZ(60px); }
+  .cube .bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+  @keyframes spin-cube {
+    from { transform: rotateX(-20deg) rotateY(0deg); }
+    to   { transform: rotateX(-20deg) rotateY(360deg); }
+  }
+
+  /* --- Shield (AML) --- */
+  .shield {
+    animation: shield-pulse 3s ease-in-out infinite, float 5s ease-in-out infinite;
+  }
+  .shield .face {
+    background: linear-gradient(135deg, rgba(31,160,104,0.1), rgba(31,160,104,0.02));
+    border: 1px solid rgba(31,160,104,0.4);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    box-shadow: 0 0 40px rgba(31,160,104,0.15), inset 0 0 30px rgba(31,160,104,0.05);
+  }
+  .shield .back {
+    transform: translateZ(-10px) scale(1.1);
+    opacity: 0.3; border-color: rgba(31,160,104,0.2);
+  }
+  .shield .mid {
+    transform: translateZ(-5px) scale(1.05);
+    opacity: 0.5;
+  }
+
+  @keyframes shield-pulse {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(31,160,104,0.3)); }
+    50% { filter: drop-shadow(0 0 30px rgba(31,160,104,0.6)); }
+  }
+
+  /* --- Brain (AI) --- */
+  .brain { animation: brain-float 6s ease-in-out infinite; }
+  .brain .face {
+    border: 1px solid rgba(78,205,196,0.3);
+    background: rgba(78,205,196,0.05);
+    border-radius: 50%;
+  }
+  .brain .ring {
+    position: absolute; border: 1px solid rgba(78,205,196,0.2);
+    border-radius: 50%; background: transparent;
+  }
+  .brain .ring1 { width: 180px; height: 180px; left: -10px; top: -10px; animation: orbit 4s linear infinite; }
+  .brain .ring2 { width: 200px; height: 200px; left: -20px; top: -20px; animation: orbit 6s linear infinite reverse; }
+  .brain .ring3 { width: 140px; height: 140px; left: 10px; top: 10px; animation: orbit 3s linear infinite; }
+
+  @keyframes orbit { from { transform: rotateZ(0deg) rotateX(60deg); } to { transform: rotateZ(360deg) rotateX(60deg); } }
+  @keyframes brain-float { 0%,100% { transform: translateY(0) rotateY(0); } 50% { transform: translateY(-15px) rotateY(10deg); } }
+
+  /* --- Chart (Analytics) --- */
+  .chart { transform-style: preserve-3d; animation: chart-rotate 10s linear infinite; }
+  .bar {
+    position: absolute; bottom: 20px;
+    background: linear-gradient(to top, rgba(31,160,104,0.8), rgba(31,160,104,0.2));
+    border: 1px solid rgba(31,160,104,0.5); border-radius: 4px 4px 0 0;
+    transform-origin: bottom center;
+  }
+  .bar:nth-child(1) { left: 20px; width: 18px; height: 60px; animation: bar-grow 2s ease-out infinite alternate; }
+  .bar:nth-child(2) { left: 45px; width: 18px; height: 90px; animation: bar-grow 2s ease-out 0.2s infinite alternate; }
+  .bar:nth-child(3) { left: 70px; width: 18px; height: 50px; animation: bar-grow 2s ease-out 0.4s infinite alternate; }
+  .bar:nth-child(4) { left: 95px; width: 18px; height: 110px; animation: bar-grow 2s ease-out 0.6s infinite alternate; }
+  .bar:nth-child(5) { left: 120px; width: 18px; height: 75px; animation: bar-grow 2s ease-out 0.8s infinite alternate; }
+
+  @keyframes bar-grow { from { transform: scaleY(0.3); } to { transform: scaleY(1); } }
+  @keyframes chart-rotate {
+    from { transform: rotateY(-15deg) rotateX(10deg); }
+    to { transform: rotateY(15deg) rotateX(10deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .label {
+    text-align: center; margin-top: 1.5rem;
+    color: rgba(255,255,255,0.5); font-size: 0.75rem;
+    text-transform: uppercase; letter-spacing: 0.15em;
+  }
+  .label span { color: #1fa068; }
+</style>
+</head>
+<body>
+
+<div class="icon-wrapper">
+  <div class="icon-3d cube">
+    <div class="face front">⛓️</div>
+    <div class="face back">📦</div>
+    <div class="face right">🔗</div>
+    <div class="face left">💎</div>
+    <div class="face top">🪙</div>
+    <div class="face bottom">🔒</div>
+  </div>
+  <div class="label"><span>Blockchain</span> Ledger</div>
+</div>
+
+<div class="icon-wrapper">
+  <div class="icon-3d shield">
+    <div class="face front">🛡️</div>
+    <div class="face mid">🛡️</div>
+    <div class="face back">🛡️</div>
+  </div>
+  <div class="label"><span>AML</span> Protection</div>
+</div>
+
+<div class="icon-wrapper">
+  <div class="icon-3d brain">
+    <div class="face front">🧠</div>
+    <div class="ring ring1"></div>
+    <div class="ring ring2"></div>
+    <div class="ring ring3"></div>
+  </div>
+  <div class="label"><span>AI</span> Intelligence</div>
+</div>
+
+<div class="icon-wrapper">
+  <div class="icon-3d chart">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="face front" style="font-size:1rem; color:rgba(31,160,104,0.3); align-items:flex-end; padding-bottom:15px;">📊</div>
+  </div>
+  <div class="label"><span>Chain</span> Analytics</div>
+</div>
+
+<script>
+// Interactive tilt on hover
+document.querySelectorAll('.icon-wrapper').forEach(wrapper => {
+  const icon = wrapper.querySelector('.icon-3d');
+  wrapper.addEventListener('mousemove', e => {
+    const rect = wrapper.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    icon.style.animationPlayState = 'paused';
+    icon.style.transform = `rotateY(${x*40}deg) rotateX(${-y*40}deg) scale(1.1)`;
+  });
+  wrapper.addEventListener('mouseleave', () => {
+    icon.style.animationPlayState = 'running';
+    icon.style.transform = '';
+  });
+});
+</script>
+</body>
+</html>
