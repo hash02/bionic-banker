@@ -21,7 +21,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 ---
 <BaseLayout title={title} description={description} ogImage={image}>
   <article class="article-page">
-    <div class="article-hero animate-on-scroll">
+    <div class="article-hero">
       <div class="article-meta-top">
         <span class="article-category">{category}</span>
         <span class="article-date">{formattedDate}</span>
@@ -40,7 +40,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
       <slot />
     </div>
 
-    <div class="article-footer animate-on-scroll">
+    <div class="article-footer">
       <div class="article-share">
         <span>Share this:</span>
         <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://bionicbanker.tech${Astro.url.pathname}`)}`} target="_blank" rel="noopener" class="share-btn">X / Twitter</a>
