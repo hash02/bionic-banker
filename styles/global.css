@@ -178,8 +178,8 @@ nav {
   border: 1px solid var(--b1);
   transition: box-shadow 0.2s;
 }
-.tag-blue   { color: #34d399; background: rgba(91,115,248,0.08); border-color: rgba(91,115,248,0.25); box-shadow: 0 0 12px rgba(91,115,248,0.08); }
-.tag-purple { color: #6ee7b7; background: rgba(139,108,247,0.08); border-color: rgba(139,108,247,0.25); box-shadow: 0 0 12px rgba(139,108,247,0.08); }
+.tag-blue   { color: #34d399; background: rgba(31,160,104,0.08); border-color: rgba(31,160,104,0.22); box-shadow: 0 0 12px rgba(31,160,104,0.06); }
+.tag-purple { color: #6ee7b7; background: rgba(31,160,104,0.08); border-color: rgba(31,160,104,0.22); box-shadow: 0 0 12px rgba(31,160,104,0.06); }
 .tag-amber  { color: #a7f3d0; background: rgba(167,243,208,0.08); border-color: rgba(167,243,208,0.22); box-shadow: 0 0 12px rgba(167,243,208,0.06); }
 .tag-cyan   { color: #34d399; background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.22); box-shadow: 0 0 12px rgba(16,185,129,0.06); }
 .tag-rose   { color: #e4e4ec; background: rgba(228,228,236,0.08); border-color: rgba(228,228,236,0.22); box-shadow: 0 0 12px rgba(228,228,236,0.06); }
@@ -212,6 +212,27 @@ nav {
 }
 .article-card p { font-size: 0.8rem; color: var(--text-2); line-height: 1.64; }
 .article-card.hidden { display: none; }
+
+/* Card thumbnail images */
+.card-thumb {
+  width: 100%; height: 140px; border-radius: 6px; overflow: hidden; margin-bottom: 0.25rem;
+  border: 1px solid var(--b1);
+}
+.card-thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(0.85); transition: filter 0.3s, transform 0.3s;
+}
+.article-card:hover .card-thumb img { filter: brightness(1); transform: scale(1.03); }
+
+.featured-thumb {
+  width: 100%; height: 200px; border-radius: 8px; overflow: hidden; margin-bottom: 0.5rem;
+  border: 1px solid var(--b1);
+}
+.featured-thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(0.85); transition: filter 0.3s, transform 0.3s;
+}
+.article-card-featured:hover .featured-thumb img { filter: brightness(1); transform: scale(1.03); }
 
 .card-footer {
   display: flex; align-items: center; justify-content: space-between;

@@ -63,7 +63,7 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
   <div class="content-wrap" id="articles">
     <div class="section-header">
       <div>
-        <div class="section-label-text">Deep Dives</div>
+        <div class="section-label-text">Writings</div>
         <div class="section-title-text">Articles</div>
       </div>
       <a href="/articles" class="view-all">View all {articleCount} →</a>
@@ -72,6 +72,11 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
     <div class="mag-grid animate-on-scroll">
       <div class="mag-featured">
         <a href={`/blog/${featuredArticle.data.slug || featuredArticle.id}`} class="article-card-featured">
+          {featuredArticle.data.image && (
+            <div class="featured-thumb">
+              <img src={featuredArticle.data.image} alt={featuredArticle.data.title} loading="lazy" />
+            </div>
+          )}
           <div class="featured-badge">★ Featured</div>
           <div class="article-tags">
             {featuredArticle.data.tags.map(tag => (
@@ -91,6 +96,11 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
 
       {gridPosts.map(post => (
         <a href={`/blog/${post.data.slug || post.id}`} class="article-card">
+          {post.data.image && (
+            <div class="card-thumb">
+              <img src={post.data.image} alt={post.data.title} loading="lazy" />
+            </div>
+          )}
           <div class="article-tags">
             {post.data.tags.map(tag => (
               <span class="tag-pill">{tag}</span>
@@ -117,8 +127,8 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
         </div>
         <a href="/blog/the-anchor" class="thoughts-card">
           <div class="article-tags">
-            <span class="tag-pill tag-rose">Thoughts</span>
-            <span class="tag-pill tag-purple">AI</span>
+            <span class="tag-pill">Thoughts</span>
+            <span class="tag-pill">AI</span>
           </div>
           <h3>The Anchor Problem</h3>
           <p>I went looking for a template for life. Found a return mechanism instead. Then realized I'd built the exact same structure into my AI systems — without ever consciously making the connection.</p>

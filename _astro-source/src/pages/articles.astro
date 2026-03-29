@@ -16,11 +16,11 @@ const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort();
 // Group by category
 const categories = ['AI', 'Blockchain', 'Finance', 'Tech'];
 
-// Tag color mapping
+// Tag color mapping — unified green palette
 const tagColorMap: Record<string, string> = {
-  'AI': 'tag-purple', 'Agents': 'tag-red', 'SYOS': 'tag-purple',
-  'Blockchain': 'tag-blue', 'DeFi': 'tag-blue', 'AML': 'tag-red',
-  'Finance': 'tag-amber', 'Fintech': 'tag-amber', 'Crypto': 'tag-blue',
+  'AI': 'tag-cyan', 'Agents': 'tag-cyan', 'SYOS': 'tag-cyan',
+  'Blockchain': 'tag-cyan', 'DeFi': 'tag-cyan', 'AML': 'tag-red',
+  'Finance': 'tag-amber', 'Fintech': 'tag-amber', 'Crypto': 'tag-cyan',
   'Tech': 'tag-cyan', 'Thoughts': 'tag-rose', 'Gaming': 'tag-cyan',
   'Nobel Prize': 'tag-amber', 'Physics': 'tag-cyan',
 };
