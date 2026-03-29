@@ -7,6 +7,7 @@ readTime: "12 min"
 category: "Tech"
 featured: false
 slug: "syos-falsification"
+image: "/blog-visuals/syos-falsification/social-preview.png"
 ---
 
 Okay so — I need to be honest about how this started. I'd been building SYOS for over a year. Conversations across Claude, GPT-4, DeepSeek. Trait systems, symbolic firewalls, drift detectors. And I'd never once tried to prove it was wrong.

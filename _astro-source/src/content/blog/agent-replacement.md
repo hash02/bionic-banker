@@ -7,6 +7,7 @@ readTime: "8 min"
 featured: true
 category: "AI"
 slug: "agent-replacement"
+image: "/blog-visuals/agent-replacement/hero.png"
 ---
 
 I was at a tech and finance seminar a few weeks ago.

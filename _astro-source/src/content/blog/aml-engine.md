@@ -7,6 +7,7 @@ readTime: "12 min"
 category: "Tech"
 featured: true
 slug: "aml-engine"
+image: "/blog-visuals/aml-engine/social-preview.png"
 ---
 
 I work at a bank. I had no plan to build a fraud detection system. I just started asking questions—and one question led to another, led to another, until I was literally looking at the wallets Lazarus Group used to move $625 million in stolen funds. This is that story.

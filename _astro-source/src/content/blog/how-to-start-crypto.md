@@ -7,6 +7,7 @@ readTime: "4 min"
 category: "Tech"
 featured: false
 slug: "how-to-start-crypto"
+image: "/blog-visuals/how-to-start-crypto/social-preview.png"
 ---
 
 ### Introduction: Approach to Crypto

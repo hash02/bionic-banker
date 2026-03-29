@@ -7,6 +7,7 @@ readTime: "5 min"
 category: "Tech"
 featured: false
 slug: "gen-z-finance"
+image: "/blog-visuals/gen-z-finance/social-preview.png"
 ---
 
 ******How to Start Your Financial Management Journey as Gen Z in 2024: A Beginner's Guide**

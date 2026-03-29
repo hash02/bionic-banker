@@ -9,6 +9,8 @@ interface Props {
 const { title, description = "Inside finance. Building its future. Blockchain, AI, DeFi — raw thoughts from someone who works inside financial systems and builds on top of them.", ogImage, canonical } = Astro.props;
 const fullTitle = title === 'Home' ? 'Bionic Banker — Where Finance Meets the Future' : `${title} — Bionic Banker`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
+const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
+const isHome = title === 'Home';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +19,10 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
+  <meta name="author" content="HASH" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,15 +41,33 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
   <!-- Open Graph -->
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={isHome ? "website" : "article"} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:site_name" content="Bionic Banker" />
-  {ogImage && <meta property="og:image" content={ogImage} />}
-  <meta name="twitter:card" content="summary_large_image" />
+  {ogImageURL && <meta property="og:image" content={ogImageURL} />}
+  <meta name="twitter:card" content={ogImageURL ? "summary_large_image" : "summary"} />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
-  {ogImage && <meta name="twitter:image" content={ogImage} />}
+  {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
+  <meta name="twitter:site" content="@BionicBanker" />
+  <meta name="twitter:creator" content="@BionicBanker" />
   <link rel="canonical" href={canonicalURL} />
+
+  <!-- JSON-LD Structured Data -->
+  {isHome ? (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Bionic Banker",
+      "url": "https://bionicbanker.tech",
+      "description": description,
+      "author": {
+        "@type": "Person",
+        "name": "HASH",
+        "url": "https://linkedin.com/in/himanshu-h-a357684a"
+      }
+    })} />
+  ) : null}
 
   <!-- Styles -->
   <link rel="stylesheet" href="/styles/global.css" />
@@ -135,30 +159,34 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
   </script>
 
 
-  <!-- Vanta.js 3D NET Background -->
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-  <script is:inline>
-  (function() {
-    if (typeof VANTA === "undefined") return;
-    VANTA.NET({
-      el: "body",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x1fa068,
-      backgroundColor: 0x08080e,
-      points: 8.00,
-      maxDistance: 23.00,
-      spacing: 18.00,
-      showDots: true
-    });
-  })();
-  </script>
+  <!-- Vanta.js 3D NET Background — homepage only -->
+  {isHome && (
+    <Fragment>
+      <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+      <script is:inline src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+      <script is:inline>
+      (function() {
+        if (typeof VANTA === "undefined") return;
+        VANTA.NET({
+          el: "body",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x1fa068,
+          backgroundColor: 0x08080e,
+          points: 8.00,
+          maxDistance: 23.00,
+          spacing: 18.00,
+          showDots: true
+        });
+      })();
+      </script>
+    </Fragment>
+  )}
   <!-- Scroll Animations -->
   <script is:inline>
   (function() {

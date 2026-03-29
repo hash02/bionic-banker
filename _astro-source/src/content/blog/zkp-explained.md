@@ -7,6 +7,7 @@ readTime: "7 min"
 category: "Tech"
 featured: false
 slug: "zkp-explained"
+image: "/blog-visuals/zkp-explained/social-preview.png"
 ---
 
 Here's the thing about working inside a bank while also building in crypto — you get to see both sides of the same problem. On one side, traditional finance is racing to deploy AI. On the other side, blockchain already solved the exact privacy problem that AI in banking is about to run into.

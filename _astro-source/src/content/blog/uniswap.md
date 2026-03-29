@@ -7,6 +7,7 @@ readTime: "2 min"
 category: "Tech"
 featured: false
 slug: "uniswap"
+image: "/blog-visuals/uniswap/social-preview.png"
 ---
 
 Uniswap has emerged as a pioneering decentralized exchange (DEX), revolutionizing how cryptocurrencies are traded through smart contracts on the Ethereum blockchain. This blog delve into crucial research findings highlighting Uniswap's market efficiency, innovative liquidity mechanisms, associated risks, strategic liquidity provision, and scam detection measures.

@@ -7,6 +7,7 @@ readTime: "8 min"
 category: "Tech"
 featured: false
 slug: "the-anchor"
+image: "/blog-visuals/the-anchor/social-preview.png"
 ---
 
 I figured this out at 2am because I was trying to meditate and I couldn't stop thinking about hallucinations.

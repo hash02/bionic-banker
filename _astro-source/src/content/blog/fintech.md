@@ -7,6 +7,7 @@ readTime: "4 min"
 category: "Tech"
 featured: false
 slug: "fintech"
+image: "/blog-visuals/fintech/social-preview.png"
 ---
 
 The term "fintech" (financial technology) encompasses any innovation that enhances how people conduct business, from digital currencies to modern bookkeeping. Today, fintech covers many financial activities like money transfers, mobile check deposits, online credit applications, crowdfunding, and investment management—all typically executed without human intervention. This article delves into key aspects of fintech, emerging trends, and the future of financial technology.

@@ -9,6 +9,8 @@ const articleCount = allPosts.length;
 const featuredPosts = allPosts.filter(p => p.data.featured);
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const latestPost = sortedPosts[0];
+const featuredArticle = featuredPosts[0] || sortedPosts[0];
+const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 3);
 ---
 <BaseLayout title="Home">
 
@@ -35,31 +37,23 @@ const latestPost = sortedPosts[0];
 
       <div class="hero-right">
         <div class="hero-card-label">Latest</div>
-        <a href="/blog/agent-replacement" class="hero-article-card">
-          <div class="hcard-tag">Featured · AI · Agents · Future of Work</div>
-          <div class="hcard-title">The Agent Wake-Up Call — Why Your Experience Alone Won't Save You</div>
-          <div class="hcard-desc">AI agent frameworks are hitting adoption numbers that took Linux 30 years to build. In weeks. Here's what I see coming from inside finance.</div>
+        <a href={`/blog/${latestPost.data.slug || latestPost.id}`} class="hero-article-card">
+          <div class="hcard-tag">{(latestPost.data.featured ? 'Featured · ' : '') + latestPost.data.tags.join(' · ')}</div>
+          <div class="hcard-title">{latestPost.data.title}</div>
+          <div class="hcard-desc">{latestPost.data.description}</div>
           <div class="hcard-footer">
             <span class="hcard-read">Read the full story →</span>
-            <span class="hcard-time">8 min</span>
+            <span class="hcard-time">{latestPost.data.readTime}</span>
           </div>
         </a>
         <div class="hero-mini-stack">
-          <a href="/blog/agent-evolution" class="hero-mini-card">
-            <div class="mini-dot"></div>
-            <div class="mini-title">How My AI Agent Went From Broken to Autonomous in 30 Days</div>
-            <span class="mini-time">7 min</span>
-          </a>
-          <a href="/blog/aml-engine" class="hero-mini-card">
-            <div class="mini-dot"></div>
-            <div class="mini-title">I Built a Blockchain AML Engine From Scratch</div>
-            <span class="mini-time">12 min</span>
-          </a>
-          <a href="/blog/syos" class="hero-mini-card">
-            <div class="mini-dot"></div>
-            <div class="mini-title">SYOS — Making an LLM Think About Its Own Thinking</div>
-            <span class="mini-time">9 min</span>
-          </a>
+          {sortedPosts.slice(1, 4).map(post => (
+            <a href={`/blog/${post.data.slug || post.id}`} class="hero-mini-card">
+              <div class="mini-dot"></div>
+              <div class="mini-title">{post.data.title}</div>
+              <span class="mini-time">{post.data.readTime}</span>
+            </a>
+          ))}
         </div>
       </div>
     </div>
@@ -77,68 +71,39 @@ const latestPost = sortedPosts[0];
 
     <div class="mag-grid animate-on-scroll">
       <div class="mag-featured">
-        <a href="/blog/aml-engine" class="article-card-featured">
+        <a href={`/blog/${featuredArticle.data.slug || featuredArticle.id}`} class="article-card-featured">
           <div class="featured-badge">★ Featured</div>
           <div class="article-tags">
-            <span class="tag-pill tag-red">AML</span>
-            <span class="tag-pill tag-blue">Blockchain</span>
-            <span class="tag-pill tag-purple">AI</span>
+            {featuredArticle.data.tags.map(tag => (
+              <span class="tag-pill">{tag}</span>
+            ))}
           </div>
-          <h3>I Built a Blockchain AML Engine From Scratch — Here's What I Found</h3>
-          <p>94.9% detection rate. 22 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group, Wormhole, and Nomad. Then added an AI layer that thinks for itself.</p>
+          <h3>{featuredArticle.data.title}</h3>
+          <p>{featuredArticle.data.description}</p>
           <div class="featured-footer">
             <div class="featured-stats">
-              <span class="featured-stat"><strong>94.9%</strong> accuracy</span>
-              <span class="featured-stat"><strong>12 min</strong> read</span>
+              <span class="featured-stat"><strong>{featuredArticle.data.readTime}</strong> read</span>
             </div>
-            <div style="display:flex;align-items:center;gap:0.6rem;">
-              <span class="read-more">Full story →</span>
-              <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" onclick="event.stopPropagation();" class="demo-badge">↗ Live Demo</a>
-            </div>
+            <span class="read-more">Full story →</span>
           </div>
         </a>
       </div>
 
-      <a href="/blog/syos" class="article-card">
-        <div class="article-tags">
-          <span class="tag-pill tag-purple">AI</span>
-          <span class="tag-pill tag-purple">SYOS</span>
-        </div>
-        <h3>SYOS — What Happens When You Try to Make an LLM Think About Its Own Thinking</h3>
-        <p>No code written. No fine-tuning. Just questions — and somewhere in those months, a reasoning system started evolving on its own.</p>
-        <div class="card-footer">
-          <span class="read-more">Read →</span>
-          <span class="read-time">9 min</span>
-        </div>
-      </a>
-
-      <a href="/blog/nexus-agent" class="article-card">
-        <div class="article-tags">
-          <span class="tag-pill tag-purple">AI</span>
-          <span class="tag-pill tag-red">Agents</span>
-          <span class="tag-pill tag-blue">Blockchain</span>
-        </div>
-        <h3>I Built 3 AI Agents. Here's What Broke Each Time.</h3>
-        <p>Three versions. Three different failures. Memory creates bias, fallback creates blindness, and adversarial architecture creates honesty.</p>
-        <div class="card-footer">
-          <span class="read-more">Read →</span>
-          <span class="read-time">7 min</span>
-        </div>
-      </a>
-
-      <a href="/blog/physics-of-ai" class="article-card">
-        <div class="article-tags">
-          <span class="tag-pill tag-purple">AI</span>
-          <span class="tag-pill tag-cyan">Physics</span>
-          <span class="tag-pill tag-amber">Nobel Prize</span>
-        </div>
-        <h3>The Physics of AI — Why the 2024 Nobel Prize Changes Everything</h3>
-        <p>Neural networks don't think. They roll downhill. The same equation behind spin glass physics is identical to the math training GPT-4.</p>
-        <div class="card-footer">
-          <span class="read-more">Read →</span>
-          <span class="read-time">8 min</span>
-        </div>
-      </a>
+      {gridPosts.map(post => (
+        <a href={`/blog/${post.data.slug || post.id}`} class="article-card">
+          <div class="article-tags">
+            {post.data.tags.map(tag => (
+              <span class="tag-pill">{tag}</span>
+            ))}
+          </div>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          <div class="card-footer">
+            <span class="read-more">Read →</span>
+            <span class="read-time">{post.data.readTime}</span>
+          </div>
+        </a>
+      ))}
     </div>
 
     <!-- BOTTOM SPLIT -->

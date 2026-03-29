@@ -18,8 +18,43 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 });
+const isoDate = new Date(date).toISOString();
+const articleURL = new URL(Astro.url.pathname, Astro.site).href;
+const imageURL = image ? new URL(image, Astro.site).href : undefined;
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "datePublished": isoDate,
+  "dateModified": isoDate,
+  "author": {
+    "@type": "Person",
+    "name": "HASH",
+    "url": "https://linkedin.com/in/himanshu-h-a357684a"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bionic Banker",
+    "url": "https://bionicbanker.tech"
+  },
+  "mainEntityOfPage": articleURL,
+  ...(imageURL ? { "image": imageURL } : {}),
+  "keywords": tags.join(", ")
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bionicbanker.tech" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://bionicbanker.tech/articles" },
+    { "@type": "ListItem", "position": 3, "name": title, "item": articleURL }
+  ]
+};
 ---
 <BaseLayout title={title} description={description} ogImage={image}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <article class="article-page">
     <div class="article-hero">
       <div class="article-meta-top">

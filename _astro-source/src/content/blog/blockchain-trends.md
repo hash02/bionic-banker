@@ -7,6 +7,7 @@ readTime: "9 min"
 category: "Tech"
 featured: false
 slug: "blockchain-trends"
+image: "/blog-visuals/blockchain-trends/social-preview.png"
 ---
 
 Blockchain and artificial intelligence (AI) are at the forefront of technological advancements in FinTech, offering unprecedented opportunities for innovation and improvement. As we move into 2024, their integration is becoming increasingly sophisticated, providing enhanced security, efficiency, and new financial products. This article delves into the latest trends and applications of blockchain and AI in the FinTech sector, demonstrating how these technologies are transforming financial services.

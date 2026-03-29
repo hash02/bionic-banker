@@ -7,6 +7,7 @@ readTime: "4 min"
 category: "Tech"
 featured: false
 slug: "paypal"
+image: "/blog-visuals/paypal/social-preview.png"
 ---
 
 Imagine, for a moment, you're living in a small village. Everyone in this village knows everyone, and when you need to buy something, you exchange goods or services directly. Simple, right? Let's jump to our modern digital village, where the exchange isn't so straightforward. Instead of a friendly neighbor's face, you see a computer screen. Enter PayPal: the digital handshake that makes this transaction as seamless as trading a loaf of bread for a dozen eggs.

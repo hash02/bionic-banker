@@ -7,6 +7,7 @@ readTime: "7 min"
 category: "Tech"
 featured: false
 slug: "nexus-agent"
+image: "/blog-visuals/nexus-agent/social-preview.png"
 ---
 
 Okay so — I need to be honest about how this started.

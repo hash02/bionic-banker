@@ -7,6 +7,7 @@ readTime: "10 min"
 category: "Tech"
 featured: false
 slug: "folder-agent"
+image: "/blog-visuals/folder-agent/social-preview.png"
 ---
 
 **Part 1 of 2** — This is the philosophy. Why the folder-as-agent matters, and the principles behind it. **Part 2** will be the technical deep dive — code, architecture, and how to build your own.

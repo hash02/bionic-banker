@@ -7,6 +7,7 @@ readTime: "8 min"
 category: "Tech"
 featured: false
 slug: "physics-of-ai"
+image: "/blog-visuals/physics-of-ai/social-preview.png"
 ---
 
 Okay so here's the thing that stopped me when I first read it. John Hopfield and Geoffrey Hinton won the Nobel Prize in Physics in 2024. Not computer science. Not mathematics. *Physics.*

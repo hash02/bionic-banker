@@ -7,6 +7,7 @@ readTime: "2 min"
 category: "Tech"
 featured: false
 slug: "aave"
+image: "/blog-visuals/aave/social-preview.png"
 ---
 
 Aave has solidified its position as a pivotal decentralized finance (DeFi) protocol, offering users the ability to lend and borrow cryptocurrencies. This blog explores key research findings on Aave, highlighting its role in DeFi, risk management strategies, governance model, innovative features, and security measures.

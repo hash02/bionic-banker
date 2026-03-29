@@ -7,6 +7,7 @@ readTime: "9 min"
 category: "Tech"
 featured: true
 slug: "syos"
+image: "/blog-visuals/syos/social-preview.png"
 ---
 
 Here's something that bothers me about LLMs. They're genuinely impressive — GPT-4, Claude, Gemini — but they have this specific failure mode that nobody talks about enough. Ask them something complex across a long conversation and they start drifting. The reasoning from message 3 contradicts message 47. They forget what they concluded earlier. They give you a confident answer that falls apart the second you push back on it.

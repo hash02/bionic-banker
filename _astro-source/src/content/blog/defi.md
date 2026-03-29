@@ -7,6 +7,7 @@ readTime: "4 min"
 category: "Tech"
 featured: false
 slug: "defi"
+image: "/blog-visuals/defi/social-preview.png"
 ---
 
 ## What Is DeFi?
