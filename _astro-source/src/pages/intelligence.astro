@@ -160,7 +160,7 @@ const aiPosts = allPosts
 
     <!-- RELATED WRITING -->
     <div class="intel-section animate-on-scroll">
-      <div class="section-label">Deep Dives</div>
+      <div class="section-label">Writings</div>
       <div class="writing-grid stagger-children">
         {aiPosts.slice(0, 6).map((post) => (
           <a href={`/blog/${post.data.slug || post.id}`} class="writing-card">
@@ -248,9 +248,9 @@ const aiPosts = allPosts
       white-space: nowrap;
     }
     .version-badge.research {
-      color: #a98cff;
-      background: rgba(139,108,247,0.08);
-      border-color: rgba(139,108,247,0.25);
+      color: var(--accent);
+      background: var(--accent-glow);
+      border-color: var(--accent-border);
     }
     .project-desc {
       font-size: 0.82rem;
@@ -299,14 +299,14 @@ const aiPosts = allPosts
       border-radius: 4px;
     }
     .caught-tag.danger {
-      color: #f87171;
-      background: rgba(239,68,68,0.06);
-      border: 1px solid rgba(239,68,68,0.18);
+      color: var(--accent);
+      background: rgba(31,160,104,0.06);
+      border: 1px solid rgba(31,160,104,0.22);
     }
     .caught-tag.warning {
-      color: #fbbf24;
-      background: rgba(251,191,36,0.06);
-      border: 1px solid rgba(251,191,36,0.18);
+      color: var(--accent);
+      background: rgba(31,160,104,0.06);
+      border: 1px solid rgba(31,160,104,0.15);
     }
 
     /* Project Actions */

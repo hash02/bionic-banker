@@ -383,14 +383,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       border: 1px solid;
     }
     .risk-critical {
-      background: rgba(255,68,68,0.12);
-      border-color: rgba(255,68,68,0.25);
-      color: #ff4444;
+      background: rgba(31,160,104,0.12);
+      border-color: rgba(31,160,104,0.25);
+      color: var(--accent);
     }
     .risk-high {
-      background: rgba(245,158,11,0.12);
-      border-color: rgba(245,158,11,0.25);
-      color: #f59e0b;
+      background: rgba(31,160,104,0.08);
+      border-color: rgba(31,160,104,0.20);
+      color: var(--accent);
     }
     .roast-amount {
       font-family: 'Bricolage Grotesque', sans-serif;
@@ -449,7 +449,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       font-size: 0.6rem;
       font-weight: 700;
       letter-spacing: 0.12em;
-      color: #ff4444;
+      color: var(--accent);
     }
     .roast-text {
       font-family: 'Plus Jakarta Sans', sans-serif;
