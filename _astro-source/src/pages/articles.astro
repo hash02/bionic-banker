@@ -44,6 +44,11 @@ const tagColorMap: Record<string, string> = {
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (
         <a href={`/blog/${post.data.slug || post.id}`} class="article-card animate-on-scroll" data-category={post.data.category}>
+          {post.data.image && (
+            <div class="card-thumb">
+              <img src={post.data.image} alt={post.data.title} loading="lazy" />
+            </div>
+          )}
           <div class="article-tags">
             {post.data.tags.slice(0, 3).map((tag: string) => (
               <span class={`tag-pill ${tagColorMap[tag] || 'tag-green'}`}>{tag}</span>
