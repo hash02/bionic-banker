@@ -10,17 +10,17 @@
 
 /* ── DESIGN TOKENS ── */
 :root {
-  /* Backgrounds — true black depth stack */
-  --bg:   #020204;
-  --bg2:  #080810;
-  --bg3:  #0c0c14;
-  --bg4:  #101018;
+  /* Backgrounds — true black depth stack (green/white/black only) */
+  --bg:   #08080e;
+  --bg2:  #0a0a0e;
+  --bg3:  #0e0e12;
+  --bg4:  #121216;
 
   /* Text */
   --text:   #e4e4ec;
-  --text-2: #b0b0bc;
-  --text-3: #8888a0;
-  --text-4: #3a3a4e;
+  --text-2: #b0b0b8;
+  --text-3: #888890;
+  --text-4: #3a3a40;
 
   /* Borders (green tint) */
   --b1: rgba(31,160,104,0.07);
@@ -107,7 +107,7 @@ h1, h2, h3, h4, .nav-logo, .footer-brand {
    ═══════════════════════════════════════════════════════════════ */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(2,2,4,0.94);
+  background: rgba(8,8,14,0.94);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--b1);
   padding: 0 2rem; height: 56px;
@@ -409,7 +409,7 @@ nav {
 
 /* Article body */
 .article-body { max-width: 760px; margin: 0 auto; padding: 0 2rem 5rem; }
-.article-body p { font-size: 1.05rem; line-height: 1.88; color: #d8d8e8; margin-bottom: 1.75rem; letter-spacing: -0.01em; }
+.article-body p { font-size: 1.05rem; line-height: 1.88; color: #d8d8e0; margin-bottom: 1.75rem; letter-spacing: -0.01em; }
 .article-body h2 {
   font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text);
   margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--b1);
@@ -555,7 +555,7 @@ nav {
 }
 .hero h1 em {
   font-style: normal;
-  background: linear-gradient(135deg, #ffffff 0%, #c8c8d8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #c8c8c8 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .hero-sub {
@@ -1076,7 +1076,7 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
 #bb-overlay.open { opacity: 1; pointer-events: auto; }
 #bb-panel {
   position: fixed; top: 0; right: 0; bottom: 0; width: 280px; max-width: 85vw;
-  background: #0c0c14; z-index: 9999;
+  background: #0e0e12; z-index: 9999;
   transform: translateX(100%); transition: transform 0.3s ease;
   display: flex; flex-direction: column; padding: 1.5rem;
   box-shadow: -4px 0 24px rgba(0,0,0,0.5);
@@ -1108,6 +1108,6 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   .newsletter-section { padding: 2rem 1.25rem; }
 }
 
-/* Prevent Vanta.js white flash during load */
-canvas.vanta-canvas, canvas { background: #08080e !important; }
+/* Prevent canvas white flash during load */
+canvas { background: #08080e !important; }
 
