@@ -1,236 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Agentic AI Stats Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #020204;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .dashboard {
-            width: 1200px;
-            height: 630px;
-            background: #020204;
-            border: 1px solid rgba(31, 160, 104, 0.13);
-            border-radius: 10px;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto 1fr;
-            gap: 1px;
-            background-image: 
-                linear-gradient(90deg, rgba(31, 160, 104, 0.13) 0%, rgba(31, 160, 104, 0.13) 1px, transparent 1px),
-                linear-gradient(0deg, rgba(31, 160, 104, 0.13) 0%, rgba(31, 160, 104, 0.13) 1px, transparent 1px);
-            background-size: 50% 100%, 100% 33.33%;
-            padding: 1px;
-            position: relative;
-        }
-        
-        .dashboard::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(31, 160, 104, 0.05) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .title-area {
-            grid-column: 1 / -1;
-            padding: 30px 40px;
-            background: #080810;
-            border-bottom: 1px solid rgba(31, 160, 104, 0.13);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .title-area h1 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: #e4e4ec;
-            letter-spacing: -0.5px;
-        }
-        
-        .title-area .badge {
-            background: rgba(31, 160, 104, 0.15);
-            color: #1fa068;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            border: 1px solid rgba(31, 160, 104, 0.3);
-        }
-        
-        .stat-card {
-            background: #080810;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(31, 160, 104, 0.13);
-        }
-        
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(31, 160, 104, 0.3), transparent);
-            opacity: 0;
-            animation: topGlow 2s ease-in-out infinite;
-        }
-        
-        .stat-card:nth-child(3)::before { animation-delay: 0s; }
-        .stat-card:nth-child(4)::before { animation-delay: 0.3s; }
-        .stat-card:nth-child(5)::before { animation-delay: 0.6s; }
-        .stat-card:nth-child(6)::before { animation-delay: 0.9s; }
-        
-        @keyframes topGlow {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 0.8; }
-        }
-        
-        .stat-value {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 48px;
-            font-weight: 800;
-            color: #1fa068;
-            line-height: 1;
-            margin-bottom: 10px;
-            counter-set: stat var(--target);
-        }
-        
-        .stat-label {
-            font-size: 13px;
-            color: #8888a0;
-            font-weight: 500;
-            line-height: 1.5;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Counter animation */
-        .stat-value.counting {
-            animation: none;
-        }
-        
-        /* Highlight the biggest numbers */
-        .stat-card:nth-child(5) .stat-value {
-            color: #5b73f8;
-        }
-        
-        .stat-card:nth-child(6) .stat-value {
-            color: #ff4444;
-        }
-        
-        /* Grid positioning */
-        .stat-card:nth-child(3) { grid-column: 1; grid-row: 2; }
-        .stat-card:nth-child(4) { grid-column: 2; grid-row: 2; }
-        .stat-card:nth-child(5) { grid-column: 1; grid-row: 3; }
-        .stat-card:nth-child(6) { grid-column: 2; grid-row: 3; }
-    </style>
+<head><style>body,html{background:#08080e!important}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Agentic AI Stats Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .dashboard {
+    width: 1200px;
+    height: 630px;
+    background: #020204;
+    border: 1px solid rgba(31, 160, 104, 0.13);
+    border-radius: 10px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    position: relative;
+  }
+
+  .dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(31, 160, 104, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .title-area {
+    grid-column: 1 / -1;
+    padding: 24px 40px;
+    background: #080810;
+    border-bottom: 1px solid rgba(31, 160, 104, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title-area h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #e4e4ec;
+    letter-spacing: -0.5px;
+  }
+
+  .title-area .badge {
+    background: rgba(31, 160, 104, 0.12);
+    color: #1fa068;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(31, 160, 104, 0.25);
+  }
+
+  .stat-card {
+    background: #080810;
+    padding: 28px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(31, 160, 104, 0.07);
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(31, 160, 104, 0.3), transparent);
+    opacity: 0;
+    animation: topGlow 3s ease-in-out infinite;
+  }
+
+  .stat-card:nth-child(2)::before { animation-delay: 0s; }
+  .stat-card:nth-child(3)::before { animation-delay: 0.4s; }
+  .stat-card:nth-child(4)::before { animation-delay: 0.8s; }
+  .stat-card:nth-child(5)::before { animation-delay: 1.2s; }
+  .stat-card:nth-child(6)::before { animation-delay: 1.6s; }
+
+  @keyframes topGlow {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.7; }
+  }
+
+  .stat-prefix {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1fa068;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+
+  .stat-value {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    color: #1fa068;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: #888890;
+    font-weight: 500;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* The gap stat gets special treatment */
+  .stat-card.gap-stat {
+    grid-column: 3;
+    grid-row: 2 / 4;
+    border-left: 1px solid rgba(31, 160, 104, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, #080810 0%, #060610 100%);
+  }
+
+  .gap-stat .stat-value {
+    font-size: 56px;
+  }
+
+  .gap-visual {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .gap-bar {
+    width: 80px;
+    height: 6px;
+    background: rgba(31, 160, 104, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gap-bar .fill {
+    height: 100%;
+    background: #1fa068;
+    border-radius: 3px;
+  }
+
+  .gap-bar .fill.plan { width: 99%; }
+  .gap-bar .fill.prod { width: 11%; }
+
+  .gap-label {
+    font-size: 10px;
+    color: #888890;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    width: 30px;
+  }
+
+  html{scrollbar-width:thin;scrollbar-color:rgba(31,160,104,0.3) #020204}
+</style>
 </head>
 <body>
-    <div class="dashboard">
-        <div class="title-area">
-            <h1>Global Agentic AI Stats</h1>
-            <div class="badge">Command Center</div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-value" data-target="50">0</div>
-            <div class="stat-label">Billion USD<br>Global Market Spend</div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-value" data-target="600">0</div>
-            <div class="stat-label">Percent Increase<br>Finance Team Adoption</div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-value" data-target="70">0</div>
-            <div class="stat-label">Percent of Leaders<br>Deploying/Exploring</div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-value" data-target="4.4">0</div>
-            <div class="stat-label">Trillion USD<br>Annual Value Potential</div>
-        </div>
+  <div class="dashboard">
+    <div class="title-area">
+      <h1>Global Agentic AI in Banking</h1>
+      <div class="badge">KPMG / McKinsey 2025</div>
     </div>
-    
-    <script>
-        // Counter animation
-        function animateCounters() {
-            const cards = document.querySelectorAll('.stat-value');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const element = entry.target;
-                        const target = parseFloat(element.getAttribute('data-target'));
-                        
-                        let current = 0;
-                        const duration = 2000;
-                        const start = Date.now();
-                        
-                        function update() {
-                            const elapsed = Date.now() - start;
-                            const progress = Math.min(elapsed / duration, 1);
-                            
-                            // Easing function
-                            const eased = 1 - Math.pow(1 - progress, 3);
-                            current = Math.floor(target * eased * 100) / 100;
-                            
-                            element.textContent = current.toFixed(current >= 10 ? 1 : 0);
-                            
-                            if (progress < 1) {
-                                requestAnimationFrame(update);
-                            } else {
-                                element.textContent = target.toFixed(target >= 10 ? 1 : 0);
-                            }
-                        }
-                        
-                        update();
-                        observer.unobserve(element);
-                    }
-                });
-            }, { threshold: 0.3 });
-            
-            cards.forEach(card => observer.observe(card));
-        }
-        
-        // Start animation when page loads
-        window.addEventListener('load', animateCounters);
-        
-        // Fallback if page already loaded
-        if (document.readyState === 'complete') {
-            animateCounters();
-        }
-    </script>
+
+    <div class="stat-card">
+      <div class="stat-prefix">Market</div>
+      <div class="stat-value" data-target="50" data-suffix="B">$50B</div>
+      <div class="stat-label">Global Market Spend</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-prefix">Adoption</div>
+      <div class="stat-value" data-target="600" data-suffix="%">600%</div>
+      <div class="stat-label">Increase in Finance<br>Team Adoption</div>
+    </div>
+
+    <div class="stat-card gap-stat">
+      <div class="stat-prefix">The Gap</div>
+      <div class="stat-value">99%</div>
+      <div class="stat-label">Plan to deploy agents</div>
+      <div class="gap-visual">
+        <div class="gap-label">Plan</div>
+        <div class="gap-bar"><div class="fill plan"></div></div>
+      </div>
+      <div class="gap-visual" style="margin-top: 8px;">
+        <div class="gap-label">Prod</div>
+        <div class="gap-bar"><div class="fill prod"></div></div>
+      </div>
+      <div class="stat-label" style="margin-top: 12px; color: #1fa068; font-weight: 600;">Only 11% in production</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-prefix">Leaders</div>
+      <div class="stat-value">70%</div>
+      <div class="stat-label">Deploying or<br>Exploring Agents</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-prefix">Potential</div>
+      <div class="stat-value">$4.4T</div>
+      <div class="stat-label">Annual Value<br>Potential (McKinsey)</div>
+    </div>
+  </div>
+
+<script>
+function sendHeight(){
+  var h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+  window.parent.postMessage({type:'iframeResize',height:h,src:location.pathname},'*');
+}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
 </body>
 </html>

@@ -1,434 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada's Big 5 Banks - AI Deployment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #020204;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .big5 {
-            width: 1200px;
-            height: 630px;
-            background: #020204;
-            border: 1px solid rgba(31, 160, 104, 0.13);
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 30px;
-            position: relative;
-        }
-        
-        .big5::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 80% 50%, rgba(91, 115, 248, 0.05) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .header-section {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-        
-        .header-left h1 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #e4e4ec;
-            letter-spacing: -0.5px;
-            margin-bottom: 5px;
-        }
-        
-        .header-left p {
-            font-size: 12px;
-            color: #8888a0;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .callout-box {
-            background: rgba(31, 160, 104, 0.1);
-            border: 1px solid rgba(31, 160, 104, 0.25);
-            border-radius: 8px;
-            padding: 12px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            flex-shrink: 0;
-            animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .callout-label {
-            font-size: 10px;
-            color: #8888a0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-        
-        .callout-text {
-            font-size: 13px;
-            color: #1fa068;
-            font-weight: 600;
-            font-family: 'Bricolage Grotesque', sans-serif;
-            line-height: 1.3;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .banks-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            position: relative;
-            z-index: 1;
-            flex: 1;
-        }
-        
-        .bank-bar {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            height: 85px;
-            background: #080810;
-            border: 1px solid rgba(31, 160, 104, 0.13);
-            border-radius: 8px;
-            padding: 15px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .bank-bar:hover {
-            border-color: rgba(31, 160, 104, 0.3);
-            background: #0a0a12;
-        }
-        
-        .bank-bar::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #1fa068, #5b73f8);
-        }
-        
-        .bank-bar:nth-child(1)::before { background: linear-gradient(180deg, #1fa068, #5b73f8); }
-        .bank-bar:nth-child(2)::before { background: linear-gradient(180deg, #5b73f8, #1fa068); }
-        .bank-bar:nth-child(3)::before { background: linear-gradient(180deg, #ff4444, #1fa068); }
-        .bank-bar:nth-child(4)::before { background: linear-gradient(180deg, #1fa068, #ff4444); }
-        .bank-bar:nth-child(5)::before { background: linear-gradient(180deg, #5b73f8, #ff4444); }
-        
-        .rank-badge {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 20px;
-            font-weight: 800;
-            color: #1fa068;
-            min-width: 45px;
-            text-align: center;
-        }
-        
-        .bank-bar:nth-child(2) .rank-badge { color: #5b73f8; }
-        .bank-bar:nth-child(3) .rank-badge { color: #ff4444; }
-        
-        .bank-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
-        .bank-name {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            color: #e4e4ec;
-        }
-        
-        .bank-rank {
-            font-size: 11px;
-            color: #8888a0;
-            font-weight: 500;
-        }
-        
-        .stat-bubble {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .bubble {
-            background: rgba(31, 160, 104, 0.1);
-            border: 1px solid rgba(31, 160, 104, 0.2);
-            border-radius: 20px;
-            padding: 6px 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: #b0b0bc;
-        }
-        
-        .bubble-value {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-weight: 700;
-            color: #e4e4ec;
-        }
-        
-        .bubble:nth-child(1) {
-            background: rgba(31, 160, 104, 0.15);
-            border-color: rgba(31, 160, 104, 0.3);
-        }
-        
-        .bubble:nth-child(2) {
-            background: rgba(91, 115, 248, 0.15);
-            border-color: rgba(91, 115, 248, 0.3);
-        }
-        
-        .bubble:nth-child(3) {
-            background: rgba(255, 68, 68, 0.15);
-            border-color: rgba(255, 68, 68, 0.3);
-        }
-        
-        .progress-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        
-        .progress-label {
-            font-size: 10px;
-            color: #8888a0;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            min-width: 60px;
-        }
-        
-        .progress-bar {
-            flex: 1;
-            height: 5px;
-            background: rgba(31, 160, 104, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
-            max-width: 150px;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #1fa068, #5b73f8);
-            border-radius: 3px;
-            animation: fillProgress 2s ease-out forwards;
-        }
-        
-        .bank-bar:nth-child(1) .progress-fill { animation-delay: 0.2s; width: 95%; }
-        .bank-bar:nth-child(2) .progress-fill { animation-delay: 0.4s; width: 75%; }
-        .bank-bar:nth-child(3) .progress-fill { animation-delay: 0.6s; width: 70%; }
-        .bank-bar:nth-child(4) .progress-fill { animation-delay: 0.8s; width: 80%; }
-        .bank-bar:nth-child(5) .progress-fill { animation-delay: 1s; width: 60%; }
-        
-        @keyframes fillProgress {
-            from { width: 0; }
-        }
-    </style>
+<head><style>body,html{background:#08080e!important}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canada Big 5 — Agentic AI Deep Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .panel {
+    width: 1200px;
+    height: 630px;
+    background: #020204;
+    border: 1px solid rgba(31, 160, 104, 0.13);
+    border-radius: 10px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    position: relative;
+  }
+
+  .panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(31, 160, 104, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .header {
+    grid-column: 1 / -1;
+    padding: 18px 40px;
+    background: #080810;
+    border-bottom: 1px solid rgba(31, 160, 104, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #e4e4ec;
+    letter-spacing: -0.5px;
+  }
+
+  .header h1 .accent { color: #1fa068; }
+
+  .header .badge {
+    background: rgba(31, 160, 104, 0.12);
+    color: #1fa068;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(31, 160, 104, 0.25);
+  }
+
+  .bank-col {
+    background: #080810;
+    border-right: 1px solid rgba(31, 160, 104, 0.07);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bank-col:last-child { border-right: none; }
+
+  .bank-col::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: #1fa068;
+    opacity: 0.35;
+  }
+
+  .bank-col.highlight::before {
+    opacity: 0.8;
+    height: 3px;
+  }
+
+  .bank-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #e4e4ec;
+    margin-bottom: 2px;
+  }
+
+  .bank-rank {
+    font-size: 10px;
+    color: #1fa068;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(31, 160, 104, 0.05);
+  }
+
+  .metric:last-child { border-bottom: none; }
+
+  .metric-value {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #1fa068;
+    line-height: 1.1;
+  }
+
+  .metric-label {
+    font-size: 9px;
+    color: #888890;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  .metric-detail {
+    font-size: 10px;
+    color: rgba(228,228,236,0.4);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+
+  html{scrollbar-width:thin;scrollbar-color:rgba(31,160,104,0.3) #020204}
+</style>
 </head>
 <body>
-    <div class="big5">
-        <div class="header-section">
-            <div class="header-left">
-                <h1>Canada's Big 5</h1>
-                <p>AI Deployment Maturity Ranking</p>
-            </div>
-            <div class="callout-box">
-                <div class="callout-label">The Window</div>
-                <div class="callout-text">99% Plan<br>11% Deploy<br>2026 is Now</div>
-            </div>
-        </div>
-        
-        <div class="banks-container">
-            <!-- RBC -->
-            <div class="bank-bar">
-                <div class="rank-badge">#3</div>
-                <div class="bank-info">
-                    <div class="bank-name">Royal Bank of Canada</div>
-                    <div class="bank-rank">Globally: #3 Ranked</div>
-                </div>
-                <div class="stat-bubble">
-                    <div class="bubble">
-                        <span class="bubble-value">50</span>
-                        <span>companies/analyst</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">$1B</span>
-                        <span>target</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">27K</span>
-                        <span>Assist users</span>
-                    </div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-label">Deploy</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- TD -->
-            <div class="bank-bar">
-                <div class="rank-badge">#13</div>
-                <div class="bank-info">
-                    <div class="bank-name">Toronto-Dominion Bank</div>
-                    <div class="bank-rank">Globally: #13 Ranked</div>
-                </div>
-                <div class="stat-bubble">
-                    <div class="bubble">
-                        <span class="bubble-value">20%</span>
-                        <span>score increase YoY</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">Fast</span>
-                        <span>adoption pace</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">AI-First</span>
-                        <span>strategy</span>
-                    </div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-label">Deploy</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Scotiabank -->
-            <div class="bank-bar">
-                <div class="rank-badge">#24</div>
-                <div class="bank-info">
-                    <div class="bank-name">Scotiabank</div>
-                    <div class="bank-rank">Since 2018: Autonomous Pioneers</div>
-                </div>
-                <div class="stat-bubble">
-                    <div class="bubble">
-                        <span class="bubble-value">90%</span>
-                        <span>email autonomous</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">70%</span>
-                        <span>staff redeployed</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">8Y</span>
-                        <span>head start</span>
-                    </div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-label">Deploy</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- CIBC -->
-            <div class="bank-bar">
-                <div class="rank-badge">#11</div>
-                <div class="bank-info">
-                    <div class="bank-name">Canadian Imperial Bank of Commerce</div>
-                    <div class="bank-rank">Q1 2026 GenAI Leader</div>
-                </div>
-                <div class="stat-bubble">
-                    <div class="bubble">
-                        <span class="bubble-value">1.2M</span>
-                        <span>hours saved Q1</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">30K</span>
-                        <span>active users</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">44%</span>
-                        <span>conversion lift</span>
-                    </div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-label">Deploy</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- BMO -->
-            <div class="bank-bar">
-                <div class="rank-badge">#N/A</div>
-                <div class="bank-info">
-                    <div class="bank-name">Bank of Montreal</div>
-                    <div class="bank-rank">Rising Talent Development Focus</div>
-                </div>
-                <div class="stat-bubble">
-                    <div class="bubble">
-                        <span class="bubble-value">AI</span>
-                        <span>roundtable leader</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">Emerging</span>
-                        <span>capability</span>
-                    </div>
-                    <div class="bubble">
-                        <span class="bubble-value">Growth</span>
-                        <span>trajectory</span>
-                    </div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-label">Deploy</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="panel">
+    <div class="header">
+      <h1>&#x1F1E8;&#x1F1E6; Canada <span class="accent">Big 5</span> Deep Dive</h1>
+      <div class="badge">Agentic AI Leaders</div>
     </div>
+
+    <!-- RBC -->
+    <div class="bank-col highlight">
+      <div class="bank-name">RBC</div>
+      <div class="bank-rank">#3 Global AI Rank</div>
+      <div class="metric">
+        <div class="metric-value">50</div>
+        <div class="metric-label">Companies per Analyst</div>
+        <div class="metric-detail">Was 15 before agents</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">$1B</div>
+        <div class="metric-label">AI Investment Target</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">27K</div>
+        <div class="metric-label">RBC Assist Users</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">3.3x</div>
+        <div class="metric-label">Analyst Coverage Gain</div>
+      </div>
+    </div>
+
+    <!-- TD -->
+    <div class="bank-col">
+      <div class="bank-name">TD</div>
+      <div class="bank-rank">#13 Global AI Rank</div>
+      <div class="metric">
+        <div class="metric-value">>20%</div>
+        <div class="metric-label">Score Increase YoY</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">Layer 5</div>
+        <div class="metric-label">AI Maturity Model</div>
+        <div class="metric-detail">Production agent deployment</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">Rising</div>
+        <div class="metric-label">Fastest Climber</div>
+        <div class="metric-detail">Among Canadian banks</div>
+      </div>
+    </div>
+
+    <!-- Scotiabank -->
+    <div class="bank-col">
+      <div class="bank-name">Scotia</div>
+      <div class="bank-rank">Since 2018</div>
+      <div class="metric">
+        <div class="metric-value">90%</div>
+        <div class="metric-label">Autonomous Email</div>
+        <div class="metric-detail">Client communications</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">70%</div>
+        <div class="metric-label">Staff Redeployed</div>
+        <div class="metric-detail">To higher-value tasks</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">8 yrs</div>
+        <div class="metric-label">AI Journey</div>
+        <div class="metric-detail">Longest in Canadian banking</div>
+      </div>
+    </div>
+
+    <!-- CIBC -->
+    <div class="bank-col highlight">
+      <div class="bank-name">CIBC</div>
+      <div class="bank-rank">Best GenAI Award</div>
+      <div class="metric">
+        <div class="metric-value">1.2M hrs</div>
+        <div class="metric-label">Q1 2026 Savings</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">30K</div>
+        <div class="metric-label">Active Users</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">44%</div>
+        <div class="metric-label">Conversion Lift</div>
+        <div class="metric-detail">Agent-assisted sales</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">Award</div>
+        <div class="metric-label">Best GenAI in Banking</div>
+      </div>
+    </div>
+
+    <!-- BMO -->
+    <div class="bank-col">
+      <div class="bank-name">BMO</div>
+      <div class="bank-rank">Talent Development</div>
+      <div class="metric">
+        <div class="metric-value">Rising</div>
+        <div class="metric-label">Talent Development</div>
+        <div class="metric-detail">Investing in AI workforce</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">Active</div>
+        <div class="metric-label">Agent Exploration</div>
+        <div class="metric-detail">Internal deployment phase</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">Big 5</div>
+        <div class="metric-label">Competitive Pressure</div>
+        <div class="metric-detail">All peers accelerating</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+function sendHeight(){
+  var h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+  window.parent.postMessage({type:'iframeResize',height:h,src:location.pathname},'*');
+}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
 </body>
 </html>
