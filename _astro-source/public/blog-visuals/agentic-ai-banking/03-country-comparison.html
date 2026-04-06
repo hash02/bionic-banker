@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Comparison - Agentic AI Banking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #020204;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .comparison {
+            width: 1200px;
+            height: 630px;
+            background: #020204;
+            border: 1px solid rgba(31, 160, 104, 0.13);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .comparison::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(31, 160, 104, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .comp-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 25px;
+        }
+        
+        .comp-header h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #e4e4ec;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .comp-header p {
+            font-size: 12px;
+            color: #8888a0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .country-card {
+            background: #080810;
+            border: 1px solid rgba(31, 160, 104, 0.13);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .country-card:hover {
+            border-color: rgba(31, 160, 104, 0.3);
+            transform: translateY(-4px);
+        }
+        
+        .country-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1fa068, #5b73f8, transparent);
+            opacity: 0;
+            animation: topBar 2s ease-in-out infinite;
+        }
+        
+        .country-card:nth-child(1)::before { background: linear-gradient(90deg, #1fa068, transparent); }
+        .country-card:nth-child(2)::before { background: linear-gradient(90deg, #5b73f8, transparent); animation-delay: 0.3s; }
+        .country-card:nth-child(3)::before { background: linear-gradient(90deg, #ff4444, transparent); animation-delay: 0.6s; }
+        .country-card:nth-child(4)::before { background: linear-gradient(90deg, #1fa068, transparent); animation-delay: 0.9s; }
+        
+        @keyframes topBar {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.5; }
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .flag {
+            font-size: 28px;
+        }
+        
+        .card-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #e4e4ec;
+        }
+        
+        .card-title-sub {
+            font-size: 12px;
+            color: #8888a0;
+            font-weight: 500;
+            margin-top: -5px;
+        }
+        
+        .stats-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .stat-value {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1fa068;
+        }
+        
+        .country-card:nth-child(2) .stat-value { color: #5b73f8; }
+        .country-card:nth-child(3) .stat-value { color: #ff4444; }
+        .country-card:nth-child(4) .stat-value { color: #1fa068; }
+        
+        .stat-name {
+            font-size: 11px;
+            color: #8888a0;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .maturity-gauge {
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .gauge-label {
+            font-size: 10px;
+            color: #8888a0;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+        
+        .gauge-bar {
+            height: 5px;
+            background: rgba(31, 160, 104, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .gauge-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1fa068, #5b73f8);
+            border-radius: 3px;
+            animation: fillGauge 2s ease-out forwards;
+        }
+        
+        .country-card:nth-child(1) .gauge-fill { animation-delay: 0.2s; width: 95%; }
+        .country-card:nth-child(2) .gauge-fill { animation-delay: 0.4s; width: 80%; }
+        .country-card:nth-child(3) .gauge-fill { animation-delay: 0.6s; width: 75%; }
+        .country-card:nth-child(4) .gauge-fill { animation-delay: 0.8s; width: 85%; }
+        
+        @keyframes fillGauge {
+            from { width: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="comparison">
+        <div class="comp-header">
+            <h1>Global Banking Maturity</h1>
+            <p>Agentic AI Deployment Across Markets</p>
+        </div>
+        
+        <div class="cards-grid">
+            <!-- US Card -->
+            <div class="country-card">
+                <div class="card-header">
+                    <span class="flag">🇺🇸</span>
+                    <div>
+                        <div class="card-title">US</div>
+                        <div class="card-title-sub">JPMorgan</div>
+                    </div>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <div class="stat-value">360K</div>
+                        <div class="stat-name">Hours Saved</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">500+</div>
+                        <div class="stat-name">AI Use Cases</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$1.5B</div>
+                        <div class="stat-name">Target Investment</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-name">False Positive Reduction</div>
+                    </div>
+                </div>
+                <div class="maturity-gauge">
+                    <div class="gauge-label">Maturity</div>
+                    <div class="gauge-bar">
+                        <div class="gauge-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- India Card -->
+            <div class="country-card">
+                <div class="card-header">
+                    <span class="flag">🇮🇳</span>
+                    <div>
+                        <div class="card-title">India</div>
+                        <div class="card-title-sub">HDFC</div>
+                    </div>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <div class="stat-value">0.4s</div>
+                        <div class="stat-name">Response Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">127K+</div>
+                        <div class="stat-name">Virtual Loan Experts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Millions</div>
+                        <div class="stat-name">Queries Handled Daily</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Instant</div>
+                        <div class="stat-name">Loan Approvals</div>
+                    </div>
+                </div>
+                <div class="maturity-gauge">
+                    <div class="gauge-label">Maturity</div>
+                    <div class="gauge-bar">
+                        <div class="gauge-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Australia Card -->
+            <div class="country-card">
+                <div class="card-header">
+                    <span class="flag">🇦🇺</span>
+                    <div>
+                        <div class="card-title">Australia</div>
+                        <div class="card-title-sub">ANZ</div>
+                    </div>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <div class="stat-value">20→1</div>
+                        <div class="stat-name">Platforms Consolidated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">~1 Month</div>
+                        <div class="stat-name">Saved per Banker/Year</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">First</div>
+                        <div class="stat-name">APAC at Scale</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-name">Dashboard Unified</div>
+                    </div>
+                </div>
+                <div class="maturity-gauge">
+                    <div class="gauge-label">Maturity</div>
+                    <div class="gauge-bar">
+                        <div class="gauge-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Canada Card -->
+            <div class="country-card">
+                <div class="card-header">
+                    <span class="flag">🇨🇦</span>
+                    <div>
+                        <div class="card-title">Canada</div>
+                        <div class="card-title-sub">Big 5 Banks</div>
+                    </div>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <div class="stat-value">1.2M</div>
+                        <div class="stat-name">Hours Saved (CIBC Q1)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">90%</div>
+                        <div class="stat-name">Email Automation</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$1B</div>
+                        <div class="stat-name">Collective Target</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">27K+</div>
+                        <div class="stat-name">Active Users (RBC)</div>
+                    </div>
+                </div>
+                <div class="maturity-gauge">
+                    <div class="gauge-label">Maturity</div>
+                    <div class="gauge-bar">
+                        <div class="gauge-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

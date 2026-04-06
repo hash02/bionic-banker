@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada's Big 5 Banks - AI Deployment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #020204;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .big5 {
+            width: 1200px;
+            height: 630px;
+            background: #020204;
+            border: 1px solid rgba(31, 160, 104, 0.13);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .big5::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 50%, rgba(91, 115, 248, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .header-section {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .header-left h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #e4e4ec;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .header-left p {
+            font-size: 12px;
+            color: #8888a0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .callout-box {
+            background: rgba(31, 160, 104, 0.1);
+            border: 1px solid rgba(31, 160, 104, 0.25);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex-shrink: 0;
+            animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .callout-label {
+            font-size: 10px;
+            color: #8888a0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        .callout-text {
+            font-size: 13px;
+            color: #1fa068;
+            font-weight: 600;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            line-height: 1.3;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .banks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .bank-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            height: 85px;
+            background: #080810;
+            border: 1px solid rgba(31, 160, 104, 0.13);
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .bank-bar:hover {
+            border-color: rgba(31, 160, 104, 0.3);
+            background: #0a0a12;
+        }
+        
+        .bank-bar::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #1fa068, #5b73f8);
+        }
+        
+        .bank-bar:nth-child(1)::before { background: linear-gradient(180deg, #1fa068, #5b73f8); }
+        .bank-bar:nth-child(2)::before { background: linear-gradient(180deg, #5b73f8, #1fa068); }
+        .bank-bar:nth-child(3)::before { background: linear-gradient(180deg, #ff4444, #1fa068); }
+        .bank-bar:nth-child(4)::before { background: linear-gradient(180deg, #1fa068, #ff4444); }
+        .bank-bar:nth-child(5)::before { background: linear-gradient(180deg, #5b73f8, #ff4444); }
+        
+        .rank-badge {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #1fa068;
+            min-width: 45px;
+            text-align: center;
+        }
+        
+        .bank-bar:nth-child(2) .rank-badge { color: #5b73f8; }
+        .bank-bar:nth-child(3) .rank-badge { color: #ff4444; }
+        
+        .bank-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .bank-name {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #e4e4ec;
+        }
+        
+        .bank-rank {
+            font-size: 11px;
+            color: #8888a0;
+            font-weight: 500;
+        }
+        
+        .stat-bubble {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bubble {
+            background: rgba(31, 160, 104, 0.1);
+            border: 1px solid rgba(31, 160, 104, 0.2);
+            border-radius: 20px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #b0b0bc;
+        }
+        
+        .bubble-value {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            color: #e4e4ec;
+        }
+        
+        .bubble:nth-child(1) {
+            background: rgba(31, 160, 104, 0.15);
+            border-color: rgba(31, 160, 104, 0.3);
+        }
+        
+        .bubble:nth-child(2) {
+            background: rgba(91, 115, 248, 0.15);
+            border-color: rgba(91, 115, 248, 0.3);
+        }
+        
+        .bubble:nth-child(3) {
+            background: rgba(255, 68, 68, 0.15);
+            border-color: rgba(255, 68, 68, 0.3);
+        }
+        
+        .progress-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .progress-label {
+            font-size: 10px;
+            color: #8888a0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            min-width: 60px;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 5px;
+            background: rgba(31, 160, 104, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            max-width: 150px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1fa068, #5b73f8);
+            border-radius: 3px;
+            animation: fillProgress 2s ease-out forwards;
+        }
+        
+        .bank-bar:nth-child(1) .progress-fill { animation-delay: 0.2s; width: 95%; }
+        .bank-bar:nth-child(2) .progress-fill { animation-delay: 0.4s; width: 75%; }
+        .bank-bar:nth-child(3) .progress-fill { animation-delay: 0.6s; width: 70%; }
+        .bank-bar:nth-child(4) .progress-fill { animation-delay: 0.8s; width: 80%; }
+        .bank-bar:nth-child(5) .progress-fill { animation-delay: 1s; width: 60%; }
+        
+        @keyframes fillProgress {
+            from { width: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="big5">
+        <div class="header-section">
+            <div class="header-left">
+                <h1>Canada's Big 5</h1>
+                <p>AI Deployment Maturity Ranking</p>
+            </div>
+            <div class="callout-box">
+                <div class="callout-label">The Window</div>
+                <div class="callout-text">99% Plan<br>11% Deploy<br>2026 is Now</div>
+            </div>
+        </div>
+        
+        <div class="banks-container">
+            <!-- RBC -->
+            <div class="bank-bar">
+                <div class="rank-badge">#3</div>
+                <div class="bank-info">
+                    <div class="bank-name">Royal Bank of Canada</div>
+                    <div class="bank-rank">Globally: #3 Ranked</div>
+                </div>
+                <div class="stat-bubble">
+                    <div class="bubble">
+                        <span class="bubble-value">50</span>
+                        <span>companies/analyst</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">$1B</span>
+                        <span>target</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">27K</span>
+                        <span>Assist users</span>
+                    </div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-label">Deploy</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TD -->
+            <div class="bank-bar">
+                <div class="rank-badge">#13</div>
+                <div class="bank-info">
+                    <div class="bank-name">Toronto-Dominion Bank</div>
+                    <div class="bank-rank">Globally: #13 Ranked</div>
+                </div>
+                <div class="stat-bubble">
+                    <div class="bubble">
+                        <span class="bubble-value">20%</span>
+                        <span>score increase YoY</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">Fast</span>
+                        <span>adoption pace</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">AI-First</span>
+                        <span>strategy</span>
+                    </div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-label">Deploy</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scotiabank -->
+            <div class="bank-bar">
+                <div class="rank-badge">#24</div>
+                <div class="bank-info">
+                    <div class="bank-name">Scotiabank</div>
+                    <div class="bank-rank">Since 2018: Autonomous Pioneers</div>
+                </div>
+                <div class="stat-bubble">
+                    <div class="bubble">
+                        <span class="bubble-value">90%</span>
+                        <span>email autonomous</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">70%</span>
+                        <span>staff redeployed</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">8Y</span>
+                        <span>head start</span>
+                    </div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-label">Deploy</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CIBC -->
+            <div class="bank-bar">
+                <div class="rank-badge">#11</div>
+                <div class="bank-info">
+                    <div class="bank-name">Canadian Imperial Bank of Commerce</div>
+                    <div class="bank-rank">Q1 2026 GenAI Leader</div>
+                </div>
+                <div class="stat-bubble">
+                    <div class="bubble">
+                        <span class="bubble-value">1.2M</span>
+                        <span>hours saved Q1</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">30K</span>
+                        <span>active users</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">44%</span>
+                        <span>conversion lift</span>
+                    </div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-label">Deploy</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BMO -->
+            <div class="bank-bar">
+                <div class="rank-badge">#N/A</div>
+                <div class="bank-info">
+                    <div class="bank-name">Bank of Montreal</div>
+                    <div class="bank-rank">Rising Talent Development Focus</div>
+                </div>
+                <div class="stat-bubble">
+                    <div class="bubble">
+                        <span class="bubble-value">AI</span>
+                        <span>roundtable leader</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">Emerging</span>
+                        <span>capability</span>
+                    </div>
+                    <div class="bubble">
+                        <span class="bubble-value">Growth</span>
+                        <span>trajectory</span>
+                    </div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-label">Deploy</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
