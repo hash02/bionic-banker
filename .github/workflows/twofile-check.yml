@@ -1,0 +1,69 @@
+name: R-039 twofile check
+
+# WHY: bionicbanker.tech is served by Cloudflare Pages git-integration.
+# CF Pages serves committed dist/ at repo root as-is — it does NOT rebuild
+# Astro on push. Any content fix must touch BOTH the Astro source AND the
+# committed built output, otherwise either live regresses on next Dell
+# rebuild (built-only) or never reaches prod at all (source-only).
+#
+# This workflow runs verify_twofile.py against every PR targeting main
+# and fails the check if source↔built pairs are unbalanced.
+#
+# Reference: CLAUDE.md + MISTAKES.md §M-039 (Apr 17 2026).
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  twofile-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Determine base and head refs
+        id: refs
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "base=origin/${{ github.base_ref }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "push" ]; then
+            # For push to main, compare to the previous commit on main
+            echo "base=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=origin/main" >> "$GITHUB_OUTPUT"
+            echo "head=HEAD" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run R-039 twofile check
+        run: |
+          python3 tools/verify_twofile.py \
+            --base "${{ steps.refs.outputs.base }}" \
+            --head "${{ steps.refs.outputs.head }}"
+
+      - name: Explain on failure
+        if: failure()
+        run: |
+          echo ""
+          echo "::error title=R-039 violation::Source and built files are out of sync. See tools/verify_twofile.py header for the rule, or CLAUDE.md + MISTAKES.md §M-039."
+          echo ""
+          echo "TL;DR of R-039:"
+          echo "  bionicbanker.tech is served by Cloudflare Pages git-integration."
+          echo "  CF Pages serves committed dist/ at repo root AS-IS. It does NOT rebuild Astro on push."
+          echo "  Content fixes require BOTH:"
+          echo "    1. _astro-source/src/pages/<name>.astro   OR   _astro-source/src/content/blog/<slug>.md"
+          echo "    2. <name>/index.html                       OR   blog/<slug>/index.html"
+          echo ""
+          echo "Source alone = regression bait. Built alone = reaches prod, regresses on next rebuild. Both = permanent."
