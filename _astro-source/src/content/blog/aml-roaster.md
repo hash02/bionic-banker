@@ -181,7 +181,7 @@ $82 billion laundered through crypto last year. Less than 1% caught globally. Ma
 The AML Roaster is open source and runs live.
 
       
-The roaster scans Ethereum every 30 minutes. The full AML Detection Engine (22 rules, 94.9% detection rate) has a live demo. I write about building at the intersection of AI, blockchain, and finance.
+The roaster scans Ethereum every 30 minutes. The full AML Detection Engine (28 rules, 94.9% detection rate) has a live demo. I write about building at the intersection of AI, blockchain, and finance.
 
       
         [

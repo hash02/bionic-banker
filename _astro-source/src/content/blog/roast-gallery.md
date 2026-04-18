@@ -116,7 +116,7 @@ The personality layer. Real analysis + attitude. Every detection gets a comment 
 
 ## Try The Engine
 
-Want to see what the AML Roaster finds? The live demo is running now on Ethereum wallets. Upload a transaction CSV or load the sample Wormhole/Ronin/Lazarus dataset. Watch 22 rules fire in real time. See every flagged wallet, every rule that triggered, every score.
+Want to see what the AML Roaster finds? The live demo is running now on Ethereum wallets. Upload a transaction CSV or load the sample Wormhole/Ronin/Lazarus dataset. Watch 28 rules fire in real time. See every flagged wallet, every rule that triggered, every score.
 
 No install. No setup.
 

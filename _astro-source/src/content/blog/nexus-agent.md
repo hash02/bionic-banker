@@ -117,7 +117,7 @@ The best report doesn't say "DEFINITELY FRAUD." It says "here's what the evidenc
 ## Where This Goes
 
     
-I run this against real blockchain data now. The Lazarus Group — North Korea's state-sponsored hacking unit — moved $373 million through a specific set of wallets. I fed those transactions through my AML engine (22 detection rules, 94.9% accuracy) and then had NEXUS investigate the flagged patterns.
+I run this against real blockchain data now. The Lazarus Group — North Korea's state-sponsored hacking unit — moved $373 million through a specific set of wallets. I fed those transactions through my AML engine (28 detection rules, 94.9% accuracy) and then had NEXUS investigate the flagged patterns.
 
     
 It caught everything. 100% CRITICAL classification. Not because the AI is brilliant — because the architecture forces honesty. The Reasoner can't hide behind confidence. The Synthesizer won't let it.

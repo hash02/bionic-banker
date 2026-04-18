@@ -1,6 +1,6 @@
 ---
 title: "I Built a Blockchain AML Engine From Scratch"
-description: "94.9% detection rate. 22 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group. Here's what an engineer inside finance found building what compliance teams actually need."
+description: "94.9% detection rate. 28 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group. Here's what an engineer inside finance found building what compliance teams actually need."
 date: "2026-02-27"
 tags: ["AML · Blockchain · AI"]
 readTime: "12 min"
@@ -46,7 +46,7 @@ Every new version came from a new case study. Read the case. Understand the patt
 
 The system has three layers working together:
 
-**Layer 1 — Rule Engine:** 22 rules across structuring, mixing, bridging, velocity, OFAC, and blockchain-specific patterns.
+**Layer 1 — Rule Engine:** 28 rules across structuring, mixing, bridging, velocity, OFAC, and blockchain-specific patterns.
 
 **Layer 2 — AI Detection Layer:** Isolation Forest algorithm. Catches what rules miss. 21 novel detections found purely through statistical anomalies.
 
@@ -104,7 +104,7 @@ Result: out of 695 flagged cases, 256 genuinely needed immediate human attention
 
 ## What I'm Building Next
 
-The engine is at v11. The architecture is three layers deep. But this is still version one of a bigger thing.
+The engine is at v12. The architecture is three layers deep. But this is still version one of a bigger thing.
 
 The live demo is now up — you can run the engine on real transaction data, right in your browser. Upload a CSV or hit the sample data button and watch Wormhole, Ronin, and Lazarus Group get flagged in real time. Every rule that fires is explained. Every score is broken down. No setup, no install.
 
