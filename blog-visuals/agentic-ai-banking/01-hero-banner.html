@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Agentic Gap - Hero Banner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #020204;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .hero {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #020204 0%, #0a0a10 50%, #020204 100%);
+            border: 1px solid rgba(31, 160, 104, 0.13);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 80px;
+            text-align: center;
+        }
+        
+        /* Animated background elements */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(31, 160, 104, 0.08) 0%, transparent 50%);
+            animation: floatBg 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 50%, rgba(255, 68, 68, 0.05) 0%, transparent 50%);
+            animation: floatBg2 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes floatBg {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+        
+        @keyframes floatBg2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 72px;
+            font-weight: 800;
+            color: #e4e4ec;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: #b0b0bc;
+            font-weight: 500;
+            max-width: 600px;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Country flags and race visual */
+        .race-track {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            animation: fadeIn 0.8s ease-out 0.4s backwards;
+        }
+        
+        .race-lane {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            gap: 15px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .flag-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: rgba(31, 160, 104, 0.1);
+            border: 1px solid rgba(31, 160, 104, 0.2);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(31, 160, 104, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1fa068, #5b73f8);
+            border-radius: 3px;
+            animation: progress linear 2s ease-out forwards;
+        }
+        
+        .race-lane:nth-child(1) .progress-fill { animation-delay: 0s; width: 95%; }
+        .race-lane:nth-child(2) .progress-fill { animation-delay: 0.2s; width: 75%; }
+        .race-lane:nth-child(3) .progress-fill { animation-delay: 0.4s; width: 60%; }
+        .race-lane:nth-child(4) .progress-fill { animation-delay: 0.6s; width: 50%; }
+        
+        @keyframes progress {
+            from { width: 0; }
+        }
+        
+        .country-name {
+            font-size: 13px;
+            color: #8888a0;
+            font-weight: 500;
+            width: 50px;
+            text-align: right;
+        }
+        
+        /* Footer branding */
+        .branding {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 12px;
+            color: #8888a0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 10;
+            opacity: 0.7;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>The Agentic Gap</h1>
+            <p class="subtitle">How the World's Banks Are Deploying AI Agents</p>
+            
+            <div class="race-track">
+                <div class="race-lane">
+                    <div class="flag-icon">🇺🇸</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="country-name">US</div>
+                </div>
+                
+                <div class="race-lane">
+                    <div class="flag-icon">🇮🇳</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="country-name">India</div>
+                </div>
+                
+                <div class="race-lane">
+                    <div class="flag-icon">🇦🇺</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="country-name">AU</div>
+                </div>
+                
+                <div class="race-lane">
+                    <div class="flag-icon">🇨🇦</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="country-name">Canada</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="branding">bionicbanker.tech</div>
+    </div>
+</body>
+</html>

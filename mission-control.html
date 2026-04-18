@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission Control | Bionic Banker</title>
+  <meta name="description" content="Live view across HASH's systems: Hermes trading bot, Vani content pipeline, AML detection engine, and infrastructure health. Snapshot-driven, updated every 15 min." />
+  <meta property="og:title" content="Mission Control | Bionic Banker" />
+  <meta property="og:description" content="One page, all agents. Hermes + Vani + AML + system health. Built in public." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bionicbanker.tech/mission-control.html" />
+  <meta property="og:image" content="https://bionicbanker.tech/blog-visuals/mission-control/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://bionicbanker.tech/mission-control.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=7" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
+  <style>
+    :root {
+      --bg-deep: #020204;
+      --bg-main: #080810;
+      --bg-card: #0c0c14;
+      --bg-card-hover: #101018;
+      --border: rgba(91,115,248,0.10);
+      --border-warm: rgba(240,160,48,0.25);
+      --border-alert: rgba(255,68,68,0.3);
+      --text-primary: #e4e4ec;
+      --text-secondary: #8888a0;
+      --text-muted: #55556a;
+      --accent-blue: #5b73f8;
+      --accent-purple: #8b6cf7;
+      --green: #1fa068;
+      --green-dim: rgba(31,160,104,0.15);
+      --red: #ff4444;
+      --red-dim: rgba(255,68,68,0.12);
+      --orange: #f0a030;
+      --orange-dim: rgba(240,160,48,0.12);
+      --gradient: linear-gradient(135deg,#5b73f8,#8b6cf7);
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Plus Jakarta Sans',-apple-system,sans-serif; background:var(--bg-deep); color:var(--text-primary); line-height:1.5; min-height:100vh; }
+    .mc { max-width:1400px; margin:0 auto; padding:24px 20px 60px; }
+
+    /* Top strip */
+    .strip { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding:14px 18px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; margin-bottom:18px; }
+    .strip .title { font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.15rem; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .strip .systems { display:flex; gap:14px; align-items:center; font-family:var(--mono); font-size:0.78rem; color:var(--text-secondary); }
+    .sys-chip { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; background:var(--bg-main); border:1px solid var(--border); border-radius:20px; }
+    .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+    .dot-green { background:var(--green); box-shadow:0 0 8px var(--green); }
+    .dot-yellow { background:var(--orange); }
+    .dot-red { background:var(--red); box-shadow:0 0 8px var(--red); }
+    .freshness { font-family:var(--mono); font-size:0.72rem; color:var(--text-muted); }
+    .freshness.stale { color:var(--orange); }
+    .freshness.dead { color:var(--red); font-weight:600; }
+
+    /* KPI cards */
+    .kpi-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:24px; }
+    .kpi { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; position:relative; transition:border-color 0.2s; }
+    .kpi:hover { border-color:rgba(91,115,248,0.3); }
+    .kpi .label { font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; font-weight:600; }
+    .kpi .value { font-family:var(--mono); font-size:1.4rem; font-weight:600; color:var(--text-primary); line-height:1.2; margin-bottom:4px; }
+    .kpi .delta { font-family:var(--mono); font-size:0.75rem; display:flex; gap:8px; align-items:center; }
+    .delta-up { color:var(--green); }
+    .delta-down { color:var(--red); }
+    .delta-flat { color:var(--text-muted); }
+    .sparkline { height:24px; margin-top:10px; width:100%; }
+
+    /* System panels */
+    .panels { display:flex; flex-direction:column; gap:18px; margin-bottom:24px; }
+    .panel { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:22px; }
+    .panel-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+    .panel-head h2 { font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text-primary); }
+    .panel-head .sub { font-family:var(--mono); font-size:0.75rem; color:var(--text-muted); }
+    .panel-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    @media (max-width: 700px) { .panel-grid { grid-template-columns:1fr; } }
+    .panel-box { background:var(--bg-main); border:1px solid var(--border); border-radius:8px; padding:14px 16px; }
+    .panel-box .bh { font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; font-weight:600; }
+    .row { display:flex; justify-content:space-between; padding:6px 0; font-size:0.85rem; }
+    .row:not(:last-child) { border-bottom:1px dashed var(--border); }
+    .row .k { color:var(--text-secondary); }
+    .row .v { font-family:var(--mono); color:var(--text-primary); font-weight:500; }
+    .bar-row { display:flex; align-items:center; gap:10px; font-size:0.8rem; padding:5px 0; }
+    .bar-row .label-txt { flex:0 0 120px; color:var(--text-secondary); font-family:var(--mono); font-size:0.75rem; }
+    .bar-track { flex:1; height:8px; background:var(--bg-deep); border-radius:4px; overflow:hidden; }
+    .bar-fill { height:100%; background:var(--gradient); border-radius:4px; transition:width 0.5s; }
+    .bar-row .bar-num { font-family:var(--mono); font-size:0.8rem; color:var(--text-primary); flex:0 0 40px; text-align:right; }
+
+    /* Health strip */
+    .health { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px 20px; }
+    .health summary { cursor:pointer; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1rem; color:var(--text-primary); list-style:none; display:flex; justify-content:space-between; align-items:center; }
+    .health summary::after { content:'▸'; color:var(--text-muted); transition:transform 0.2s; }
+    .health[open] summary::after { transform:rotate(90deg); }
+    .health .hgrid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-top:16px; }
+
+    /* Links */
+    a { color:var(--accent-blue); text-decoration:none; }
+    a:hover { color:var(--accent-purple); text-decoration:underline; }
+
+    /* Nav + footer use existing styles.css classes */
+    nav { padding:14px 20px; }
+
+    /* Placeholder state */
+    .placeholder { color:var(--text-muted); font-style:italic; font-size:0.85rem; padding:20px 0; text-align:center; }
+    .schema-warn { background:var(--orange-dim); border:1px solid var(--border-warm); border-radius:8px; padding:10px 14px; margin:10px 0; font-size:0.8rem; color:var(--orange); font-family:var(--mono); }
+
+    /* Footer note */
+    .foot { margin-top:40px; padding:20px 0; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.78rem; text-align:center; font-family:var(--mono); }
+    .foot a { color:var(--text-secondary); }
+  </style>
+</head>
+<body>
+
+<nav></nav>
+
+<div class="mc">
+
+  <div class="strip">
+    <div class="title">HASH / Mission Control</div>
+    <div class="systems">
+      <span class="sys-chip"><span id="dot-hermes" class="dot dot-green"></span> Hermes</span>
+      <span class="sys-chip"><span id="dot-vani" class="dot dot-green"></span> Vani</span>
+      <span class="sys-chip"><span id="dot-aml" class="dot dot-green"></span> AML</span>
+      <span class="sys-chip"><span id="dot-sys" class="dot dot-green"></span> Infra</span>
+    </div>
+    <div class="freshness" id="freshness">snapshot loading…</div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">Hermes P&amp;L (paper)</div>
+      <div class="value" id="kpi-hermes-pnl">—</div>
+      <div class="delta" id="kpi-hermes-delta">—</div>
+      <div class="sparkline" id="spark-hermes">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Vani weekly reach</div>
+      <div class="value" id="kpi-vani-reach">—</div>
+      <div class="delta" id="kpi-vani-delta">—</div>
+      <div class="sparkline" id="spark-vani">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">AML alerts (24h)</div>
+      <div class="value" id="kpi-aml-alerts">—</div>
+      <div class="delta" id="kpi-aml-delta">—</div>
+      <div class="sparkline" id="spark-aml">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Wukong RAM</div>
+      <div class="value" id="kpi-ram">—</div>
+      <div class="delta" id="kpi-ram-delta">—</div>
+      <div class="sparkline" id="spark-ram">—</div>
+    </div>
+  </div>
+
+  <div class="panels">
+
+    <div class="panel" id="panel-hermes">
+      <div class="panel-head">
+        <h2>Hermes · Trading</h2>
+        <span class="sub"><span id="hermes-cycles">—</span> cycles · <span id="hermes-workers">—</span> workers</span>
+      </div>
+      <div class="panel-grid">
+        <div class="panel-box">
+          <div class="bh">Recent cycles</div>
+          <div id="hermes-cycles-list"><div class="placeholder">waiting for snapshot</div></div>
+        </div>
+        <div class="panel-box">
+          <div class="bh">Workers</div>
+          <div id="hermes-workers-list"><div class="placeholder">waiting for snapshot</div></div>
+          <div style="margin-top:10px; font-size:0.72rem; color:var(--text-muted);">
+            Full dashboard: <a href="http://100.86.26.81:8501" target="_blank" rel="noopener">Streamlit (Tailscale)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-vani">
+      <div class="panel-head">
+        <h2>Vani · Content</h2>
+        <span class="sub"><span id="vani-articles">—</span> published · <span id="vani-platforms">—</span> platforms</span>
+      </div>
+      <div class="panel-grid">
+        <div class="panel-box">
+          <div class="bh">Distribution last 7d</div>
+          <div id="vani-dist-list"><div class="placeholder">waiting for snapshot</div></div>
+        </div>
+        <div class="panel-box">
+          <div class="bh">Top performer</div>
+          <div id="vani-top"><div class="placeholder">waiting for snapshot</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-aml">
+      <div class="panel-head">
+        <h2>AML · Detection</h2>
+        <span class="sub">v11 · 22 rules · <span id="aml-detection">—</span> detection rate</span>
+      </div>
+      <div class="panel-grid">
+        <div class="panel-box">
+          <div class="bh">Alerts today</div>
+          <div id="aml-alerts-list"><div class="placeholder">waiting for snapshot</div></div>
+        </div>
+        <div class="panel-box">
+          <div class="bh">Rule firings (7d)</div>
+          <div id="aml-rules-list"><div class="placeholder">waiting for snapshot</div></div>
+          <div style="margin-top:10px; font-size:0.72rem; color:var(--text-muted);">
+            Try the engine: <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" rel="noopener">Streamlit demo →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <details class="health">
+    <summary>System health · <span id="health-summary" style="font-weight:400; color:var(--text-muted); font-size:0.85rem;">—</span></summary>
+    <div class="hgrid" id="health-grid">
+      <div class="placeholder">waiting for snapshot</div>
+    </div>
+  </details>
+
+  <div class="foot">
+    Snapshot-driven dashboard. Data pushed every 15 min from Wukong (100.86.26.81) via git to Cloudflare Pages.<br />
+    Build #v1 · Apr 2026 · <a href="https://github.com/hash02/bionic-banker">source</a>
+  </div>
+
+</div>
+
+<script>
+  // Simple SVG sparkline renderer
+  function sparkline(el, data, color) {
+    if (!el || !data || data.length < 2) { el.textContent = '—'; return; }
+    const w = el.clientWidth || 200, h = 24;
+    const min = Math.min(...data), max = Math.max(...data);
+    const range = max - min || 1;
+    const step = w / (data.length - 1);
+    const points = data.map((d,i) => `${(i*step).toFixed(1)},${(h - ((d-min)/range)*h).toFixed(1)}`).join(' ');
+    el.innerHTML = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="overflow:visible">
+      <defs><linearGradient id="sg-${color}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity="0.35"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+      <polyline points="${points}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+      <polygon points="0,${h} ${points} ${w},${h}" fill="url(#sg-${color})"/>
+    </svg>`;
+  }
+
+  function formatMoney(n) { if (n == null) return '—'; return (n >= 0 ? '+$' : '-$') + Math.abs(n).toFixed(2); }
+  function formatDelta(curr, prev, unit='') {
+    if (curr == null || prev == null) return { txt:'—', cls:'delta-flat' };
+    const d = curr - prev;
+    const pct = prev !== 0 ? ((d/prev)*100).toFixed(1) : '—';
+    if (d > 0) return { txt:`+${d.toFixed(2)}${unit} (+${pct}%)`, cls:'delta-up' };
+    if (d < 0) return { txt:`${d.toFixed(2)}${unit} (${pct}%)`, cls:'delta-down' };
+    return { txt:'no change', cls:'delta-flat' };
+  }
+  function ageMin(iso) { if(!iso) return Infinity; return (Date.now() - new Date(iso).getTime()) / 60000; }
+  function ageLabel(iso) { const m = ageMin(iso); if(!isFinite(m)) return 'never'; if(m<1) return 'just now'; if(m<60) return `${Math.floor(m)} min ago`; if(m<1440) return `${Math.floor(m/60)} hr ago`; return `${Math.floor(m/1440)} days ago`; }
+
+  async function loadJSON(path) {
+    try { const r = await fetch(path + '?t=' + Date.now()); if (!r.ok) return null; return await r.json(); }
+    catch (e) { return null; }
+  }
+
+  function statusDot(id, status) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('dot-green','dot-yellow','dot-red');
+    if (status === 'ok' || status === 'green') el.classList.add('dot-green');
+    else if (status === 'warn' || status === 'yellow') el.classList.add('dot-yellow');
+    else el.classList.add('dot-red');
+  }
+
+  function setText(id, txt) { const el = document.getElementById(id); if(el) el.textContent = txt; }
+  function setHTML(id, html) { const el = document.getElementById(id); if(el) el.innerHTML = html; }
+
+  async function render() {
+    const [hermes, vani, aml, health] = await Promise.all([
+      loadJSON('dashboard-data/hermes.json'),
+      loadJSON('dashboard-data/vani.json'),
+      loadJSON('dashboard-data/aml.json'),
+      loadJSON('dashboard-data/health.json'),
+    ]);
+
+    // Freshness (take oldest snapshot)
+    const snapshots = [hermes, vani, aml, health].filter(Boolean).map(s => s.snapshot_at).filter(Boolean);
+    if (snapshots.length === 0) {
+      setText('freshness', 'no data yet');
+      document.getElementById('freshness').classList.add('dead');
+    } else {
+      const oldest = snapshots.map(s => ageMin(s)).reduce((a,b)=>Math.max(a,b));
+      const oldestIso = snapshots.sort((a,b)=>ageMin(b)-ageMin(a))[0];
+      const el = document.getElementById('freshness');
+      el.textContent = `oldest snapshot ${ageLabel(oldestIso)}`;
+      el.classList.remove('stale','dead');
+      if (oldest > 60) el.classList.add('stale');
+      if (oldest > 1440) el.classList.add('dead');
+    }
+
+    // Status dots
+    statusDot('dot-hermes', hermes?.status || 'red');
+    statusDot('dot-vani', vani?.status || 'red');
+    statusDot('dot-aml', aml?.status || 'red');
+    statusDot('dot-sys', health?.status || 'red');
+
+    // Hermes KPIs + panel
+    if (hermes) {
+      setText('kpi-hermes-pnl', formatMoney(hermes.pnl_paper_total));
+      const d = formatDelta(hermes.pnl_paper_total, hermes.pnl_paper_prev_24h, '');
+      const el = document.getElementById('kpi-hermes-delta'); el.textContent = d.txt; el.className = 'delta ' + d.cls;
+      if (hermes.pnl_spark) sparkline(document.getElementById('spark-hermes'), hermes.pnl_spark, '#5b73f8');
+      setText('hermes-cycles', hermes.total_cycles ?? '—');
+      setText('hermes-workers', (hermes.workers || []).length || '—');
+
+      const cyc = (hermes.recent_cycles || []).slice(0,5).map(c =>
+        `<div class="row"><span class="k">${c.ts || '?'}</span><span class="v">${c.pnl != null ? formatMoney(c.pnl) : ''} · ${c.worker || ''}</span></div>`
+      ).join('') || '<div class="placeholder">no cycles yet</div>';
+      setHTML('hermes-cycles-list', cyc);
+
+      const wrk = (hermes.workers || []).map(w => {
+        const dot = w.status === 'running' ? 'dot-green' : (w.status === 'stale' ? 'dot-yellow' : 'dot-red');
+        return `<div class="row"><span class="k">${w.name}</span><span class="v"><span class="dot ${dot}"></span> ${w.status}${w.last_ts ? ' · ' + ageLabel(w.last_ts) : ''}</span></div>`;
+      }).join('') || '<div class="placeholder">no workers reporting</div>';
+      setHTML('hermes-workers-list', wrk);
+    }
+
+    // Vani KPIs + panel
+    if (vani) {
+      setText('kpi-vani-reach', (vani.reach_7d ?? 0).toLocaleString());
+      const d = formatDelta(vani.reach_7d, vani.reach_7d_prev, '');
+      const el = document.getElementById('kpi-vani-delta'); el.textContent = d.txt; el.className = 'delta ' + d.cls;
+      if (vani.reach_spark) sparkline(document.getElementById('spark-vani'), vani.reach_spark, '#8b6cf7');
+      setText('vani-articles', vani.articles_published ?? '—');
+      setText('vani-platforms', (vani.platforms || []).length || '—');
+
+      const dist = (vani.platforms || []).map(p => {
+        const ok = p.status === 'ok';
+        return `<div class="row"><span class="k">${p.name}</span><span class="v">${p.views_7d ?? '—'} · <span class="dot ${ok?'dot-green':'dot-yellow'}"></span> ${p.status}</span></div>`;
+      }).join('') || '<div class="placeholder">no platforms wired</div>';
+      setHTML('vani-dist-list', dist);
+
+      const t = vani.top_article;
+      setHTML('vani-top', t ? `
+        <div style="font-weight:600; margin-bottom:6px;"><a href="${t.url||'#'}" target="_blank" rel="noopener">${t.title||'—'}</a></div>
+        <div class="row"><span class="k">views 7d</span><span class="v">${t.views ?? '—'}</span></div>
+        <div class="row"><span class="k">avg read</span><span class="v">${t.avg_read_min ? t.avg_read_min.toFixed(1) + ' min' : '—'}</span></div>
+        <div class="row"><span class="k">shares</span><span class="v">${t.shares ?? '—'}</span></div>
+      ` : '<div class="placeholder">no top performer yet</div>');
+    }
+
+    // AML KPIs + panel
+    if (aml) {
+      setText('kpi-aml-alerts', aml.alerts_24h ?? '—');
+      const d = formatDelta(aml.alerts_24h, aml.alerts_24h_prev, '');
+      const el = document.getElementById('kpi-aml-delta'); el.textContent = d.txt; el.className = 'delta ' + d.cls;
+      if (aml.alerts_spark) sparkline(document.getElementById('spark-aml'), aml.alerts_spark, '#ff4444');
+      setText('aml-detection', aml.detection_rate ? (aml.detection_rate*100).toFixed(1) + '%' : '—');
+
+      const a = (aml.recent_alerts || []).slice(0,5).map(x =>
+        `<div class="row"><span class="k">${x.severity || ''} ${x.pattern || ''}</span><span class="v">${x.ts ? ageLabel(x.ts) : ''}</span></div>`
+      ).join('') || '<div class="placeholder">no alerts today</div>';
+      setHTML('aml-alerts-list', a);
+
+      const rules = (aml.rule_firings_7d || []).slice(0,6);
+      const maxR = Math.max(...rules.map(r => r.count), 1);
+      const rh = rules.map(r => `
+        <div class="bar-row"><span class="label-txt">${r.rule_id}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${(r.count/maxR*100).toFixed(1)}%"></div></div>
+        <span class="bar-num">${r.count}</span></div>
+      `).join('') || '<div class="placeholder">no firings this week</div>';
+      setHTML('aml-rules-list', rh);
+    }
+
+    // Health panel
+    if (health) {
+      const hosts = (health.hosts || []);
+      setText('health-summary', hosts.map(h => `${h.name} ${h.ram_pct}%`).join(' · ') || '—');
+
+      const w = hosts.find(h => h.name === 'Wukong');
+      if (w) {
+        setText('kpi-ram', w.ram_pct + '%');
+        const d = formatDelta(w.ram_pct, w.ram_pct_prev, '%');
+        const el = document.getElementById('kpi-ram-delta'); el.textContent = d.txt; el.className = 'delta ' + (d.cls === 'delta-up' ? 'delta-down' : d.cls === 'delta-down' ? 'delta-up' : 'delta-flat');
+        if (w.ram_spark) sparkline(document.getElementById('spark-ram'), w.ram_spark, '#f0a030');
+      }
+
+      const hgrid = hosts.map(h => {
+        const ramDot = h.ram_pct > 90 ? 'dot-red' : (h.ram_pct > 80 ? 'dot-yellow' : 'dot-green');
+        return `<div class="panel-box">
+          <div class="bh">${h.name}</div>
+          <div class="row"><span class="k">RAM</span><span class="v"><span class="dot ${ramDot}"></span> ${h.ram_pct}%</span></div>
+          <div class="row"><span class="k">disk</span><span class="v">${h.disk_pct}%</span></div>
+          <div class="row"><span class="k">uptime</span><span class="v">${h.uptime || '—'}</span></div>
+          <div class="row"><span class="k">services</span><span class="v">${h.services_ok || 0}/${h.services_total || 0} OK</span></div>
+        </div>`;
+      }).join('') || '<div class="placeholder">no hosts reporting</div>';
+      setHTML('health-grid', hgrid);
+    }
+  }
+
+  render();
+  setInterval(render, 5 * 60 * 1000); // 5 min
+</script>
+
+<footer>
+  <p class="footer-copy">&copy; 2026 Bionic Banker. Built by HASH.</p>
+</footer>
+
+</body>
+</html>

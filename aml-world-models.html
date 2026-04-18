@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Compliance Stack Is About to Flip — Bionic Banker</title>
+    <meta name="description" content="Rules, classifiers, and why world models are the next phase of AML. An engineer inside the building thinking out loud about where compliance is heading." />
+
+    <meta property="og:title" content="The Compliance Stack Is About to Flip" />
+    <meta property="og:description" content="Rules, classifiers, and why world models are the next phase of AML. An engineer inside the building thinking out loud." />
+    <meta property="og:image" content="https://bionicbanker.tech/blog-visuals/png/aml-world-models-hero.png" />
+    <meta property="og:url" content="https://bionicbanker.tech/aml-world-models.html" />
+    <meta property="og:type" content="article" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Compliance Stack Is About to Flip" />
+    <meta name="twitter:description" content="Rules, classifiers, and why world models are the next phase of AML." />
+    <meta name="twitter:image" content="https://bionicbanker.tech/blog-visuals/png/aml-world-models-hero.png" />
+
+    <link rel="canonical" href="https://bionicbanker.tech/aml-world-models.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
+    <link rel="stylesheet" href="styles.css?v=7" />
+    <style>
+    .hero-image {
+          width: 100%;
+          height: 420px;
+          background: linear-gradient(135deg, #0a0a1f 0%, #0f1535 40%, #1a1040 100%);
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    .hero-image-inner {
+          text-align: center;
+          z-index: 2;
+          padding: 2rem;
+        }
+    .hero-image::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background-image:
+            linear-gradient(rgba(79, 110, 247, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(79, 110, 247, 0.08) 1px, transparent 1px);
+          background-size: 50px 50px;
+          animation: gridmove 20s linear infinite;
+        }
+    @keyframes gridmove {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(50px); }
+        }
+    .hero-image-label {
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: var(--accent);
+          margin-bottom: 1rem;
+          opacity: 0.8;
+        }
+    .hero-image-title {
+          font-size: clamp(1.1rem, 3vw, 1.6rem);
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          color: var(--text);
+          max-width: 600px;
+          line-height: 1.3;
+        }
+    .phase-box {
+          background: rgba(91, 115, 248, 0.06);
+          border-left: 3px solid var(--accent);
+          padding: 1.2rem 1.5rem;
+          margin: 1.5rem 0;
+          border-radius: 0 8px 8px 0;
+        }
+    .phase-box h3 {
+          color: var(--accent);
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+        }
+    .phase-box p {
+          color: var(--text-dim);
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <nav></nav>
+
+    <article>
+        <div class="hero-image">
+            <div class="hero-image-inner">
+                <p class="hero-image-label">Deep Dive</p>
+                <p class="hero-image-title">Rules &rarr; Classifiers &rarr; World Models. The compliance stack is about to flip.</p>
+            </div>
+        </div>
+
+        <div class="article-header">
+            <div class="article-tags-top">
+                <span class="tag-pill tag-red">AML</span>
+                <span class="tag-pill tag-purple">AI</span>
+                <span class="tag-pill tag-green">Compliance</span>
+            </div>
+            <h1>The Compliance Stack Is About to Flip</h1>
+            <p class="article-subtitle">Rules, classifiers, and why world models are the next phase of anti-money laundering.</p>
+            <div class="article-meta">
+                <span>April 2026</span>
+                <span>&middot;</span>
+                <span>8 min read</span>
+            </div>
+        </div>
+
+        <div class="article-body">
+            <p>Okay so here's the thing. I've been inside this for a while now. Sitting in a bank during the day, building an AML engine at night, reading world model papers on weekends because apparently that's what my brain does for fun. And somewhere in the last two weeks it all collapsed into one sentence that I can't get out of my head.</p>
+
+            <p>Compliance is about to go through the same phase shift image recognition went through in 2012. Nobody sees it yet.</p>
+
+            <p>Let me walk you through how I got here.</p>
+
+            <h2>The stack we live in today</h2>
+
+            <p>Every AML system you've ever touched is doing one of three things. Rules, classifiers, or a sad hybrid of both where the rules are the real job and the classifier is a rubber stamp the vendor put on the invoice.</p>
+
+            <p>Rules are what I wrote first. Twenty two of them in my own engine. 94.9% detection rate on synthetic data, which sounds great until you remember synthetic data is generated by the same head that wrote the rules. It's the clapping-for-ourselves problem. If I write the rule AND the test, I'm not testing anything. I'm validating my own taste.</p>
+
+            <p>Classifiers are the next layer. XGBoost, a neural net, whatever. Feed it historical STRs, feed it features, ship it. The improvement is real. But here's the part nobody talks about at the vendor demo. The classifier learns the distribution of the labels you showed it. If your investigators label five typologies well and miss the other fifteen, the classifier learns five typologies well and is totally blind to the other fifteen. You just built a very expensive reflection of your team's blind spots.</p>
+
+            <p>And that's where everyone is today. Rules catch the obvious. Classifiers catch what investigators already know how to catch. Nothing catches what hasn't been seen yet.</p>
+
+            <!-- INFOGRAPHIC SLOT: Three-phase stack comparison -->
+            <div class="embed-visual">
+                <iframe src="blog-visuals/aml-world-models/phase-comparison.html"
+                        style="width:100%;height:500px;border:none;border-radius:12px;">
+                </iframe>
+                <p class="embed-caption"><span class="interactive-badge">INTERACTIVE</span> The three layers of AML detection and what each one actually catches.</p>
+            </div>
+
+            <h2>The thing that cracked open for me</h2>
+
+            <p>Last week I was benchmarking Chronos-tiny (Amazon's time-series foundation model, 8 million parameters, runs on a potato) against five crypto pairs. I wanted to know if it could predict direction. It couldn't. 52% on average, which is a coin flip.</p>
+
+            <p>But here's what did happen. Its forecast uncertainty tracked actual volatility almost perfectly. When the market was about to get weird, the model widened its error bars BEFORE the weirdness showed up. It couldn't tell me WHERE the price was going. But it could tell me HOW MUCH I didn't know.</p>
+
+            <p>And I sat with that for a minute and realized that's the entire AML problem restated. We don't need to predict which transaction is the crime. We need to predict when our own confidence is about to break. When a customer's behavior is about to leave the envelope the model learned. When the pattern the classifier was trained on stops being the pattern in the world.</p>
+
+            <p>That's not classification. That's a world model.</p>
+
+            <h2>What a world model actually is</h2>
+
+            <p>Strip away the marketing. Every world model in the last two years (Dreamer V3, V4, Chronos, DINO-WM, IRIS, Genie 3, V-JEPA 2) is the same three Lego blocks.</p>
+
+            <p>One: an encoder that turns whatever you feed it (pixels, transactions, sensor streams) into a compressed internal state. A 100-dimensional vector that captures what matters.</p>
+
+            <p>Two: a dynamics model. Given the state at time T and some action, predict the state at time T+1. This is the part that "imagines." It rolls the world forward in its head.</p>
+
+            <p>Three: heads. Little modules that ask questions of the imagined state. Will this end in a reward? A loss? An anomaly?</p>
+
+            <!-- INFOGRAPHIC SLOT: World model architecture -->
+            <div class="embed-visual">
+                <iframe src="blog-visuals/aml-world-models/world-model-architecture.html"
+                        style="width:100%;height:480px;border:none;border-radius:12px;">
+                </iframe>
+                <p class="embed-caption"><span class="interactive-badge">INTERACTIVE</span> Encoder &rarr; Dynamics &rarr; Heads. The three Lego blocks every world model shares.</p>
+            </div>
+
+            <p>Now read that again with AML in your head. The encoder is your transaction graph embedding. The dynamics model watches a customer's behavior roll forward and asks "what is the most likely next move given who they've been?" The heads ask "is this trajectory taking them outside the envelope of everyone who looked like them historically?" The whole thing runs offline. Trains on paper outcomes. Never touches real money.</p>
+
+            <p>The classifier says "this transaction is suspicious because I've seen suspicious transactions that look like this."</p>
+
+            <p>The world model says "this customer's trajectory is diverging from the manifold of legitimate customers, and the divergence started 14 transactions ago, and here are the three most likely futures it rolls into."</p>
+
+            <p>The first is pattern matching. The second is physics.</p>
+
+            <h2>The part regulators are about to lose their minds over</h2>
+
+            <p>EU AI Act fully enforceable August 2, 2026. Four months from now. AML is explicitly classified high-risk. Every model in the stack has to be explainable, auditable, and traceable to the data it saw. FINTRAC in Canada is running parallel, FinCEN in the US is closing in, Basel III has its own noise. The regulatory calendar is hard.</p>
+
+            <p>And here's the trap. A lot of the foundation model work that's hot right now is black box by default. You can't explain why a 2 billion parameter tabular model flagged someone. You can't audit it the way you audit a decision tree. And the regulators are saying, correctly, that you can't put a black box between a person and their access to the financial system.</p>
+
+            <p>But world models have a property that pure classifiers don't. Because they IMAGINE forward, you can ask them to SHOW you their imagination. "Roll this customer's state forward ten steps, tell me the three most likely futures, tell me which of those futures would have triggered the flag." That's an explanation the regulator can read. It's not a SHAP plot. It's a story. And stories pass audits in ways that saliency maps don't.</p>
+
+            <p>This is the part I think compliance teams are going to discover by accident in 2027 and pretend they planned all along.</p>
+
+            <h2>The three-phase transition</h2>
+
+            <div class="phase-box">
+                <h3>Phase 1: Rules dominant, ML accessory. Today.</h3>
+                <p>Most banks are here. The rules run. A gradient-boosted model re-ranks the alerts. Nobody gets fired. Detection rates plateau around 80% on known typologies and something ugly on the unknown ones.</p>
+            </div>
+
+            <div class="phase-box">
+                <h3>Phase 2: Tabular foundation models as the primary classifier. Happening now.</h3>
+                <p>Feedzai shipped RiskFM in March. It's the first foundation model built specifically for financial crime. Covariate-aware, fine-tunable, trained on something like 70 billion transactions. This phase is already here for the biggest players. Mid-tier banks will buy it within 18 months.</p>
+            </div>
+
+            <div class="phase-box">
+                <h3>Phase 3: World-model-based predictive compliance. 3 to 5 years out, maybe faster.</h3>
+                <p>The system stops asking "is this transaction bad" and starts asking "is this customer's trajectory drifting out of their own historical envelope, and if so, what's the most likely explanation for the drift." The classifier becomes a head on top of the world model, not the whole product. The surveillance question becomes a forecasting question. And crucially, the adversarial question (will my model still work tomorrow when criminals adapt) becomes a simulation question you can actually run.</p>
+            </div>
+
+            <!-- INFOGRAPHIC SLOT: Phase timeline -->
+            <div class="embed-visual">
+                <iframe src="blog-visuals/aml-world-models/phase-timeline.html"
+                        style="width:100%;height:400px;border:none;border-radius:12px;">
+                </iframe>
+                <p class="embed-caption"><span class="interactive-badge">INTERACTIVE</span> Where the industry is today, and where the next five years take it.</p>
+            </div>
+
+            <h2>Why I'm writing this tonight</h2>
+
+            <p>Because the gap between Phase 1 and Phase 3 is the biggest moat in finance right now and nobody is taking it seriously. The banks have the data and none of the research. The labs have the research and none of the regulatory context. The fintechs have the appetite but keep building Phase 2 products and calling them Phase 3.</p>
+
+            <p>I'm inside the building. I can see both sides. And I'm building it in my off hours, on a potato, for free, because the interesting thing about this moment is that you don't need a billion dollar training run. You need 12,000 parameters, a decent dataset of paper trades, and the willingness to stop asking classifier questions and start asking physics questions.</p>
+
+            <p>The compliance stack is about to flip. Whoever figures out the explainability story wins the next decade.</p>
+
+            <p>I'm going to keep building.</p>
+
+            <hr style="border: 1px solid rgba(228,228,236,0.1); margin: 2.5rem 0;" />
+
+            <p><strong>Next post:</strong> what a 12k parameter AML world model actually looks like, with pseudocode. Not the paper. The garage version.</p>
+
+            <p style="color: var(--text-dim); font-size: 0.85rem; font-style: italic;">Not financial advice. Not legal advice. Not compliance advice. Just an engineer thinking out loud.</p>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">Bionic <span>Banker</span></div>
+            <p class="footer-copy">&copy; 2026 Bionic Banker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="nav.js?v=4"></script>
+</body>
+</html>

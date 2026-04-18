@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Agentic AI Stats Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #020204;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .dashboard {
+            width: 1200px;
+            height: 630px;
+            background: #020204;
+            border: 1px solid rgba(31, 160, 104, 0.13);
+            border-radius: 10px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 1px;
+            background-image: 
+                linear-gradient(90deg, rgba(31, 160, 104, 0.13) 0%, rgba(31, 160, 104, 0.13) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(31, 160, 104, 0.13) 0%, rgba(31, 160, 104, 0.13) 1px, transparent 1px);
+            background-size: 50% 100%, 100% 33.33%;
+            padding: 1px;
+            position: relative;
+        }
+        
+        .dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(31, 160, 104, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .title-area {
+            grid-column: 1 / -1;
+            padding: 30px 40px;
+            background: #080810;
+            border-bottom: 1px solid rgba(31, 160, 104, 0.13);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .title-area h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #e4e4ec;
+            letter-spacing: -0.5px;
+        }
+        
+        .title-area .badge {
+            background: rgba(31, 160, 104, 0.15);
+            color: #1fa068;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: 1px solid rgba(31, 160, 104, 0.3);
+        }
+        
+        .stat-card {
+            background: #080810;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(31, 160, 104, 0.13);
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(31, 160, 104, 0.3), transparent);
+            opacity: 0;
+            animation: topGlow 2s ease-in-out infinite;
+        }
+        
+        .stat-card:nth-child(3)::before { animation-delay: 0s; }
+        .stat-card:nth-child(4)::before { animation-delay: 0.3s; }
+        .stat-card:nth-child(5)::before { animation-delay: 0.6s; }
+        .stat-card:nth-child(6)::before { animation-delay: 0.9s; }
+        
+        @keyframes topGlow {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+        
+        .stat-value {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: #1fa068;
+            line-height: 1;
+            margin-bottom: 10px;
+            counter-set: stat var(--target);
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #8888a0;
+            font-weight: 500;
+            line-height: 1.5;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Counter animation */
+        .stat-value.counting {
+            animation: none;
+        }
+        
+        /* Highlight the biggest numbers */
+        .stat-card:nth-child(5) .stat-value {
+            color: #5b73f8;
+        }
+        
+        .stat-card:nth-child(6) .stat-value {
+            color: #ff4444;
+        }
+        
+        /* Grid positioning */
+        .stat-card:nth-child(3) { grid-column: 1; grid-row: 2; }
+        .stat-card:nth-child(4) { grid-column: 2; grid-row: 2; }
+        .stat-card:nth-child(5) { grid-column: 1; grid-row: 3; }
+        .stat-card:nth-child(6) { grid-column: 2; grid-row: 3; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="title-area">
+            <h1>Global Agentic AI Stats</h1>
+            <div class="badge">Command Center</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value" data-target="50">0</div>
+            <div class="stat-label">Billion USD<br>Global Market Spend</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value" data-target="600">0</div>
+            <div class="stat-label">Percent Increase<br>Finance Team Adoption</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value" data-target="70">0</div>
+            <div class="stat-label">Percent of Leaders<br>Deploying/Exploring</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value" data-target="4.4">0</div>
+            <div class="stat-label">Trillion USD<br>Annual Value Potential</div>
+        </div>
+    </div>
+    
+    <script>
+        // Counter animation
+        function animateCounters() {
+            const cards = document.querySelectorAll('.stat-value');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const target = parseFloat(element.getAttribute('data-target'));
+                        
+                        let current = 0;
+                        const duration = 2000;
+                        const start = Date.now();
+                        
+                        function update() {
+                            const elapsed = Date.now() - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // Easing function
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            current = Math.floor(target * eased * 100) / 100;
+                            
+                            element.textContent = current.toFixed(current >= 10 ? 1 : 0);
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                element.textContent = target.toFixed(target >= 10 ? 1 : 0);
+                            }
+                        }
+                        
+                        update();
+                        observer.unobserve(element);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            cards.forEach(card => observer.observe(card));
+        }
+        
+        // Start animation when page loads
+        window.addEventListener('load', animateCounters);
+        
+        // Fallback if page already loaded
+        if (document.readyState === 'complete') {
+            animateCounters();
+        }
+    </script>
+</body>
+</html>
