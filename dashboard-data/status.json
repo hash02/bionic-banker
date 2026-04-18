@@ -19,12 +19,17 @@
   },
   "aml_engine": {
     "current_file": "engine/engine_v11_blockchain.py",
-    "detector_functions_in_code": 17,
-    "readme_claims_rules": 22,
-    "readme_stale": true,
+    "detector_functions_on_origin": 23,
+    "detector_functions_local_stale": 17,
+    "inline_v6_rules": 4,
+    "total_rules_canonical": 28,
+    "readme_claims_rules": 28,
+    "readme_stale": false,
     "detection_rate_pct_claimed": 94.9,
     "false_positive_rate_pct_claimed": 20.2,
-    "note": "README disagrees with code (R-038 flag). engine_v11 has 17 detect_ functions. Public surfaces still show 22 rules. Fix before next content cycle."
+    "v12_additions": ["phish_hit", "sub_threshold_tranching", "machine_cadence", "sybil_fan_in"],
+    "phase3_additions": ["drainer_signature", "address_poisoning"],
+    "note": "Origin is at v12 + Phase 3 = 28 rules (23 detect_* + 4 inline v6 + 1 foreign-country inline). Local checkout was 15 commits behind; bindfs FUSE blocked the sync. Public site fixed to 28. R-038 applied: numbers read from origin/main not cache."
   },
   "site": {
     "domain": "bionicbanker.tech",

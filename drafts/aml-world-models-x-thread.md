@@ -3,7 +3,7 @@
 ---
 
 **Tweet 1:**
-I built an AML engine with 22 rules and a 94.9% detection rate.
+I built an AML engine with 28 rules and a 94.9% detection rate.
 
 Then I realized the whole thing was clapping for itself.
 
