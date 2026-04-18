@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-04-17T22:15:00Z",
+  "generator": "manual_hash_apr17_fire_session",
+  "next_refresh": "nightly_via_wukong_cron",
+  "note": "Private status view for HASH. Live numbers computed from canonical sources, not cached.",
+  "hermes": {
+    "mode": "paper",
+    "total_resolved": 210,
+    "total_open": 27,
+    "total_pnl_usd": -235.23,
+    "win_rate_pct": 30.5,
+    "workers": [
+      { "name": "polymarket_bonds", "trades": 170, "win_rate_pct": 24.7, "pnl_usd": -234.89, "status": "DISABLED_APR15", "note": "0 trades since Apr 15 disable. Loss is historical." },
+      { "name": "grid_eth_usdc",     "trades": 14,  "win_rate_pct": 64.3, "pnl_usd": -0.06,   "status": "NEUTRAL" },
+      { "name": "crypto_memecoins",  "trades": 26,  "win_rate_pct": 50.0, "pnl_usd": -0.28,   "status": "NEUTRAL" }
+    ],
+    "diagnosis": "Ground truth (R-038): polymarket_bonds is 99.86% of the loss AND is already disabled since Apr 15 (zero trades since). Live workers are effectively flat. The '6 of 7 workers losing' narrative was cached garbage.",
+    "go_live_blocker": "NOT worker quality. Blocker is exchange API keys (Coinbase/Kraken Canada-safe) or AgentKit on-chain path. Grid_eth + memecoins are live-eligible."
+  },
+  "aml_engine": {
+    "current_file": "engine/engine_v11_blockchain.py",
+    "detector_functions_in_code": 17,
+    "readme_claims_rules": 22,
+    "readme_stale": true,
+    "detection_rate_pct_claimed": 94.9,
+    "false_positive_rate_pct_claimed": 20.2,
+    "note": "README disagrees with code (R-038 flag). engine_v11 has 17 detect_ functions. Public surfaces still show 22 rules. Fix before next content cycle."
+  },
+  "site": {
+    "domain": "bionicbanker.tech",
+    "platform": "Astro + Cloudflare Pages",
+    "live_html_articles": 40,
+    "astro_content_md_files": 0,
+    "note": "Site runs off flat HTML. Astro migration source exists on Dell but md files did not land locally."
+  },
+  "wukong": {
+    "ip": "100.86.26.81",
+    "uptime_days": 26,
+    "load_1m": 0.13,
+    "disk_pct": 48,
+    "services_up": ["hermes_orchestrator", "polymarket_bot", "content_pipeline (idle)", "content_world_model", "content_collector"],
+    "cron_active": true,
+    "cron_snapshot_file": "hash02-workspace/ops/cron-apr17-after.txt"
+  },
+  "content_pipeline": {
+    "status": "running_idle",
+    "reason": "auto_content.py writes to content-drafts/, pipeline reads from content/ready/. Bridge missing.",
+    "blockers": [
+      "auto_content.py VOICE_RULES says 'use em-dashes' — violates HASH's locked no-em-dash rule",
+      "OUTPUT_DIR points to content-drafts not content/ready",
+      "auto_content.py is not cron'd (runs manually with topic argument)"
+    ],
+    "fix_plan_doc": "hash02-workspace/ops/CRON_APR17_DIAGNOSIS.md"
+  },
+  "open_fires": {
+    "merge_5_branches_to_main": "pending",
+    "dashboard_mobile": "built_apr17_evening",
+    "hermes_live_toggle": "unblocked_needs_exchange_keys_or_agentkit",
+    "content_pipeline_drafter_fix": "fixed_apr17_auto_content_py"
+  },
+  "hardcoded_rules_alive": {
+    "R_030_planning_gate": true,
+    "R_034_mistakes_first": true,
+    "R_035_design_lock": true,
+    "R_036_backup_before_compress": true,
+    "R_037_drawer_triggers": true,
+    "R_038_compute_not_quote": true
+  }
+}
