@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-04-18T00:30:00Z",
+  "generator": "manual_hash_apr17_fire_session_r039_addendum",
+  "next_refresh": "nightly_via_wukong_cron",
+  "note": "Private status view for HASH. Live numbers computed from canonical sources, not cached.",
+  "hermes": {
+    "mode": "paper",
+    "total_resolved": 210,
+    "total_open": 27,
+    "total_pnl_usd": -235.23,
+    "win_rate_pct": 30.5,
+    "workers": [
+      { "name": "polymarket_bonds", "trades": 170, "win_rate_pct": 24.7, "pnl_usd": -234.89, "status": "DISABLED_APR15", "note": "0 trades since Apr 15 disable. Loss is historical." },
+      { "name": "grid_eth_usdc",     "trades": 14,  "win_rate_pct": 64.3, "pnl_usd": -0.06,   "status": "NEUTRAL" },
+      { "name": "crypto_memecoins",  "trades": 26,  "win_rate_pct": 50.0, "pnl_usd": -0.28,   "status": "NEUTRAL" }
+    ],
+    "diagnosis": "Ground truth (R-038): polymarket_bonds is 99.86% of the loss AND is already disabled since Apr 15 (zero trades since). Live workers are effectively flat. The '6 of 7 workers losing' narrative was cached garbage.",
+    "go_live_blocker": "NOT worker quality. Blocker is exchange API keys (Coinbase/Kraken Canada-safe) or AgentKit on-chain path. Grid_eth + memecoins are live-eligible."
+  },
+  "aml_engine": {
+    "current_file": "engine/engine_v11_blockchain.py",
+    "detector_functions_on_origin": 23,
+    "detector_functions_local_stale": 17,
+    "inline_v6_rules": 4,
+    "total_rules_canonical": 28,
+    "readme_claims_rules": 28,
+    "readme_stale": false,
+    "detection_rate_pct_claimed": 94.9,
+    "false_positive_rate_pct_claimed": 20.2,
+    "v12_additions": ["phish_hit", "sub_threshold_tranching", "machine_cadence", "sybil_fan_in"],
+    "phase3_additions": ["drainer_signature", "address_poisoning"],
+    "note": "Origin is at v12 + Phase 3 = 28 rules (23 detect_* + 4 inline v6 + 1 foreign-country inline). Local checkout was 15 commits behind; bindfs FUSE blocked the sync. Public site fixed to 28. R-038 applied: numbers read from origin/main not cache."
+  },
+  "site": {
+    "domain": "bionicbanker.tech",
+    "platform": "Astro + Cloudflare Pages (git-integration)",
+    "live_html_articles": 40,
+    "astro_content_md_files": 0,
+    "build_topology": "CF Pages serves committed dist/ at repo root as-is. Does NOT rebuild Astro on push. Any content fix = TWO files: _astro-source/src/pages/*.astro OR _astro-source/src/content/blog/*.md + built <slug>/index.html at root.",
+    "rule_reference": "R-039 (CLAUDE.md + MISTAKES.md)",
+    "r039_event": "Apr 17 2026: intelligence + investigate pages showed stale v11/22 on live site despite prior session's edits. Root cause: edits only hit flat root HTML OR only source, never both. Fixed via atomic GitHub API tree commit 4bdc282f touching 13 files. Both layers now v12/28.",
+    "note": "Astro migration COMPLETE per Session 35. All blog content in Content Collections at _astro-source/src/content/blog/*.md. Built dist/ committed to repo root for CF Pages to serve."
+  },
+  "wukong": {
+    "ip": "100.86.26.81",
+    "uptime_days": 26,
+    "load_1m": 0.13,
+    "disk_pct": 48,
+    "services_up": ["hermes_orchestrator", "polymarket_bot", "content_pipeline (idle)", "content_world_model", "content_collector"],
+    "cron_active": true,
+    "cron_snapshot_file": "hash02-workspace/ops/cron-apr17-after.txt"
+  },
+  "content_pipeline": {
+    "status": "running_idle",
+    "reason": "auto_content.py writes to content-drafts/, pipeline reads from content/ready/. Bridge missing.",
+    "blockers": [
+      "auto_content.py VOICE_RULES says 'use em-dashes' — violates HASH's locked no-em-dash rule",
+      "OUTPUT_DIR points to content-drafts not content/ready",
+      "auto_content.py is not cron'd (runs manually with topic argument)"
+    ],
+    "fix_plan_doc": "hash02-workspace/ops/CRON_APR17_DIAGNOSIS.md"
+  },
+  "open_fires": {
+    "merge_5_branches_to_main": "pending",
+    "dashboard_mobile": "built_apr17_evening",
+    "hermes_live_toggle": "unblocked_needs_exchange_keys_or_agentkit",
+    "content_pipeline_drafter_fix": "fixed_apr17_auto_content_py"
+  },
+  "hardcoded_rules_alive": {
+    "R_030_planning_gate": true,
+    "R_034_mistakes_first": true,
+    "R_035_design_lock": true,
+    "R_036_backup_before_compress": true,
+    "R_037_drawer_triggers": true,
+    "R_038_compute_not_quote": true,
+    "R_039_bionic_two_file_fix": true
+  }
+}
