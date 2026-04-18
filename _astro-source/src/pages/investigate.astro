@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="NEXUS-RISK — Investigate Any Wallet" description="Paste any Ethereum wallet address. 22 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK.">
+<BaseLayout title="NEXUS-RISK — Investigate Any Wallet" description="Paste any Ethereum wallet address. 28 AML detection rules fire in real time. AI-powered risk analysis and roast. Powered by NEXUS-RISK.">
 
 <div class="investigate-wrap">
 
@@ -9,7 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <h1>Investigate Any <span>Wallet</span></h1>
     <p class="investigate-sub">
-      Paste an Ethereum address. 22 AML detection rules fire in real time against live blockchain data.
+      Paste an Ethereum address. 28 AML detection rules fire in real time against live blockchain data.
       Then an AI agent roasts whatever it finds.
     </p>
 
@@ -98,7 +98,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         avg_risk_score: 89,
         signals: ['OFAC Sanctioned Entity', 'Tornado Cash Interaction', 'Bridge Exploit Pattern', 'Rapid Layering (6+ hops)', 'Mixer Activity Detected', 'State-Sponsored Threat Actor', 'Cross-Chain Laundering', 'Structuring Pattern', 'Dormant→Active Spike'],
         risk_distribution: { CRITICAL: 8, HIGH: 5, MEDIUM: 3, LOW: 1 },
-        engine: 'AML Detection Engine v11 — 22 rules',
+        engine: 'AML Detection Engine v12 — 28 rules',
         elapsed: 2.4
       },
       'ronin': {
@@ -112,7 +112,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         avg_risk_score: 85,
         signals: ['Bridge Exploit — Ronin', 'OFAC Sanctioned', 'Rapid Fund Dispersal', 'Tornado Cash (Multiple)', 'Cross-Chain Movement', 'Wash Trading Pattern', 'High-Value Single Transaction'],
         risk_distribution: { CRITICAL: 6, HIGH: 7, MEDIUM: 4, LOW: 2 },
-        engine: 'AML Detection Engine v11 — 22 rules',
+        engine: 'AML Detection Engine v12 — 28 rules',
         elapsed: 3.1
       },
       'tornado': {
@@ -126,14 +126,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         avg_risk_score: 91,
         signals: ['OFAC Sanctioned Contract', 'Mixer — Primary', 'Privacy Protocol', 'High Throughput Laundering', 'Cross-Protocol Deposits'],
         risk_distribution: { CRITICAL: 12, HIGH: 3, MEDIUM: 1, LOW: 0 },
-        engine: 'AML Detection Engine v11 — 22 rules',
+        engine: 'AML Detection Engine v12 — 28 rules',
         elapsed: 1.8
       }
     };
 
     var scanSteps = [
       'Fetching blockchain transactions...',
-      'Running 22 AML detection rules...',
+      'Running 28 AML detection rules...',
       'Analyzing transaction patterns...',
       'Cross-referencing OFAC sanctions...',
       'Detecting mixer & bridge activity...',
@@ -250,7 +250,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         document.getElementById('distSection').style.display = 'none';
       }
 
-      document.getElementById('engineLabel').textContent = data.engine || 'AML Detection Engine v11 — 22 rules';
+      document.getElementById('engineLabel').textContent = data.engine || 'AML Detection Engine v12 — 28 rules';
       document.getElementById('elapsedLabel').textContent = 'Completed in ' + data.elapsed + 's';
     }
 
@@ -299,7 +299,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           avg_risk_score: score,
           signals: score > 35 ? ['Moderate Activity Volume', 'Multiple Counterparties'] : ['Low Activity'],
           risk_distribution: score > 35 ? { MEDIUM: 2, LOW: 4 } : { LOW: 3 },
-          engine: 'AML Detection Engine v11 — 22 rules (Demo)',
+          engine: 'AML Detection Engine v12 — 28 rules (Demo)',
           elapsed: (2 + Math.random() * 3).toFixed(1)
         });
       }, 5000);
