@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>HASH status</title>
+<style>
+  :root{
+    --bg:#020204;
+    --panel:#0c0c14;
+    --panel2:#111122;
+    --line:#1a1a2e;
+    --ink:#e8e8f0;
+    --muted:#8a8aa0;
+    --accent1:#5b73f8;
+    --accent2:#8b6cf7;
+    --green:#1fa068;
+    --red:#ff4444;
+    --amber:#f5a524;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,system-ui,"Plus Jakarta Sans",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:20px 16px 80px}
+  header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  header h1{font-size:19px;margin:0;letter-spacing:-0.01em;background:linear-gradient(135deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header .ts{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  section h2{font-size:12px;margin:0 0 12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
+  .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .kpi .card{background:var(--panel2);border-radius:10px;padding:12px 10px;text-align:center}
+  .kpi .v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+  .kpi .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
+  .red{color:var(--red)} .green{color:var(--green)} .amber{color:var(--amber)}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .row:last-child{border-bottom:0}
+  .row .lbl{color:var(--ink)}
+  .row .val{color:var(--muted);font-variant-numeric:tabular-nums}
+  .row .val.bad{color:var(--red)} .row .val.good{color:var(--green)} .row .val.warn{color:var(--amber)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+  .pill.bad{background:rgba(255,68,68,0.12);color:var(--red)}
+  .pill.good{background:rgba(31,160,104,0.14);color:var(--green)}
+  .pill.warn{background:rgba(245,165,36,0.14);color:var(--amber)}
+  .note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:10px;padding:10px 12px;background:var(--panel2);border-left:2px solid var(--accent2);border-radius:6px}
+  .fire{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}
+  .fire:last-child{border-bottom:0}
+  footer{text-align:center;color:var(--muted);font-size:10px;margin-top:20px;letter-spacing:0.08em}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#b5b5c7;background:var(--panel2);padding:1px 6px;border-radius:4px}
+  .refresh{font-size:11px;color:var(--accent1);text-decoration:none;padding:4px 10px;border:1px solid var(--line);border-radius:999px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>status / hash</h1>
+  <span class="ts" id="ts">loading…</span>
+</header>
+
+<section id="hermes-kpi">
+  <h2>Hermes · paper</h2>
+  <div class="kpi">
+    <div class="card"><div class="v red" id="pnl">—</div><div class="l">P&amp;L USD</div></div>
+    <div class="card"><div class="v" id="wr">—</div><div class="l">win rate</div></div>
+    <div class="card"><div class="v" id="trades">—</div><div class="l">resolved</div></div>
+  </div>
+  <div id="workers" style="margin-top:14px"></div>
+  <div class="note" id="hermes-note"></div>
+</section>
+
+<section id="aml">
+  <h2>AML engine</h2>
+  <div id="aml-body"></div>
+</section>
+
+<section id="site">
+  <h2>Site</h2>
+  <div id="site-body"></div>
+</section>
+
+<section id="wukong">
+  <h2>Wukong (server)</h2>
+  <div id="wukong-body"></div>
+</section>
+
+<section id="content">
+  <h2>Content pipeline</h2>
+  <div id="content-body"></div>
+</section>
+
+<section id="fires">
+  <h2>Open fires</h2>
+  <div id="fires-body"></div>
+</section>
+
+<footer>bionicbanker.tech / status · nightly snapshot · R-038 compute don't quote</footer>
+</div>
+
+<script>
+(async function(){
+  let d;
+  try { d = await (await fetch('./dashboard-data/status.json?t='+Date.now())).json(); }
+  catch(e){ document.querySelector('.wrap').insertAdjacentHTML('afterbegin','<p style="color:var(--red)">Could not load status.json</p>'); return; }
+
+  const fmtUsd = n => (n>=0?'+$':'-$') + Math.abs(n).toFixed(2);
+  const pillFor = s => {
+    if (s==='DISABLE_RECOMMENDED') return '<span class="pill bad">kill</span>';
+    if (s==='DISABLED_APR15') return '<span class="pill bad">off</span>';
+    if (s==='NEUTRAL') return '<span class="pill warn">flat</span>';
+    if (s==='WATCH') return '<span class="pill warn">watch</span>';
+    if (s==='WINNING') return '<span class="pill good">run</span>';
+    return '<span class="pill">'+s+'</span>';
+  };
+  const row = (lbl, val, cls='') => `<div class="row"><span class="lbl">${lbl}</span><span class="val ${cls}">${val}</span></div>`;
+
+  document.getElementById('ts').textContent = new Date(d.generated_at).toISOString().replace('T',' ').slice(0,16) + 'Z';
+
+  // Hermes KPIs
+  const h = d.hermes;
+  const pnlEl = document.getElementById('pnl');
+  pnlEl.textContent = fmtUsd(h.total_pnl_usd);
+  pnlEl.className = 'v ' + (h.total_pnl_usd >= 0 ? 'green' : 'red');
+  document.getElementById('wr').textContent = h.win_rate_pct.toFixed(1)+'%';
+  document.getElementById('trades').textContent = h.total_resolved + ' + ' + h.total_open + ' open';
+
+  document.getElementById('workers').innerHTML = h.workers.map(w =>
+    `<div class="row"><span class="lbl">${w.name} ${pillFor(w.status)}</span>`+
+    `<span class="val ${w.pnl_usd<0?'bad':w.pnl_usd>0?'good':''}">${fmtUsd(w.pnl_usd)} · ${w.win_rate_pct.toFixed(1)}% · ${w.trades}t</span></div>`
+  ).join('');
+  document.getElementById('hermes-note').textContent = h.diagnosis + ' / Go live blocker: ' + h.go_live_blocker;
+
+  // AML
+  const a = d.aml_engine;
+  document.getElementById('aml-body').innerHTML =
+    row('Current engine', '<code>'+a.current_file.split('/').pop()+'</code>') +
+    row('Detector functions in code', a.detector_functions_in_code, a.readme_stale?'warn':'') +
+    row('README claims rules', a.readme_claims_rules + (a.readme_stale?' <span class="pill bad">stale</span>':''), a.readme_stale?'bad':'') +
+    row('Detection rate', a.detection_rate_pct_claimed+'%', 'good') +
+    row('FP rate', a.false_positive_rate_pct_claimed+'%', 'warn');
+  if (a.note) document.getElementById('aml').insertAdjacentHTML('beforeend','<div class="note">'+a.note+'</div>');
+
+  // Site
+  const s = d.site;
+  document.getElementById('site-body').innerHTML =
+    row('Domain', s.domain) +
+    row('Platform', s.platform) +
+    row('Live HTML articles', s.live_html_articles, 'good') +
+    row('Astro .md files', s.astro_content_md_files, 'warn');
+  if (s.note) document.getElementById('site').insertAdjacentHTML('beforeend','<div class="note">'+s.note+'</div>');
+
+  // Wukong
+  const w = d.wukong;
+  document.getElementById('wukong-body').innerHTML =
+    row('IP', '<code>'+w.ip+'</code>') +
+    row('Uptime', w.uptime_days+' days', 'good') +
+    row('Load (1m)', w.load_1m, w.load_1m>2?'bad':'good') +
+    row('Disk', w.disk_pct+'%', w.disk_pct>85?'bad':w.disk_pct>70?'warn':'good') +
+    row('Cron active', w.cron_active?'yes':'no', w.cron_active?'good':'bad') +
+    row('Services', w.services_up.length+' up');
+
+  // Content pipeline
+  const c = d.content_pipeline;
+  document.getElementById('content-body').innerHTML =
+    row('Status', '<span class="pill warn">'+c.status+'</span>') +
+    row('Reason', '<span style="max-width:60%;display:inline-block;text-align:right;color:var(--muted);font-size:12px">'+c.reason+'</span>');
+  document.getElementById('content').insertAdjacentHTML('beforeend','<div class="note"><strong>Blockers:</strong><br>• '+c.blockers.join('<br>• ')+'<br><br>Fix plan: <code>'+c.fix_plan_doc+'</code></div>');
+
+  // Fires
+  const fires = d.open_fires;
+  const fireLabel = k => k.replace(/_/g,' ');
+  const firePill = v => {
+    if (v==='pending') return '<span class="pill warn">pending</span>';
+    if (v.startsWith('built') || v.startsWith('fixed') || v.startsWith('unblocked')) return '<span class="pill good">done</span>';
+    if (v.startsWith('blocked')) return '<span class="pill bad">blocked</span>';
+    if (v.startsWith('documented')) return '<span class="pill warn">doc</span>';
+    return '<span class="pill">'+v+'</span>';
+  };
+  document.getElementById('fires-body').innerHTML = Object.entries(fires).map(([k,v]) =>
+    `<div class="fire"><span>${fireLabel(k)}</span>${firePill(v)}</div>`
+  ).join('');
+})();
+</script>
+</body>
+</html>
