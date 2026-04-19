@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advisor Desk Orchestration</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #020204;
+    color: #e4e4ec;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(91,115,248,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,115,248,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+  }
+  .bg-glow-tl {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(139,108,247,0.12) 0%, transparent 70%);
+    top: -200px; left: -150px;
+    z-index: 0;
+  }
+  .bg-glow-br {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,68,68,0.10) 0%, transparent 70%);
+    bottom: -150px; right: -100px;
+    z-index: 0;
+  }
+  .content {
+    position: relative; z-index: 1;
+    padding: 56px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .brand {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 1.0rem;
+    letter-spacing: -0.01em;
+  }
+  .brand span {
+    background: linear-gradient(135deg, #5b73f8 0%, #8b6cf7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .pill {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-block;
+  }
+  .pill-red { background: rgba(255,68,68,0.14); color: #ff6b6b; border: 1px solid rgba(255,68,68,0.28); }
+  .pill-green { background: rgba(31,160,104,0.14); color: #1fa068; border: 1px solid rgba(31,160,104,0.28); }
+  .pill-blue { background: rgba(91,115,248,0.14); color: #7a8cf9; border: 1px solid rgba(91,115,248,0.28); }
+  .pill-purple { background: rgba(139,108,247,0.14); color: #a68cff; border: 1px solid rgba(139,108,247,0.28); }
+  h1, h2, h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .muted { color: #8a8aa0; }
+  .url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: #5b73f8;
+    letter-spacing: 0.02em;
+  }
+
+  .title-main {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #f5f5f8;
+  }
+  .title-sub {
+    font-size: 0.85rem;
+    color: #8a8aa0;
+    margin-top: 4px;
+  }
+  .flow {
+    display: grid;
+    grid-template-columns: 1fr 72px 1.35fr 72px 1fr;
+    gap: 0;
+    align-items: center;
+    margin-top: 6px;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .node {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
+    position: relative;
+  }
+  .node.dim { opacity: 0.42; }
+  .node.primary {
+    background: rgba(139,108,247,0.08);
+    border-color: rgba(139,108,247,0.3);
+  }
+  .node.survive {
+    background: rgba(31,160,104,0.08);
+    border-color: rgba(31,160,104,0.3);
+  }
+  .node.compress {
+    background: rgba(255,92,92,0.06);
+    border-color: rgba(255,92,92,0.22);
+  }
+  .node-head {
+    font-size: 0.66rem;
+    color: #8a8aa0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .node-body {
+    font-size: 0.82rem;
+    color: #e4e4ec;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .arrow {
+    color: #5b73f8;
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 800;
+    opacity: 0.7;
+  }
+  .arrow-lbl {
+    font-size: 0.6rem;
+    color: #7a8cf9;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+    margin-top: -4px;
+  }
+  .col-header {
+    font-size: 0.72rem;
+    color: #8a8aa0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .col-header .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .dot-blue { background: #5b73f8; }
+  .dot-purple { background: #8b6cf7; }
+  .dot-red { background: #ff5c5c; opacity: 0.8; }
+  .agent-loop {
+    background: linear-gradient(135deg, rgba(91,115,248,0.08) 0%, rgba(139,108,247,0.08) 100%);
+    border: 1px solid rgba(139,108,247,0.28);
+    border-radius: 14px;
+    padding: 16px;
+    position: relative;
+  }
+  .agent-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.0rem;
+    font-weight: 800;
+    color: #a68cff;
+    margin-bottom: 4px;
+  }
+  .agent-sub {
+    font-size: 0.75rem;
+    color: #8a8aa0;
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .loop-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .loop-item {
+    background: rgba(0,0,0,0.28);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 0.72rem;
+    color: #e4e4ec;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .loop-item .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: #5b73f8;
+    font-weight: 700;
+  }
+  .compress-badge {
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    background: rgba(255,92,92,0.18);
+    color: #ff6b6b;
+    border: 1px solid rgba(255,92,92,0.35);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .footnote {
+    font-size: 0.74rem;
+    color: #8a8aa0;
+    text-align: center;
+    font-style: italic;
+  }
+  .footnote strong { color: #e4e4ec; font-style: normal; }
+</style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow-tl"></div>
+  <div class="bg-glow-br"></div>
+  <div class="content">
+    <div class="top">
+      <div class="brand">Bionic <span>Banker</span></div>
+      <span class="pill pill-purple">ORCHESTRATION LAYER</span>
+    </div>
+
+    <div>
+      <div class="title-main">Five desks become one or two.</div>
+      <div class="title-sub">Open banking is the data rail. The agent is the loop. The routine 80% collapses.</div>
+    </div>
+
+    <div class="flow">
+      <!-- Input: data sources -->
+      <div class="col">
+        <div class="col-header"><span class="dot dot-blue"></span>Open Banking API</div>
+        <div class="node"><div class="node-head">Read scope</div><div class="node-body">Accounts, balances, transactions, holdings</div></div>
+        <div class="node"><div class="node-head">Write scope</div><div class="node-body">Payments, transfers, instruction push</div></div>
+        <div class="node"><div class="node-head">Cross-institution</div><div class="node-body">All banks, one surface, real time</div></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+        <div class="arrow">&rarr;</div>
+        <div class="arrow-lbl">PULL</div>
+      </div>
+
+      <!-- Agent loop -->
+      <div>
+        <div class="col-header"><span class="dot dot-purple"></span>Agent with tools + memory</div>
+        <div class="agent-loop">
+          <div class="agent-title">loop(tools, memory)</div>
+          <div class="agent-sub"># 2 AM Sunday. Bank app. Done.</div>
+          <div class="loop-items">
+            <div class="loop-item"><span class="tag">01</span>Pull data</div>
+            <div class="loop-item"><span class="tag">02</span>Match rules</div>
+            <div class="loop-item"><span class="tag">03</span>Run KYC</div>
+            <div class="loop-item"><span class="tag">04</span>Underwrite</div>
+            <div class="loop-item"><span class="tag">05</span>Explain</div>
+            <div class="loop-item"><span class="tag">06</span>Execute</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+        <div class="arrow">&rarr;</div>
+        <div class="arrow-lbl">ACT</div>
+      </div>
+
+      <!-- Output: desks -->
+      <div class="col">
+        <div class="col-header"><span class="dot dot-red"></span>Advisor desks</div>
+        <div class="node compress"><div class="compress-badge">COMPRESSED</div><div class="node-head">Routine 80%</div><div class="node-body">Onboarding, KYC, rebalance, product explain</div></div>
+        <div class="node survive"><div class="node-head">Judgment layer</div><div class="node-body">Estate, cross-border, succession, stress cases</div></div>
+        <div class="node dim"><div class="node-head">Headcount math</div><div class="node-body">5 &rarr; 1 or 2 seats survive</div></div>
+      </div>
+    </div>
+
+    <div class="footnote">Same pattern: <strong>underwriting &middot; compliance &middot; research &middot; onboarding</strong>. Any knowledge work where the deliverable lives on a screen.</div>
+  </div>
+</body>
+</html>

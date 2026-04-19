@@ -2,7 +2,7 @@
 title: "Where the jobs go. And why Elon keeps saying UBI."
 description: "Real numbers from 2025 and 2026. 55,000 AI-attributed layoffs. 44 percent of finance teams running agentic AI. 1.3 fewer hours worked per week in the Altman UBI study. The compression curve is not a forecast anymore. It is a measurement. Here is how to read it."
 pubDate: 2026-04-18
-heroImage: "https://bionicbanker.tech/images/blog-hero-advisor-desk.svg"
+heroImage: "https://bionicbanker.tech/blog-visuals/png/advisor-desk-hero.png"
 tags: ["Open Banking", "AI Agents", "Canada", "DeFi", "Jobs", "UBI", "Culture"]
 draft: false
 ---
