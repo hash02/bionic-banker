@@ -1,97 +1,62 @@
 ---
-title: "Five desks become one. Every screen-based job is next."
-description: "Open banking supplies the data rails. Aave proved zero-margin finance works. Orchestration is the next layer and agents are its operating system. If what you do lives on a screen, the agent is already in the room. The advisor seat is just first in line."
-date: "2026-04-18"
-tags: ['AI', 'Banking', 'Agents', 'Open Banking']
-readTime: "9 min"
-category: "AI"
-featured: true
-slug: "advisor-desk-first-to-go"
-image: "/blog-visuals/png/boc-defi-hero-banner.png"
+title: "Where the jobs go. And why Elon keeps saying UBI."
+description: "Open banking is the data rail. Aave proved zero margin finance works. Orchestration is the next layer and agents are its operating system. Watch what happens to every job that lives on a screen. Then notice which tech insiders keep talking UBI."
+pubDate: 2026-04-18
+heroImage: "https://bionicbanker.tech/images/blog-hero-advisor-desk.svg"
+tags: ["Open Banking", "AI Agents", "Canada", "DeFi", "Jobs", "UBI", "Culture"]
+draft: false
 ---
 
-# Five desks become one. Every screen-based job is next.
+# Where the jobs go. And why Elon keeps saying UBI.
 
-Two signals from the Bank of Canada in the same month. Aave got a formal research paper calling it a functioning non-bank lending system with zero bad debt. Open banking got a press statement saying a 2026 launch would be premature and ill-advised. Most people read those as two separate stories. They are the same story at different speeds.
+Two signals from the Bank of Canada in the same month. Aave got a formal paper calling it a functioning non-bank lender with zero bad debt. Open banking got a press statement saying a 2026 launch would be premature. Most people read those as separate stories. They are the same story at different speeds.
 
-The first signal says zero-margin finance works. The second signal says public data rails are late but coming. Put those two together and apply them to anything a human does on a screen. Including whatever your current job is.
+Zero margin finance works. Public data rails are coming. Apply both to anything a human does on a screen. Then look at where Elon Musk, Sam Altman, and half the frontier tech class keep parking the conversation. Universal basic income. UBI. Over and over. That is not noise. That is people who can see the next curve telling you what they already priced in.
 
-Because here is the part the Bank of Canada is not saying out loud. If the work lives on a screen, the agent is already walking toward it.
+## If a screen runs the work, an agent runs the work.
 
-## If a screen runs the work, an agent runs the work
+Look at what a financial advisor does. Open an account, pull statements, run a portfolio health check, explain a product, collect KYC paperwork, underwrite against known rules. All of it happens on a screen.
 
-Look at what a financial advisor actually does during a normal day. Open an account for a client. Screen work. Run a quarterly portfolio check. Screen work. Explain a product. Screen work, just with a microphone attached. Fill KYC paperwork. Screen work. Review an underwriting file against known rules. Screen work. The entire routine of most knowledge jobs in banking is inputs on a screen, logic on a screen, outputs on a screen.
+Now add an agent with open banking read and write access. It sees every account across every institution in real time, pulls the right data, matches the rules, and pushes a decision through a bank app at 2 AM on a Sunday. Not a chatbot. Actual work. Without a human in the loop.
 
-Now pair that with an agent that has open banking read plus write access. The agent sees every account the client holds across every institution in real time. It can pull the right data, match it against the rules, and push a decision back through an app at two in the morning on a Sunday. That is not a chatbot. That is a unit of actual work being done without a human in the loop.
+The question is not whether an agent can do the work. The question is how many human seats are still required once the agent can pull the right data and act on it.
 
-This is the point I think people keep missing. The question is not whether an agent can do the work. The question is how many human seats are still required once the agent can pull the right data. And that number is a lot smaller than most banks are ready to admit.
+## Where five desks become one or two.
 
-## Five desks become one
+The compression is not five to zero. The compression is five to one. Or two. The routine 80 percent collapses. The judgment layer survives. Complex estate planning, cross-border tax, succession, stress decisions. That work has too much context for an agent to close.
 
-Not five to zero. Five to one or two. That distinction is the whole story.
+Same pattern in underwriting. Same pattern in onboarding. Same pattern in compliance review. Same pattern in research. Any knowledge work role where the deliverable lives on a screen follows the same curve.
 
-The advisor job is not disappearing. The count of advisors required to cover the same client base is compressing. Where a branch needed five advisors to handle its routine flow, it will need two. In some branches, one. The work that survives inside those remaining seats is the judgment layer that does not compress. Complex estate planning. Cross-border tax structuring. Business succession. Clients under stress making large irreversible decisions. That work has too much context, too much ambiguity, too much emotional friction for an agent to close.
+## Orchestration is the forcing function.
 
-The routine 80 percent is what compresses. That is still a lot of desks.
+Here is the part the bigger-language-model headlines miss. The next phase of the AI cycle is not one bigger model. It is orchestration. Agents calling agents. Agents handing off to agents. Agents with tools and memory running loops.
 
-And the same pattern applies to every knowledge-worker role where the deliverable is a screen artifact. Underwriting, research, compliance review, customer onboarding, claim review, product management on spec-driven work. Each of those starts out at five seats and compresses to one or two over the agent rollout cycle.
+Agents are the operating system for AI models. They do not just talk. They do. They pull data. They write data. They trigger workflows. They hand a result to the next agent in the chain and wait for a response.
 
-## Quick primer on open banking, because most people still have not been told
+At the hardware layer, NVIDIA has shipped foundation models for humanoid robotics, an agent runtime for autonomous systems, and agent-specific silicon. At the software layer, whole companies are being built where the product is an agent or a stack of agents orchestrating each other. This is not a 2028 story. This is shipped and running in production.
 
-Open banking means your bank has to let you send your transaction data to another company through a public API if you ask it to. Phase 1 is read access. Apps can see your accounts across every institution. Phase 2 is write access. Apps can move money on your behalf. The Consumer-Driven Banking Act received Royal Assent on March 26 and named the Bank of Canada as the regulator building the rails. Phase 1 was targeted for early 2026 and did not ship. Phase 2 is on the board for mid-2027. Full breakdown in [today's piece on the stall](/blog/canada-open-banking-law-no-date/).
+## Why Elon keeps saying UBI.
 
-Short version. The law is real. The rails are late. The delay is measured in years.
+Musk has been talking universal basic income since 2016. Sam Altman funded a multi-year basic income study. Andrew Yang ran a presidential campaign on it. These are not activists. These are people with a front row seat to the compression curve.
 
-## What Aave proved about margin
+The pattern is obvious once you see it. If you believe agents can do most screen work, you do not need a survey to know what happens to wages on the routine layer. You know. The UBI talk is the tell. The people building the thing are already asking how society absorbs the curve they are pulling forward.
 
-The Bank of Canada paper on Aave matters because it is the first time a central bank has said in writing that a DeFi protocol is functioning credit infrastructure. Zero bad debt across the observation window. 24/7 operation. Transparent rules. No loan officer. No underwriter. Margins compressed to near-zero because the cost structure on the other side is also near-zero. Full breakdown in [the piece on the Aave paper from last week](/blog/boc-defi-lending/).
+You do not have to agree with UBI as the answer. You have to notice that the people inside the frontier are not treating job compression as a speculative topic. They are treating it as a known shape and arguing about the response.
 
-The headline that matters for every bank employee is this. Financial intermediation can be run at a spread approaching zero and still sustain itself. Margin is the entire reason a branch network exists. When margin compresses, the branch network loses its reason to justify overhead. The human seat that lives on that margin loses its reason too.
+## The blocker is cultural, not technical.
 
-## Orchestration is the forcing function
+The tech is shipped. That is not the blocker. The blocker is an institutional attitude that treats tech adoption as optional, or worse, as taboo. Forms still filled like a human reads them line by line. Reviews still run as if volume is manageable with more headcount. Rules engines from 2017.
 
-This is the part of the argument that has not reached most Canadian banking yet. The next phase of the technology cycle is not a bigger language model. It is orchestration. Agents calling agents. Agents handing off to other agents. Agents running on top of models the way an application runs on top of an operating system.
+Time is moving faster than a laid-back corporate posture can absorb. Treating technology adoption as taboo is a decision to be the one seat out of five that gets kept, not one of the other four.
 
-That is the correct frame. Agents are the operating system for AI models. They do not just talk. They do. They take a task, pull the data, run the logic, call another agent if needed, and return the result. Not conversation. Action. And once that surface is normalized, every screen-based job is inside its target domain.
+## What to do with an 18 to 24 month window.
 
-At the hardware layer, NVIDIA shipped foundation models for humanoid robotics, an agent runtime for autonomous systems, and agent-specific silicon that did not exist three years ago. At the software layer, whole companies are being built where the product is an agent or a stack of agents orchestrating each other. This is not a pitch deck. This is shipped. Running in production. Billing customers.
+If your job is the kind that could compress, three moves.
 
-The forcing function is not one law or one central bank paper. It is an entire layer of the stack that now exists and did not exist before.
+One. Learn what an open banking API actually does. Not the press release. The endpoints, the scopes, the read and write boundaries. The rails are coming whether the Bank of Canada hits a date or not.
 
-## Why nobody stops this
+Two. Learn what an agent actually is. Not as a buzzword. As a loop with tools, memory, and the ability to call other agents. Build one yourself if you can. Even a small one.
 
-If the law did not exist, the tech wave would force open banking anyway. Apps like Revolut, Monzo, Wise, and Plaid already run a version of this in other countries because customer demand does not stop at a regulator's door. Every year the public rail is delayed, private one-off data-sharing deals between big banks and specific fintechs get normalized. That is a private version of open banking without any of the consumer protections a public rail is supposed to provide.
+Three. Pick a judgment-heavy specialty that does not compress. Estate, cross-border, stress cases, regulatory edge cases. Build deep stack there.
 
-If the tech wave did not exist, the law would force the rails anyway. The Act is on the books. Screen scraping is now an offence. Phase 1 has a regulatory clock on it. The launch can be delayed. The destination cannot be cancelled.
-
-And sitting above both arms is the orchestration layer. Even if Canada stalls the public rails, orchestration is a global surface. Foreign fintechs that operate in Canada through private deals will run their agents against whatever data the user can legally share with them. The rails show up one way or another. The compression shows up with them.
-
-## The actual blocker is cultural, not technical
-
-Here is the part that rarely gets said in public. The tech is not the blocker. The tech is shipped. The models exist. The orchestration layer exists. The chips exist. The rails exist in other countries already. None of that is controversial at the technical level. The blocker is an institutional attitude that still treats technology adoption as optional, or worse, as taboo.
-
-Forms still get filled as if a human reads them line by line. Reviews still get conducted as if volume is something manageable by adding headcount. Compliance still runs on rules engines from 2017. Training decks still teach people to summarize documents by hand. Meanwhile the world outside the branch has moved to a layer of abstraction where an agent does all of that at a hundred times the speed.
-
-This is not a complaint. It is a diagnosis. The gap between the frontier and the operational floor is larger than at any point in the last thirty years of banking. And the gap is widening because the frontier accelerated and the floor did not. Treating technology adoption as a taboo subject, or as something to be handled next quarter, or as something that belongs to the innovation lab, is the decision. It is a decision to be the one in five desks that gets kept, not one of the other four.
-
-Time is moving faster than the laid-back version of corporate culture can absorb. The future shifted already. The only question is how many people inside the system shift with it before the headcount compression arrives.
-
-## What the advisor role looks like in 2028
-
-Fewer advisors per branch, each one covering more clients but only on the judgment layer. The routine rebase, rebalance, quarterly check-in, and product explanation flow moves to an agent the client talks to through the bank app. The advisor gets pulled in only when the agent flags something non-routine. One escalation queue instead of five calendars.
-
-Two variables decide how fast this hits. The speed at which open banking rails actually ship. The speed at which internal bank tooling catches up to what fintechs have already deployed overseas. The first is slow. The second is accelerating. The gap between those two speeds is what determines whether the headcount compression is gradual or sudden.
-
-## The play if this is your job
-
-Eighteen to twenty-four months is the window. That is roughly the gap between open banking Phase 1 actually shipping and agent-driven product distribution becoming a default layer inside bank apps. Inside that window, the person who understands both the regulated side and the agent side is worth more than almost anyone else on the floor.
-
-Three concrete moves. Learn what an open banking API actually does. Read access, write access, consent flow, how a third party integrates against it. Learn what an agent actually is. Not a chatbot. A loop with tools, memory, and access to data. Read one piece of actual code that builds an agent end to end so the language stops being abstract. And pick one judgment-heavy specialty that does not compress and build deep stack there. Estate. Cross-border. Succession. Complex tax under uncertainty.
-
-The people who do none of that will be fine for a while. Margin compression is slow at first. Then it is not.
-
-## The one thing to remember
-
-The margin is the job. Aave proved the margin can go to zero and the system still works. Open banking proves the rails that let any fintech quote into the Canadian market are coming. Orchestration proves every screen-based task is inside the target surface. The advisor desk sits downstream of all three.
-
-Five seats become one. That is not a prediction. That is the shape of every previous wave of automation applied to a domain where the deliverable lives on a screen. The only variable this time is who is inside the one seat that remains.
+Margin compression is slow at first. Then it is not. And the UBI chatter is not a political preference. It is a forecast leaking out of the people closest to the machine.
