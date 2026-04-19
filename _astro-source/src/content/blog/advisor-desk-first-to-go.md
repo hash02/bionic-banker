@@ -7,7 +7,7 @@ readTime: "10 min"
 category: "AI"
 featured: true
 slug: "advisor-desk-first-to-go"
-image: "/blog-visuals/png/advisor-desk-hero.png"
+image: "/blog-visuals/png/advisor-desk-hero-v2.png"
 ---
 
 # Where the jobs go. And why Elon keeps saying UBI.
