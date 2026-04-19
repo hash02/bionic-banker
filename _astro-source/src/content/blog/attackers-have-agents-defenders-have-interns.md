@@ -1,5 +1,5 @@
 ---
-title: "Attackers already have agents. Defenders are still training interns."
+title: "The Bank of Canada stalled open banking. Nothing else stalled."
 description: "Open banking stalled. AI didn’t. The Bank of Canada told you both things in the same month. Here is what the dual-speed problem means for banks, for fraud, and for which jobs shrink first."
 date: "2026-04-18"
 tags: ["AI", "Banking", "Agents", "Fintech"]
@@ -10,9 +10,9 @@ slug: "attackers-have-agents-defenders-have-interns"
 image: "/blog-visuals/png/boc-defi-hero-banner.png"
 ---
 
-# Attackers already have agents. Defenders are still training interns.
+# The Bank of Canada stalled open banking. Nothing else stalled.
 
-Okay so here is the thing nobody wants to say out loud. In the same month the Bank of Canada published a research paper calling Aave a functioning non-bank lending system, they also said they were not committing to a launch date for open banking. Same institution. Same month. Opposite speeds.
+In the same month the Bank of Canada published a research paper calling Aave a functioning non-bank lending system, they also said they were not committing to a launch date for open banking. Same institution. Same month. Opposite speeds.
 
 One hand is cheering decentralized finance. The other is holding the line on public rails.
 
