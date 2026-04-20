@@ -98,6 +98,7 @@ const isHome = title === 'Home';
       <form action="https://formspree.io/f/xdaljypn" method="POST" class="newsletter-form">
         <input type="hidden" name="_form_type" value="newsletter">
         <input type="hidden" name="_subject" value="New Bionic Banker newsletter subscriber">
+        <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="email" name="email" placeholder="you@domain.com" required class="newsletter-input" aria-label="Email address">
         <button type="submit" class="nl-btn primary">Subscribe</button>
       </form>
