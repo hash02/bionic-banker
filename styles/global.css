@@ -1357,3 +1357,34 @@ canvas { background: #08080e !important; }
   .compare-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
+
+
+/* Newsletter email form - added Apr 19 2026 */
+.newsletter-form {
+  display: flex; gap: 0.5rem; justify-content: center;
+  max-width: 440px; margin: 0 auto 1rem;
+  flex-wrap: wrap;
+}
+.newsletter-input {
+  flex: 1; min-width: 200px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--b1);
+  color: var(--text-1);
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-family: var(--mono); font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(31,160,104,0.15);
+}
+.newsletter-input::placeholder { color: var(--text-2); opacity: 0.7; }
+.newsletter-form .nl-btn { cursor: pointer; border: none; }
+.newsletter-secondary-row { margin-top: 0.5rem; }
+.newsletter-secondary-row .nl-btn { font-size: 0.72rem; padding: 0.5rem 1rem; }
+@media (max-width: 520px) {
+  .newsletter-form { flex-direction: column; }
+  .newsletter-input { width: 100%; }
+}
