@@ -1,33 +1,33 @@
 {
-  "generated_iso": "2026-04-21T03:00:01.178484-07:00",
-  "generated_unix": 1776765601,
+  "generated_iso": "2026-04-21T03:30:01.332633-07:00",
+  "generated_unix": 1776767401,
   "funds": {
     "fund_60_40_income": {
       "sleeves_total": 4,
-      "sleeves_funded": 4,
-      "coverage_pct": 100.0,
-      "exposure_usd": 504.24,
+      "sleeves_funded": 2,
+      "coverage_pct": 50.0,
+      "exposure_usd": 4.17,
       "pnl_usd": -0.08,
       "sleeves": {
         "stablecoin_yield": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "aave_usdc",
             "morpho_usdc",
             "euler_pyusd"
           ],
-          "positions_total": 1,
-          "open_exposure_usd": 400.01,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 40
         },
         "delta_neutral": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "delta_neutral_funding"
           ],
-          "positions_total": 2,
-          "open_exposure_usd": 100.06,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 25
         },
@@ -54,30 +54,30 @@
     },
     "fund_75_25_balanced": {
       "sleeves_total": 6,
-      "sleeves_funded": 6,
-      "coverage_pct": 100.0,
-      "exposure_usd": 704.24,
+      "sleeves_funded": 2,
+      "coverage_pct": 33.3,
+      "exposure_usd": 4.17,
       "pnl_usd": -0.08,
       "sleeves": {
         "stablecoin_yield": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "aave_usdc",
             "sgho",
             "superstate_uscc"
           ],
-          "positions_total": 1,
-          "open_exposure_usd": 400.01,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 25
         },
         "delta_neutral": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "delta_neutral_funding"
           ],
-          "positions_total": 2,
-          "open_exposure_usd": 100.06,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 20
         },
@@ -93,23 +93,23 @@
           "target_pct": 25
         },
         "directional": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "pyth_momentum",
             "polymarket_btc_updown"
           ],
-          "positions_total": 2,
-          "open_exposure_usd": 80.0,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 20
         },
         "tokenized_stocks": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "xstocks_grid"
           ],
-          "positions_total": 4,
-          "open_exposure_usd": 120.0,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 5
         },
@@ -125,29 +125,29 @@
     },
     "fund_90_10_growth": {
       "sleeves_total": 6,
-      "sleeves_funded": 6,
-      "coverage_pct": 100.0,
-      "exposure_usd": 715.89,
-      "pnl_usd": 0.07,
+      "sleeves_funded": 4,
+      "coverage_pct": 66.7,
+      "exposure_usd": 238.3,
+      "pnl_usd": 0.09,
       "sleeves": {
         "stablecoin_floor": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "aave_usdc",
             "sgho"
           ],
-          "positions_total": 1,
-          "open_exposure_usd": 400.01,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 10
         },
         "latency_arb": {
-          "funded": true,
+          "funded": false,
           "workers_configured": [
             "polymarket_btc_updown"
           ],
-          "positions_total": 2,
-          "open_exposure_usd": 80.0,
+          "positions_total": 0,
+          "open_exposure_usd": 0,
           "pnl_usd": 0,
           "target_pct": 30
         },
@@ -169,7 +169,7 @@
             "tv_momentum"
           ],
           "positions_total": 2,
-          "open_exposure_usd": 80.06,
+          "open_exposure_usd": 80.0,
           "pnl_usd": 0,
           "target_pct": 20
         },
@@ -179,9 +179,9 @@
             "crypto_memecoins",
             "wow_sniper_base"
           ],
-          "positions_total": 51,
-          "open_exposure_usd": 11.65,
-          "pnl_usd": 0.15,
+          "positions_total": 52,
+          "open_exposure_usd": 14.13,
+          "pnl_usd": 0.17,
           "target_pct": 10
         },
         "xstocks_directional": {
@@ -202,32 +202,32 @@
       "status": "active",
       "strategy": "stablecoin_yield",
       "cycle_count": 1,
-      "last_heartbeat": "2026-04-21T02:15:02.709935-07:00",
-      "age_minutes": 45.0,
+      "last_heartbeat": "2026-04-21T03:15:03.118895-07:00",
+      "age_minutes": 15.0,
       "heartbeat_fresh": true,
       "open_positions": 1,
       "deployed_usd": null,
-      "unrealized_pnl_usd": 0.005749,
+      "unrealized_pnl_usd": 0.011499,
       "fund_sleeves": []
     },
     "delta_neutral_funding": {
       "status": "active",
       "strategy": "delta_neutral",
       "cycle_count": 1,
-      "last_heartbeat": "2026-04-21T02:17:02.379138-07:00",
-      "age_minutes": 43.0,
+      "last_heartbeat": "2026-04-21T03:17:01.560672-07:00",
+      "age_minutes": 13.0,
       "heartbeat_fresh": true,
       "open_positions": 2,
       "deployed_usd": null,
-      "unrealized_pnl_usd": 0.056957,
+      "unrealized_pnl_usd": 0.094848,
       "fund_sleeves": []
     },
     "polymarket_btc_updown": {
       "status": "stale",
       "strategy": "polymarket",
-      "cycle_count": 2963,
-      "last_heartbeat": "2026-04-21T02:57:05.488587-07:00",
-      "age_minutes": 2.9,
+      "cycle_count": 2969,
+      "last_heartbeat": "2026-04-21T03:28:04.258127-07:00",
+      "age_minutes": 2.0,
       "heartbeat_fresh": true,
       "open_positions": 0,
       "deployed_usd": null,
@@ -237,9 +237,9 @@
     "xstocks_grid": {
       "status": "active",
       "strategy": "xstocks_grid",
-      "cycle_count": 6,
-      "last_heartbeat": "2026-04-21T02:21:05.388935-07:00",
-      "age_minutes": 38.9,
+      "cycle_count": 7,
+      "last_heartbeat": "2026-04-21T03:21:06.574646-07:00",
+      "age_minutes": 8.9,
       "heartbeat_fresh": true,
       "open_positions": 4,
       "deployed_usd": null,
@@ -249,13 +249,13 @@
     "tv_momentum": {
       "status": "active",
       "strategy": "tv_momentum",
-      "cycle_count": 6,
-      "last_heartbeat": "2026-04-21T02:23:02.055753-07:00",
-      "age_minutes": 37.0,
+      "cycle_count": 7,
+      "last_heartbeat": "2026-04-21T03:23:02.285298-07:00",
+      "age_minutes": 7.0,
       "heartbeat_fresh": true,
       "open_positions": 2,
-      "deployed_usd": 80.06,
-      "unrealized_pnl_usd": 0.06,
+      "deployed_usd": 80.0,
+      "unrealized_pnl_usd": 0,
       "fund_sleeves": [
         "fund_90_10_growth.directional_momentum"
       ]
@@ -263,9 +263,9 @@
     "xstocks_directional": {
       "status": "active",
       "strategy": "directional_sma_momentum",
-      "cycle_count": 4,
-      "last_heartbeat": "2026-04-21T02:25:01.133242-07:00",
-      "age_minutes": 35.0,
+      "cycle_count": 5,
+      "last_heartbeat": "2026-04-21T03:25:01.361986-07:00",
+      "age_minutes": 5.0,
       "heartbeat_fresh": true,
       "open_positions": 4,
       "deployed_usd": 140.0,
@@ -276,10 +276,10 @@
     }
   },
   "hermes": {
-    "orchestrator_age_min": 2.9,
-    "paper_portfolio_age_min": 35.0,
-    "paper_portfolio_positions": 288,
-    "paper_portfolio_open": 46,
+    "orchestrator_age_min": 2.0,
+    "paper_portfolio_age_min": 5.0,
+    "paper_portfolio_positions": 280,
+    "paper_portfolio_open": 37,
     "mode": "paper",
     "last_cycle": null
   },
@@ -291,9 +291,9 @@
   "aggregate": {
     "funds_count": 3,
     "sleeves_total": 16,
-    "sleeves_funded": 16,
-    "coverage_pct": 100.0,
-    "exposure_usd": 1924.37,
-    "pnl_usd": -0.09
+    "sleeves_funded": 8,
+    "coverage_pct": 50.0,
+    "exposure_usd": 246.64,
+    "pnl_usd": -0.07
   }
 }
