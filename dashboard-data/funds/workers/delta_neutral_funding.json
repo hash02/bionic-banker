@@ -1,0 +1,41 @@
+{
+  "worker_name": "delta_neutral_funding",
+  "strategy_type": "delta_neutral",
+  "status": "active",
+  "last_heartbeat": "2026-04-20T23:17:02.173531-07:00",
+  "cycle_count": 1,
+  "position_summary": {
+    "open_positions": 2,
+    "closed_positions": 0,
+    "total_capital_deployed_usd": 100.0,
+    "realized_pnl_usd": 0.0,
+    "unrealized_pnl_usd": 0.0
+  },
+  "performance": {
+    "avg_entry_apy_pct": 1002.2113,
+    "pnl_all_time": 0.0,
+    "trades_last_24h": 0,
+    "win_rate": null
+  },
+  "risk": {
+    "position_sizing_method": "fixed_max_position_usd",
+    "max_position_usd": 50.0,
+    "max_total_deployed_usd": 400.0,
+    "unwind_on_sign_flip": true,
+    "paper_mode_relaxed_gate": true,
+    "counterparty": "binance_perp_public"
+  },
+  "strategy_config": {
+    "source": "binance_public_funding",
+    "min_annualized_rate_pct": 8.0,
+    "min_funding_history_hours": 24,
+    "universe_size": 719,
+    "qualifying_count": 178,
+    "fund_sleeves": [
+      "fund_60_40_income.delta_neutral",
+      "fund_75_25_balanced.delta_neutral"
+    ]
+  },
+  "errors_last_24h": 0,
+  "health_check": "green"
+}

@@ -1,0 +1,38 @@
+{
+  "worker_name": "tv_momentum",
+  "strategy_type": "tv_momentum",
+  "status": "active",
+  "last_heartbeat": "2026-04-20T23:23:02.031589-07:00",
+  "cycle_count": 3,
+  "position_summary": {
+    "open_positions": 1,
+    "deployed_usd": 40.0,
+    "unrealized_pnl_usd": 0,
+    "max_positions": 3
+  },
+  "this_cycle": {
+    "opened": 1,
+    "resolved": 0,
+    "stopped": 0,
+    "marked": 0,
+    "fetch_errors": 0,
+    "actions": [
+      "open BTC@$75735.58 (7d=+2.16%)"
+    ]
+  },
+  "config": {
+    "principal_usd": 40.0,
+    "lookback_days": 7,
+    "entry_threshold_pct": 2.0,
+    "exit_threshold_pct": -2.0,
+    "stop_loss_pct": -8.0,
+    "universe": [
+      "BTC",
+      "ETH",
+      "SOL"
+    ]
+  },
+  "fund_sleeves": [
+    "fund_90_10_growth.directional_momentum"
+  ]
+}

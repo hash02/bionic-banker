@@ -1,0 +1,42 @@
+{
+  "worker_name": "aave_usdc",
+  "strategy_type": "stablecoin_yield",
+  "status": "active",
+  "last_heartbeat": "2026-04-20T23:15:02.801170-07:00",
+  "cycle_count": 1,
+  "position_summary": {
+    "open_positions": 1,
+    "closed_positions": 0,
+    "total_capital_deployed_usd": 400.0,
+    "realized_pnl_usd": 0.0,
+    "unrealized_pnl_usd": 0.0
+  },
+  "performance": {
+    "current_apy_pct": 12.5991,
+    "pnl_all_time": 0.0,
+    "principal_usd": 400.0,
+    "win_rate": null,
+    "trades_last_24h": 0
+  },
+  "risk": {
+    "position_sizing_method": "sleeve_target_usd",
+    "stop_loss_pct": null,
+    "counterparty": "aave_v3_ethereum_mainnet",
+    "protocol_risk": "smart_contract_v3"
+  },
+  "strategy_config": {
+    "protocol": "aave-v3",
+    "chain": "ethereum",
+    "asset": "USDC",
+    "pool_id": "aa70268e-4b52-42bf-a116-608b370f9501",
+    "data_source": "defillama_free",
+    "paper_principal_usd": 400.0,
+    "fund_sleeves": [
+      "fund_60_40_income.stablecoin_yield",
+      "fund_75_25_balanced.stablecoin_yield",
+      "fund_90_10_growth.stablecoin_floor"
+    ]
+  },
+  "errors_last_24h": 0,
+  "health_check": "green"
+}

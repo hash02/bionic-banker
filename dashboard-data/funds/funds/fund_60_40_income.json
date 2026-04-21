@@ -1,0 +1,78 @@
+{
+  "fund_id": "fund_60_40_income",
+  "name": "FUND 60/40 \u2014 Hermes Steady Monthly Income",
+  "as_of": 1776754425,
+  "capital_usd": 1000.0,
+  "target_annual_return_pct": 7.4,
+  "max_drawdown_pct": 5.0,
+  "payout_cadence": "monthly",
+  "coverage_pct": 100.0,
+  "overall_win_rate_pct": 58.3,
+  "total_trades": 32,
+  "total_resolved": 24,
+  "total_pnl_usd": -0.07,
+  "total_staked_usd": 537.96,
+  "sleeves": {
+    "stablecoin_yield": {
+      "target_pct": 40,
+      "target_usd": 400.0,
+      "open_exposure_usd": 400.0,
+      "drift_pct": 0.0,
+      "workers_configured": [
+        "aave_usdc",
+        "morpho_usdc",
+        "euler_pyusd"
+      ],
+      "positions_total": 1,
+      "resolved": 0,
+      "win_rate_pct": 0.0,
+      "pnl_usd": 0.0,
+      "staked_usd": 400.0,
+      "funded": true
+    },
+    "delta_neutral": {
+      "target_pct": 25,
+      "target_usd": 250.0,
+      "open_exposure_usd": 100.0,
+      "drift_pct": -60.0,
+      "workers_configured": [
+        "delta_neutral_funding"
+      ],
+      "positions_total": 2,
+      "resolved": 0,
+      "win_rate_pct": 0.0,
+      "pnl_usd": 0.0,
+      "staked_usd": 100.0,
+      "funded": true
+    },
+    "structural_grid": {
+      "target_pct": 25,
+      "target_usd": 250.0,
+      "open_exposure_usd": 6.95,
+      "drift_pct": -97.2,
+      "workers_configured": [
+        "grid_eth_usdc",
+        "grid_stables"
+      ],
+      "positions_total": 29,
+      "resolved": 24,
+      "win_rate_pct": 58.3,
+      "pnl_usd": -0.07,
+      "staked_usd": 37.96,
+      "funded": true
+    },
+    "cash": {
+      "target_pct": 10,
+      "target_usd": 100.0,
+      "open_exposure_usd": 0.0,
+      "drift_pct": -100.0,
+      "workers_configured": [],
+      "positions_total": 0,
+      "resolved": 0,
+      "win_rate_pct": 0.0,
+      "pnl_usd": 0.0,
+      "staked_usd": 0.0,
+      "funded": true
+    }
+  }
+}
