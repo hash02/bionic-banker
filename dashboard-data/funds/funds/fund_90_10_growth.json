@@ -1,41 +1,73 @@
 {
   "fund_id": "fund_90_10_growth",
   "name": "FUND 90/10 \u2014 Hermes Annual Growth Machine",
-  "as_of": 1776832021,
+  "as_of": 1776835621,
   "capital_usd": 1000.0,
   "target_annual_return_pct": 34.0,
   "max_drawdown_pct": 25.0,
   "payout_cadence": "annual",
-  "coverage_pct": 100.0,
-  "overall_win_rate_pct": 56.4,
-  "total_trades": 95,
-  "total_resolved": 78,
-  "total_pnl_usd": 0.17,
-  "total_staked_usd": 824.54,
+  "coverage_pct": 66.7,
+  "overall_win_rate_pct": 55.0,
+  "total_trades": 94,
+  "total_resolved": 80,
+  "total_pnl_usd": 0.01,
+  "total_staked_usd": 350.44,
   "sleeves": {
     "stablecoin_floor": {
       "target_pct": 10,
       "target_usd": 100.0,
-      "open_exposure_usd": 400.01,
-      "drift_pct": 300.0,
+      "open_exposure_usd": 0.0,
+      "drift_pct": -100.0,
       "workers_configured": [
         "aave_usdc",
         "sgho"
       ],
-      "positions_total": 1,
+      "positions_total": 0,
       "resolved": 0,
       "win_rate_pct": 0.0,
       "pnl_usd": 0.0,
-      "staked_usd": 400.01,
-      "funded": true
+      "staked_usd": 0.0,
+      "funded": false
     },
     "latency_arb": {
       "target_pct": 30,
       "target_usd": 300.0,
-      "open_exposure_usd": 80.0,
-      "drift_pct": -73.3,
+      "open_exposure_usd": 0.0,
+      "drift_pct": -100.0,
       "workers_configured": [
         "polymarket_btc_updown"
+      ],
+      "positions_total": 0,
+      "resolved": 0,
+      "win_rate_pct": 0.0,
+      "pnl_usd": 0.0,
+      "staked_usd": 0.0,
+      "funded": false
+    },
+    "aggressive_grid": {
+      "target_pct": 20,
+      "target_usd": 200.0,
+      "open_exposure_usd": 2.78,
+      "drift_pct": -98.6,
+      "workers_configured": [
+        "grid_eth_usdc",
+        "grid_btc_usdc",
+        "grid_sol"
+      ],
+      "positions_total": 31,
+      "resolved": 29,
+      "win_rate_pct": 58.6,
+      "pnl_usd": -0.04,
+      "staked_usd": 40.74,
+      "funded": true
+    },
+    "directional_momentum": {
+      "target_pct": 20,
+      "target_usd": 200.0,
+      "open_exposure_usd": 80.0,
+      "drift_pct": -60.0,
+      "workers_configured": [
+        "tv_momentum"
       ],
       "positions_total": 2,
       "resolved": 0,
@@ -44,52 +76,20 @@
       "staked_usd": 80.0,
       "funded": true
     },
-    "aggressive_grid": {
-      "target_pct": 20,
-      "target_usd": 200.0,
-      "open_exposure_usd": 1.39,
-      "drift_pct": -99.3,
-      "workers_configured": [
-        "grid_eth_usdc",
-        "grid_btc_usdc",
-        "grid_sol"
-      ],
-      "positions_total": 30,
-      "resolved": 29,
-      "win_rate_pct": 58.6,
-      "pnl_usd": -0.04,
-      "staked_usd": 39.35,
-      "funded": true
-    },
-    "directional_momentum": {
-      "target_pct": 20,
-      "target_usd": 200.0,
-      "open_exposure_usd": 79.86,
-      "drift_pct": -60.1,
-      "workers_configured": [
-        "tv_momentum"
-      ],
-      "positions_total": 2,
-      "resolved": 0,
-      "win_rate_pct": 0.0,
-      "pnl_usd": 0.0,
-      "staked_usd": 79.86,
-      "funded": true
-    },
     "memecoin_sniper": {
       "target_pct": 10,
       "target_usd": 100.0,
-      "open_exposure_usd": 28.22,
-      "drift_pct": -71.8,
+      "open_exposure_usd": 27.12,
+      "drift_pct": -72.9,
       "workers_configured": [
         "crypto_memecoins",
         "wow_sniper_base"
       ],
-      "positions_total": 58,
-      "resolved": 49,
-      "win_rate_pct": 55.1,
-      "pnl_usd": 0.2,
-      "staked_usd": 155.33,
+      "positions_total": 59,
+      "resolved": 51,
+      "win_rate_pct": 52.9,
+      "pnl_usd": 0.05,
+      "staked_usd": 159.7,
       "funded": true
     },
     "xstocks_directional": {
