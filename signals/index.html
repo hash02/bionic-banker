@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signals — Bionic Banker</title>
+<meta name="description" content="Live measurement signals for the on-chain fund and supporting services. TradingView-style green/amber/red on every metric.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://bionicbanker.tech/signals/">
+<meta property="og:title" content="Signals — Bionic Banker">
+<meta property="og:description" content="Live measurement signals across the on-chain fund. Every number has a baseline and a threshold.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bionicbanker.tech/signals/">
+<meta property="og:image" content="https://bionicbanker.tech/blog-visuals/signals-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  *,*::before,*::after { box-sizing: border-box }
+  html,body { margin:0; padding:0; background:#020204; color:#e4e4ec; font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; -webkit-font-smoothing:antialiased }
+  a { color:#1fa068; text-decoration:none }
+  a:hover { text-decoration:underline }
+  .wrap { max-width:1080px; margin:0 auto; padding:48px 24px 96px }
+  .nav { display:flex; gap:24px; align-items:center; margin-bottom:48px; font-size:13px; color:#8a8aa0 }
+  .nav a { color:#8a8aa0 }
+  .nav a:hover { color:#e4e4ec }
+  h1 { font-family:'Bricolage Grotesque',ui-serif,serif; font-size:40px; line-height:1.1; margin:0 0 8px 0; font-weight:600 }
+  .lede { color:#8a8aa0; font-size:15px; line-height:1.5; max-width:680px; margin:0 0 32px 0 }
+  .summary { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin:24px 0 0 0 }
+  .card { background:#0a0a12; border:1px solid #1a1a22; border-radius:8px; padding:18px 20px }
+  .card .num { font-size:28px; font-weight:600; font-variant-numeric:tabular-nums }
+  .card .lab { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:#8a8aa0; margin-top:4px }
+  code { font-family:ui-monospace,Menlo,monospace; font-size:12px; background:#0a0a12; padding:1px 6px; border-radius:3px; color:#1fa068 }
+  .footer { margin-top:64px; padding-top:24px; border-top:1px solid #1a1a22; color:#8a8aa0; font-size:12px }
+  @media (max-width:640px) {
+    .summary { grid-template-columns: repeat(2, 1fr) }
+    h1 { font-size:28px }
+    .wrap { padding:32px 16px 64px }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a href="/">Home</a>
+    <a href="/portfolio/">Portfolio</a>
+    <a href="/blog/">Blog</a>
+    <a href="/intelligence/">Intelligence</a>
+    <span style="margin-left:auto;font-variant-numeric:tabular-nums">last computed: 2026-04-22T02:34:27Z</span>
+  </nav>
+
+  <h1>Signals.</h1>
+  <p class="lede">Every metric on the on-chain fund has a baseline and a threshold. Green means within tolerance. Amber means watch. Red means act. Updated hourly from the live portfolio on Kite testnet (chain 2368).</p>
+
+  <div class="summary">
+    <div class="card"><div class="num" style="color:#1fa068">22</div><div class="lab">green</div></div>
+    <div class="card"><div class="num" style="color:#d8a93a">8</div><div class="lab">amber</div></div>
+    <div class="card"><div class="num" style="color:#d83a3a">1</div><div class="lab">red</div></div>
+    <div class="card"><div class="num" style="color:#e4e4ec">31</div><div class="lab">total measured</div></div>
+  </div>
+
+
+          <section style="margin:32px 0">
+            <h2 style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:#1fa068;margin:0 0 8px 0">Sleeve drift vs target</h2>
+            <div style="font-size:12px;color:#8a8aa0;margin-bottom:12px">metric: <code style="color:#e4e4ec">drift_pct</code></div>
+            <div style="overflow-x:auto;border:1px solid #1a1a22;border-radius:6px">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:640px">
+              <thead>
+                <tr style="text-align:left;border-bottom:1px solid #1a1a22">
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Entity</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Value</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Baseline</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Trend</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">State</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Tier</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.tokenized_stocks</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">140.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d83a3a;background:rgba(216,58,58,0.14);border:1px solid #d83a3a40">red</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_60_40_income.cash</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-100.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_60_40_income.structural_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-100.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.cash</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-100.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.structural_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-100.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.aggressive_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-100.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.directional_momentum</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-60.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.memecoin_sniper</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-77.20</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.xstocks_directional</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-30.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr></tbody>
+            </table>
+            </div>
+          </section>
+
+          <section style="margin:32px 0">
+            <h2 style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:#1fa068;margin:0 0 8px 0">Funded sleeves coverage</h2>
+            <div style="font-size:12px;color:#8a8aa0;margin-bottom:12px">metric: <code style="color:#e4e4ec">funded_sleeves</code></div>
+            <div style="overflow-x:auto;border:1px solid #1a1a22;border-radius:6px">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:640px">
+              <thead>
+                <tr style="text-align:left;border-bottom:1px solid #1a1a22">
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Entity</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Value</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Baseline</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Trend</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">State</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Tier</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">overall</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">9.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#d8a93a;background:rgba(216,169,58,0.14);border:1px solid #d8a93a40">amber</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T2</td>
+              </tr></tbody>
+            </table>
+            </div>
+          </section>
+
+          <section style="margin:32px 0">
+            <h2 style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:#1fa068;margin:0 0 8px 0">Sleeve PnL</h2>
+            <div style="font-size:12px;color:#8a8aa0;margin-bottom:12px">metric: <code style="color:#e4e4ec">pnl_usd</code></div>
+            <div style="overflow-x:auto;border:1px solid #1a1a22;border-radius:6px">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:640px">
+              <thead>
+                <tr style="text-align:left;border-bottom:1px solid #1a1a22">
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Entity</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Value</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Baseline</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Trend</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">State</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Tier</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_60_40_income.cash</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_60_40_income.delta_neutral</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_60_40_income.stablecoin_yield</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_60_40_income.structural_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-0.04</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.cash</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.delta_neutral</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.directional</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.stablecoin_yield</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.structural_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-0.04</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.tokenized_stocks</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.aggressive_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">-0.04</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.directional_momentum</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.latency_arb</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.memecoin_sniper</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.20</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.stablecoin_floor</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.xstocks_directional</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">0.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr></tbody>
+            </table>
+            </div>
+          </section>
+
+          <section style="margin:32px 0">
+            <h2 style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:#1fa068;margin:0 0 8px 0">On-chain tx growth (last 1h)</h2>
+            <div style="font-size:12px;color:#8a8aa0;margin-bottom:12px">metric: <code style="color:#e4e4ec">tx_count</code></div>
+            <div style="overflow-x:auto;border:1px solid #1a1a22;border-radius:6px">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:640px">
+              <thead>
+                <tr style="text-align:left;border-bottom:1px solid #1a1a22">
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Entity</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Value</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Baseline</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Trend</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">State</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Tier</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">kite_chain</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">106.00</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T2</td>
+              </tr></tbody>
+            </table>
+            </div>
+          </section>
+
+          <section style="margin:32px 0">
+            <h2 style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:#1fa068;margin:0 0 8px 0">Sleeve win rate (5+ resolved)</h2>
+            <div style="font-size:12px;color:#8a8aa0;margin-bottom:12px">metric: <code style="color:#e4e4ec">win_rate_pct</code></div>
+            <div style="overflow-x:auto;border:1px solid #1a1a22;border-radius:6px">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:640px">
+              <thead>
+                <tr style="text-align:left;border-bottom:1px solid #1a1a22">
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Entity</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Value</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500;text-align:right">Baseline</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Trend</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">State</th>
+                  <th style="padding:10px 14px;color:#8a8aa0;font-weight:500">Tier</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_60_40_income.structural_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">58.60</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_75_25_balanced.structural_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">58.60</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.aggressive_grid</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">58.60</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr>
+              <tr>
+                <td style="font-family:ui-monospace,Menlo,monospace;color:#e4e4ec;opacity:0.92">fund_90_10_growth.memecoin_sniper</td>
+                <td style="font-variant-numeric:tabular-nums;color:#e4e4ec;text-align:right">55.10</td>
+                <td style="font-variant-numeric:tabular-nums;color:#8a8aa0;text-align:right">—</td>
+                <td><svg width="120" height="28"></svg></td>
+                <td><span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#1fa068;background:rgba(31,160,104,0.12);border:1px solid #1fa06840">green</span></td>
+                <td style="color:#8a8aa0;font-size:11px">T1</td>
+              </tr></tbody>
+            </table>
+            </div>
+          </section>
+
+  <div class="footer">
+    <div>Data source: <code>signals_public.json</code> generated by Wukong cron at <code>:42</code> each hour, rebuilt from <code>metrics.sqlite</code> + <code>portfolio_summary.json</code>.</div>
+    <div style="margin-top:8px">Tier 1 = log only. Tier 2 = notify. Tier 3 = auto-action (none wired yet, circuit breaker required).</div>
+    <div style="margin-top:8px">Sleeve drift definition: <code>open_exposure_usd</code> vs <code>target_usd</code>. A sleeve with closed positions reads <code>-100%</code> drift even if it earned PnL — that is the cycle, not a problem.</div>
+  </div>
+</div>
+</body>
+</html>
