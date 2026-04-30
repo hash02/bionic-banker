@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-04-30T16:28:47-0700",
-  "generated_at_unix": 1777591727.3440573,
+  "generated_at": "2026-04-30T16:47:01-0700",
+  "generated_at_unix": 1777592821.7937644,
   "status": {
-    "ts": 1777591329.9802423,
-    "iso": "2026-04-30T16:22:09-0700",
+    "ts": 1777592779.771225,
+    "iso": "2026-04-30T16:46:19-0700",
     "alive": true,
     "mode": "HEALTHY",
-    "predictions_made": 30,
-    "accuracy_last_100": 0.472,
+    "predictions_made": 1,
+    "accuracy_last_100": 0.462,
     "last_prediction": {
       "type": "btc_direction",
       "value": {
-        "direction": "down",
-        "confidence": 0.039
+        "direction": "up",
+        "confidence": 0.064
       },
-      "price_now": 76311.53
+      "price_now": 76312.79
     },
-    "cycle_drift_s": 21.16
+    "cycle_drift_s": 0.0
   },
   "aggregates": {
-    "total": 39,
+    "total": 42,
     "modes": {
       "UNKNOWN": 5,
-      "HEALTHY": 32,
+      "HEALTHY": 35,
       "DEGRADED": 1,
       "MINIMAL": 1
     },
     "btc_accuracy": {
-      "correct": 16,
-      "total": 31,
-      "rate": 0.516
+      "correct": 17,
+      "total": 34,
+      "rate": 0.5
     },
     "self_accuracy": {
       "correct": 0,
@@ -37,7 +37,7 @@
       "rate": 0.0
     },
     "confidence_avg": 0.05,
-    "drift_mean_s": 17.65
+    "drift_mean_s": 17.33
   },
   "recent": [
     {
@@ -664,6 +664,54 @@
         "correct": false
       },
       "narration": "The recent dip in price could be attributed to the deterministic model's prediction of a downward trend due to its focus on past data and lack of consideration for current market dynamics or potential news events."
+    },
+    {
+      "iso": "2026-04-30T16:32:31-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.027
+      },
+      "price_now": 76327.97,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The slight dip in price and relatively low volume combined with the bearish prediction suggest a potential pullback or consolidation before further movement."
+    },
+    {
+      "iso": "2026-04-30T16:42:51-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.068
+      },
+      "price_now": 76343.34,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The lack of significant volume and the bearish prediction from deterministic models suggest a potential dip in price due to weak market momentum."
+    },
+    {
+      "iso": "2026-04-30T16:46:19-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.064
+      },
+      "price_now": 76312.79,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The slight price dip may be a temporary correction before the upward trend continues, driven by positive market sentiment and increased buying pressure."
     }
   ]
 }
