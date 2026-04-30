@@ -1,0 +1,669 @@
+{
+  "generated_at": "2026-04-30T16:28:02-0700",
+  "generated_at_unix": 1777591682.8239205,
+  "status": {
+    "ts": 1777591329.9802423,
+    "iso": "2026-04-30T16:22:09-0700",
+    "alive": true,
+    "mode": "HEALTHY",
+    "predictions_made": 30,
+    "accuracy_last_100": 0.472,
+    "last_prediction": {
+      "type": "btc_direction",
+      "value": {
+        "direction": "down",
+        "confidence": 0.039
+      },
+      "price_now": 76311.53
+    },
+    "cycle_drift_s": 21.16
+  },
+  "aggregates": {
+    "total": 39,
+    "modes": {
+      "UNKNOWN": 5,
+      "HEALTHY": 32,
+      "DEGRADED": 1,
+      "MINIMAL": 1
+    },
+    "btc_accuracy": {
+      "correct": 16,
+      "total": 31,
+      "rate": 0.516
+    },
+    "self_accuracy": {
+      "correct": 0,
+      "total": 1,
+      "rate": 0.0
+    },
+    "confidence_avg": 0.05,
+    "drift_mean_s": 17.65
+  },
+  "recent": [
+    {
+      "iso": "2026-04-30T10:54:51-0700",
+      "mode": null,
+      "prediction_type": null,
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.029
+      },
+      "price_now": 76246.22,
+      "scored_prior": {
+        "predicted": null,
+        "actual": null,
+        "correct": null
+      },
+      "narration": "The predicted upward movement likely stems from the relatively low RSI and positive volume, indicating potential buying pressure despite recent price fluctuations."
+    },
+    {
+      "iso": "2026-04-30T10:55:31-0700",
+      "mode": null,
+      "prediction_type": null,
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.034
+      },
+      "price_now": 76267.83,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The deterministic model's prediction of a downward movement likely stems from the current price being close to its recent support level, indicating potential trend reversal."
+    },
+    {
+      "iso": "2026-04-30T11:05:49-0700",
+      "mode": null,
+      "prediction_type": null,
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.047
+      },
+      "price_now": 76291.32,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The deterministic model's prediction of a downward trend may be due to the current price being near support levels and experiencing a slight decrease in trading volume."
+    },
+    {
+      "iso": "2026-04-30T11:08:00-0700",
+      "mode": null,
+      "prediction_type": null,
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.015
+      },
+      "price_now": 76305.26,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The deterministic model's prediction of a downward trend likely stems from the current price being near its recent resistance level and a lack of strong volume to support further upward movement."
+    },
+    {
+      "iso": "2026-04-30T11:18:16-0700",
+      "mode": null,
+      "prediction_type": null,
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.069
+      },
+      "price_now": 76452.35,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The positive momentum and recent price movement suggest potential continuation of the upward trend."
+    },
+    {
+      "iso": "2026-04-30T11:21:42-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.048
+      },
+      "price_now": 76396.77,
+      "scored_prior": {
+        "predicted": null,
+        "actual": null,
+        "correct": null
+      },
+      "narration": "The predicted downtrend could be triggered by the relatively high RSI and low volume, indicating potential exhaustion or lack of buying pressure after recent price movements."
+    },
+    {
+      "iso": "2026-04-30T11:21:46-0700",
+      "mode": "DEGRADED",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.048
+      },
+      "price_now": 76396.77,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The predicted downward movement might be due to the recent market dip and the lack of fresh data impacting price prediction models."
+    },
+    {
+      "iso": "2026-04-30T11:21:47-0700",
+      "mode": "MINIMAL",
+      "prediction_type": "self_cycle",
+      "prediction": {
+        "type": "self_cycle",
+        "within_600s": true,
+        "confidence": 1.0
+      },
+      "price_now": null,
+      "scored_prior": {
+        "predicted": null,
+        "actual": null,
+        "correct": null
+      },
+      "narration": "The agent should **wait for network connectivity** to resume before attempting further actions."
+    },
+    {
+      "iso": "2026-04-30T11:21:48-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.049
+      },
+      "price_now": 76395.16,
+      "scored_prior": {
+        "predicted": "within",
+        "actual": "outside",
+        "correct": false
+      },
+      "narration": "The bearish prediction from the deterministic model may be due to recent market trends showing a slight dip in price after reaching a peak."
+    },
+    {
+      "iso": "2026-04-30T11:22:09-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.046
+      },
+      "price_now": 76395.16,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The recent price movement and high RSI suggest a potential pullback as the market may be approaching overbought levels."
+    },
+    {
+      "iso": "2026-04-30T11:32:25-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.019
+      },
+      "price_now": 76307.08,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The relatively low volume and bearish prediction suggest a lack of strong buying pressure despite the slight price movement, potentially indicating indecision before further direction."
+    },
+    {
+      "iso": "2026-04-30T11:42:46-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.06
+      },
+      "price_now": 76315.01,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The deterministic model's prediction of a downward trend could be due to the current price being close to its recent highs and potentially approaching resistance levels."
+    },
+    {
+      "iso": "2026-04-30T11:53:06-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.006
+      },
+      "price_now": 76441.39,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The slight price increase and positive momentum indicators suggest potential bullish continuation despite the lack of significant volume."
+    },
+    {
+      "iso": "2026-04-30T12:03:27-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.022
+      },
+      "price_now": 76333.9,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "down",
+        "correct": false
+      },
+      "narration": "The slight price dip and negative volume z-score suggest a potential pullback after recent gains, aligning with the deterministic prediction of a downward trend."
+    },
+    {
+      "iso": "2026-04-30T12:13:48-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.017
+      },
+      "price_now": 76471.0,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The slight price increase and positive deterministic prediction suggest the market is cautiously optimistic about continued upward movement."
+    },
+    {
+      "iso": "2026-04-30T12:24:08-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.021
+      },
+      "price_now": 76476.93,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The slight dip in price and bearish prediction might be due to profit-taking from recent gains as the RSI indicates potential overbought conditions."
+    },
+    {
+      "iso": "2026-04-30T12:34:28-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.132
+      },
+      "price_now": 76491.6,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The positive momentum and recent price movement suggest a potential continuation of the upward trend."
+    },
+    {
+      "iso": "2026-04-30T12:44:49-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.044
+      },
+      "price_now": 76443.28,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "down",
+        "correct": false
+      },
+      "narration": "The high RSI and positive volume z-score suggest potential overbought conditions leading to a price correction."
+    },
+    {
+      "iso": "2026-04-30T12:55:09-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.078
+      },
+      "price_now": 76384.08,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The slight dip followed by the positive prediction from a deterministic model suggests a potential bounce as traders react to recent news or developments."
+    },
+    {
+      "iso": "2026-04-30T13:05:29-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.116
+      },
+      "price_now": 76410.0,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The slight price increase and positive momentum indicators suggest potential upward movement in the short term due to continued market interest."
+    },
+    {
+      "iso": "2026-04-30T13:15:51-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.017
+      },
+      "price_now": 76356.29,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "down",
+        "correct": false
+      },
+      "narration": "The slight dip in price and relatively low volume suggest a potential bounce back towards the upward trend line."
+    },
+    {
+      "iso": "2026-04-30T13:26:12-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.085
+      },
+      "price_now": 76462.96,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The slight dip in price and lack of significant volume could indicate a pause before further downward movement."
+    },
+    {
+      "iso": "2026-04-30T13:36:32-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.035
+      },
+      "price_now": 76509.99,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The bearish prediction likely stems from the recent price movement being slightly below support levels and RSI approaching overbought territory, indicating potential for a pullback."
+    },
+    {
+      "iso": "2026-04-30T13:46:53-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.059
+      },
+      "price_now": 76522.38,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The lack of significant price movement and relatively low trading volume suggest a lack of strong momentum, potentially indicating a pause before further directional change."
+    },
+    {
+      "iso": "2026-04-30T13:57:14-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.096
+      },
+      "price_now": 76538.27,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The combination of a neutral price movement and bearish prediction suggests the market might be hesitant to break through resistance, leading to sideways trading."
+    },
+    {
+      "iso": "2026-04-30T14:07:34-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.065
+      },
+      "price_now": 76509.96,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The slight dip in price followed by a positive prediction from the deterministic model suggests potential buying pressure as traders anticipate further upward movement."
+    },
+    {
+      "iso": "2026-04-30T14:17:55-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.066
+      },
+      "price_now": 76450.01,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "down",
+        "correct": false
+      },
+      "narration": "The slight dip in price and relatively low volume suggest the market may be consolidating before a larger upward move."
+    },
+    {
+      "iso": "2026-04-30T14:28:15-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.04
+      },
+      "price_now": 76363.6,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "down",
+        "correct": false
+      },
+      "narration": "The slight dip in price coupled with the bullish prediction from a deterministic model suggests buyers are still active despite minor dips."
+    },
+    {
+      "iso": "2026-04-30T14:38:36-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.028
+      },
+      "price_now": 76451.48,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The bearish prediction from the deterministic model could be due to the relatively low trading volume and lack of momentum despite slight price movement."
+    },
+    {
+      "iso": "2026-04-30T14:49:00-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.041
+      },
+      "price_now": 76300.93,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The recent price drop and bearish prediction could be due to the relatively low trading volume suggesting a lack of strong buying pressure."
+    },
+    {
+      "iso": "2026-04-30T14:59:21-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.025
+      },
+      "price_now": 76281.85,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The slight increase in price combined with the deterministic prediction of an upward trend could indicate a potential short-term buying opportunity."
+    },
+    {
+      "iso": "2026-04-30T15:09:41-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.014
+      },
+      "price_now": 76346.5,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The bearish prediction from the deterministic model could be due to a lack of significant buying pressure despite slight price movement."
+    },
+    {
+      "iso": "2026-04-30T15:20:02-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.061
+      },
+      "price_now": 76393.36,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The slight dip in price and relatively low RSI suggest the market might be consolidating before a potential downward trend."
+    },
+    {
+      "iso": "2026-04-30T15:30:24-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.065
+      },
+      "price_now": 76442.01,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The lack of significant price movement despite the predicted downward trend suggests market indecision or potential consolidation before a directional shift."
+    },
+    {
+      "iso": "2026-04-30T15:40:44-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.019
+      },
+      "price_now": 76306.42,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The slight dip in price coupled with the relatively low RSI and positive volume suggest a potential bounce back towards higher levels."
+    },
+    {
+      "iso": "2026-04-30T15:51:06-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.063
+      },
+      "price_now": 76357.58,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The combination of bearish prediction and relatively low trading volume suggests a potential for a short-term correction despite the slight price increase."
+    },
+    {
+      "iso": "2026-04-30T16:01:28-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.049
+      },
+      "price_now": 76258.21,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The deterministic model's prediction of a downward trend could be due to the recent slight dip in price and the RSI being slightly below overbought levels."
+    },
+    {
+      "iso": "2026-04-30T16:11:48-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.085
+      },
+      "price_now": 76242.39,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The combination of a slight dip and bearish prediction suggests the market may be consolidating before further downward movement."
+    },
+    {
+      "iso": "2026-04-30T16:22:09-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.039
+      },
+      "price_now": 76311.53,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The recent dip in price could be attributed to the deterministic model's prediction of a downward trend due to its focus on past data and lack of consideration for current market dynamics or potential news events."
+    }
+  ]
+}

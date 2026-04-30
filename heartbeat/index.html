@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTC Heartbeat — Bionic Banker</title>
+<meta name="description" content="Falsifiable BTC direction predictions from a local-LLM-backed heartbeat agent. Track-record updated nightly. R-038 compliant.">
+<meta property="og:title" content="BTC Heartbeat — Bionic Banker">
+<meta property="og:description" content="Falsifiable BTC predictions from an autonomous agent. Honest track-record.">
+<meta property="og:url" content="https://bionicbanker.tech/heartbeat/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@BionicBanker">
+<link rel="canonical" href="https://bionicbanker.tech/heartbeat/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YS428H3H44');
+</script>
+<style>
+  body, html { background:#08080e; color:#e4e4ec; margin:0; padding:0; font-family:'Plus Jakarta Sans', system-ui, sans-serif; }
+  h1, h2, h3 { font-family:'Bricolage Grotesque', system-ui, sans-serif; font-weight:700; }
+  .nav { background:#08080e; border-bottom:1px solid #23232b; padding:14px 24px; display:flex; align-items:center; gap:24px; }
+  .nav a { color:#a0a0b0; text-decoration:none; }
+  .nav a:hover { color:#5b73f8; }
+  .nav-logo { font-weight:700; font-size:1.1rem; color:#e4e4ec; }
+  .nav-logo span { color:#5b73f8; }
+  .container { max-width:1100px; margin:0 auto; padding:32px 24px; }
+  .panel { background:#14141a; border:1px solid #23232b; border-radius:10px; padding:24px; margin-bottom:24px; }
+  .meta-row { color:#8a8aa0; font-size:0.85rem; margin-bottom:12px; }
+  .live-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#1fa068; margin-right:6px; animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; margin-bottom:24px; }
+  .kpi { background:#14141a; border:1px solid #23232b; border-radius:10px; padding:16px; }
+  .kpi-label { color:#8a8aa0; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; }
+  .kpi-value { font-size:1.6rem; font-weight:700; margin-top:6px; }
+  .kpi-sub { color:#8a8aa0; font-size:0.85rem; margin-top:4px; }
+  table { width:100%; border-collapse:collapse; font-size:0.9rem; }
+  th, td { padding:10px 12px; text-align:left; border-bottom:1px solid #1f1f27; }
+  th { color:#8a8aa0; font-weight:600; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; }
+  .footer { text-align:center; color:#8a8aa0; font-size:0.85rem; padding:32px 24px; border-top:1px solid #23232b; margin-top:48px; }
+  .footer a { color:#5b73f8; text-decoration:none; }
+  .narration { font-style:italic; color:#a0a0b0; padding:16px; background:#0a0a0e; border-left:3px solid #5b73f8; border-radius:4px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">Bionic <span>Banker</span></a>
+  <a href="/portfolio">Portfolio</a>
+  <a href="/signals">Signals</a>
+  <a href="/heartbeat" style="color:#e4e4ec;font-weight:600;">Heartbeat</a>
+  <a href="/intelligence">Intelligence</a>
+  <a href="/articles">Articles</a>
+</nav>
+
+<div class="container">
+
+<div class="meta-row">
+  <span class="live-dot"></span> Live · last update 2026-04-30T16:28:02-0700 · auto-refreshed by cron
+</div>
+
+<h1>BTC Heartbeat</h1>
+<p style="color:#a0a0b0;max-width:720px;line-height:1.6;">
+  An autonomous agent on private infrastructure makes a binary up/down prediction on the next 10-minute Bitcoin candle.
+  Every cycle scores the previous prediction against actual price movement.
+  No money on these predictions — this is a public, falsifiable track-record of a local-LLM-backed agent.
+</p>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Total predictions</div>
+    <div class="kpi-value">39</div>
+    <div class="kpi-sub">since deployment</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">BTC direction accuracy</div>
+    <div class="kpi-value">51.6%</div>
+    <div class="kpi-sub">16 / 31 scored · 50% baseline</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Self-cycle accuracy</div>
+    <div class="kpi-value">0.0%</div>
+    <div class="kpi-sub">0 / 1 offline-mode predictions</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Current mode</div>
+    <div class="kpi-value">HEALTHY</div>
+    <div class="kpi-sub">last price $76,311.53</div>
+  </div>
+</div>
+
+<div class="panel">
+  <h3 style="margin-top:0;">Mode distribution (last 39 predictions)</h3>
+  <div><span style="display:inline-block;padding:4px 12px;margin:4px;border-radius:999px;background:#8a8aa0;color:#fff;font-size:0.85rem;font-weight:600;">UNKNOWN 5 (13%)</span><span style="display:inline-block;padding:4px 12px;margin:4px;border-radius:999px;background:#1fa068;color:#fff;font-size:0.85rem;font-weight:600;">HEALTHY 32 (82%)</span><span style="display:inline-block;padding:4px 12px;margin:4px;border-radius:999px;background:#b88300;color:#fff;font-size:0.85rem;font-weight:600;">DEGRADED 1 (3%)</span><span style="display:inline-block;padding:4px 12px;margin:4px;border-radius:999px;background:#d23b3b;color:#fff;font-size:0.85rem;font-weight:600;">MINIMAL 1 (3%)</span></div>
+  <p style="color:#8a8aa0;font-size:0.85rem;margin-top:16px;line-height:1.5;">
+    HEALTHY: live data + LLM narration. DEGRADED: cached data, internet partial. MINIMAL: no external data, agent stays alive via self-prediction.
+    Three-tier resilience built in.
+  </p>
+</div>
+
+<div class="panel">
+  <h3 style="margin-top:0;">Prediction timeline (last 30 cycles)</h3>
+  <p style="color:#8a8aa0;font-size:0.85rem;margin-bottom:12px;">Green = correct, red = wrong, faded = pending or offline.</p>
+  <svg width="100%" height="50" viewBox="0 0 600 50" preserveAspectRatio="none" style="background:#0a0a0e;border-radius:4px;"><rect x="0.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="20.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="40.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="60.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="80.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="100.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="120.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="140.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="160.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="180.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="200.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="220.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="240.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="260.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="280.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="300.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="320.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="340.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="360.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="380.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="400.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="420.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="440.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="460.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="480.0" y="5" width="19.0" height="40" fill="#d23b3b" /><rect x="500.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="520.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="540.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="560.0" y="5" width="19.0" height="40" fill="#1fa068" /><rect x="580.0" y="5" width="19.0" height="40" fill="#d23b3b" /></svg>
+</div>
+
+<div class="panel">
+  <h3 style="margin-top:0;">Latest narration</h3>
+  <div class="narration">The recent dip in price could be attributed to the deterministic model's prediction of a downward trend due to its focus on past data and lack of consideration for current market dynamics or potential news events.</div>
+  <p style="color:#8a8aa0;font-size:0.8rem;margin-top:8px;">From gemma2:2b running locally. Narration is best-effort and may be absent in MINIMAL mode.</p>
+</div>
+
+<div class="panel">
+  <h3 style="margin-top:0;">Recent predictions</h3>
+  <div style="overflow-x:auto;">
+  <table>
+    <thead>
+      <tr>
+        <th>Time UTC</th>
+        <th>Mode</th>
+        <th>Prediction</th>
+        <th>Price at call</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">16:22:09</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.039</td><td>$76,312</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">16:11:48</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.085</td><td>$76,242</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">16:01:28</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.049</td><td>$76,258</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">15:51:06</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.063</td><td>$76,358</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">15:40:44</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.019</td><td>$76,306</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">15:30:24</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.065</td><td>$76,442</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">15:20:02</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.061</td><td>$76,393</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">15:09:41</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.014</td><td>$76,346</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">14:59:21</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.025</td><td>$76,282</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">14:49:00</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.041</td><td>$76,301</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">14:38:36</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.028</td><td>$76,451</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">14:28:15</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.040</td><td>$76,364</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">14:17:55</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.066</td><td>$76,450</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">14:07:34</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.065</td><td>$76,510</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">13:57:14</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.096</td><td>$76,538</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">13:46:53</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.059</td><td>$76,522</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">13:36:32</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.035</td><td>$76,510</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">13:26:12</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.085</td><td>$76,463</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">13:15:51</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.017</td><td>$76,356</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">13:05:29</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.116</td><td>$76,410</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">12:55:09</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.078</td><td>$76,384</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">12:44:49</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.044</td><td>$76,443</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">12:34:28</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.132</td><td>$76,492</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">12:24:08</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>down @ 0.021</td><td>$76,477</td><td style="color:#1fa068;font-weight:bold;text-align:center;">✓</td></tr><tr><td style="color:#8a8aa0;font-family:ui-monospace,Menlo,monospace;">12:13:48</td><td><span style="color:#a0a0b0;">HEALTHY</span></td><td>up @ 0.017</td><td>$76,471</td><td style="color:#d23b3b;font-weight:bold;text-align:center;">✗</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="panel">
+  <h3 style="margin-top:0;">How this works</h3>
+  <ul style="color:#a0a0b0;line-height:1.7;">
+    <li><strong>Cadence:</strong> every ~10 minutes (loosely aligned with Bitcoin block cadence).</li>
+    <li><strong>Data:</strong> 30 most-recent 5-minute BTC candles from Binance public API. No API key needed.</li>
+    <li><strong>Predictor:</strong> deterministic — last-3 returns + RSI(14) + volume z-score, weighted vote.</li>
+    <li><strong>Narration:</strong> gemma2:2b via Ollama running locally on the agent host. Best-effort, never blocks the prediction.</li>
+    <li><strong>Resilience:</strong> three modes (HEALTHY, DEGRADED, MINIMAL). Local LLM keeps the agent reasoning even with no internet.</li>
+    <li><strong>No money:</strong> this is a public track-record only. No live trading on these signals.</li>
+  </ul>
+</div>
+
+</div>
+
+<div class="footer">
+  Powered by <a href="https://bionicbanker.tech">Bionic Banker</a> · Built by <a href="https://github.com/hash02">HASH</a> · Updated by cron every hour
+</div>
+
+</body>
+</html>
