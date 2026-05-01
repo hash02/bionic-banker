@@ -1,34 +1,34 @@
 {
-  "generated_at": "2026-04-30T16:47:01-0700",
-  "generated_at_unix": 1777592821.7937644,
+  "generated_at": "2026-04-30T17:47:01-0700",
+  "generated_at_unix": 1777596421.4960394,
   "status": {
-    "ts": 1777592779.771225,
-    "iso": "2026-04-30T16:46:19-0700",
+    "ts": 1777596296.973241,
+    "iso": "2026-04-30T17:44:56-0700",
     "alive": true,
     "mode": "HEALTHY",
-    "predictions_made": 1,
-    "accuracy_last_100": 0.462,
+    "predictions_made": 38,
+    "accuracy_last_100": 0.467,
     "last_prediction": {
       "type": "btc_direction",
       "value": {
-        "direction": "up",
-        "confidence": 0.064
+        "direction": "down",
+        "confidence": 0.066
       },
-      "price_now": 76312.79
+      "price_now": 76528.38
     },
-    "cycle_drift_s": 0.0
+    "cycle_drift_s": 20.06
   },
   "aggregates": {
-    "total": 42,
+    "total": 48,
     "modes": {
       "UNKNOWN": 5,
-      "HEALTHY": 35,
+      "HEALTHY": 41,
       "DEGRADED": 1,
       "MINIMAL": 1
     },
     "btc_accuracy": {
-      "correct": 17,
-      "total": 34,
+      "correct": 20,
+      "total": 40,
       "rate": 0.5
     },
     "self_accuracy": {
@@ -36,8 +36,8 @@
       "total": 1,
       "rate": 0.0
     },
-    "confidence_avg": 0.05,
-    "drift_mean_s": 17.33
+    "confidence_avg": 0.056,
+    "drift_mean_s": 17.84
   },
   "recent": [
     {
@@ -712,6 +712,102 @@
         "correct": true
       },
       "narration": "The slight price dip may be a temporary correction before the upward trend continues, driven by positive market sentiment and increased buying pressure."
+    },
+    {
+      "iso": "2026-04-30T16:53:12-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.043
+      },
+      "price_now": 76372.18,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The predicted downtrend might be triggered by the recent dip in volume and the lack of momentum despite minor price movement."
+    },
+    {
+      "iso": "2026-04-30T17:03:33-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.199
+      },
+      "price_now": 76413.29,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The combination of positive price movement and high RSI suggests potential for further upward momentum driven by bullish sentiment."
+    },
+    {
+      "iso": "2026-04-30T17:13:54-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.014
+      },
+      "price_now": 76458.0,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "The slight dip in price despite positive RSI and volume may indicate profit-taking by traders after recent gains."
+    },
+    {
+      "iso": "2026-04-30T17:24:15-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.021
+      },
+      "price_now": 76486.11,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The high RSI and negative volume z-score suggest a potential reversal after recent price strength, potentially indicating a downward trend in the short term."
+    },
+    {
+      "iso": "2026-04-30T17:34:36-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.211
+      },
+      "price_now": 76483.19,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "The high RSI and positive volume z-score suggest potential overbought conditions and momentum exhaustion, potentially leading to a price drop."
+    },
+    {
+      "iso": "2026-04-30T17:44:56-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.066
+      },
+      "price_now": 76528.38,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "The high RSI and significant volume increase suggest a potential overbought condition leading to a price correction."
     }
   ]
 }
