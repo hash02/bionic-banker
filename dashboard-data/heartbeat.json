@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-05-05T03:47:01-0700",
-  "generated_at_unix": 1777978021.4990404,
+  "generated_at": "2026-05-05T04:47:01-0700",
+  "generated_at_unix": 1777981621.6635497,
   "status": {
-    "ts": 1777978003.3378258,
-    "iso": "2026-05-05T03:46:43-0700",
+    "ts": 1777981117.8743947,
+    "iso": "2026-05-05T04:38:37-0700",
     "alive": true,
     "mode": "HEALTHY",
-    "predictions_made": 16,
-    "accuracy_last_100": 0.48,
+    "predictions_made": 21,
+    "accuracy_last_100": 0.49,
     "accuracy_by_method": {
-      "det": 0.529,
-      "det+ml+llm": 0.625
+      "det": 0.552,
+      "det+ml+llm": 0.619
     },
     "ml_samples": 643,
     "last_prediction": {
       "type": "btc_direction",
       "value": {
-        "direction": "down",
-        "confidence": 0.19,
+        "direction": "up",
+        "confidence": 0.103,
         "method": "det+ml+llm"
       },
-      "price_now": 80826.45,
+      "price_now": 81065.12,
       "fear_greed": 0.5
     },
-    "cycle_drift_s": 23.73
+    "cycle_drift_s": 23.1
   },
   "aggregates": {
     "total": 100,
@@ -31,99 +31,19 @@
       "HEALTHY": 100
     },
     "btc_accuracy": {
-      "correct": 48,
+      "correct": 49,
       "total": 100,
-      "rate": 0.48
+      "rate": 0.49
     },
     "self_accuracy": {
       "correct": 0,
       "total": 0,
       "rate": null
     },
-    "confidence_avg": 0.061,
-    "drift_mean_s": 22.94
+    "confidence_avg": 0.063,
+    "drift_mean_s": 22.92
   },
   "recent": [
-    {
-      "iso": "2026-05-04T19:25:46-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.042
-      },
-      "price_now": 80520.65,
-      "scored_prior": {
-        "predicted": "up",
-        "actual": "up",
-        "correct": true
-      },
-      "narration": "The high RSI and negative volume z-score suggest potential exhaustion after recent gains, leading to a likely price drop in the short term."
-    },
-    {
-      "iso": "2026-05-04T19:36:08-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.04
-      },
-      "price_now": 80520.77,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "up",
-        "correct": false
-      },
-      "narration": "The recent price increase might be stalling before a potential downward trend based on the deterministic model's prediction."
-    },
-    {
-      "iso": "2026-05-04T19:46:32-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "up",
-        "confidence": 0.217
-      },
-      "price_now": 80679.09,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "up",
-        "correct": false
-      },
-      "narration": "The relatively high RSI and strong volume suggest momentum driving the price upward despite slight overall decline."
-    },
-    {
-      "iso": "2026-05-04T19:56:54-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.079
-      },
-      "price_now": 80511.12,
-      "scored_prior": {
-        "predicted": "up",
-        "actual": "down",
-        "correct": false
-      },
-      "narration": "The slight dip in price, coupled with the relatively low trading volume and bearish prediction from deterministic models, suggests a potential continuation of the downward trend."
-    },
-    {
-      "iso": "2026-05-04T20:07:16-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "up",
-        "confidence": 0.045
-      },
-      "price_now": 80507.91,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "down",
-        "correct": true
-      },
-      "narration": "The slight upward movement and positive prediction suggest potential buying pressure amidst current market conditions."
-    },
     {
       "iso": "2026-05-04T20:17:41-0700",
       "mode": "HEALTHY",
@@ -860,6 +780,91 @@
         "correct": true
       },
       "narration": "The combination of a high RSI and potentially bearish signals from Ensemble suggests the price may decline despite Bitcoin's current status."
+    },
+    {
+      "iso": "2026-05-05T03:57:06-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.1,
+        "method": "det+ml+llm"
+      },
+      "price_now": 80756.38,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "Despite positive technical indicators like a rising RSI and MACD, the combination of bearish predictions from Ensemble models and historical trends suggests a potential downward movement in Bitcoin's price."
+    },
+    {
+      "iso": "2026-05-05T04:07:29-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.098,
+        "method": "det+ml+llm"
+      },
+      "price_now": 80837.45,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "Despite the current bullish momentum indicated by technical indicators and ensemble predictions, a potential pullback is likely due to the high RSI reading and recent price action."
+    },
+    {
+      "iso": "2026-05-05T04:17:52-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.13,
+        "method": "det+ml+llm"
+      },
+      "price_now": 80876.01,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "Despite the bearish signals from technical indicators like RSI and MACD, the positive prediction by Ensemble suggests a potential for upside movement due to its strong underlying machine learning and language model components."
+    },
+    {
+      "iso": "2026-05-05T04:28:14-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.094,
+        "method": "det+ml+llm"
+      },
+      "price_now": 80918.65,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "Despite the positive momentum indicators and recent price increase, the combination of a bearish prediction from Ensemble and significant historical volatility suggests a potential for a downward trend in Bitcoin."
+    },
+    {
+      "iso": "2026-05-05T04:38:37-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.103,
+        "method": "det+ml+llm"
+      },
+      "price_now": 81065.12,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "Despite the strong bullish signals from technical indicators and Ensemble predictions, a potential short-term pullback might occur due to the high RSI level."
     }
   ]
 }
