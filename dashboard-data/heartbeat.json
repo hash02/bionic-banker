@@ -1,39 +1,39 @@
 {
-  "generated_at": "2026-05-16T07:47:01-0700",
-  "generated_at_unix": 1778942821.0888267,
+  "generated_at": "2026-05-16T08:47:01-0700",
+  "generated_at_unix": 1778946421.7794418,
   "status": {
-    "ts": 1778942776.9035368,
-    "iso": "2026-05-16T07:46:16-0700",
+    "ts": 1778946286.705876,
+    "iso": "2026-05-16T08:44:46-0700",
     "alive": true,
     "mode": "HEALTHY",
-    "predictions_made": 2153,
-    "accuracy_last_100": 0.56,
+    "predictions_made": 2163,
+    "accuracy_last_100": 0.57,
     "accuracy_by_method": {
-      "det+ml+llm": 0.54
+      "det+ml+llm": 0.5
     },
     "ml_samples": 3368,
     "last_prediction": {
       "type": "btc_direction",
       "value": {
         "direction": "down",
-        "confidence": 0.063,
+        "confidence": 0.216,
         "method": "det+ml+llm",
         "sub_scores": {
-          "det": 0.317,
-          "ml": -0.096,
+          "det": -0.041,
+          "ml": -0.187,
           "llm": -0.55
         }
       },
-      "price_now": 78299.12,
+      "price_now": 78215.37,
       "fear_greed": 0.31,
       "futures": {
         "funding_rate": -2.1e-06,
-        "ls_ratio": 1.2026,
-        "oi_change_pct": 0.0238,
-        "tv_signal": 0.444
+        "ls_ratio": 1.2351,
+        "oi_change_pct": 0.043,
+        "tv_signal": 0.625
       }
     },
-    "cycle_drift_s": -251.18
+    "cycle_drift_s": -249.09
   },
   "aggregates": {
     "total": 100,
@@ -41,239 +41,19 @@
       "HEALTHY": 100
     },
     "btc_accuracy": {
-      "correct": 56,
+      "correct": 57,
       "total": 100,
-      "rate": 0.56
+      "rate": 0.57
     },
     "self_accuracy": {
       "correct": 0,
       "total": 0,
       "rate": null
     },
-    "confidence_avg": 0.103,
-    "drift_mean_s": -250.02
+    "confidence_avg": 0.099,
+    "drift_mean_s": -250.03
   },
   "recent": [
-    {
-      "iso": "2026-05-16T03:00:45-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "up",
-        "confidence": 0.081,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": 0.335,
-          "ml": 0.181,
-          "llm": -0.55
-        }
-      },
-      "price_now": 78095.75,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "down",
-        "correct": true
-      },
-      "narration": "Despite relatively neutral technical indicators and a slight positive prediction from Ensemble models, the current price action suggests potential for further growth as the market continues to react to positive news and sentiment."
-    },
-    {
-      "iso": "2026-05-16T03:06:34-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.044,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": -0.024,
-          "ml": 0.146,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77965.33,
-      "scored_prior": {
-        "predicted": "up",
-        "actual": "down",
-        "correct": false
-      },
-      "narration": "Despite a slight price increase and some positive indicators, the combination of bearish signals like high MACD and negative RSI suggests a potential downward trend in Bitcoin's price."
-    },
-    {
-      "iso": "2026-05-16T03:12:21-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.18,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": -0.424,
-          "ml": 0.115,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77819.65,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "down",
-        "correct": true
-      },
-      "narration": "Despite the negative prediction from Ensemble models, a slight dip in price suggests potential for short-term stability before further market fluctuations."
-    },
-    {
-      "iso": "2026-05-16T03:18:09-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.014,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": 0.05,
-          "ml": 0.163,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77888.86,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "up",
-        "correct": false
-      },
-      "narration": "Despite a slight dip in price and bearish signals, the combination of historical trends and current market conditions points to a potential downward movement in Bitcoin's value."
-    },
-    {
-      "iso": "2026-05-16T03:23:59-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.122,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": -0.186,
-          "ml": 0.088,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77857.63,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "down",
-        "correct": true
-      },
-      "narration": "Despite the negative prediction from Ensemble models, Bitcoin's current price suggests a potential for further decline due to the bearish RSI and MACD signals alongside low funding rates."
-    },
-    {
-      "iso": "2026-05-16T03:29:48-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.208,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": -0.429,
-          "ml": 0.061,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77775.67,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "down",
-        "correct": true
-      },
-      "narration": "Despite a slight dip in price and bearish indicators like the RSI and MACD, the overall sentiment remains negative due to the ensemble model's prediction of further decline."
-    },
-    {
-      "iso": "2026-05-16T03:35:36-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.065,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": 0.004,
-          "ml": 0.088,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77946.95,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "up",
-        "correct": false
-      },
-      "narration": "Despite a slight dip in price and bearish indicators, the combination of negative sentiment from the ensemble model and low funding rate suggests potential downside pressure on Bitcoin's price."
-    },
-    {
-      "iso": "2026-05-16T03:41:25-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "up",
-        "confidence": 0.033,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": 0.352,
-          "ml": 0.075,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77868.71,
-      "scored_prior": {
-        "predicted": "down",
-        "actual": "down",
-        "correct": true
-      },
-      "narration": "Despite the current market dip and indicators suggesting a potential bullish trend, the combination of strong fundamental signals and advanced AI prediction suggests further price increases are likely."
-    },
-    {
-      "iso": "2026-05-16T03:47:13-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "up",
-        "confidence": 0.075,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": 0.314,
-          "ml": 0.181,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77920.0,
-      "scored_prior": {
-        "predicted": "up",
-        "actual": "up",
-        "correct": true
-      },
-      "narration": "Despite the bearish sentiment indicated by the RSI and recent price movement,  Ensemble predictions point to a positive outlook for BTC due to its strong technical indicators and potential for further growth."
-    },
-    {
-      "iso": "2026-05-16T03:53:01-0700",
-      "mode": "HEALTHY",
-      "prediction_type": "btc_direction",
-      "prediction": {
-        "direction": "down",
-        "confidence": 0.137,
-        "method": "det+ml+llm",
-        "sub_scores": {
-          "det": -0.036,
-          "ml": -0.032,
-          "llm": -0.55
-        }
-      },
-      "price_now": 77966.43,
-      "scored_prior": {
-        "predicted": "up",
-        "actual": "up",
-        "correct": true
-      },
-      "narration": "Despite positive momentum indicators, the combination of a bearish prediction from Ensemble and the recent dip in Bitcoin's price suggests a potential downward trend."
-    },
     {
       "iso": "2026-05-16T03:58:51-0700",
       "mode": "HEALTHY",
@@ -1153,6 +933,226 @@
         "correct": false
       },
       "narration": "Despite a slight increase in price and bullish indicators like the RSI, the strong bearish signals from the market's current sentiment and funding rate suggest a potential downturn for Bitcoin."
+    },
+    {
+      "iso": "2026-05-16T07:52:05-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.023,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": 0.315,
+          "ml": -0.014,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78174.42,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "Despite the positive signals from MACD and RSI, the bearish prediction from Ensemble likely stems from the high volatility indicated by the funding rate and the significant drop in F&G value."
+    },
+    {
+      "iso": "2026-05-16T07:57:56-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.07,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": 0.194,
+          "ml": -0.036,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78124.31,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "Despite technical indicators suggesting a potential bullish trend, the combination of an unfavorable price prediction from Ensemble and negative funding suggests a bearish outlook for Bitcoin."
+    },
+    {
+      "iso": "2026-05-16T08:03:47-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.008,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": 0.293,
+          "ml": 0.028,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78210.43,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "Despite a slight price increase and bullish indicators like the MACD, a negative prediction from Ensemble suggests a potential market downturn due to factors not explicitly provided in the data."
+    },
+    {
+      "iso": "2026-05-16T08:09:38-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.018,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": 0.365,
+          "ml": 0.037,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78122.37,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "Despite a slight dip and mixed indicators, the positive predictions from Ensemble suggest potential for further price increases due to its combination of deterministic, machine learning, and large language model analysis."
+    },
+    {
+      "iso": "2026-05-16T08:15:32-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "up",
+        "confidence": 0.002,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": 0.402,
+          "ml": -0.018,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78127.7,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "up",
+        "correct": true
+      },
+      "narration": "Despite a slight dip in price and some technical indicators suggesting caution, the positive prediction from Ensemble suggests potential for further growth due to its strong combination of data-driven analysis and AI-powered insights."
+    },
+    {
+      "iso": "2026-05-16T08:21:23-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.19,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": -0.049,
+          "ml": -0.13,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78113.25,
+      "scored_prior": {
+        "predicted": "up",
+        "actual": "down",
+        "correct": false
+      },
+      "narration": "Despite positive technical indicators like a rising MACD and bullish RSI, the combination of weak momentum with a negative funding rate suggests a potential downward trend in Bitcoin's price."
+    },
+    {
+      "iso": "2026-05-16T08:27:14-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.164,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": 0.02,
+          "ml": -0.12,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78177.89,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "Despite positive technical indicators like RSI and MACD, the combination of a bearish prediction from Ensemble and negative funding suggests potential for further price decline."
+    },
+    {
+      "iso": "2026-05-16T08:33:04-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.212,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": -0.096,
+          "ml": -0.146,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78195.32,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "Despite the positive momentum indicators like RSI and MACD, the combination of a bearish prediction from Ensemble and high funding rates suggests potential for a price correction."
+    },
+    {
+      "iso": "2026-05-16T08:38:55-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.064,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": 0.336,
+          "ml": -0.11,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78229.47,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "up",
+        "correct": false
+      },
+      "narration": "Despite positive momentum indicators like RSI and MACD, the combination of a bearish prediction from Ensemble models and negative funding rates suggests potential for price decline."
+    },
+    {
+      "iso": "2026-05-16T08:44:46-0700",
+      "mode": "HEALTHY",
+      "prediction_type": "btc_direction",
+      "prediction": {
+        "direction": "down",
+        "confidence": 0.216,
+        "method": "det+ml+llm",
+        "sub_scores": {
+          "det": -0.041,
+          "ml": -0.187,
+          "llm": -0.55
+        }
+      },
+      "price_now": 78215.37,
+      "scored_prior": {
+        "predicted": "down",
+        "actual": "down",
+        "correct": true
+      },
+      "narration": "Despite positive technical indicators like the RSI and MACD, a bearish prediction from Ensemble suggests a potential price drop due to factors like negative funding rates and a lower F&G score."
     }
   ]
 }
