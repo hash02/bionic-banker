@@ -9,6 +9,8 @@ featured: true
 slug: "agent-evolution"
 ---
 
+From one 80-line Python script on Day 0 to 14 autonomous agents generating 438 reports and monitoring 190 blockchain wallets by Day 15. This is the unplanned sequence of problems that built it.
+
 ## The Starting Point Was Embarrassingly Simple
 
       

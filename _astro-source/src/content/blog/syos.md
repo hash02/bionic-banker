@@ -10,6 +10,8 @@ slug: "syos"
 image: "/blog-visuals/syos/social-preview.png"
 ---
 
+SYOS (Symbolic Yielded Operating System) is a cross-LLM reasoning auditor built without external plugins or code. The auditing layer runs inside the conversation itself using symbolic logic operators, detecting hallucinations and logic drift that the model cannot catch on its own.
+
 Here's something that bothers me about LLMs. They're genuinely impressive — GPT-4, Claude, Gemini — but they have this specific failure mode that nobody talks about enough. Ask them something complex across a long conversation and they start drifting. The reasoning from message 3 contradicts message 47. They forget what they concluded earlier. They give you a confident answer that falls apart the second you push back on it.
 
     
