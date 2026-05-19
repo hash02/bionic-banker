@@ -49,6 +49,21 @@ const conceptLinks = [
       </div>
     </div>
 
+    <section class="route-rail" aria-label="Bionic Banker learning route">
+      <div>
+        <span class="section-label">Route</span>
+        <h2>Follow the lab path</h2>
+        <p>Start with a question, learn the term, walk the lab, then check the numbers. Each page is a different doorway into the same work.</p>
+      </div>
+      <div class="route-links">
+        <a href="/gaps">Questions</a>
+        <a href="/learn">Learn terms</a>
+        <a href="/proof-tour">Walk the lab</a>
+        <a href="/reports">Field notes</a>
+        <a href="/intelligence">Live signals</a>
+      </div>
+    </section>
+
     <section class="stack-radar-panel">
       <div class="section-label">AI Stack Map</div>
       <div class="radar-head">
@@ -132,6 +147,47 @@ const conceptLinks = [
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
       margin-bottom: 1.25rem;
+    }
+
+    .route-rail {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+      gap: 1rem;
+      align-items: center;
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      background: rgba(31, 160, 104, 0.055);
+      border-radius: 8px;
+      padding: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .route-rail h2 {
+      margin: 0.2rem 0 0.45rem;
+      font-size: clamp(1.25rem, 2.3vw, 1.9rem);
+      letter-spacing: 0;
+    }
+
+    .route-rail p {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .route-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      justify-content: flex-end;
+    }
+
+    .route-links a {
+      border: 1px solid rgba(228, 228, 236, 0.14);
+      border-radius: 999px;
+      color: #e4e4ec;
+      padding: 0.48rem 0.7rem;
+      text-decoration: none;
+      font-size: 0.88rem;
+      background: rgba(2, 2, 4, 0.35);
     }
 
     .tight-list {
@@ -222,6 +278,14 @@ const conceptLinks = [
       .radar-head {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      .route-rail {
+        grid-template-columns: 1fr;
+      }
+
+      .route-links {
+        justify-content: flex-start;
       }
     }
   </style>

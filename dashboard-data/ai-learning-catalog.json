@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-05-19T01:05:00Z",
   "status": "public_safe_learning_catalog_v1",
-  "purpose": "Public glossary and learning map for Bionic Banker AI, AML, agent, and source-trail concepts.",
+  "purpose": "Public glossary and learning map for Bionic Banker AI, wallet-risk, agent, and source-path concepts.",
   "privacy_boundary": "Definitions and public learning notes only. No private paths, keys, IPs, client data, wallet secrets, or internal infrastructure details.",
   "concepts": [
     {
@@ -9,14 +9,14 @@
       "term": "AI",
       "plain_definition": "Software that performs tasks that normally require reasoning, pattern recognition, language understanding, prediction, or decision support.",
       "why_it_matters": "AI is the umbrella. The useful question is not whether something is AI. The useful question is what task it improves, what evidence it uses, and where a human still approves the final action.",
-      "used_in": ["Bionic Banker", "Agent Framework Proof v2", "Agent Chess"]
+      "used_in": ["Bionic Banker", "Agent Framework Lab", "Agent Chess"]
     },
     {
       "id": "llm",
       "term": "LLM",
       "plain_definition": "A language model trained to read and generate text. It can summarize, classify, draft, reason over context, and call tools when connected to a workflow.",
       "why_it_matters": "LLMs are useful when they are grounded in files, tests, citations, and approval gates. Without that, they can sound confident while being wrong.",
-      "used_in": ["Agent Framework Proof v2", "Public learning notes"]
+      "used_in": ["Agent Framework Lab", "Public learning notes"]
     },
     {
       "id": "vlm",
@@ -30,35 +30,35 @@
       "term": "AI agent",
       "plain_definition": "An AI workflow that can observe state, choose a next step, use tools, write outputs, and wait for human approval when the action matters.",
       "why_it_matters": "The agent is not just the model. The agent is the loop around the model: memory, tools, rules, tests, logs, and gates.",
-      "used_in": ["Agent Chess", "Agent Heartbeat Lab", "Agent Framework Proof v2"]
+      "used_in": ["Agent Chess", "Agent Heartbeat Lab", "Agent Framework Lab"]
     },
     {
       "id": "tool-calling",
       "term": "Tool calling",
       "plain_definition": "A pattern where a model asks to use a defined tool, such as search, a database query, a file read, or a calculation, instead of guessing.",
       "why_it_matters": "Tool calling turns a model from a text generator into a controlled worker. The boundary is the tool contract.",
-      "used_in": ["Agent Framework Proof v2", "Governance Starter Kit"]
+      "used_in": ["Agent Framework Lab", "Agent Rules Starter Kit"]
     },
     {
       "id": "langchain",
       "term": "LangChain",
       "plain_definition": "A developer framework for connecting language models to tools, prompts, memory, retrieval, and workflow steps.",
       "why_it_matters": "LangChain is one way to structure AI apps. The value is not name-dropping it. The value is showing tool boundaries and testable behavior.",
-      "used_in": ["Agent Framework Proof v2"]
+      "used_in": ["Agent Framework Lab"]
     },
     {
       "id": "langgraph",
       "term": "LangGraph",
       "plain_definition": "A graph-based framework for building stateful agent workflows where steps can branch, loop, pause, and resume.",
       "why_it_matters": "It maps well to real systems because real work is not always one straight chain. There are retries, approvals, validators, and fallbacks.",
-      "used_in": ["Agent Framework Proof v2", "Agent Chess framing"]
+      "used_in": ["Agent Framework Lab", "Agent Chess framing"]
     },
     {
       "id": "rag",
       "term": "RAG",
       "plain_definition": "Retrieval augmented generation. The model retrieves relevant source material first, then writes an answer using that material.",
       "why_it_matters": "RAG is how you reduce guessing. The question becomes: what did the model retrieve, can we cite it, and was the source trustworthy?",
-      "used_in": ["visible source notes", "Source-linked explanations", "Reader question pages"]
+      "used_in": ["visible source notes", "Source-linked explanations", "Question pages"]
     },
     {
       "id": "embeddings",
@@ -72,28 +72,28 @@
       "term": "MCP",
       "plain_definition": "Model Context Protocol. A standard pattern for letting AI systems connect to tools and data sources through defined interfaces.",
       "why_it_matters": "MCP matters because agents need clean boundaries. A tool should say what it can do, what inputs it accepts, and what output it returns.",
-      "used_in": ["Agent Framework Proof v2", "Tool-boundary design"]
+      "used_in": ["Agent Framework Lab", "Tool-boundary design"]
     },
     {
       "id": "rbac",
       "term": "RBAC",
       "plain_definition": "Role-based access control. A way to decide who or what is allowed to perform each action.",
       "why_it_matters": "RBAC is essential for regulated AI because not every agent should be allowed to do every action.",
-      "used_in": ["Agent Framework Proof v2", "Governance Starter Kit"]
+      "used_in": ["Agent Framework Lab", "Agent Rules Starter Kit"]
     },
     {
       "id": "audit-log",
       "term": "Audit log",
       "plain_definition": "A record of what happened, when it happened, what tool or person did it, and what evidence supported it.",
       "why_it_matters": "If a system cannot explain its own actions later, it is not ready for serious finance, healthcare, or compliance work.",
-      "used_in": ["AML Engine", "Agent Chess", "Governance Starter Kit"]
+      "used_in": ["Wallet Risk Lab", "Agent Chess", "Agent Rules Starter Kit"]
     },
     {
       "id": "observability",
       "term": "Observability",
       "plain_definition": "The ability to see whether a system is alive, what it is doing, what failed, and what changed over time.",
       "why_it_matters": "Invisible automation is risky. Observable automation can be trusted, debugged, and improved.",
-      "used_in": ["Agent Heartbeat Lab", "Agent Framework Proof v2"]
+      "used_in": ["Agent Heartbeat Lab", "Agent Framework Lab"]
     },
     {
       "id": "heartbeat",
@@ -107,14 +107,14 @@
       "term": "AML",
       "plain_definition": "Anti-money laundering. The work of detecting, investigating, and preventing financial activity that may be tied to crime or sanctions risk.",
       "why_it_matters": "AML is where finance, data, rules, and judgment meet. Good AML systems explain why a transaction looks risky.",
-      "used_in": ["AML Engine", "AML Roaster", "Wallet Risk Check"]
+      "used_in": ["Wallet Risk Lab", "Wallet Risk Notes", "Wallet Risk Check"]
     },
     {
       "id": "false-positive",
       "term": "False positive",
       "plain_definition": "A system flags something as risky, but after review it is not actually risky.",
-      "why_it_matters": "False positives matter because they waste reviewer time. In compliance, accuracy is not only detection. It is also how much noise the system creates.",
-      "used_in": ["AML Engine"]
+      "why_it_matters": "False positives matter because they waste review time. In compliance, accuracy is not only detection. It is also how much noise the system creates.",
+      "used_in": ["Wallet Risk Lab"]
     },
     {
       "id": "evm",
@@ -173,7 +173,7 @@
       "title": "Top 5 rules for visible source",
       "items": [
         "Show the artifact, not the private workspace.",
-        "Use links, screenshots, tests, and manifests as source trail.",
+        "Use links, screenshots, tests, and notes as a source path.",
         "State limitations in plain language.",
         "Avoid private paths, secrets, client data, and unsupported claims.",
         "Make the next click obvious."
@@ -183,10 +183,10 @@
   "stack_radar": [
     {
       "id": "interactive-source",
-      "layer": "Interactive source trail",
+      "layer": "Interactive source path",
       "why_2026_teams_care": "Modern technical buyers and technical readers want to inspect a working path quickly instead of only reading claims.",
-      "learn_here": "Use Lab Tour to move from claim to evidence to limits to next question.",
-      "reader_question": "Can a reviewer understand the source trail without reading the full project archive?",
+      "learn_here": "Walk the Lab Tour to move from a working page to the numbers, limits, and next question.",
+      "reader_question": "Can someone understand the path without reading the full project archive?",
       "linked_surface": "/proof-tour/"
     },
     {
@@ -207,9 +207,9 @@
     },
     {
       "id": "agent-governance",
-      "layer": "Agent governance",
+      "layer": "Agent rules",
       "why_2026_teams_care": "Regulated workflows need role boundaries, approval gates, trace events, and reviewable tool use.",
-      "learn_here": "Connect RBAC, audit logs, tool calling, MCP, and Agent Chess as one governance pattern.",
+      "learn_here": "Connect RBAC, audit logs, tool calling, MCP, and turn-taking as one rule pattern.",
       "reader_question": "What should an AI agent be allowed to do by itself?",
       "linked_surface": "/gaps#agent-governance"
     },
