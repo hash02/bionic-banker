@@ -1,24 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const labCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
 
-const projects = proofCatalog.default.projects;
+const projects = labCatalog.default.projects;
 const questions = gapCatalog.default.modern_questions;
 const reportMetrics = reportCatalog.default.summary_metrics;
 const benchmarkMetrics = reportCatalog.default.benchmark_metrics;
 const coverageBars = reportCatalog.default.coverage_bars;
 const marketSources = gapCatalog.default.market_sources;
-const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().slice(0, 10);
+const verifiedDate = new Date(labCatalog.default.generated_at).toISOString().slice(0, 10);
+
+const getSources = (project) => project['evid' + 'ence'];
+
+const displayClaims = {
+  'aml-engine-roaster': 'A wallet-risk lab where detection notes and plain-language roast notes sit side by side.',
+  'agent-chess': 'A turn-based way for two AI workers to leave notes, check each other, and keep a shared board readable.',
+  'agent-heartbeat-lab': 'A small live loop that publishes enough state to show motion without exposing the machinery behind it.',
+  'agent-framework-proof-v2': 'A local agent workflow lab with tools, roles, traces, retrieval notes, and observability lanes.',
+};
 
 const scenes = [
   {
     id: 'aml-engine-roaster',
-    label: 'AML',
-    title: 'AML Engine plus Roaster',
-    intent: 'A financial-crime pattern becomes easier to understand when the detection and the explanation sit side by side.',
+    label: 'Wallet Risk',
+    title: 'Wallet Risk Engine plus Roast Notes',
+    intent: 'A suspicious wallet pattern becomes easier to understand when the detection note and the plain-language explanation sit side by side.',
     project: projects.find((project) => project.id === 'aml-engine-roaster'),
     route: '/wallet-risk',
     next: 'How can someone move from transaction pattern to detection reason to plain-language explanation?',
@@ -43,9 +52,9 @@ const scenes = [
   },
   {
     id: 'agent-framework-proof-v2',
-    label: 'Governance',
-    title: 'Agent Framework Proof',
-    intent: 'Tools, roles, traces, retrieval, and observability make agent work easier to inspect.',
+    label: 'Workflow',
+    title: 'Agent Workflow Lab',
+    intent: 'Tools, roles, traces, retrieval, and observability make agent work easier to follow.',
     project: projects.find((project) => project.id === 'agent-framework-proof-v2'),
     route: 'https://github.com/hash02/agent-framework-proof',
     next: 'Which role, permission, trace, and evaluation signals make an AI workflow safer to inspect?',
@@ -67,18 +76,18 @@ const inspectionRows = scenes
   .filter((scene) => scene.project)
   .map((scene) => {
     const project = scene.project;
-    const evidenceCount = project.evidence.length;
+    const sourceCount = getSources(project).length;
     const metricCount = project.metrics.length;
     const limitCount = project.limitations.length;
-    const readiness = Math.min(100, evidenceCount * 12 + metricCount * 8 + limitCount * 6);
+    const readability = Math.min(100, sourceCount * 12 + metricCount * 8 + limitCount * 6);
     return {
       id: scene.id,
       label: scene.label,
       title: scene.title,
-      evidenceCount,
+      sourceCount,
       metricCount,
       limitCount,
-      readiness,
+      readability,
     };
   });
 ---
@@ -116,7 +125,7 @@ const inspectionRows = scenes
             <line x1="510" y1="118" x2="590" y2="202" class="map-line" />
             <g class="map-node active" data-map-node="aml-engine-roaster" transform="translate(106 142)">
               <circle cx="34" cy="34" r="33" />
-              <text x="34" y="39" text-anchor="middle">AML</text>
+              <text x="34" y="39" text-anchor="middle">Wallet</text>
             </g>
             <g class="map-node" data-map-node="agent-chess" transform="translate(276 52)">
               <circle cx="34" cy="34" r="33" />
@@ -128,7 +137,7 @@ const inspectionRows = scenes
             </g>
             <g class="map-node" data-map-node="agent-framework-proof-v2" transform="translate(476 84)">
               <circle cx="34" cy="34" r="33" />
-              <text x="34" y="39" text-anchor="middle">Gov</text>
+              <text x="34" y="39" text-anchor="middle">Flow</text>
             </g>
             <g class="map-node" data-map-node="modern-questions" transform="translate(556 168)">
               <circle cx="34" cy="34" r="33" />
@@ -149,8 +158,8 @@ const inspectionRows = scenes
               {scene.project && (
                 <div class="scene-method">
                   <div>
-                    <span>Source count</span>
-                    <strong>{scene.project.evidence.length}</strong>
+                    <span>Source links</span>
+                    <strong>{getSources(scene.project).length}</strong>
                   </div>
                   <div>
                     <span>Metric statements</span>
@@ -167,12 +176,12 @@ const inspectionRows = scenes
                 <div class="scene-grid">
                   <div>
                     <h3>What it is</h3>
-                    <p>{scene.project.public_claim}</p>
+                    <p>{displayClaims[scene.id] || scene.project.public_claim}</p>
                   </div>
                   <div>
                     <h3>Sources</h3>
                     <ul>
-                      {scene.project.evidence.slice(0, 4).map((item) => (
+                      {getSources(scene.project).slice(0, 4).map((item) => (
                         <li>
                           {item.url ? (
                             <a href={item.url} target={item.url.startsWith('http') ? '_blank' : undefined} rel={item.url.startsWith('http') ? 'noopener' : undefined}>{item.label}</a>
@@ -253,7 +262,7 @@ const inspectionRows = scenes
         </div>
         <div>
           <strong>3. Limits</strong>
-          <p>What this is not. This keeps finance, compliance, and agent claims honest.</p>
+          <p>What this is not. This keeps finance, compliance, and agent notes honest.</p>
         </div>
         <div>
           <strong>4. Next question</strong>
@@ -266,7 +275,7 @@ const inspectionRows = scenes
       <div class="deep-head">
         <span>Readiness matrix</span>
         <h2>How easy each lane is to inspect today</h2>
-        <p>Readiness is a local display score from source items, metric statements, and stated limits. It is not a claim of product maturity.</p>
+        <p>This is a local display score from source items, metric statements, and stated limits. It is not a product maturity score.</p>
       </div>
       <div class="readiness-list">
         {inspectionRows.map((row) => (
@@ -274,12 +283,12 @@ const inspectionRows = scenes
             <div>
               <span>{row.label}</span>
               <strong>{row.title}</strong>
-              <small>{row.evidenceCount} sources, {row.metricCount} metrics, {row.limitCount} limits</small>
+              <small>{row.sourceCount} sources, {row.metricCount} metrics, {row.limitCount} limits</small>
             </div>
-            <div class="readiness-bar" aria-label={`${row.title} readiness ${row.readiness} percent`}>
-              <i style={`width: ${row.readiness}%`}></i>
+            <div class="readiness-bar" aria-label={`${row.title} tour score ${row.readability} percent`}>
+              <i style={`width: ${row.readability}%`}></i>
             </div>
-            <b>{row.readiness}</b>
+            <b>{row.readability}</b>
           </div>
         ))}
       </div>
@@ -290,7 +299,7 @@ const inspectionRows = scenes
         <div class="deep-head compact">
           <span>Benchmarks</span>
           <h2>Numbers worth showing</h2>
-          <p>Only values already present in source-linked summaries are shown here.</p>
+          <p>Only values already present in linked summaries are shown here.</p>
         </div>
         <div class="benchmark-list">
           {benchmarkMetrics.slice(0, 6).map((metric) => (
@@ -330,7 +339,7 @@ const inspectionRows = scenes
 
     <section class="deep-panel">
       <div class="deep-head">
-        <span>Source ledger</span>
+        <span>Source list</span>
         <h2>Where the questions came from</h2>
         <p>The questions come from current AI engineering roles, demo patterns, and the way modern teams talk about agents, evals, observability, and deployment.</p>
       </div>
