@@ -10,13 +10,17 @@ const conceptLinks = [
   { label: 'AI agents', id: 'agent' },
   { label: 'LLMs', id: 'llm' },
   { label: 'VLMs', id: 'vlm' },
+  { label: 'Tool calling', id: 'tool-calling' },
   { label: 'LangChain', id: 'langchain' },
   { label: 'RAG', id: 'rag' },
   { label: 'RBAC', id: 'rbac' },
   { label: 'Audit logs', id: 'audit-log' },
   { label: 'Observability', id: 'observability' },
   { label: 'AML', id: 'aml' },
+  { label: 'False positives', id: 'false-positive' },
+  { label: 'EVM', id: 'evm' },
   { label: 'Kubernetes', id: 'kubernetes' },
+  { label: 'Docker', id: 'docker' },
 ];
 ---
 <BaseLayout title="Learn AI Systems" description="Plain-English concepts behind the Bionic Banker lab stack: AI agents, LLMs, VLMs, RAG, LangChain, RBAC, AML, observability, and deployment basics.">
@@ -33,24 +37,26 @@ const conceptLinks = [
       </div>
       <h3>The rule</h3>
       <p>The best way to learn AI is to build one small loop, make the output visible, and add a check so the system cannot only clap for itself.</p>
-      <p>This page is the glossary behind the visible source console. If a project says tool calling, RAG, RBAC, AML, or observability, this page explains the idea without requiring backend details.</p>
+      <p>This page is the glossary behind the lab pages. If a card says tool calling, RAG, RBAC, AML, false positive, or observability, this page explains the idea without making you read the whole archive.</p>
       <div class="concept-jump-list">
         {conceptLinks.map((item) => (
           <a href={`#${item.id}`}>{item.label}</a>
         ))}
+        <a href="/wallet-risk">Open Wallet Risk Lab</a>
+        <a href="/projects">Open experiments</a>
         <a href="/reports">Engineering reports</a>
         <a href="/gaps">Modern questions</a>
       </div>
     </div>
 
     <section class="stack-radar-panel">
-      <div class="section-label">Modern AI Stack Radar</div>
+      <div class="section-label">AI Stack Map</div>
       <div class="radar-head">
         <div>
-          <h2>What modern AI systems need readers to understand</h2>
-          <p>Current AI engineering is not only prompting. It is retrieval quality, evals, traces, governance, deployment, and source trails that a reader can inspect without asking for a meeting.</p>
+          <h2>What the lab keeps returning to</h2>
+          <p>AI work is not only prompting. It is retrieval, evals, traces, permission checks, deployment, and enough context that another person can inspect the path.</p>
         </div>
-        <a href="/proof-tour">Open Lab Tour -></a>
+        <a href="/proof-tour">Walk the lab -></a>
       </div>
       <div class="radar-grid">
         {stackRadar.map((item, index) => (
