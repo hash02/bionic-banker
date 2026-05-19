@@ -6,7 +6,7 @@ const proofCatalog = await import('../../public/dashboard-data/public-proof-cata
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const heartbeatData = await import('../../public/dashboard-data/heartbeat.json');
 
-// GET ARTICLE COUNT — computed, never hardcoded again
+// GET ARTICLE COUNT - computed, never hardcoded again
 const allPosts = await getCollection('blog');
 const articleCount = allPosts.length;
 const proofCount = proofCatalog.default.projects.length;
@@ -17,7 +17,7 @@ const latestPost = sortedPosts[0];
 const featuredArticle = featuredPosts[0] || sortedPosts[0];
 const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 3);
 
-// Heartbeat snapshot — used as instant fallback before client-side refresh
+// Heartbeat snapshot - used as instant fallback before client-side refresh
 const hb = heartbeatData.default;
 const snapshotPrice = hb?.status?.last_prediction?.price_now;
 const snapshotPriceStr = typeof snapshotPrice === 'number'
@@ -63,7 +63,7 @@ const movingRows = [
   }
 ];
 
-const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleCount} articles on AML detection, blockchain agents, wallet risk, and financial systems — with live signals, field-tested experiments, and notes from someone building inside finance.`;
+const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleCount} articles on AML detection, blockchain agents, wallet risk, and financial systems - with live signals, field-tested experiments, and notes from someone building inside finance.`;
 ---
 <BaseLayout title="Home" description={geoDescription}>
 
@@ -142,7 +142,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
             <h3 data-moving-title>{row.title}</h3>
             {row.livePrice && (
               <div class="mn-price-row">
-                <span class="mn-price" data-live-price>{snapshotPriceStr ?? '—'}</span>
+                <span class="mn-price" data-live-price>{snapshotPriceStr ?? '-'}</span>
                 <span class="mn-change" data-live-change></span>
               </div>
             )}
@@ -270,7 +270,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
             <span class="tag-pill">AI</span>
           </div>
           <h3>The Anchor Problem</h3>
-          <p>I went looking for a template for life. Found a return mechanism instead. Then realized I'd built the exact same structure into my AI systems — without ever consciously making the connection.</p>
+          <p>I went looking for a template for life. Found a return mechanism instead. Then realized I'd built the exact same structure into my AI systems - without ever consciously making the connection.</p>
           <div class="tc-footer">
             <span class="read-more">Read →</span>
             <span class="read-time">6 min · March 2026</span>
@@ -306,7 +306,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
     <div class="newsletter-strip animate-on-scroll" id="newsletter-inline">
       <div class="nl-text">
         <h3>Stay in the loop</h3>
-        <p>Finance, blockchain, AI — one piece at a time.<br>No fluff, no schedule, just when it's worth saying.</p>
+        <p>Finance, blockchain, AI - one piece at a time.<br>No fluff, no schedule, just when it's worth saying.</p>
       </div>
       <div class="telegram-cta-wrap">
         <a href="https://t.me/BionicBanker" class="telegram-cta" target="_blank" rel="noopener">
