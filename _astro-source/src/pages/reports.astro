@@ -59,7 +59,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
         <span>Signals</span>
         <span>Charts</span>
         <span>Limits</span>
-        <a href="/projects">Projects</a>
+        <a href="/projects">Experiments</a>
         <a href="/gaps">Questions</a>
       </div>
     </div>
@@ -261,6 +261,18 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
       text-decoration: none;
       font-size: 0.88rem;
       background: rgba(2, 2, 4, 0.35);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lab-strip-links span,
+    .lab-strip-links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .report-panel h2 {
