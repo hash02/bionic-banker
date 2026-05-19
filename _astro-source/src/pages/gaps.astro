@@ -16,11 +16,11 @@ const grouped = categories
   }))
   .filter((group) => group.items.length > 0);
 ---
-<BaseLayout title="Questions the Market Is Asking" description="A reader-facing question atlas for modern AI, finance automation, engineering proof, and useful explanations.">
+<BaseLayout title="Questions the Market Is Asking" description="A reader-facing question atlas for modern AI, finance automation, engineering source trails, and useful explanations.">
   <div class="page-header">
     <div class="page-label">Question Atlas</div>
     <h1 class="page-title">Questions the Market Is Asking</h1>
-    <p class="page-sub">A reader-facing map for modern AI, finance automation, and engineering proof. Start with a question, read the plain answer, then open the proof or learning link when you want more depth.</p>
+    <p class="page-sub">A reader-facing map for modern AI, finance automation, and engineering source trails. Start with a question, read the plain answer, then open the lab or learning link when you want more depth.</p>
   </div>
 
   <div class="articles-wrap">
@@ -63,7 +63,7 @@ const grouped = categories
         <p>Each row maps a modern question to why people ask it, a plain answer, an existing public example, and the next useful click.</p>
         <div class="card-footer">
           <a class="read-more" href="/reports">Open reports -></a>
-          <a class="read-more" href="/projects">Open proof console -></a>
+          <a class="read-more" href="/projects">Open experiments -></a>
         </div>
       </article>
 
@@ -119,7 +119,7 @@ const grouped = categories
               <p><strong>Useful for reader:</strong> {question.useful_for_reader}</p>
               <div class="card-footer">
                 <a class="read-more" href={question.website_surface}>Learn concept -></a>
-                <a class="read-more" href={question.report_surface}>Inspect proof -></a>
+                <a class="read-more" href={question.report_surface}>Inspect source -></a>
               </div>
             </article>
           ))}

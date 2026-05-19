@@ -372,22 +372,22 @@ nav {
 .articles-wrap { max-width: var(--max); margin: 0 auto; padding: 2.5rem 2rem 4rem; }
 .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 0.75rem; }
 
-.recruiter-strip {
+.lab-strip {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: center;
   border: 1px solid rgba(31,160,104,0.22); border-radius: var(--radius);
   background: rgba(31,160,104,0.055); padding: 1rem 1.1rem; margin-bottom: 1rem;
 }
-.recruiter-strip h2 {
+.lab-strip h2 {
   font-size: 1rem; letter-spacing: 0; line-height: 1.35; margin-bottom: 0.25rem;
 }
-.recruiter-strip p {
+.lab-strip p {
   color: var(--text-2); font-size: 0.82rem; line-height: 1.6;
 }
-.recruiter-links {
+.lab-strip-links {
   display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.45rem; min-width: 0;
 }
-.recruiter-links a,
-.recruiter-links span {
+.lab-strip-links a,
+.lab-strip-links span {
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--text); border: 1px solid var(--b1); border-radius: 4px;
   padding: 0.28rem 0.55rem; background: rgba(255,255,255,0.035); overflow-wrap: anywhere;
@@ -400,8 +400,8 @@ nav {
 @media (max-width: 640px) {
   .page-header,
   .articles-wrap { padding-left: 1rem; padding-right: 1rem; }
-  .recruiter-strip { grid-template-columns: 1fr; }
-  .recruiter-links { justify-content: flex-start; }
+  .lab-strip { grid-template-columns: 1fr; }
+  .lab-strip-links { justify-content: flex-start; }
   .article-card { padding: 1rem; }
   .card-footer { align-items: flex-start; }
 }

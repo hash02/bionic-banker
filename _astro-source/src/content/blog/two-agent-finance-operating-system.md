@@ -59,12 +59,12 @@ It tracks the mission, the latest move, the active lanes, the open decisions, an
 
 For career work, the board tracks things like:
 
-- GitHub proof
+- GitHub notes
 - resume variants
 - job-market research
-- application packets
+- draft application material
 - public profile readiness
-- portfolio proof
+- portfolio links
 - outreach drafts
 
 For finance and DeFi work, the same structure can track:
@@ -95,21 +95,21 @@ That sounds small, but it matters.
 
 It means the system does not depend on vibes. It has receipts.
 
-If one agent drafts a resume, the other agent can review it for overclaiming. If one agent proposes a public portfolio page, the other agent can check whether the proof links are real. If one agent wants to build a page, the other agent can say, "wait, this card has no public URL yet."
+If one agent drafts a resume, the other agent can review it for overclaiming. If one agent proposes a public portfolio page, the other agent can check whether the links are real. If one agent wants to build a page, the other agent can say, "wait, this card has no public URL yet."
 
 That happened in the actual system.
 
-The first version of a project proof page had a card for the two-agent system itself. The reviewer agent caught the weakness: the card had no public artifact to link to. A project card cannot link to itself. So the next move became this case study.
+The first version of a project page had a card for the two-agent system itself. The reviewer agent caught the weakness: the card had no public artifact to link to. A project card cannot link to itself. So the next move became this case study.
 
 That is the point of the game.
 
-The agents are not just generating output. They are finding the missing proof.
+The agents are not just generating output. They are finding the missing trail.
 
 ## The Gates
 
 The system has hard boundaries.
 
-It can prepare a job application packet. It cannot submit the application.
+It can prepare draft application material. It cannot submit the application.
 
 It can draft an outreach email. It cannot send the email.
 
@@ -125,14 +125,14 @@ The real skill is building a system that can move while still knowing where not 
 
 ## What It Built
 
-The system has already produced real career artifacts:
+The system has already produced real public-facing artifacts:
 
-- a cleaned public GitHub profile proof section
+- a cleaned public GitHub profile section
 - a corrected AML Detection Engine README
 - a crypto AML and RegTech resume variant
-- job-specific packets for crypto compliance roles
-- a public project proof-console spec
-- this case study as the missing bridge between private system and public proof
+- draft material for crypto compliance roles
+- a public project lab-route spec
+- this case study as the missing bridge between private system and visible source trail
 
 None of those required pretending the system is bigger than it is.
 

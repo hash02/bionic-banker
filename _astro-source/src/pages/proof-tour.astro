@@ -18,25 +18,25 @@ const scenes = [
     id: 'aml-engine-roaster',
     label: 'AML',
     title: 'AML Engine plus Roaster',
-    intent: 'Show financial-crime thinking with explainable AI and clear public limits.',
+    intent: 'A financial-crime pattern becomes easier to understand when the detection and the explanation sit side by side.',
     project: projects.find((project) => project.id === 'aml-engine-roaster'),
     route: '/projects',
-    next: 'How can a reviewer move from transaction pattern to detection reason to plain-language explanation?',
+    next: 'How can someone move from transaction pattern to detection reason to plain-language explanation?',
   },
   {
     id: 'agent-chess',
     label: 'Agents',
     title: 'Agent Chess',
-    intent: 'Show multi-agent coordination, board state, approval gates, and traceable work.',
+    intent: 'Two AI workers take turns, leave notes, and keep the board from turning into fog.',
     project: projects.find((project) => project.id === 'agent-chess'),
     route: '/blog/two-agent-finance-operating-system',
-    next: 'How do independent AI workers coordinate without losing state, evidence, or human approval boundaries?',
+    next: 'How do independent AI workers coordinate without losing state, memory, or human approval boundaries?',
   },
   {
     id: 'agent-heartbeat-lab',
     label: 'Live Loop',
     title: 'Heartbeat Lab',
-    intent: 'Show a running loop with visible status, counts, and limitations.',
+    intent: 'A running loop should feel alive without pretending to be a trading oracle.',
     project: projects.find((project) => project.id === 'agent-heartbeat-lab'),
     route: '/dashboard-data/heartbeat.json',
     next: 'What should a public heartbeat reveal so a reader sees motion without needing backend details?',
@@ -45,7 +45,7 @@ const scenes = [
     id: 'agent-framework-proof-v2',
     label: 'Governance',
     title: 'Agent Framework Proof',
-    intent: 'Show governed tools, RBAC, queue state, traces, retrieval, and observability.',
+    intent: 'Tools, roles, traces, retrieval, and observability make agent work easier to inspect.',
     project: projects.find((project) => project.id === 'agent-framework-proof-v2'),
     route: 'https://github.com/hash02/agent-framework-proof',
     next: 'Which role, permission, trace, and evaluation signals make an AI workflow safer to inspect?',
@@ -54,10 +54,10 @@ const scenes = [
     id: 'modern-questions',
     label: 'Questions',
     title: 'Modern Question Board',
-    intent: 'Show market-facing AI questions with plain answers, reader value, and public proof links.',
+    intent: 'Modern AI questions become less intimidating when the first answer is plain.',
     project: null,
     route: '/gaps',
-    next: 'Help the reader move from question to concept to proof with clear limits.',
+    next: 'Move from question to concept to example without making the page feel like homework.',
   },
 ];
 
@@ -82,22 +82,22 @@ const inspectionRows = scenes
     };
   });
 ---
-<BaseLayout title="Proof Tour" description="A guided proof tour for Bionic Banker projects, reports, modern questions, and evidence routes.">
+<BaseLayout title="The Lab Tour" description="A guided tour through Bionic Banker experiments, field notes, modern questions, and live signal pages.">
   <main class="tour-shell">
     <section class="tour-hero">
       <div>
-        <h1>Proof Tour</h1>
-        <p>This is the app-like layer over the work. Pick a lane, inspect the proof, see the limits, and follow the next question.</p>
+        <h1>The Lab Tour</h1>
+        <p>Start here if the site feels too big. Pick a lane, watch what is moving, read the limit, then follow the next question.</p>
       </div>
       <div class="tour-status">
         <span>Verified {verifiedDate}</span>
-        <strong>{projects.length} proof lanes</strong>
+        <strong>{projects.length} experiments</strong>
         <strong>{questions.length} questions</strong>
       </div>
     </section>
 
     <section class="tour-app" data-tour-app>
-      <aside class="tour-rail" aria-label="Proof tour scenes">
+      <aside class="tour-rail" aria-label="Lab tour scenes">
         {scenes.map((scene, index) => (
           <button class={`tour-tab ${index === 0 ? 'active' : ''}`} type="button" data-scene-tab={scene.id}>
             <span>{String(index + 1).padStart(2, '0')}</span>
@@ -107,7 +107,7 @@ const inspectionRows = scenes
       </aside>
 
       <section class="tour-main">
-        <div class="tour-map" aria-label="Bionic Banker proof map">
+        <div class="tour-map" aria-label="Bionic Banker lab map">
           <svg viewBox="0 0 720 360" role="img">
             <line x1="140" y1="176" x2="310" y2="86" class="map-line" />
             <line x1="140" y1="176" x2="318" y2="254" class="map-line" />
@@ -149,7 +149,7 @@ const inspectionRows = scenes
               {scene.project && (
                 <div class="scene-method">
                   <div>
-                    <span>Evidence count</span>
+                    <span>Source count</span>
                     <strong>{scene.project.evidence.length}</strong>
                   </div>
                   <div>
@@ -166,11 +166,11 @@ const inspectionRows = scenes
               {scene.project ? (
                 <div class="scene-grid">
                   <div>
-                    <h3>Public claim</h3>
+                    <h3>What it is</h3>
                     <p>{scene.project.public_claim}</p>
                   </div>
                   <div>
-                    <h3>Evidence</h3>
+                    <h3>Sources</h3>
                     <ul>
                       {scene.project.evidence.slice(0, 4).map((item) => (
                         <li>
@@ -216,7 +216,7 @@ const inspectionRows = scenes
                   <span>Next question</span>
                   <p>{scene.next}</p>
                 </div>
-                <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>Open lane -></a>
+                 <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>Open route -></a>
               </div>
             </article>
           ))}
@@ -238,18 +238,18 @@ const inspectionRows = scenes
 
     <section class="deep-panel">
       <div class="deep-head">
-        <span>Inspection method</span>
-        <h2>Claim to proof to next question</h2>
-        <p>Each lane is scored as a public inspection surface, not as a production certification. The goal is simple: a reviewer should know what exists, what evidence supports it, what the limits are, and where the next useful question lives.</p>
+        <span>How to read it</span>
+        <h2>Thing to source to next question</h2>
+        <p>Each lane is a visible piece of the lab, not a product certification. The goal is simple: understand what exists, what points to it, what the limit is, and what question comes next.</p>
       </div>
       <div class="method-grid">
         <div>
-          <strong>1. Claim</strong>
-          <p>What readers can inspect from public links, reports, summaries, and stated limits.</p>
+          <strong>1. Thing</strong>
+          <p>What you can actually inspect from links, reports, summaries, and stated limits.</p>
         </div>
         <div>
-          <strong>2. Evidence</strong>
-          <p>Public repo, public article, manifest summary, benchmark note, or reader-facing JSON snapshot.</p>
+          <strong>2. Source</strong>
+          <p>Repo, article, manifest summary, benchmark note, or JSON snapshot.</p>
         </div>
         <div>
           <strong>3. Limits</strong>
@@ -257,7 +257,7 @@ const inspectionRows = scenes
         </div>
         <div>
           <strong>4. Next question</strong>
-          <p>The reader-facing question that makes the system easier to understand.</p>
+          <p>The question that makes the system easier to understand.</p>
         </div>
       </div>
     </section>
@@ -265,8 +265,8 @@ const inspectionRows = scenes
     <section class="deep-panel">
       <div class="deep-head">
         <span>Readiness matrix</span>
-        <h2>How inspectable each lane is today</h2>
-        <p>Readiness is a local display score from evidence items, metric statements, and stated limits. It is not a claim of product maturity.</p>
+        <h2>How easy each lane is to inspect today</h2>
+        <p>Readiness is a local display score from source items, metric statements, and stated limits. It is not a claim of product maturity.</p>
       </div>
       <div class="readiness-list">
         {inspectionRows.map((row) => (
@@ -274,7 +274,7 @@ const inspectionRows = scenes
             <div>
               <span>{row.label}</span>
               <strong>{row.title}</strong>
-              <small>{row.evidenceCount} evidence, {row.metricCount} metrics, {row.limitCount} limits</small>
+              <small>{row.evidenceCount} sources, {row.metricCount} metrics, {row.limitCount} limits</small>
             </div>
             <div class="readiness-bar" aria-label={`${row.title} readiness ${row.readiness} percent`}>
               <i style={`width: ${row.readiness}%`}></i>
@@ -290,7 +290,7 @@ const inspectionRows = scenes
         <div class="deep-head compact">
           <span>Benchmarks</span>
           <h2>Numbers worth showing</h2>
-          <p>Only values already present in source-linked proof summaries are shown here.</p>
+          <p>Only values already present in source-linked summaries are shown here.</p>
         </div>
         <div class="benchmark-list">
           {benchmarkMetrics.slice(0, 6).map((metric) => (
@@ -310,8 +310,8 @@ const inspectionRows = scenes
       <div class="deep-panel">
         <div class="deep-head compact">
           <span>Coverage</span>
-          <h2>Current proof balance</h2>
-        <p>The lightest area remains deployment proof. The serious public question is how repeatable systems should be packaged, monitored, and explained.</p>
+          <h2>Current balance</h2>
+        <p>The lightest area remains deployment. The serious question is how repeatable systems should be packaged, monitored, and explained.</p>
         </div>
         <div class="coverage-list">
           {coverageBars.map((item) => (
@@ -331,8 +331,8 @@ const inspectionRows = scenes
     <section class="deep-panel">
       <div class="deep-head">
         <span>Source ledger</span>
-        <h2>Why these questions map to the market</h2>
-        <p>The public questions come from role requirements and modern demo expectations, then get translated into reader-facing explanations and proof links.</p>
+        <h2>Where the questions came from</h2>
+        <p>The questions come from current AI engineering roles, demo patterns, and the way modern teams talk about agents, evals, observability, and deployment.</p>
       </div>
       <div class="source-ledger">
         {marketSources.map((source) => (

@@ -17,32 +17,32 @@ const quickPrompts = brain.quick_prompts;
 const sourceTiles = brain.entry_points.map((entry) => ({
   ...entry,
   body: entry.id === 'projects'
-    ? `${projects.length} proof lanes with evidence, role fit, and limitations.`
+    ? `${projects.length} experiments with sources, notes, and clear limits.`
     : entry.id === 'reports'
-      ? `${metrics.length} report metrics, benchmark bars, evidence density, and capability radar.`
+      ? `${metrics.length} field-note metrics, benchmark bars, and signal maps.`
       : entry.id === 'learn'
         ? `${concepts.length} plain-language concepts for AI agents, RAG, RBAC, observability, AML, and deployment.`
         : entry.id === 'questions'
-          ? `${questions.length} modern AI questions mapped to answers, examples, and proof routes.`
+          ? `${questions.length} modern AI questions mapped to answers, examples, and routes.`
           : entry.body
 }));
 
 const uxStats = [
-  { value: projects.length, label: 'proof lanes' },
+  { value: projects.length, label: 'experiments' },
   { value: metrics.length, label: 'report metrics' },
   { value: concepts.length, label: 'AI concepts' },
-  { value: questions.length, label: 'market questions' }
+  { value: questions.length, label: 'questions' }
 ];
 ---
-<BaseLayout title="Ask Bionic Banker" description="Ask Bionic Banker questions about Himanshu, AI finance projects, AML work, reports, proof links, learning notes, and live signal pages.">
+<BaseLayout title="Ask Bionic Banker" description="Ask Bionic Banker questions about Himanshu, AI finance experiments, AML work, field notes, learning notes, and live signal pages.">
   <main class="ask-shell">
     <section class="ask-hero">
       <div class="hero-copy">
         <div class="route-kicker">Bionic Banker site guide</div>
         <h1>Ask Bionic Banker where to go.</h1>
-        <p>This page is a guide for the website. Ask about Himanshu, AML, agents, reports, AI terms, live signals, or proof links. The answer routes you to visible pages and source-linked artifacts.</p>
+        <p>This page is a guide for the website. Ask about Himanshu, AML, agents, field notes, AI terms, live signals, or experiments. The answer points you to the right corner of the lab.</p>
         <div class="hero-actions-mini" aria-label="Fast routes">
-          <a href="/proof-tour/">Start proof tour</a>
+          <a href="/proof-tour/">Enter the lab</a>
           <a href="/reports/">See reports</a>
           <a href="/projects/">Open projects</a>
         </div>
@@ -52,7 +52,7 @@ const uxStats = [
           <span>Guide mode</span>
           <strong>Local routing</strong>
         </div>
-        <p>Answers come from visible pages, project cards, reports, learning notes, and signal pages. The goal is simple: help a visitor find the right proof fast.</p>
+        <p>Answers come from visible pages, experiment cards, field notes, learning notes, and signal pages. The goal is simple: help a visitor find the right door fast.</p>
         <div class="stat-strip">
           {uxStats.map((stat) => (
             <div>
@@ -73,7 +73,7 @@ const uxStats = [
         <p>Works locally in the browser from a visible routing index. No account, no form, no wait.</p>
       </div>
       <div class="prompt-row">
-        <input id="site-question" type="text" placeholder="Try: show me AML proof, explain agents, where are the charts..." autocomplete="off" />
+        <input id="site-question" type="text" placeholder="Try: show me AML, explain agents, where are the charts..." autocomplete="off" />
         <button id="site-ask" type="button" aria-label="Ask Bionic Banker">Ask</button>
       </div>
       <div class="prompt-chips" aria-label="Suggested questions">
@@ -87,11 +87,11 @@ const uxStats = [
           <small>Source: site map</small>
         </div>
         <h2>What can I inspect first?</h2>
-        <p>Start with the Proof Tour if you want the shortest path through the work. Use Reports for numbers, Projects for proof lanes, Learn for concepts, and AI Intelligence for visible signal rows.</p>
+        <p>Start with the Lab Tour if you want the shortest path through the work. Use Field Notes for numbers, Experiments for what runs, Learn for concepts, and Live Signals for moving rows.</p>
         <div class="answer-links">
-          <a href="/proof-tour/">Open Proof Tour</a>
-          <a href="/reports/">Open Reports</a>
-          <a href="/projects/">Open Projects</a>
+          <a href="/proof-tour/">Open Lab Tour</a>
+          <a href="/reports/">Open Field Notes</a>
+          <a href="/projects/">Open Experiments</a>
         </div>
       </article>
     </section>

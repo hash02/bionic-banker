@@ -30,39 +30,39 @@ const evidenceRows = proofProjects.map((project) => ({
 
 const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
 ---
-<BaseLayout title="Engineering Reports" description="Reader-facing engineering reports for Bionic Banker proof coverage, AML benchmark numbers, agent observability, and learning-layer concept coverage.">
+<BaseLayout title="Field Notes" description="Numbers, charts, and notes from the Bionic Banker lab: AML benchmark values, agent observability, learning concepts, and visible limits.">
   <div class="page-header">
-    <div class="page-label">Engineering Reports</div>
-    <h1 class="page-title">Proof, Numbers, and Charts</h1>
-    <p class="page-sub">A reader-facing report layer for the work. Counts come from the proof catalog and learning catalog. Claims stay tied to evidence, limits, and source boundaries.</p>
+    <div class="page-label">Field Notes</div>
+    <h1 class="page-title">Numbers with context</h1>
+    <p class="page-sub">Some ideas only make sense when you watch them run. This page collects the signals, counts, charts, and limits from the systems already moving.</p>
   </div>
 
   <div class="articles-wrap">
-    <div class="recruiter-strip">
+    <div class="lab-strip">
       <div>
-        <h2>Scientific report layer for AI finance proof</h2>
-        <p>Reader-facing numbers, charts, evidence density, and limitation notes for the work shown on Bionic Banker.</p>
+        <h2>A lab notebook with charts</h2>
+        <p>Numbers are useful when they explain what is happening. These charts keep the work readable without turning it into a pitch deck.</p>
       </div>
-      <div class="recruiter-links">
-        <span>Evidence</span>
+      <div class="lab-strip-links">
+        <span>Signals</span>
         <span>Charts</span>
         <span>Limits</span>
         <a href="/projects">Projects</a>
         <a href="/gaps">Questions</a>
       </div>
     </div>
-    <p class="verified-note">Last verified from engineering report catalog: {reportVerifiedDate}.</p>
+    <p class="verified-note">Catalog snapshot: {reportVerifiedDate}.</p>
 
     <section class="report-hero-grid">
       <article class="article-card report-card">
         <div class="article-tags">
-          <span class="tag-pill tag-green">Report snapshot</span>
+          <span class="tag-pill tag-green">Snapshot</span>
         </div>
-        <h3>Public proof surface</h3>
-        <p>The current report catalog contains {proofProjects.length} evidence-backed proof lanes, {totalEvidence} evidence entries, {totalMetrics} metric statements, and {totalLimitations} explicit limitations.</p>
-        <p>The learning layer adds {concepts.length} concepts and {guideSteps} guide steps. That means the website can now show both proof and the vocabulary behind the proof.</p>
+        <h3>What is moving</h3>
+        <p>The current catalog tracks {proofProjects.length} experiments, {totalEvidence} source entries, {totalMetrics} metric statements, and {totalLimitations} explicit limits.</p>
+        <p>The learning layer adds {concepts.length} concepts and {guideSteps} guide steps, so the numbers do not float without language around them.</p>
         <div class="card-footer">
-          <a class="read-more" href="/projects">Open proof console -></a>
+          <a class="read-more" href="/projects">Open experiments -></a>
           <a class="read-more" href="/learn">Open learning layer -></a>
           <a class="read-more" href="/gaps">Open questions -></a>
         </div>
@@ -72,9 +72,9 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
         <div class="article-tags">
           <span class="tag-pill tag-green">Boundary</span>
         </div>
-        <h3>What this report is not</h3>
-        <p>This is not a private vault dump, not employer data, not client data, not live trading performance, and not a compliance certification.</p>
-        <p>It is a public engineering report: visible artifacts, numbers that can be explained, and limitations that keep the claims honest.</p>
+        <h3>What this is not</h3>
+        <p>This is not employer data, client data, live trading performance, or a compliance certification.</p>
+        <p>It is a field note: visible artifacts, numbers that can be explained, and limits that keep the story honest.</p>
         <div class="card-footer">
           <a class="read-more" href="/dashboard-data/engineering-report-catalog.json">Open report data -></a>
         </div>
@@ -92,15 +92,15 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
     </section>
 
     <section class="report-panel">
-      <div class="section-label">Evidence Coverage</div>
-      <h2>Proof lanes by evidence density</h2>
-      <p>Each lane is scored by source-linked evidence entries. This is a simple visibility measure, not a quality ranking.</p>
+      <div class="section-label">Signal Map</div>
+      <h2>Experiments by source trail</h2>
+      <p>Each lane is scored by linked source entries. This is a simple visibility measure, not a quality ranking.</p>
       <div class="bar-list">
         {evidenceRows.map((row) => (
           <div class="bar-row">
             <div class="bar-label">
               <strong>{row.name}</strong>
-              <span>{row.evidence} evidence / {row.metrics} metrics / {row.limits} limits / {row.roles} role matches</span>
+              <span>{row.evidence} sources / {row.metrics} metrics / {row.limits} limits / {row.roles} tags</span>
             </div>
             <div class="bar-track" aria-label={`${row.name} evidence bar`}>
               <div class="bar-fill" style={`width: ${(row.evidence / maxEvidence) * 100}%`}></div>
@@ -111,9 +111,9 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
     </section>
 
     <section class="report-panel">
-      <div class="section-label">Benchmark View</div>
-      <h2>Evidence-backed benchmark view</h2>
-      <p>These values are pulled from existing proof summaries. Bars use a display scale per metric family, so percentages, function counts, tests, and prediction counts stay readable without pretending they measure the same thing.</p>
+      <div class="section-label">Benchmarks</div>
+      <h2>Measured notes</h2>
+      <p>These values come from existing summaries. Bars use a display scale per metric family, so percentages, function counts, tests, and prediction counts stay readable without pretending they measure the same thing.</p>
       <div class="chart-wrap">
         <svg viewBox="0 0 760 360" role="img" aria-label="Benchmark metrics chart">
           <line x1="72" y1="28" x2="72" y2="304" class="axis-line" />
@@ -145,9 +145,9 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
     </section>
 
     <section class="report-panel">
-      <div class="section-label">Capability Radar</div>
-      <h2>Where the public surface is strong or thin</h2>
-      <p>This is a practical evidence map. AML, agent governance, and observability are already readable. Deployment proof is the next visible question.</p>
+      <div class="section-label">Radar</div>
+      <h2>Where the lab feels strong or thin</h2>
+      <p>This is a practical map. AML, agent coordination, and observability are already readable. Deployment is the next visible question.</p>
       <div class="coverage-grid">
         {coverageBars.map((item) => (
           <div class="coverage-item">
@@ -164,7 +164,7 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
     </section>
 
     <section class="report-panel">
-      <div class="section-label">Scientific Notes</div>
+      <div class="section-label">Reading Notes</div>
       <h2>How to read these numbers</h2>
       <div class="notes-grid">
         {notes.map((note) => (
