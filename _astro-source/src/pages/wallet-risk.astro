@@ -1,0 +1,529 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
+
+const benchmarkMetrics = reportCatalog.default.benchmark_metrics;
+const catalogDate = new Date(reportCatalog.default.generated_at).toISOString().slice(0, 10);
+
+const metricLabels = [
+  'AML benchmark detection',
+  'AML benchmark false-positive rate',
+  'Direct detection functions',
+  'Mapped detection abilities',
+];
+
+const walletMetrics = benchmarkMetrics.filter((metric) => metricLabels.includes(metric.label));
+
+const sampleRules = [
+  'mixer touch',
+  'sanctions context',
+  'repeated timing',
+  'routing pattern',
+];
+
+const readingSteps = [
+  {
+    title: 'Rules',
+    body: 'The engine looks for patterns in public transaction rows: timing, routing, mixer contact, consolidation, and other signals that can make a row worth a second look.',
+  },
+  {
+    title: 'Score',
+    body: 'A score is a sorting tool. It helps decide what to inspect first. It is not a legal finding, and it is not a final answer.',
+  },
+  {
+    title: 'Voice',
+    body: 'The Roaster layer turns a technical flag into a sentence a human can read. The tone can be sharp, but the boundary stays clear.',
+  },
+  {
+    title: 'Limit',
+    body: 'This lab uses sample rows and visible summaries. It does not use employer data, client data, private wallet data, or live filing workflows.',
+  },
+];
+---
+<BaseLayout title="Wallet Risk Lab" description="A plain-language wallet-risk lab showing how transaction rules, scores, and explanation notes can sit next to each other without exposing private data.">
+  <main class="wallet-shell">
+    <section class="wallet-hero">
+      <div class="wallet-hero-copy">
+        <span class="eyebrow">Wallet Risk Lab</span>
+        <h1>Some rows only get interesting when the rules explain why.</h1>
+        <p>
+          This is the quieter front door for the AML Engine and Roaster idea. A transaction pattern gets scored, the rules say what fired, and the voice layer turns it into a note a human can actually read.
+        </p>
+        <div class="hero-actions">
+          <a href="#sample-row">Watch one row</a>
+          <a href="/learn#aml">Learn AML</a>
+          <a href="/reports">Open numbers</a>
+        </div>
+      </div>
+      <aside class="risk-card" aria-label="Wallet risk sample summary">
+        <div class="risk-card-top">
+          <span>Sample view</span>
+          <strong>0x0a5b...4c91</strong>
+        </div>
+        <div class="risk-ring" aria-label="Sample score 72 of 100">
+          <svg viewBox="0 0 120 120" role="img">
+            <circle cx="60" cy="60" r="48" class="ring-back" />
+            <circle cx="60" cy="60" r="48" class="ring-front" pathLength="100" stroke-dasharray="72 100" />
+          </svg>
+          <div>
+            <strong>72</strong>
+            <span>review score</span>
+          </div>
+        </div>
+        <p>Pattern note: a masked sample row with mixer context, repeated timing, and routing behavior. Interesting enough to inspect. Not a finding by itself.</p>
+      </aside>
+    </section>
+
+    <section class="wallet-panel">
+      <div class="panel-head">
+        <span>How I read it</span>
+        <h2>Rules first. Voice second.</h2>
+        <p>The engine should do the boring part well. The Roaster should make the result readable without pretending the sentence is the truth layer.</p>
+      </div>
+      <div class="step-grid">
+        {readingSteps.map((step, index) => (
+          <article>
+            <small>{String(index + 1).padStart(2, '0')}</small>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="sample-layout" id="sample-row">
+      <article class="sample-row-card">
+        <div class="panel-head compact">
+          <span>One sample row</span>
+          <h2>Why did the engine pause?</h2>
+        </div>
+        <div class="row-line">
+          <span>Masked address</span>
+          <strong>0xd0b9...81aa</strong>
+        </div>
+        <div class="row-line">
+          <span>Pattern</span>
+          <strong>Mixer context plus routing behavior</strong>
+        </div>
+        <div class="row-line">
+          <span>Rules fired</span>
+          <div class="rule-list">
+            {sampleRules.map((rule) => <i>{rule}</i>)}
+          </div>
+        </div>
+        <div class="voice-note">
+          <span>Plain note</span>
+          <p>A row like this is not proof of wrongdoing. It is a reason to slow down, read the surrounding activity, and ask whether the pattern repeats.</p>
+        </div>
+      </article>
+
+      <article class="sample-row-card voice-card">
+        <div class="panel-head compact">
+          <span>Roaster boundary</span>
+          <h2>Make it readable, not reckless.</h2>
+        </div>
+        <p>
+          The funny layer only works if it respects the limit. It can point at the pattern. It cannot accuse a person, claim a filing decision, or turn a sample into a verdict.
+        </p>
+        <blockquote>
+          "This row is waving at the reviewer. Small amount, noisy route, familiar mixer context. Worth a second look before anyone pretends it is invisible."
+        </blockquote>
+        <p class="limit-copy">That is the tone: curious, sharp, bounded.</p>
+      </article>
+    </section>
+
+    <section class="wallet-panel">
+      <div class="panel-head">
+        <span>Numbers I am watching</span>
+        <h2>Useful numbers need their limits beside them.</h2>
+        <p>These values come from the local report catalog snapshot on {catalogDate}. They are shown as lab notes, not product certification.</p>
+      </div>
+      <div class="metric-strip">
+        {walletMetrics.map((metric) => (
+          <article>
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
+            <small>{metric.unit}. Source: {metric.source}.</small>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="wallet-panel split-panel">
+      <div>
+        <span class="eyebrow">What this is</span>
+        <h2>A learning surface for finance patterns.</h2>
+        <p>It shows how a rule-based wallet-risk engine, a score, and a plain-language note can live on the same page. That makes the system easier to inspect without turning it into a compliance product.</p>
+      </div>
+      <div>
+        <span class="eyebrow">What this is not</span>
+        <h2>Not a verdict machine.</h2>
+        <p>No client data. No employer data. No private wallet data. No legal advice. No filing recommendation. The page is about reading patterns, not accusing people.</p>
+      </div>
+    </section>
+
+    <section class="wallet-links">
+      <a href="/dashboard">
+        <span>Live dashboard</span>
+        <strong>Open the wider signal board</strong>
+      </a>
+      <a href="/learn#aml">
+        <span>Learning layer</span>
+        <strong>Read the AML plain-English note</strong>
+      </a>
+      <a href="/proof-tour">
+        <span>The Lab</span>
+        <strong>Follow the full route</strong>
+      </a>
+      <a href="/reports">
+        <span>Field Notes</span>
+        <strong>Check the report snapshot</strong>
+      </a>
+    </section>
+  </main>
+
+  <style>
+    .wallet-shell {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3.5rem 2rem 4rem;
+    }
+
+    .wallet-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+      gap: 1.25rem;
+      align-items: stretch;
+      margin-bottom: 1rem;
+    }
+
+    .wallet-hero-copy,
+    .risk-card,
+    .wallet-panel,
+    .sample-row-card,
+    .wallet-links a {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .wallet-hero-copy {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      min-width: 0;
+    }
+
+    .eyebrow,
+    .panel-head span,
+    .risk-card-top span,
+    .voice-note span,
+    .wallet-links span {
+      display: block;
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+
+    .wallet-hero h1 {
+      font-size: clamp(2.3rem, 6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+      margin: 0 0 1rem;
+      max-width: 880px;
+    }
+
+    .wallet-hero p,
+    .panel-head p,
+    .step-grid p,
+    .voice-card p,
+    .split-panel p,
+    .risk-card p,
+    .voice-note p {
+      color: var(--text-2);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.35rem;
+    }
+
+    .hero-actions a,
+    .wallet-links a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .hero-actions a {
+      border: 1px solid rgba(31, 160, 104, 0.35);
+      border-radius: 999px;
+      padding: 0.62rem 0.85rem;
+      background: rgba(31, 160, 104, 0.08);
+    }
+
+    .risk-card {
+      padding: 1rem;
+      display: grid;
+      align-content: space-between;
+      gap: 1rem;
+      min-width: 0;
+      background:
+        radial-gradient(circle at top right, rgba(31, 160, 104, 0.18), transparent 42%),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .risk-card-top strong {
+      display: block;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 1rem;
+      overflow-wrap: anywhere;
+    }
+
+    .risk-ring {
+      position: relative;
+      width: min(240px, 100%);
+      aspect-ratio: 1;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+    }
+
+    .risk-ring svg,
+    .risk-ring > div {
+      grid-area: 1 / 1;
+    }
+
+    .ring-back {
+      fill: none;
+      stroke: rgba(228, 228, 236, 0.12);
+      stroke-width: 10;
+    }
+
+    .ring-front {
+      fill: none;
+      stroke: #1fa068;
+      stroke-width: 10;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+
+    .risk-ring > div {
+      text-align: center;
+    }
+
+    .risk-ring strong {
+      display: block;
+      color: var(--text);
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      line-height: 1;
+    }
+
+    .risk-ring span {
+      color: var(--text-3);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+
+    .wallet-panel {
+      padding: 1.15rem;
+      margin-top: 1rem;
+    }
+
+    .panel-head {
+      margin-bottom: 1rem;
+    }
+
+    .panel-head.compact {
+      margin-bottom: 0.75rem;
+    }
+
+    .panel-head h2,
+    .split-panel h2 {
+      margin: 0 0 0.55rem;
+      font-size: clamp(1.45rem, 3vw, 2.25rem);
+      letter-spacing: 0;
+    }
+
+    .step-grid,
+    .metric-strip,
+    .wallet-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .step-grid article,
+    .metric-strip article {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      padding: 0.9rem;
+      background: rgba(2, 2, 4, 0.42);
+      min-width: 0;
+    }
+
+    .step-grid small {
+      display: block;
+      color: #1fa068;
+      font-family: var(--mono);
+      margin-bottom: 0.7rem;
+    }
+
+    .step-grid h3 {
+      margin: 0 0 0.45rem;
+      letter-spacing: 0;
+    }
+
+    .sample-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .sample-row-card {
+      padding: 1.15rem;
+      min-width: 0;
+    }
+
+    .row-line {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+      border-top: 1px solid rgba(228, 228, 236, 0.1);
+      padding: 0.8rem 0;
+    }
+
+    .row-line span {
+      color: var(--text-3);
+      font-size: 0.82rem;
+    }
+
+    .row-line strong {
+      color: var(--text);
+      overflow-wrap: anywhere;
+    }
+
+    .rule-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .rule-list i {
+      border: 1px solid rgba(31, 160, 104, 0.3);
+      border-radius: 999px;
+      color: var(--text);
+      font-style: normal;
+      padding: 0.35rem 0.55rem;
+      background: rgba(31, 160, 104, 0.08);
+      font-size: 0.82rem;
+    }
+
+    .voice-note {
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 8px;
+      background: rgba(31, 160, 104, 0.06);
+      padding: 0.9rem;
+      margin-top: 0.4rem;
+    }
+
+    blockquote {
+      border-left: 3px solid #1fa068;
+      margin: 1rem 0;
+      padding: 0.2rem 0 0.2rem 1rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    .limit-copy {
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+    }
+
+    .metric-strip article span,
+    .metric-strip article small {
+      display: block;
+      color: var(--text-3);
+      line-height: 1.45;
+    }
+
+    .metric-strip article strong {
+      display: block;
+      color: var(--text);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+      margin: 0.45rem 0;
+    }
+
+    .split-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .split-panel > div {
+      border: 1px solid rgba(228, 228, 236, 0.1);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.32);
+      padding: 1rem;
+    }
+
+    .wallet-links {
+      margin-top: 1rem;
+    }
+
+    .wallet-links a {
+      padding: 1rem;
+      min-width: 0;
+    }
+
+    .wallet-links strong {
+      display: block;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    @media (max-width: 900px) {
+      .wallet-hero,
+      .sample-layout,
+      .split-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wallet-shell {
+        padding: 2.5rem 1rem 3rem;
+      }
+
+      .wallet-hero h1 {
+        font-size: 2rem;
+        line-height: 1.08;
+        overflow-wrap: break-word;
+      }
+
+      .wallet-hero-copy,
+      .risk-card,
+      .wallet-panel,
+      .sample-row-card {
+        padding: 1rem;
+      }
+
+      .row-line {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+    }
+  </style>
+</BaseLayout>
