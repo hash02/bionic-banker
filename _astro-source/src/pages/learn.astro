@@ -22,6 +22,34 @@ const conceptLinks = [
   { label: 'Kubernetes', id: 'kubernetes' },
   { label: 'Docker', id: 'docker' },
 ];
+
+const basicsRoute = [
+  {
+    label: 'Fintech rails',
+    href: '/blog/fintech/',
+    summary: 'Why finance keeps turning into software, and where the real risk moves.'
+  },
+  {
+    label: 'Aave lending',
+    href: '/blog/aave/',
+    summary: 'Collateral, rates, and why on-chain credit behaves like a live risk machine.'
+  },
+  {
+    label: 'Uniswap pools',
+    href: '/blog/uniswap/',
+    summary: 'The simple swap button, the pool underneath, and the risk liquidity carries.'
+  },
+  {
+    label: 'DeFi basics',
+    href: '/blog/defi/',
+    summary: 'A first map for lending, borrowing, trading, and custody without the usual rails.'
+  },
+  {
+    label: 'Zero-knowledge privacy',
+    href: '/blog/zkp-explained/',
+    summary: 'A privacy idea worth understanding before AI and finance get too close.'
+  },
+];
 ---
 <BaseLayout title="Learn AI Systems" description="Plain-English concepts behind the Bionic Banker lab stack: AI agents, LLMs, VLMs, RAG, LangChain, RBAC, AML, observability, and deployment basics.">
   <div class="page-header">
@@ -61,6 +89,22 @@ const conceptLinks = [
         <a href="/proof-tour">Walk the lab</a>
         <a href="/reports">Field notes</a>
         <a href="/intelligence">Live signals</a>
+      </div>
+    </section>
+
+    <section class="basics-route" aria-label="Finance and AI basics route">
+      <div class="basics-head">
+        <span class="section-label">Basics</span>
+        <h2>Start with the rails.</h2>
+        <p>These are the plain notes I would hand someone before the lab gets technical: money movement, pools, lending, privacy, and the risk that follows each layer.</p>
+      </div>
+      <div class="basics-grid">
+        {basicsRoute.map((item) => (
+          <a class="basic-link-card" href={item.href}>
+            <span>{item.label}</span>
+            <p>{item.summary}</p>
+          </a>
+        ))}
       </div>
     </section>
 
@@ -198,6 +242,71 @@ const conceptLinks = [
       justify-content: center;
     }
 
+    .basics-route {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.032);
+      padding: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .basics-head {
+      max-width: 760px;
+      margin-bottom: 1rem;
+    }
+
+    .basics-head h2 {
+      margin: 0.2rem 0 0.45rem;
+      font-size: clamp(1.35rem, 2.5vw, 2.1rem);
+      letter-spacing: 0;
+    }
+
+    .basics-head p {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .basics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .basic-link-card {
+      min-height: 160px;
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 8px;
+      background: rgba(31, 160, 104, 0.055);
+      color: #e4e4ec;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+      text-decoration: none;
+      touch-action: manipulation;
+      transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+    }
+
+    .basic-link-card:hover,
+    .basic-link-card:focus-visible {
+      border-color: rgba(31, 160, 104, 0.55);
+      background: rgba(31, 160, 104, 0.09);
+      transform: translateY(-2px);
+    }
+
+    .basic-link-card span {
+      color: #f7f7fb;
+      font-family: var(--mono);
+      font-size: 0.88rem;
+    }
+
+    .basic-link-card p {
+      color: var(--text-2);
+      line-height: 1.55;
+      margin: 1rem 0 0;
+    }
+
     .tight-list {
       margin: 0;
       padding-left: 1.2rem;
@@ -294,6 +403,10 @@ const conceptLinks = [
 
       .route-links {
         justify-content: flex-start;
+      }
+
+      .basic-link-card {
+        min-height: 132px;
       }
     }
   </style>
