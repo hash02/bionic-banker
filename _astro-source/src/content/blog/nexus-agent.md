@@ -10,7 +10,9 @@ slug: "nexus-agent"
 image: "/blog-visuals/nexus-agent/social-preview.png"
 ---
 
-Okay so — I need to be honest about how this started.
+I built three versions of an AI investigation agent for blockchain fraud detection. Each one broke differently. What the architecture diagrams never show: memory scope drift, reasoning bias under adversarial data, and what happens when you let the agent score its own output.
+
+Okay so. I need to be honest about how this started.
 
     
 I didn't set out to build three versions of anything. I set out to build ONE thing — an AI that could investigate blockchain fraud. Like actually investigate it, not just flag transactions and hand you a spreadsheet. I wanted something that could look at a wallet address and tell me a story. Who moved what, when, why it looks suspicious, and what I should do about it.

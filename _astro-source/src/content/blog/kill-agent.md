@@ -9,7 +9,9 @@ featured: false
 slug: "kill-agent"
 ---
 
-Okay so here's the thing nobody talks about when they're building AI agent systems—the system is always lying to you about how healthy it is.
+A dedicated AI agent that stress-tests an entire multi-agent system every hour. 20% survival rate, documented honestly. The failures are the point: an AI system cannot reliably evaluate its own health using its own assumptions.
+
+Okay so here is the thing nobody talks about when building AI agent systems. The system is always lying to you about how healthy it is.
 
       
 Not intentionally. Not maliciously. But if you build a system and then ask that same system if it's working correctly, you're going to get a yes. Always. Because the system can only evaluate itself using its own broken assumptions. It's like asking someone who's having a psychotic episode if they're thinking clearly. The answer is always "of course I am."
