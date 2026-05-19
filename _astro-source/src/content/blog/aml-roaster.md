@@ -9,7 +9,9 @@ featured: false
 slug: "aml-roaster"
 ---
 
-Okay so — here's a number that should bother you more than it does.
+This is a field note on a blockchain AML engine that does something most compliance tools refuse to: it scans suspicious Ethereum patterns using 28 detection rules, scores the wallet, then explains what it found in language a human analyst cannot ignore.
+
+Okay so — here is a number that should bother you more than it does.
 
     
 $82 billion was laundered through cryptocurrency in 2025. That's up from $40 billion the year before — a 105% jump. And globally, somewhere between $800 billion and $2 trillion gets laundered every year across all channels. The UN estimates less than 1% of it gets caught.

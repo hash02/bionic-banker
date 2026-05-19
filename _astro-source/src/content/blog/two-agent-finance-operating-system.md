@@ -9,6 +9,8 @@ featured: false
 slug: "two-agent-finance-operating-system"
 ---
 
+Two AI agents, one shared state board, one hard rule: no action goes live without a second agent reviewing it first. I built this system for finance and compliance work because a single AI making decisions without a check is a liability, not a tool.
+
 I kept running into the same problem.
 
 Not a coding problem exactly. A coordination problem.
