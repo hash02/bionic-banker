@@ -6,16 +6,17 @@ const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().s
 
 const projects = [
   {
-    name: 'AML Engine + AML Roaster',
-    description: 'A serious blockchain AML detection engine paired with a plain-language explanation layer that makes suspicious wallet behavior easier to review.',
-    role: 'AML / Risk / Explanation',
-    url: '/blog/aml-roaster',
-    proof: '28 mapped detection abilities, 23 direct detection functions, and a 94.9 percent benchmark run on labeled transaction examples. The Roaster turns the findings into human-readable risk stories.',
-    limitation: 'Research and portfolio system. Not legal advice, SAR filing software, or a licensed compliance product.',
+    name: 'Wallet Risk Lab',
+    description: 'A small lab for reading blockchain wallet-risk rows without turning every score into a verdict.',
+    role: 'Wallets / Risk / Notes',
+    url: '/wallet-risk',
+    proof: 'The current map has 28 detection abilities and 23 direct functions. The interesting part is how the row, rule, score, and plain note sit together.',
+    limitation: 'Research and learning surface. Not legal advice, filing software, or a licensed compliance product.',
     links: [
-      { label: 'Engine GitHub', url: 'https://github.com/hash02/aml-detection-engine' },
-      { label: 'Roaster GitHub', url: 'https://github.com/hash02/aml-roaster' },
-      { label: 'Roast Gallery', url: '/blog/roast-gallery' },
+      { label: 'Open lab', url: '/wallet-risk' },
+      { label: 'Field note', url: '/blog/roast-gallery' },
+      { label: 'Engine notes', url: '/blog/aml-engine' },
+      { label: 'GitHub', url: 'https://github.com/hash02/aml-detection-engine' },
       { label: 'AML', url: '/learn#aml' },
       { label: 'False positives', url: '/learn#false-positive' },
     ],
