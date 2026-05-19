@@ -30,18 +30,18 @@ const evidenceRows = proofProjects.map((project) => ({
 
 const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
 ---
-<BaseLayout title="Engineering Reports" description="Public-safe engineering reports for Bionic Banker proof coverage, AML benchmark numbers, agent observability, and learning-layer concept coverage.">
+<BaseLayout title="Engineering Reports" description="Reader-facing engineering reports for Bionic Banker proof coverage, AML benchmark numbers, agent observability, and learning-layer concept coverage.">
   <div class="page-header">
     <div class="page-label">Engineering Reports</div>
     <h1 class="page-title">Proof, Numbers, and Charts</h1>
-    <p class="page-sub">A public-safe report layer for the work. Counts come from the proof catalog and learning catalog. Claims stay tied to evidence, limits, and source boundaries.</p>
+    <p class="page-sub">A reader-facing report layer for the work. Counts come from the proof catalog and learning catalog. Claims stay tied to evidence, limits, and source boundaries.</p>
   </div>
 
   <div class="articles-wrap">
     <div class="recruiter-strip">
       <div>
         <h2>Scientific report layer for AI finance proof</h2>
-        <p>Public-safe numbers, charts, evidence density, and limitation notes for the work shown on Bionic Banker.</p>
+        <p>Reader-facing numbers, charts, evidence density, and limitation notes for the work shown on Bionic Banker.</p>
       </div>
       <div class="recruiter-links">
         <span>Evidence</span>
@@ -94,7 +94,7 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
     <section class="report-panel">
       <div class="section-label">Evidence Coverage</div>
       <h2>Proof lanes by evidence density</h2>
-      <p>Each lane is scored by public-safe evidence entries. This is a simple visibility measure, not a quality ranking.</p>
+      <p>Each lane is scored by source-linked evidence entries. This is a simple visibility measure, not a quality ranking.</p>
       <div class="bar-list">
         {evidenceRows.map((row) => (
           <div class="bar-row">

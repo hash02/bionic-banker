@@ -16,7 +16,7 @@ const grouped = categories
   }))
   .filter((group) => group.items.length > 0);
 ---
-<BaseLayout title="Questions the Market Is Asking" description="A public-safe question atlas for modern AI, finance automation, engineering proof, and useful reader-facing explanations.">
+<BaseLayout title="Questions the Market Is Asking" description="A reader-facing question atlas for modern AI, finance automation, engineering proof, and useful explanations.">
   <div class="page-header">
     <div class="page-label">Question Atlas</div>
     <h1 class="page-title">Questions the Market Is Asking</h1>
@@ -93,7 +93,7 @@ const grouped = categories
 
     <section class="source-panel">
       <div class="section-label">Interface Principles</div>
-      <h2>What the page is allowed to show</h2>
+      <h2>What readers can inspect</h2>
       <div class="source-grid">
         {websiteScan.interface_principles.map((principle) => (
           <article class="source-card">

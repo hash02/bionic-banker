@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-05-19T00:00:00-07:00",
+  "name": "Bionic Banker Site Agent",
+  "status": "editor_guardrail_v1",
+  "purpose": "Keep the website useful for readers by checking clarity, evidence, reader value, privacy, and overclaim risk before new pages ship to the site.",
+  "public_voice_rules": [
+    "Lead with reader value before internal process.",
+    "Use questions before claims when a topic is complex.",
+    "Show existing proof before future direction.",
+    "Attach numbers to source context and limits.",
+    "Use plain definitions for new AI terms.",
+    "Keep sensitive operational details, credentials, and employer or client data out of the public page."
+  ],
+  "blocked_public_phrases": [
+    {
+      "phrase": "public-safe",
+      "rewrite": "reader-facing, source-linked, visible, inspectable, or privacy-aware"
+    },
+    {
+      "phrase": "safe to show",
+      "rewrite": "visible or inspectable"
+    },
+    {
+      "phrase": "allowed to show",
+      "rewrite": "what readers can inspect"
+    },
+    {
+      "phrase": "not asking the reader to believe a roadmap",
+      "rewrite": "start with a question, then inspect the examples"
+    },
+    {
+      "phrase": "what we are building",
+      "rewrite": "what exists or how this works"
+    },
+    {
+      "phrase": "proof to build next",
+      "rewrite": "next question"
+    },
+    {
+      "phrase": "private infrastructure",
+      "rewrite": "backend details or operational details"
+    }
+  ],
+  "review_rubric": [
+    {
+      "category": "Clarity",
+      "question": "Can a first-time reader understand the point without knowing the internal system?"
+    },
+    {
+      "category": "Evidence",
+      "question": "Does the page link to proof, source data, reports, screenshots, or a public artifact?"
+    },
+    {
+      "category": "Reader value",
+      "question": "Does the page help the reader learn, inspect, compare, refresh, or decide what to open next?"
+    },
+    {
+      "category": "Privacy",
+      "question": "Does the page avoid credentials, sensitive system identifiers, client data, and employer data?"
+    },
+    {
+      "category": "Overclaim",
+      "question": "Are limitations visible wherever numbers, automation, AI, finance, or agent claims appear?"
+    },
+    {
+      "category": "Market usefulness",
+      "question": "Does the page map to a real question people ask about AI systems, finance automation, evidence, or deployment?"
+    }
+  ],
+  "publish_gate": [
+    "Scan source templates.",
+    "Scan exposed dashboard JSON.",
+    "Build the static site.",
+    "Scan built HTML outputs.",
+    "Run safety evaluation for touched files.",
+    "Verify the live URL after publishing."
+  ],
+  "owned_surfaces": [
+    "/gaps/",
+    "/intelligence/",
+    "/learn/",
+    "/reports/",
+    "/proof-tour/",
+    "/site-agent/"
+  ]
+}

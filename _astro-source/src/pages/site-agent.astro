@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const editorAgent = await import('../data/site-editor-agent.json');
+const agent = editorAgent.default;
+---
+<BaseLayout title="Bionic Banker Site Agent" description="The editorial system that keeps Bionic Banker readable, evidence-linked, privacy-aware, and useful for people learning modern AI finance systems.">
+  <main class="agent-shell">
+    <section class="agent-hero">
+      <div>
+        <span class="section-label">Site Agent</span>
+        <h1>Bionic Banker now has an editor.</h1>
+        <p>The website is being organized like a small AI editor. It routes questions, explains terms, shows proof, keeps limits visible, and checks the public language before a page ships.</p>
+      </div>
+      <aside class="agent-card">
+        <span>{agent.status}</span>
+        <strong>{agent.name}</strong>
+        <p>{agent.purpose}</p>
+      </aside>
+    </section>
+
+    <section class="agent-panel">
+      <div class="panel-head">
+        <span>Reader flow</span>
+        <h2>Question to concept to proof.</h2>
+      </div>
+      <div class="flow-grid">
+        <article>
+          <b>01</b>
+          <h3>Ask</h3>
+          <p>Start with questions people already have about AI systems, finance automation, agents, proof, and deployment.</p>
+          <a href="/gaps/">Open Questions</a>
+        </article>
+        <article>
+          <b>02</b>
+          <h3>Learn</h3>
+          <p>Translate the concept into plain language before the reader has to inspect code, metrics, or reports.</p>
+          <a href="/learn/">Open Learn</a>
+        </article>
+        <article>
+          <b>03</b>
+          <h3>Inspect</h3>
+          <p>Attach the claim to a proof lane, report, source link, metric, limitation, or reader-facing snapshot.</p>
+          <a href="/proof-tour/">Open Proof Tour</a>
+        </article>
+        <article>
+          <b>04</b>
+          <h3>Watch</h3>
+          <p>Use visible signal rows and market context so the site feels alive without turning research into advice.</p>
+          <a href="/intelligence/">Open Intelligence</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="agent-panel">
+      <div class="panel-head">
+        <span>Editorial rules</span>
+        <h2>What the editor checks.</h2>
+      </div>
+      <div class="rule-grid">
+        {agent.public_voice_rules.map((rule) => (
+          <article>
+            <p>{rule}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="agent-panel">
+      <div class="panel-head">
+        <span>Review rubric</span>
+        <h2>Six checks before a page earns attention.</h2>
+      </div>
+      <div class="rubric-grid">
+        {agent.review_rubric.map((item) => (
+          <article>
+            <h3>{item.category}</h3>
+            <p>{item.question}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="agent-panel">
+      <div class="panel-head">
+        <span>Surface map</span>
+        <h2>The site as one interface.</h2>
+      </div>
+      <div class="surface-list">
+        {agent.owned_surfaces.map((surface) => (
+          <a href={surface}>{surface}</a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .agent-shell {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3.5rem 2rem 4rem;
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .agent-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.36fr);
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .agent-hero h1 {
+      margin: 0.35rem 0 0.75rem;
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      letter-spacing: 0;
+      line-height: 0.96;
+    }
+
+    .agent-hero p,
+    .agent-card p,
+    .flow-grid p,
+    .rule-grid p,
+    .rubric-grid p {
+      color: var(--text-2);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .agent-card,
+    .agent-panel {
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+      padding: 1.15rem;
+    }
+
+    .agent-card {
+      display: grid;
+      gap: 0.75rem;
+      align-content: start;
+      background:
+        linear-gradient(145deg, rgba(31, 160, 104, 0.11), transparent 48%),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .agent-card span,
+    .panel-head span,
+    .flow-grid b {
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .agent-card strong {
+      color: var(--text);
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    .panel-head {
+      margin-bottom: 1rem;
+    }
+
+    .panel-head h2 {
+      margin: 0.3rem 0 0;
+      font-size: clamp(1.4rem, 3vw, 2.25rem);
+      letter-spacing: 0;
+    }
+
+    .flow-grid,
+    .rule-grid,
+    .rubric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .flow-grid article,
+    .rule-grid article,
+    .rubric-grid article {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.42);
+      padding: 1rem;
+      min-width: 0;
+    }
+
+    .flow-grid h3,
+    .rubric-grid h3 {
+      margin: 0.45rem 0 0.45rem;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+    }
+
+    .flow-grid a,
+    .surface-list a {
+      color: #1fa068;
+      display: inline-block;
+      margin-top: 0.85rem;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.86rem;
+    }
+
+    .surface-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .surface-list a {
+      border: 1px solid rgba(31, 160, 104, 0.35);
+      border-radius: 999px;
+      padding: 0.5rem 0.72rem;
+      margin-top: 0;
+      background: rgba(31, 160, 104, 0.08);
+    }
+
+    @media (max-width: 840px) {
+      .agent-hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .agent-shell {
+        padding: 2.5rem 1rem 3rem;
+      }
+    }
+  </style>
+</BaseLayout>
