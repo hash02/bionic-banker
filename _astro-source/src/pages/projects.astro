@@ -1,22 +1,67 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().slice(0, 10);
+
 const projects = [
   {
-    name: 'AML Detection Engine',
-    description: 'Blockchain AML detection system that maps on-chain behavior to financial-crime typologies and reviewer-friendly risk outputs.',
-    role: 'Crypto AML, RegTech, financial crime technology, compliance automation',
-    url: 'https://github.com/hash02/aml-detection-engine',
-    proof: '28 mapped detection abilities, 23 direct detection functions, benchmarked at 94.9 percent detection on a labeled transaction dataset.',
-    limitation: 'Research and portfolio system, not a licensed compliance product or production exchange deployment.',
+    name: 'AML Engine + AML Roaster',
+    description: 'A serious blockchain AML detection engine paired with a plain-language explanation layer that makes suspicious wallet behavior easier to review.',
+    role: 'Crypto AML, RegTech, financial crime technology, explainable AI',
+    url: '/blog/aml-roaster',
+    proof: '28 mapped detection abilities, 23 direct detection functions, benchmarked at 94.9 percent detection on a labeled transaction dataset. The Roaster turns findings into human-readable risk narratives.',
+    limitation: 'Research and portfolio system. Not legal advice, SAR filing software, or a licensed compliance product.',
+    links: [
+      { label: 'Engine GitHub', url: 'https://github.com/hash02/aml-detection-engine' },
+      { label: 'Roaster GitHub', url: 'https://github.com/hash02/aml-roaster' },
+      { label: 'Roast Gallery', url: '/blog/roast-gallery' },
+      { label: 'AML', url: '/learn#aml' },
+      { label: 'False positives', url: '/learn#false-positive' },
+    ],
   },
   {
-    name: 'Two-Agent Finance Operating System',
-    description: 'A proof-backed operating layer where two agents critique each other, preserve decisions, and keep human approval gates around external actions.',
-    role: 'AI agent builder, AI operations, compliance workflow automation, AI governance',
+    name: 'Agent Chess',
+    description: 'A two-agent operating pattern where independent agents take turns, review each other, preserve board state, and hold external actions behind approval.',
+    role: 'AI operations, agent orchestration, workflow governance',
     url: '/blog/two-agent-finance-operating-system',
-    proof: 'Produced real career artifacts: cleaned GitHub profile, corrected AML README, crypto AML resume variant, job-specific application packets, and this projects page.',
-    limitation: 'Personal-scale production system, not enterprise compliance deployment.',
+    proof: 'Career Proof Chess reached board event 119 and produced career packets, proof inserts, content drafts, product templates, and safety-reviewed artifacts.',
+    limitation: 'Personal operating system. Not enterprise compliance software. No autonomous public publishing or external actions.',
+    links: [
+      { label: 'Case Study', url: '/blog/two-agent-finance-operating-system' },
+      { label: 'Proof Catalog', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'AI agent', url: '/learn#agent' },
+      { label: 'Audit log', url: '/learn#audit-log' },
+    ],
+  },
+  {
+    name: 'Agent Framework Proof v2',
+    description: 'Local proof stack for governed AI-agent workflows: trace events, queue states, tool boundaries, retrieval citations, RBAC simulation, and observability output.',
+    role: 'AI agent engineer, AI governance, regulated workflow automation',
+    url: 'https://github.com/hash02/agent-framework-proof',
+    proof: 'Public CI green after backup. Local sprint produced 70 passing tests before public push and covers LangGraph, LangChain tool-calling, OpenAI Agents SDK-shaped local proof, MCP-style tool boundaries, vector retrieval, RBAC, and observability.',
+    limitation: 'Local proof stack, not a production hosted agent or credentialed integration.',
+    links: [
+      { label: 'GitHub Repo', url: 'https://github.com/hash02/agent-framework-proof' },
+      { label: 'LangChain', url: '/learn#langchain' },
+      { label: 'LangGraph', url: '/learn#langgraph' },
+      { label: 'RAG', url: '/learn#rag' },
+      { label: 'RBAC', url: '/learn#rbac' },
+    ],
+  },
+  {
+    name: 'Agent Heartbeat Lab',
+    description: 'A public-safe status snapshot showing an agent loop can wake up, write state, score prior predictions, and expose recent health.',
+    role: 'Agent monitoring, observability, AI finance research',
+    url: '/dashboard-data/heartbeat.json',
+    proof: 'Latest public snapshot shows alive and healthy status, 2,514 predictions made, and 53 percent accuracy over the last 100 BTC direction checks.',
+    limitation: 'Research and observability proof only. Not investment advice, live trading performance, or infrastructure disclosure.',
+    links: [
+      { label: 'Heartbeat JSON', url: '/dashboard-data/heartbeat.json' },
+      { label: 'Proof Catalog', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Heartbeat', url: '/learn#heartbeat' },
+      { label: 'Observability', url: '/learn#observability' },
+    ],
   },
   {
     name: 'Hermes Kite',
@@ -25,14 +70,25 @@ const projects = [
     url: 'https://github.com/hash02/hermes-kite',
     proof: 'Public GitHub repository exists and should be framed as testnet and hackathon infrastructure proof only.',
     limitation: 'Not live-money trading proof. Do not imply production capital management.',
+    links: [
+      { label: 'GitHub Repo', url: 'https://github.com/hash02/hermes-kite' },
+      { label: 'Docker', url: '/learn#docker' },
+      { label: 'Kubernetes', url: '/learn#kubernetes' },
+    ],
   },
   {
-    name: 'AML Roaster',
-    description: 'Automated Ethereum transaction monitor that flags suspicious patterns and generates SAR-style investigative reports.',
-    role: 'AML automation, financial crime analysis, compliance reporting',
-    url: 'https://github.com/hash02/aml-roaster',
-    proof: 'README describes a 30-minute GitHub Actions schedule, mixer and high-risk address monitoring, report archives, and SAR-style narrative output.',
-    limitation: 'Investigator-support tool, not legal SAR filing software.',
+    name: 'AI Agent Governance Starter Kit',
+    description: 'A template package for documenting AI-agent tools, queue states, trace events, claim boundaries, and human approval gates.',
+    role: 'AI governance, consulting offer, trust and safety review',
+    url: '/dashboard-data/public-proof-catalog.json',
+    proof: 'Seven local package files after manifest addition. The manifest and build brief passed safety evaluation with no findings.',
+    limitation: 'Template kit. Not legal advice, compliance certification, or enterprise governance software.',
+    links: [
+      { label: 'Proof Catalog', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Tool calling', url: '/learn#tool-calling' },
+      { label: 'RBAC', url: '/learn#rbac' },
+      { label: 'Audit log', url: '/learn#audit-log' },
+    ],
   },
   {
     name: 'Wallet Risk Check',
@@ -41,28 +97,70 @@ const projects = [
     url: 'https://github.com/hash02/wallet-risk-check',
     proof: 'Supports Ethereum, Polygon, Base, Arbitrum, Optimism, and 50+ EVM chains through Blockscout according to the public README.',
     limitation: 'Quick triage helper, not a replacement for full blockchain intelligence platforms.',
+    links: [
+      { label: 'GitHub Repo', url: 'https://github.com/hash02/wallet-risk-check' },
+      { label: 'EVM', url: '/learn#evm' },
+      { label: 'AML', url: '/learn#aml' },
+    ],
   },
   {
     name: 'Bionic Banker',
     description: 'Public writing and proof surface for AI, finance, blockchain, compliance-system design, and builder experiments.',
     role: 'AI finance communication, developer advocacy, fintech education, technical storytelling',
     url: 'https://bionicbanker.tech',
-    proof: 'Live public site with 37 source articles and a GitHub-backed publishing workflow.',
+    proof: 'Live public site with 38 source articles, dashboard data, public proof catalog, and a GitHub-backed publishing workflow.',
     limitation: 'This page exists because the proof was previously scattered across GitHub, articles, and local packets.',
+    links: [
+      { label: 'All Articles', url: '/articles' },
+      { label: 'Proof Catalog', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Learning Layer', url: '/learn' },
+      { label: 'Engineering Reports', url: '/reports' },
+      { label: 'Market Gaps', url: '/gaps' },
+    ],
   },
 ];
 ---
 <BaseLayout title="Projects" description="Proof-backed AI, finance, AML, and agent-system work by Himanshu. Public evidence, role signal, and honest limitations in one place.">
   <div class="page-header">
-    <div class="page-label">Proof</div>
+    <div class="page-label">Proof Console</div>
     <h1 class="page-title">Projects</h1>
-    <p class="page-sub">Proof-backed AI, finance, AML, and agent-system work. Each project links to public evidence and states the limitation clearly.</p>
+    <p class="page-sub">Proof-backed AI, finance, AML, and agent-system work. Each card shows what was built, what proves it, where it fits, and what not to overclaim.</p>
   </div>
 
   <div class="articles-wrap">
+    <div class="recruiter-strip">
+      <div>
+        <h2>Himanshu builds AI finance systems</h2>
+        <p>Financial Advisor building public-safe proof across AML, AI agents, observability, governance, blockchain risk, and technical education.</p>
+      </div>
+      <div class="recruiter-links">
+        <span>AML</span>
+        <span>Agents</span>
+        <span>Observability</span>
+        <a href="https://github.com/hash02" target="_blank" rel="noopener">GitHub</a>
+        <a href="/reports">Reports</a>
+      </div>
+    </div>
+    <p class="verified-note">Last verified from public proof catalog: {verifiedDate}.</p>
+
+    <div class="article-card" style="margin-bottom: 1.25rem;">
+      <div class="article-tags">
+        <span class="tag-pill tag-green">Public proof adapter</span>
+      </div>
+      <h3>How to read this page</h3>
+      <p>This is the public layer over the private vault. The vault keeps raw notes, turn logs, and proofs. This page only shows sanitized claims, public links, honest limitations, and role fit.</p>
+      <p><strong>Adapter rule:</strong> private proof becomes public only after it has a source, a boundary, and a reason a recruiter or builder can understand.</p>
+      <div class="card-footer">
+        <a href="/reports" class="read-more">View reports -></a>
+        <a href="/gaps" class="read-more">See build gaps -></a>
+        <a href="/learn" class="read-more">Learn the concepts -></a>
+        <a href="/dashboard-data/public-proof-catalog.json" class="read-more">Open machine-readable proof catalog -></a>
+      </div>
+    </div>
+
     <div class="articles-grid stagger-children">
       {projects.map((project) => (
-        <a href={project.url} class="article-card animate-on-scroll" target={project.url.startsWith('http') ? '_blank' : undefined} rel={project.url.startsWith('http') ? 'noopener' : undefined}>
+        <article class="article-card animate-on-scroll">
           <div class="article-tags">
             <span class="tag-pill tag-green">{project.role}</span>
           </div>
@@ -70,10 +168,18 @@ const projects = [
           <p>{project.description}</p>
           <p><strong>Proof:</strong> {project.proof}</p>
           <p><strong>Limit:</strong> {project.limitation}</p>
+          {project.links && (
+            <p><strong>Links:</strong> {project.links.map((link, index) => (
+              <>
+                <span>{index > 0 ? ' / ' : ''}</span>
+                <a href={link.url} target={link.url.startsWith('http') ? '_blank' : undefined} rel={link.url.startsWith('http') ? 'noopener' : undefined}>{link.label}</a>
+              </>
+            ))}</p>
+          )}
           <div class="card-footer">
-            <span class="read-more">Open proof -></span>
+            <a href={project.url} class="read-more" target={project.url.startsWith('http') ? '_blank' : undefined} rel={project.url.startsWith('http') ? 'noopener' : undefined}>Open proof -></a>
           </div>
-        </a>
+        </article>
       ))}
     </div>
   </div>

@@ -1,0 +1,883 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
+const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
+
+const projects = proofCatalog.default.projects;
+const gaps = gapCatalog.default.gaps;
+const reportMetrics = reportCatalog.default.summary_metrics;
+const benchmarkMetrics = reportCatalog.default.benchmark_metrics;
+const coverageBars = reportCatalog.default.coverage_bars;
+const marketSources = gapCatalog.default.market_sources;
+const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().slice(0, 10);
+
+const scenes = [
+  {
+    id: 'aml-engine-roaster',
+    label: 'AML',
+    title: 'AML Engine plus Roaster',
+    intent: 'Show financial-crime thinking with explainable AI and clear public limits.',
+    project: projects.find((project) => project.id === 'aml-engine-roaster'),
+    route: '/projects',
+    next: 'Turn the engine and roaster into a compact visual case study with input, detection, roast, limitation, and reviewer view.',
+  },
+  {
+    id: 'agent-chess',
+    label: 'Agents',
+    title: 'Agent Chess',
+    intent: 'Show multi-agent coordination, board state, approval gates, and traceable work.',
+    project: projects.find((project) => project.id === 'agent-chess'),
+    route: '/blog/two-agent-finance-operating-system',
+    next: 'Build the visual chess board with turn, owner, artifact, blocker, and next move.',
+  },
+  {
+    id: 'agent-heartbeat-lab',
+    label: 'Live Loop',
+    title: 'Heartbeat Lab',
+    intent: 'Show a running loop with public-safe status, counts, and limitations.',
+    project: projects.find((project) => project.id === 'agent-heartbeat-lab'),
+    route: '/dashboard-data/heartbeat.json',
+    next: 'Add a live-safe status card with age, mode, count, and plain-English interpretation.',
+  },
+  {
+    id: 'agent-framework-proof-v2',
+    label: 'Governance',
+    title: 'Agent Framework Proof',
+    intent: 'Show governed tools, RBAC, queue state, traces, retrieval, and observability.',
+    project: projects.find((project) => project.id === 'agent-framework-proof-v2'),
+    route: 'https://github.com/hash02/agent-framework-proof',
+    next: 'Connect the framework proof to an interactive RBAC simulator and eval dashboard.',
+  },
+  {
+    id: 'build-gaps',
+    label: 'Next Builds',
+    title: 'Market Gap Matrix',
+    intent: 'Show what is already proven, what is missing, and what gets built next.',
+    project: null,
+    route: '/gaps',
+    next: 'Build public RAG mini-lab, proof tour, spatial map, and Kubernetes mini deploy in that order.',
+  },
+];
+
+const firstScene = scenes[0];
+const p1Gaps = gaps.filter((gap) => gap.priority === 'P1');
+const inspectionRows = scenes
+  .filter((scene) => scene.project)
+  .map((scene) => {
+    const project = scene.project;
+    const evidenceCount = project.evidence.length;
+    const metricCount = project.metrics.length;
+    const limitCount = project.limitations.length;
+    const readiness = Math.min(100, evidenceCount * 12 + metricCount * 8 + limitCount * 6);
+    return {
+      id: scene.id,
+      label: scene.label,
+      title: scene.title,
+      evidenceCount,
+      metricCount,
+      limitCount,
+      readiness,
+    };
+  });
+---
+<BaseLayout title="Proof Tour" description="A guided public-safe proof tour for Bionic Banker projects, reports, market gaps, and next build quests.">
+  <main class="tour-shell">
+    <section class="tour-hero">
+      <div>
+        <h1>Proof Tour</h1>
+        <p>This is the app-like layer over the work. Pick a lane, inspect the proof, see the limits, and follow the next build path.</p>
+      </div>
+      <div class="tour-status">
+        <span>Verified {verifiedDate}</span>
+        <strong>{projects.length} proof lanes</strong>
+        <strong>{gaps.length} build gaps</strong>
+      </div>
+    </section>
+
+    <section class="tour-app" data-tour-app>
+      <aside class="tour-rail" aria-label="Proof tour scenes">
+        {scenes.map((scene, index) => (
+          <button class={`tour-tab ${index === 0 ? 'active' : ''}`} type="button" data-scene-tab={scene.id}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <strong>{scene.label}</strong>
+          </button>
+        ))}
+      </aside>
+
+      <section class="tour-main">
+        <div class="tour-map" aria-label="Bionic Banker proof map">
+          <svg viewBox="0 0 720 360" role="img">
+            <line x1="140" y1="176" x2="310" y2="86" class="map-line" />
+            <line x1="140" y1="176" x2="318" y2="254" class="map-line" />
+            <line x1="318" y1="254" x2="510" y2="254" class="map-line" />
+            <line x1="310" y1="86" x2="510" y2="118" class="map-line" />
+            <line x1="510" y1="118" x2="590" y2="202" class="map-line" />
+            <g class="map-node active" data-map-node="aml-engine-roaster" transform="translate(106 142)">
+              <circle cx="34" cy="34" r="33" />
+              <text x="34" y="39" text-anchor="middle">AML</text>
+            </g>
+            <g class="map-node" data-map-node="agent-chess" transform="translate(276 52)">
+              <circle cx="34" cy="34" r="33" />
+              <text x="34" y="39" text-anchor="middle">Agents</text>
+            </g>
+            <g class="map-node" data-map-node="agent-heartbeat-lab" transform="translate(284 220)">
+              <circle cx="34" cy="34" r="33" />
+              <text x="34" y="39" text-anchor="middle">Loop</text>
+            </g>
+            <g class="map-node" data-map-node="agent-framework-proof-v2" transform="translate(476 84)">
+              <circle cx="34" cy="34" r="33" />
+              <text x="34" y="39" text-anchor="middle">Gov</text>
+            </g>
+            <g class="map-node" data-map-node="build-gaps" transform="translate(556 168)">
+              <circle cx="34" cy="34" r="33" />
+              <text x="34" y="39" text-anchor="middle">Next</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="tour-scenes">
+          {scenes.map((scene, index) => (
+            <article class={`tour-scene ${index === 0 ? 'active' : ''}`} data-scene-panel={scene.id}>
+              <div class="scene-head">
+                <span>{scene.label}</span>
+                <h2>{scene.title}</h2>
+                <p>{scene.intent}</p>
+              </div>
+
+              {scene.project && (
+                <div class="scene-method">
+                  <div>
+                    <span>Evidence count</span>
+                    <strong>{scene.project.evidence.length}</strong>
+                  </div>
+                  <div>
+                    <span>Metric statements</span>
+                    <strong>{scene.project.metrics.length}</strong>
+                  </div>
+                  <div>
+                    <span>Stated limits</span>
+                    <strong>{scene.project.limitations.length}</strong>
+                  </div>
+                </div>
+              )}
+
+              {scene.project ? (
+                <div class="scene-grid">
+                  <div>
+                    <h3>Public claim</h3>
+                    <p>{scene.project.public_claim}</p>
+                  </div>
+                  <div>
+                    <h3>Evidence</h3>
+                    <ul>
+                      {scene.project.evidence.slice(0, 4).map((item) => (
+                        <li>
+                          {item.url ? (
+                            <a href={item.url} target={item.url.startsWith('http') ? '_blank' : undefined} rel={item.url.startsWith('http') ? 'noopener' : undefined}>{item.label}</a>
+                          ) : (
+                            <span>{item.label}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3>Numbers</h3>
+                    <ul>
+                      {scene.project.metrics.slice(0, 4).map((metric) => (
+                        <li>{metric}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3>Limits</h3>
+                    <ul>
+                      {scene.project.limitations.slice(0, 4).map((limit) => (
+                        <li>{limit}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <div class="scene-grid">
+                  {p1Gaps.slice(0, 4).map((gap) => (
+                    <div>
+                      <h3>{gap.market_requirement}</h3>
+                      <p>{gap.build_quest}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div class="scene-next">
+                <div>
+                  <span>Next build</span>
+                  <p>{scene.next}</p>
+                </div>
+                <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>Open lane -></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <aside class="tour-metrics">
+        <h2>Report snapshot</h2>
+        {reportMetrics.slice(0, 6).map((metric) => (
+          <div class="tour-metric">
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
+            <small>{metric.unit}</small>
+          </div>
+        ))}
+        <a href="/reports">Open reports -></a>
+      </aside>
+    </section>
+
+    <section class="deep-panel">
+      <div class="deep-head">
+        <span>Inspection method</span>
+        <h2>Claim to proof to next test</h2>
+        <p>Each lane is scored as a public inspection surface, not as a production certification. The goal is simple: a reviewer should know what exists, what evidence supports it, what the limits are, and what build would make the proof stronger.</p>
+      </div>
+      <div class="method-grid">
+        <div>
+          <strong>1. Claim</strong>
+          <p>What the site is allowed to say publicly without exposing private infrastructure or employer data.</p>
+        </div>
+        <div>
+          <strong>2. Evidence</strong>
+          <p>Public repo, public article, manifest summary, benchmark note, or public-safe JSON snapshot.</p>
+        </div>
+        <div>
+          <strong>3. Limits</strong>
+          <p>What this is not. This keeps finance, compliance, and agent claims honest.</p>
+        </div>
+        <div>
+          <strong>4. Next test</strong>
+          <p>The smallest build that turns a missing market keyword into real proof.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="deep-panel">
+      <div class="deep-head">
+        <span>Readiness matrix</span>
+        <h2>How inspectable each lane is today</h2>
+        <p>Readiness is a local display score from evidence items, metric statements, and stated limits. It is not a claim of product maturity.</p>
+      </div>
+      <div class="readiness-list">
+        {inspectionRows.map((row) => (
+          <div class="readiness-row">
+            <div>
+              <span>{row.label}</span>
+              <strong>{row.title}</strong>
+              <small>{row.evidenceCount} evidence, {row.metricCount} metrics, {row.limitCount} limits</small>
+            </div>
+            <div class="readiness-bar" aria-label={`${row.title} readiness ${row.readiness} percent`}>
+              <i style={`width: ${row.readiness}%`}></i>
+            </div>
+            <b>{row.readiness}</b>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="deep-grid">
+      <div class="deep-panel">
+        <div class="deep-head compact">
+          <span>Benchmarks</span>
+          <h2>Numbers worth showing</h2>
+          <p>Only values already present in public-safe proof summaries are shown here.</p>
+        </div>
+        <div class="benchmark-list">
+          {benchmarkMetrics.slice(0, 6).map((metric) => (
+            <div class="benchmark-row">
+              <div>
+                <strong>{metric.label}</strong>
+                <span>{metric.value} {metric.unit}</span>
+              </div>
+              <div class="benchmark-bar">
+                <i style={`width: ${Math.min(100, Math.round((metric.value / metric.scale_max) * 100))}%`}></i>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="deep-panel">
+        <div class="deep-head compact">
+          <span>Coverage</span>
+          <h2>Current proof balance</h2>
+          <p>The lightest area remains deployment proof. That is the next serious build lane after public RAG and evals.</p>
+        </div>
+        <div class="coverage-list">
+          {coverageBars.map((item) => (
+            <div class="coverage-row">
+              <span>{item.label}</span>
+              <div class="coverage-dots" aria-label={`${item.label} ${item.value} of ${item.max}`}>
+                {Array.from({ length: item.max }).map((_, index) => (
+                  <i class={index < item.value ? 'on' : ''}></i>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="deep-panel">
+      <div class="deep-head">
+        <span>Source ledger</span>
+        <h2>Why these builds map to the market</h2>
+        <p>The next build quests come from role requirements and modern demo expectations, then get translated into public-safe proof work.</p>
+      </div>
+      <div class="source-ledger">
+        {marketSources.map((source) => (
+          <a href={source.url} target="_blank" rel="noopener">
+            <strong>{source.label}</strong>
+            <span>{source.signal}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+  (function() {
+    var app = document.querySelector('[data-tour-app]');
+    if (!app) return;
+    var tabs = Array.prototype.slice.call(app.querySelectorAll('[data-scene-tab]'));
+    var panels = Array.prototype.slice.call(app.querySelectorAll('[data-scene-panel]'));
+    var nodes = Array.prototype.slice.call(app.querySelectorAll('[data-map-node]'));
+
+    function activate(id) {
+      tabs.forEach(function(tab) { tab.classList.toggle('active', tab.getAttribute('data-scene-tab') === id); });
+      panels.forEach(function(panel) { panel.classList.toggle('active', panel.getAttribute('data-scene-panel') === id); });
+      nodes.forEach(function(node) { node.classList.toggle('active', node.getAttribute('data-map-node') === id); });
+    }
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() { activate(tab.getAttribute('data-scene-tab')); });
+    });
+    nodes.forEach(function(node) {
+      node.addEventListener('click', function() { activate(node.getAttribute('data-map-node')); });
+    });
+  })();
+  </script>
+
+  <style>
+    .tour-shell {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3.5rem 2rem 4rem;
+    }
+
+    .tour-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.2rem;
+      align-items: end;
+      border-bottom: 1px solid var(--b1);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tour-hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      letter-spacing: 0;
+      margin: 0 0 0.6rem;
+    }
+
+    .tour-hero p {
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 760px;
+      margin: 0;
+    }
+
+    .tour-status {
+      display: grid;
+      gap: 0.45rem;
+      min-width: 210px;
+    }
+
+    .tour-status span,
+    .tour-status strong {
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 6px;
+      padding: 0.45rem 0.65rem;
+      background: rgba(31, 160, 104, 0.055);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text);
+    }
+
+    .tour-app {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) 210px;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .tour-rail,
+    .tour-metrics,
+    .tour-main {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .tour-rail {
+      display: grid;
+      gap: 0.35rem;
+      padding: 0.55rem;
+      position: sticky;
+      top: 5rem;
+    }
+
+    .tour-tab {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-2);
+      text-align: left;
+      border-radius: 6px;
+      padding: 0.65rem;
+      cursor: pointer;
+      font-family: var(--mono);
+    }
+
+    .tour-tab span {
+      display: block;
+      font-size: 0.62rem;
+      color: var(--text-3);
+      margin-bottom: 0.18rem;
+    }
+
+    .tour-tab strong {
+      font-size: 0.78rem;
+      letter-spacing: 0;
+    }
+
+    .tour-tab.active {
+      border-color: rgba(31, 160, 104, 0.42);
+      background: rgba(31, 160, 104, 0.1);
+      color: var(--text);
+    }
+
+    .tour-main {
+      padding: 1rem;
+      min-width: 0;
+    }
+
+    .tour-map {
+      border: 1px solid rgba(31, 160, 104, 0.18);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.5);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .tour-map svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 260px;
+    }
+
+    .map-line {
+      stroke: rgba(31, 160, 104, 0.22);
+      stroke-width: 2;
+    }
+
+    .map-node {
+      cursor: pointer;
+    }
+
+    .map-node circle {
+      fill: rgba(31, 160, 104, 0.08);
+      stroke: rgba(31, 160, 104, 0.38);
+      stroke-width: 2;
+    }
+
+    .map-node text {
+      fill: var(--text);
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+
+    .map-node.active circle {
+      fill: rgba(31, 160, 104, 0.22);
+      stroke: #1fa068;
+      filter: drop-shadow(0 0 18px rgba(31, 160, 104, 0.35));
+    }
+
+    .tour-scene {
+      display: none;
+    }
+
+    .tour-scene.active {
+      display: block;
+    }
+
+    .scene-head {
+      margin-bottom: 1rem;
+    }
+
+    .scene-method {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .scene-method div {
+      border: 1px solid rgba(31, 160, 104, 0.2);
+      border-radius: 6px;
+      background: rgba(31, 160, 104, 0.055);
+      padding: 0.65rem;
+    }
+
+    .scene-method span {
+      display: block;
+      color: var(--text-3);
+      font-size: 0.66rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .scene-method strong {
+      color: var(--text);
+      font-size: 1.3rem;
+    }
+
+    .scene-head span,
+    .scene-next span {
+      display: block;
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .scene-head h2 {
+      margin: 0 0 0.45rem;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: 0;
+    }
+
+    .scene-head p,
+    .scene-grid p,
+    .scene-next p {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .scene-grid > div {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      padding: 0.9rem;
+      background: rgba(2, 2, 4, 0.42);
+      min-width: 0;
+    }
+
+    .scene-grid h3 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      letter-spacing: 0;
+    }
+
+    .scene-grid ul {
+      margin: 0;
+      padding-left: 1.05rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .scene-grid a,
+    .scene-next a,
+    .tour-metrics a {
+      color: #1fa068;
+      text-decoration: none;
+    }
+
+    .scene-next {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 8px;
+      padding: 0.9rem;
+      margin-top: 0.85rem;
+      background: rgba(31, 160, 104, 0.055);
+    }
+
+    .tour-metrics {
+      padding: 0.75rem;
+      display: grid;
+      gap: 0.55rem;
+      position: sticky;
+      top: 5rem;
+    }
+
+    .tour-metrics h2 {
+      font-size: 0.9rem;
+      margin: 0 0 0.2rem;
+      letter-spacing: 0;
+    }
+
+    .tour-metric {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 6px;
+      padding: 0.65rem;
+      background: rgba(2, 2, 4, 0.42);
+    }
+
+    .tour-metric span,
+    .tour-metric small {
+      display: block;
+      color: var(--text-3);
+      font-size: 0.66rem;
+      line-height: 1.4;
+    }
+
+    .tour-metric strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.25rem;
+      margin: 0.1rem 0;
+    }
+
+    .deep-panel {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .deep-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .deep-grid .deep-panel {
+      margin-top: 1rem;
+    }
+
+    .deep-head {
+      margin-bottom: 1rem;
+    }
+
+    .deep-head.compact {
+      margin-bottom: 0.75rem;
+    }
+
+    .deep-head span {
+      display: block;
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .deep-head h2 {
+      margin: 0 0 0.45rem;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      letter-spacing: 0;
+    }
+
+    .deep-head p,
+    .method-grid p {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .method-grid div,
+    .source-ledger a {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.42);
+      padding: 0.85rem;
+      min-width: 0;
+    }
+
+    .method-grid strong,
+    .source-ledger strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0;
+    }
+
+    .readiness-list,
+    .benchmark-list,
+    .coverage-list,
+    .source-ledger {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .readiness-row {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.8fr) minmax(160px, 1fr) 44px;
+      align-items: center;
+      gap: 0.8rem;
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.42);
+      padding: 0.85rem;
+    }
+
+    .readiness-row span,
+    .readiness-row small,
+    .benchmark-row span,
+    .coverage-row span,
+    .source-ledger span {
+      display: block;
+      color: var(--text-3);
+      font-size: 0.7rem;
+      line-height: 1.45;
+    }
+
+    .readiness-row strong,
+    .benchmark-row strong {
+      display: block;
+      color: var(--text);
+      margin: 0.12rem 0;
+      letter-spacing: 0;
+    }
+
+    .readiness-row b {
+      color: #1fa068;
+      font-family: var(--mono);
+      text-align: right;
+    }
+
+    .readiness-bar,
+    .benchmark-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(228, 228, 236, 0.08);
+      overflow: hidden;
+    }
+
+    .readiness-bar i,
+    .benchmark-bar i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(31, 160, 104, 0.45), #1fa068);
+      border-radius: inherit;
+    }
+
+    .benchmark-row {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(120px, 1fr);
+      gap: 0.75rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(228, 228, 236, 0.08);
+      padding-bottom: 0.65rem;
+    }
+
+    .benchmark-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .coverage-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .coverage-dots {
+      display: flex;
+      gap: 0.28rem;
+      flex-shrink: 0;
+    }
+
+    .coverage-dots i {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(228, 228, 236, 0.12);
+    }
+
+    .coverage-dots i.on {
+      background: #1fa068;
+      box-shadow: 0 0 10px rgba(31, 160, 104, 0.35);
+    }
+
+    .source-ledger {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .source-ledger a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    @media (max-width: 980px) {
+      .tour-app {
+        grid-template-columns: 1fr;
+      }
+      .tour-rail,
+      .tour-metrics {
+        position: static;
+      }
+      .tour-rail {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+      .deep-grid,
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .tour-shell {
+        padding: 2.5rem 1rem 3rem;
+      }
+      .tour-hero {
+        grid-template-columns: 1fr;
+      }
+      .tour-status {
+        min-width: 0;
+      }
+      .scene-next {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .scene-method,
+      .readiness-row,
+      .benchmark-row {
+        grid-template-columns: 1fr;
+      }
+      .readiness-row b {
+        text-align: left;
+      }
+    }
+  </style>
+</BaseLayout>

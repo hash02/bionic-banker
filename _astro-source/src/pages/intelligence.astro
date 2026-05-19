@@ -7,28 +7,28 @@ const aiPosts = allPosts
   .filter(p => p.data.category === 'AI' || p.data.tags.some(t => ['AI', 'Agents', 'SYOS', 'AML'].includes(t)))
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
-<BaseLayout title="AI Intelligence" description="What happens when you build AI systems from inside finance. Live projects, research results, and the tools that came out of it.">
+<BaseLayout title="AI Intelligence" description="What happens when you build AI systems from inside finance. Public-safe projects, research results, and the tools that came out of it.">
 
   <div class="page-header">
     <div class="page-label">Projects & Research</div>
     <h1 class="page-title">AI Intelligence</h1>
-    <p class="page-sub">I build AI systems that do real work — AML detection, blockchain investigation, reasoning engines. These aren't demos. Here's what they've produced.</p>
+    <p class="page-sub">I build AI systems for AML detection, blockchain investigation, reasoning engines, and agent governance. This page shows public-safe proof and limitations.</p>
   </div>
 
   <div class="intel-dashboard">
 
     <!-- LIVE PROJECTS -->
     <div class="intel-section animate-on-scroll">
-      <div class="section-label">Live Projects</div>
+      <div class="section-label">Public Proof</div>
 
       <div class="intel-grid stagger-children">
         <!-- AML Engine -->
         <div class="intel-card project-card">
           <div class="project-header">
             <h3>AML Detection Engine</h3>
-            <span class="version-badge">v12</span>
+            <span class="version-badge">Manifest</span>
           </div>
-          <p class="project-desc">28 detection rules running against real Ethereum transaction data. Catches mixer activity, sanctions violations, structuring patterns, and wallet risk profiling.</p>
+          <p class="project-desc">28 mapped detection abilities documented through the public proof layer and manifest summary. The project focuses on mixer activity, sanctions patterns, structuring, and wallet risk profiling.</p>
           <div class="result-highlights">
             <div class="result-stat">
               <span class="stat-num">94.9%</span>
@@ -62,15 +62,14 @@ const aiPosts = allPosts
             <h3>Wallet Risk Investigator</h3>
             <span class="version-badge">v3</span>
           </div>
-          <p class="project-desc">Paste any Ethereum address, get a full risk breakdown. The engine runs 28 rules against live chain data and generates an AI-powered risk assessment.</p>
+          <p class="project-desc">Paste a sample or demo Ethereum address and inspect a public-safe risk breakdown. Unknown addresses use demo-mode output so the page can be shown without overclaiming live chain coverage.</p>
           <div class="result-highlights">
             <div class="result-stat">
               <span class="stat-num">28</span>
               <span class="stat-label">AML Rules</span>
             </div>
             <div class="result-stat">
-              <span class="stat-num">Real-time</span>
-              <span class="stat-label">Chain Data</span>
+              <span class="stat-num">Demo</span><span class="stat-label">Public Mode</span>
             </div>
           </div>
           <div class="project-actions">

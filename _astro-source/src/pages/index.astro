@@ -2,10 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ParticleHero from '../components/ParticleHero.astro';
 import { getCollection } from 'astro:content';
+const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 
 // GET ARTICLE COUNT — computed, never hardcoded again
 const allPosts = await getCollection('blog');
 const articleCount = allPosts.length;
+const proofCount = proofCatalog.default.projects.length;
+const gapCount = gapCatalog.default.gaps.length;
 const featuredPosts = allPosts.filter(p => p.data.featured);
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const latestPost = sortedPosts[0];
@@ -26,13 +30,15 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
         <p class="hero-sub">I work inside financial systems and build on top of them. Two sides of the same thing — the industry access, the code, the questions I can't stop asking.</p>
         <div class="hero-actions">
           <a href="#newsletter" class="btn-primary">Subscribe →</a>
+          <a href="/proof-tour" class="btn-ghost">Start Proof Tour</a>
           <a href="/projects" class="btn-ghost">View Projects</a>
+          <a href="/reports" class="btn-ghost">See Reports</a>
           <a href="/articles" class="btn-ghost">Read Articles</a>
         </div>
         <div class="hero-stats-row">
           <div class="hstat"><span class="hstat-n">{articleCount}</span><span class="hstat-l">Articles</span></div>
-          <div class="hstat"><span class="hstat-n">3</span><span class="hstat-l">Live Projects</span></div>
-          <div class="hstat"><span class="hstat-n">5+</span><span class="hstat-l">Years Building</span></div>
+          <div class="hstat"><span class="hstat-n">{proofCount}</span><span class="hstat-l">Proof Lanes</span></div>
+          <div class="hstat"><span class="hstat-n">{gapCount}</span><span class="hstat-l">Build Gaps</span></div>
         </div>
       </div>
 
@@ -62,6 +68,48 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
 
   <!-- ARTICLES -->
   <div class="content-wrap" id="articles">
+    <section class="proof-route-section animate-on-scroll">
+      <div class="section-header">
+        <div>
+          <div class="section-label-text">Proof Surface</div>
+          <div class="section-title-text">Start Here</div>
+        </div>
+        <a href="/proof-tour" class="view-all">Start proof tour -></a>
+      </div>
+      <div class="proof-route-grid">
+        <a href="/proof-tour" class="article-card">
+          <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
+          <h3>Guided proof app</h3>
+          <p>A clickable route through AML, agents, heartbeat status, governance proof, reports, and build gaps.</p>
+          <div class="card-footer"><span class="read-more">Start tour -></span></div>
+        </a>
+        <a href="/projects" class="article-card">
+          <div class="article-tags"><span class="tag-pill tag-green">Projects</span></div>
+          <h3>What was built</h3>
+          <p>Public-safe proof cards for AML, agent workflows, observability, governance, wallet risk, and technical writing.</p>
+          <div class="card-footer"><span class="read-more">View projects -></span></div>
+        </a>
+        <a href="/reports" class="article-card">
+          <div class="article-tags"><span class="tag-pill tag-green">Reports</span></div>
+          <h3>Numbers and charts</h3>
+          <p>Evidence density, benchmark numbers, capability coverage, and limitations in a report-style surface.</p>
+          <div class="card-footer"><span class="read-more">View reports -></span></div>
+        </a>
+        <a href="/gaps" class="article-card">
+          <div class="article-tags"><span class="tag-pill tag-green">Market gaps</span></div>
+          <h3>What to build next</h3>
+          <p>Job-market requirements mapped to proof we have, proof missing, and real technical build quests.</p>
+          <div class="card-footer"><span class="read-more">View gaps -></span></div>
+        </a>
+        <a href="/learn" class="article-card">
+          <div class="article-tags"><span class="tag-pill tag-green">Learn</span></div>
+          <h3>Concept layer</h3>
+          <p>Plain-English definitions for RAG, agents, RBAC, observability, embeddings, AML, and deployment concepts.</p>
+          <div class="card-footer"><span class="read-more">Learn concepts -></span></div>
+        </a>
+      </div>
+    </section>
+
     <div class="section-header">
       <div>
         <div class="section-label-text">Writings</div>
@@ -149,13 +197,13 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
         </div>
         <div class="about-col">
           <div>
-            <div class="about-name">HASH</div>
+            <div class="about-name">Himanshu</div>
             <div class="about-role">Finance · Blockchain · Builder</div>
             <p class="about-bio">I work inside financial systems and build on what I see from the inside. Computer engineer exploring what happens when finance meets code at the edge.</p>
           </div>
           <div class="about-stat-row">
             <div class="astat"><div class="astat-n">{articleCount}</div><div class="astat-l">Articles</div></div>
-            <div class="astat"><div class="astat-n">3</div><div class="astat-l">Projects</div></div>
+            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Proof Lanes</div></div>
             <div class="astat"><div class="astat-n">5+</div><div class="astat-l">Years</div></div>
             <div class="astat"><div class="astat-n">∞</div><div class="astat-l">Questions</div></div>
           </div>

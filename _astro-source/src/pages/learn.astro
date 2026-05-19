@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const catalog = await import('../../public/dashboard-data/ai-learning-catalog.json');
+const concepts = catalog.default.concepts;
+const guides = catalog.default.guides;
+
+const conceptLinks = [
+  { label: 'AI agents', id: 'agent' },
+  { label: 'LLMs', id: 'llm' },
+  { label: 'VLMs', id: 'vlm' },
+  { label: 'LangChain', id: 'langchain' },
+  { label: 'RAG', id: 'rag' },
+  { label: 'RBAC', id: 'rbac' },
+  { label: 'Audit logs', id: 'audit-log' },
+  { label: 'Observability', id: 'observability' },
+  { label: 'AML', id: 'aml' },
+  { label: 'Kubernetes', id: 'kubernetes' },
+];
+---
+<BaseLayout title="Learn AI Systems" description="Plain-English concepts behind the Bionic Banker proof stack: AI agents, LLMs, VLMs, RAG, LangChain, RBAC, AML, observability, and deployment basics.">
+  <div class="page-header">
+    <div class="page-label">Learning Layer</div>
+    <h1 class="page-title">Learn the System</h1>
+    <p class="page-sub">Plain-English notes behind the proof cards. No hype. Just what the concept means, why it matters, and where it shows up in the work.</p>
+  </div>
+
+  <div class="articles-wrap">
+    <div class="article-card" style="margin-bottom: 1.25rem;">
+      <div class="article-tags">
+        <span class="tag-pill tag-green">Start here</span>
+      </div>
+      <h3>The rule</h3>
+      <p>The best way to learn AI is to build one small loop, make the output visible, and add a check so the system cannot only clap for itself.</p>
+      <p>This page is the glossary behind the public proof console. If a project says tool calling, RAG, RBAC, AML, or observability, this page explains the idea without exposing private infrastructure.</p>
+      <div class="concept-jump-list">
+        {conceptLinks.map((item) => (
+          <a href={`#${item.id}`}>{item.label}</a>
+        ))}
+        <a href="/reports">Engineering reports</a>
+        <a href="/gaps">Build gaps</a>
+      </div>
+    </div>
+
+    <section class="guide-grid">
+      {guides.map((guide) => (
+        <article class="article-card animate-on-scroll">
+          <div class="article-tags">
+            <span class="tag-pill tag-green">Guide</span>
+          </div>
+          <h3>{guide.title}</h3>
+          <ol class="tight-list">
+            {guide.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </section>
+
+    <section class="concept-grid">
+      {concepts.map((concept) => (
+        <article class="article-card animate-on-scroll concept-card" id={concept.id}>
+          <div class="article-tags">
+            <span class="tag-pill tag-green">Concept</span>
+          </div>
+          <h3>{concept.term}</h3>
+          <p><strong>Meaning:</strong> {concept.plain_definition}</p>
+          <p><strong>Why it matters:</strong> {concept.why_it_matters}</p>
+          <p><strong>Shows up in:</strong> {concept.used_in.join(' / ')}</p>
+          <div class="card-footer">
+            <a class="read-more" href="/projects">Back to proof console -></a>
+            <a class="read-more" href="/reports">View report -></a>
+            <a class="read-more" href="/gaps">View gaps -></a>
+          </div>
+        </article>
+      ))}
+    </section>
+  </div>
+
+  <style>
+    .concept-jump-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.2rem;
+    }
+
+    .concept-jump-list a {
+      border: 1px solid rgba(31, 160, 104, 0.35);
+      border-radius: 999px;
+      color: #e4e4ec;
+      padding: 0.5rem 0.75rem;
+      text-decoration: none;
+      font-size: 0.92rem;
+      background: rgba(31, 160, 104, 0.08);
+    }
+
+    .guide-grid,
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tight-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    .concept-card {
+      scroll-margin-top: 96px;
+    }
+  </style>
+</BaseLayout>

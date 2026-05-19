@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
+const gaps = gapCatalog.default.gaps;
+const sources = gapCatalog.default.market_sources;
+const websiteScan = gapCatalog.default.website_scan;
+const verifiedDate = new Date(gapCatalog.default.generated_at).toISOString().slice(0, 10);
+
+const priorityOrder = ['P1', 'P2', 'P3'];
+const grouped = priorityOrder
+  .map((priority) => ({
+    priority,
+    items: gaps.filter((gap) => gap.priority === priority),
+  }))
+  .filter((group) => group.items.length > 0);
+---
+<BaseLayout title="Market Gaps" description="A public-safe market stack matrix mapping AI job requirements to proof built, proof missing, and next build quests for Bionic Banker.">
+  <div class="page-header">
+    <div class="page-label">Market Stack Matrix</div>
+    <h1 class="page-title">Gaps and Build Quests</h1>
+    <p class="page-sub">This is the honest roadmap: what the market keeps asking for, what proof already exists, what proof is missing, and what should be built next.</p>
+  </div>
+
+  <div class="articles-wrap">
+    <p class="verified-note">Last verified from market gap catalog: {verifiedDate}. Current matrix: {sources.length} market sources and {gaps.length} build gaps.</p>
+
+    <section class="website-scan-panel">
+      <div class="section-label">Website Scan</div>
+      <h2>How far the surface is from a modern AI engineering site</h2>
+      <div class="scan-grid">
+        <article>
+          <span>Current strength</span>
+          <p>{websiteScan.current_strength}</p>
+        </article>
+        <article>
+          <span>Main gap</span>
+          <p>{websiteScan.main_gap}</p>
+        </article>
+        <article>
+          <span>Distance</span>
+          <p>{websiteScan.distance_from_modern_standard}</p>
+        </article>
+      </div>
+      <div class="scan-next">
+        <h3>Next interface moves</h3>
+        <ul>
+          {websiteScan.next_ui_moves.map((move) => (
+            <li>{move}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="matrix-intro-grid">
+      <article class="article-card">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">Guidance</span>
+        </div>
+        <h3>How to read this page</h3>
+        <p>Gap does not mean failure. Gap means next quest. The target is real technical proof: small, inspectable, tested, and public-safe.</p>
+        <p>Each row maps market requirement to proof already built, missing proof, and the next build that would make the website stronger.</p>
+        <div class="card-footer">
+          <a class="read-more" href="/reports">Open reports -></a>
+          <a class="read-more" href="/projects">Open proof console -></a>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">Current read</span>
+        </div>
+        <h3>Strongest next build</h3>
+        <p>The cleanest next technical build is a public RAG mini-lab over Bionic Banker articles. It connects RAG, embeddings, vector search, evals, citations, FastAPI, and reporting in one lane.</p>
+        <p>After that, add the RBAC simulator and Kubernetes mini deploy. Those three moves cover most of the current market stack without pretending to be production enterprise software.</p>
+      </article>
+    </section>
+
+    <section class="source-panel">
+      <div class="section-label">Market Signals</div>
+      <h2>What current roles keep asking for</h2>
+      <div class="source-grid">
+        {sources.map((source) => (
+          <article class="source-card">
+            <h3>{source.label}</h3>
+            <p>{source.signal}</p>
+            <a href={source.url} target="_blank" rel="noopener">Source -></a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {grouped.map((group) => (
+      <section class="gap-section">
+        <div class="section-label">{group.priority} Build Lane</div>
+        <div class="gap-grid">
+          {group.items.map((gap) => (
+            <article class="gap-card" id={gap.id}>
+              <div class="gap-head">
+                <span>{gap.priority}</span>
+                <h3>{gap.market_requirement}</h3>
+              </div>
+              <p><strong>Why market wants it:</strong> {gap.why_market_wants_it}</p>
+              <p><strong>Proof we have:</strong> {gap.proof_we_have}</p>
+              <p><strong>Proof missing:</strong> {gap.proof_missing}</p>
+              <p><strong>Build quest:</strong> {gap.build_quest}</p>
+              <div class="card-footer">
+                <a class="read-more" href={gap.website_surface}>Learn link -></a>
+                <a class="read-more" href={gap.report_surface}>Report link -></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <style>
+    .matrix-intro-grid,
+    .source-grid,
+    .gap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .source-panel,
+    .gap-section,
+    .website-scan-panel {
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 8px;
+      padding: 1.35rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .source-panel h2,
+    .website-scan-panel h2 {
+      margin: 0.25rem 0 1rem;
+      font-size: clamp(1.35rem, 2vw, 2rem);
+    }
+
+    .scan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .scan-grid article,
+    .scan-next {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      padding: 1rem;
+      background: rgba(2, 2, 4, 0.42);
+    }
+
+    .scan-grid span {
+      display: block;
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .scan-next h3 {
+      margin: 0 0 0.7rem;
+    }
+
+    .scan-next ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    .source-card,
+    .gap-card {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      padding: 1rem;
+      background: rgba(2, 2, 4, 0.42);
+      display: grid;
+      gap: 0.55rem;
+      min-width: 0;
+    }
+
+    .source-card h3,
+    .gap-card h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .source-card a {
+      color: #1fa068;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+
+    .gap-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .gap-head span {
+      border: 1px solid rgba(31, 160, 104, 0.45);
+      color: #1fa068;
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+
+    .gap-card p,
+    .source-card p {
+      margin: 0;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+  </style>
+</BaseLayout>

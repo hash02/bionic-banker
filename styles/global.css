@@ -113,7 +113,7 @@ nav {
   padding: 0 2rem; height: 56px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.nav-logo { font-size: 0.98rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+.nav-logo { font-size: 0.98rem; font-weight: 700; letter-spacing: 0; color: var(--text); }
 .nav-logo span { color: var(--text-2); }
 .nav-links { display: flex; gap: 1.5rem; list-style: none; }
 .nav-links a {
@@ -175,6 +175,7 @@ nav {
   display: inline-block; font-family: var(--mono); font-size: 0.56rem; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
   padding: 0.2rem 0.6rem; border-radius: 4px; line-height: 1.4;
+  max-width: 100%; overflow-wrap: anywhere;
   color: #1fa068; background: rgba(31,160,104,0.08);
   border: 1px solid rgba(31,160,104,0.22);
   box-shadow: 0 0 12px rgba(31,160,104,0.06);
@@ -200,6 +201,7 @@ nav {
   cursor: pointer; text-decoration: none; color: inherit;
   position: relative; overflow: hidden;
   box-shadow: var(--shadow-card);
+  min-width: 0;
 }
 .article-card:hover {
   border-color: var(--b3);
@@ -211,7 +213,7 @@ nav {
   height: 1px; background: var(--green);
 }
 .article-card h3 {
-  font-size: 0.92rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.38; color: var(--text);
+  font-size: 0.92rem; font-weight: 600; letter-spacing: 0; line-height: 1.38; color: var(--text);
 }
 .article-card p { font-size: 0.8rem; color: var(--text-2); line-height: 1.64; }
 .article-card.hidden { display: none; }
@@ -238,14 +240,14 @@ nav {
 .article-card-featured:hover .featured-thumb img { filter: brightness(1); transform: scale(1.03); }
 
 .card-footer {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.55rem;
   padding-top: 0.5rem; border-top: 1px solid var(--b1); margin-top: 0.25rem;
 }
 .read-time { font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); letter-spacing: 0.03em; }
 .read-more {
   font-family: var(--mono); font-size: 0.72rem; font-weight: 500; color: var(--accent);
   display: inline-flex; align-items: center; gap: 0.2rem; transition: color 0.2s, gap 0.2s;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.03em; overflow-wrap: anywhere;
 }
 .read-more:hover { color: var(--accent); gap: 0.4rem; }
 
@@ -279,7 +281,7 @@ nav {
 }
 .article-card-featured h3 {
   font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700;
-  letter-spacing: -0.025em; line-height: 1.2; color: var(--text); margin-bottom: 0.8rem;
+  letter-spacing: 0; line-height: 1.2; color: var(--text); margin-bottom: 0.8rem;
 }
 .article-card-featured p {
   font-size: 0.86rem; color: var(--text-2); line-height: 1.72; margin-bottom: 1.2rem;
@@ -318,7 +320,7 @@ nav {
 .section-title-text {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(1.3rem, 2.5vw, 1.65rem); font-weight: 700;
-  letter-spacing: -0.035em; color: var(--text);
+  letter-spacing: 0; color: var(--text);
 }
 .view-all {
   font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--text-3);
@@ -326,6 +328,18 @@ nav {
   letter-spacing: 0.03em;
 }
 .view-all:hover { color: var(--accent); }
+
+.proof-route-section {
+  margin-bottom: 2.2rem;
+}
+.proof-route-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 0.75rem;
+}
+.proof-route-grid .article-card {
+  min-height: 100%;
+}
 
 /* ═══════════════════════════════════════════════════════════════
    ARTICLES LISTING PAGE — page header + filter + grid
@@ -340,7 +354,7 @@ nav {
 }
 .page-title {
   font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800;
-  letter-spacing: -0.045em; margin-bottom: 0.6rem; color: var(--text);
+  letter-spacing: 0; margin-bottom: 0.6rem; color: var(--text); overflow-wrap: anywhere;
 }
 .page-sub { color: var(--text-2); font-size: 0.92rem; line-height: 1.7; margin-bottom: 2rem; }
 
@@ -356,6 +370,40 @@ nav {
 
 .articles-wrap { max-width: var(--max); margin: 0 auto; padding: 2.5rem 2rem 4rem; }
 .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 0.75rem; }
+
+.recruiter-strip {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: center;
+  border: 1px solid rgba(31,160,104,0.22); border-radius: var(--radius);
+  background: rgba(31,160,104,0.055); padding: 1rem 1.1rem; margin-bottom: 1rem;
+}
+.recruiter-strip h2 {
+  font-size: 1rem; letter-spacing: 0; line-height: 1.35; margin-bottom: 0.25rem;
+}
+.recruiter-strip p {
+  color: var(--text-2); font-size: 0.82rem; line-height: 1.6;
+}
+.recruiter-links {
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.45rem; min-width: 0;
+}
+.recruiter-links a,
+.recruiter-links span {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text); border: 1px solid var(--b1); border-radius: 4px;
+  padding: 0.28rem 0.55rem; background: rgba(255,255,255,0.035); overflow-wrap: anywhere;
+}
+.verified-note {
+  font-family: var(--mono); color: var(--text-3); font-size: 0.68rem; letter-spacing: 0.04em;
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 640px) {
+  .page-header,
+  .articles-wrap { padding-left: 1rem; padding-right: 1rem; }
+  .recruiter-strip { grid-template-columns: 1fr; }
+  .recruiter-links { justify-content: flex-start; }
+  .article-card { padding: 1rem; }
+  .card-footer { align-items: flex-start; }
+}
 
 .section-divider { grid-column: 1 / -1; padding-top: 0.5rem; }
 .section-divider h2 {
@@ -382,7 +430,7 @@ nav {
 .article-date { font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); letter-spacing: 0.03em; }
 .article-header h1 {
   font-size: clamp(1.75rem, 4vw, 2.8rem); font-weight: 800;
-  letter-spacing: -0.04em; line-height: 1.15; margin-bottom: 1.25rem;
+  letter-spacing: 0; line-height: 1.15; margin-bottom: 1.25rem;
 }
 
 .lede {
@@ -409,13 +457,13 @@ nav {
 
 /* Article body */
 .article-body { max-width: 760px; margin: 0 auto; padding: 0 2rem 5rem; }
-.article-body p { font-size: 1.05rem; line-height: 1.88; color: #d8d8e0; margin-bottom: 1.75rem; letter-spacing: -0.01em; }
+.article-body p { font-size: 1.05rem; line-height: 1.88; color: #d8d8e0; margin-bottom: 1.75rem; letter-spacing: 0; }
 .article-body h2 {
-  font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text);
+  font-size: 1.45rem; font-weight: 700; letter-spacing: 0; color: var(--text);
   margin: 3.5rem 0 1.25rem; padding-top: 1.5rem; border-top: 1px solid var(--b1);
 }
 .article-body h3 {
-  font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text);
+  font-size: 1.2rem; font-weight: 700; letter-spacing: 0; color: var(--text);
   margin: 2.5rem 0 1rem;
 }
 .article-body h4 {
@@ -471,7 +519,7 @@ nav {
 }
 .score-card .num {
   font-size: 1.5rem; font-weight: 700; color: var(--accent);
-  letter-spacing: -0.02em; margin-bottom: 0.25rem;
+  letter-spacing: 0; margin-bottom: 0.25rem;
 }
 .score-card .num.green { color: var(--accent); }
 .score-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
@@ -489,7 +537,7 @@ nav {
   color: var(--accent); margin-bottom: 0.5rem;
 }
 .trait-card .trait-val {
-  font-size: 1.5rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em;
+  font-size: 1.5rem; font-weight: 700; color: var(--text); letter-spacing: 0;
 }
 .trait-card p { font-size: 0.82rem; color: var(--text-2); line-height: 1.55; margin-top: 0.35rem; }
 
@@ -551,7 +599,7 @@ nav {
 }
 .hero h1 {
   font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 800;
-  letter-spacing: -0.045em; line-height: 1.0; margin-bottom: 1.1rem; color: var(--text);
+  letter-spacing: 0; line-height: 1.0; margin-bottom: 1.1rem; color: var(--text);
 }
 .hero h1 em {
   font-style: normal;
@@ -570,7 +618,7 @@ nav {
 .hstat { display: flex; flex-direction: column; gap: 0.1rem; }
 .hstat-n {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; color: var(--accent);
+  font-size: 1.25rem; font-weight: 700; letter-spacing: 0; color: var(--accent);
 }
 .hstat-l { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; }
 
@@ -601,7 +649,7 @@ nav {
 }
 .hcard-title {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 0.95rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0; line-height: 1.3;
   color: var(--text); margin-bottom: 0.55rem;
 }
 .hcard-desc { font-size: 0.8rem; color: var(--text-2); line-height: 1.6; margin-bottom: 0.9rem; }
@@ -648,7 +696,7 @@ nav {
 }
 .thoughts-card:hover { border-color: var(--b3); transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
 .thoughts-card h3 {
-  font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 0.6rem;
+  font-size: 1.05rem; font-weight: 700; letter-spacing: 0; line-height: 1.25; margin-bottom: 0.6rem;
 }
 .thoughts-card p { font-size: 0.83rem; color: var(--text-2); line-height: 1.68; }
 .tc-footer {
@@ -669,7 +717,7 @@ nav {
 }
 .about-name {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.15rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.25rem;
+  font-size: 1.15rem; font-weight: 700; letter-spacing: 0; margin-bottom: 0.25rem;
 }
 .about-role {
   font-family: var(--mono); font-size: 0.65rem; color: var(--accent); font-weight: 500;
@@ -680,7 +728,7 @@ nav {
 .astat { background: var(--bg3); border: 1px solid var(--b1); border-radius: 9px; padding: 0.8rem 0.9rem; box-shadow: inset 0 1px 0 rgba(31,160,104,0.04); }
 .astat-n {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.3rem; font-weight: 700; letter-spacing: -0.03em; color: var(--accent);
+  font-size: 1.3rem; font-weight: 700; letter-spacing: 0; color: var(--accent);
 }
 .astat-l { font-family: var(--mono); font-size: 0.58rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.12rem; }
 
@@ -698,7 +746,7 @@ nav {
 }
 .nl-text h3 {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.25rem;
+  font-size: 1.05rem; font-weight: 700; letter-spacing: 0; margin-bottom: 0.25rem;
 }
 .nl-text p { font-size: 0.82rem; color: var(--text-2); line-height: 1.6; }
 
@@ -706,7 +754,7 @@ nav {
 .telegram-cta-wrap { flex: 1; min-width: 280px; max-width: 500px; display: flex; justify-content: center; }
 .telegram-cta {
   display: inline-block; padding: 0.9rem 2.2rem; font-size: 1rem; font-weight: 700;
-  font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: -0.01em;
+  font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: 0;
   color: #fff; background: #1fa068;
   border-radius: var(--radius); text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -742,7 +790,7 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   max-width: var(--max); margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
 }
-.footer-brand { font-size: 0.86rem; font-weight: 700; color: var(--text-2); letter-spacing: -0.01em; }
+.footer-brand { font-size: 0.86rem; font-weight: 700; color: var(--text-2); letter-spacing: 0; }
 .footer-brand span { color: var(--text-3); }
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a { font-family: var(--mono); font-size: 0.68rem; color: var(--text-3); transition: color 0.2s; letter-spacing: 0.03em; }
@@ -1014,7 +1062,7 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
 }
 .article-title {
   font-size: clamp(1.75rem, 4vw, 2.8rem); font-weight: 800;
-  letter-spacing: -0.04em; line-height: 1.15; margin-bottom: 1rem;
+  letter-spacing: 0; line-height: 1.15; margin-bottom: 1rem;
 }
 .article-desc {
   font-size: 1.05rem; color: var(--text-2); line-height: 1.7;

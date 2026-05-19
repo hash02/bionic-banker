@@ -1,0 +1,183 @@
+{
+  "generated_at": "2026-05-18T23:05:00Z",
+  "status": "public_safe_learning_catalog_v1",
+  "purpose": "Public glossary and learning map for Bionic Banker AI, AML, agent, and proof-system concepts.",
+  "privacy_boundary": "Definitions and public learning notes only. No private paths, keys, IPs, client data, wallet secrets, or internal infrastructure details.",
+  "concepts": [
+    {
+      "id": "ai",
+      "term": "AI",
+      "plain_definition": "Software that performs tasks that normally require reasoning, pattern recognition, language understanding, prediction, or decision support.",
+      "why_it_matters": "AI is the umbrella. The useful question is not whether something is AI. The useful question is what task it improves, what evidence it uses, and where a human still approves the final action.",
+      "used_in": ["Bionic Banker", "Agent Framework Proof v2", "Agent Chess"]
+    },
+    {
+      "id": "llm",
+      "term": "LLM",
+      "plain_definition": "A language model trained to read and generate text. It can summarize, classify, draft, reason over context, and call tools when connected to a workflow.",
+      "why_it_matters": "LLMs are useful when they are grounded in files, tests, citations, and approval gates. Without that, they can sound confident while being wrong.",
+      "used_in": ["Agent Framework Proof v2", "Content engine planning"]
+    },
+    {
+      "id": "vlm",
+      "term": "VLM",
+      "plain_definition": "A vision-language model that can reason over images and text together.",
+      "why_it_matters": "VLMs are useful for screenshots, chart review, UI QA, document inspection, and visual proof workflows.",
+      "used_in": ["Future visual QA", "Portfolio proof review"]
+    },
+    {
+      "id": "agent",
+      "term": "AI agent",
+      "plain_definition": "An AI workflow that can observe state, choose a next step, use tools, write outputs, and wait for human approval when the action matters.",
+      "why_it_matters": "The agent is not just the model. The agent is the loop around the model: memory, tools, rules, tests, logs, and gates.",
+      "used_in": ["Agent Chess", "Agent Heartbeat Lab", "Agent Framework Proof v2"]
+    },
+    {
+      "id": "tool-calling",
+      "term": "Tool calling",
+      "plain_definition": "A pattern where a model asks to use a defined tool, such as search, a database query, a file read, or a calculation, instead of guessing.",
+      "why_it_matters": "Tool calling turns a model from a text generator into a controlled worker. The boundary is the tool contract.",
+      "used_in": ["Agent Framework Proof v2", "Governance Starter Kit"]
+    },
+    {
+      "id": "langchain",
+      "term": "LangChain",
+      "plain_definition": "A developer framework for connecting language models to tools, prompts, memory, retrieval, and workflow steps.",
+      "why_it_matters": "LangChain is one way to structure AI apps. The proof value is not name-dropping it. The proof value is showing tool boundaries and testable behavior.",
+      "used_in": ["Agent Framework Proof v2"]
+    },
+    {
+      "id": "langgraph",
+      "term": "LangGraph",
+      "plain_definition": "A graph-based framework for building stateful agent workflows where steps can branch, loop, pause, and resume.",
+      "why_it_matters": "It maps well to real systems because real work is not always one straight chain. There are retries, approvals, validators, and fallbacks.",
+      "used_in": ["Agent Framework Proof v2", "Agent Chess framing"]
+    },
+    {
+      "id": "rag",
+      "term": "RAG",
+      "plain_definition": "Retrieval augmented generation. The model retrieves relevant source material first, then writes an answer using that material.",
+      "why_it_matters": "RAG is how you reduce guessing. The question becomes: what did the model retrieve, can we cite it, and was the source trustworthy?",
+      "used_in": ["Resume packets", "Proof appendix drafts", "Content engine planning"]
+    },
+    {
+      "id": "embeddings",
+      "term": "Embeddings",
+      "plain_definition": "Numeric representations of text, images, or other data that help software compare meaning instead of exact words.",
+      "why_it_matters": "Embeddings make search smarter. They help find related ideas even when the wording is different.",
+      "used_in": ["Retrieval", "Knowledge search", "Future website search"]
+    },
+    {
+      "id": "mcp",
+      "term": "MCP",
+      "plain_definition": "Model Context Protocol. A standard pattern for letting AI systems connect to tools and data sources through defined interfaces.",
+      "why_it_matters": "MCP matters because agents need clean boundaries. A tool should say what it can do, what inputs it accepts, and what output it returns.",
+      "used_in": ["Agent Framework Proof v2", "Tool-boundary design"]
+    },
+    {
+      "id": "rbac",
+      "term": "RBAC",
+      "plain_definition": "Role-based access control. A way to decide who or what is allowed to perform each action.",
+      "why_it_matters": "RBAC is essential for regulated AI because not every agent should be allowed to do every action.",
+      "used_in": ["Agent Framework Proof v2", "Governance Starter Kit"]
+    },
+    {
+      "id": "audit-log",
+      "term": "Audit log",
+      "plain_definition": "A record of what happened, when it happened, what tool or person did it, and what evidence supported it.",
+      "why_it_matters": "If a system cannot explain its own actions later, it is not ready for serious finance, healthcare, or compliance work.",
+      "used_in": ["AML Engine", "Agent Chess", "Governance Starter Kit"]
+    },
+    {
+      "id": "observability",
+      "term": "Observability",
+      "plain_definition": "The ability to see whether a system is alive, what it is doing, what failed, and what changed over time.",
+      "why_it_matters": "Invisible automation is risky. Observable automation can be trusted, debugged, and improved.",
+      "used_in": ["Agent Heartbeat Lab", "Agent Framework Proof v2"]
+    },
+    {
+      "id": "heartbeat",
+      "term": "Heartbeat",
+      "plain_definition": "A small status signal that shows a system woke up, ran, and wrote its latest state.",
+      "why_it_matters": "A heartbeat does not prove a system is perfect. It proves the loop is still alive and observable.",
+      "used_in": ["Agent Heartbeat Lab"]
+    },
+    {
+      "id": "aml",
+      "term": "AML",
+      "plain_definition": "Anti-money laundering. The work of detecting, investigating, and preventing financial activity that may be tied to crime or sanctions risk.",
+      "why_it_matters": "AML is where finance, data, rules, and judgment meet. Good AML systems explain why a transaction looks risky.",
+      "used_in": ["AML Engine", "AML Roaster", "Wallet Risk Check"]
+    },
+    {
+      "id": "false-positive",
+      "term": "False positive",
+      "plain_definition": "A system flags something as risky, but after review it is not actually risky.",
+      "why_it_matters": "False positives matter because they waste reviewer time. In compliance, accuracy is not only detection. It is also how much noise the system creates.",
+      "used_in": ["AML Engine"]
+    },
+    {
+      "id": "evm",
+      "term": "EVM",
+      "plain_definition": "Ethereum Virtual Machine. The execution environment used by Ethereum and many compatible blockchain networks.",
+      "why_it_matters": "EVM compatibility lets one wallet-risk tool support many chains with similar address and transaction patterns.",
+      "used_in": ["Wallet Risk Check"]
+    },
+    {
+      "id": "kubernetes",
+      "term": "Kubernetes",
+      "plain_definition": "A system for running, scaling, and managing containers across machines.",
+      "why_it_matters": "Kubernetes is useful proof when a project needs deployment discipline, service health, scaling, and reproducible operations.",
+      "used_in": ["Future deploy proof"]
+    },
+    {
+      "id": "docker",
+      "term": "Docker",
+      "plain_definition": "A way to package an app and its dependencies into a container that can run consistently across environments.",
+      "why_it_matters": "Docker makes projects easier to test, share, and deploy because the environment is part of the package.",
+      "used_in": ["Future deploy proof", "Agent services"]
+    },
+    {
+      "id": "gpu",
+      "term": "GPU",
+      "plain_definition": "A graphics processing unit. In AI, GPUs are used to run many calculations in parallel.",
+      "why_it_matters": "GPUs matter for model training, image models, local inference, and workloads where parallel math is the bottleneck.",
+      "used_in": ["Future hardware learning lane"]
+    }
+  ],
+  "guides": [
+    {
+      "id": "learn-ai-by-building",
+      "title": "Top 5 ways to learn AI by building",
+      "items": [
+        "Pick one small problem and make the output visible.",
+        "Log every model input, tool call, and final output.",
+        "Add one independent check before trusting the result.",
+        "Turn the project into a page someone else can read.",
+        "Repeat with a slightly harder workflow."
+      ]
+    },
+    {
+      "id": "prompting-agents",
+      "title": "Top 5 ways to prompt an agent",
+      "items": [
+        "Give it the goal, not only the task.",
+        "Name what it is allowed to do and what it must not do.",
+        "Ask for evidence before conclusions.",
+        "Make it write a checkpoint when work becomes important.",
+        "Keep irreversible actions behind a human gate."
+      ]
+    },
+    {
+      "id": "public-proof",
+      "title": "Top 5 rules for public proof",
+      "items": [
+        "Show the artifact, not the private workspace.",
+        "Use links, screenshots, tests, and manifests as evidence.",
+        "State limitations in plain language.",
+        "Avoid private paths, secrets, client data, and unsupported claims.",
+        "Make the next click obvious."
+      ]
+    }
+  ]
+}

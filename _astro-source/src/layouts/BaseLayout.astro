@@ -6,11 +6,13 @@ interface Props {
   canonical?: string;
 }
 
-const { title, description = "Inside finance. Building its future. Blockchain, AI, DeFi — raw thoughts from someone who works inside financial systems and builds on top of them.", ogImage, canonical } = Astro.props;
-const fullTitle = title === 'Home' ? 'Bionic Banker — Where Finance Meets the Future' : `${title} — Bionic Banker`;
+const { title, description = "Inside finance. Building its future. Blockchain, AI, DeFi, and raw thoughts from someone who works inside financial systems and builds on top of them.", ogImage, canonical } = Astro.props;
+const fullTitle = title === 'Home' ? 'Bionic Banker - Where Finance Meets the Future' : `${title} - Bionic Banker`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 const isHome = title === 'Home';
+const routeDepth = Astro.url.pathname === '/' ? 0 : Astro.url.pathname.split('/').filter(Boolean).length;
+const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +21,7 @@ const isHome = title === 'Home';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
-  <meta name="author" content="HASH" />
+  <meta name="author" content="Himanshu" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -63,7 +65,7 @@ const isHome = title === 'Home';
       "description": description,
       "author": {
         "@type": "Person",
-        "name": "HASH",
+        "name": "Himanshu",
         "url": "https://linkedin.com/in/himanshu-h-a357684a"
       }
     })} />
@@ -71,6 +73,7 @@ const isHome = title === 'Home';
 
   <!-- Styles -->
   <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href={`${relativeAssetRoot}styles/global.css`} />
 </head>
 <body>
   <!-- NAV -->
@@ -80,6 +83,10 @@ const isHome = title === 'Home';
       <ul class="nav-links">
         <li><a href="/articles">All Articles</a></li>
         <li><a href="/intelligence">AI Intelligence</a></li>
+        <li><a href="/learn">Learn</a></li>
+        <li><a href="/proof-tour">Proof Tour</a></li>
+        <li><a href="/reports">Reports</a></li>
+        <li><a href="/gaps">Gaps</a></li>
         <li><a href="/#about">About</a></li>
       </ul>
       <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a>
@@ -120,6 +127,10 @@ const isHome = title === 'Home';
           <h4>Explore</h4>
           <a href="/articles">All Articles</a>
           <a href="/intelligence">AI Intelligence</a>
+          <a href="/learn">Learn</a>
+          <a href="/proof-tour">Proof Tour</a>
+          <a href="/reports">Reports</a>
+          <a href="/gaps">Gaps</a>
         </div>
         <div class="footer-col">
           <h4>Connect</h4>
@@ -150,6 +161,10 @@ const isHome = title === 'Home';
       '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
       '<a href="/articles">All Articles</a>' +
       '<a href="/intelligence">AI Intelligence</a>' +
+      '<a href="/learn">Learn</a>' +
+      '<a href="/proof-tour">Proof Tour</a>' +
+      '<a href="/reports">Reports</a>' +
+      '<a href="/gaps">Gaps</a>' +
       '<a href="/#about">About</a>' +
       '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
     document.body.appendChild(panel);

@@ -1,0 +1,319 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const learningCatalog = await import('../../public/dashboard-data/ai-learning-catalog.json');
+const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
+
+const proofProjects = proofCatalog.default.projects;
+const concepts = learningCatalog.default.concepts;
+const guides = learningCatalog.default.guides;
+const summaryMetrics = reportCatalog.default.summary_metrics;
+const benchmarkMetrics = reportCatalog.default.benchmark_metrics;
+const coverageBars = reportCatalog.default.coverage_bars;
+const notes = reportCatalog.default.report_notes;
+const reportVerifiedDate = new Date(reportCatalog.default.generated_at).toISOString().slice(0, 10);
+
+const totalEvidence = proofProjects.reduce((sum, project) => sum + project.evidence.length, 0);
+const totalMetrics = proofProjects.reduce((sum, project) => sum + project.metrics.length, 0);
+const totalLimitations = proofProjects.reduce((sum, project) => sum + project.limitations.length, 0);
+const totalRoleMatches = proofProjects.reduce((sum, project) => sum + project.role_match.length, 0);
+const guideSteps = guides.reduce((sum, guide) => sum + guide.items.length, 0);
+
+const evidenceRows = proofProjects.map((project) => ({
+  name: project.name,
+  evidence: project.evidence.length,
+  metrics: project.metrics.length,
+  limits: project.limitations.length,
+  roles: project.role_match.length,
+}));
+
+const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
+---
+<BaseLayout title="Engineering Reports" description="Public-safe engineering reports for Bionic Banker proof coverage, AML benchmark numbers, agent observability, and learning-layer concept coverage.">
+  <div class="page-header">
+    <div class="page-label">Engineering Reports</div>
+    <h1 class="page-title">Proof, Numbers, and Charts</h1>
+    <p class="page-sub">A public-safe report layer for the work. Counts come from the proof catalog and learning catalog. Claims stay tied to evidence, limits, and source boundaries.</p>
+  </div>
+
+  <div class="articles-wrap">
+    <div class="recruiter-strip">
+      <div>
+        <h2>Scientific report layer for AI finance proof</h2>
+        <p>Public-safe numbers, charts, evidence density, and limitation notes for the work shown on Bionic Banker.</p>
+      </div>
+      <div class="recruiter-links">
+        <span>Evidence</span>
+        <span>Charts</span>
+        <span>Limits</span>
+        <a href="/projects">Projects</a>
+        <a href="/gaps">Gaps</a>
+      </div>
+    </div>
+    <p class="verified-note">Last verified from engineering report catalog: {reportVerifiedDate}.</p>
+
+    <section class="report-hero-grid">
+      <article class="article-card report-card">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">Report snapshot</span>
+        </div>
+        <h3>Public proof surface</h3>
+        <p>The current report catalog contains {proofProjects.length} evidence-backed proof lanes, {totalEvidence} evidence entries, {totalMetrics} metric statements, and {totalLimitations} explicit limitations.</p>
+        <p>The learning layer adds {concepts.length} concepts and {guideSteps} guide steps. That means the website can now show both proof and the vocabulary behind the proof.</p>
+        <div class="card-footer">
+          <a class="read-more" href="/projects">Open proof console -></a>
+          <a class="read-more" href="/learn">Open learning layer -></a>
+          <a class="read-more" href="/gaps">Open gaps -></a>
+        </div>
+      </article>
+
+      <article class="article-card report-card">
+        <div class="article-tags">
+          <span class="tag-pill tag-green">Boundary</span>
+        </div>
+        <h3>What this report is not</h3>
+        <p>This is not a private vault dump, not employer data, not client data, not live trading performance, and not a compliance certification.</p>
+        <p>It is a public engineering report: visible artifacts, numbers that can be explained, and limitations that keep the claims honest.</p>
+        <div class="card-footer">
+          <a class="read-more" href="/dashboard-data/engineering-report-catalog.json">Open report data -></a>
+        </div>
+      </article>
+    </section>
+
+    <section class="metric-grid">
+      {summaryMetrics.map((metric) => (
+        <article class="metric-card">
+          <span>{metric.label}</span>
+          <strong>{metric.value}</strong>
+          <small>{metric.unit}</small>
+        </article>
+      ))}
+    </section>
+
+    <section class="report-panel">
+      <div class="section-label">Evidence Coverage</div>
+      <h2>Proof lanes by evidence density</h2>
+      <p>Each lane is scored by public-safe evidence entries. This is a simple visibility measure, not a quality ranking.</p>
+      <div class="bar-list">
+        {evidenceRows.map((row) => (
+          <div class="bar-row">
+            <div class="bar-label">
+              <strong>{row.name}</strong>
+              <span>{row.evidence} evidence / {row.metrics} metrics / {row.limits} limits / {row.roles} role matches</span>
+            </div>
+            <div class="bar-track" aria-label={`${row.name} evidence bar`}>
+              <div class="bar-fill" style={`width: ${(row.evidence / maxEvidence) * 100}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="report-panel">
+      <div class="section-label">Benchmark View</div>
+      <h2>Numbers already safe enough to show</h2>
+      <p>These values are pulled from existing proof summaries. Bars use a public display scale per metric family, so percentages, function counts, tests, and prediction counts do not distort each other.</p>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 760 360" role="img" aria-label="Benchmark metrics chart">
+          <line x1="72" y1="28" x2="72" y2="304" class="axis-line" />
+          <line x1="72" y1="304" x2="724" y2="304" class="axis-line" />
+          {benchmarkMetrics.map((metric, index) => {
+            const barWidth = 60;
+            const gap = 46;
+            const x = 96 + index * (barWidth + gap);
+            const height = Math.max(10, (metric.value / metric.scale_max) * 246);
+            const y = 304 - height;
+            return (
+              <>
+                <rect x={x} y={y} width={barWidth} height={height} rx="6" class="metric-bar" />
+                <text x={x + barWidth / 2} y={y - 10} class="chart-value" text-anchor="middle">{metric.value}</text>
+                <text x={x + barWidth / 2} y="332" class="chart-label" text-anchor="middle">{metric.unit}</text>
+              </>
+            );
+          })}
+        </svg>
+      </div>
+      <div class="benchmark-list">
+        {benchmarkMetrics.map((metric) => (
+          <div>
+            <strong>{metric.label}</strong>
+            <span>{metric.value} {metric.unit}. Source: {metric.source}.</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="report-panel">
+      <div class="section-label">Capability Radar</div>
+      <h2>Where the public surface is strong or thin</h2>
+      <p>This is a practical build map. AML, agent governance, and observability are already readable. Deployment proof is the next visible gap.</p>
+      <div class="coverage-grid">
+        {coverageBars.map((item) => (
+          <div class="coverage-item">
+            <div class="coverage-head">
+              <strong>{item.label}</strong>
+              <span>{item.value}/{item.max}</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style={`width: ${(item.value / item.max) * 100}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="report-panel">
+      <div class="section-label">Scientific Notes</div>
+      <h2>How to read these numbers</h2>
+      <div class="notes-grid">
+        {notes.map((note) => (
+          <article class="article-card">
+            <p>{note}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .report-hero-grid,
+    .metric-grid,
+    .coverage-grid,
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .report-panel {
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 8px;
+      padding: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .report-panel h2 {
+      margin: 0.25rem 0 0.65rem;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+    }
+
+    .metric-card {
+      border: 1px solid rgba(31, 160, 104, 0.26);
+      border-radius: 8px;
+      padding: 1rem;
+      background: rgba(31, 160, 104, 0.08);
+      min-height: 118px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .metric-card span,
+    .metric-card small,
+    .bar-label span,
+    .coverage-head span,
+    .benchmark-list span {
+      color: var(--text-2);
+    }
+
+    .metric-card strong {
+      color: #e4e4ec;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1;
+    }
+
+    .bar-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .bar-row,
+    .coverage-item {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .bar-label,
+    .coverage-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .bar-track {
+      height: 12px;
+      background: rgba(228, 228, 236, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: #1fa068;
+      border-radius: 999px;
+    }
+
+    .chart-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.6);
+      margin: 1rem 0;
+    }
+
+    .chart-wrap svg {
+      width: 100%;
+      min-width: 680px;
+      display: block;
+    }
+
+    .axis-line {
+      stroke: rgba(228, 228, 236, 0.28);
+      stroke-width: 2;
+    }
+
+    .metric-bar {
+      fill: #1fa068;
+    }
+
+    .chart-value {
+      fill: #e4e4ec;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .chart-label {
+      fill: #8a8aa0;
+      font-size: 12px;
+    }
+
+    .benchmark-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .benchmark-list div {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      padding: 0.85rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    @media (max-width: 640px) {
+      .report-panel {
+        padding: 1rem;
+      }
+
+      .bar-label,
+      .coverage-head {
+        display: grid;
+      }
+    }
+  </style>
+</BaseLayout>

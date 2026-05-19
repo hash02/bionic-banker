@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Watch It Run Live — Bionic Banker</title>
-<meta name="description" content="Live paper portfolio. Three funds, sixteen sleeves, hourly Kite testnet settlements. Running 24/7 on my own hardware.">
+<meta name="description" content="Public-safe paper portfolio view. Three funds, sixteen sleeves, and testnet settlement markers with private infrastructure details removed.">
 <meta name="author" content="HASH">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +17,13 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
 <meta property="og:title" content="Portfolio — Watch It Run Live — Bionic Banker">
-<meta property="og:description" content="Three funds, sixteen sleeves. Live paper portfolio. Hourly settlements posted on-chain to Kite testnet.">
+<meta property="og:description" content="Three funds, sixteen sleeves, and public-safe paper-mode status summaries.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bionicbanker.tech/portfolio/">
 <meta property="og:site_name" content="Bionic Banker">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portfolio — Watch It Run Live">
-<meta name="twitter:description" content="Live paper portfolio. Six scanner workers running 24/7.">
+<meta name="twitter:description" content="Public-safe paper-mode portfolio view with scanner status summaries.">
 <link rel="canonical" href="https://bionicbanker.tech/portfolio/">
 <style>
 /* ============================================================
@@ -307,6 +307,9 @@ h1.page-title {
     <ul class="nav-links">
       <li><a href="/articles">All Articles</a></li>
       <li><a href="/intelligence">AI Intelligence</a></li>
+      <li><a href="/proof-tour">Proof Tour</a></li>
+      <li><a href="/reports">Reports</a></li>
+      <li><a href="/gaps">Gaps</a></li>
       <li><a href="/portfolio">Portfolio</a></li>
       <li><a href="/#about">About</a></li>
     </ul>
@@ -316,9 +319,9 @@ h1.page-title {
 </nav>
 
 <div class="page-header">
-  <div class="page-label">Live Portfolio · Paper Mode</div>
+  <div class="page-label">Public Portfolio View � Paper Mode</div>
   <h1 class="page-title">Watch it run live.</h1>
-  <p class="page-sub">Three funds. Sixteen sleeves. Hourly settlement markers on Kite testnet (chain 2368). Live paper portfolio on my own hardware, refreshed every 30 minutes. <a href="/signals/" style="color:var(--accent)">Live signals dashboard.</a></p>
+  <p class="page-sub">Three funds. Sixteen sleeves. Testnet settlement markers and public-safe paper status, with private infrastructure details removed. <a href="/signals/" style="color:var(--accent)">Signals dashboard.</a></p>
 </div>
 
 <div class="agg-banner">
@@ -341,7 +344,7 @@ h1.page-title {
     </div>
     <div class="agg-stat">
       <div class="agg-num" id="agg-workers">—</div>
-      <div class="agg-label">Workers Live</div>
+      <div class="agg-label">Workers</div>
     </div>
   </div>
   <div style="margin-top: 0.8rem; text-align: right;">
@@ -375,7 +378,7 @@ h1.page-title {
 
 <div class="section">
   <div class="section-label">Orchestrator</div>
-  <h2>grab_and_run() is live.</h2>
+  <h2>Paper orchestrator status.</h2>
   <div class="panel panel-solo">
     <h3>Hermes — paper engine</h3>
     <div id="hermes-panel"><div class="loader">loading…</div></div>
@@ -387,7 +390,7 @@ h1.page-title {
   <h2>grab_and_run() on repeat.</h2>
   <div class="explainer">
     <p>Every scanner worker runs one job. <code>grab()</code> the signal. <code>run()</code> the trade. Write state. Sleep. Wake on cron and do it again.</p>
-    <p>Above them sits <strong>Hermes</strong>. Paper-mode orchestrator on a Linux box I keep in my closet. It writes <code>orchestrator_state.json</code> and <code>paper_portfolio.json</code> every cycle. The page you are looking at pulls directly from those files, no dashboards in between.</p>
+    <p>Above them sits <strong>Hermes</strong>. Paper-mode orchestrator summary. The public page shows sanitized status fields and avoids private infrastructure details.</p>
     <p>Nothing here is hand-maintained. If a worker dies, its row goes stale on this page. If the orchestrator goes silent, the whole strip goes cold. That is the whole design.</p>
   </div>
 </div>
