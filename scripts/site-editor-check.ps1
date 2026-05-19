@@ -1,6 +1,7 @@
 param(
   [string[]]$Paths = @(
     "_astro-source\src\pages\gaps.astro",
+    "_astro-source\src\pages\index.astro",
     "_astro-source\src\pages\intelligence.astro",
     "_astro-source\src\pages\learn.astro",
     "_astro-source\src\pages\proof-tour.astro",
@@ -13,7 +14,11 @@ param(
     "_astro-source\public\dashboard-data\intelligence-signal-catalog.json",
     "_astro-source\public\dashboard-data\public-proof-catalog.json",
     "_astro-source\public\dashboard-data\engineering-report-catalog.json",
+    "_astro-source\src\content\blog\two-agent-finance-operating-system.md",
+    "index.html",
     "gaps\index.html",
+    "articles\index.html",
+    "blog\two-agent-finance-operating-system\index.html",
     "intelligence\index.html",
     "learn\index.html",
     "proof-tour\index.html",

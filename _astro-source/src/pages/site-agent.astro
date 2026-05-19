@@ -1,234 +1,251 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const editorAgent = await import('../data/site-editor-agent.json');
-const agent = editorAgent.default;
+const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const learningCatalog = await import('../../public/dashboard-data/ai-learning-catalog.json');
+const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
+const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
+
+const projects = proofCatalog.default.projects;
+const concepts = learningCatalog.default.concepts;
+const metrics = reportCatalog.default.summary_metrics;
+
+const quickPrompts = [
+  'Who is Himanshu?',
+  'Show me the AML work',
+  'What is Agent Chess?',
+  'Where are the numbers and charts?',
+  'How do I learn the AI terms?',
+  'Is anything on the site live?'
+];
+
+const sourceTiles = [
+  {
+    label: 'About Himanshu',
+    href: '/#about',
+    body: 'Finance, blockchain, AI systems, AML proof, and technical writing in one public portfolio.'
+  },
+  {
+    label: 'Proof Tour',
+    href: '/proof-tour/',
+    body: 'Guided route through AML, agents, heartbeat, governance, reports, and questions.'
+  },
+  {
+    label: 'Projects',
+    href: '/projects/',
+    body: `${projects.length} proof lanes with evidence, role fit, and limitations.`
+  },
+  {
+    label: 'Reports',
+    href: '/reports/',
+    body: `${metrics.length} report metrics, benchmark bars, evidence density, and capability radar.`
+  },
+  {
+    label: 'Learn',
+    href: '/learn/',
+    body: `${concepts.length} plain-language concepts for AI agents, RAG, RBAC, observability, AML, and deployment.`
+  },
+  {
+    label: 'AI Intelligence',
+    href: '/intelligence/',
+    body: 'Visible signal rows, public market feed, heartbeat snapshot, and research-only limits.'
+  }
+];
 ---
-<BaseLayout title="Bionic Banker Site Agent" description="The editorial system that keeps Bionic Banker readable, evidence-linked, privacy-aware, and useful for people learning modern AI finance systems.">
-  <main class="agent-shell">
-    <section class="agent-hero">
+<BaseLayout title="Ask Bionic Banker" description="Ask Bionic Banker questions about Himanshu, AI finance projects, AML work, reports, proof links, learning notes, and live signal pages.">
+  <main class="ask-shell">
+    <section class="ask-hero">
       <div>
-        <span class="section-label">Site Agent</span>
-        <h1>Bionic Banker now has an editor.</h1>
-        <p>The website is being organized like a small AI editor. It routes questions, explains terms, shows proof, keeps limits visible, and checks the public language before a page ships.</p>
+        <span class="section-label">Ask the Site</span>
+        <h1>Ask Bionic Banker where to go.</h1>
+        <p>This page is a guide for the website. Ask about Himanshu, AML, agents, reports, AI terms, live signals, or proof links. The answer routes you to visible pages and source-linked artifacts.</p>
       </div>
-      <aside class="agent-card">
-        <span>{agent.status}</span>
-        <strong>{agent.name}</strong>
-        <p>{agent.purpose}</p>
+      <aside class="trust-card">
+        <span>How it answers</span>
+        <strong>Visible pages only.</strong>
+        <p>Answers are generated from public site sections, project cards, reports, learning notes, and signal pages. It does not expose backend details or private notes.</p>
       </aside>
     </section>
 
-    <section class="agent-panel">
-      <div class="panel-head">
-        <span>Reader flow</span>
-        <h2>Question to concept to proof.</h2>
+    <section class="ask-console" data-site-agent>
+      <div class="prompt-row">
+        <input id="site-question" type="text" placeholder="Ask about AML, agents, reports, Himanshu, AI terms, or live signals..." autocomplete="off" />
+        <button id="site-ask" type="button">Ask</button>
       </div>
-      <div class="flow-grid">
-        <article>
-          <b>01</b>
-          <h3>Ask</h3>
-          <p>Start with questions people already have about AI systems, finance automation, agents, proof, and deployment.</p>
-          <a href="/gaps/">Open Questions</a>
-        </article>
-        <article>
-          <b>02</b>
-          <h3>Learn</h3>
-          <p>Translate the concept into plain language before the reader has to inspect code, metrics, or reports.</p>
-          <a href="/learn/">Open Learn</a>
-        </article>
-        <article>
-          <b>03</b>
-          <h3>Inspect</h3>
-          <p>Attach the claim to a proof lane, report, source link, metric, limitation, or reader-facing snapshot.</p>
+      <div class="prompt-chips" aria-label="Suggested questions">
+        {quickPrompts.map((prompt) => (
+          <button type="button" data-prompt={prompt}>{prompt}</button>
+        ))}
+      </div>
+      <article class="answer-card" id="site-answer">
+        <span>Try a question</span>
+        <h2>What can I inspect first?</h2>
+        <p>Start with the Proof Tour if you want the shortest path through the work. Use Reports for numbers, Projects for proof lanes, Learn for concepts, and AI Intelligence for visible signal rows.</p>
+        <div class="answer-links">
           <a href="/proof-tour/">Open Proof Tour</a>
+          <a href="/reports/">Open Reports</a>
+          <a href="/projects/">Open Projects</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="source-panel">
+      <div class="panel-head">
+        <span>Source map</span>
+        <h2>The pages this guide can route you to.</h2>
+      </div>
+      <div class="source-grid">
+        {sourceTiles.map((tile) => (
+          <a href={tile.href} class="source-tile">
+            <h3>{tile.label}</h3>
+            <p>{tile.body}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="source-panel">
+      <div class="panel-head">
+        <span>Why this format</span>
+        <h2>Modern AI pages need answers with routes.</h2>
+      </div>
+      <div class="pattern-grid">
+        <article>
+          <h3>Source-linked answers</h3>
+          <p>People trust an AI interface more when claims point to the page or source behind them.</p>
+          <a href="https://www.925studios.co/blog/ai-product-interface-examples-trust-2026" target="_blank" rel="noopener">Reference</a>
         </article>
         <article>
-          <b>04</b>
-          <h3>Watch</h3>
-          <p>Use visible signal rows and market context so the site feels alive without turning research into advice.</p>
-          <a href="/intelligence/">Open Intelligence</a>
+          <h3>Trust and control</h3>
+          <p>Agent interfaces should make limits clear and keep the user in control of the next click.</p>
+          <a href="https://www.weforum.org/stories/2026/02/how-to-design-for-trust-in-the-age-of-ai-agents/" target="_blank" rel="noopener">Reference</a>
         </article>
-      </div>
-    </section>
-
-    <section class="agent-panel">
-      <div class="panel-head">
-        <span>Editorial rules</span>
-        <h2>What the editor checks.</h2>
-      </div>
-      <div class="rule-grid">
-        {agent.public_voice_rules.map((rule) => (
-          <article>
-            <p>{rule}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="agent-panel">
-      <div class="panel-head">
-        <span>Review rubric</span>
-        <h2>Six checks before a page earns attention.</h2>
-      </div>
-      <div class="rubric-grid">
-        {agent.review_rubric.map((item) => (
-          <article>
-            <h3>{item.category}</h3>
-            <p>{item.question}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="agent-panel">
-      <div class="panel-head">
-        <span>Surface map</span>
-        <h2>The site as one interface.</h2>
-      </div>
-      <div class="surface-list">
-        {agent.owned_surfaces.map((surface) => (
-          <a href={surface}>{surface}</a>
-        ))}
+        <article>
+          <h3>Auditable systems</h3>
+          <p>Current research keeps returning to the same idea: useful agents need visible behavior, accountability, and inspectable outputs.</p>
+          <a href="https://research.ibm.com/publications/trust-cua-trustworthy-computer-using-generalist-agents-for-intelligent-user-interfaces" target="_blank" rel="noopener">Reference</a>
+        </article>
       </div>
     </section>
   </main>
 
+  <script is:inline>
+  (function() {
+    var input = document.getElementById('site-question');
+    var askButton = document.getElementById('site-ask');
+    var answer = document.getElementById('site-answer');
+    if (!input || !askButton || !answer) return;
+
+    var routes = [
+      {
+        keys: ['himanshu', 'about', 'who', 'resume', 'background'],
+        label: 'About',
+        title: 'Himanshu is the person behind Bionic Banker.',
+        body: 'He is a computer engineer working in finance, building public proof around AML, AI agents, blockchain risk, observability, and technical education. Start with the About section, then open Projects for the proof lanes.',
+        links: [['About', '/#about'], ['Projects', '/projects/'], ['Reports', '/reports/']]
+      },
+      {
+        keys: ['aml', 'roaster', 'wallet', 'risk', 'crime', 'compliance'],
+        label: 'AML',
+        title: 'The AML lane combines detection with explanation.',
+        body: 'The AML Engine maps wallet behavior into risk signals. The Roaster turns those findings into plain-language narratives so a reviewer can understand what triggered the risk.',
+        links: [['AML Project', '/projects/'], ['AML Roaster Article', '/blog/aml-roaster/'], ['Reports', '/reports/']]
+      },
+      {
+        keys: ['agent chess', 'agents', 'orchestration', 'governance', 'approval', 'workflow'],
+        label: 'Agents',
+        title: 'The agent work is about coordination and proof.',
+        body: 'The site shows agent workflows as governed systems: roles, evidence, limits, heartbeat rows, and approval boundaries. Use Proof Tour for the shortest route.',
+        links: [['Proof Tour', '/proof-tour/'], ['Agent Case Study', '/blog/two-agent-finance-operating-system/'], ['Learn Agents', '/learn/#agent']]
+      },
+      {
+        keys: ['number', 'chart', 'benchmark', 'report', 'metrics', 'score', 'reliability'],
+        label: 'Reports',
+        title: 'The report layer turns proof into numbers and charts.',
+        body: 'Reports collects evidence density, benchmark bars, capability radar, and limitations. It is the best page when you want engineering-style proof instead of only a story.',
+        links: [['Reports', '/reports/'], ['Proof Tour', '/proof-tour/'], ['Project Data', '/dashboard-data/public-proof-catalog.json']]
+      },
+      {
+        keys: ['learn', 'rag', 'llm', 'vlm', 'langchain', 'rbac', 'observability', 'kubernetes', 'docker', 'term'],
+        label: 'Learn',
+        title: 'The learning layer explains the terms before the proof.',
+        body: 'Use Learn when a phrase needs plain language: RAG, LLMs, VLMs, tool calling, RBAC, audit logs, observability, AML, Docker, and Kubernetes.',
+        links: [['Learn', '/learn/'], ['Questions', '/gaps/'], ['Reports', '/reports/']]
+      },
+      {
+        keys: ['live', 'heartbeat', 'signal', 'market', 'bitcoin', 'btc', 'solana', 'refresh'],
+        label: 'AI Intelligence',
+        title: 'AI Intelligence shows visible signal rows.',
+        body: 'This is where the site feels alive: market context, heartbeat snapshot rows, ticket rows, and research-only limits. It is not investment advice or trading performance.',
+        links: [['AI Intelligence', '/intelligence/'], ['Heartbeat JSON', '/dashboard-data/heartbeat.json'], ['Proof Tour', '/proof-tour/']]
+      },
+      {
+        keys: ['question', 'gap', 'market', 'what should', 'how do'],
+        label: 'Questions',
+        title: 'The Questions page maps modern AI questions to proof.',
+        body: 'Questions starts with what people ask about AI systems, then connects each question to a plain answer, a useful example, and a proof route.',
+        links: [['Questions', '/gaps/'], ['Learn', '/learn/'], ['Proof Tour', '/proof-tour/']]
+      }
+    ];
+
+    function render(result) {
+      var linkHtml = result.links.map(function(link) {
+        return '<a href="' + link[1] + '">' + link[0] + '</a>';
+      }).join('');
+      answer.innerHTML = '<span>' + result.label + '</span><h2>' + result.title + '</h2><p>' + result.body + '</p><div class="answer-links">' + linkHtml + '</div>';
+    }
+
+    function ask(question) {
+      var q = (question || '').toLowerCase();
+      var result = routes.find(function(route) {
+        return route.keys.some(function(key) { return q.indexOf(key) >= 0; });
+      }) || {
+        label: 'Best first route',
+        title: 'Start with the Proof Tour.',
+        body: 'I could not map that question cleanly, so start with the guided proof route. From there you can jump into Projects, Reports, Learn, Questions, or AI Intelligence.',
+        links: [['Proof Tour', '/proof-tour/'], ['Projects', '/projects/'], ['Ask another question', '/site-agent/']]
+      };
+      render(result);
+    }
+
+    askButton.addEventListener('click', function() { ask(input.value); });
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') ask(input.value);
+    });
+    document.querySelectorAll('[data-prompt]').forEach(function(button) {
+      button.addEventListener('click', function() {
+        input.value = button.getAttribute('data-prompt') || '';
+        ask(input.value);
+      });
+    });
+  })();
+  </script>
+
   <style>
-    .agent-shell {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 3.5rem 2rem 4rem;
-      display: grid;
-      gap: 1.25rem;
-    }
-
-    .agent-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.36fr);
-      gap: 1.25rem;
-      align-items: stretch;
-    }
-
-    .agent-hero h1 {
-      margin: 0.35rem 0 0.75rem;
-      font-size: clamp(2.2rem, 6vw, 4.8rem);
-      letter-spacing: 0;
-      line-height: 0.96;
-    }
-
-    .agent-hero p,
-    .agent-card p,
-    .flow-grid p,
-    .rule-grid p,
-    .rubric-grid p {
-      color: var(--text-2);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    .agent-card,
-    .agent-panel {
-      border: 1px solid rgba(31, 160, 104, 0.22);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.035);
-      padding: 1.15rem;
-    }
-
-    .agent-card {
-      display: grid;
-      gap: 0.75rem;
-      align-content: start;
-      background:
-        linear-gradient(145deg, rgba(31, 160, 104, 0.11), transparent 48%),
-        rgba(255, 255, 255, 0.035);
-    }
-
-    .agent-card span,
-    .panel-head span,
-    .flow-grid b {
-      color: #1fa068;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .agent-card strong {
-      color: var(--text);
-      font-size: 1.35rem;
-      line-height: 1.2;
-    }
-
-    .panel-head {
-      margin-bottom: 1rem;
-    }
-
-    .panel-head h2 {
-      margin: 0.3rem 0 0;
-      font-size: clamp(1.4rem, 3vw, 2.25rem);
-      letter-spacing: 0;
-    }
-
-    .flow-grid,
-    .rule-grid,
-    .rubric-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 0.85rem;
-    }
-
-    .flow-grid article,
-    .rule-grid article,
-    .rubric-grid article {
-      border: 1px solid rgba(228, 228, 236, 0.12);
-      border-radius: 8px;
-      background: rgba(2, 2, 4, 0.42);
-      padding: 1rem;
-      min-width: 0;
-    }
-
-    .flow-grid h3,
-    .rubric-grid h3 {
-      margin: 0.45rem 0 0.45rem;
-      font-size: 1.05rem;
-      letter-spacing: 0;
-    }
-
-    .flow-grid a,
-    .surface-list a {
-      color: #1fa068;
-      display: inline-block;
-      margin-top: 0.85rem;
-      text-decoration: none;
-      font-family: var(--mono);
-      font-size: 0.86rem;
-    }
-
-    .surface-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-    }
-
-    .surface-list a {
-      border: 1px solid rgba(31, 160, 104, 0.35);
-      border-radius: 999px;
-      padding: 0.5rem 0.72rem;
-      margin-top: 0;
-      background: rgba(31, 160, 104, 0.08);
-    }
-
-    @media (max-width: 840px) {
-      .agent-hero {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .agent-shell {
-        padding: 2.5rem 1rem 3rem;
-      }
-    }
+    .ask-shell { max-width: var(--max); margin: 0 auto; padding: 3.5rem 2rem 4rem; display: grid; gap: 1.25rem; }
+    .ask-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr); gap: 1.25rem; align-items: stretch; }
+    .ask-hero h1 { margin: 0.35rem 0 0.75rem; font-size: clamp(2.25rem, 6vw, 4.8rem); line-height: 0.96; letter-spacing: 0; }
+    .ask-hero p, .trust-card p, .answer-card p, .source-tile p, .pattern-grid p { color: var(--text-2); line-height: 1.7; margin: 0; }
+    .trust-card, .ask-console, .source-panel { border: 1px solid rgba(31, 160, 104, 0.22); border-radius: 8px; background: rgba(255, 255, 255, 0.035); padding: 1.15rem; }
+    .trust-card { display: grid; gap: 0.7rem; align-content: start; background: linear-gradient(145deg, rgba(31, 160, 104, 0.12), transparent 48%), rgba(255, 255, 255, 0.035); }
+    .trust-card span, .answer-card span, .panel-head span { color: #1fa068; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .trust-card strong { font-size: 1.35rem; line-height: 1.2; }
+    .prompt-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.7rem; }
+    .prompt-row input { width: 100%; border: 1px solid rgba(228, 228, 236, 0.16); border-radius: 8px; background: rgba(2, 2, 4, 0.62); color: var(--text); font: inherit; padding: 0.85rem 1rem; min-width: 0; }
+    .prompt-row button, .prompt-chips button { border: 1px solid rgba(31, 160, 104, 0.35); border-radius: 8px; background: rgba(31, 160, 104, 0.12); color: var(--text); cursor: pointer; font-family: var(--mono); padding: 0.75rem 1rem; }
+    .prompt-chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 0.85rem 0; }
+    .prompt-chips button { font-size: 0.78rem; padding: 0.45rem 0.65rem; }
+    .answer-card { border: 1px solid rgba(228, 228, 236, 0.12); border-radius: 8px; background: rgba(2, 2, 4, 0.42); padding: 1rem; min-height: 180px; }
+    .answer-card h2, .panel-head h2 { margin: 0.35rem 0 0.55rem; font-size: clamp(1.35rem, 3vw, 2.1rem); letter-spacing: 0; }
+    .answer-links, .source-grid, .pattern-grid { display: grid; gap: 0.85rem; }
+    .answer-links { grid-template-columns: repeat(auto-fit, minmax(150px, max-content)); margin-top: 1rem; }
+    .answer-links a, .source-tile, .pattern-grid a { color: #1fa068; text-decoration: none; font-family: var(--mono); font-size: 0.86rem; }
+    .source-grid, .pattern-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .source-tile, .pattern-grid article { border: 1px solid rgba(228, 228, 236, 0.12); border-radius: 8px; background: rgba(2, 2, 4, 0.42); padding: 1rem; min-width: 0; }
+    .source-tile h3, .pattern-grid h3 { margin: 0 0 0.5rem; color: var(--text); letter-spacing: 0; font-size: 1.05rem; }
+    .pattern-grid a { display: inline-block; margin-top: 0.8rem; }
+    .panel-head { margin-bottom: 1rem; }
+    @media (max-width: 840px) { .ask-hero, .prompt-row { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .ask-shell { padding: 2.5rem 1rem 3rem; } }
   </style>
 </BaseLayout>

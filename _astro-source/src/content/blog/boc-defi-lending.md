@@ -1,6 +1,6 @@
 ---
 title: "The Bank of Canada Just Studied Aave. I Was Using It Six Years Ago."
-description: "The Bank of Canada published a deep study on Aave V3 and DeFi lending in April 2026. Here's what it means, why it matters, and what I learned the hard way years before the report existed."
+description: "The Bank of Canada released a deep study on Aave V3 and DeFi lending in April 2026. Here's what it means, why it matters, and what I learned the hard way years before the report existed."
 date: "2026-04-12"
 tags: ["DeFi", "Blockchain", "Finance", "Central Banking"]
 readTime: "12 min"
@@ -12,9 +12,9 @@ image: "/blog-visuals/png/boc-defi-hero.png"
 
 # The Bank of Canada Just Studied Aave. I Was Using It Six Years Ago.
 
-In April 2026, the Bank of Canada published a formal research paper on Aave V3, the biggest DeFi lending protocol in the world. They concluded that decentralized lending is technically and operationally viable. This is what that means, why it matters, and what I learned the hard way years before the report existed.
+In April 2026, the Bank of Canada released a formal research paper on Aave V3, the biggest DeFi lending protocol in the world. They concluded that decentralized lending is technically and operationally viable. This is what that means, why it matters, and what I learned the hard way years before the report existed.
 
-Two years ago, I published a [technical breakdown of how Aave works](/blog/aave) on this very site. But my actual story with DeFi lending started way before that.
+Two years ago, I wrote a [technical breakdown of how Aave works](/blog/aave) on this very site. But my actual story with DeFi lending started way before that.
 
 Six years ago, a younger and way more naive version of me discovered Aave and Compound. I thought I had found the cheat code to wealth. I did what the Bank of Canada now formally calls "recursive leverage." Borrow against your collateral, swap into more collateral, deposit it, borrow again. Repeat until you feel invincible.
 
