@@ -56,7 +56,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="dash-footer">
         Powered by <a href="https://bionicbanker.tech">Bionic Banker</a> Agent Army &#8212; DeFi Scout &#183; AML Monitor &#183; Content Scout &#183; Portfolio Tracker<br>
-        Data refreshes every 5 minutes &#183; Built by HASH
+        Data refreshes every 5 minutes &#183; Built by Himanshu
     </div>
 </div>
 
@@ -94,13 +94,13 @@ const FALLBACK_ROASTS = {
     stats:{total_scans:24,total_findings:2,highest_score:530,critical_count:2},
     findings:[
         {timestamp:"2026-03-08T06:32:00Z",risk_score:530,
-         what_happened:"Sender 0x0a5b... sent 0.1 ETH to Tornado Cash 0.1 ETH Pool. Classic mixer interaction with OFAC-sanctioned protocol.",
+         what_happened:"Sample wallet 0x0a5b... is shown with a historical 0.1 ETH Tornado Cash pool interaction. Classic mixer-pattern example with OFAC-sanctioned protocol context.",
          roast:"You thought routing 0.1 ETH through Tornado Cash would make you invisible? My friend, that\u2019s like putting on a ski mask to rob a store that only has security cameras. The OFAC sanctions list exists for a reason, and you just walked straight into it. Six rules triggered in one transaction\u2014that\u2019s not a red flag, that\u2019s a red parade.",
          risk_verdict:"CRITICAL \u2014 Direct OFAC-sanctioned protocol interaction. Immediate SAR recommendation.",
          rules:["mixer_touch","ofac_hit","mixer_contract_call","structuring","peel_chain_linear","exchange_avoidance"],
          pattern:"Mixer + OFAC + Structuring"},
         {timestamp:"2026-03-07T18:15:00Z",risk_score:400,
-         what_happened:"Sender 0xd0b9... interacted with Tornado Cash 0.1 ETH Pool. Four AML rules triggered simultaneously.",
+         what_happened:"Sample wallet 0xd0b9... is shown with a Tornado Cash 0.1 ETH pool interaction. Four AML rules triggered simultaneously in the sample.",
          roast:"Another Tornado Cash tourist. Four rules tripped at once\u2014mixer touch, OFAC hit, contract call, and exchange avoidance. You avoided every centralized exchange like they were your ex at a party. Suspicious? A little. Flagged? Absolutely.",
          risk_verdict:"CRITICAL \u2014 Sanctioned mixer interaction with evasive routing behavior.",
          rules:["mixer_touch","ofac_hit","mixer_contract_call","exchange_avoidance"],

@@ -20,19 +20,19 @@ const confidence = typeof predictionValue.confidence === 'number'
   ? `${(predictionValue.confidence * 100).toFixed(1)}%`
   : 'n/a';
 ---
-<BaseLayout title="AI Intelligence" description="A visible signal board for Bionic Banker heartbeat rows, market context, lab tickets, and reader-facing AI questions.">
+<BaseLayout title="AI Intelligence" description="Live signals from the Bionic Banker lab: market rows, prediction snapshots, questions, and what each row is not claiming.">
   <div class="page-header">
     <div class="page-label">Signal Board</div>
-    <h1 class="page-title">AI Intelligence</h1>
-    <p class="page-sub">A visible board of heartbeat rows, market context, lab tickets, and reader-facing AI questions. Enough motion to learn from the page, with clear limits around what each row means.</p>
+    <h1 class="page-title">Live Signals</h1>
+    <p class="page-sub">A live feed of signals this lab is watching. Prices, predictions, questions, and the patterns the system keeps returning to.</p>
   </div>
 
   <main class="intel-shell">
     <section class="alive-console">
       <div class="console-copy">
-        <span class="section-label">Public Snapshot</span>
-        <h2>Website as a living signal board</h2>
-        <p>This page shows enough motion to make the website useful. Market rows refresh from public sources. Snapshot rows keep the source trail readable and attach limits to the signal.</p>
+        <span class="section-label">Right Now</span>
+        <h2>What moved recently</h2>
+        <p>Market rows refresh from public sources when they can. Snapshot rows say where each number comes from and what the row is not claiming.</p>
         <div class="console-actions">
           <a href="/proof-tour/" class="action-btn primary">Open Lab Tour</a>
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>
