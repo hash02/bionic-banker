@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Intelligence Dashboard" description="Live crypto intelligence — DeFi yields, market pulse, and AML roasted transactions from the Bionic Banker agent army.">
+<BaseLayout title="Live Signals Dashboard" description="A live signal board for market rows, DeFi yields, and wallet-risk notes from the Bionic Banker lab.">
 
 <div class="dashboard">
 
     <div class="dash-header">
-        <h1>Intelligence Dashboard</h1>
+        <h1>Live Signals Dashboard</h1>
         <div class="meta">
             <span><span class="live-dot"></span> Live</span>
             <span id="lastUpdate">Loading...</span>
@@ -38,7 +38,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <div class="card" style="margin-bottom:24px;">
-        <div class="section-title"><span class="icon">&#128293;</span> AML Roaster &#8212; Flagged Transactions</div>
+        <div class="section-title"><span class="icon">&#128293;</span> Wallet Risk Notes</div>
         <div class="aml-stats-bar" id="amlStatsBar"></div>
         <div id="roastCards"></div>
     </div>
@@ -49,13 +49,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="chart-wrap"><canvas id="yieldChart"></canvas></div>
         </div>
         <div class="card">
-            <div class="section-title"><span class="icon">&#128737;</span> AML Detection Engine</div>
+            <div class="section-title"><span class="icon">&#128737;</span> Wallet-Risk Split</div>
             <div class="chart-wrap"><canvas id="amlChart"></canvas></div>
         </div>
     </div>
 
     <div class="dash-footer">
-        Powered by <a href="https://bionicbanker.tech">Bionic Banker</a> Agent Army &#8212; DeFi Scout &#183; AML Monitor &#183; Content Scout &#183; Portfolio Tracker<br>
+        Powered by <a href="https://bionicbanker.tech">Bionic Banker</a> live notes &#8212; markets &#183; yields &#183; wallet risk &#183; field notes<br>
         Data refreshes every 5 minutes &#183; Built by Himanshu
     </div>
 </div>
@@ -91,20 +91,20 @@ const FALLBACK = {
 };
 
 const FALLBACK_ROASTS = {
-    stats:{total_scans:24,total_findings:2,highest_score:530,critical_count:2},
+    stats:{total_scans:24,total_findings:2,highest_score:530,attention_count:2},
     findings:[
         {timestamp:"2026-03-08T06:32:00Z",risk_score:530,
-         what_happened:"Sample wallet 0x0a5b... is shown with a historical 0.1 ETH Tornado Cash pool interaction. Classic mixer-pattern example with OFAC-sanctioned protocol context.",
-         roast:"You thought routing 0.1 ETH through Tornado Cash would make you invisible? My friend, that\u2019s like putting on a ski mask to rob a store that only has security cameras. The OFAC sanctions list exists for a reason, and you just walked straight into it. Six rules triggered in one transaction\u2014that\u2019s not a red flag, that\u2019s a red parade.",
-         risk_verdict:"CRITICAL \u2014 Direct OFAC-sanctioned protocol interaction. Immediate SAR recommendation.",
+         what_happened:"Sample row matched several routing and mixer-style signals in the same transaction window.",
+         public_note:"This row is worth slowing down on. The route matters more than the amount.",
+         boundary_note:"A score is a sorting tool. Review the surrounding context before drawing conclusions.",
          rules:["mixer_touch","ofac_hit","mixer_contract_call","structuring","peel_chain_linear","exchange_avoidance"],
-         pattern:"Mixer + OFAC + Structuring"},
+         pattern:"Mixer-style routing + structuring"},
         {timestamp:"2026-03-07T18:15:00Z",risk_score:400,
-         what_happened:"Sample wallet 0xd0b9... is shown with a Tornado Cash 0.1 ETH pool interaction. Four AML rules triggered simultaneously in the sample.",
-         roast:"Another Tornado Cash tourist. Four rules tripped at once\u2014mixer touch, OFAC hit, contract call, and exchange avoidance. You avoided every centralized exchange like they were your ex at a party. Suspicious? A little. Flagged? Absolutely.",
-         risk_verdict:"CRITICAL \u2014 Sanctioned mixer interaction with evasive routing behavior.",
+         what_happened:"Sample row matched multiple routing signals at once.",
+         public_note:"One signal is a note. Several signals at the same time become a pattern to inspect.",
+         boundary_note:"The note explains why the system paused. It does not claim intent.",
          rules:["mixer_touch","ofac_hit","mixer_contract_call","exchange_avoidance"],
-         pattern:"Mixer + OFAC"}
+         pattern:"Mixer-style routing"}
     ]
 };
 
@@ -112,7 +112,7 @@ function fmt(n){if(n>=1e9)return'$'+(n/1e9).toFixed(1)+'B';if(n>=1e6)return'$'+(
 function fmtP(n){if(n>=1000)return'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return n>=1?'$'+n.toFixed(2):'$'+n.toFixed(3)}
 function ago(ts){const d=Date.now()-new Date(ts).getTime(),h=Math.floor(d/36e5),m=Math.floor((d%36e5)/6e4);if(h>24)return Math.floor(h/24)+'d ago';return h>0?h+'h '+m+'m ago':m+'m ago'}
 function riskCls(s){return s<=5?'low':s<=10?'med':'high'}
-function sevCls(s){return s>=400?'critical':s>=200?'high':'medium'}
+function sevCls(s){return s>=400?'attention':s>=200?'high':'medium'}
 
 function renderKPIs(d,r){
     const btc=d.market.find(m=>m.symbol==='BTC')||{price:0,change_24h:0};
@@ -123,7 +123,7 @@ function renderKPIs(d,r){
         {l:'ETH',v:fmtP(eth.price),c:eth.change_24h},
         {l:'Best Yield',v:best.apy.toFixed(1)+'%',s:best.protocol},
         {l:'Detection Rate',v:d.aml_stats.detection_rate+'%',s:d.aml_stats.rules_active+' rules'},
-        {l:'TX Scanned',v:(r.stats?r.stats.total_scans:0).toLocaleString(),s:(r.stats?r.stats.total_findings:0)+' flagged'}
+        {l:'Rows Read',v:(r.stats?r.stats.total_scans:0).toLocaleString(),s:(r.stats?r.stats.total_findings:0)+' attention rows'}
     ];
     document.getElementById('kpiRow').innerHTML=kpis.map(k=>`<div class="kpi-card"><div class="kpi-label">${k.l}</div><div class="kpi-value">${k.v}</div>${k.c!==undefined?`<div class="kpi-change ${k.c>=0?'up':'down'}">${k.c>=0?'\u25B2':'\u25BC'} ${Math.abs(k.c).toFixed(2)}%</div>`:''}${k.s?`<div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">${k.s}</div>`:''}</div>`).join('');
 }
@@ -145,17 +145,33 @@ function renderAMLStats(d,r){
         {v:d.aml_stats.detection_rate+'%',l:'Detection Rate',c:'var(--green)'},
         {v:d.aml_stats.rules_active,l:'Active Rules',c:'var(--accent-blue)'},
         {v:r.stats?r.stats.total_scans:'\u2014',l:'Scans (24h)',c:'var(--text-primary)'},
-        {v:r.stats?r.stats.total_findings:'\u2014',l:'Findings',c:'var(--red)'},
+        {v:r.stats?r.stats.total_findings:'\u2014',l:'Attention Rows',c:'var(--red)'},
         {v:r.stats?r.stats.highest_score:'\u2014',l:'Highest Score',c:'var(--orange)'}
     ];
     document.getElementById('amlStatsBar').innerHTML=s.map(x=>`<div class="aml-stat"><div class="val" style="color:${x.c}">${x.v}</div><div class="lbl">${x.l}</div></div>`).join('');
 }
 
 function renderRoasts(f){
-    if(!f||!f.length){document.getElementById('roastCards').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-muted)">No flagged transactions in current scan window.</div>';return}
+    if(!f||!f.length){document.getElementById('roastCards').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-muted)">No attention rows in the current scan window.</div>';return}
     document.getElementById('roastCards').innerHTML=f.map(r=>{
         const sv=sevCls(r.risk_score),ru=r.rules||[];
-        return`<div class="roast-card ${sv}"><div class="roast-header"><div><span class="roast-score ${sv}">Score: ${r.risk_score}</span><span style="margin-left:10px;font-size:0.75rem;color:var(--text-muted)">${r.pattern||''}</span></div><div class="roast-meta"><span>${ago(r.timestamp)}</span></div></div>${r.what_happened?`<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px">${r.what_happened}</div>`:''}<div class="roast-text">\u201C${r.roast}\u201D</div>${ru.length?`<div class="roast-rules">${ru.map(x=>`<span class="rule-tag">${x}</span>`).join('')}</div>`:''}${r.risk_verdict?`<div class="roast-verdict"><div class="verdict-label">Verdict</div><div style="color:var(--red);font-size:0.78rem;margin-top:3px">${r.risk_verdict}</div></div>`:''}</div>`}).join('');
+        const what=safeWhatFor(r,ru);
+        const note=r.public_note||publicNoteFor(r,ru);
+        const boundary=r.boundary_note||'A score is a sorting tool. The next step is context.';
+        return`<div class="roast-card ${sv}"><div class="roast-header"><div><span class="roast-score ${sv}">Score: ${r.risk_score}</span><span style="margin-left:10px;font-size:0.75rem;color:var(--text-muted)">${r.pattern||'Wallet-risk pattern'}</span></div><div class="roast-meta"><span>${ago(r.timestamp)}</span></div></div><div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px">${what}</div><div class="roast-text">\u201C${note}\u201D</div>${ru.length?`<div class="roast-rules">${ru.map(x=>`<span class="rule-tag">${x}</span>`).join('')}</div>`:''}<div class="boundary-box"><div class="boundary-label">Boundary</div><div style="color:var(--text-secondary);font-size:0.78rem;margin-top:3px">${boundary}</div></div></div>`}).join('');
+}
+
+function publicNoteFor(r,ru){
+    const pattern=(r.pattern||'').toLowerCase();
+    if(pattern.includes('mixer'))return'This row is worth slowing down on. The route matters more than the amount.';
+    if(pattern.includes('bridge'))return'The tempo is the signal: move, hop, move again.';
+    if(ru.length>=4)return'One rule is a note. Several rules together become a pattern to inspect.';
+    return'The system paused here because the row has enough shape to deserve another look.';
+}
+
+function safeWhatFor(r,ru){
+    if(r.public_note||r.boundary_note)return r.what_happened||`Sample row matched ${ru.length||'several'} wallet-risk signal${ru.length===1?'':'s'}.`;
+    return`Sample row matched ${ru.length||'several'} wallet-risk signal${ru.length===1?'':'s'}.`;
 }
 
 let yieldChartInst=null, amlChartInst=null;
@@ -170,7 +186,7 @@ function renderYieldChart(y){
 function renderAMLChart(st){
     if(amlChartInst)amlChartInst.destroy();
     const ctx=document.getElementById('amlChart').getContext('2d');
-    amlChartInst=new Chart(ctx,{type:'doughnut',data:{labels:['Clean','Flagged'],datasets:[{data:[st.clean||12844,st.flagged||3],backgroundColor:['rgba(31,160,104,0.8)','rgba(255,68,68,0.8)'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#8888a0',font:{size:11},padding:16}},tooltip:{callbacks:{label:function(c){const t=c.dataset.data.reduce((a,b)=>a+b,0);return c.label+': '+c.parsed.toLocaleString()+' ('+(c.parsed/t*100).toFixed(1)+'%)'}}}}}});
+    amlChartInst=new Chart(ctx,{type:'doughnut',data:{labels:['Quiet','Attention'],datasets:[{data:[st.clean||12844,st.flagged||3],backgroundColor:['rgba(31,160,104,0.8)','rgba(31,160,104,0.35)'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#8888a0',font:{size:11},padding:16}},tooltip:{callbacks:{label:function(c){const t=c.dataset.data.reduce((a,b)=>a+b,0);return c.label+': '+c.parsed.toLocaleString()+' ('+(c.parsed/t*100).toFixed(1)+'%)'}}}}}});
 }
 
 async function init(){
@@ -297,19 +313,19 @@ setInterval(init,300000);
             padding: 16px; margin-bottom: 12px; position: relative; overflow: hidden;
         }
         .roast-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
-        .roast-card.critical::before { background: var(--red); }
+        .roast-card.attention::before { background: var(--red); }
         .roast-card.high::before { background: var(--orange); }
         .roast-card.medium::before { background: var(--accent-blue); }
         .roast-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .roast-score { font-size: 1.1rem; font-weight: 700; }
-        .roast-score.critical { color: var(--red); }
+        .roast-score.attention { color: var(--red); }
         .roast-score.high { color: var(--orange); }
         .roast-meta { font-size: 0.7rem; color: var(--text-muted); }
         .roast-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; font-style: italic; margin-bottom: 10px; }
         .roast-rules { display: flex; flex-wrap: wrap; gap: 5px; }
         .rule-tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.62rem; font-weight: 500; background: var(--red-dim); color: var(--red); }
-        .roast-verdict { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.75rem; }
-        .verdict-label { font-weight: 600; color: var(--text-muted); text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; }
+        .boundary-box { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.75rem; }
+        .boundary-label { font-weight: 600; color: var(--text-muted); text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; }
 
         /* ETH Staking */
         .eth-yields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
