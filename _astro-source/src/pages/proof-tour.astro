@@ -13,7 +13,9 @@ const coverageBars = reportCatalog.default.coverage_bars;
 const marketSources = gapCatalog.default.market_sources;
 const verifiedDate = new Date(labCatalog.default.generated_at).toISOString().slice(0, 10);
 
-const getSources = (project) => project['evid' + 'ence'];
+const getSources = (project) => project.sources || [];
+const getNumbers = (project) => project.numbers || [];
+const getLimits = (project) => project.limits || [];
 
 const displayClaims = {
   'aml-engine-roaster': 'A wallet-risk lab where detection notes and plain-language roast notes sit side by side.',
@@ -77,8 +79,8 @@ const inspectionRows = scenes
   .map((scene) => {
     const project = scene.project;
     const sourceCount = getSources(project).length;
-    const metricCount = project.metrics.length;
-    const limitCount = project.limitations.length;
+    const metricCount = getNumbers(project).length;
+    const limitCount = getLimits(project).length;
     const readability = Math.min(100, sourceCount * 12 + metricCount * 8 + limitCount * 6);
     return {
       id: scene.id,
@@ -163,11 +165,11 @@ const inspectionRows = scenes
                   </div>
                   <div>
                     <span>Metric statements</span>
-                    <strong>{scene.project.metrics.length}</strong>
+                    <strong>{getNumbers(scene.project).length}</strong>
                   </div>
                   <div>
                     <span>Stated limits</span>
-                    <strong>{scene.project.limitations.length}</strong>
+                    <strong>{getLimits(scene.project).length}</strong>
                   </div>
                 </div>
               )}
@@ -176,7 +178,7 @@ const inspectionRows = scenes
                 <div class="scene-grid">
                   <div>
                     <h3>What it is</h3>
-                    <p>{displayClaims[scene.id] || scene.project.public_claim}</p>
+                    <p>{displayClaims[scene.id] || scene.project.what_it_is}</p>
                   </div>
                   <div>
                     <h3>Sources</h3>
@@ -195,7 +197,7 @@ const inspectionRows = scenes
                   <div>
                     <h3>Numbers</h3>
                     <ul>
-                      {scene.project.metrics.slice(0, 4).map((metric) => (
+                      {getNumbers(scene.project).slice(0, 4).map((metric) => (
                         <li>{metric}</li>
                       ))}
                     </ul>
@@ -203,7 +205,7 @@ const inspectionRows = scenes
                   <div>
                     <h3>Limits</h3>
                     <ul>
-                      {scene.project.limitations.slice(0, 4).map((limit) => (
+                      {getLimits(scene.project).slice(0, 4).map((limit) => (
                         <li>{limit}</li>
                       ))}
                     </ul>

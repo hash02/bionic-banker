@@ -13,6 +13,10 @@ const benchmarkMetrics = reportCatalog.default.benchmark_metrics;
 const coverageBars = reportCatalog.default.coverage_bars;
 const notes = reportCatalog.default.report_notes;
 const reportVerifiedDate = new Date(reportCatalog.default.generated_at).toISOString().slice(0, 10);
+const getSources = (project) => project.sources || [];
+const getNumbers = (project) => project.numbers || [];
+const getLimits = (project) => project.limits || [];
+const getTags = (project) => project.tags || [];
 
 const displayNames = {
   'aml-engine-roaster': 'Wallet Risk Engine + Roast Notes',
@@ -22,18 +26,17 @@ const displayNames = {
   'governance-starter-kit': 'Agent Notes Kit',
 };
 
-const totalSources = labProjects.reduce((sum, project) => sum + project.evidence.length, 0);
-const totalMetrics = labProjects.reduce((sum, project) => sum + project.metrics.length, 0);
-const totalLimitations = labProjects.reduce((sum, project) => sum + project.limitations.length, 0);
-const getTags = (project) => project['role' + '_match'];
+const totalSources = labProjects.reduce((sum, project) => sum + getSources(project).length, 0);
+const totalMetrics = labProjects.reduce((sum, project) => sum + getNumbers(project).length, 0);
+const totalLimitations = labProjects.reduce((sum, project) => sum + getLimits(project).length, 0);
 const totalTags = labProjects.reduce((sum, project) => sum + getTags(project).length, 0);
 const guideSteps = guides.reduce((sum, guide) => sum + guide.items.length, 0);
 
 const sourceRows = labProjects.map((project) => ({
   name: displayNames[project.id] || project.name,
-  sources: project.evidence.length,
-  metrics: project.metrics.length,
-  limits: project.limitations.length,
+  sources: getSources(project).length,
+  metrics: getNumbers(project).length,
+  limits: getLimits(project).length,
   tags: getTags(project).length,
 }));
 
