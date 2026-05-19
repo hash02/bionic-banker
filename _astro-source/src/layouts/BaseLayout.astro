@@ -54,21 +54,38 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
   <meta name="twitter:site" content="@BionicBanker" />
   <meta name="twitter:creator" content="@BionicBanker" />
   <link rel="canonical" href={canonicalURL} />
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
   <!-- JSON-LD Structured Data -->
   {isHome ? (
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Bionic Banker",
-      "url": "https://bionicbanker.tech",
-      "description": description,
-      "author": {
+    <>
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Bionic Banker",
+        "url": "https://bionicbanker.tech",
+        "description": description,
+        "author": {
+          "@type": "Person",
+          "name": "Himanshu",
+          "url": "https://bionicbanker.tech"
+        }
+      })} />
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
         "@type": "Person",
         "name": "Himanshu",
-        "url": "https://linkedin.com/in/himanshu-h-a357684a"
-      }
-    })} />
+        "url": "https://bionicbanker.tech",
+        "jobTitle": "Computer Engineer and Financial Advisor",
+        "description": "Computer engineer and financial advisor building AI systems for finance, blockchain AML detection, and agent infrastructure.",
+        "sameAs": [
+          "https://linkedin.com/in/himanshu-h-a357684a",
+          "https://github.com/hash02",
+          "https://t.me/BionicBanker"
+        ],
+        "knowsAbout": ["Blockchain", "AML Detection", "AI Agents", "DeFi", "Fintech", "Compliance"]
+      })} />
+    </>
   ) : null}
 
   <!-- Styles -->
