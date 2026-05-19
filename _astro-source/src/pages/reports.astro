@@ -141,25 +141,10 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
       <div class="section-label">Measured Rows</div>
       <h2>Numbers worth keeping close</h2>
       <p>These values come from existing summaries. Bars use a display scale per metric family, so percentages, function counts, tests, and prediction counts stay readable without pretending they measure the same thing.</p>
-      <div class="chart-wrap">
-        <svg viewBox="0 0 760 360" role="img" aria-label="Measured numbers chart">
-          <line x1="72" y1="28" x2="72" y2="304" class="axis-line" />
-          <line x1="72" y1="304" x2="724" y2="304" class="axis-line" />
-          {benchmarkMetrics.map((metric, index) => {
-            const barWidth = 60;
-            const gap = 46;
-            const x = 96 + index * (barWidth + gap);
-            const height = Math.max(10, (metric.value / metric.scale_max) * 246);
-            const y = 304 - height;
-            return (
-              <>
-                <rect x={x} y={y} width={barWidth} height={height} rx="6" class="metric-bar" />
-                <text x={x + barWidth / 2} y={y - 10} class="chart-value" text-anchor="middle">{metric.value}</text>
-                <text x={x + barWidth / 2} y="332" class="chart-label" text-anchor="middle">{metric.unit}</text>
-              </>
-            );
-          })}
-        </svg>
+      <p class="chart-note">These numbers come from test runs, not live trading. Each metric has a method note that explains what was measured and what the limit is.</p>
+      <div id="benchmark-chart-data" data-metrics={JSON.stringify(benchmarkMetrics)} style="display:none"></div>
+      <div class="chart-wrap benchmark-chart-wrap">
+        <canvas id="benchmark-chart" aria-label="Measured numbers chart"></canvas>
       </div>
       <div class="benchmark-list">
         {benchmarkMetrics.map((metric) => (
@@ -202,6 +187,71 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
       </div>
     </section>
   </div>
+
+  <script>
+    (function loadBenchmarkChart() {
+      const dataEl = document.getElementById('benchmark-chart-data');
+      if (!dataEl) return;
+      const metrics = JSON.parse(dataEl.dataset.metrics || '[]');
+      if (!metrics.length) return;
+
+      function initChart() {
+        const canvas = document.getElementById('benchmark-chart');
+        if (!canvas || !window.Chart) return;
+        const labels = metrics.map(m => m.unit || m.label);
+        const values = metrics.map(m => m.value);
+        const maxVal = metrics.map(m => m.scale_max || 100);
+        new window.Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels,
+            datasets: [{
+              data: values,
+              backgroundColor: 'rgba(31, 160, 104, 0.72)',
+              borderColor: '#1fa068',
+              borderWidth: 1,
+              borderRadius: 5,
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: (c) => {
+                    const m = metrics[c.dataIndex];
+                    return `${c.parsed.x} ${m.unit}`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: { color: 'rgba(228,228,236,0.07)' },
+                ticks: { color: '#8a8aa0', font: { size: 11 } },
+              },
+              y: {
+                grid: { display: false },
+                ticks: { color: '#e4e4ec', font: { size: 12 } },
+              }
+            }
+          }
+        });
+      }
+
+      if (window.Chart) {
+        initChart();
+      } else {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
+        s.onload = initChart;
+        document.head.appendChild(s);
+      }
+    })();
+  </script>
 
   <style>
     .report-hero-grid,
@@ -338,37 +388,28 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
     }
 
     .chart-wrap {
-      overflow-x: auto;
       border: 1px solid rgba(228, 228, 236, 0.12);
       border-radius: 8px;
       background: rgba(2, 2, 4, 0.6);
       margin: 1rem 0;
+      padding: 1rem;
     }
 
-    .chart-wrap svg {
-      width: 100%;
-      min-width: 680px;
+    .benchmark-chart-wrap {
+      height: 220px;
+    }
+
+    .benchmark-chart-wrap canvas {
       display: block;
+      width: 100%;
+      height: 100%;
     }
 
-    .axis-line {
-      stroke: rgba(228, 228, 236, 0.28);
-      stroke-width: 2;
-    }
-
-    .metric-bar {
-      fill: #1fa068;
-    }
-
-    .chart-value {
-      fill: #e4e4ec;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .chart-label {
-      fill: #8a8aa0;
-      font-size: 12px;
+    .chart-note {
+      color: var(--text-2);
+      font-size: 0.83rem;
+      margin: 0.35rem 0 0.75rem;
+      line-height: 1.55;
     }
 
     .benchmark-list {

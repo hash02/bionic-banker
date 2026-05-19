@@ -49,6 +49,12 @@
 
   /* Sci-fi mono */
   --mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', monospace;
+
+  /* Animation timing */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-mid:  0.35s;
+  --dur-slow: 0.55s;
 }
 
 /* ── BASE ── */
@@ -454,7 +460,14 @@ nav {
 }
 .verified-note {
   font-family: var(--mono); color: var(--text-3); font-size: 0.68rem; letter-spacing: 0.04em;
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
+}
+
+.gap-intro {
+  color: var(--text-2);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin: 0 0 1.25rem;
 }
 
 @media (max-width: 640px) {

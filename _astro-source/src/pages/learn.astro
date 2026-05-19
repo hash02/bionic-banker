@@ -148,12 +148,30 @@ const basicsRoute = [
     </section>
 
     <section class="concept-grid">
-      {concepts.map((concept) => (
+      {concepts.map((concept) => {
+        const subtitles = {
+          'rag':          'Retrieval-Augmented Generation. An AI that looks things up before answering.',
+          'rbac':         'Role-Based Access Control. Who can see what, and why it matters in finance.',
+          'vlm':          'Vision Language Model. An AI that reads images and text together.',
+          'langchain':    'A toolkit for connecting AI models to real data sources.',
+          'aml':          'Anti-Money Laundering. The rules that flag suspicious financial patterns.',
+          'false-positive': 'A flag that fires when it should not. The analyst still has to clear it.',
+          'evm':          'Ethereum Virtual Machine. The engine that runs smart contracts on Ethereum.',
+          'kubernetes':   'A system that keeps software services running reliably at scale.',
+          'docker':       'A way to package software so it runs the same way on any machine.',
+          'observability': 'The ability to see what is happening inside a system while it runs.',
+          'audit-log':    'A time-stamped record of who did what. Required in finance and compliance.',
+          'tool-calling': 'An AI that can run real functions, not just generate text.',
+          'llm':          'Large Language Model. The kind of AI that reads and generates text.',
+          'agent':        'An AI that takes actions in a loop, not just answers a single question.',
+        };
+        return (
         <article class="article-card animate-on-scroll concept-card" id={concept.id}>
           <div class="article-tags">
             <span class="tag-pill tag-green">Concept</span>
           </div>
           <h3>{concept.term}</h3>
+          {subtitles[concept.id] && <p class="concept-subtitle">{subtitles[concept.id]}</p>}
           <p><strong>Meaning:</strong> {concept.plain_definition}</p>
           <p><strong>Why it matters:</strong> {concept.why_it_matters}</p>
           <p><strong>Shows up in:</strong> {concept.used_in.join(' / ')}</p>
@@ -163,7 +181,8 @@ const basicsRoute = [
             <a class="read-more" href="/gaps">View questions -></a>
           </div>
         </article>
-      ))}
+        );
+      })}
     </section>
   </div>
 
@@ -316,6 +335,14 @@ const basicsRoute = [
 
     .concept-card {
       scroll-margin-top: 96px;
+    }
+
+    .concept-subtitle {
+      color: var(--text-3);
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      line-height: 1.45;
+      margin: 0.1rem 0 0.5rem;
     }
 
     .stack-radar-panel {

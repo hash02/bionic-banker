@@ -74,6 +74,9 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
   <!-- Styles -->
   <link rel="stylesheet" href="/styles/global.css" />
   <link rel="stylesheet" href={`${relativeAssetRoot}styles/global.css`} />
+
+  <!-- Lottie player (custom element, defer safe) -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
 </head>
 <body>
   <!-- NAV -->
@@ -187,21 +190,50 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
 
 
   <!-- 3D background handled by ParticleHero component on homepage -->
-  <!-- Scroll Animations -->
+  <!-- Scroll Animations — GSAP ScrollTrigger with IO fallback -->
   <script is:inline>
   (function() {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    function initGSAP() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+      window.gsap.registerPlugin(window.ScrollTrigger);
 
-    document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
-      observer.observe(el);
-    });
+      window.gsap.utils.toArray('.animate-on-scroll').forEach(function(el) {
+        window.gsap.fromTo(el,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+          }
+        );
+      });
+
+      window.gsap.utils.toArray('.proof-route-grid, .mag-grid').forEach(function(grid) {
+        var cards = grid.querySelectorAll('.article-card, .moving-now-card');
+        if (!cards.length) return;
+        window.gsap.fromTo(cards,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
+          }
+        );
+      });
+    }
+
+    function loadScript(src, onload) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = onload;
+      document.head.appendChild(s);
+    }
+
+    loadScript(
+      'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+      function() {
+        loadScript(
+          'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+          initGSAP
+        );
+      }
+    );
   })();
   </script>
   <style is:global>

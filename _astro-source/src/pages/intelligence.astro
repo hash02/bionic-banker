@@ -125,6 +125,12 @@ const signalRoutes = [
       <p class="feed-note" data-feed-note>Prices load when the public market API answers. The rest of this page is a saved snapshot.</p>
     </section>
 
+    <div id="btc-spark-data" data-prices={JSON.stringify(recentRows.map(r => typeof r.price_now === 'number' ? r.price_now : null))} data-labels={JSON.stringify(recentRows.map(r => formatTime(r.iso)))} style="display:none"></div>
+    <div class="spark-wrap">
+      <canvas id="btc-spark"></canvas>
+      <p class="spark-note">BTC price across last {recentRows.length} snapshot rows. From research snapshots, not live trading.</p>
+    </div>
+
     <section class="recent-panel" id="recent-rows">
       <div class="panel-head">
         <div>
@@ -247,6 +253,55 @@ const signalRoutes = [
     refreshButton?.addEventListener('click', refreshMarket);
     refreshMarket();
     window.setInterval(refreshMarket, 120000);
+
+    // BTC Sparkline
+    (function loadSparkline() {
+      const sparkDataEl = document.getElementById('btc-spark-data');
+      if (!sparkDataEl) return;
+      const prices = JSON.parse(sparkDataEl.dataset.prices || '[]');
+      const labels = JSON.parse(sparkDataEl.dataset.labels || '[]');
+      if (!prices.filter(Boolean).length) return;
+
+      function initChart() {
+        const canvas = document.getElementById('btc-spark');
+        if (!canvas || !window.Chart) return;
+        new window.Chart(canvas, {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [{
+              data: prices,
+              borderColor: '#1fa068',
+              borderWidth: 2,
+              pointRadius: 3,
+              pointHoverRadius: 5,
+              pointBackgroundColor: '#1fa068',
+              fill: true,
+              backgroundColor: 'rgba(31, 160, 104, 0.09)',
+              tension: 0.38,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: (c) => `$${Math.round(c.parsed.y).toLocaleString('en-US')}` } }
+            },
+            scales: { x: { display: false }, y: { display: false } }
+          }
+        });
+      }
+
+      if (window.Chart) {
+        initChart();
+      } else {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
+        s.onload = initChart;
+        document.head.appendChild(s);
+      }
+    })();
   </script>
 
   <style>
@@ -575,6 +630,27 @@ const signalRoutes = [
     .result-hit { color: var(--accent); font-weight: 600; }
     .result-miss { color: #e05555; }
     .result-pending { color: var(--text-3); }
+
+    .spark-wrap {
+      background: #08080e;
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 8px;
+      padding: 1rem 1.1rem 0.6rem;
+    }
+
+    .spark-wrap canvas {
+      display: block;
+      width: 100%;
+      height: 80px;
+    }
+
+    .spark-note {
+      color: var(--text-3);
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      margin: 0.45rem 0 0;
+      line-height: 1.4;
+    }
 
     @media (max-width: 860px) {
       .alive-console,
