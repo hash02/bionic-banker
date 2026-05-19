@@ -10,6 +10,8 @@ slug: "syos-falsification"
 image: "/blog-visuals/syos-falsification/social-preview.png"
 ---
 
+Six rounds of falsification tests on SYOS, the symbolic reasoning auditor. Round one found it broken. Round two found it wasn't. Both findings were correct. This is the test design, the results, and what it means to actually try to disprove your own framework.
+
 Okay so — I need to be honest about how this started. I'd been building SYOS for over a year. Conversations across Claude, GPT-4, DeepSeek. Trait systems, symbolic firewalls, drift detectors. And I'd never once tried to prove it was wrong.
 
     

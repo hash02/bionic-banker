@@ -9,6 +9,8 @@ featured: false
 slug: "ai-memory-system"
 ---
 
+A five-layer AI memory architecture built in markdown files, with an immune system instead of a database, tested across 30 days of multi-agent work. The problem is not retrieval. The problem is continuity across context resets.
+
 Okay so here's where this started—I had a multi-agent system running. Automated jobs, notification pipelines, a RAG layer, the whole thing. And every time I opened a new Claude session to work on the system, it was like talking to someone with amnesia. Same agent, same files, same projects—but zero memory of what we'd done 30 minutes ago.
 
       

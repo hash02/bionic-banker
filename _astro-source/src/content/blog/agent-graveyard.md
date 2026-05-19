@@ -10,6 +10,8 @@ image: "/blog-visuals/png/agent-graveyard-hero.png"
 category: "AI"
 ---
 
+More than a dozen AI agents built and tested. A handful still running. The rest failed at 3am for reasons that only make sense after you watch them die. This is the autopsy, the patterns across failures, and the rules that came out of it.
+
 # The agent graveyard. I tried more than a dozen. A handful survived. Here is the autopsy.
 
 Everyone is talking about agents like they are easy. Build an agent. Deploy an agent. Buy an agent. Scroll any feed for ten minutes and you will see five posts selling the same clean story.

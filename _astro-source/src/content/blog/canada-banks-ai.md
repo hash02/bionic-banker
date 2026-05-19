@@ -10,6 +10,8 @@ slug: "canada-banks-ai"
 image: "/blog-visuals/canada-banks-ai/social-preview.png"
 ---
 
+RBC has a 10-year AI head start. CIBC's CAI system saved 600,000 hours of advisor time. TD, BMO, Scotiabank, and Desjardins are each running named AI programs with public deployment numbers. This is what each Canadian bank is actually building, based on published reports only.
+
 # Canada's Top 10 Banks Are Going All In on AI
 
 Every major Canadian bank is building with AI right now. Not talking about it. Building it. Deploying it. Measuring the results.
