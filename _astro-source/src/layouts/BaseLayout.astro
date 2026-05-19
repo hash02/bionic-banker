@@ -201,5 +201,13 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
     });
   })();
   </script>
+  <style is:global>
+    .nav-right { display: flex !important; align-items: center; gap: 1rem; min-width: 0; }
+    @media (max-width: 1400px) {
+      nav { gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-cta { display: none; }
+    }
+  </style>
 </body>
 </html>
