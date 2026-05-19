@@ -1,37 +1,37 @@
 {
-  "generated_at": "2026-05-19T02:05:00Z",
-  "status": "public_safe_intelligence_signal_catalog_v1",
-  "purpose": "Public-safe signal rows for the Bionic Banker AI Intelligence page. This file describes what the site may show without exposing private infrastructure.",
+  "generated_at": "2026-05-19T02:45:00Z",
+  "status": "public_safe_intelligence_signal_catalog_v2",
+  "purpose": "Public-safe signal rows for the Bionic Banker AI Intelligence page. This file describes visible website signals without exposing private infrastructure.",
   "privacy_boundary": "No private paths, keys, IPs, client data, employer data, wallet secrets, or internal machine names. Trading-related rows are research and paper-mode context unless a public source explicitly says otherwise.",
   "refresh_note": "Market prices refresh in the browser from public APIs when available. Internal proof rows are public snapshots and should be read as evidence of system shape, not investment advice.",
   "signal_lanes": [
     {
       "id": "heartbeat",
       "label": "Heartbeat",
-      "question": "Is the agent loop alive, producing rows, and scoring prior predictions?",
+      "question": "Is the public snapshot recent, readable, and honest about its limits?",
       "public_source": "/dashboard-data/heartbeat.json",
       "display_mode": "public snapshot"
     },
     {
       "id": "btc-market",
       "label": "BTC Market",
-      "question": "What is the current public BTC price, and how does it compare with the last public heartbeat snapshot?",
+      "question": "What does a public market feed show when it is separated from investment advice?",
       "public_source": "CoinGecko public markets API",
       "display_mode": "browser refresh"
     },
     {
       "id": "sol-market",
       "label": "SOL Market",
-      "question": "What does the public SOL price say while the Solana research lane stays paper-only?",
+      "question": "How can a research page show public crypto context without making a trading claim?",
       "public_source": "CoinGecko public markets API",
       "display_mode": "browser refresh"
     },
     {
       "id": "agent-questions",
-      "label": "Agent Questions",
-      "question": "Which questions are we asking the system before turning private work into public proof?",
+      "label": "AI Questions",
+      "question": "Which public questions help a reader understand how AI systems are designed?",
       "public_source": "/gaps",
-      "display_mode": "question board"
+      "display_mode": "question atlas"
     }
   ],
   "ticket_rows": [
@@ -39,40 +39,40 @@
       "id": "ticket-001",
       "lane": "Proof Tour",
       "status": "live",
-      "question": "Can a reviewer inspect AML, agents, heartbeat, reports, and modern stack signals without asking for a meeting?",
-      "public_note": "The Proof Tour now works as the first guided route through the public system.",
+      "question": "Can a reviewer inspect AML, agent coordination, heartbeat, reports, and stack signals without reading the whole archive?",
+      "public_note": "The Proof Tour is the guided route through existing public surfaces.",
       "link": "/proof-tour/"
     },
     {
       "id": "ticket-002",
       "lane": "Learning Layer",
       "status": "live",
-      "question": "Can a visitor learn current AI engineering concepts while seeing how they map to real proof?",
-      "public_note": "The Learn page now includes the Modern AI Stack Radar.",
+      "question": "Can a visitor learn current AI engineering concepts before opening the proof links?",
+      "public_note": "The Learn page includes definitions and a Modern AI Stack Radar.",
       "link": "/learn/"
     },
     {
       "id": "ticket-003",
       "lane": "Heartbeat",
       "status": "snapshot",
-      "question": "Can a public page show that the system wakes, writes rows, and scores prior predictions?",
-      "public_note": "The heartbeat snapshot is public-safe and avoids private infrastructure details.",
+      "question": "Can a public page show system motion without exposing private infrastructure?",
+      "public_note": "The heartbeat snapshot is public-safe and includes clear limits.",
       "link": "/heartbeat/"
     },
     {
       "id": "ticket-004",
       "lane": "AML",
       "status": "proof",
-      "question": "Can AML Engine and AML Roaster be shown as one explainable reviewer workflow?",
+      "question": "Can AML detection and plain-language explanation be shown as one reviewer workflow?",
       "public_note": "The proof catalog ties detection, explanation, limits, and public links together.",
       "link": "/proof-tour/"
     },
     {
       "id": "ticket-005",
-      "lane": "RAG Lab",
-      "status": "next",
-      "question": "Can Bionic Banker articles become a public RAG demo with citations and eval rows?",
-      "public_note": "This is the strongest next demo because it turns the website into its own data source.",
+      "lane": "Question Atlas",
+      "status": "live",
+      "question": "Can broad AI questions help readers understand the concepts before they inspect the examples?",
+      "public_note": "The Questions page starts with market-facing questions and links to Learn, Reports, and Proof Tour.",
       "link": "/gaps/"
     }
   ],

@@ -20,11 +20,11 @@ const confidence = typeof predictionValue.confidence === 'number'
   ? `${(predictionValue.confidence * 100).toFixed(1)}%`
   : 'n/a';
 ---
-<BaseLayout title="AI Intelligence" description="A public-safe live signal board for Bionic Banker heartbeat rows, market context, research tickets, and system questions.">
+<BaseLayout title="AI Intelligence" description="A public-safe live signal board for Bionic Banker heartbeat rows, market context, proof tickets, and reader-facing AI questions.">
   <div class="page-header">
     <div class="page-label">Signal Board</div>
     <h1 class="page-title">AI Intelligence</h1>
-    <p class="page-sub">A public-safe view of what the system is watching: heartbeat rows, market context, proof tickets, and the questions being turned into inspectable pages.</p>
+    <p class="page-sub">A public-safe view of visible signals: heartbeat rows, market context, proof tickets, and reader-facing AI questions. Enough motion to learn from the page, without exposing private operations.</p>
   </div>
 
   <main class="intel-shell">
@@ -32,7 +32,7 @@ const confidence = typeof predictionValue.confidence === 'number'
       <div class="console-copy">
         <span class="section-label">Public Snapshot</span>
         <h2>Website as a living proof board</h2>
-        <p>This page shows enough motion to prove the system exists without exposing private infrastructure. Market rows refresh from public sources. Internal rows are public snapshots with clear limits.</p>
+        <p>This page shows enough motion to make the website useful. Market rows refresh from public sources. Snapshot rows keep the proof readable while preserving security boundaries.</p>
         <div class="console-actions">
           <a href="/proof-tour/" class="action-btn primary">Open Proof Tour</a>
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>

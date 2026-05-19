@@ -4,49 +4,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const questions = gapCatalog.default.modern_questions;
 const sources = gapCatalog.default.market_sources;
+const guide = gapCatalog.default.reader_guide;
 const websiteScan = gapCatalog.default.website_scan;
 const verifiedDate = new Date(gapCatalog.default.generated_at).toISOString().slice(0, 10);
 
-const priorityOrder = ['P1', 'P2', 'P3'];
-const grouped = priorityOrder
-  .map((priority) => ({
-    priority,
-    items: questions.filter((question) => question.priority === priority),
+const categories = [...new Set(questions.map((question) => question.category))];
+const grouped = categories
+  .map((category) => ({
+    category,
+    items: questions.filter((question) => question.category === category),
   }))
   .filter((group) => group.items.length > 0);
 ---
-<BaseLayout title="Modern Questions" description="A public-safe question board for modern AI, finance, automation, and proof questions Bionic Banker is exploring.">
+<BaseLayout title="Questions the Market Is Asking" description="A public-safe question atlas for modern AI, finance automation, engineering proof, and useful reader-facing explanations.">
   <div class="page-header">
-    <div class="page-label">Modern Questions</div>
-    <h1 class="page-title">Questions Worth Solving</h1>
-    <p class="page-sub">This page is not a weakness list. It is the question board: the AI, finance, automation, and proof questions people are already searching for, and how this site is testing them in public-safe ways.</p>
+    <div class="page-label">Question Atlas</div>
+    <h1 class="page-title">Questions the Market Is Asking</h1>
+    <p class="page-sub">A reader-facing map for modern AI, finance automation, and engineering proof. Start with a question, read the plain answer, then open the proof or learning link when you want more depth.</p>
   </div>
 
   <div class="articles-wrap">
     <p class="verified-note">Last refreshed from the question catalog: {verifiedDate}. Current board: {sources.length} market signals and {questions.length} public questions.</p>
 
     <section class="website-scan-panel">
-      <div class="section-label">Website Scan</div>
-      <h2>How far the surface is from a modern AI engineering site</h2>
+      <div class="section-label">Reader Guide</div>
+      <h2>{guide.headline}</h2>
       <div class="scan-grid">
         <article>
-          <span>Current strength</span>
-          <p>{websiteScan.current_strength}</p>
+          <span>Plain answer</span>
+          <p>{guide.plain_answer}</p>
         </article>
         <article>
-          <span>Main question</span>
-          <p>{websiteScan.main_gap}</p>
+          <span>Useful for</span>
+          <p>{guide.useful_for_reader}</p>
         </article>
         <article>
-          <span>Distance</span>
-          <p>{websiteScan.distance_from_modern_standard}</p>
+          <span>Core question</span>
+          <p>{websiteScan.main_question}</p>
         </article>
       </div>
       <div class="scan-next">
-        <h3>Interface questions now open</h3>
+        <h3>How to use it</h3>
         <ul>
-          {websiteScan.next_ui_moves.map((move) => (
-            <li>{move}</li>
+          {guide.how_to_read.map((item) => (
+            <li>{item}</li>
           ))}
         </ul>
       </div>
@@ -58,8 +59,8 @@ const grouped = priorityOrder
           <span class="tag-pill tag-green">Guidance</span>
         </div>
         <h3>How to read this page</h3>
-        <p>Every card starts as a question because that is how real engineering starts. The value is not pretending the answer is finished. The value is showing how the answer is being tested.</p>
-        <p>Each row maps a modern question to why people ask it, how the system is testing it, and where a reader can inspect the related public surface.</p>
+        <p>Every card starts as a question because that is how real engineering starts. The page avoids private architecture and focuses on concepts a reader can use.</p>
+        <p>Each row maps a modern question to why people ask it, a plain answer, an existing public example, and the next useful click.</p>
         <div class="card-footer">
           <a class="read-more" href="/reports">Open reports -></a>
           <a class="read-more" href="/projects">Open proof console -></a>
@@ -70,9 +71,9 @@ const grouped = priorityOrder
         <div class="article-tags">
           <span class="tag-pill tag-green">Current read</span>
         </div>
-        <h3>Strongest question right now</h3>
-        <p>Can the website become its own AI learning dataset? That one question connects RAG, embeddings, evals, citations, FastAPI, reporting, and content automation without forcing a fake enterprise story.</p>
-        <p>The public answer should be inspectable: ask a question, retrieve source articles, show citations, score the answer, and state the limitation.</p>
+        <h3>What makes a useful AI page?</h3>
+        <p>{websiteScan.reader_value}</p>
+        <p>Good AI content should help a reader ask a sharper question, learn the term, inspect an example, and understand the limit.</p>
       </article>
     </section>
 
@@ -90,22 +91,35 @@ const grouped = priorityOrder
       </div>
     </section>
 
+    <section class="source-panel">
+      <div class="section-label">Interface Principles</div>
+      <h2>What the page is allowed to show</h2>
+      <div class="source-grid">
+        {websiteScan.interface_principles.map((principle) => (
+          <article class="source-card">
+            <p>{principle}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
     {grouped.map((group) => (
       <section class="gap-section">
-        <div class="section-label">{group.priority} Question Lane</div>
+        <div class="section-label">{group.category}</div>
         <div class="gap-grid">
           {group.items.map((question) => (
             <article class="gap-card" id={question.id}>
               <div class="gap-head">
-                <span>{question.priority}</span>
+                <span>{question.category}</span>
                 <h3>{question.question}</h3>
               </div>
-              <p><strong>Why people ask:</strong> {question.why_people_ask}</p>
-              <p><strong>How this site is testing it:</strong> {question.how_we_are_testing}</p>
-              <p><strong>What to inspect:</strong> {question.what_reader_can_check}</p>
+              <p><strong>Why people ask:</strong> {question.why_market_asks}</p>
+              <p><strong>Plain answer:</strong> {question.plain_answer}</p>
+              <p><strong>Existing example:</strong> {question.already_built_example}</p>
+              <p><strong>Useful for reader:</strong> {question.useful_for_reader}</p>
               <div class="card-footer">
-                <a class="read-more" href={question.website_surface}>Follow question -></a>
-                <a class="read-more" href={question.report_surface}>View evidence -></a>
+                <a class="read-more" href={question.website_surface}>Learn concept -></a>
+                <a class="read-more" href={question.report_surface}>Inspect proof -></a>
               </div>
             </article>
           ))}

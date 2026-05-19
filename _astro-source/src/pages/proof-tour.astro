@@ -21,7 +21,7 @@ const scenes = [
     intent: 'Show financial-crime thinking with explainable AI and clear public limits.',
     project: projects.find((project) => project.id === 'aml-engine-roaster'),
     route: '/projects',
-    next: 'Turn the engine and roaster into a compact visual case study with input, detection, roast, limitation, and reviewer view.',
+    next: 'How can a reviewer move from transaction pattern to detection reason to plain-language explanation?',
   },
   {
     id: 'agent-chess',
@@ -30,7 +30,7 @@ const scenes = [
     intent: 'Show multi-agent coordination, board state, approval gates, and traceable work.',
     project: projects.find((project) => project.id === 'agent-chess'),
     route: '/blog/two-agent-finance-operating-system',
-    next: 'Build the visual chess board with turn, owner, artifact, blocker, and next move.',
+    next: 'How do independent AI workers coordinate without losing state, evidence, or human approval boundaries?',
   },
   {
     id: 'agent-heartbeat-lab',
@@ -39,7 +39,7 @@ const scenes = [
     intent: 'Show a running loop with public-safe status, counts, and limitations.',
     project: projects.find((project) => project.id === 'agent-heartbeat-lab'),
     route: '/dashboard-data/heartbeat.json',
-    next: 'Add a live-safe status card with age, mode, count, and plain-English interpretation.',
+    next: 'What should a public heartbeat reveal so a reader sees motion without seeing private infrastructure?',
   },
   {
     id: 'agent-framework-proof-v2',
@@ -48,21 +48,21 @@ const scenes = [
     intent: 'Show governed tools, RBAC, queue state, traces, retrieval, and observability.',
     project: projects.find((project) => project.id === 'agent-framework-proof-v2'),
     route: 'https://github.com/hash02/agent-framework-proof',
-    next: 'Connect the framework proof to an interactive RBAC simulator and eval dashboard.',
+    next: 'Which role, permission, trace, and evaluation signals make an AI workflow safer to inspect?',
   },
   {
     id: 'modern-questions',
     label: 'Questions',
     title: 'Modern Question Board',
-    intent: 'Show the public questions behind the experiments without framing the work as a weakness list.',
+    intent: 'Show market-facing AI questions with plain answers, reader value, and public proof links.',
     project: null,
     route: '/gaps',
-    next: 'Keep turning questions into inspectable demos, source-linked reports, and public-safe learning pages.',
+    next: 'Help the reader move from question to concept to proof without exposing private operations.',
   },
 ];
 
 const firstScene = scenes[0];
-const p1Questions = questions.filter((question) => question.priority === 'P1');
+const featuredQuestions = questions.slice(0, 4);
 const inspectionRows = scenes
   .filter((scene) => scene.project)
   .map((scene) => {
@@ -202,10 +202,10 @@ const inspectionRows = scenes
                 </div>
               ) : (
                 <div class="scene-grid">
-                  {p1Questions.slice(0, 4).map((question) => (
+                  {featuredQuestions.map((question) => (
                     <div>
                       <h3>{question.question}</h3>
-                      <p>{question.how_we_are_testing}</p>
+                      <p>{question.plain_answer}</p>
                     </div>
                   ))}
                 </div>
@@ -239,8 +239,8 @@ const inspectionRows = scenes
     <section class="deep-panel">
       <div class="deep-head">
         <span>Inspection method</span>
-        <h2>Claim to proof to next test</h2>
-        <p>Each lane is scored as a public inspection surface, not as a production certification. The goal is simple: a reviewer should know what exists, what evidence supports it, what the limits are, and what build would make the proof stronger.</p>
+        <h2>Claim to proof to next question</h2>
+        <p>Each lane is scored as a public inspection surface, not as a production certification. The goal is simple: a reviewer should know what exists, what evidence supports it, what the limits are, and where the next useful question lives.</p>
       </div>
       <div class="method-grid">
         <div>
@@ -256,8 +256,8 @@ const inspectionRows = scenes
           <p>What this is not. This keeps finance, compliance, and agent claims honest.</p>
         </div>
         <div>
-          <strong>4. Next test</strong>
-          <p>The smallest build that turns a missing market keyword into real proof.</p>
+          <strong>4. Next question</strong>
+          <p>The reader-facing question that makes the system easier to understand.</p>
         </div>
       </div>
     </section>
@@ -311,7 +311,7 @@ const inspectionRows = scenes
         <div class="deep-head compact">
           <span>Coverage</span>
           <h2>Current proof balance</h2>
-        <p>The lightest area remains deployment proof. That is the next serious question after public RAG and evals.</p>
+        <p>The lightest area remains deployment proof. The serious public question is how repeatable systems should be packaged, monitored, and explained.</p>
         </div>
         <div class="coverage-list">
           {coverageBars.map((item) => (
@@ -332,7 +332,7 @@ const inspectionRows = scenes
       <div class="deep-head">
         <span>Source ledger</span>
         <h2>Why these questions map to the market</h2>
-        <p>The public questions come from role requirements and modern demo expectations, then get translated into public-safe proof work.</p>
+        <p>The public questions come from role requirements and modern demo expectations, then get translated into public-safe explanations and proof links.</p>
       </div>
       <div class="source-ledger">
         {marketSources.map((source) => (

@@ -16,14 +16,14 @@
       "term": "LLM",
       "plain_definition": "A language model trained to read and generate text. It can summarize, classify, draft, reason over context, and call tools when connected to a workflow.",
       "why_it_matters": "LLMs are useful when they are grounded in files, tests, citations, and approval gates. Without that, they can sound confident while being wrong.",
-      "used_in": ["Agent Framework Proof v2", "Content engine planning"]
+      "used_in": ["Agent Framework Proof v2", "Public learning notes"]
     },
     {
       "id": "vlm",
       "term": "VLM",
       "plain_definition": "A vision-language model that can reason over images and text together.",
       "why_it_matters": "VLMs are useful for screenshots, chart review, UI QA, document inspection, and visual proof workflows.",
-      "used_in": ["Future visual QA", "Portfolio proof review"]
+      "used_in": ["Visual review", "Portfolio proof review"]
     },
     {
       "id": "agent",
@@ -58,14 +58,14 @@
       "term": "RAG",
       "plain_definition": "Retrieval augmented generation. The model retrieves relevant source material first, then writes an answer using that material.",
       "why_it_matters": "RAG is how you reduce guessing. The question becomes: what did the model retrieve, can we cite it, and was the source trustworthy?",
-      "used_in": ["Resume packets", "Proof appendix drafts", "Content engine planning"]
+      "used_in": ["Public proof notes", "Source-linked explanations", "Reader question pages"]
     },
     {
       "id": "embeddings",
       "term": "Embeddings",
       "plain_definition": "Numeric representations of text, images, or other data that help software compare meaning instead of exact words.",
       "why_it_matters": "Embeddings make search smarter. They help find related ideas even when the wording is different.",
-      "used_in": ["Retrieval", "Knowledge search", "Future website search"]
+      "used_in": ["Retrieval", "Knowledge search", "Semantic search"]
     },
     {
       "id": "mcp",
@@ -128,21 +128,21 @@
       "term": "Kubernetes",
       "plain_definition": "A system for running, scaling, and managing containers across machines.",
       "why_it_matters": "Kubernetes is useful proof when a project needs deployment discipline, service health, scaling, and reproducible operations.",
-      "used_in": ["Future deploy proof"]
+      "used_in": ["Deployment learning"]
     },
     {
       "id": "docker",
       "term": "Docker",
       "plain_definition": "A way to package an app and its dependencies into a container that can run consistently across environments.",
       "why_it_matters": "Docker makes projects easier to test, share, and deploy because the environment is part of the package.",
-      "used_in": ["Future deploy proof", "Agent services"]
+      "used_in": ["Deployment learning", "Agent services"]
     },
     {
       "id": "gpu",
       "term": "GPU",
       "plain_definition": "A graphics processing unit. In AI, GPUs are used to run many calculations in parallel.",
       "why_it_matters": "GPUs matter for model training, image models, local inference, and workloads where parallel math is the bottleneck.",
-      "used_in": ["Future hardware learning lane"]
+      "used_in": ["Hardware learning"]
     }
   ],
   "guides": [
@@ -185,8 +185,8 @@
       "id": "interactive-proof",
       "layer": "Interactive proof",
       "why_2026_teams_care": "Modern technical buyers and hiring teams want to inspect a working path quickly instead of only reading claims.",
-      "learn_here": "Use Proof Tour to move from claim to evidence to limits to next test.",
-      "proof_to_build_next": "Add scenario replay for AML Roaster and a public-safe chess-board replay.",
+      "learn_here": "Use Proof Tour to move from claim to evidence to limits to next question.",
+      "reader_question": "Can a reviewer understand the evidence path without reading the full project archive?",
       "linked_surface": "/proof-tour/"
     },
     {
@@ -194,7 +194,7 @@
       "layer": "RAG quality",
       "why_2026_teams_care": "RAG is only useful when retrieval is traceable, cited, and evaluated against expected answers.",
       "learn_here": "Study RAG, embeddings, audit logs, and observability together instead of as separate words.",
-      "proof_to_build_next": "Build a public RAG mini-lab over Bionic Banker articles with citations and retrieval score cards.",
+      "reader_question": "How do AI answers cite sources instead of only sounding confident?",
       "linked_surface": "/gaps#production-rag"
     },
     {
@@ -202,7 +202,7 @@
       "layer": "Evals and observability",
       "why_2026_teams_care": "AI teams need to know what changed, what failed, and whether a model or agent got better or worse.",
       "learn_here": "Use the Reports page to connect benchmark numbers, limitations, and system health.",
-      "proof_to_build_next": "Add an eval dashboard for glossary answers, RAG answers, and AML explanations.",
+      "reader_question": "How do teams know an AI workflow improved instead of only changed?",
       "linked_surface": "/reports/"
     },
     {
@@ -210,7 +210,7 @@
       "layer": "Agent governance",
       "why_2026_teams_care": "Regulated workflows need role boundaries, approval gates, trace events, and reviewable tool use.",
       "learn_here": "Connect RBAC, audit logs, tool calling, MCP, and Agent Chess as one governance pattern.",
-      "proof_to_build_next": "Build the RBAC simulator with viewer, reviewer, operator, and admin roles.",
+      "reader_question": "What should an AI agent be allowed to do by itself?",
       "linked_surface": "/gaps#agent-governance"
     },
     {
@@ -218,7 +218,7 @@
       "layer": "Deployment reliability",
       "why_2026_teams_care": "A demo becomes stronger when it can be packaged, health-checked, monitored, and redeployed predictably.",
       "learn_here": "Use Docker and Kubernetes as the path from local proof to reliable service proof.",
-      "proof_to_build_next": "Create a Kubernetes mini deploy for the proof catalog API or RAG mini-lab.",
+      "reader_question": "What makes an AI demo repeatable, observable, and easier to trust?",
       "linked_surface": "/gaps#deployment-proof"
     }
   ]
