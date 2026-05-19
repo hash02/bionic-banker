@@ -1,6 +1,6 @@
 ---
-title: "The Agent Wake-Up Call — Why Your Experience Alone Won't Save You"
-description: "AI agent frameworks are hitting adoption numbers that took Linux 30 years to build. In weeks. Here's what I see coming from inside finance."
+title: "The Agent Wake-Up Call"
+description: "A field note on agent adoption, old experience, and why the next finance worker may need a different kind of practice."
 date: "2026-03-20"
 tags: ["AI", "Agents", "Future of Work"]
 readTime: "8 min"

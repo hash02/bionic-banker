@@ -1,6 +1,6 @@
 ---
-title: "The Lobster That Ate Your API Keys — OpenClaw, Agent Supply Chains, and the Security Unraveling"
-description: "Cisco scanned 31,000 OpenClaw skills. 26% were malicious. Here's what's actually happening with AI agent security — real CVEs, real case studies, and what defense looks like."
+title: "OpenClaw and the API Key Problem"
+description: "AI agent tools can move fast, but the supply chain underneath them matters. This note looks at OpenClaw, malicious skills, and defense."
 date: "2026-03-26"
 tags: ["AI · Security · Agents"]
 readTime: "10 min"

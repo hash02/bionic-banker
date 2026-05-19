@@ -1,6 +1,6 @@
 ---
-title: "Exploring Aave: A Pillar of Decentralized Finance"
-description: "Aave has solidified its position as a pivotal decentralized finance (DeFi) protocol, offering users the ability to lend and borrow cryptocurrencies. This blog e"
+title: "Aave, Lending, and the Shape of On-Chain Credit"
+description: "A quick field note on pooled lending, collateral, governance, and the risks that make DeFi credit interesting."
 date: "2024-06-15"
 tags: ["DeFi · Blockchain · Lending"]
 readTime: "2 min"

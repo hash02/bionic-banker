@@ -1,6 +1,6 @@
 ---
-title: "I Built My Own AI That Lives on Telegram — Here's What I Learned"
-description: "Not a chatbot. A companion. Five layers, markdown memory, 24/7 heartbeat — here's what I learned building an AI that actually remembers me."
+title: "I Built an AI That Lives on Telegram"
+description: "Not a chatbot. A companion with memory, heartbeat, and a small daily rhythm. This is what I learned while making it feel present."
 date: "2026-03-22"
 tags: ["AI", "Agents", "Open Source"]
 readTime: "9 min"

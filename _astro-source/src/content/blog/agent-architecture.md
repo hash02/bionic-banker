@@ -1,6 +1,6 @@
 ---
-title: "Folder Agent Architecture — hash 2026"
-description: "Folder Agent Architecture — hash 2026"
+title: "Folder Agent Architecture"
+description: "A project-folder experiment: what happens when a directory starts behaving less like storage and more like a small working agent."
 date: "2026-03-08"
 tags: ["Tech"]
 readTime: "5 min"

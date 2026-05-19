@@ -1,6 +1,6 @@
 ---
-title: "The Transformative Power of Fintech in Modern Financial Services"
-description: "The term \"fintech\" (financial technology) encompasses any innovation that enhances how people conduct business, from digital currencies to modern bookkeeping. T"
+title: "Fintech Is Boring Until It Changes the Rails"
+description: "A plain look at digital payments, lending, investing, and why finance keeps turning into software."
 date: "2024-07-25"
 tags: ["Fintech · Finance · Technology"]
 readTime: "4 min"

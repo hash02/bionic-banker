@@ -1,6 +1,6 @@
 ---
-title: "Understanding Uniswap: The Leading Decentralized Exchange"
-description: "Uniswap has emerged as a pioneering decentralized exchange (DEX), revolutionizing how cryptocurrencies are traded through smart contracts on the Ethereum blockc"
+title: "Uniswap and the Strange Genius of the Pool"
+description: "A field note on automated market makers, liquidity pools, and why a simple swap button changed on-chain trading."
 date: "2024-05-25"
 tags: ["DeFi · Blockchain · DEX"]
 readTime: "2 min"
