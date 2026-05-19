@@ -25,20 +25,20 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
     <ParticleHero />
     <div class="hero">
       <div class="hero-left">
-        <div class="hero-eyebrow">Finance · Code · Both</div>
-        <h1>Inside Finance.<br><em>Building</em> Its Future.</h1>
-        <p class="hero-sub">I work inside financial systems and build on top of them. Two sides of the same thing — the industry access, the code, the questions I can't stop asking.</p>
+        <div class="hero-eyebrow">Finance / AI / Systems</div>
+        <h1>A finance lab that watches the future arrive.</h1>
+        <p class="hero-sub">I work inside financial systems and keep building small machines around the questions that will not leave me alone. Money, risk, AI, blockchain, signals, strange patterns. Bionic Banker is where those dots get tested in public.</p>
         <div class="hero-actions">
           <a href="#newsletter" class="btn-primary">Subscribe →</a>
-          <a href="/proof-tour" class="btn-ghost">Start Proof Tour</a>
-          <a href="/site-agent" class="btn-ghost">Ask the Site</a>
-          <a href="/projects" class="btn-ghost">View Projects</a>
-          <a href="/reports" class="btn-ghost">See Reports</a>
+          <a href="/proof-tour" class="btn-ghost">Enter the Lab</a>
+          <a href="/site-agent" class="btn-ghost">Ask the Lab</a>
+          <a href="/projects" class="btn-ghost">Experiments</a>
+          <a href="/reports" class="btn-ghost">Field Notes</a>
           <a href="/articles" class="btn-ghost">Read Articles</a>
         </div>
         <div class="hero-stats-row">
           <div class="hstat"><span class="hstat-n">{articleCount}</span><span class="hstat-l">Articles</span></div>
-          <div class="hstat"><span class="hstat-n">{proofCount}</span><span class="hstat-l">Proof Lanes</span></div>
+          <div class="hstat"><span class="hstat-n">{proofCount}</span><span class="hstat-l">Experiments</span></div>
           <div class="hstat"><span class="hstat-n">{questionCount}</span><span class="hstat-l">Questions</span></div>
         </div>
       </div>
@@ -72,47 +72,47 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
     <section class="proof-route-section animate-on-scroll">
       <div class="section-header">
         <div>
-          <div class="section-label-text">Proof Surface</div>
-          <div class="section-title-text">Start Here</div>
+          <div class="section-label-text">The Lab</div>
+          <div class="section-title-text">Pick a door</div>
         </div>
-        <a href="/proof-tour" class="view-all">Start proof tour -></a>
+        <a href="/proof-tour" class="view-all">Walk the lab -></a>
       </div>
       <div class="proof-route-grid">
         <a href="/proof-tour" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
-          <h3>Guided proof app</h3>
-          <p>A clickable route through AML, agents, heartbeat status, governance proof, reports, and public questions.</p>
-          <div class="card-footer"><span class="read-more">Start tour -></span></div>
+          <h3>Walk the lab</h3>
+          <p>A quick path through the pieces already moving: AML stories, agent loops, live signals, charts, and the questions underneath them.</p>
+          <div class="card-footer"><span class="read-more">Start walking -></span></div>
         </a>
         <a href="/projects" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Projects</span></div>
-          <h3>What was built</h3>
-          <p>Source-linked proof cards for AML, agent workflows, observability, governance, wallet risk, and technical writing.</p>
-          <div class="card-footer"><span class="read-more">View projects -></span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">Experiments</span></div>
+          <h3>Things that run</h3>
+          <p>AML engines, wallet risk notes, agent workflows, observability sketches, and technical stories from the build floor.</p>
+          <div class="card-footer"><span class="read-more">Open experiments -></span></div>
         </a>
         <a href="/reports" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Reports</span></div>
-          <h3>Numbers and charts</h3>
-          <p>Evidence density, benchmark numbers, capability coverage, and limitations in a report-style surface.</p>
-          <div class="card-footer"><span class="read-more">View reports -></span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">Field Notes</span></div>
+          <h3>Numbers with context</h3>
+          <p>Charts, counts, limits, benchmark notes, and the parts of the system that are easier to understand when they are measured.</p>
+          <div class="card-footer"><span class="read-more">Read field notes -></span></div>
         </a>
         <a href="/gaps" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Questions</span></div>
-          <h3>Questions Worth Solving</h3>
-          <p>Modern AI and finance questions mapped to public signals, experiments, and evidence routes.</p>
-          <div class="card-footer"><span class="read-more">View questions -></span></div>
+          <h3>Questions I keep asking</h3>
+          <p>How do two AI parts talk to each other? When does a signal become useful? How do you explain risk without hiding behind jargon?</p>
+          <div class="card-footer"><span class="read-more">Open questions -></span></div>
         </a>
         <a href="/learn" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Learn</span></div>
-          <h3>Concept layer</h3>
-          <p>Plain-English definitions for RAG, agents, RBAC, observability, embeddings, AML, and deployment concepts.</p>
-          <div class="card-footer"><span class="read-more">Learn concepts -></span></div>
+          <h3>Concepts without fog</h3>
+          <p>RAG, agents, RBAC, observability, embeddings, AML, deployment. The words sound bigger than they are. Start simple.</p>
+          <div class="card-footer"><span class="read-more">Learn the terms -></span></div>
         </a>
         <a href="/site-agent" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Ask</span></div>
-          <h3>Ask the site</h3>
-          <p>Type a question and get routed to the right page: About, AML, agents, reports, learning notes, or live signal rows.</p>
-          <div class="card-footer"><span class="read-more">Open site guide -></span></div>
+          <h3>Ask the lab</h3>
+          <p>Type what you are curious about and get pointed to the right corner: AML, agents, charts, learning notes, or live signal rows.</p>
+          <div class="card-footer"><span class="read-more">Ask a question -></span></div>
         </a>
       </div>
     </section>
@@ -205,13 +205,13 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
         <div class="about-col">
           <div>
             <div class="about-name">Himanshu</div>
-            <div class="about-role">Finance · Blockchain · Builder</div>
-            <p class="about-bio">I am Himanshu, a computer engineer working in finance and building at the edge where banking, blockchain, AI agents, and risk systems meet. Bionic Banker is my public lab: the place where I turn private learning into visible proof, explain hard concepts in plain language, and keep asking what a useful financial AI system should actually show.</p>
-            <p class="about-bio">The work here spans AML detection, wallet risk, agent governance, observability, technical writing, and market research. The goal is simple: make the proof inspectable enough that a recruiter, builder, founder, or curious reader can understand what exists before needing a meeting.</p>
+            <div class="about-role">Finance / Blockchain / Builder</div>
+            <p class="about-bio">I am Himanshu, a computer engineer working in finance and building at the edge where banking, blockchain, AI agents, and risk systems meet. Bionic Banker is my public lab: part notebook, part signal board, part workshop.</p>
+            <p class="about-bio">The work here moves through AML detection, wallet risk, agent coordination, observability, technical writing, and market research. I am interested in one simple thing: what happens when finance stops being only something you read about and becomes something you can watch, test, question, and build around.</p>
           </div>
           <div class="about-stat-row">
             <div class="astat"><div class="astat-n">{articleCount}</div><div class="astat-l">Articles</div></div>
-            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Proof Lanes</div></div>
+            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Experiments</div></div>
             <div class="astat"><div class="astat-n">5+</div><div class="astat-l">Years</div></div>
             <div class="astat"><div class="astat-n">∞</div><div class="astat-l">Questions</div></div>
           </div>
