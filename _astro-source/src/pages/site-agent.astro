@@ -5,71 +5,33 @@ const proofCatalog = await import('../../public/dashboard-data/public-proof-cata
 const learningCatalog = await import('../../public/dashboard-data/ai-learning-catalog.json');
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
+const siteBrain = await import('../../public/dashboard-data/site-brain.json');
 
 const projects = proofCatalog.default.projects;
 const concepts = learningCatalog.default.concepts;
+const questions = gapCatalog.default.modern_questions;
 const metrics = reportCatalog.default.summary_metrics;
+const brain = siteBrain.default;
 
-const quickPrompts = [
-  'Who is Himanshu?',
-  'Show me the AML work',
-  'What is Agent Chess?',
-  'Where are the numbers and charts?',
-  'How do I learn the AI terms?',
-  'Is anything on the site live?',
-  'What should I read first?',
-  'Can I see proof without reading everything?'
-];
-
-const sourceTiles = [
-  {
-    step: '01',
-    label: 'About Himanshu',
-    href: '/#about',
-    meta: 'Identity',
-    body: 'Finance, blockchain, AI systems, AML proof, and technical writing in one public portfolio.'
-  },
-  {
-    step: '02',
-    label: 'Proof Tour',
-    href: '/proof-tour/',
-    meta: 'Fast route',
-    body: 'Guided route through AML, agents, heartbeat, governance, reports, and questions.'
-  },
-  {
-    step: '03',
-    label: 'Projects',
-    href: '/projects/',
-    meta: 'Evidence',
-    body: `${projects.length} proof lanes with evidence, role fit, and limitations.`
-  },
-  {
-    step: '04',
-    label: 'Reports',
-    href: '/reports/',
-    meta: 'Numbers',
-    body: `${metrics.length} report metrics, benchmark bars, evidence density, and capability radar.`
-  },
-  {
-    step: '05',
-    label: 'Learn',
-    href: '/learn/',
-    meta: 'Concepts',
-    body: `${concepts.length} plain-language concepts for AI agents, RAG, RBAC, observability, AML, and deployment.`
-  },
-  {
-    step: '06',
-    label: 'AI Intelligence',
-    href: '/intelligence/',
-    meta: 'Signal',
-    body: 'Visible signal rows, public market feed, heartbeat snapshot, and research-only limits.'
-  }
-];
+const quickPrompts = brain.quick_prompts;
+const sourceTiles = brain.entry_points.map((entry) => ({
+  ...entry,
+  body: entry.id === 'projects'
+    ? `${projects.length} proof lanes with evidence, role fit, and limitations.`
+    : entry.id === 'reports'
+      ? `${metrics.length} report metrics, benchmark bars, evidence density, and capability radar.`
+      : entry.id === 'learn'
+        ? `${concepts.length} plain-language concepts for AI agents, RAG, RBAC, observability, AML, and deployment.`
+        : entry.id === 'questions'
+          ? `${questions.length} modern AI questions mapped to answers, examples, and proof routes.`
+          : entry.body
+}));
 
 const uxStats = [
   { value: projects.length, label: 'proof lanes' },
   { value: metrics.length, label: 'report metrics' },
-  { value: concepts.length, label: 'AI concepts' }
+  { value: concepts.length, label: 'AI concepts' },
+  { value: questions.length, label: 'market questions' }
 ];
 ---
 <BaseLayout title="Ask Bionic Banker" description="Ask Bionic Banker questions about Himanshu, AI finance projects, AML work, reports, proof links, learning notes, and live signal pages.">
@@ -108,7 +70,7 @@ const uxStats = [
           <span>Ask console</span>
           <h2>Type one question. Get a route.</h2>
         </div>
-        <p>Works locally in the browser. No account, no form, no wait.</p>
+        <p>Works locally in the browser from a visible routing index. No account, no form, no wait.</p>
       </div>
       <div class="prompt-row">
         <input id="site-question" type="text" placeholder="Try: show me AML proof, explain agents, where are the charts..." autocomplete="off" />
@@ -135,9 +97,9 @@ const uxStats = [
     </section>
 
     <section class="source-panel">
-      <div class="panel-head">
+        <div class="panel-head">
         <span>Navigation logic</span>
-        <h2>Six routes, one question box.</h2>
+        <h2>{sourceTiles.length} routes, one question box.</h2>
       </div>
       <div class="source-grid">
         {sourceTiles.map((tile) => (
@@ -178,6 +140,7 @@ const uxStats = [
     </section>
   </main>
 
+  <script id="site-brain-data" type="application/json" set:html={JSON.stringify(brain)}></script>
   <script is:inline>
   (function() {
     var input = document.getElementById('site-question');
@@ -185,80 +148,14 @@ const uxStats = [
     var answer = document.getElementById('site-answer');
     if (!input || !askButton || !answer) return;
 
-    var routes = [
-      {
-        keys: ['himanshu', 'about', 'who', 'resume', 'background'],
-        label: 'About',
-        source: 'About, Projects, Reports',
-        title: 'Himanshu is the person behind Bionic Banker.',
-        body: 'He is a computer engineer working in finance, building public proof around AML, AI agents, blockchain risk, observability, and technical education. Start with the About section, then open Projects for the proof lanes.',
-        links: [['About', '/#about'], ['Projects', '/projects/'], ['Reports', '/reports/']],
-        followups: ['Show me the AML work', 'Where are the numbers and charts?']
-      },
-      {
-        keys: ['aml', 'roaster', 'wallet', 'risk', 'crime', 'compliance'],
-        label: 'AML',
-        source: 'Projects, AML Roaster, Reports',
-        title: 'The AML lane combines detection with explanation.',
-        body: 'The AML Engine maps wallet behavior into risk signals. The Roaster turns those findings into plain-language narratives so a reviewer can understand what triggered the risk.',
-        links: [['AML Project', '/projects/'], ['AML Roaster Article', '/blog/aml-roaster/'], ['Reports', '/reports/']],
-        followups: ['Where are the numbers and charts?', 'Can I see proof without reading everything?']
-      },
-      {
-        keys: ['agent chess', 'agents', 'orchestration', 'governance', 'approval', 'workflow'],
-        label: 'Agents',
-        source: 'Proof Tour, Agent Case Study, Learn',
-        title: 'The agent work is about coordination and proof.',
-        body: 'The site shows agent workflows as governed systems: roles, evidence, limits, heartbeat rows, and approval boundaries. Use Proof Tour for the shortest route.',
-        links: [['Proof Tour', '/proof-tour/'], ['Agent Case Study', '/blog/two-agent-finance-operating-system/'], ['Learn Agents', '/learn/#agent']],
-        followups: ['What is Agent Chess?', 'How do I learn the AI terms?']
-      },
-      {
-        keys: ['number', 'chart', 'benchmark', 'report', 'metrics', 'score', 'reliability'],
-        label: 'Reports',
-        source: 'Reports, Proof Tour, Data catalog',
-        title: 'The report layer turns proof into numbers and charts.',
-        body: 'Reports collects evidence density, benchmark bars, capability radar, and limitations. It is the best page when you want engineering-style proof instead of only a story.',
-        links: [['Reports', '/reports/'], ['Proof Tour', '/proof-tour/'], ['Project Data', '/dashboard-data/public-proof-catalog.json']],
-        followups: ['Show me the AML work', 'Is anything on the site live?']
-      },
-      {
-        keys: ['learn', 'rag', 'llm', 'vlm', 'langchain', 'rbac', 'observability', 'kubernetes', 'docker', 'term'],
-        label: 'Learn',
-        source: 'Learn, Questions, Reports',
-        title: 'The learning layer explains the terms before the proof.',
-        body: 'Use Learn when a phrase needs plain language: RAG, LLMs, VLMs, tool calling, RBAC, audit logs, observability, AML, Docker, and Kubernetes.',
-        links: [['Learn', '/learn/'], ['Questions', '/gaps/'], ['Reports', '/reports/']],
-        followups: ['What should I read first?', 'Where are the numbers and charts?']
-      },
-      {
-        keys: ['live', 'heartbeat', 'signal', 'market', 'bitcoin', 'btc', 'solana', 'refresh'],
-        label: 'AI Intelligence',
-        source: 'AI Intelligence, Heartbeat JSON, Proof Tour',
-        title: 'AI Intelligence shows visible signal rows.',
-        body: 'This is where the site feels alive: market context, heartbeat snapshot rows, ticket rows, and research-only limits. It is not investment advice or trading performance.',
-        links: [['AI Intelligence', '/intelligence/'], ['Heartbeat JSON', '/dashboard-data/heartbeat.json'], ['Proof Tour', '/proof-tour/']],
-        followups: ['Can I see proof without reading everything?', 'Where are the numbers and charts?']
-      },
-      {
-        keys: ['question', 'gap', 'market', 'what should', 'how do'],
-        label: 'Questions',
-        source: 'Questions, Learn, Proof Tour',
-        title: 'The Questions page maps modern AI questions to proof.',
-        body: 'Questions starts with what people ask about AI systems, then connects each question to a plain answer, a useful example, and a proof route.',
-        links: [['Questions', '/gaps/'], ['Learn', '/learn/'], ['Proof Tour', '/proof-tour/']],
-        followups: ['How do I learn the AI terms?', 'What should I read first?']
-      },
-      {
-        keys: ['first', 'start', 'read first', 'where should', 'shortest', 'quick'],
-        label: 'Start here',
-        source: 'Proof Tour, Ask Site, Projects',
-        title: 'Use the proof tour first, then choose your depth.',
-        body: 'The shortest path is Proof Tour, then Reports if you want numbers, Projects if you want work samples, and Learn if a concept needs plain language.',
-        links: [['Proof Tour', '/proof-tour/'], ['Reports', '/reports/'], ['Learn', '/learn/']],
-        followups: ['Show me the AML work', 'Is anything on the site live?']
-      }
-    ];
+    var brainNode = document.getElementById('site-brain-data');
+    var siteBrain = {};
+    try {
+      siteBrain = JSON.parse((brainNode && brainNode.textContent) || '{}');
+    } catch (error) {
+      siteBrain = {};
+    }
+    var routes = siteBrain.answer_routes || [];
 
     function render(result) {
       var linkHtml = result.links.map(function(link) {
@@ -280,14 +177,7 @@ const uxStats = [
       var q = (question || '').toLowerCase();
       var result = routes.find(function(route) {
         return route.keys.some(function(key) { return q.indexOf(key) >= 0; });
-      }) || {
-        label: 'Best first route',
-        source: 'Proof Tour, Projects, Ask Site',
-        title: 'Start with the Proof Tour.',
-        body: 'I could not map that question cleanly, so start with the guided proof route. From there you can jump into Projects, Reports, Learn, Questions, or AI Intelligence.',
-        links: [['Proof Tour', '/proof-tour/'], ['Projects', '/projects/'], ['Ask another question', '/site-agent/']],
-        followups: ['Show me the AML work', 'Where are the numbers and charts?']
-      };
+      }) || siteBrain.fallback_route;
       render(result);
       answer.classList.remove('answer-flash');
       window.requestAnimationFrame(function() { answer.classList.add('answer-flash'); });
