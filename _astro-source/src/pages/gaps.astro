@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
-const gaps = gapCatalog.default.gaps;
+const questions = gapCatalog.default.modern_questions;
 const sources = gapCatalog.default.market_sources;
 const websiteScan = gapCatalog.default.website_scan;
 const verifiedDate = new Date(gapCatalog.default.generated_at).toISOString().slice(0, 10);
@@ -11,19 +11,19 @@ const priorityOrder = ['P1', 'P2', 'P3'];
 const grouped = priorityOrder
   .map((priority) => ({
     priority,
-    items: gaps.filter((gap) => gap.priority === priority),
+    items: questions.filter((question) => question.priority === priority),
   }))
   .filter((group) => group.items.length > 0);
 ---
-<BaseLayout title="Market Gaps" description="A public-safe market stack matrix mapping AI job requirements to proof built, proof missing, and next build quests for Bionic Banker.">
+<BaseLayout title="Modern Questions" description="A public-safe question board for modern AI, finance, automation, and proof questions Bionic Banker is exploring.">
   <div class="page-header">
-    <div class="page-label">Market Stack Matrix</div>
-    <h1 class="page-title">Gaps and Build Quests</h1>
-    <p class="page-sub">This is the honest roadmap: what the market keeps asking for, what proof already exists, what proof is missing, and what should be built next.</p>
+    <div class="page-label">Modern Questions</div>
+    <h1 class="page-title">Questions Worth Solving</h1>
+    <p class="page-sub">This page is not a weakness list. It is the question board: the AI, finance, automation, and proof questions people are already searching for, and how this site is testing them in public-safe ways.</p>
   </div>
 
   <div class="articles-wrap">
-    <p class="verified-note">Last verified from market gap catalog: {verifiedDate}. Current matrix: {sources.length} market sources and {gaps.length} build gaps.</p>
+    <p class="verified-note">Last refreshed from the question catalog: {verifiedDate}. Current board: {sources.length} market signals and {questions.length} public questions.</p>
 
     <section class="website-scan-panel">
       <div class="section-label">Website Scan</div>
@@ -34,7 +34,7 @@ const grouped = priorityOrder
           <p>{websiteScan.current_strength}</p>
         </article>
         <article>
-          <span>Main gap</span>
+          <span>Main question</span>
           <p>{websiteScan.main_gap}</p>
         </article>
         <article>
@@ -43,7 +43,7 @@ const grouped = priorityOrder
         </article>
       </div>
       <div class="scan-next">
-        <h3>Next interface moves</h3>
+        <h3>Interface questions now open</h3>
         <ul>
           {websiteScan.next_ui_moves.map((move) => (
             <li>{move}</li>
@@ -58,8 +58,8 @@ const grouped = priorityOrder
           <span class="tag-pill tag-green">Guidance</span>
         </div>
         <h3>How to read this page</h3>
-        <p>Gap does not mean failure. Gap means next quest. The target is real technical proof: small, inspectable, tested, and public-safe.</p>
-        <p>Each row maps market requirement to proof already built, missing proof, and the next build that would make the website stronger.</p>
+        <p>Every card starts as a question because that is how real engineering starts. The value is not pretending the answer is finished. The value is showing how the answer is being tested.</p>
+        <p>Each row maps a modern question to why people ask it, how the system is testing it, and where a reader can inspect the related public surface.</p>
         <div class="card-footer">
           <a class="read-more" href="/reports">Open reports -></a>
           <a class="read-more" href="/projects">Open proof console -></a>
@@ -70,15 +70,15 @@ const grouped = priorityOrder
         <div class="article-tags">
           <span class="tag-pill tag-green">Current read</span>
         </div>
-        <h3>Strongest next build</h3>
-        <p>The cleanest next technical build is a public RAG mini-lab over Bionic Banker articles. It connects RAG, embeddings, vector search, evals, citations, FastAPI, and reporting in one lane.</p>
-        <p>After that, add the RBAC simulator and Kubernetes mini deploy. Those three moves cover most of the current market stack without pretending to be production enterprise software.</p>
+        <h3>Strongest question right now</h3>
+        <p>Can the website become its own AI learning dataset? That one question connects RAG, embeddings, evals, citations, FastAPI, reporting, and content automation without forcing a fake enterprise story.</p>
+        <p>The public answer should be inspectable: ask a question, retrieve source articles, show citations, score the answer, and state the limitation.</p>
       </article>
     </section>
 
     <section class="source-panel">
       <div class="section-label">Market Signals</div>
-      <h2>What current roles keep asking for</h2>
+      <h2>Why these questions matter now</h2>
       <div class="source-grid">
         {sources.map((source) => (
           <article class="source-card">
@@ -92,21 +92,20 @@ const grouped = priorityOrder
 
     {grouped.map((group) => (
       <section class="gap-section">
-        <div class="section-label">{group.priority} Build Lane</div>
+        <div class="section-label">{group.priority} Question Lane</div>
         <div class="gap-grid">
-          {group.items.map((gap) => (
-            <article class="gap-card" id={gap.id}>
+          {group.items.map((question) => (
+            <article class="gap-card" id={question.id}>
               <div class="gap-head">
-                <span>{gap.priority}</span>
-                <h3>{gap.market_requirement}</h3>
+                <span>{question.priority}</span>
+                <h3>{question.question}</h3>
               </div>
-              <p><strong>Why market wants it:</strong> {gap.why_market_wants_it}</p>
-              <p><strong>Proof we have:</strong> {gap.proof_we_have}</p>
-              <p><strong>Proof missing:</strong> {gap.proof_missing}</p>
-              <p><strong>Build quest:</strong> {gap.build_quest}</p>
+              <p><strong>Why people ask:</strong> {question.why_people_ask}</p>
+              <p><strong>How this site is testing it:</strong> {question.how_we_are_testing}</p>
+              <p><strong>What to inspect:</strong> {question.what_reader_can_check}</p>
               <div class="card-footer">
-                <a class="read-more" href={gap.website_surface}>Learn link -></a>
-                <a class="read-more" href={gap.report_surface}>Report link -></a>
+                <a class="read-more" href={question.website_surface}>Follow question -></a>
+                <a class="read-more" href={question.report_surface}>View evidence -></a>
               </div>
             </article>
           ))}

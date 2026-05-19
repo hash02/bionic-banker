@@ -6,7 +6,7 @@ const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.
 const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
 
 const projects = proofCatalog.default.projects;
-const gaps = gapCatalog.default.gaps;
+const questions = gapCatalog.default.modern_questions;
 const reportMetrics = reportCatalog.default.summary_metrics;
 const benchmarkMetrics = reportCatalog.default.benchmark_metrics;
 const coverageBars = reportCatalog.default.coverage_bars;
@@ -51,18 +51,18 @@ const scenes = [
     next: 'Connect the framework proof to an interactive RBAC simulator and eval dashboard.',
   },
   {
-    id: 'build-gaps',
-    label: 'Next Builds',
-    title: 'Market Gap Matrix',
-    intent: 'Show what is already proven, what is missing, and what gets built next.',
+    id: 'modern-questions',
+    label: 'Questions',
+    title: 'Modern Question Board',
+    intent: 'Show the public questions behind the experiments without framing the work as a weakness list.',
     project: null,
     route: '/gaps',
-    next: 'Build public RAG mini-lab, proof tour, spatial map, and Kubernetes mini deploy in that order.',
+    next: 'Keep turning questions into inspectable demos, source-linked reports, and public-safe learning pages.',
   },
 ];
 
 const firstScene = scenes[0];
-const p1Gaps = gaps.filter((gap) => gap.priority === 'P1');
+const p1Questions = questions.filter((question) => question.priority === 'P1');
 const inspectionRows = scenes
   .filter((scene) => scene.project)
   .map((scene) => {
@@ -82,17 +82,17 @@ const inspectionRows = scenes
     };
   });
 ---
-<BaseLayout title="Proof Tour" description="A guided public-safe proof tour for Bionic Banker projects, reports, market gaps, and next build quests.">
+<BaseLayout title="Proof Tour" description="A guided public-safe proof tour for Bionic Banker projects, reports, modern questions, and evidence routes.">
   <main class="tour-shell">
     <section class="tour-hero">
       <div>
         <h1>Proof Tour</h1>
-        <p>This is the app-like layer over the work. Pick a lane, inspect the proof, see the limits, and follow the next build path.</p>
+        <p>This is the app-like layer over the work. Pick a lane, inspect the proof, see the limits, and follow the next question.</p>
       </div>
       <div class="tour-status">
         <span>Verified {verifiedDate}</span>
         <strong>{projects.length} proof lanes</strong>
-        <strong>{gaps.length} build gaps</strong>
+        <strong>{questions.length} questions</strong>
       </div>
     </section>
 
@@ -130,7 +130,7 @@ const inspectionRows = scenes
               <circle cx="34" cy="34" r="33" />
               <text x="34" y="39" text-anchor="middle">Gov</text>
             </g>
-            <g class="map-node" data-map-node="build-gaps" transform="translate(556 168)">
+            <g class="map-node" data-map-node="modern-questions" transform="translate(556 168)">
               <circle cx="34" cy="34" r="33" />
               <text x="34" y="39" text-anchor="middle">Next</text>
             </g>
@@ -202,10 +202,10 @@ const inspectionRows = scenes
                 </div>
               ) : (
                 <div class="scene-grid">
-                  {p1Gaps.slice(0, 4).map((gap) => (
+                  {p1Questions.slice(0, 4).map((question) => (
                     <div>
-                      <h3>{gap.market_requirement}</h3>
-                      <p>{gap.build_quest}</p>
+                      <h3>{question.question}</h3>
+                      <p>{question.how_we_are_testing}</p>
                     </div>
                   ))}
                 </div>
@@ -213,7 +213,7 @@ const inspectionRows = scenes
 
               <div class="scene-next">
                 <div>
-                  <span>Next build</span>
+                  <span>Next question</span>
                   <p>{scene.next}</p>
                 </div>
                 <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>Open lane -></a>
@@ -311,7 +311,7 @@ const inspectionRows = scenes
         <div class="deep-head compact">
           <span>Coverage</span>
           <h2>Current proof balance</h2>
-          <p>The lightest area remains deployment proof. That is the next serious build lane after public RAG and evals.</p>
+        <p>The lightest area remains deployment proof. That is the next serious question after public RAG and evals.</p>
         </div>
         <div class="coverage-list">
           {coverageBars.map((item) => (
@@ -331,8 +331,8 @@ const inspectionRows = scenes
     <section class="deep-panel">
       <div class="deep-head">
         <span>Source ledger</span>
-        <h2>Why these builds map to the market</h2>
-        <p>The next build quests come from role requirements and modern demo expectations, then get translated into public-safe proof work.</p>
+        <h2>Why these questions map to the market</h2>
+        <p>The public questions come from role requirements and modern demo expectations, then get translated into public-safe proof work.</p>
       </div>
       <div class="source-ledger">
         {marketSources.map((source) => (

@@ -9,7 +9,7 @@ const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.
 const allPosts = await getCollection('blog');
 const articleCount = allPosts.length;
 const proofCount = proofCatalog.default.projects.length;
-const gapCount = gapCatalog.default.gaps.length;
+const questionCount = gapCatalog.default.modern_questions.length;
 const featuredPosts = allPosts.filter(p => p.data.featured);
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const latestPost = sortedPosts[0];
@@ -38,7 +38,7 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
         <div class="hero-stats-row">
           <div class="hstat"><span class="hstat-n">{articleCount}</span><span class="hstat-l">Articles</span></div>
           <div class="hstat"><span class="hstat-n">{proofCount}</span><span class="hstat-l">Proof Lanes</span></div>
-          <div class="hstat"><span class="hstat-n">{gapCount}</span><span class="hstat-l">Build Gaps</span></div>
+          <div class="hstat"><span class="hstat-n">{questionCount}</span><span class="hstat-l">Questions</span></div>
         </div>
       </div>
 
@@ -80,7 +80,7 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
         <a href="/proof-tour" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
           <h3>Guided proof app</h3>
-          <p>A clickable route through AML, agents, heartbeat status, governance proof, reports, and build gaps.</p>
+          <p>A clickable route through AML, agents, heartbeat status, governance proof, reports, and public questions.</p>
           <div class="card-footer"><span class="read-more">Start tour -></span></div>
         </a>
         <a href="/projects" class="article-card">
@@ -96,10 +96,10 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
           <div class="card-footer"><span class="read-more">View reports -></span></div>
         </a>
         <a href="/gaps" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Market gaps</span></div>
-          <h3>What to build next</h3>
-          <p>Job-market requirements mapped to proof we have, proof missing, and real technical build quests.</p>
-          <div class="card-footer"><span class="read-more">View gaps -></span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">Questions</span></div>
+          <h3>Questions Worth Solving</h3>
+          <p>Modern AI and finance questions mapped to public signals, experiments, and evidence routes.</p>
+          <div class="card-footer"><span class="read-more">View questions -></span></div>
         </a>
         <a href="/learn" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Learn</span></div>

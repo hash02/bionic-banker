@@ -1,8 +1,8 @@
 {
   "generated_at": "2026-05-19T01:05:00Z",
-  "status": "public_safe_market_gap_catalog_v1",
-  "purpose": "Public-safe market stack matrix for Bionic Banker: job requirement to proof we have to proof missing to next build quest.",
-  "privacy_boundary": "Public job-market requirements, public-safe proof summaries, and planned build quests only. No private paths, keys, IPs, client data, wallet secrets, or employer internal data.",
+  "status": "public_safe_modern_question_catalog_v2",
+  "purpose": "Public-safe question board for Bionic Banker: modern AI, finance, automation, and proof questions that visitors may also be asking.",
+  "privacy_boundary": "Public job-market signals, public-safe proof summaries, and modern questions only. No private paths, keys, IPs, client data, wallet secrets, or employer internal data.",
   "market_sources": [
     {
       "label": "Senior Lead AI Engineering role, LangGraph, RAG systems",
@@ -57,11 +57,11 @@
   ],
   "website_scan": {
     "scan_date": "2026-05-18",
-    "current_strength": "The site has strong proof content: Projects, Reports, Learn, Gaps, public catalogs, benchmark numbers, and limitations.",
-    "main_gap": "The proof is still mostly read, not explored. A modern technical portfolio should let a visitor interact with a demo, inspect a system map, and see visual proof in the first minute.",
+    "current_strength": "The site has strong proof content: Projects, Reports, Learn, Questions, public catalogs, benchmark numbers, and limitations.",
+    "main_gap": "The central question is how to make the proof more explorable. A modern technical portfolio should let a visitor interact with a demo, inspect a system map, and see visual proof in the first minute.",
     "distance_from_modern_standard": "Medium. The foundation is credible and content-rich, but it needs an interactive proof demo, 3D system map, richer charts, and a clearer preview path before it feels like a 2026 AI engineering surface.",
     "next_ui_moves": [
-      "Create an interactive proof tour that walks through AML Engine, Agent Chess, Heartbeat Lab, Reports, and Build Gaps.",
+      "Create an interactive proof tour that walks through AML Engine, Agent Chess, Heartbeat Lab, Reports, and Questions.",
       "Create a 3D or spatial system map where proof lanes are nodes and evidence links are edges.",
       "Add chart PNG and PDF exports from the report catalog.",
       "Add a local preview guard so file preview does not look broken when root assets are not loaded.",
@@ -69,6 +69,108 @@
       "Add a stack radar that teaches current AI engineering layers and maps each layer to a proof surface."
     ]
   },
+  "modern_questions": [
+    {
+      "id": "production-rag",
+      "priority": "P1",
+      "question": "How do you make an AI answer with sources instead of just sounding confident?",
+      "why_people_ask": "Teams want AI systems that can point back to the file, article, transaction, or report behind an answer.",
+      "how_we_are_testing": "Use Bionic Banker articles as a public corpus, retrieve relevant chunks, cite the source, and score the answer quality.",
+      "what_reader_can_check": "Read the RAG, embeddings, audit log, and observability definitions, then follow the Proof Tour evidence route.",
+      "website_surface": "/learn#rag",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "vector-database",
+      "priority": "P1",
+      "question": "When is vector search better than keyword search?",
+      "why_people_ask": "Search gets harder when the visitor asks in different words than the article used.",
+      "how_we_are_testing": "Compare article retrieval by exact keywords against embedding-based retrieval on the same public content.",
+      "what_reader_can_check": "Look for whether the retrieved source actually answers the question, not only whether it contains similar words.",
+      "website_surface": "/learn#embeddings",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "llm-evals",
+      "priority": "P1",
+      "question": "How do you know an AI workflow improved instead of just changed?",
+      "why_people_ask": "A model can feel better while becoming less reliable on edge cases.",
+      "how_we_are_testing": "Turn glossary answers, RAG answers, and AML explanations into small pass/fail eval rows with notes.",
+      "what_reader_can_check": "The Reports page shows the shape of the measurement layer and the limits attached to each number.",
+      "website_surface": "/learn#observability",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "agent-governance",
+      "priority": "P1",
+      "question": "What should an AI agent be allowed to do by itself?",
+      "why_people_ask": "Finance, healthcare, and compliance workflows need role boundaries, approval gates, and reviewable actions.",
+      "how_we_are_testing": "Map agent actions into viewer, reviewer, operator, and admin roles, then log what each role can and cannot do.",
+      "what_reader_can_check": "Follow the RBAC, audit log, tool calling, and MCP concepts as one governance pattern.",
+      "website_surface": "/learn#rbac",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "interactive-proof-demo",
+      "priority": "P1",
+      "question": "Can a technical portfolio explain itself before the first call?",
+      "why_people_ask": "Recruiters, customers, and collaborators usually need a fast path from claim to proof.",
+      "how_we_are_testing": "Use a guided Proof Tour with scenes, evidence rows, limits, source links, and next questions.",
+      "what_reader_can_check": "Open Proof Tour and move through AML, agents, heartbeat, governance, and stack signals.",
+      "website_surface": "/proof-tour",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "spatial-system-map",
+      "priority": "P1",
+      "question": "Can a system map show how projects connect without exposing private infrastructure?",
+      "why_people_ask": "Complex agent systems are easier to understand when the relationships are visible.",
+      "how_we_are_testing": "Represent projects, reports, learning concepts, and public proof links as connected nodes.",
+      "what_reader_can_check": "The current Proof Tour map is the first flat version. A richer spatial map can come next.",
+      "website_surface": "/proof-tour",
+      "report_surface": "/gaps"
+    },
+    {
+      "id": "deployment-proof",
+      "priority": "P2",
+      "question": "What turns a local AI demo into something reliable enough to run again?",
+      "why_people_ask": "A demo becomes stronger when it can be packaged, health-checked, monitored, and redeployed.",
+      "how_we_are_testing": "Use Docker and Kubernetes as proof of packaging, service health, and predictable deployment.",
+      "what_reader_can_check": "Start with the deployment reliability card in the Modern AI Stack Radar.",
+      "website_surface": "/learn#kubernetes",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "fastapi-backend",
+      "priority": "P2",
+      "question": "What does a clean API boundary look like for an AI proof system?",
+      "why_people_ask": "Agents, frontends, and reports need stable contracts instead of loose files everywhere.",
+      "how_we_are_testing": "Wrap public-safe catalogs with schema validation, simple endpoints, and tests.",
+      "what_reader_can_check": "Compare the catalog pages today with the future API route once it exists.",
+      "website_surface": "/projects",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "scientific-reporting",
+      "priority": "P2",
+      "question": "What makes an AI project feel like engineering evidence, not a blog claim?",
+      "why_people_ask": "Technical reviewers want methods, numbers, source links, limitations, and repeatable artifacts.",
+      "how_we_are_testing": "Turn proof catalogs into report cards, charts, method notes, and public-safe appendices.",
+      "what_reader_can_check": "Open Reports and check whether each number has context and limits.",
+      "website_surface": "/reports",
+      "report_surface": "/reports"
+    },
+    {
+      "id": "content-distribution",
+      "priority": "P2",
+      "question": "Can one research artifact become a blog, carousel, thread, and README without losing accuracy?",
+      "why_people_ask": "Good technical work often stays invisible because every platform needs a different shape.",
+      "how_we_are_testing": "Draft platform-specific packets from the same public-safe source catalog.",
+      "what_reader_can_check": "The Learn page explains the concept layer that future posts can reuse.",
+      "website_surface": "/learn",
+      "report_surface": "/reports"
+    }
+  ],
   "gaps": [
     {
       "id": "production-rag",
