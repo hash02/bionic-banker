@@ -350,7 +350,7 @@ h1.page-title {
     </div>
   </div>
   <div style="margin-top: 0.8rem; text-align: right;">
-    <span class="sync-pill"><span class="sync-dot"></span><span id="sync-ts">loading…</span></span>
+    <span class="sync-pill"><span class="sync-dot"></span><span id="sync-ts">loading...</span></span>
   </div>
 </div>
 
@@ -358,7 +358,7 @@ h1.page-title {
   <div class="section-label">The Funds</div>
   <h2>Three funds, three risk profiles.</h2>
   <div class="fund-grid" id="fund-grid">
-    <div class="loader">loading fund data…</div>
+    <div class="loader">loading fund data...</div>
   </div>
 </div>
 
@@ -374,7 +374,7 @@ h1.page-title {
       <div class="worker-col-hide-mobile">Age</div>
       <div class="worker-col-hide-mobile">Open / Tracked</div>
     </div>
-    <div class="loader">loading signal data…</div>
+    <div class="loader">loading signal data...</div>
   </div>
 </div>
 
@@ -383,7 +383,7 @@ h1.page-title {
   <h2>The quiet layer underneath.</h2>
   <div class="panel panel-solo">
     <h3>Paper loop</h3>
-    <div id="hermes-panel"><div class="loader">loading…</div></div>
+    <div id="hermes-panel"><div class="loader">loading...</div></div>
   </div>
 </div>
 
@@ -492,7 +492,7 @@ function renderFunds(d) {
     const sleevesHtml = Object.entries(f.sleeves || {}).map(([name, s]) =>
       `<div class="sleeve-row">
         <span><span class="sleeve-dot ${s.funded ? 'funded' : ''}"></span><span class="sleeve-name">${name}</span></span>
-        <span class="sleeve-pos">${s.positions_total || 0} pos · ${fmt$(s.open_exposure_usd)}</span>
+        <span class="sleeve-pos">${s.positions_total || 0} pos / ${fmt$(s.open_exposure_usd)}</span>
       </div>`
     ).join('');
     const pnlClass = (f.pnl_usd || 0) > 0 ? 'pos' : (f.pnl_usd || 0) < 0 ? 'neg' : '';
@@ -506,7 +506,7 @@ function renderFunds(d) {
           <div class="coverage-bar"><div class="coverage-fill" style="width:${f.coverage_pct}%"></div></div>
           <div class="coverage-label">
             <span>Coverage</span>
-            <strong>${f.sleeves_funded}/${f.sleeves_total} · ${f.coverage_pct.toFixed(1)}%</strong>
+            <strong>${f.sleeves_funded}/${f.sleeves_total} / ${f.coverage_pct.toFixed(1)}%</strong>
           </div>
         </div>
         <div class="fund-stats">
@@ -541,7 +541,7 @@ function renderWorkers(d) {
         <div class="worker-col-hide-mobile"><span class="badge ${fresh ? 'ok' : 'stale'}">${fresh ? 'live' : (w.status || 'stale')}</span></div>
         <div class="worker-col-hide-mobile worker-meta">#${w.cycle_count || 0}</div>
         <div class="worker-col-hide-mobile worker-meta">${ageFmt(w.age_minutes)}</div>
-        <div class="worker-col-hide-mobile worker-meta">${w.open_positions || 0} · ${deployed}</div>
+        <div class="worker-col-hide-mobile worker-meta">${w.open_positions || 0} / ${deployed}</div>
       </div>
     `);
   });
