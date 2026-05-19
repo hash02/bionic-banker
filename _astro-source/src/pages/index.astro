@@ -15,6 +15,29 @@ const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - ne
 const latestPost = sortedPosts[0];
 const featuredArticle = featuredPosts[0] || sortedPosts[0];
 const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 3);
+const movingRows = [
+  {
+    label: 'Market',
+    title: 'BTC stays on watch',
+    detail: 'The lab keeps a simple market row open because price, risk, and attention usually move together.',
+    source: 'Public market context',
+    href: '/intelligence'
+  },
+  {
+    label: 'Lab',
+    title: 'Live Signals is the next window',
+    detail: 'A small board for rows, questions, and limits. Enough motion to see what changed without pretending the signal knows everything.',
+    source: 'Signal board',
+    href: '/intelligence'
+  },
+  {
+    label: 'Writing',
+    title: latestPost.data.title,
+    detail: latestPost.data.description,
+    source: latestPost.data.readTime,
+    href: `/blog/${latestPost.data.slug || latestPost.id}`
+  }
+];
 ---
 <BaseLayout title="Home">
 
@@ -66,6 +89,28 @@ const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 
 
   <!-- ARTICLES -->
   <div class="content-wrap" id="articles">
+    <section class="moving-now-section animate-on-scroll">
+      <div class="section-header">
+        <div>
+          <div class="section-label-text">Moving Now</div>
+          <div class="section-title-text">A few signals on the table</div>
+        </div>
+        <a href="/intelligence" class="view-all">Open live signals -></a>
+      </div>
+      <div class="moving-now-grid">
+        {movingRows.map(row => (
+          <a href={row.href} class="moving-now-card">
+            <div class="moving-now-top">
+              <span>{row.label}</span>
+              <span>{row.source}</span>
+            </div>
+            <h3>{row.title}</h3>
+            <p>{row.detail}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
     <section class="proof-route-section animate-on-scroll">
       <div class="section-header">
         <div>
