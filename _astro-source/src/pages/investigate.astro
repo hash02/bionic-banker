@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="NEXUS-RISK — Investigate Any Wallet" description="Paste an Ethereum wallet address for a reader-facing demo. Sample wallets show preloaded risk narratives and unknown wallets return demo-mode output.">
+<BaseLayout title="NEXUS-RISK | Investigate Any Wallet" description="Paste an Ethereum wallet address for a public lab demo. Sample wallets show preloaded risk narratives and unknown wallets return demo-mode output.">
 
 <div class="investigate-wrap">
 
-    <div class="raksha-badge">NEXUS-RISK — Wallet Investigator</div>
+    <div class="raksha-badge">NEXUS-RISK | Wallet Investigator</div>
 
     <h1>Investigate Any <span>Wallet</span></h1>
     <p class="investigate-sub">
@@ -33,7 +33,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="scan-container" id="scanContainer">
       <div class="scan-spinner"></div>
       <div class="scan-text" id="scanText">Fetching blockchain data...</div>
-      <div class="scan-sub">This may take 30–60 seconds for live addresses</div>
+      <div class="scan-sub">This may take 30-60 seconds for live addresses</div>
     </div>
 
     <!-- Error State -->
@@ -85,34 +85,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   
 
   <script is:inline>
-    // ── SAMPLE DATA — demonstrates engine output without live backend ──
+    // SAMPLE DATA: demonstrates engine output without live backend
     var SAMPLE_DATA = {
       'lazarus': {
         address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
         risk_score: 97,
         risk_level: 'CRITICAL',
-        roast: "This wallet has more red flags than a Soviet parade. Direct links to Lazarus Group — state-sponsored laundering through mixers, bridge exploits, and enough layering to make an onion cry. If compliance had a most-wanted poster, this address would be the centerfold.",
+        roast: "This wallet has more red flags than a Soviet parade. Direct links to Lazarus Group, state-sponsored laundering through mixers, bridge exploits, and enough layering to make an onion cry. If compliance had a most-wanted poster, this address would be the centerfold.",
         tx_count: 847,
         flagged_count: 312,
         total_volume: 625000000,
         avg_risk_score: 89,
-        signals: ['OFAC Sanctioned Entity', 'Tornado Cash Interaction', 'Bridge Exploit Pattern', 'Rapid Layering (6+ hops)', 'Mixer Activity Detected', 'State-Sponsored Threat Actor', 'Cross-Chain Laundering', 'Structuring Pattern', 'Dormant→Active Spike'],
+        signals: ['OFAC Sanctioned Entity', 'Tornado Cash Interaction', 'Bridge Exploit Pattern', 'Rapid Layering (6+ hops)', 'Mixer Activity Detected', 'State-Sponsored Threat Actor', 'Cross-Chain Laundering', 'Structuring Pattern', 'Dormant to Active Spike'],
         risk_distribution: { CRITICAL: 8, HIGH: 5, MEDIUM: 3, LOW: 1 },
-        engine: 'AML Detection Engine v12 — 28 rules',
+        engine: 'AML Detection Engine v12, 28 rules',
         elapsed: 2.4
       },
       'ronin': {
         address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
         risk_score: 94,
         risk_level: 'CRITICAL',
-        roast: "Ronin Bridge exploiter — $625M stolen in a single transaction. This wallet is the reason every bridge protocol now has nightmares. The funds scattered through dozens of intermediary wallets faster than you can say 'decentralized'.",
+        roast: "Ronin Bridge exploiter, $625M stolen in a single transaction. This wallet is the reason every bridge protocol now has nightmares. The funds scattered through dozens of intermediary wallets faster than you can say 'decentralized'.",
         tx_count: 1203,
         flagged_count: 456,
         total_volume: 625000000,
         avg_risk_score: 85,
-        signals: ['Bridge Exploit — Ronin', 'OFAC Sanctioned', 'Rapid Fund Dispersal', 'Tornado Cash (Multiple)', 'Cross-Chain Movement', 'Wash Trading Pattern', 'High-Value Single Transaction'],
+        signals: ['Bridge Exploit: Ronin', 'OFAC Sanctioned', 'Rapid Fund Dispersal', 'Tornado Cash (Multiple)', 'Cross-Chain Movement', 'Wash Trading Pattern', 'High-Value Single Transaction'],
         risk_distribution: { CRITICAL: 6, HIGH: 7, MEDIUM: 4, LOW: 2 },
-        engine: 'AML Detection Engine v12 — 28 rules',
+        engine: 'AML Detection Engine v12, 28 rules',
         elapsed: 3.1
       },
       'tornado': {
@@ -124,9 +124,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         flagged_count: 28450,
         total_volume: 7800000000,
         avg_risk_score: 91,
-        signals: ['OFAC Sanctioned Contract', 'Mixer — Primary', 'Privacy Protocol', 'High Throughput Laundering', 'Cross-Protocol Deposits'],
+        signals: ['OFAC Sanctioned Contract', 'Mixer: Primary', 'Privacy Protocol', 'High Throughput Laundering', 'Cross-Protocol Deposits'],
         risk_distribution: { CRITICAL: 12, HIGH: 3, MEDIUM: 1, LOW: 0 },
-        engine: 'AML Detection Engine v12 — 28 rules',
+        engine: 'AML Detection Engine v12, 28 rules',
         elapsed: 1.8
       }
     };
@@ -250,7 +250,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         document.getElementById('distSection').style.display = 'none';
       }
 
-      document.getElementById('engineLabel').textContent = data.engine || 'AML Detection Engine v12 — 28 rules';
+      document.getElementById('engineLabel').textContent = data.engine || 'AML Detection Engine v12, 28 rules';
       document.getElementById('elapsedLabel').textContent = 'Completed in ' + data.elapsed + 's';
     }
 
@@ -284,7 +284,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         return;
       }
 
-      // For unknown addresses — generate a demo result
+      // For unknown addresses, generate a demo result
       setTimeout(function() {
         var score = 15 + Math.floor(Math.random() * 40);
         var level = score > 60 ? 'HIGH' : score > 35 ? 'MEDIUM' : 'LOW';
@@ -299,7 +299,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           avg_risk_score: score,
           signals: score > 35 ? ['Moderate Activity Volume', 'Multiple Counterparties'] : ['Low Activity'],
           risk_distribution: score > 35 ? { MEDIUM: 2, LOW: 4 } : { LOW: 3 },
-          engine: 'AML Detection Engine v12 — 28 rules (Demo)',
+          engine: 'AML Detection Engine v12, 28 rules (Demo)',
           elapsed: (2 + Math.random() * 3).toFixed(1)
         });
       }, 5000);
