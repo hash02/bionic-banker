@@ -5,18 +5,12 @@ import { getCollection } from 'astro:content';
 const allPosts = await getCollection('blog');
 const articleCount = allPosts.length;
 
-// Sort by date descending
 const sortedPosts = allPosts.sort((a, b) =>
   new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 
-// Get unique tags for filter
-const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort();
-
-// Group by category
 const categories = ['AI', 'Blockchain', 'Finance', 'Tech'];
 
-// Tag color mapping — unified green palette
 const tagColorMap: Record<string, string> = {
   'AI': 'tag-cyan', 'Agents': 'tag-cyan', 'SYOS': 'tag-cyan',
   'Blockchain': 'tag-cyan', 'DeFi': 'tag-cyan', 'AML': 'tag-red',
@@ -24,13 +18,39 @@ const tagColorMap: Record<string, string> = {
   'Tech': 'tag-cyan', 'Thoughts': 'tag-rose', 'Gaming': 'tag-cyan',
   'Nobel Prize': 'tag-amber', 'Physics': 'tag-cyan',
 };
+
+const cleanText = (value = '') => value
+  .replace(/[\u2013\u2014]/g, '-')
+  .replace(/\b[Dd]eep dive\b/g, 'field note')
+  .replace(/\b[Tt]ransformative\b/g, 'changing')
+  .replace(/\b[Rr]obust\b/g, 'steady')
+  .replace(/\b[Cc]utting-edge\b/g, 'new')
+  .replace(/\b[Bb]est practices\b/g, 'working habits');
+
+const getSlug = (post: typeof sortedPosts[number]) => post.data.slug || post.id;
+const featuredSlugs = [
+  'two-agent-finance-operating-system',
+  'watch-it-run-live',
+  'agent-graveyard',
+  'aml-roaster',
+];
+const featuredPosts = featuredSlugs
+  .map((slug) => sortedPosts.find((post) => getSlug(post) === slug))
+  .filter(Boolean);
+
+const routeLabels: Record<string, string> = {
+  'two-agent-finance-operating-system': 'AI systems',
+  'watch-it-run-live': 'Live signals',
+  'agent-graveyard': 'What broke',
+  'aml-roaster': 'Finance humor',
+};
 ---
-<BaseLayout title="All Articles" description={`${articleCount} pieces on finance, blockchain, AI, and what happens when they collide.`}>
+<BaseLayout title="Writing" description={`${articleCount} field notes on finance, AI, agents, blockchain, and the strange edges where they meet.`}>
 
   <div class="page-header">
-    <div class="page-label">Archive</div>
-    <h1 class="page-title">All Articles</h1>
-    <p class="page-sub">{articleCount} pieces on finance, blockchain, AI, and what happens when they collide.</p>
+    <div class="page-label">Writing Map</div>
+    <h1 class="page-title">Start with the writing map.</h1>
+    <p class="page-sub">{articleCount} field notes on finance, AI, agents, blockchain, and the strange edges where they meet. Pick a lane, then follow the thread.</p>
 
     <div class="filter-bar" id="filter-bar">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -40,13 +60,37 @@ const tagColorMap: Record<string, string> = {
     </div>
   </div>
 
+  <section class="featured-articles" aria-label="Start here">
+    <div class="featured-head">
+      <div>
+        <p class="section-kicker">Start here</p>
+        <h2>Four doors into the lab.</h2>
+      </div>
+      <p>Systems, live notes, broken experiments, and the lighter side of financial crime patterns.</p>
+    </div>
+    <div class="featured-grid">
+      {featuredPosts.map((post) => (
+        <a href={`/blog/${getSlug(post)}`} class="featured-card">
+          <span>{routeLabels[getSlug(post)]}</span>
+          <h3>{cleanText(post.data.title)}</h3>
+          <p>{cleanText(post.data.description)}</p>
+          <strong>Open</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+
   <div class="articles-wrap">
+    <div class="archive-note">
+      <p class="section-kicker">Full archive</p>
+      <p>Filter by theme, or scroll until something starts pulling at your sleeve.</p>
+    </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (
-        <a href={`/blog/${post.data.slug || post.id}`} class="article-card animate-on-scroll" data-category={post.data.category}>
+        <a href={`/blog/${getSlug(post)}`} class="article-card animate-on-scroll" data-category={post.data.category}>
           {post.data.image && (
             <div class="card-thumb">
-              <img src={post.data.image} alt={post.data.title} loading="lazy" />
+              <img src={post.data.image} alt={cleanText(post.data.title)} loading="lazy" />
             </div>
           )}
           <div class="article-tags">
@@ -54,10 +98,10 @@ const tagColorMap: Record<string, string> = {
               <span class={`tag-pill ${tagColorMap[tag] || 'tag-green'}`}>{tag}</span>
             ))}
           </div>
-          <h3>{post.data.title}</h3>
-          <p>{post.data.description}</p>
+          <h3>{cleanText(post.data.title)}</h3>
+          <p>{cleanText(post.data.description)}</p>
           <div class="card-footer">
-            <span class="read-more">Read →</span>
+            <span class="read-more">Read</span>
             <span class="read-time">{post.data.readTime}</span>
           </div>
         </a>
@@ -66,7 +110,6 @@ const tagColorMap: Record<string, string> = {
   </div>
 
   <script is:inline>
-    // Filter functionality
     document.querySelectorAll('.filter-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -82,4 +125,142 @@ const tagColorMap: Record<string, string> = {
       });
     });
   </script>
+  <style>
+    .featured-articles {
+      width: min(1180px, calc(100% - 32px));
+      margin: -1.2rem auto 2.25rem;
+    }
+
+    .featured-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 360px);
+      gap: 1.25rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
+
+    .section-kicker {
+      margin: 0 0 0.4rem;
+      color: var(--accent, #1fa068);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .featured-head h2 {
+      margin: 0;
+      color: var(--text-primary, #f7f7fb);
+      font-size: clamp(1.45rem, 2vw, 2rem);
+      letter-spacing: 0;
+    }
+
+    .featured-head p,
+    .archive-note p:last-child {
+      margin: 0;
+      color: var(--text-muted, #9a9aaa);
+      line-height: 1.6;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .featured-card {
+      display: flex;
+      min-height: 260px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .featured-card:hover,
+    .featured-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(31, 160, 104, 0.6);
+      background: rgba(31, 160, 104, 0.08);
+      outline: none;
+    }
+
+    .featured-card span {
+      color: var(--accent, #1fa068);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .featured-card h3 {
+      margin: 1.1rem 0 0.75rem;
+      color: var(--text-primary, #f7f7fb);
+      font-size: 1.1rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .featured-card p {
+      flex: 1;
+      margin: 0;
+      color: var(--text-muted, #9a9aaa);
+      line-height: 1.55;
+    }
+
+    .featured-card strong {
+      margin-top: 1rem;
+      color: var(--text-primary, #f7f7fb);
+      font-size: 0.9rem;
+    }
+
+    .archive-note {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto 1rem;
+    }
+
+    .filter-btn,
+    .article-card,
+    .featured-card {
+      touch-action: manipulation;
+    }
+
+    .filter-btn {
+      min-height: 44px;
+      padding: 0.7rem 1rem;
+    }
+
+    @media (max-width: 920px) {
+      .featured-head {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .featured-articles {
+        width: min(100% - 24px, 1180px);
+        margin-top: -0.6rem;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-card {
+        min-height: 220px;
+      }
+
+      .archive-note {
+        width: min(100% - 24px, 1180px);
+      }
+    }
+  </style>
 </BaseLayout>
