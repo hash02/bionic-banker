@@ -48,9 +48,9 @@ const routeLabels: Record<string, string> = {
 <BaseLayout title="Writing" description={`${articleCount} field notes on finance, AI, agents, blockchain, and the strange edges where they meet.`}>
 
   <div class="page-header">
-    <div class="page-label">Writing Map</div>
-    <h1 class="page-title">Start with the writing map.</h1>
-    <p class="page-sub">{articleCount} field notes on finance, AI, agents, blockchain, and the strange edges where they meet. Pick a lane, then follow the thread.</p>
+    <div class="page-label">Writing</div>
+    <h1 class="page-title">Pick a thread.</h1>
+    <p class="page-sub">{articleCount} notes on finance, AI, agents, blockchain, and the strange edges where they meet. Start anywhere that pulls on your sleeve.</p>
 
     <div class="filter-bar" id="filter-bar">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -64,9 +64,9 @@ const routeLabels: Record<string, string> = {
     <div class="featured-head">
       <div>
         <p class="section-kicker">Start here</p>
-        <h2>Four doors into the lab.</h2>
+        <h2>Four good doors in.</h2>
       </div>
-      <p>Systems, live notes, broken experiments, and the lighter side of financial crime patterns.</p>
+      <p>Systems, live notes, broken experiments, and the lighter side of suspicious transaction patterns.</p>
     </div>
     <div class="featured-grid">
       {featuredPosts.map((post) => (
@@ -74,7 +74,7 @@ const routeLabels: Record<string, string> = {
           <span>{routeLabels[getSlug(post)]}</span>
           <h3>{cleanText(post.data.title)}</h3>
           <p>{cleanText(post.data.description)}</p>
-          <strong>Open</strong>
+          <strong>Open note</strong>
         </a>
       ))}
     </div>
@@ -82,8 +82,8 @@ const routeLabels: Record<string, string> = {
 
   <section class="learn-bridge" aria-label="Learning route">
     <div>
-      <p class="section-kicker">Need the rails first?</p>
-      <h2>Start with the plain notes, then come back to the archive.</h2>
+      <p class="section-kicker">New to the terms?</p>
+      <h2>Open the plain notes first, then come back to the writing.</h2>
     </div>
     <a href="/learn/">Open Learn</a>
   </section>
@@ -91,7 +91,7 @@ const routeLabels: Record<string, string> = {
   <div class="articles-wrap">
     <div class="archive-note">
       <p class="section-kicker">Full archive</p>
-      <p>Filter by theme, or scroll until something starts pulling at your sleeve.</p>
+      <p>Filter by theme, or just scroll until something catches.</p>
     </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (
@@ -109,7 +109,7 @@ const routeLabels: Record<string, string> = {
           <h3>{cleanText(post.data.title)}</h3>
           <p>{cleanText(post.data.description)}</p>
           <div class="card-footer">
-            <span class="read-more">Read</span>
+            <span class="read-more">Open</span>
             <span class="read-time">{post.data.readTime}</span>
           </div>
         </a>
