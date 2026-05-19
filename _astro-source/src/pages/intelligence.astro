@@ -20,6 +20,27 @@ const confidence = typeof predictionValue.confidence === 'number'
   ? `${(predictionValue.confidence * 100).toFixed(1)}%`
   : 'n/a';
 
+const formatTime = (iso) => {
+  if (!iso) return 'n/a';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' · ' +
+      d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+  } catch { return iso.slice(0, 16); }
+};
+
+const resultClass = (row) => {
+  if (row.scored_prior?.correct === true) return 'result-hit';
+  if (row.scored_prior?.correct === false) return 'result-miss';
+  return 'result-pending';
+};
+
+const resultLabel = (row) => {
+  if (row.scored_prior?.correct === true) return 'hit';
+  if (row.scored_prior?.correct === false) return 'miss';
+  return 'pending';
+};
+
 const signalRoutes = [
   {
     eyebrow: 'Start',
@@ -87,16 +108,6 @@ const signalRoutes = [
       </div>
     </section>
 
-    <section class="signal-route-grid" aria-label="How to read live signals">
-      {signalRoutes.map((route) => (
-        <a class="signal-route-card" href={route.href}>
-          <span>{route.eyebrow}</span>
-          <strong>{route.title}</strong>
-          <p>{route.text}</p>
-        </a>
-      ))}
-    </section>
-
     <section class="market-strip" id="market-row" data-feeds={JSON.stringify(feeds)}>
       <div class="strip-head">
         <span class="section-label">Public Market Feed</span>
@@ -106,12 +117,38 @@ const signalRoutes = [
         {feeds.map((feed) => (
           <article class="market-card" data-asset-card={feed.coingecko_id}>
             <span>{feed.symbol}</span>
-            <strong data-price>Loading</strong>
-            <small data-change>Public API</small>
+            <strong data-price>—</strong>
+            <small data-change>loading</small>
           </article>
         ))}
       </div>
-      <p class="feed-note" data-feed-note>Market data loads in the browser from a public API when available. If the API is unavailable, the rest of the signal board still works from live snapshots.</p>
+      <p class="feed-note" data-feed-note>Prices load from a public API when available. Everything else on this page works from snapshots.</p>
+    </section>
+
+    <section class="recent-panel" id="recent-rows">
+      <div class="panel-head">
+        <div>
+          <span class="section-label">Heartbeat Rows</span>
+          <h2>Recent pulse rows</h2>
+        </div>
+        <a href="/dashboard-data/heartbeat.json" target="_blank" rel="noopener">raw JSON -></a>
+      </div>
+      <div class="recent-table">
+        <div class="recent-row recent-head">
+          <span>When</span>
+          <span>Read</span>
+          <span>Price</span>
+          <span>Result</span>
+        </div>
+        {recentRows.map((row) => (
+          <div class="recent-row">
+            <span class="row-time">{formatTime(row.iso)}</span>
+            <span>{row.prediction?.direction || 'n/a'} <span class="row-conf">({typeof row.prediction?.confidence === 'number' ? `${(row.prediction.confidence * 100).toFixed(1)}%` : 'n/a'})</span></span>
+            <span>{typeof row.price_now === 'number' ? `$${Math.round(row.price_now).toLocaleString('en-US')}` : 'n/a'}</span>
+            <span class={resultClass(row)}>{resultLabel(row)}</span>
+          </div>
+        ))}
+      </div>
     </section>
 
     <section class="lane-grid">
@@ -119,8 +156,7 @@ const signalRoutes = [
         <article class="lane-card" id={lane.id}>
           <span>{lane.label}</span>
           <h3>{lane.question}</h3>
-          <p><strong>Source:</strong> {lane.public_source}</p>
-          <p><strong>Mode:</strong> {lane.display_mode}</p>
+          <p class="lane-meta">{lane.public_source} · {lane.display_mode}</p>
         </article>
       ))}
     </section>
@@ -136,42 +172,28 @@ const signalRoutes = [
       <div class="ticket-list">
         {tickets.map((ticket) => (
           <article class="ticket-row">
-            <div>
+            <div class="ticket-meta">
               <span class={`ticket-status status-${ticket.status}`}>{ticket.status}</span>
-              <strong>{ticket.lane}</strong>
+              <strong class="ticket-lane">{ticket.lane}</strong>
             </div>
-            <p>{ticket.question}</p>
-            <small>{ticket.public_note}</small>
-            <a href={ticket.link}>Open -></a>
+            <p class="ticket-question">{ticket.question}</p>
+            <div class="ticket-foot">
+              <small>{ticket.public_note}</small>
+              <a href={ticket.link}>Open -></a>
+            </div>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="recent-panel" id="recent-rows">
-      <div class="panel-head">
-        <div>
-          <span class="section-label">Heartbeat Rows</span>
-          <h2>Recent pulse rows</h2>
-        </div>
-        <a href="/dashboard-data/heartbeat.json" target="_blank" rel="noopener">JSON -></a>
-      </div>
-      <div class="recent-table">
-        <div class="recent-row recent-head">
-          <span>Time</span>
-          <span>Read</span>
-          <span>Price</span>
-          <span>Result</span>
-        </div>
-        {recentRows.map((row) => (
-          <div class="recent-row">
-            <span>{row.iso}</span>
-            <span>{row.prediction?.direction || 'n/a'} ({typeof row.prediction?.confidence === 'number' ? `${(row.prediction.confidence * 100).toFixed(1)}%` : 'n/a'})</span>
-            <span>{typeof row.price_now === 'number' ? `$${Math.round(row.price_now).toLocaleString('en-US')}` : 'n/a'}</span>
-            <span>{row.scored_prior?.correct === true ? 'hit' : row.scored_prior?.correct === false ? 'miss' : 'pending'}</span>
-          </div>
-        ))}
-      </div>
+    <section class="signal-route-grid" aria-label="Navigate the signal board">
+      {signalRoutes.map((route) => (
+        <a class="signal-route-card" href={route.href}>
+          <span>{route.eyebrow}</span>
+          <strong>{route.title}</strong>
+          <p>{route.text}</p>
+        </a>
+      ))}
     </section>
   </main>
 
@@ -233,7 +255,7 @@ const signalRoutes = [
       margin: 0 auto;
       padding: 0 2rem 3rem;
       display: grid;
-      gap: 1.25rem;
+      gap: 2rem;
     }
 
     .alive-console,
@@ -451,6 +473,14 @@ const signalRoutes = [
       line-height: 1.35;
     }
 
+    .lane-meta {
+      color: var(--text-3);
+      font-size: 0.76rem;
+      font-family: var(--mono);
+      margin: 0;
+      line-height: 1.4;
+    }
+
     .panel-head a,
     .ticket-row a {
       color: var(--accent);
@@ -464,18 +494,36 @@ const signalRoutes = [
 
     .ticket-row {
       display: grid;
-      grid-template-columns: 180px minmax(0, 1.2fr) minmax(180px, 0.8fr) auto;
-      gap: 0.9rem;
-      align-items: center;
+      gap: 0.55rem;
       border: 1px solid rgba(228, 228, 236, 0.12);
       background: rgba(2, 2, 4, 0.42);
       border-radius: 8px;
-      padding: 0.9rem;
+      padding: 1rem 1.1rem;
     }
 
-    .ticket-row div {
-      display: grid;
-      gap: 0.35rem;
+    .ticket-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .ticket-lane {
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .ticket-question {
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .ticket-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
     }
 
     .ticket-status {
@@ -496,21 +544,37 @@ const signalRoutes = [
 
     .recent-row {
       display: grid;
-      grid-template-columns: minmax(180px, 1.4fr) minmax(120px, 0.8fr) minmax(110px, 0.7fr) minmax(80px, 0.5fr);
+      grid-template-columns: minmax(140px, 1.2fr) minmax(130px, 1fr) minmax(100px, 0.7fr) minmax(72px, 0.45fr);
       gap: 0.8rem;
       border: 1px solid rgba(228, 228, 236, 0.1);
       border-radius: 8px;
-      padding: 0.75rem;
+      padding: 0.75rem 1rem;
       color: var(--text-2);
-      font-size: 0.82rem;
+      font-size: 0.83rem;
+      font-family: var(--mono);
     }
 
     .recent-head {
       color: var(--accent);
-      font-family: var(--mono);
       font-size: 0.68rem;
       text-transform: uppercase;
+      border-color: transparent;
+      background: transparent;
+      padding-left: 1rem;
     }
+
+    .row-time {
+      color: var(--text);
+    }
+
+    .row-conf {
+      color: var(--text-3);
+      font-size: 0.77rem;
+    }
+
+    .result-hit { color: var(--accent); font-weight: 600; }
+    .result-miss { color: #e05555; }
+    .result-pending { color: var(--text-3); }
 
     @media (max-width: 860px) {
       .alive-console,
