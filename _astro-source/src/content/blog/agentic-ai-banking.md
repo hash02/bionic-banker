@@ -92,7 +92,7 @@ RBC built Aiden. It's an analyst platform that lets one analyst cover 50 compani
 
 Scotiabank built AIDox. It handles 90% of their 1,500 daily commercial emails autonomously. Emails that used to take hours to triage now take minutes. They redeployed 70% of the team that used to handle that work. Since 2018 they've been investing in this, and 2025 was the year they upgraded it to agentic.
 
-CIBC has CAI. The numbers are loud. One point two million hours saved in Q1 2026 alone. Thirty thousand active users. A 44% lift in savings account conversions that can be traced to AI. They've run 200,000 hours of pilots. They won the Best Gen-AI Initiative award at Digital Banker in 2025 and again in 2026. That's not noise. That's two years running of recognition for doing the work right.
+CIBC has CAI. The numbers are loud. One point two million hours saved in Q1 2026 alone. Thirty thousand active users. A 44% lift in savings account outcomes that can be traced to AI. They've run 200,000 hours of pilots. They won the Best Gen-AI Initiative award at Digital Banker in 2025 and again in 2026. That's not noise. That's two years running of recognition for doing the work right.
 
 TD saw a greater than 20% increase in their Evident AI Index score year over year. BMO has been rising in AI talent development. The Big 5 are not sleeping.
 
