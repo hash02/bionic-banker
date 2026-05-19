@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const catalog = await import('../../public/dashboard-data/ai-learning-catalog.json');
 const concepts = catalog.default.concepts;
 const guides = catalog.default.guides;
+const stackRadar = catalog.default.stack_radar;
 
 const conceptLinks = [
   { label: 'AI agents', id: 'agent' },
@@ -41,6 +42,29 @@ const conceptLinks = [
         <a href="/gaps">Build gaps</a>
       </div>
     </div>
+
+    <section class="stack-radar-panel">
+      <div class="section-label">Modern AI Stack Radar</div>
+      <div class="radar-head">
+        <div>
+          <h2>What to learn now, and what proof to build next</h2>
+          <p>Current AI engineering is not only prompting. It is retrieval quality, evals, traces, governance, deployment, and a demo path that someone can inspect without asking for a meeting.</p>
+        </div>
+        <a href="/proof-tour">Open Proof Tour -></a>
+      </div>
+      <div class="radar-grid">
+        {stackRadar.map((item, index) => (
+          <article class="radar-card" id={item.id}>
+            <div class="radar-index">{String(index + 1).padStart(2, '0')}</div>
+            <h3>{item.layer}</h3>
+            <p><strong>Why it matters now:</strong> {item.why_2026_teams_care}</p>
+            <p><strong>Learn here:</strong> {item.learn_here}</p>
+            <p><strong>Next proof:</strong> {item.proof_to_build_next}</p>
+            <a href={item.linked_surface}>Follow this layer -></a>
+          </article>
+        ))}
+      </div>
+    </section>
 
     <section class="guide-grid">
       {guides.map((guide) => (
@@ -113,6 +137,86 @@ const conceptLinks = [
 
     .concept-card {
       scroll-margin-top: 96px;
+    }
+
+    .stack-radar-panel {
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 8px;
+      padding: 1.35rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .radar-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1rem;
+    }
+
+    .radar-head h2 {
+      margin: 0.25rem 0 0.5rem;
+      font-size: clamp(1.35rem, 2.5vw, 2.2rem);
+      letter-spacing: 0;
+    }
+
+    .radar-head p {
+      color: var(--text-2);
+      line-height: 1.7;
+      margin: 0;
+      max-width: 760px;
+    }
+
+    .radar-head a,
+    .radar-card a {
+      color: #1fa068;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .radar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .radar-card {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(31, 160, 104, 0.08), transparent 42%),
+        rgba(2, 2, 4, 0.46);
+      padding: 1rem;
+      min-width: 0;
+    }
+
+    .radar-index {
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .radar-card h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1.1rem;
+      letter-spacing: 0;
+    }
+
+    .radar-card p {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0 0 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .radar-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </BaseLayout>
