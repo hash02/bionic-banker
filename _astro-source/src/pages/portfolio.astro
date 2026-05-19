@@ -1,5 +1,5 @@
 ---
-// Portfolio page - standalone HTML, Guardian stripped Apr 21
+// Paper Lab page - standalone HTML, Guardian stripped Apr 21
 // R-039: mirrors portfolio/index.html at repo root
 ---
 <!DOCTYPE html>
@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Watch It Run Live — Bionic Banker</title>
-<meta name="description" content="Paper-mode portfolio view. Three funds, sixteen sleeves, and a small status layer for watching market ideas move.">
+<title>Paper Lab - Watch It Run Live - Bionic Banker</title>
+<meta name="description" content="Paper-mode lab view. Three funds, sixteen sleeves, and a small status layer for watching market ideas move.">
 <meta name="author" content="Himanshu">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,18 +16,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
-<meta property="og:title" content="Portfolio — Watch It Run Live — Bionic Banker">
+<meta property="og:title" content="Paper Lab - Watch It Run Live - Bionic Banker">
 <meta property="og:description" content="Three funds, sixteen sleeves, and paper-mode status summaries.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bionicbanker.tech/portfolio/">
 <meta property="og:site_name" content="Bionic Banker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Portfolio — Watch It Run Live">
-<meta name="twitter:description" content="Paper-mode portfolio view with clean signal status summaries.">
+<meta name="twitter:title" content="Paper Lab - Watch It Run Live">
+<meta name="twitter:description" content="Paper-mode lab view with clean signal status summaries.">
 <link rel="canonical" href="https://bionicbanker.tech/portfolio/">
 <style>
 /* ============================================================
-   LOCKED PALETTE — GREEN / BLACK / WHITE ONLY
+   LOCKED PALETTE - GREEN / BLACK / WHITE ONLY
    #1fa068 green  |  #020204 black  |  #e4e4ec white  |  #8a8aa0 grey
    NO blue. NO purple. NO red. NO gradients.
    ============================================================ */
@@ -69,22 +69,23 @@ nav {
 .nav-logo {
   font-family: 'Bricolage Grotesque', serif;
   font-weight: 800; font-size: 1.3rem; color: var(--fg);
+  min-height: 44px; display: inline-flex; align-items: center;
 }
 .nav-logo span { color: var(--accent); }
 .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 .nav-links { list-style: none; display: flex; gap: 1.5rem; }
-.nav-links a { color: var(--fg); font-weight: 500; font-size: 0.95rem; }
+.nav-links a { color: var(--fg); font-weight: 500; font-size: 0.95rem; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 .nav-links a:hover { color: var(--accent); }
 .nav-cta {
   background: var(--accent); color: #02120a !important;
-  padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem;
+  min-height: 44px; display: inline-flex; align-items: center; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem;
 }
 .nav-cta:hover { background: #2ac682; }
-#bb-hamburger { display: none; background: none; border: 0; color: var(--fg); font-size: 1.5rem; cursor: pointer; }
+#bb-hamburger { display: none; background: none; border: 0; color: var(--fg); font-size: 1.5rem; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
 @media (max-width: 768px) {
   nav { padding: 1rem; }
   .nav-links, .nav-cta { display: none; }
-  #bb-hamburger { display: block; }
+  #bb-hamburger { display: inline-flex; }
 }
 
 /* HERO */
@@ -101,6 +102,7 @@ h1.page-title {
   font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem;
 }
 .page-sub { color: var(--fg-dim); font-size: 1.05rem; max-width: 720px; }
+.page-sub a { min-height: 44px; display: inline-flex; align-items: center; }
 
 /* AGGREGATE BANNER */
 .agg-banner {
@@ -310,7 +312,7 @@ h1.page-title {
       <li><a href="/proof-tour">The Lab</a></li>
       <li><a href="/reports">Field Notes</a></li>
       <li><a href="/gaps">Questions</a></li>
-      <li><a href="/portfolio">Portfolio</a></li>
+      <li><a href="/portfolio">Paper Lab</a></li>
       <li><a href="/#about">About</a></li>
     </ul>
     <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a>
@@ -319,7 +321,7 @@ h1.page-title {
 </nav>
 
 <div class="page-header">
-  <div class="page-label">Paper Portfolio</div>
+  <div class="page-label">Paper Lab</div>
   <h1 class="page-title">Watch the paper ideas move.</h1>
   <p class="page-sub">Three funds, sixteen sleeves, and a small status layer. Nothing here is advice or a live trading product. It is a public window into how the lab watches ideas behave over time. <a href="/intelligence/" style="color:var(--accent)">Open live signals.</a></p>
 </div>
@@ -327,23 +329,23 @@ h1.page-title {
 <div class="agg-banner">
   <div class="agg-card" id="agg-card">
     <div class="agg-stat">
-      <div class="agg-num accent" id="agg-coverage">—</div>
+      <div class="agg-num accent" id="agg-coverage">-</div>
       <div class="agg-label">Coverage</div>
     </div>
     <div class="agg-stat">
-      <div class="agg-num" id="agg-exposure">—</div>
+      <div class="agg-num" id="agg-exposure">-</div>
       <div class="agg-label">Paper Exposure</div>
     </div>
     <div class="agg-stat">
-      <div class="agg-num" id="agg-pnl">—</div>
+      <div class="agg-num" id="agg-pnl">-</div>
       <div class="agg-label">Unrealized PnL</div>
     </div>
     <div class="agg-stat">
-      <div class="agg-num" id="agg-funds">—</div>
+      <div class="agg-num" id="agg-funds">-</div>
       <div class="agg-label">Funds / Sleeves</div>
     </div>
     <div class="agg-stat">
-      <div class="agg-num" id="agg-workers">—</div>
+      <div class="agg-num" id="agg-workers">-</div>
       <div class="agg-label">Signal Rows</div>
     </div>
   </div>
@@ -380,7 +382,7 @@ h1.page-title {
   <div class="section-label">Status Layer</div>
   <h2>The quiet layer underneath.</h2>
   <div class="panel panel-solo">
-    <h3>Paper engine</h3>
+    <h3>Paper loop</h3>
     <div id="hermes-panel"><div class="loader">loading…</div></div>
   </div>
 </div>
@@ -390,7 +392,7 @@ h1.page-title {
   <h2>The loop is simple.</h2>
   <div class="explainer">
     <p>Each row watches one kind of signal. It reads the latest state, writes a paper-mode note, then waits for the next check.</p>
-    <p>The public page only shows cleaned status fields. The private machinery stays off the page.</p>
+    <p>This page only shows cleaned status fields. The machinery stays off the page.</p>
     <p>If a row goes stale, the page should show it. That is the point. A live page is useful only if it can admit when something stopped moving.</p>
   </div>
 </div>
@@ -421,7 +423,7 @@ h1.page-title {
         <h4>Explore</h4>
         <a href="/articles">Writing</a>
         <a href="/intelligence">Live Signals</a>
-        <a href="/portfolio">Portfolio</a>
+        <a href="/portfolio">Paper Lab</a>
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
@@ -443,19 +445,19 @@ const FUND_LABELS = {
   fund_90_10_growth: { title: '90/10 Growth', sub: 'Aggressive. Momentum + sniper.' },
 };
 const fmt$ = (n) => {
-  if (n === null || n === undefined) return '—';
+  if (n === null || n === undefined) return '-';
   const a = Math.abs(n);
   const s = n < 0 ? '-' : '';
   if (a >= 1000) return s + '$' + Math.round(a).toLocaleString();
   return s + '$' + a.toFixed(2);
 };
 const fmtPnl = (n) => {
-  if (n === null || n === undefined) return '—';
+  if (n === null || n === undefined) return '-';
   const sign = n >= 0 ? '+' : '';
   return sign + '$' + n.toFixed(2);
 };
 const ageFmt = (m) => {
-  if (m === null || m === undefined) return '—';
+  if (m === null || m === undefined) return '-';
   if (m < 60) return Math.round(m) + 'm';
   return (m / 60).toFixed(1) + 'h';
 };
@@ -530,8 +532,8 @@ function renderWorkers(d) {
   const workers = d.workers || {};
   Object.entries(workers).forEach(([name, w]) => {
     const fresh = w.heartbeat_fresh;
-    const strategy = (w.strategy || '—').replace(/_/g, ' ');
-    const deployed = (w.deployed_usd !== null && w.deployed_usd !== undefined) ? fmt$(w.deployed_usd) : '—';
+    const strategy = (w.strategy || '-').replace(/_/g, ' ');
+    const deployed = (w.deployed_usd !== null && w.deployed_usd !== undefined) ? fmt$(w.deployed_usd) : '-';
     host.insertAdjacentHTML('beforeend', `
       <div class="worker-row">
         <div class="worker-name">${name}</div>
@@ -568,7 +570,7 @@ async function load() {
     renderWorkers(d);
     renderHermes(d);
   } catch (e) {
-    document.getElementById('sync-ts').textContent = 'sync error — retry soon';
+    document.getElementById('sync-ts').textContent = 'sync error. retry soon';
     console.error(e);
   }
 }
