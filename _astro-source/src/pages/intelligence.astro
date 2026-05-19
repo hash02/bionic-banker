@@ -12,6 +12,7 @@ const status = heartbeat.status || {};
 const lastPrediction = status.last_prediction || {};
 const predictionValue = lastPrediction.value || {};
 const recentRows = (heartbeat.recent || []).slice(-8).reverse();
+const leadRow = recentRows[0] || {};
 const generatedAt = heartbeat.generated_at || signalCatalog.default.generated_at;
 const accuracy = typeof status.accuracy_last_100 === 'number'
   ? `${Math.round(status.accuracy_last_100 * 100)}%`
@@ -130,6 +131,31 @@ const signalRoutes = [
       <canvas id="btc-spark"></canvas>
       <p class="spark-note">BTC price across last {recentRows.length} snapshot rows. From research snapshots, not live trading.</p>
     </div>
+
+    <section class="reason-panel" aria-label="How to read the latest signal">
+      <div class="reason-copy">
+        <span class="section-label">How to Read It</span>
+        <h2>Why the row says that</h2>
+        <p>A signal is useful only when it shows its source, its reason, and its limit. This is the small trail behind the latest saved row.</p>
+      </div>
+      <div class="reason-steps">
+        <article>
+          <span>Source</span>
+          <strong>Saved pulse row</strong>
+          <p>{leadRow.iso ? formatTime(leadRow.iso) : 'Waiting for the next snapshot.'}</p>
+        </article>
+        <article>
+          <span>Reason</span>
+          <strong>{leadRow.prediction?.direction || predictionValue.direction || 'No direction yet'}</strong>
+          <p>{typeof leadRow.prediction?.confidence === 'number' ? `${(leadRow.prediction.confidence * 100).toFixed(1)}% confidence on this saved read.` : 'Confidence appears only when the row carries it.'}</p>
+        </article>
+        <article>
+          <span>Limit</span>
+          <strong>Research note</strong>
+          <p>Not advice, not a trade, and not a promise that the next row will agree.</p>
+        </article>
+      </div>
+    </section>
 
     <section class="recent-panel" id="recent-rows">
       <div class="panel-head">
@@ -317,6 +343,7 @@ const signalRoutes = [
     .market-strip,
     .ticket-panel,
     .recent-panel,
+    .reason-panel,
     .signal-route-card {
       border: 1px solid rgba(31, 160, 104, 0.22);
       background: rgba(255, 255, 255, 0.035);
@@ -458,6 +485,63 @@ const signalRoutes = [
     .signal-route-card p {
       color: var(--text-2);
       line-height: 1.55;
+      margin: 0;
+    }
+
+    .reason-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .reason-copy h2 {
+      margin: 0.25rem 0 0.65rem;
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+      letter-spacing: 0;
+    }
+
+    .reason-copy p {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .reason-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .reason-steps article {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      background: rgba(2, 2, 4, 0.42);
+      border-radius: 8px;
+      padding: 0.9rem;
+      min-width: 0;
+    }
+
+    .reason-steps span {
+      display: block;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .reason-steps strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .reason-steps p {
+      color: var(--text-2);
+      font-size: 0.8rem;
+      line-height: 1.5;
       margin: 0;
     }
 
@@ -654,6 +738,7 @@ const signalRoutes = [
 
     @media (max-width: 860px) {
       .alive-console,
+      .reason-panel,
       .ticket-row,
       .recent-row {
         grid-template-columns: 1fr;
@@ -661,6 +746,10 @@ const signalRoutes = [
 
       .heartbeat-top small {
         margin-left: 0;
+      }
+
+      .reason-steps {
+        grid-template-columns: 1fr;
       }
     }
 
