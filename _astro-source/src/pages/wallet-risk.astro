@@ -185,9 +185,16 @@ const readingSteps = [
 
   <style>
     .wallet-shell {
+      width: 100%;
       max-width: var(--max);
       margin: 0 auto;
       padding: 3.5rem 2rem 4rem;
+      overflow-x: hidden;
+    }
+
+    .wallet-shell,
+    .wallet-shell * {
+      box-sizing: border-box;
     }
 
     .wallet-hero {
@@ -206,6 +213,8 @@ const readingSteps = [
       border: 1px solid rgba(228, 228, 236, 0.12);
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.035);
+      max-width: 100%;
+      min-width: 0;
     }
 
     .wallet-hero-copy {
@@ -245,6 +254,7 @@ const readingSteps = [
       color: var(--text-2);
       line-height: 1.7;
       margin: 0;
+      overflow-wrap: anywhere;
     }
 
     .hero-actions {
@@ -263,8 +273,10 @@ const readingSteps = [
     .hero-actions a {
       border: 1px solid rgba(31, 160, 104, 0.35);
       border-radius: 999px;
+      max-width: 100%;
       padding: 0.62rem 0.85rem;
       background: rgba(31, 160, 104, 0.08);
+      overflow-wrap: anywhere;
     }
 
     .risk-card {
@@ -504,6 +516,7 @@ const readingSteps = [
 
     @media (max-width: 640px) {
       .wallet-shell {
+        max-width: 100vw;
         padding: 2.5rem 1rem 3rem;
       }
 
@@ -523,6 +536,11 @@ const readingSteps = [
       .row-line {
         grid-template-columns: 1fr;
         gap: 0.35rem;
+      }
+
+      .hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>

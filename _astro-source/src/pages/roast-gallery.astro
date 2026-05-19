@@ -1,631 +1,281 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const notes = [
+  {
+    title: 'Mixer-heavy routing',
+    signal: 'High attention',
+    pattern: 'Repeated mixer contact and delayed consolidation',
+    note: 'This row is trying very hard to look quiet. The route is the interesting part, not the amount.',
+    read: 'Repeated mixer contact can make a wallet worth a second look, especially when the timing and later consolidation look coordinated.',
+  },
+  {
+    title: 'Fast bridge movement',
+    signal: 'High attention',
+    pattern: 'Bridge flow followed by quick movement through other contracts',
+    note: 'The funds did not sit still long enough to get comfortable. Bridge, hop, move again. That tempo is the signal.',
+    read: 'Fast movement after bridge activity can matter when it appears with other routing signals. The important part is the sequence.',
+  },
+  {
+    title: 'Repeated timing',
+    signal: 'Medium attention',
+    pattern: 'Similar amounts, similar spacing, similar destination behavior',
+    note: 'Once is a transaction. Repeated spacing starts to look like a rhythm.',
+    read: 'Repeated timing becomes useful when it lines up with repeated amounts, related addresses, or shared consolidation points.',
+  },
+  {
+    title: 'False positive watch',
+    signal: 'Always visible',
+    pattern: 'A rule fires, but the surrounding context may explain it',
+    note: 'A flag is not a verdict. Sometimes it is just the system asking for another look.',
+    read: 'False positives matter because noise burns reviewer time. A good system shows why it paused and what would make the row less concerning.',
+  },
+];
 ---
-<BaseLayout title="Roast Gallery — Where Suspicious Wallets Get What They Deserve" description="The AML Roaster Engine's best work — a gallery of real suspicious wallets flagged by 28 detection rules, with professional analysis AND sarcastic roasts.">
-
-<!-- NAV -->
-    
-
-  <!-- HERO -->
-  <div class="roast-hero">
-    <h1>The Roast Gallery</h1>
-    <div class="subtitle">Where suspicious wallets get what they deserve — analysis AND attitude.</div>
-    <p class="description">The AML Engine scans Ethereum for suspicious patterns. Then it roasts what it finds. Real data. Real detections. Real attitude.</p>
-  </div>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stats-container">
-      <div class="stat-item">
-        <div class="stat-number">190</div>
-        <div class="stat-label">Wallets Scanned</div>
+<BaseLayout title="Roast Gallery - Wallet Risk Notes" description="A field-note gallery showing how wallet-risk patterns can be explained with rules, scores, and a plain-language voice layer.">
+  <main class="roast-shell">
+    <section class="roast-hero">
+      <span>Wallet risk notes</span>
+      <h1>The Roast Gallery</h1>
+      <p>Some transaction patterns are hard to read cold. A score helps. A rule list helps. But the useful layer is usually the sentence that explains why the row made the system pause.</p>
+      <div class="hero-actions">
+        <a href="/wallet-risk/">Open Wallet Risk Lab</a>
+        <a href="/blog/roast-gallery/">Read the field note</a>
+        <a href="/reports/">Open numbers</a>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">179</div>
-        <div class="stat-label">CRITICAL Risk</div>
+    </section>
+
+    <section class="stats-strip" aria-label="Roast gallery summary">
+      <article>
+        <strong>190</strong>
+        <span>sample rows reviewed</span>
+      </article>
+      <article>
+        <strong>28</strong>
+        <span>mapped abilities</span>
+      </article>
+      <article>
+        <strong>23</strong>
+        <span>direct functions</span>
+      </article>
+      <article>
+        <strong>4</strong>
+        <span>pattern families</span>
+      </article>
+    </section>
+
+    <section class="note-grid">
+      {notes.map((item) => (
+        <article class="note-card">
+          <div class="note-head">
+            <span>{item.signal}</span>
+            <h2>{item.title}</h2>
+            <p>{item.pattern}</p>
+          </div>
+          <blockquote>{item.note}</blockquote>
+          <div class="read-box">
+            <span>What the engine is reading</span>
+            <p>{item.read}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="limit-panel">
+      <div>
+        <span>Boundary</span>
+        <h2>A note is not a verdict.</h2>
+        <p>A score is a sorting tool. A rule hit is a reason to inspect context. A sample row is not proof of wrongdoing, and this page is not legal advice or filing software.</p>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">28</div>
-        <div class="stat-label">Detection Rules</div>
+      <div>
+        <span>Cleaner route</span>
+        <h2>Start with the lab.</h2>
+        <p>The Wallet Risk Lab is the safer front door for this idea. It shows the rules, score, sample row, limits, and voice layer in one place.</p>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">$373M+</div>
-        <div class="stat-label">Flagged</div>
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
-  <!-- FEATURED ROASTS -->
-  <div class="roasts-section">
-    <h2 class="section-title">Featured Roasts</h2>
-
-    <div class="roasts-grid">
-
-      <!-- ROAST 1: LAZARUS GROUP -->
-      <div class="roast-card">
-        <div class="roast-card-header">
-          <h3 class="roast-title">Lazarus Group — North Korea State-Sponsored</h3>
-          <div class="roast-meta">
-            <span class="risk-badge risk-critical">🔴 CRITICAL</span>
-            <span class="roast-amount">$725M+ stolen</span>
-          </div>
-          <div class="rules-container">
-            <span class="rule-pill">mixer_usage</span>
-            <span class="rule-pill">rapid_movement</span>
-            <span class="rule-pill">foreign_country</span>
-          </div>
-        </div>
-        <div class="roast-card-body">
-          <div class="roast-output">
-            <p class="roast-text">Nice try rotating through 15 mixer contracts in 4 hours. The blockchain remembers even if your government pretends it doesn't.</p>
-          </div>
-          <div class="professional-analysis">
-            <div class="analysis-label">ANALYSIS</div>
-            <p>State-sponsored thefts from Ronin Bridge ($625M) and Horizon Bridge ($100M). Signature pattern: rapid chained mixers, high-frequency consolidation, geolocation outside US jurisdiction. Multiple rule hits across liquidity patterns and AML indicators.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ROAST 2: TORNADO CASH POWER USERS -->
-      <div class="roast-card">
-        <div class="roast-card-header">
-          <h3 class="roast-title">Tornado Cash Power Users</h3>
-          <div class="roast-meta">
-            <span class="risk-badge risk-critical">🔴 CRITICAL</span>
-            <span class="roast-amount">50+ usage instances</span>
-          </div>
-          <div class="rules-container">
-            <span class="rule-pill">mixer_usage</span>
-            <span class="rule-pill">structuring</span>
-            <span class="rule-pill">high_frequency</span>
-          </div>
-        </div>
-        <div class="roast-card-body">
-          <div class="roast-output">
-            <p class="roast-text">Using Tornado Cash once is privacy. Using it 50 times in a week is a confession.</p>
-          </div>
-          <div class="professional-analysis">
-            <div class="analysis-label">ANALYSIS</div>
-            <p>Pattern: systematic obfuscation through repeated mixing contracts. Each address shows high-frequency deposits to Tornado, followed by delayed consolidation. The timing signature alone triggers multiple detection rules—structuring detection flags the transaction sizes and intervals.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ROAST 3: RONIN BRIDGE REPEATER -->
-      <div class="roast-card">
-        <div class="roast-card-header">
-          <h3 class="roast-title">Ronin Exploit — The Repeat Offender</h3>
-          <div class="roast-meta">
-            <span class="risk-badge risk-critical">🔴 CRITICAL</span>
-            <span class="roast-amount">$625M exploit funds</span>
-          </div>
-          <div class="rules-container">
-            <span class="rule-pill">bridge_exploit</span>
-            <span class="rule-pill">consolidation</span>
-            <span class="rule-pill">velocity_spike</span>
-          </div>
-        </div>
-        <div class="roast-card-body">
-          <div class="roast-output">
-            <p class="roast-text">193 flags across our system. At this point, the engine flags you out of muscle memory.</p>
-          </div>
-          <div class="professional-analysis">
-            <div class="analysis-label">ANALYSIS</div>
-            <p>Address 0x098b71c... flagged 193 times across independent runs. Root cause: direct receipt of exploit proceeds, followed by systematic movement through second-layer protocols. Each consolidation attempt triggers multiple rule sets: high-velocity transfers, suspicious contract interaction patterns, and geolocation anomalies.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ROAST 4: WORMHOLE EXPLOIT -->
-      <div class="roast-card">
-        <div class="roast-card-header">
-          <h3 class="roast-title">Wormhole Bridge Exploit</h3>
-          <div class="roast-meta">
-            <span class="risk-badge risk-critical">🔴 CRITICAL</span>
-            <span class="roast-amount">$320M extracted</span>
-          </div>
-          <div class="rules-container">
-            <span class="rule-pill">bridge_exploit</span>
-            <span class="rule-pill">contract_vulnerability</span>
-            <span class="rule-pill">unusual_flow</span>
-          </div>
-        </div>
-        <div class="roast-card-body">
-          <div class="roast-output">
-            <p class="roast-text">You found a smart contract vulnerability. Congratulations. Now you're famous—in every compliance database on Earth.</p>
-          </div>
-          <div class="professional-analysis">
-            <div class="analysis-label">ANALYSIS</div>
-            <p>Smart contract exploitation pattern. Characteristic signature: abnormal contract function calls, followed by immediate high-volume transfers to exchanges. The exploit's directional flow (source → intermediate mixing → exchange) matches known bridge vulnerability patterns. Multiple rule triggers on contract interaction anomalies.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ROAST 5: HIGH-VELOCITY LAYERING -->
-      <div class="roast-card">
-        <div class="roast-card-header">
-          <h3 class="roast-title">The $82B Problem</h3>
-          <div class="roast-meta">
-            <span class="risk-badge risk-critical">🔴 CRITICAL</span>
-            <span class="roast-amount">Global crypto AML gap</span>
-          </div>
-          <div class="rules-container">
-            <span class="rule-pill">layering_pattern</span>
-            <span class="rule-pill">velocity_threshold</span>
-            <span class="rule-pill">exchange_move</span>
-          </div>
-        </div>
-        <div class="roast-card-body">
-          <div class="roast-output">
-            <p class="roast-text">$82 billion a year in crypto gets flagged for AML. This is the scale problem nobody talks about publicly.</p>
-          </div>
-          <div class="professional-analysis">
-            <div class="analysis-label">ANALYSIS</div>
-            <p>Systemic pattern across thousands of wallets. Most crypto laundering follows a three-step signature: deposit from crime source → rapid layering through mixers and bridges → final consolidation at exchange for fiat. The AML engine detects each step independently, creating a statistical profile of likelihood rather than certainty.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ROAST 6: SYSTEMATIC LAYERING -->
-      <div class="roast-card">
-        <div class="roast-card-header">
-          <h3 class="roast-title">Systematic Layering Pattern</h3>
-          <div class="roast-meta">
-            <span class="risk-badge risk-high">🟠 HIGH</span>
-            <span class="roast-amount">$47M cumulative</span>
-          </div>
-          <div class="rules-container">
-            <span class="rule-pill">structuring</span>
-            <span class="rule-pill">evasion_chain</span>
-            <span class="rule-pill">timing_pattern</span>
-          </div>
-        </div>
-        <div class="roast-card-body">
-          <div class="roast-output">
-            <p class="roast-text">You thought spreading it across 47 wallets with 6-hour delays would fool a system that analyzes billions of wallets? Creative. Not effective.</p>
-          </div>
-          <div class="professional-analysis">
-            <div class="analysis-label">ANALYSIS</div>
-            <p>Structuring detected through cross-wallet correlation. Pattern: identical transfer amounts ($50k), identical timing intervals (6 hours), and convergent consolidation points. The engine correlates these transactions across the entire address cluster, revealing the underlying scheme despite intentional obfuscation attempts.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- HOW IT WORKS -->
-  <div class="how-it-works">
-    <h2 class="section-title">How The Engine Works</h2>
-    <div class="flow-grid">
-      <div class="flow-step">
-        <div class="step-number">1</div>
-        <div class="step-title">Scan</div>
-        <div class="step-desc">Real-time Ethereum wallet monitoring. Every transaction analyzed against 28 rules covering mixing behavior, consolidation patterns, bridge exploits, and AML red flags.</div>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">2</div>
-        <div class="step-title">Analyze</div>
-        <div class="step-desc">Professional compliance-grade risk scoring. Risk level, rule matches, and transaction velocity analysis produce a comprehensive AML report.</div>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">3</div>
-        <div class="step-title">Roast</div>
-        <div class="step-desc">The personality layer. Real analysis + attitude. Every detection gets a comment that acknowledges what actually happened—because compliance doesn't have to be boring.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="gallery-cta">
-    <h2 class="cta-heading">Try The Engine</h2>
-    <p class="cta-subtext">Want to see what the AML Roaster finds? Test-drive the live engine on Ethereum wallets, or explore the detection rules in the open-source repository.</p>
-    <div class="cta-buttons">
-      <a href="https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/" target="_blank" rel="noopener noreferrer" class="cta-button cta-demo">
-        ▶ Run Live Demo
-      </a>
-      <a href="https://github.com/hash02/aml-detection-engine" target="_blank" rel="noopener noreferrer" class="cta-button cta-github">
-        ⬙ GitHub Repo
-      </a>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-
-<style>
-
-    /* ── ROAST GALLERY SPECIFIC STYLES ── */
-
-    /* Hero override */
-    .roast-hero {
+  <style>
+    .roast-shell {
+      width: 100%;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 3rem 2rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+      padding: 3.5rem 2rem 4rem;
+      overflow-x: hidden;
     }
+
+    .roast-shell,
+    .roast-shell * {
+      box-sizing: border-box;
+    }
+
+    .roast-hero,
+    .stats-strip,
+    .note-card,
+    .limit-panel {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .roast-hero {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    .roast-hero span,
+    .note-head span,
+    .read-box span,
+    .limit-panel span {
+      display: block;
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+
     .roast-hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      font-weight: 800;
-      letter-spacing: -0.045em;
-      line-height: 1.1;
-      margin-bottom: 0.8rem;
-      color: var(--text);
+      font-size: clamp(2.3rem, 6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+      margin: 0 0 1rem;
     }
-    .roast-hero .subtitle {
-      font-size: 1rem;
+
+    .roast-hero p,
+    .note-head p,
+    .read-box p,
+    .limit-panel p {
       color: var(--text-2);
       line-height: 1.7;
-      max-width: 620px;
-      margin: 0 auto 2rem;
-    }
-    .roast-hero .description {
-      font-size: 0.9rem;
-      color: var(--text-3);
-      line-height: 1.65;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    /* Stats bar */
-    .stats-bar {
-      background: var(--bg2);
-      border-top: 1px solid var(--b1);
-      border-bottom: 1px solid var(--b1);
-      padding: 2rem;
-      margin: 2.5rem 0;
-    }
-    .stats-container {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 2rem;
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-number {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
-      text-shadow: 0 0 35px rgba(31,160,104,0.25);
-    }
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* Featured roasts section */
-    .roasts-section {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 3rem 2rem;
-    }
-    .roasts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    /* Roast card */
-    .roast-card {
-      background: var(--bg2);
-      border: 1px solid var(--b1);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: all 0.25s;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-card);
-    }
-    .roast-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(31,160,104,0.25), transparent);
-    }
-    .roast-card:hover {
-      border-color: var(--b3);
-      box-shadow: var(--shadow-card-hover);
-      transform: translateY(-4px);
-    }
-    .roast-card:hover .roast-title {
-      color: var(--text);
-      text-shadow: 0 0 36px rgba(31,160,104,0.18);
-    }
-
-    /* Card header */
-    .roast-card-header {
-      padding: 1.75rem 1.75rem 1.25rem;
-      border-bottom: 1px solid var(--b1);
-    }
-    .roast-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.35;
-      color: var(--text-2);
-      margin-bottom: 0.8rem;
-      transition: all 0.25s;
-    }
-    .roast-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.5rem;
-    }
-    .risk-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.35rem 0.75rem;
-      border-radius: 4px;
-      border: 1px solid;
-    }
-    .risk-critical {
-      background: rgba(31,160,104,0.12);
-      border-color: rgba(31,160,104,0.25);
-      color: var(--accent);
-    }
-    .risk-high {
-      background: rgba(31,160,104,0.08);
-      border-color: rgba(31,160,104,0.20);
-      color: var(--accent);
-    }
-    .roast-amount {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-3);
-      letter-spacing: -0.01em;
-    }
-
-    /* Rules pills */
-    .rules-container {
-      margin-top: 0.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .rule-pill {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      background: rgba(31,160,104,0.12);
-      color: var(--accent);
-      border: 1px solid rgba(31,160,104,0.22);
-    }
-
-    /* Card body */
-    .roast-card-body {
-      padding: 1.75rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    /* Roast output */
-    .roast-output {
-      background: #020204;
-      border: 1px solid rgba(31,160,104,0.15);
-      border-radius: 8px;
-      padding: 1.25rem;
-      position: relative;
-    }
-    .roast-output::before {
-      content: '🔥 ROAST';
-      position: absolute;
-      top: -9px;
-      left: 16px;
-      background: var(--bg2);
-      padding: 0 8px;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-    }
-    .roast-text {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.9rem;
-      font-style: italic;
-      line-height: 1.72;
-      color: #ff9999;
       margin: 0;
+      overflow-wrap: anywhere;
     }
 
-    /* Professional analysis */
-    .professional-analysis {
-      font-size: 0.85rem;
-      line-height: 1.65;
-      color: var(--text-2);
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--b1);
-    }
-    .analysis-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.5rem;
+    .roast-hero p {
+      max-width: 780px;
     }
 
-    /* How it works section */
-    .how-it-works {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      border-top: 1px solid var(--b1);
-    }
-    .section-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 2rem;
-      color: var(--text);
-      text-shadow: 0 0 50px rgba(31,160,104,0.12);
-    }
-    .flow-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-    }
-    .flow-step {
+    .hero-actions {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .step-number {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      text-shadow: 0 0 35px rgba(31,160,104,0.25);
-    }
-    .step-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
-      color: var(--text);
-    }
-    .step-desc {
-      font-size: 0.85rem;
-      color: var(--text-2);
-      line-height: 1.65;
-    }
-
-    /* CTA section */
-    .gallery-cta {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      border-top: 1px solid var(--b1);
-      text-align: center;
-    }
-    .cta-heading {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-    .cta-subtext {
-      font-size: 0.95rem;
-      color: var(--text-2);
-      margin-bottom: 2rem;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
       flex-wrap: wrap;
-    }
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.75rem 1.8rem;
-      border-radius: 6px;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-    }
-    .cta-demo {
-      background: var(--accent);
-      color: #fff;
-    }
-    .cta-demo:hover {
-      opacity: 0.92;
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(31,160,104,0.25);
-    }
-    .cta-github {
-      background: transparent;
-      color: var(--text-2);
-      border: 1px solid var(--b2);
-    }
-    .cta-github:hover {
-      border-color: var(--accent-border);
-      color: var(--text);
+      gap: 0.7rem;
+      margin-top: 1.35rem;
     }
 
-    /* Responsive */
-    @media (max-width: 640px) {
-      .roast-hero {
-        padding: 2.5rem 1.25rem;
+    .hero-actions a {
+      border: 1px solid rgba(31, 160, 104, 0.35);
+      border-radius: 999px;
+      color: var(--text);
+      max-width: 100%;
+      padding: 0.62rem 0.85rem;
+      text-decoration: none;
+      background: rgba(31, 160, 104, 0.08);
+      overflow-wrap: anywhere;
+    }
+
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .stats-strip article {
+      border: 1px solid rgba(228, 228, 236, 0.1);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.35);
+      padding: 0.9rem;
+      min-width: 0;
+    }
+
+    .stats-strip strong {
+      display: block;
+      color: var(--text);
+      font-size: clamp(1.6rem, 4vw, 2.7rem);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stats-strip span {
+      color: var(--text-3);
+      line-height: 1.45;
+      font-size: 0.8rem;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .note-card {
+      padding: 1rem;
+      min-width: 0;
+    }
+
+    .note-head h2,
+    .limit-panel h2 {
+      margin: 0 0 0.55rem;
+      letter-spacing: 0;
+    }
+
+    blockquote {
+      border-left: 3px solid #1fa068;
+      margin: 1rem 0;
+      padding: 0.2rem 0 0.2rem 1rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1.02rem;
+    }
+
+    .read-box {
+      border: 1px solid rgba(31, 160, 104, 0.2);
+      border-radius: 8px;
+      background: rgba(31, 160, 104, 0.055);
+      padding: 0.85rem;
+    }
+
+    .limit-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .limit-panel > div {
+      border: 1px solid rgba(228, 228, 236, 0.1);
+      border-radius: 8px;
+      background: rgba(2, 2, 4, 0.32);
+      padding: 1rem;
+    }
+
+    @media (max-width: 760px) {
+      .roast-shell {
+        max-width: 100vw;
+        padding: 2.5rem 1rem 3rem;
       }
+
+      .stats-strip,
+      .limit-panel {
+        grid-template-columns: 1fr;
+      }
+
       .roast-hero h1 {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
+        line-height: 1.08;
+        overflow-wrap: anywhere;
       }
-      .stats-bar {
-        padding: 1.5rem 1.25rem;
-      }
-      .stats-container {
-        gap: 1.5rem;
-      }
-      .roasts-section {
-        padding: 2rem 1.25rem;
-      }
-      .roasts-grid {
-        grid-template-columns: 1fr;
-      }
-      .how-it-works,
-      .gallery-cta {
-        padding: 2.5rem 1.25rem;
-      }
-      .flow-grid {
-        grid-template-columns: 1fr;
-      }
-      .cta-buttons {
+
+      .hero-actions {
+        align-items: flex-start;
         flex-direction: column;
       }
-      .cta-button {
-        width: 100%;
-        justify-content: center;
-      }
     }
-  
-</style>
-
+  </style>
 </BaseLayout>

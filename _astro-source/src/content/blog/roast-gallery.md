@@ -1,6 +1,6 @@
 ---
-title: "Roast Gallery — Where Suspicious Wallets Get What They Deserve | Bionic Banker"
-description: "The AML Roaster Engine's best work — a gallery of real suspicious wallets flagged by 28 detection rules, with professional analysis AND sarcastic roasts."
+title: "Roast Gallery - Wallet Risk Notes | Bionic Banker"
+description: "A field-note gallery showing how wallet-risk patterns can be explained with rules, scores, and a plain-language voice layer."
 date: "2026-03-14"
 tags: ["Tech"]
 readTime: "5 min"
@@ -11,113 +11,102 @@ slug: "roast-gallery"
 
 ## The Roast Gallery
 
-Where suspicious wallets get what they deserve—analysis AND attitude.
+Some transaction patterns are hard to read cold. A score helps. A rule list helps. But the most useful layer is usually the sentence that explains why the row made the system pause.
 
-The AML Engine scans Ethereum for suspicious patterns. Then it roasts what it finds. Real data. Real detections. Real attitude.
+That is what this gallery is for. Not verdicts. Not accusations. Just sample wallet-risk notes, written in plain language, with a little bite.
 
-### By The Numbers
+## By The Numbers
 
-- **190** Wallets Scanned
-- **179** CRITICAL Risk
-- **28** Detection Rules
-- **$373M+** Flagged
+- **190** sample rows reviewed
+- **28** mapped detection abilities
+- **23** direct detection functions
+- **4** pattern families shown below
 
-## Featured Roasts
+## Featured Notes
 
-### Lazarus Group — North Korea State-Sponsored
+### Mixer-Heavy Routing
 
-**Risk Level:** 🔴 CRITICAL
-**Amount:** $725M+ stolen
+**Signal:** high attention
+**Pattern:** repeated mixer contact and delayed consolidation
 
-**The Roast:**
-*"Nice try rotating through 15 mixer contracts in 4 hours. The blockchain remembers even if your government pretends it doesn't."*
+**Plain note:**
+*"This row is trying very hard to look quiet. The route is the interesting part, not the amount."*
 
-**Analysis:**
-State-sponsored thefts from Ronin Bridge ($625M) and Horizon Bridge ($100M). Signature pattern: rapid chained mixers, high-frequency consolidation, geolocation outside US jurisdiction. Multiple rule hits across liquidity patterns and AML indicators.
-
----
-
-### Tornado Cash Power Users
-
-**Risk Level:** 🔴 CRITICAL
-**Amount:** 50+ usage instances
-
-**The Roast:**
-*"Using Tornado Cash once is privacy. Using it 50 times in a week is a confession."*
-
-**Analysis:**
-Pattern: systematic obfuscation through repeated mixing contracts. Each address shows high-frequency deposits to Tornado, followed by delayed consolidation. The timing signature alone triggers multiple detection rules—structuring detection flags the transaction sizes and intervals.
+**What the engine is reading:**
+Repeated mixer contact can make a wallet worth a second look, especially when the timing and later consolidation look coordinated. That still does not prove intent. It only tells the reviewer where to slow down.
 
 ---
 
-### Ronin Exploit — The Repeat Offender
+### Fast Bridge Movement
 
-**Risk Level:** 🔴 CRITICAL
-**Amount:** $625M exploit funds
+**Signal:** high attention
+**Pattern:** bridge flow followed by quick movement through other contracts
 
-**The Roast:**
-*"193 flags across our system. At this point, the engine flags you out of muscle memory."*
+**Plain note:**
+*"The funds did not sit still long enough to get comfortable. Bridge, hop, move again. That tempo is the signal."*
 
-**Analysis:**
-Address flagged 193 times across independent runs. Root cause: direct receipt of exploit proceeds, followed by systematic movement through second-layer protocols. Each consolidation attempt triggers multiple rule sets: high-velocity transfers, suspicious contract interaction patterns, and geolocation anomalies.
-
----
-
-### Wormhole Bridge Exploit
-
-**Risk Level:** 🔴 CRITICAL
-**Amount:** $320M extracted
-
-**The Roast:**
-*"You found a smart contract vulnerability. Congratulations. Now you're famous—in every compliance database on Earth."*
-
-**Analysis:**
-Smart contract exploitation pattern. Characteristic signature: abnormal contract function calls, followed by immediate high-volume transfers to exchanges. The exploit's directional flow (source → intermediate mixing → exchange) matches known bridge vulnerability patterns. Multiple rule triggers on contract interaction anomalies.
+**What the engine is reading:**
+Fast movement after bridge activity can matter when it appears with other routing signals. The important part is the sequence: source, bridge, intermediate step, later destination.
 
 ---
 
-### The $82B Problem
+### Repeated Timing
 
-**Risk Level:** 🔴 CRITICAL
-**Amount:** Global crypto AML gap
+**Signal:** medium attention
+**Pattern:** similar amounts, similar spacing, similar destination behavior
 
-**The Roast:**
-*"$82 billion a year in crypto gets flagged for AML. This is the scale problem nobody talks about publicly."*
+**Plain note:**
+*"Once is a transaction. Repeated spacing starts to look like a rhythm."*
 
-**Analysis:**
-Systemic pattern across thousands of wallets. Most crypto laundering follows a three-step signature: deposit from crime source → rapid layering through mixers and bridges → final consolidation at exchange for fiat. The AML engine detects each step independently, creating a statistical profile of likelihood rather than certainty.
+**What the engine is reading:**
+Repeated timing is not suspicious by itself. It becomes useful when it lines up with repeated amounts, related addresses, or shared consolidation points.
 
 ---
 
-### Systematic Layering Pattern
+### Consolidation After Noise
 
-**Risk Level:** 🟠 HIGH
-**Amount:** $47M cumulative
+**Signal:** high attention
+**Pattern:** many small routes becoming one larger flow
 
-**The Roast:**
-*"You thought spreading it across 47 wallets with 6-hour delays would fool a system that analyzes billions of wallets? Creative. Not effective."*
+**Plain note:**
+*"The middle of the route is noisy. The ending is cleaner. That is why the ending matters."*
 
-**Analysis:**
-Structuring detected through cross-wallet correlation. Pattern: identical transfer amounts ($50k), identical timing intervals (6 hours), and convergent consolidation points. The engine correlates these transactions across the entire address cluster, revealing the underlying scheme despite intentional obfuscation attempts.
+**What the engine is reading:**
+Layered activity can be easier to understand from the end of the path. If many small routes converge into one destination, the engine treats that destination as a place to inspect.
+
+---
+
+### False Positive Watch
+
+**Signal:** always visible
+**Pattern:** a rule fires, but the surrounding context may explain it
+
+**Plain note:**
+*"A flag is not a verdict. Sometimes it is just the system asking for another look."*
+
+**What the engine is reading:**
+False positives matter in wallet-risk work because noise burns reviewer time. A good system should show why it paused and what would make the row less concerning.
 
 ## How The Engine Works
 
-### 1. Scan
+### 1. Read
 
-Real-time Ethereum wallet monitoring. Every transaction analyzed against 28 rules covering mixing behavior, consolidation patterns, bridge exploits, and AML red flags.
+The engine reads public transaction patterns and looks for signals such as routing behavior, mixer contact, repeated timing, bridge movement, and consolidation.
 
-### 2. Analyze
+### 2. Explain
 
-Professional compliance-grade risk scoring. Risk level, rule matches, and transaction velocity analysis produce a comprehensive AML report.
+The rule list says what fired. The score sorts what to inspect first. The plain note turns the technical row into something a human can read.
 
-### 3. Roast
+### 3. Bound The Claim
 
-The personality layer. Real analysis + attitude. Every detection gets a comment that acknowledges what actually happened—because compliance doesn't have to be boring.
+This is the important part. A score is not a legal finding. A rule hit is not a filing decision. A sample row is not proof of wrongdoing. It is a reason to inspect context.
 
-## Try The Engine
+## Start With The Safer Page
 
-Want to see what the AML Roaster finds? The live demo is running now on Ethereum wallets. Upload a transaction CSV or load the sample Wormhole/Ronin/Lazarus dataset. Watch 28 rules fire in real time. See every flagged wallet, every rule that triggered, every score.
+The cleaner front door for this idea is now the Wallet Risk Lab:
 
-No install. No setup.
+[Open Wallet Risk Lab](/wallet-risk/)
 
-The full codebase is open. Every rule, every version, every case study documented. If you're building in this space, it's yours to learn from.
+If you want the numbers and source trail, start with the field notes:
+
+[Open Field Notes](/reports/)
