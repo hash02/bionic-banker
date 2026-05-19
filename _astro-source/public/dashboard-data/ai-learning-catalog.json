@@ -1,63 +1,63 @@
 {
   "generated_at": "2026-05-19T01:05:00Z",
-  "status": "public_safe_learning_catalog_v1",
-  "purpose": "Public learning map for Bionic Banker AI, wallet-risk, agent, and source-path concepts.",
-  "privacy_boundary": "Definitions and public learning notes only. No private paths, keys, IPs, client data, wallet secrets, or internal infrastructure details.",
+  "status": "learning_catalog_v2",
+  "purpose": "A plain map for AI, wallet-risk, agents, and system words used around Bionic Banker.",
+  "privacy_boundary": "Plain definitions and learning notes only.",
   "concepts": [
     {
       "id": "ai",
       "term": "AI",
       "plain_definition": "Software that performs tasks that normally require reasoning, pattern recognition, language understanding, prediction, or decision support.",
-      "why_it_matters": "AI is the umbrella. The useful question is not whether something is AI. The useful question is what task it improves, what evidence it uses, and where a human still approves the final action.",
+      "why_it_matters": "AI is the umbrella. The useful question is what task it helps with, what it is allowed to see, and where a human still makes the call.",
       "used_in": ["Bionic Banker", "Agent Framework Lab", "Agent Chess"]
     },
     {
       "id": "llm",
       "term": "LLM",
       "plain_definition": "A language model trained to read and generate text. It can summarize, classify, draft, reason over context, and call tools when connected to a workflow.",
-      "why_it_matters": "LLMs are useful when they are grounded in files, tests, citations, and approval gates. Without that, they can sound confident while being wrong.",
+      "why_it_matters": "LLMs are useful when they have context, limits, and checks. Without that, they can sound confident while still being wrong.",
       "used_in": ["Agent Framework Lab", "Public learning notes"]
     },
     {
       "id": "vlm",
       "term": "VLM",
       "plain_definition": "A vision-language model that can reason over images and text together.",
-      "why_it_matters": "VLMs are useful for screenshots, chart review, UI QA, document inspection, and visual review workflows.",
-      "used_in": ["Visual review", "Portfolio source review"]
+      "why_it_matters": "VLMs are useful when the question is partly visual: a chart, a screenshot, a document, or a screen that needs another pair of eyes.",
+      "used_in": ["Visual checks", "UI notes"]
     },
     {
       "id": "agent",
       "term": "AI agent",
       "plain_definition": "An AI workflow that can observe state, choose a next step, use tools, write outputs, and wait for human approval when the action matters.",
-      "why_it_matters": "The agent is not just the model. The agent is the loop around the model: memory, tools, rules, tests, logs, and gates.",
+      "why_it_matters": "An agent is the loop around the model: memory, tools, rules, logs, checks, and a human gate when the action matters.",
       "used_in": ["Agent Chess", "Agent Heartbeat Lab", "Agent Framework Lab"]
     },
     {
       "id": "tool-calling",
       "term": "Tool calling",
       "plain_definition": "A pattern where a model asks to use a defined tool, such as search, a database query, a file read, or a calculation, instead of guessing.",
-      "why_it_matters": "Tool calling turns a model from a text generator into a controlled worker. The boundary is the tool contract.",
+      "why_it_matters": "Tool calling is how a model stops guessing and asks a defined helper to do one clear job.",
       "used_in": ["Agent Framework Lab", "Agent Rules Starter Kit"]
     },
     {
       "id": "langchain",
       "term": "LangChain",
       "plain_definition": "A developer framework for connecting language models to tools, prompts, memory, retrieval, and workflow steps.",
-      "why_it_matters": "LangChain is one way to structure AI apps. The value is not name-dropping it. The value is showing tool boundaries and testable behavior.",
+      "why_it_matters": "The name matters less than the shape: prompts, tools, memory, retrieval, and checks wired into one path.",
       "used_in": ["Agent Framework Lab"]
     },
     {
       "id": "langgraph",
       "term": "LangGraph",
-      "plain_definition": "A graph-based framework for building stateful agent workflows where steps can branch, loop, pause, and resume.",
-      "why_it_matters": "It maps well to real systems because real work is not always one straight chain. There are retries, approvals, validators, and fallbacks.",
+      "plain_definition": "A graph-based framework for building stateful agent workflows where steps can branch, loop, pause, and continue.",
+      "why_it_matters": "It maps well to real systems because real work is not always one straight chain. There are retries, approvals, review steps, and fallbacks.",
       "used_in": ["Agent Framework Lab", "Agent Chess framing"]
     },
     {
       "id": "rag",
       "term": "RAG",
       "plain_definition": "Retrieval augmented generation. The model retrieves relevant source material first, then writes an answer using that material.",
-      "why_it_matters": "RAG is how you reduce guessing. The question becomes: what did the model retrieve, can we cite it, and was the source trustworthy?",
+      "why_it_matters": "RAG reduces guessing by forcing the answer to start from retrieved material. The next question is whether that material was the right one.",
       "used_in": ["visible source notes", "Source-linked explanations", "Question pages"]
     },
     {
@@ -70,43 +70,43 @@
     {
       "id": "mcp",
       "term": "MCP",
-      "plain_definition": "Model Context Protocol. A standard pattern for letting AI systems connect to tools and data sources through defined interfaces.",
-      "why_it_matters": "MCP matters because agents need clean boundaries. A tool should say what it can do, what inputs it accepts, and what output it returns.",
+      "plain_definition": "Model Context Protocol. A common way for AI systems to connect to tools and data through clean interfaces.",
+      "why_it_matters": "It matters because agents need boundaries. A tool should say what it can accept, what it can do, and what it returns.",
       "used_in": ["Agent Framework Lab", "Tool-boundary design"]
     },
     {
       "id": "rbac",
       "term": "RBAC",
       "plain_definition": "Role-based access control. A way to decide who or what is allowed to perform each action.",
-      "why_it_matters": "RBAC is essential for regulated AI because not every agent should be allowed to do every action.",
+      "why_it_matters": "RBAC keeps powerful workflows boring in the good way: each person or agent only gets the actions it actually needs.",
       "used_in": ["Agent Framework Lab", "Agent Rules Starter Kit"]
     },
     {
       "id": "audit-log",
       "term": "Audit log",
-      "plain_definition": "A record of what happened, when it happened, what tool or person did it, and what evidence supported it.",
-      "why_it_matters": "If a system cannot explain its own actions later, it is not ready for serious finance, healthcare, or compliance work.",
+      "plain_definition": "A record of what happened, when it happened, which tool or person did it, and what note supported the decision.",
+      "why_it_matters": "If a system cannot explain its own actions later, it is not ready for serious work.",
       "used_in": ["Wallet Risk Lab", "Agent Chess", "Agent Rules Starter Kit"]
     },
     {
       "id": "observability",
       "term": "Observability",
       "plain_definition": "The ability to see whether a system is alive, what it is doing, what failed, and what changed over time.",
-      "why_it_matters": "Invisible automation is risky. Observable automation can be trusted, debugged, and improved.",
+      "why_it_matters": "Invisible automation is hard to trust. Visible automation can be checked, fixed, and improved.",
       "used_in": ["Agent Heartbeat Lab", "Agent Framework Lab"]
     },
     {
       "id": "heartbeat",
       "term": "Heartbeat",
       "plain_definition": "A small status signal that shows a system woke up, ran, and wrote its latest state.",
-      "why_it_matters": "A heartbeat does not prove a system is perfect. It proves the loop is still alive and observable.",
+      "why_it_matters": "A heartbeat does not mean everything is perfect. It means the loop is still waking up and leaving a trace.",
       "used_in": ["Agent Heartbeat Lab"]
     },
     {
       "id": "aml",
       "term": "AML",
       "plain_definition": "Anti-money laundering. The work of detecting, investigating, and preventing financial activity that may be tied to crime or sanctions risk.",
-      "why_it_matters": "AML is where finance, data, rules, and judgment meet. Good AML systems explain why a transaction looks risky.",
+      "why_it_matters": "AML is where finance, data, rules, and judgment meet. Good AML notes explain why a transaction looks risky without pretending the flag is a verdict.",
       "used_in": ["Wallet Risk Lab", "Wallet Risk Notes", "Wallet Risk Check"]
     },
     {
@@ -127,14 +127,14 @@
       "id": "kubernetes",
       "term": "Kubernetes",
       "plain_definition": "A system for running, scaling, and managing containers across machines.",
-      "why_it_matters": "Kubernetes is useful when a project needs deployment discipline, service health, scaling, and reproducible operations.",
+      "why_it_matters": "Kubernetes matters when one service becomes many services and health checks start to matter.",
       "used_in": ["Deployment learning"]
     },
     {
       "id": "docker",
       "term": "Docker",
       "plain_definition": "A way to package an app and its dependencies into a container that can run consistently across environments.",
-      "why_it_matters": "Docker makes projects easier to test, share, and deploy because the environment is part of the package.",
+      "why_it_matters": "Docker keeps the environment close to the app, so a project is easier to test and move.",
       "used_in": ["Deployment learning", "Agent services"]
     },
     {
@@ -170,12 +170,12 @@
     },
     {
       "id": "visible-source",
-      "title": "Top 5 rules for visible source",
+      "title": "Top 5 rules for visible work",
       "items": [
-        "Show the artifact, not the private workspace.",
-        "Use links, screenshots, tests, and notes as a source path.",
-        "State limitations in plain language.",
-        "Avoid private paths, secrets, client data, and unsupported claims.",
+        "Show the artifact, not every workbench detail.",
+        "Use links, screenshots, tests, and notes as the path.",
+        "Say what the page can and cannot show.",
+        "Leave out secrets, customer data, and loose claims.",
         "Make the next click obvious."
       ]
     }
@@ -183,16 +183,16 @@
   "stack_radar": [
     {
       "id": "interactive-source",
-      "layer": "Interactive source path",
-      "why_2026_teams_care": "People understand technical work faster when they can inspect a working path instead of only reading claims.",
+      "layer": "Interactive path",
+      "why_2026_teams_care": "People understand technical work faster when they can open a working path instead of only reading a claim.",
       "learn_here": "Walk the Lab Tour to move from a working page to the numbers, limits, and next question.",
-      "reader_question": "Can someone understand the path without reading the full project archive?",
+      "reader_question": "Can someone follow the path without reading the whole archive?",
       "linked_surface": "/proof-tour/"
     },
     {
       "id": "rag-quality",
       "layer": "RAG quality",
-      "why_2026_teams_care": "RAG is only useful when retrieval is traceable, cited, and evaluated against expected answers.",
+      "why_2026_teams_care": "RAG only helps when retrieval can be checked and the answer stays close to the material.",
       "learn_here": "Study RAG, embeddings, audit logs, and observability together instead of as separate words.",
       "reader_question": "How do AI answers cite sources instead of only sounding confident?",
       "linked_surface": "/gaps#production-rag"
@@ -200,7 +200,7 @@
     {
       "id": "evals-observability",
       "layer": "Evals and observability",
-      "why_2026_teams_care": "AI teams need to know what changed, what failed, and whether a model or agent got better or worse.",
+      "why_2026_teams_care": "AI teams need to see what changed, what failed, and whether a workflow got clearer or noisier.",
       "learn_here": "Use the Reports page to connect benchmark numbers, limitations, and system health.",
       "reader_question": "How do teams know an AI workflow improved instead of only changed?",
       "linked_surface": "/reports/"
@@ -216,7 +216,7 @@
     {
       "id": "deployment-reliability",
       "layer": "Deployment reliability",
-      "why_2026_teams_care": "A demo becomes stronger when it can be packaged, health-checked, monitored, and redeployed predictably.",
+      "why_2026_teams_care": "A demo gets stronger when it can be packaged, checked, watched, and redeployed without drama.",
       "learn_here": "Use Docker and Kubernetes as the path from local demo to reliable service behavior.",
       "reader_question": "What makes an AI demo repeatable, observable, and easier to trust?",
       "linked_surface": "/gaps#deployment-source-trail"
