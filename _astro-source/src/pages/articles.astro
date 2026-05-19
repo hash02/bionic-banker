@@ -80,6 +80,14 @@ const routeLabels: Record<string, string> = {
     </div>
   </section>
 
+  <section class="learn-bridge" aria-label="Learning route">
+    <div>
+      <p class="section-kicker">Need the rails first?</p>
+      <h2>Start with the plain notes, then come back to the archive.</h2>
+    </div>
+    <a href="/learn/">Open Learn</a>
+  </section>
+
   <div class="articles-wrap">
     <div class="archive-note">
       <p class="section-kicker">Full archive</p>
@@ -223,6 +231,48 @@ const routeLabels: Record<string, string> = {
       margin: 0 auto 1rem;
     }
 
+    .learn-bridge {
+      width: min(1180px, calc(100% - 32px));
+      margin: -0.75rem auto 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 8px;
+      background: rgba(31, 160, 104, 0.055);
+      padding: 1rem;
+    }
+
+    .learn-bridge h2 {
+      margin: 0;
+      color: var(--text-primary, #f7f7fb);
+      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      letter-spacing: 0;
+      line-height: 1.3;
+    }
+
+    .learn-bridge a {
+      min-height: 44px;
+      border: 1px solid rgba(228, 228, 236, 0.16);
+      border-radius: 999px;
+      color: #e4e4ec;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 0.9rem;
+      text-decoration: none;
+      white-space: nowrap;
+      background: rgba(2, 2, 4, 0.35);
+    }
+
+    .learn-bridge a:hover,
+    .learn-bridge a:focus-visible {
+      border-color: rgba(31, 160, 104, 0.55);
+      color: #f7f7fb;
+      outline: none;
+    }
+
     .filter-btn,
     .article-card,
     .featured-card {
@@ -256,6 +306,13 @@ const routeLabels: Record<string, string> = {
 
       .featured-card {
         min-height: 220px;
+      }
+
+      .learn-bridge {
+        width: min(100% - 24px, 1180px);
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: -0.5rem;
       }
 
       .archive-note {
