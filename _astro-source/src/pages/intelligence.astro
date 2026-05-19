@@ -45,7 +45,7 @@ const signalRoutes = [
   {
     eyebrow: 'Start',
     title: 'Read the latest pulse',
-    text: 'A small row from the system that says what moved, when it moved, and what it is not trying to prove.',
+    text: 'A small row that says what moved, when it moved, and where the line is.',
     href: '#recent-rows'
   },
   {
@@ -57,7 +57,7 @@ const signalRoutes = [
   {
     eyebrow: 'Follow',
     title: 'Open the route map',
-    text: 'If the live numbers feel too raw, the lab tour turns them into a slower walk.',
+    text: 'If the numbers feel too raw, the lab tour turns them into a slower walk.',
     href: '/proof-tour/'
   }
 ];
@@ -74,7 +74,7 @@ const signalRoutes = [
       <div class="console-copy">
         <span class="section-label">Right Now</span>
         <h2>What moved recently</h2>
-        <p>Market rows refresh from public sources when they can. Heartbeat rows show the last read, where it came from, and the limit around it.</p>
+        <p>Market rows refresh when the public source answers. Pulse rows show the last read, when it happened, and the limit around it.</p>
         <div class="console-actions">
           <a href="/proof-tour/" class="action-btn primary">Open Lab Tour</a>
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>
@@ -104,39 +104,39 @@ const signalRoutes = [
             <strong>{confidence}</strong>
           </div>
         </div>
-        <p class="snapshot-note">Research signal only. Not investment advice, not live trading performance, and not a recommendation.</p>
+        <p class="snapshot-note">For research only. Not investment advice, not trading performance, and not a recommendation.</p>
       </div>
     </section>
 
     <section class="market-strip" id="market-row" data-feeds={JSON.stringify(feeds)}>
       <div class="strip-head">
-        <span class="section-label">Public Market Feed</span>
+        <span class="section-label">Market Row</span>
         <button class="refresh-btn" type="button" data-refresh-market>Refresh</button>
       </div>
       <div class="market-grid" data-market-grid>
         {feeds.map((feed) => (
           <article class="market-card" data-asset-card={feed.coingecko_id}>
             <span>{feed.symbol}</span>
-            <strong data-price>—</strong>
+            <strong data-price>loading</strong>
             <small data-change>loading</small>
           </article>
         ))}
       </div>
-      <p class="feed-note" data-feed-note>Prices load from a public API when available. Everything else on this page works from snapshots.</p>
+      <p class="feed-note" data-feed-note>Prices load when the public market API answers. The rest of this page is a saved snapshot.</p>
     </section>
 
     <section class="recent-panel" id="recent-rows">
       <div class="panel-head">
         <div>
-          <span class="section-label">Heartbeat Rows</span>
-          <h2>Recent pulse rows</h2>
+          <span class="section-label">Pulse Rows</span>
+          <h2>Recent reads</h2>
         </div>
-        <a href="/dashboard-data/heartbeat.json" target="_blank" rel="noopener">raw JSON -></a>
+        <a href="/dashboard-data/heartbeat.json" target="_blank" rel="noopener">open snapshot -></a>
       </div>
       <div class="recent-table">
         <div class="recent-row recent-head">
           <span>When</span>
-          <span>Read</span>
+          <span>Signal</span>
           <span>Price</span>
           <span>Result</span>
         </div>
@@ -164,7 +164,7 @@ const signalRoutes = [
     <section class="ticket-panel">
       <div class="panel-head">
         <div>
-          <span class="section-label">Open Threads</span>
+          <span class="section-label">Open Loops</span>
           <h2>Where to go next</h2>
         </div>
         <a href="/reports/">Field Notes -></a>
@@ -219,7 +219,7 @@ const signalRoutes = [
       const ids = feeds.map((feed) => feed.coingecko_id).join(',');
       if (!ids) return;
 
-      if (feedNote) feedNote.textContent = 'Refreshing public market data...';
+      if (feedNote) feedNote.textContent = 'Refreshing public market row...';
 
       try {
         const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`, {
@@ -238,9 +238,9 @@ const signalRoutes = [
           if (change) change.textContent = formatChange(row.usd_24h_change);
         });
 
-        if (feedNote) feedNote.textContent = `Public market data refreshed ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`;
+        if (feedNote) feedNote.textContent = `Market row refreshed ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`;
       } catch (error) {
-        if (feedNote) feedNote.textContent = 'Public market refresh is unavailable right now. Snapshot rows are still visible.';
+        if (feedNote) feedNote.textContent = 'Market refresh is unavailable right now. The saved rows are still visible.';
       }
     }
 

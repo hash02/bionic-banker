@@ -1,37 +1,37 @@
 {
   "generated_at": "2026-05-19T02:45:00Z",
   "status": "live_signal_catalog_v4",
-  "purpose": "Visible signal rows for the Bionic Banker Live Signals page. This file describes website signals in plain public language.",
-  "privacy_boundary": "Public signal rows only. Trading-related rows are research and paper-mode context unless a public source explicitly says otherwise.",
-  "refresh_note": "Market prices refresh in the browser from public APIs when available. Snapshot rows should be read as signs of motion, not investment advice.",
+  "purpose": "Signal rows for the Bionic Banker Live Signals page.",
+  "privacy_boundary": "Learning notes and public market context only.",
+  "refresh_note": "Market prices refresh in the browser when available. Snapshot rows are signs of motion, not investment advice.",
   "signal_lanes": [
     {
       "id": "heartbeat",
       "label": "Heartbeat",
-      "question": "Is the live snapshot recent, readable, and honest about its limits?",
-      "public_source": "/dashboard-data/heartbeat.json",
-      "display_mode": "live snapshot"
+      "question": "Is the latest saved row recent, readable, and honest about its limits?",
+      "public_source": "Saved pulse row",
+      "display_mode": "snapshot"
     },
     {
       "id": "btc-market",
       "label": "BTC Market",
-      "question": "What does a public market feed show when it is separated from investment advice?",
-      "public_source": "CoinGecko public markets API",
-      "display_mode": "browser refresh"
+      "question": "What does Bitcoin look like when the price row is separated from advice?",
+      "public_source": "Public market price",
+      "display_mode": "refreshes in browser"
     },
     {
       "id": "sol-market",
       "label": "SOL Market",
-      "question": "How can a research page show public crypto context without making a trading claim?",
-      "public_source": "CoinGecko public markets API",
-      "display_mode": "browser refresh"
+      "question": "How can a page show crypto context without making a trading claim?",
+      "public_source": "Public market price",
+      "display_mode": "refreshes in browser"
     },
     {
       "id": "agent-questions",
       "label": "AI Questions",
-      "question": "Which public questions help someone understand how AI systems are designed?",
-      "public_source": "/gaps",
-      "display_mode": "question atlas"
+      "question": "Which questions help someone understand how AI systems are designed?",
+      "public_source": "Question map",
+      "display_mode": "guided route"
     }
   ],
   "ticket_rows": [
@@ -39,7 +39,7 @@
       "id": "ticket-001",
       "lane": "Lab Tour",
       "status": "live",
-      "question": "Can someone follow wallet risk, agent coordination, heartbeat, reports, and stack signals without reading the whole archive?",
+      "question": "Can someone follow wallet risk, agent coordination, pulse rows, field notes, and stack signals without reading the whole archive?",
       "public_note": "The Lab Tour is the guided route through the live pages.",
       "link": "/proof-tour/"
     },
@@ -47,15 +47,15 @@
       "id": "ticket-002",
       "lane": "Learning Layer",
       "status": "live",
-      "question": "Can a visitor learn current AI engineering concepts before opening the source links?",
-      "public_note": "The Learn page includes definitions and an AI Stack Map.",
+      "question": "Can someone learn the words first, then choose which lab page to open?",
+      "public_note": "The Learn page keeps the language plain before the work gets technical.",
       "link": "/learn/"
     },
     {
       "id": "ticket-003",
       "lane": "Heartbeat",
       "status": "snapshot",
-      "question": "Can a public page show system motion in a way someone can understand?",
+      "question": "Can one saved row show motion without pretending it explains everything?",
       "public_note": "The heartbeat snapshot shows motion with clear limits.",
       "link": "/heartbeat/"
     },
@@ -63,7 +63,7 @@
       "id": "ticket-004",
       "lane": "Wallet Risk",
       "status": "visible",
-      "question": "Can wallet risk notes and plain-language explanation be shown as one useful workflow?",
+      "question": "Can wallet risk notes and plain-language explanation sit on the same page?",
       "public_note": "The Wallet Risk Lab ties detection, explanation, limits, and public links together.",
       "link": "/wallet-risk/"
     },
@@ -71,7 +71,7 @@
       "id": "ticket-005",
       "lane": "Question Atlas",
       "status": "live",
-      "question": "Can broad AI questions help people understand the concepts before they inspect the examples?",
+      "question": "Can broad AI questions help people understand the concepts before they open the examples?",
       "public_note": "The Questions page starts with plain questions and links to Learn, Reports, and Lab Tour.",
       "link": "/gaps/"
     }
