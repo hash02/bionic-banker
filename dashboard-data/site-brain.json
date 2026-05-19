@@ -1,17 +1,17 @@
 {
   "version": "site-brain-v0",
   "generated_at": "2026-05-18",
-  "name": "Bionic Banker Site Brain",
+  "name": "Bionic Banker Route Map",
   "purpose": "Visitor-facing route index for Bionic Banker pages, experiments, field notes, learning notes, and visible signal surfaces.",
   "principles": [
     "Answer with visible website routes first.",
-    "Point claims toward pages, reports, and source-linked artifacts.",
+    "Point claims toward pages, field notes, and public artifacts.",
     "Keep unpublished notes, machine details, credentials, client data, and employer data out of the visitor layer.",
     "Do not send applications, messages, emails, or third-party actions from this site index."
   ],
   "quick_prompts": [
     "Who is Himanshu?",
-    "Show me the AML work",
+    "Show me the wallet-risk work",
     "What is Agent Chess?",
     "Where are the numbers and charts?",
     "How do I learn the AI terms?",
@@ -26,7 +26,7 @@
       "label": "About Himanshu",
       "href": "/#about",
       "meta": "Identity",
-      "body": "Finance, blockchain, AI systems, AML proof, and technical writing in one public portfolio."
+      "body": "Finance, blockchain, AI systems, wallet-risk work, and technical writing in one public lab."
     },
     {
       "id": "proof-tour",
@@ -34,14 +34,14 @@
       "label": "Lab Tour",
       "href": "/proof-tour/",
       "meta": "Fast route",
-      "body": "Guided route through AML, agents, heartbeat rows, field notes, and questions."
+      "body": "Guided route through wallet risk, agents, heartbeat rows, field notes, and questions."
     },
     {
       "id": "projects",
       "step": "03",
       "label": "Experiments",
       "href": "/projects/",
-      "meta": "Evidence",
+      "meta": "Notes",
       "body": "Experiments with sources, notes, and clear limits."
     },
     {
@@ -58,14 +58,14 @@
       "label": "Learn",
       "href": "/learn/",
       "meta": "Concepts",
-      "body": "Plain-language concepts for AI agents, RAG, RBAC, observability, AML, deployment, and modern AI workflows."
+      "body": "Plain-language concepts for AI agents, RAG, RBAC, observability, wallet risk, deployment, and modern AI workflows."
     },
     {
-      "id": "ai-intelligence",
+      "id": "live-signals",
       "step": "06",
-      "label": "AI Intelligence",
+      "label": "Live Signals",
       "href": "/intelligence/",
-      "meta": "Signal",
+      "meta": "Signals",
       "body": "Visible signal rows, public market feed, heartbeat snapshot, and research-only limits."
     },
     {
@@ -88,22 +88,22 @@
   "answer_routes": [
     {
       "id": "about",
-      "keys": ["himanshu", "about", "who", "resume", "background", "person"],
+      "keys": ["himanshu", "about", "who", "background", "person"],
       "label": "About",
       "source": "About, Projects, Reports",
       "title": "Himanshu is the person behind Bionic Banker.",
-      "body": "He is a computer engineer working in finance, building around AML, AI agents, blockchain risk, observability, and technical education. Start with About, then open Experiments for the workbench.",
+      "body": "He is a computer engineer working in finance, building around wallet risk, AI agents, blockchain risk, observability, and technical education. Start with About, then open Experiments for the workbench.",
       "links": [["About", "/#about"], ["Experiments", "/projects/"], ["Field Notes", "/reports/"]],
-      "followups": ["Show me the AML work", "Where are the numbers and charts?"]
+      "followups": ["Show me the wallet-risk work", "Where are the numbers and charts?"]
     },
     {
       "id": "aml",
       "keys": ["aml", "roaster", "wallet", "risk", "crime", "compliance", "transaction"],
-      "label": "AML",
-      "source": "Projects, AML Roaster, Reports",
-      "title": "The AML lane combines detection with explanation.",
-      "body": "The AML Engine maps wallet behavior into risk signals. The Roaster turns those findings into plain-language narratives so a reviewer can understand what triggered the risk.",
-      "links": [["AML Project", "/projects/"], ["AML Roaster Article", "/blog/aml-roaster/"], ["Reports", "/reports/"]],
+      "label": "Wallet Risk",
+      "source": "Wallet Risk Lab, Notes, Field Notes",
+      "title": "The wallet-risk lane combines detection with explanation.",
+      "body": "The Wallet Risk Lab maps wallet behavior into risk signals, then turns those findings into plain-language notes so someone can understand what triggered the risk.",
+      "links": [["Wallet Risk Lab", "/wallet-risk/"], ["Wallet Risk Notes", "/roast-gallery/"], ["Field Notes", "/reports/"]],
       "followups": ["Where are the numbers and charts?", "Can I see the main work without reading everything?"]
     },
     {
@@ -123,8 +123,8 @@
       "source": "Field Notes, Lab Tour, Data catalog",
       "title": "The field-note layer turns moving systems into numbers and charts.",
       "body": "Field Notes collects benchmark bars, signal maps, and limitations. It is the best page when you want the numbers behind the story.",
-      "links": [["Field Notes", "/reports/"], ["Lab Tour", "/proof-tour/"], ["Lab Data", "/dashboard-data/public-proof-catalog.json"]],
-      "followups": ["Show me the AML work", "Is anything on the site live?"]
+      "links": [["Field Notes", "/reports/"], ["Lab Tour", "/proof-tour/"], ["Experiments", "/projects/"]],
+      "followups": ["Show me the wallet-risk work", "Is anything on the site live?"]
     },
     {
       "id": "learn",
@@ -132,18 +132,18 @@
       "label": "Learn",
       "source": "Learn, Questions, Field Notes",
       "title": "The learning layer explains the terms before the charts.",
-      "body": "Use Learn when a phrase needs plain language: RAG, LLMs, VLMs, tool calling, RBAC, audit logs, observability, AML, Docker, and Kubernetes.",
+      "body": "Use Learn when a phrase needs plain language: RAG, LLMs, VLMs, tool calling, RBAC, audit logs, observability, wallet risk, Docker, and Kubernetes.",
       "links": [["Learn", "/learn/"], ["Questions", "/gaps/"], ["Field Notes", "/reports/"]],
       "followups": ["What should I read first?", "Where are the numbers and charts?"]
     },
     {
       "id": "intelligence",
       "keys": ["live", "heartbeat", "signal", "market", "bitcoin", "btc", "solana", "refresh", "intelligence"],
-      "label": "AI Intelligence",
-      "source": "AI Intelligence, Heartbeat JSON, Lab Tour",
-      "title": "AI Intelligence shows visible signal rows.",
+      "label": "Live Signals",
+      "source": "Live Signals, Heartbeat JSON, Lab Tour",
+      "title": "Live Signals shows visible signal rows.",
       "body": "This is where the site feels alive: market context, heartbeat snapshot rows, ticket rows, and research-only limits. It is not investment advice or trading performance.",
-      "links": [["AI Intelligence", "/intelligence/"], ["Heartbeat JSON", "/dashboard-data/heartbeat.json"], ["Lab Tour", "/proof-tour/"]],
+      "links": [["Live Signals", "/intelligence/"], ["Heartbeat JSON", "/dashboard-data/heartbeat.json"], ["Lab Tour", "/proof-tour/"]],
       "followups": ["Can I see the main work without reading everything?", "Where are the numbers and charts?"]
     },
     {
@@ -160,19 +160,19 @@
       "id": "start",
       "keys": ["first", "start", "read first", "where should", "shortest", "quick"],
       "label": "Start here",
-      "source": "Lab Tour, Ask Site, Experiments",
+      "source": "Lab Tour, Ask the Lab, Experiments",
       "title": "Use the Lab Tour first, then choose your depth.",
       "body": "The shortest path is the Lab Tour, then Field Notes if you want numbers, Experiments if you want work samples, and Learn if a concept needs plain language.",
       "links": [["Lab Tour", "/proof-tour/"], ["Field Notes", "/reports/"], ["Learn", "/learn/"]],
-      "followups": ["Show me the AML work", "Is anything on the site live?"]
+      "followups": ["Show me the wallet-risk work", "Is anything on the site live?"]
     }
   ],
   "fallback_route": {
     "label": "Best first route",
-    "source": "Lab Tour, Experiments, Ask Site",
+    "source": "Lab Tour, Experiments, Ask the Lab",
     "title": "Start with the Lab Tour.",
-    "body": "I could not map that question cleanly, so start with the guided lab route. From there you can jump into Experiments, Field Notes, Learn, Questions, or AI Intelligence.",
+    "body": "I could not map that question cleanly, so start with the guided lab route. From there you can jump into Experiments, Field Notes, Learn, Questions, or Live Signals.",
     "links": [["Lab Tour", "/proof-tour/"], ["Experiments", "/projects/"], ["Ask another question", "/site-agent/"]],
-    "followups": ["Show me the AML work", "Where are the numbers and charts?"]
+    "followups": ["Show me the wallet-risk work", "Where are the numbers and charts?"]
   }
 }

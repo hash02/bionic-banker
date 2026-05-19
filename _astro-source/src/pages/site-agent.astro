@@ -40,7 +40,7 @@ const uxStats = [
       <div class="hero-copy">
         <div class="route-kicker">Bionic Banker site guide</div>
         <h1>Ask the Lab where to go.</h1>
-        <p>This page is a guide for the website. Ask about Himanshu, wallet risk, agents, field notes, AI terms, live signals, or experiments. The answer points you to the right corner of the lab.</p>
+        <p>This page is a small guide for the lab. Ask about Himanshu, wallet risk, agents, field notes, AI terms, live signals, or experiments. The answer points you to the right room.</p>
         <div class="hero-actions-mini" aria-label="Fast routes">
           <a href="/proof-tour/">Enter the lab</a>
           <a href="/reports/">See reports</a>
@@ -52,7 +52,7 @@ const uxStats = [
           <span>Guide mode</span>
           <strong>Find your route</strong>
         </div>
-        <p>Answers come from visible pages, experiment cards, field notes, learning notes, and signal pages. The goal is simple: help a visitor find the right door fast.</p>
+        <p>Answers come from visible pages, experiment cards, field notes, learning notes, and signal pages. The goal is simple: help the next click make sense.</p>
         <div class="stat-strip">
           {uxStats.map((stat) => (
             <div>
@@ -70,7 +70,7 @@ const uxStats = [
           <span>Ask the lab</span>
           <h2>Type one question. Get a route.</h2>
         </div>
-        <p>Works in the browser from the public site map. No account, no form, no wait.</p>
+        <p>Works in the browser from the visible site map. No account, no form, no wait.</p>
       </div>
       <div class="prompt-row">
         <input id="site-question" type="text" placeholder="Try: show me wallet risk, explain agents, where are the charts..." autocomplete="off" />
@@ -117,8 +117,8 @@ const uxStats = [
 
     <section class="source-panel">
       <div class="panel-head">
-        <span>UX standard</span>
-        <h2>Modern AI pages need trust before magic.</h2>
+        <span>How it behaves</span>
+        <h2>Useful AI pages show where the answer came from.</h2>
       </div>
       <div class="pattern-grid">
         <article>
@@ -132,7 +132,7 @@ const uxStats = [
           <a href="https://www.weforum.org/stories/2026/02/how-to-design-for-trust-in-the-age-of-ai-agents/" target="_blank" rel="noopener">Reference</a>
         </article>
         <article>
-          <h3>Auditable systems</h3>
+          <h3>Inspectable systems</h3>
           <p>Current research keeps returning to the same idea: useful agents need visible behavior, accountability, and inspectable outputs.</p>
           <a href="https://research.ibm.com/publications/trust-cua-trustworthy-computer-using-generalist-agents-for-intelligent-user-interfaces" target="_blank" rel="noopener">Reference</a>
         </article>
@@ -208,7 +208,7 @@ const uxStats = [
     .ask-hero p, .guide-panel p, .answer-card p, .source-tile p, .pattern-grid p, .console-head p { color: var(--text-2); line-height: 1.7; margin: 0; }
     .hero-copy p { max-width: 720px; font-size: clamp(0.95rem, 1.6vw, 1.12rem); }
     .hero-actions-mini { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.25rem; }
-    .hero-actions-mini a { border: 1px solid rgba(31,160,104,0.32); border-radius: 8px; color: var(--text); font-family: var(--mono); font-size: 0.78rem; padding: 0.65rem 0.8rem; background: rgba(2,2,4,0.36); }
+    .hero-actions-mini a { border: 1px solid rgba(31,160,104,0.32); border-radius: 8px; color: var(--text); font-family: var(--mono); font-size: 0.78rem; padding: 0.65rem 0.8rem; min-height: 44px; display: inline-flex; align-items: center; background: rgba(2,2,4,0.36); }
     .guide-panel { display: grid; gap: 1rem; align-content: space-between; padding: 1.15rem; background: linear-gradient(180deg, rgba(31,160,104,0.13), rgba(2,2,4,0.36)); }
     .panel-topline { display: grid; gap: 0.4rem; }
     .panel-topline strong { font-size: 1.45rem; line-height: 1.2; }
@@ -223,10 +223,10 @@ const uxStats = [
     .prompt-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.7rem; }
     .prompt-row input { width: 100%; border: 1px solid rgba(228, 228, 236, 0.16); border-radius: 8px; background: rgba(2, 2, 4, 0.72); color: var(--text); font: inherit; padding: 1rem 1rem; min-width: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015); }
     .prompt-row input:focus { outline: none; border-color: rgba(31,160,104,0.64); box-shadow: 0 0 0 3px rgba(31,160,104,0.12); }
-    .prompt-row button, .prompt-chips button, .followup-row button { border: 1px solid rgba(31, 160, 104, 0.35); border-radius: 8px; background: rgba(31, 160, 104, 0.12); color: var(--text); cursor: pointer; font-family: var(--mono); padding: 0.75rem 1rem; transition: border-color 0.18s, transform 0.18s, background 0.18s; }
+    .prompt-row button, .prompt-chips button, .followup-row button { border: 1px solid rgba(31, 160, 104, 0.35); border-radius: 8px; background: rgba(31, 160, 104, 0.12); color: var(--text); cursor: pointer; font-family: var(--mono); min-height: 44px; padding: 0.75rem 1rem; transition: border-color 0.18s, transform 0.18s, background 0.18s; }
     .prompt-row button:hover, .prompt-chips button:hover, .followup-row button:hover { border-color: rgba(31,160,104,0.72); background: rgba(31,160,104,0.18); transform: translateY(-1px); }
     .prompt-chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 0.85rem 0; }
-    .prompt-chips button { font-size: 0.78rem; padding: 0.45rem 0.65rem; }
+    .prompt-chips button { font-size: 0.78rem; padding: 0.6rem 0.75rem; }
     .answer-card { border: 1px solid rgba(228, 228, 236, 0.12); border-radius: 8px; background: rgba(2, 2, 4, 0.5); padding: 1rem; min-height: 200px; position: relative; overflow: hidden; }
     .answer-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); opacity: 0.72; }
     .answer-card > * { position: relative; }
@@ -240,7 +240,7 @@ const uxStats = [
     .answer-links a, .source-tile, .pattern-grid a { color: #1fa068; text-decoration: none; font-family: var(--mono); font-size: 0.86rem; }
     .answer-links a { border: 1px solid rgba(31,160,104,0.28); border-radius: 8px; padding: 0.6rem 0.7rem; background: rgba(31,160,104,0.08); }
     .followup-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px solid rgba(228,228,236,0.1); }
-    .followup-row button { color: var(--text-2); font-size: 0.72rem; padding: 0.42rem 0.6rem; background: rgba(255,255,255,0.035); }
+    .followup-row button { color: var(--text-2); font-size: 0.72rem; padding: 0.6rem 0.75rem; background: rgba(255,255,255,0.035); }
     .source-grid, .pattern-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
     .source-tile, .pattern-grid article { border: 1px solid rgba(228, 228, 236, 0.12); border-radius: 8px; background: rgba(2, 2, 4, 0.42); padding: 1rem; min-width: 0; transition: transform 0.18s, border-color 0.18s, background 0.18s; }
     .source-tile:hover, .pattern-grid article:hover { transform: translateY(-2px); border-color: rgba(31,160,104,0.36); background: rgba(31,160,104,0.06); }
@@ -250,6 +250,7 @@ const uxStats = [
     .source-tile h3, .pattern-grid h3 { margin: 0 0 0.5rem; color: var(--text); letter-spacing: 0; font-size: 1.05rem; }
     .pattern-grid a { display: inline-block; margin-top: 0.8rem; }
     .panel-head { margin-bottom: 1rem; }
+    .nav-links a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
     @media (max-width: 840px) { .ask-hero, .prompt-row { grid-template-columns: 1fr; } .ask-hero { min-height: auto; } .console-head { align-items: start; flex-direction: column; } .console-head p { max-width: none; } }
     @media (max-width: 640px) { .ask-shell { padding: 2.5rem 1rem 3rem; } .hero-actions-mini a, .answer-links a { width: 100%; } .answer-links { grid-template-columns: 1fr; } .prompt-row button { width: 100%; } }
   </style>
