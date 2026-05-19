@@ -19,12 +19,33 @@ const accuracy = typeof status.accuracy_last_100 === 'number'
 const confidence = typeof predictionValue.confidence === 'number'
   ? `${(predictionValue.confidence * 100).toFixed(1)}%`
   : 'n/a';
+
+const signalRoutes = [
+  {
+    eyebrow: 'Start',
+    title: 'Read the latest pulse',
+    text: 'A small row from the system that says what moved, when it moved, and what it is not trying to prove.',
+    href: '#recent-rows'
+  },
+  {
+    eyebrow: 'Watch',
+    title: 'Check the public market row',
+    text: 'BTC, ETH, and SOL prices refresh in the browser when the public API answers.',
+    href: '#market-row'
+  },
+  {
+    eyebrow: 'Follow',
+    title: 'Open the route map',
+    text: 'If the live numbers feel too raw, the lab tour turns them into a slower walk.',
+    href: '/proof-tour/'
+  }
+];
 ---
 <BaseLayout title="Live Signals" description="Live signals from the Bionic Banker lab: market rows, prediction snapshots, questions, and what each row is not claiming.">
   <div class="page-header">
     <div class="page-label">Signal Board</div>
     <h1 class="page-title">Live Signals</h1>
-    <p class="page-sub">A live feed of signals this lab is watching. Prices, predictions, questions, and the patterns the system keeps returning to.</p>
+    <p class="page-sub">Some ideas only make sense when you watch them run. This page collects the signals, numbers, and notes from the systems already moving.</p>
   </div>
 
   <main class="intel-shell">
@@ -32,7 +53,7 @@ const confidence = typeof predictionValue.confidence === 'number'
       <div class="console-copy">
         <span class="section-label">Right Now</span>
         <h2>What moved recently</h2>
-        <p>Market rows refresh from public sources when they can. Snapshot rows show where each number comes from, plus the limit around the signal.</p>
+        <p>Market rows refresh from public sources when they can. Heartbeat rows show the last read, where it came from, and the limit around it.</p>
         <div class="console-actions">
           <a href="/proof-tour/" class="action-btn primary">Open Lab Tour</a>
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>
@@ -50,11 +71,11 @@ const confidence = typeof predictionValue.confidence === 'number'
             <strong>{status.predictions_made || 'n/a'}</strong>
           </div>
           <div>
-            <span>Recent read</span>
+            <span>Last 100</span>
             <strong>{accuracy}</strong>
           </div>
           <div>
-            <span>Signal</span>
+            <span>Last read</span>
             <strong>{predictionValue.direction || 'n/a'}</strong>
           </div>
           <div>
@@ -66,7 +87,17 @@ const confidence = typeof predictionValue.confidence === 'number'
       </div>
     </section>
 
-    <section class="market-strip" data-feeds={JSON.stringify(feeds)}>
+    <section class="signal-route-grid" aria-label="How to read live signals">
+      {signalRoutes.map((route) => (
+        <a class="signal-route-card" href={route.href}>
+          <span>{route.eyebrow}</span>
+          <strong>{route.title}</strong>
+          <p>{route.text}</p>
+        </a>
+      ))}
+    </section>
+
+    <section class="market-strip" id="market-row" data-feeds={JSON.stringify(feeds)}>
       <div class="strip-head">
         <span class="section-label">Public Market Feed</span>
         <button class="refresh-btn" type="button" data-refresh-market>Refresh</button>
@@ -97,10 +128,10 @@ const confidence = typeof predictionValue.confidence === 'number'
     <section class="ticket-panel">
       <div class="panel-head">
         <div>
-          <span class="section-label">Signal Tickets</span>
-          <h2>Signal rows</h2>
+          <span class="section-label">Open Threads</span>
+          <h2>Where to go next</h2>
         </div>
-        <a href="/reports/">Reports -></a>
+        <a href="/reports/">Field Notes -></a>
       </div>
       <div class="ticket-list">
         {tickets.map((ticket) => (
@@ -117,20 +148,20 @@ const confidence = typeof predictionValue.confidence === 'number'
       </div>
     </section>
 
-    <section class="recent-panel">
+    <section class="recent-panel" id="recent-rows">
       <div class="panel-head">
         <div>
           <span class="section-label">Heartbeat Rows</span>
-          <h2>Recent prediction rows</h2>
+          <h2>Recent pulse rows</h2>
         </div>
         <a href="/dashboard-data/heartbeat.json" target="_blank" rel="noopener">JSON -></a>
       </div>
       <div class="recent-table">
         <div class="recent-row recent-head">
           <span>Time</span>
-          <span>Signal</span>
+          <span>Read</span>
           <span>Price</span>
-          <span>Scored</span>
+          <span>Result</span>
         </div>
         {recentRows.map((row) => (
           <div class="recent-row">
@@ -208,7 +239,8 @@ const confidence = typeof predictionValue.confidence === 'number'
     .alive-console,
     .market-strip,
     .ticket-panel,
-    .recent-panel {
+    .recent-panel,
+    .signal-route-card {
       border: 1px solid rgba(31, 160, 104, 0.22);
       background: rgba(255, 255, 255, 0.035);
       border-radius: 8px;
@@ -260,6 +292,10 @@ const confidence = typeof predictionValue.confidence === 'number'
 
     .action-btn {
       padding: 0.55rem 1rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .action-btn.primary,
@@ -307,10 +343,45 @@ const confidence = typeof predictionValue.confidence === 'number'
 
     .heartbeat-metrics,
     .market-grid,
-    .lane-grid {
+    .lane-grid,
+    .signal-route-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 0.85rem;
+    }
+
+    .signal-route-card {
+      display: grid;
+      gap: 0.55rem;
+      min-height: 100%;
+      padding: 1rem;
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .signal-route-card:hover,
+    .signal-route-card:focus-visible {
+      border-color: rgba(31, 160, 104, 0.62);
+      transform: translateY(-1px);
+    }
+
+    .signal-route-card span {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+    }
+
+    .signal-route-card strong {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .signal-route-card p {
+      color: var(--text-2);
+      line-height: 1.55;
+      margin: 0;
     }
 
     .heartbeat-metrics div,
@@ -353,6 +424,7 @@ const confidence = typeof predictionValue.confidence === 'number'
     .refresh-btn {
       padding: 0.45rem 0.8rem;
       cursor: pointer;
+      min-height: 44px;
     }
 
     .market-card small {
