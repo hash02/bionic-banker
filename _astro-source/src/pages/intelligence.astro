@@ -25,7 +25,7 @@ const formatTime = (iso) => {
   if (!iso) return 'n/a';
   try {
     const d = new Date(iso);
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' · ' +
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' at ' +
       d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
   } catch { return iso.slice(0, 16); }
 };
@@ -134,9 +134,9 @@ const signalRoutes = [
 
     <section class="reason-panel" aria-label="How to read the latest signal">
       <div class="reason-copy">
-        <span class="section-label">How to Read It</span>
+        <span class="section-label">Source Trail</span>
         <h2>Why the row says that</h2>
-        <p>A signal is useful only when it shows its source, its reason, and its limit. This is the small trail behind the latest saved row.</p>
+        <p>A signal is useful only when it shows where it came from, why it moved, and what it is not saying. This is the small trail behind the latest saved row.</p>
       </div>
       <div class="reason-steps">
         <article>
@@ -148,6 +148,11 @@ const signalRoutes = [
           <span>Reason</span>
           <strong>{leadRow.prediction?.direction || predictionValue.direction || 'No direction yet'}</strong>
           <p>{typeof leadRow.prediction?.confidence === 'number' ? `${(leadRow.prediction.confidence * 100).toFixed(1)}% confidence on this saved read.` : 'Confidence appears only when the row carries it.'}</p>
+        </article>
+        <article>
+          <span>Age</span>
+          <strong>{generatedAt ? 'Snapshot saved' : 'Waiting'}</strong>
+          <p>{generatedAt || 'The next saved row will add a timestamp here.'}</p>
         </article>
         <article>
           <span>Limit</span>
@@ -188,7 +193,7 @@ const signalRoutes = [
         <article class="lane-card" id={lane.id}>
           <span>{lane.label}</span>
           <h3>{lane.question}</h3>
-          <p class="lane-meta">{lane.public_source} · {lane.display_mode}</p>
+          <p class="lane-meta">{lane.public_source} / {lane.display_mode}</p>
         </article>
       ))}
     </section>
@@ -509,7 +514,7 @@ const signalRoutes = [
 
     .reason-steps {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0.75rem;
     }
 
