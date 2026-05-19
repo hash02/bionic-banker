@@ -9,6 +9,8 @@ featured: false
 slug: "agent-architecture"
 ---
 
+A project folder can run six layers deep: from manual commands to a self-healing agent that remembers, reacts, and audits its own decisions. Here is what that architecture looks like in practice.
+
 ## The Workspace IS the Agent
 
 What happens when you stop thinking of a folder as storage and start thinking of it as a system that remembers, reacts, and improves itself?

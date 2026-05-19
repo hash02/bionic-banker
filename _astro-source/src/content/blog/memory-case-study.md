@@ -9,6 +9,8 @@ featured: false
 slug: "memory-case-study"
 ---
 
+I designed a five-layer AI memory architecture, ran it for 30 days across a multi-agent setup doing real work, and watched it evolve into eight layers. The boot file stayed stale. The immune system was the only part that worked exactly as designed. This is what actually happened.
+
 A few weeks ago I published a piece about [building a memory system for AI agents](ai-memory-system.html). Five layers. Markdown files. An immune system instead of a database. The thesis was that everyone was solving retrieval when the actual problem was continuity.
 
       

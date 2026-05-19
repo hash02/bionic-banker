@@ -10,6 +10,8 @@ image: "/blog-visuals/png/watch-it-run-live-hero.png"
 category: "AI"
 ---
 
+Six scanner workers, three funds, sixteen funded sleeves, one guardian layer running continuous health checks. The system is live at bionicbanker.tech/portfolio and the coverage number is shown on the page.
+
 # I built an AI financial advisor. Watch it run live.
 
 Most of what I read about AI advisors is one of two things. Either a landing page promising personalized wealth intelligence with no public numbers behind it. Or a long essay arguing whether AI should touch money at all. Both skip the part I actually care about. What does it look like when one is just running.
