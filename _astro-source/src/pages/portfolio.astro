@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Watch It Run Live — Bionic Banker</title>
-<meta name="description" content="Reader-facing paper portfolio view. Three funds, sixteen sleeves, and testnet settlement markers with operational details removed.">
+<meta name="description" content="Paper-mode portfolio view. Three funds, sixteen sleeves, and a small status layer for watching market ideas move.">
 <meta name="author" content="Himanshu">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +17,13 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YS428H3H44');</script>
 <meta property="og:title" content="Portfolio — Watch It Run Live — Bionic Banker">
-<meta property="og:description" content="Three funds, sixteen sleeves, and reader-facing paper-mode status summaries.">
+<meta property="og:description" content="Three funds, sixteen sleeves, and paper-mode status summaries.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bionicbanker.tech/portfolio/">
 <meta property="og:site_name" content="Bionic Banker">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portfolio — Watch It Run Live">
-<meta name="twitter:description" content="Reader-facing paper-mode portfolio view with scanner status summaries.">
+<meta name="twitter:description" content="Paper-mode portfolio view with clean signal status summaries.">
 <link rel="canonical" href="https://bionicbanker.tech/portfolio/">
 <style>
 /* ============================================================
@@ -319,9 +319,9 @@ h1.page-title {
 </nav>
 
 <div class="page-header">
-  <div class="page-label">Public Portfolio View � Paper Mode</div>
-  <h1 class="page-title">Watch it run live.</h1>
-  <p class="page-sub">Three funds. Sixteen sleeves. Testnet settlement markers and reader-facing paper status, with operational details removed. <a href="/signals/" style="color:var(--accent)">Signals dashboard.</a></p>
+  <div class="page-label">Paper Portfolio</div>
+  <h1 class="page-title">Watch the paper ideas move.</h1>
+  <p class="page-sub">Three funds, sixteen sleeves, and a small status layer. Nothing here is advice or a live trading product. It is a public window into how the lab watches ideas behave over time. <a href="/intelligence/" style="color:var(--accent)">Open live signals.</a></p>
 </div>
 
 <div class="agg-banner">
@@ -344,7 +344,7 @@ h1.page-title {
     </div>
     <div class="agg-stat">
       <div class="agg-num" id="agg-workers">—</div>
-      <div class="agg-label">Workers</div>
+      <div class="agg-label">Signal Rows</div>
     </div>
   </div>
   <div style="margin-top: 0.8rem; text-align: right;">
@@ -361,37 +361,37 @@ h1.page-title {
 </div>
 
 <div class="section">
-  <div class="section-label">Scanner Fleet</div>
-  <h2>Six workers. One contract.</h2>
+  <div class="section-label">Signal Rows</div>
+  <h2>Six streams, one view.</h2>
   <div class="worker-table" id="worker-table">
     <div class="worker-row head">
-      <div>Worker</div>
-      <div>Strategy</div>
+      <div>Signal</div>
+      <div>Lens</div>
       <div class="worker-col-hide-mobile">Status</div>
       <div class="worker-col-hide-mobile">Cycle</div>
       <div class="worker-col-hide-mobile">Age</div>
-      <div class="worker-col-hide-mobile">Open / Deployed</div>
+      <div class="worker-col-hide-mobile">Open / Tracked</div>
     </div>
-    <div class="loader">loading worker data…</div>
+    <div class="loader">loading signal data…</div>
   </div>
 </div>
 
 <div class="section">
-  <div class="section-label">Orchestrator</div>
-  <h2>Paper orchestrator status.</h2>
+  <div class="section-label">Status Layer</div>
+  <h2>The quiet layer underneath.</h2>
   <div class="panel panel-solo">
-    <h3>Hermes — paper engine</h3>
+    <h3>Paper engine</h3>
     <div id="hermes-panel"><div class="loader">loading…</div></div>
   </div>
 </div>
 
 <div class="section">
   <div class="section-label">How it works</div>
-  <h2>grab_and_run() on repeat.</h2>
+  <h2>The loop is simple.</h2>
   <div class="explainer">
-    <p>Every scanner worker runs one job. <code>grab()</code> the signal. <code>run()</code> the trade. Write state. Sleep. Wake on cron and do it again.</p>
-    <p>Above them sits <strong>Hermes</strong>. Paper-mode orchestrator summary. The public page shows sanitized status fields and keeps operational details out of the page.</p>
-    <p>Nothing here is hand-maintained. If a worker dies, its row goes stale on this page. If the orchestrator goes silent, the whole strip goes cold. That is the whole design.</p>
+    <p>Each row watches one kind of signal. It reads the latest state, writes a paper-mode note, then waits for the next check.</p>
+    <p>The public page only shows cleaned status fields. The private machinery stays off the page.</p>
+    <p>If a row goes stale, the page should show it. That is the point. A live page is useful only if it can admit when something stopped moving.</p>
   </div>
 </div>
 
@@ -551,7 +551,7 @@ function renderHermes(d) {
   const html = `
     <div class="kv-row"><span class="kv-key">Mode</span><span class="kv-val">${h.mode || 'paper'}</span></div>
     <div class="kv-row"><span class="kv-key">Paper portfolio age</span><span class="kv-val">${ageFmt(h.paper_portfolio_age_min)}</span></div>
-    <div class="kv-row"><span class="kv-key">Orchestrator age</span><span class="kv-val">${ageFmt(h.orchestrator_age_min)}</span></div>
+    <div class="kv-row"><span class="kv-key">Status age</span><span class="kv-val">${ageFmt(h.orchestrator_age_min)}</span></div>
     <div class="kv-row"><span class="kv-key">Total positions</span><span class="kv-val">${h.paper_portfolio_positions || 0}</span></div>
     <div class="kv-row"><span class="kv-key">Currently open</span><span class="kv-val">${h.paper_portfolio_open || 0}</span></div>
   `;
