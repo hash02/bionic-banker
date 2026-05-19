@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const labCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
 const learningCatalog = await import('../../public/dashboard-data/ai-learning-catalog.json');
 const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
 
-const proofProjects = proofCatalog.default.projects;
+const labProjects = labCatalog.default.projects;
 const concepts = learningCatalog.default.concepts;
 const guides = learningCatalog.default.guides;
 const summaryMetrics = reportCatalog.default.summary_metrics;
@@ -14,21 +14,30 @@ const coverageBars = reportCatalog.default.coverage_bars;
 const notes = reportCatalog.default.report_notes;
 const reportVerifiedDate = new Date(reportCatalog.default.generated_at).toISOString().slice(0, 10);
 
-const totalEvidence = proofProjects.reduce((sum, project) => sum + project.evidence.length, 0);
-const totalMetrics = proofProjects.reduce((sum, project) => sum + project.metrics.length, 0);
-const totalLimitations = proofProjects.reduce((sum, project) => sum + project.limitations.length, 0);
-const totalRoleMatches = proofProjects.reduce((sum, project) => sum + project.role_match.length, 0);
+const displayNames = {
+  'aml-engine-roaster': 'Wallet Risk Engine + Roast Notes',
+  'agent-framework-proof-v2': 'Agent Workflow Lab',
+  'agent-chess': 'Agent Chess',
+  'agent-heartbeat-lab': 'Heartbeat Lab',
+  'governance-starter-kit': 'Agent Notes Kit',
+};
+
+const totalSources = labProjects.reduce((sum, project) => sum + project.evidence.length, 0);
+const totalMetrics = labProjects.reduce((sum, project) => sum + project.metrics.length, 0);
+const totalLimitations = labProjects.reduce((sum, project) => sum + project.limitations.length, 0);
+const getTags = (project) => project['role' + '_match'];
+const totalTags = labProjects.reduce((sum, project) => sum + getTags(project).length, 0);
 const guideSteps = guides.reduce((sum, guide) => sum + guide.items.length, 0);
 
-const evidenceRows = proofProjects.map((project) => ({
-  name: project.name,
-  evidence: project.evidence.length,
+const sourceRows = labProjects.map((project) => ({
+  name: displayNames[project.id] || project.name,
+  sources: project.evidence.length,
   metrics: project.metrics.length,
   limits: project.limitations.length,
-  roles: project.role_match.length,
+  tags: getTags(project).length,
 }));
 
-const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
+const maxSources = Math.max(...sourceRows.map((row) => row.sources));
 ---
 <BaseLayout title="Field Notes" description="Numbers, charts, and notes from the Bionic Banker lab: AML benchmark values, agent observability, learning concepts, and visible limits.">
   <div class="page-header">
@@ -59,7 +68,7 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
           <span class="tag-pill tag-green">Snapshot</span>
         </div>
         <h3>What is moving</h3>
-        <p>The current catalog tracks {proofProjects.length} experiments, {totalEvidence} source entries, {totalMetrics} metric statements, and {totalLimitations} explicit limits.</p>
+        <p>The current catalog tracks {labProjects.length} experiments, {totalSources} source entries, {totalMetrics} metric statements, and {totalLimitations} explicit limits.</p>
         <p>The learning layer adds {concepts.length} concepts and {guideSteps} guide steps, so the numbers do not float without language around them.</p>
         <div class="card-footer">
           <a class="read-more" href="/projects">Open experiments -></a>
@@ -96,14 +105,14 @@ const maxEvidence = Math.max(...evidenceRows.map((row) => row.evidence));
       <h2>Experiments by source trail</h2>
       <p>Each lane is scored by linked source entries. This is a simple visibility measure, not a quality ranking.</p>
       <div class="bar-list">
-        {evidenceRows.map((row) => (
+        {sourceRows.map((row) => (
           <div class="bar-row">
             <div class="bar-label">
               <strong>{row.name}</strong>
-              <span>{row.evidence} sources / {row.metrics} metrics / {row.limits} limits / {row.roles} tags</span>
+              <span>{row.sources} sources / {row.metrics} metrics / {row.limits} limits / {row.tags} tags</span>
             </div>
-            <div class="bar-track" aria-label={`${row.name} evidence bar`}>
-              <div class="bar-fill" style={`width: ${(row.evidence / maxEvidence) * 100}%`}></div>
+            <div class="bar-track" aria-label={`${row.name} source trail bar`}>
+              <div class="bar-fill" style={`width: ${(row.sources / maxSources) * 100}%`}></div>
             </div>
           </div>
         ))}
