@@ -20,7 +20,7 @@ const confidence = typeof predictionValue.confidence === 'number'
   ? `${(predictionValue.confidence * 100).toFixed(1)}%`
   : 'n/a';
 ---
-<BaseLayout title="AI Intelligence" description="Live signals from the Bionic Banker lab: market rows, prediction snapshots, questions, and what each row is not claiming.">
+<BaseLayout title="Live Signals" description="Live signals from the Bionic Banker lab: market rows, prediction snapshots, questions, and what each row is not claiming.">
   <div class="page-header">
     <div class="page-label">Signal Board</div>
     <h1 class="page-title">Live Signals</h1>
@@ -32,7 +32,7 @@ const confidence = typeof predictionValue.confidence === 'number'
       <div class="console-copy">
         <span class="section-label">Right Now</span>
         <h2>What moved recently</h2>
-        <p>Market rows refresh from public sources when they can. Snapshot rows say where each number comes from and what the row is not claiming.</p>
+        <p>Market rows refresh from public sources when they can. Snapshot rows show where each number comes from, plus the limit around the signal.</p>
         <div class="console-actions">
           <a href="/proof-tour/" class="action-btn primary">Open Lab Tour</a>
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>
@@ -50,7 +50,7 @@ const confidence = typeof predictionValue.confidence === 'number'
             <strong>{status.predictions_made || 'n/a'}</strong>
           </div>
           <div>
-            <span>Last 100</span>
+            <span>Recent read</span>
             <strong>{accuracy}</strong>
           </div>
           <div>
@@ -80,7 +80,7 @@ const confidence = typeof predictionValue.confidence === 'number'
           </article>
         ))}
       </div>
-      <p class="feed-note" data-feed-note>Market data loads in the browser from a public API when available. If the API is unavailable, the rest of the intelligence board still works from public snapshots.</p>
+      <p class="feed-note" data-feed-note>Market data loads in the browser from a public API when available. If the API is unavailable, the rest of the signal board still works from public snapshots.</p>
     </section>
 
     <section class="lane-grid">
@@ -98,7 +98,7 @@ const confidence = typeof predictionValue.confidence === 'number'
       <div class="panel-head">
         <div>
           <span class="section-label">Signal Tickets</span>
-          <h2>Visible signal rows</h2>
+          <h2>Signal rows</h2>
         </div>
         <a href="/reports/">Reports -></a>
       </div>
@@ -187,7 +187,7 @@ const confidence = typeof predictionValue.confidence === 'number'
 
         if (feedNote) feedNote.textContent = `Public market data refreshed ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`;
       } catch (error) {
-        if (feedNote) feedNote.textContent = 'Public market refresh is unavailable right now. Snapshot rows remain visible.';
+        if (feedNote) feedNote.textContent = 'Public market refresh is unavailable right now. Snapshot rows are still visible.';
       }
     }
 

@@ -1,9 +1,9 @@
 {
   "generated_at": "2026-05-19T02:45:00Z",
-  "status": "reader_intelligence_signal_catalog_v3",
-  "purpose": "Visible signal rows for the Bionic Banker AI Intelligence page. This file describes website signals in reader-facing language.",
-  "privacy_boundary": "Reader-facing signal rows only. Trading-related rows are research and paper-mode context unless a public source explicitly says otherwise.",
-  "refresh_note": "Market prices refresh in the browser from public APIs when available. Internal snapshot rows are public snapshots and should be read as a signal of system shape, not investment advice.",
+  "status": "live_signal_catalog_v4",
+  "purpose": "Visible signal rows for the Bionic Banker Live Signals page. This file describes website signals in plain public language.",
+  "privacy_boundary": "Public signal rows only. Trading-related rows are research and paper-mode context unless a public source explicitly says otherwise.",
+  "refresh_note": "Market prices refresh in the browser from public APIs when available. Snapshot rows should be read as signs of motion, not investment advice.",
   "signal_lanes": [
     {
       "id": "heartbeat",
@@ -29,7 +29,7 @@
     {
       "id": "agent-questions",
       "label": "AI Questions",
-      "question": "Which public questions help a reader understand how AI systems are designed?",
+      "question": "Which public questions help someone understand how AI systems are designed?",
       "public_source": "/gaps",
       "display_mode": "question atlas"
     }
@@ -39,8 +39,8 @@
       "id": "ticket-001",
       "lane": "Lab Tour",
       "status": "live",
-      "question": "Can a reviewer inspect AML, agent coordination, heartbeat, reports, and stack signals without reading the whole archive?",
-      "public_note": "The Lab Tour is the guided route through existing visible routes.",
+      "question": "Can someone follow wallet risk, agent coordination, heartbeat, reports, and stack signals without reading the whole archive?",
+      "public_note": "The Lab Tour is the guided route through the live pages.",
       "link": "/proof-tour/"
     },
     {
@@ -48,31 +48,31 @@
       "lane": "Learning Layer",
       "status": "live",
       "question": "Can a visitor learn current AI engineering concepts before opening the source links?",
-      "public_note": "The Learn page includes definitions and a Modern AI Stack Radar.",
+      "public_note": "The Learn page includes definitions and an AI Stack Map.",
       "link": "/learn/"
     },
     {
       "id": "ticket-003",
       "lane": "Heartbeat",
       "status": "snapshot",
-      "question": "Can a public page show system motion in a way a reader can understand?",
+      "question": "Can a public page show system motion in a way someone can understand?",
       "public_note": "The heartbeat snapshot shows motion with clear limits.",
       "link": "/heartbeat/"
     },
     {
       "id": "ticket-004",
-      "lane": "AML",
+      "lane": "Wallet Risk",
       "status": "visible",
-      "question": "Can AML detection and plain-language explanation be shown as one reviewer workflow?",
-      "public_note": "The lab catalog ties detection, explanation, limits, and public links together.",
-      "link": "/proof-tour/"
+      "question": "Can wallet risk notes and plain-language explanation be shown as one useful workflow?",
+      "public_note": "The Wallet Risk Lab ties detection, explanation, limits, and public links together.",
+      "link": "/wallet-risk/"
     },
     {
       "id": "ticket-005",
       "lane": "Question Atlas",
       "status": "live",
-      "question": "Can broad AI questions help readers understand the concepts before they inspect the examples?",
-      "public_note": "The Questions page starts with market-facing questions and links to Learn, Reports, and Lab Tour.",
+      "question": "Can broad AI questions help people understand the concepts before they inspect the examples?",
+      "public_note": "The Questions page starts with plain questions and links to Learn, Reports, and Lab Tour.",
       "link": "/gaps/"
     }
   ],
