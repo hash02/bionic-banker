@@ -56,6 +56,14 @@ const movingRows = [
           <a href="/proof-tour" class="btn-ghost">Enter the Lab</a>
           <a href="/intelligence" class="btn-ghost">Watch Live Signals</a>
         </div>
+        <div class="hero-signal-row" aria-label="Signals on the table">
+          {movingRows.map(row => (
+            <a href={row.href} class="hero-signal-pill">
+              <span>{row.label}</span>
+              <strong>{row.title}</strong>
+            </a>
+          ))}
+        </div>
         <div class="hero-stats-row">
           <div class="hstat"><span class="hstat-n">{articleCount}</span><span class="hstat-l">Articles</span></div>
           <div class="hstat"><span class="hstat-n">{proofCount}</span><span class="hstat-l">Experiments</span></div>
