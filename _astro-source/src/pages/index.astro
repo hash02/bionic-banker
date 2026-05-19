@@ -4,6 +4,7 @@ import ParticleHero from '../components/ParticleHero.astro';
 import { getCollection } from 'astro:content';
 const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
+const heartbeatData = await import('../../public/dashboard-data/heartbeat.json');
 
 // GET ARTICLE COUNT — computed, never hardcoded again
 const allPosts = await getCollection('blog');
@@ -15,31 +16,56 @@ const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - ne
 const latestPost = sortedPosts[0];
 const featuredArticle = featuredPosts[0] || sortedPosts[0];
 const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 3);
+
+// Heartbeat snapshot — used as instant fallback before client-side refresh
+const hb = heartbeatData.default;
+const snapshotPrice = hb?.status?.last_prediction?.price_now;
+const snapshotPriceStr = typeof snapshotPrice === 'number'
+  ? `$${Math.round(snapshotPrice).toLocaleString('en-US')}`
+  : null;
+const snapshotTime = (() => {
+  const iso = hb?.generated_at;
+  if (!iso) return null;
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' · ' +
+      d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+  } catch { return null; }
+})();
+
 const movingRows = [
   {
+    id: 'market',
     label: 'Market',
-    title: 'BTC stays on watch',
-    detail: 'The lab keeps a simple market row open because price, risk, and attention usually move together.',
-    source: 'Public market context',
-    href: '/intelligence'
+    title: snapshotPriceStr ? `BTC · ${snapshotPriceStr}` : 'BTC on watch',
+    detail: 'Price updates from a public API when available. Snapshot from the lab heartbeat as fallback.',
+    source: 'Live · CoinGecko',
+    href: '/intelligence',
+    livePrice: true
   },
   {
+    id: 'wallets',
     label: 'Wallets',
     title: 'Wallet Risk Lab is open',
-    detail: 'A cleaner way to read wallet-risk rows: score, rule, plain note, and the limit of what the row is claiming.',
+    detail: 'Score, rule, plain note, and the limit of what the row is claiming.',
     source: 'Risk notes',
-    href: '/wallet-risk'
+    href: '/wallet-risk',
+    livePrice: false
   },
   {
+    id: 'writing',
     label: 'Writing',
     title: latestPost.data.title,
     detail: latestPost.data.description,
     source: latestPost.data.readTime,
-    href: `/blog/${latestPost.data.slug || latestPost.id}`
+    href: `/blog/${latestPost.data.slug || latestPost.id}`,
+    livePrice: false
   }
 ];
+
+const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleCount} articles on AML detection, blockchain agents, wallet risk, and financial systems — with live signals, field-tested experiments, and notes from someone building inside finance.`;
 ---
-<BaseLayout title="Home">
+<BaseLayout title="Home" description={geoDescription}>
 
   <!-- HERO -->
   <div class="hero-wrap">
@@ -107,12 +133,19 @@ const movingRows = [
       </div>
       <div class="moving-now-grid">
         {movingRows.map(row => (
-          <a href={row.href} class="moving-now-card">
+          <a href={row.href} class="moving-now-card" data-moving-id={row.id}>
             <div class="moving-now-top">
-              <span>{row.label}</span>
-              <span>{row.source}</span>
+              <span class="mn-label">{row.label}</span>
+              {row.livePrice && <span class="mn-live-badge" data-live-dot>live</span>}
+              <span class="mn-source">{row.source}</span>
             </div>
-            <h3>{row.title}</h3>
+            <h3 data-moving-title>{row.title}</h3>
+            {row.livePrice && (
+              <div class="mn-price-row">
+                <span class="mn-price" data-live-price>{snapshotPriceStr ?? '—'}</span>
+                <span class="mn-change" data-live-change></span>
+              </div>
+            )}
             <p>{row.detail}</p>
           </a>
         ))}
@@ -282,6 +315,78 @@ const movingRows = [
       </div>
     </div>
   </div>
+
+  <script>
+    (function () {
+      const card = document.querySelector('[data-moving-id="market"]');
+      if (!card) return;
+      const priceEl = card.querySelector('[data-live-price]');
+      const changeEl = card.querySelector('[data-live-change]');
+      const titleEl = card.querySelector('[data-moving-title]');
+
+      async function refresh() {
+        try {
+          const res = await fetch(
+            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true',
+            { headers: { accept: 'application/json' } }
+          );
+          if (!res.ok) return;
+          const d = await res.json();
+          const price = d?.bitcoin?.usd;
+          const change = d?.bitcoin?.usd_24h_change;
+          if (typeof price === 'number') {
+            const fmt = '$' + Math.round(price).toLocaleString('en-US');
+            if (priceEl) priceEl.textContent = fmt;
+            if (titleEl) titleEl.textContent = 'BTC · ' + fmt;
+          }
+          if (typeof change === 'number' && changeEl) {
+            const sign = change >= 0 ? '+' : '';
+            changeEl.textContent = sign + change.toFixed(2) + '% 24h';
+            changeEl.style.color = change >= 0 ? 'var(--accent)' : '#e05555';
+          }
+        } catch (_) {}
+      }
+
+      refresh();
+      window.setInterval(refresh, 120000);
+    })();
+  </script>
+
+  <style>
+    .mn-label { color: var(--text-3); font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; }
+    .mn-source { color: var(--text-3); font-family: var(--mono); font-size: 0.68rem; margin-left: auto; }
+    .mn-live-badge {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(31, 160, 104, 0.4);
+      border-radius: 999px;
+      padding: 0.1rem 0.4rem;
+      animation: pulse-opacity 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse-opacity {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.45; }
+    }
+    .mn-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin: 0.1rem 0 0.3rem;
+    }
+    .mn-price {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: var(--mono);
+      line-height: 1;
+    }
+    .mn-change {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+  </style>
 
   <!-- CONTACT -->
   <div class="contact-section animate-on-scroll" id="contact">
