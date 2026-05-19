@@ -1,119 +1,166 @@
 ---
-title: "I Built a Blockchain AML Engine From Scratch"
-description: "94.9% detection rate. 28 rules. Real Etherscan data. Caught Tornado Cash, Ronin, Lazarus Group. Here's what an engineer inside finance found building what compliance teams actually need."
+title: "How AML Detection Works on Blockchain Rails"
+description: "A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me."
 date: "2026-02-27"
-tags: ["AML · Blockchain · AI"]
-readTime: "12 min"
-category: "Tech"
+tags: ["AML", "Blockchain", "AI"]
+readTime: "9 min"
+category: "Finance"
 featured: true
 slug: "aml-engine"
 image: "/blog-visuals/aml-engine/social-preview.png"
 ---
 
-I work at a bank. I had no plan to build a fraud detection system. I just started asking questions—and one question led to another, led to another, until I was literally looking at the wallets Lazarus Group used to move $625 million in stolen funds. This is that story.
+AML detection is not one magic score.
 
----
+It is a chain of small checks: known risk rules, transaction patterns, wallet behavior, anomaly signals, and a final triage layer that decides what deserves human attention first.
 
-Okay so — I need to be honest about how this actually started. There was no grand plan. No "I'm going to build a fraud detection engine" moment. It started way more simply than that.
+That is what I tried to build here. A blockchain AML engine that reads public transaction data, maps suspicious behavior into explainable signals, and shows why a wallet or transaction deserves a closer look.
 
-I was just curious about Tornado Cash. The US Treasury had sanctioned it in 2022 and I kept seeing it in the news, but nobody was really explaining why. Like, what is it actually doing? What does the transaction look like? So I went to Etherscan — the public blockchain explorer — and just... started reading transactions.
+The useful part is not only the flag.
 
-That's it. That was the beginning. One question about a mixer.
+The useful part is the sentence under the flag.
 
-And then one question became another. Okay, how do you actually hide money on a blockchain if everything is public? And then — if I can see these patterns, can I write rules to catch them? And then — what other crimes have left traces on-chain that nobody's officially analyzed? One dot to the next to the next to the next. Before I knew what was happening, I had 22 detection rules, a machine learning layer on top, and I was sitting at night looking at actual criminal wallets.
+## The question that started it
 
-> "It's a Batman thing. You're sitting in your apartment at night, no badge, no authority, no warrant — just code and curiosity — and suddenly you're looking at $625 million in stolen funds moving across the blockchain in real time."
+I started with a simple question about mixers.
 
-## What I Do at the Bank vs. What I Built at Home
+If a blockchain is public, how does money still get hidden?
 
-Here's the thing about working in financial services — you see compliance every day. The reports, the reviews, the checkbox exercises. And there's a reason they exist. The regulations are serious, the stakes are real.
+That question led to Tornado Cash, bridge exploits, wallet clusters, sanctioned addresses, and the strange feeling of watching real financial crime leave public traces.
 
-But there's also a gap. A big one. The way institutions monitor for financial crime and the way money actually moves on-chain — those two things are operating at completely different speeds. Banks run batch processes. Blockchain settles in seconds. That mismatch is where billions of dollars go missing every year.
+At first, the engine was tiny. A few simple rules. Large transactions. Known risky addresses. Fast movement.
 
-I'm not saying the banks are doing it wrong. I'm saying the problem is genuinely hard, and the tools haven't caught up yet. That's actually what made me want to build something — not to criticize what already exists, but to understand what the next version of it could look like.
+That was enough to learn the shape of the problem.
 
-## How the Rules Work — and How I Built Them
+Every false positive taught me where a rule was too wide. Every miss taught me where the data was too thin. The project kept growing because each case exposed one more pattern.
 
-Version 1 of the engine was embarrassingly simple. Three rules. Flag high-value transactions, check against known blacklists, flag high-risk country interactions. Done.
+## How AML detection works
 
-The thing is — that's exactly where you should start. When your system is that simple, every mistake teaches you something clean. No complexity to hide behind. Every false positive is a lesson. Every miss is a lesson. You figure out exactly why a rule works, and exactly where it breaks.
+The engine has three layers.
 
-By version 6 the engine was covering the major attack categories — structuring (breaking large amounts into smaller pieces to avoid detection thresholds), mixing (Tornado Cash and similar tools that sever the transaction trail), cross-chain bridging (moving funds across different blockchains to lose the trail), velocity attacks (flooding a system with rapid transactions), OFAC-listed wallets, and blockchain-specific patterns like flash loans.
+Layer one is rules.
 
-Every new version came from a new case study. Read the case. Understand the pattern. Write the rule. Test it against the data. Repeat. Eleven versions later — 22 rules, covering 6 attack categories, running against real Etherscan data.
+Rules catch patterns that are already understood: mixer contact, bridge hops, peel chains, OFAC hits, dormant wallet activation, coordinated bursts, smurfing, drainer behavior, address poisoning, and other known shapes.
 
-## The Engine Architecture
+Layer two is anomaly detection.
 
-The system has three layers working together:
+Some activity does not match a known rule, but it still looks strange compared with normal wallet behavior. That is where the model helps. It does not replace the rule layer. It catches shapes the rules did not name yet.
 
-**Layer 1 — Rule Engine:** 28 rules across structuring, mixing, bridging, velocity, OFAC, and blockchain-specific patterns.
+Layer three is triage.
 
-**Layer 2 — AI Detection Layer:** Isolation Forest algorithm. Catches what rules miss. 21 novel detections found purely through statistical anomalies.
+Not every flag deserves the same attention. A direct sanctioned-address hit is not the same as a weak pattern three hops away. The triage layer groups signals so the most urgent cases rise first.
 
-**Layer 3 — Dynamic Triage:** LEGENDARY (high-risk), RARE (medium-risk), MAGIC (suspicious), COMMON (low-risk). Reduces analyst queue by 63% without losing a single high-priority case.
+## The current rule map
 
-## The Cases — When It Got Real
+The current manifest maps 28 detection abilities.
 
-This is where the project changed for me. Testing against real blockchain data from actual hacks — not simulated, not theoretical. Real events, real wallets, real money.
+That number includes 23 direct `detect_` functions and 5 feature-stage abilities that are computed before the rules fire.
 
-### Ronin Network — Lazarus Group (North Korea)
+The direct rules cover things like:
 
-$625M stolen by compromising validator keys on the Ronin bridge. The engine caught the wallet cluster patterns and cross-chain movement. Each hop through multiple wallets triggered a different rule — it was like following a trail that was trying not to be a trail.
+- mixer touch
+- bridge hops
+- peel chains
+- OFAC hits
+- flash-loan bursts
+- coordinated bursts
+- dormant activation
+- wash cycles
+- smurfing
+- exchange avoidance
+- phishing hits
+- sub-threshold tranching
+- machine cadence
+- sybil fan-in
+- drainer signatures
+- address poisoning
 
-### Tornado Cash — OFAC-Sanctioned Mixer
+The feature-stage abilities look at wallet behavior: velocity, amount distribution, time gaps, counterparty shape, and address profile.
 
-Direct hits on the Tornado Cash contract flagged immediately. The more interesting part was detecting wallets one hop removed — wallets that had already been "cleaned." The engine learned to recognize the shape of a post-mixer wallet, not just the mixer itself.
+That is the part I like. The engine is not only asking, "Did this exact bad thing happen?"
 
-### Wormhole Bridge Exploit
+It is also asking, "Does this wallet move like a normal wallet?"
 
-$320M via a cross-chain bridge vulnerability. The tell was the velocity — abnormal burst of high-value transactions in a short window, destination wallets with zero prior history. Two rules firing at the same time: velocity anomaly + new wallet cluster.
+## The cases I used
 
-### Nomad Bridge — The Copycat Attack
+The early case studies were public blockchain events.
 
-What made Nomad interesting was the crowd effect. Once one hacker found the vulnerability, hundreds of copycat wallets drained the bridge within hours. The signature: dozens of different wallets, same destination contracts, same time window. Organized opportunism.
+Ronin showed bridge movement and wallet clustering.
 
-## The Ceiling — and Why It's Actually the Most Interesting Part
+Tornado Cash showed direct mixer contact and the harder question of what happens after funds leave the mixer.
 
-At 94.9% detection, I hit a wall. Two cases the engine couldn't fully crack. And honestly — this is where I learned the most.
+Wormhole showed fast high-value movement through bridge-related behavior.
 
-Euler Finance used a flash loan attack. One atomic transaction: borrow, exploit, repay, all within a single block. The engine's rules look at sequences of transactions over time. A single-block attack has no sequence. There's nothing to follow because it all happened in one moment — faster than any monitoring system can track.
+Nomad showed a crowd pattern, where many wallets copied the same opportunity in a short window.
 
-That's not a rule problem. That's a data problem. To catch flash loan attacks you need block-level data, not just transaction-level data. I was looking at the right thing at the wrong resolution.
+I used those cases because they were concrete. Not abstract crime typologies. Actual public traces.
 
-**The thing I actually learned:** 94.9% isn't a failure at 5.1% — it's a diagnosis. The missing 5.1% told me exactly what data I needed next. Every ceiling in detection is a map to the next layer of the problem. You can't write your way past a data gap with more rules. You have to go get the data.
+When a rule fired, I could go back to the transaction and ask: does this make sense, or did I build a noisy detector?
 
-## Adding the AI Layer — Teaching the Machine What Normal Looks Like
+That loop mattered more than the first score.
 
-Rules catch what you already know. The AI layer was about catching what I didn't know I didn't know.
+## What the anomaly layer adds
 
-I used an Isolation Forest — an unsupervised machine learning model. The way it works is almost elegant in its simplicity: show it thousands of normal transactions until it understands what normal looks like, then let it flag whatever doesn't fit that shape. No labels needed. No examples of fraud needed. Just pattern recognition over a massive normal baseline.
+Rules are good at known patterns.
 
-The AI found 21 transactions that zero rules had touched. Pure statistical outliers. The most interesting one: a single billion-dollar transaction, no OFAC match, no mixer interaction, no velocity pattern. Just a wallet doing something statistically impossible given everything else in the dataset. AI confidence: 79.8. Rule hits: zero.
+But financial crime does not always repeat itself neatly.
 
-That's the whole point of having both. Rules catch known patterns. AI catches unknown shapes. You genuinely need both — they're not competing, they're covering different parts of the problem space.
+The anomaly layer looks for behavior that does not fit the normal baseline. High amount, unusual timing, strange sender behavior, new wallet activity, or a shape that looks rare even when no blacklist is involved.
 
-## The Triage System — I Stole This From Gaming
+That does not mean the transaction is criminal.
 
-695 flagged transactions. One analyst. Where do you start?
+It means the transaction is worth reading.
 
-If you've played any RPG you already know the answer. Items have rarity tiers — Legendary, Rare, Magic, Common. You always open the Legendary items first. Not because the others don't matter, but because expected value is highest at the top tier.
+That distinction matters. AML tooling should not pretend every flag is a verdict. A flag is a route into review.
 
-So I built a scoring system that maps directly to that logic. Every flagged transaction gets a confidence score across four dimensions: how many rules fired, how large the amount, how frequently the sender shows up in other suspicious activity, and what the AI layer said. When multiple dimensions fire at the same time, the score escalates — not linearly, but with a combination bonus. The more signals converging, the higher the tier.
+## Why triage matters
 
-Result: out of 695 flagged cases, 256 genuinely needed immediate human attention. 63% queue reduction without losing a single high-priority case. The analyst goes straight to the Legendary tier and knows they're looking at the real risk first.
+If a system flags everything, it helps no one.
 
-## What I'm Building Next
+The problem is not only detection. The problem is attention.
 
-The engine is at v12. The architecture is three layers deep. But this is still version one of a bigger thing.
+So the engine groups signals into tiers. The names came from gaming because that made the idea obvious: start with the highest-signal cases, then move down.
 
-The live demo is now up — you can run the engine on real transaction data, right in your browser. Upload a CSV or hit the sample data button and watch Wormhole, Ronin, and Lazarus Group get flagged in real time. Every rule that fires is explained. Every score is broken down. No setup, no install.
+The point is simple.
 
-Next: connecting to live blockchain data so the engine runs continuously, not just on batch uploads. After that: a symbolic reasoning layer — something I've been building in parallel — that audits AI reasoning chains the same way this engine audits transaction chains. Same architecture, different domain.
+One analyst should not have to read every row in order. The system should help them open the strongest rows first and understand why those rows rose to the top.
 
-The full codebase is open on GitHub. Every rule, every version, every case study documented. If you're building in this space, it's yours to learn from.
+## The limit
 
-> "It started as an innocent question about how stablecoins work. I had no plan. I was just following one dot to the next to the next. That's the whole point — you don't need to know where you're going. You just need to be curious enough to follow the trail."
+The hardest lesson was that some misses are not rule problems.
 
-If you're reading this and you work in compliance, fintech, or blockchain — the gap between how fast money moves on-chain and how fast institutions respond is real, and it's closing whether everyone's ready or not. The tools to close it exist. They're just not in the compliance handbook yet.
+Sometimes the data is at the wrong resolution.
 
-And if you're a millennial or Gen Z reading this at night, wondering if you can build something that actually matters without a big team or a title — yeah. You can. The blockchain is public. The data is there. The tools are free. The only thing between you and catching real financial crime is curiosity and enough patience to follow the dots.
+A flash-loan attack can happen inside one block. If your system mainly reads transaction sequences over time, it may be looking at the right event through the wrong lens.
+
+That taught me something useful.
+
+You cannot patch a data gap with more confidence. You need better data.
+
+For some patterns, transaction-level monitoring is enough. For others, you need block-level context, contract traces, or a different way to read the event.
+
+## What this is and is not
+
+This is a public lab engine.
+
+It reads patterns, fires rules, adds anomaly signals, and explains why a row is worth attention.
+
+It is not an auto-decision system. It does not replace an analyst. It does not say a wallet is guilty. It does not make claims about private customer data.
+
+The clean version of the goal is smaller and stronger:
+
+Show the signal. Show the reason. Show the limit.
+
+## The note I keep coming back to
+
+Blockchain AML is interesting because the data is public but the story is still hard.
+
+You can see the movement. That does not mean you understand it.
+
+The job is to turn movement into readable risk without pretending the system knows more than it does.
+
+That is the lane I keep returning to.
+
+A good detection engine should not only say, "look here."
+
+It should say, "look here, because this pattern moved this way, and here is where the signal stops."
