@@ -24,7 +24,7 @@ const grouped = categories
   </div>
 
   <div class="articles-wrap">
-    <p class="verified-note">Last refreshed from the question catalog: {verifiedDate}. Current board: {sources.length} market signals and {questions.length} public questions.</p>
+    <p class="verified-note">Last refreshed from the question catalog: {verifiedDate}. Current board: {sources.length} outside signals and {questions.length} public questions.</p>
 
     <section class="website-scan-panel">
       <div class="section-label">Reader Guide</div>
@@ -35,11 +35,11 @@ const grouped = categories
           <p>{guide.plain_answer}</p>
         </article>
         <article>
-          <span>Good when</span>
+          <span>Useful when</span>
           <p>{guide.useful_for_reader}</p>
         </article>
         <article>
-          <span>Core question</span>
+          <span>Center question</span>
           <p>{websiteScan.main_question}</p>
         </article>
       </div>
@@ -59,8 +59,8 @@ const grouped = categories
           <span class="tag-pill tag-green">Guidance</span>
         </div>
         <h3>How to read this page</h3>
-        <p>Every card starts as a question because that is how real engineering starts. The page avoids private architecture and stays on concepts anyone can use.</p>
-        <p>Each row maps a modern question to why people ask it, a plain answer, a public example, and the next useful click.</p>
+        <p>Every card starts as a question because that is how real engineering starts. The page stays on concepts, examples, and public routes anyone can open.</p>
+        <p>Each row moves from question to plain answer to example, then gives one next click.</p>
         <div class="card-footer">
           <a class="read-more" href="/reports">Open reports -></a>
           <a class="read-more" href="/projects">Open experiments -></a>
@@ -113,10 +113,10 @@ const grouped = categories
                 <span>{question.category}</span>
                 <h3>{question.question}</h3>
               </div>
-              <p><strong>Why people ask:</strong> {question.why_market_asks}</p>
+              <p><strong>Why this comes up:</strong> {question.why_market_asks}</p>
               <p><strong>Plain answer:</strong> {question.plain_answer}</p>
-              <p><strong>Existing example:</strong> {question.already_built_example}</p>
-              <p><strong>Good when:</strong> {question.useful_for_reader}</p>
+              <p><strong>Example:</strong> {question.already_built_example}</p>
+              <p><strong>Useful when:</strong> {question.useful_for_reader}</p>
               <div class="card-footer">
                 <a class="read-more" href={question.website_surface}>Learn concept -></a>
                 <a class="read-more" href={question.report_surface}>Follow note -></a>

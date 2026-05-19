@@ -42,7 +42,7 @@ const sourceRows = labProjects.map((project) => ({
 
 const maxSources = Math.max(...sourceRows.map((row) => row.sources));
 ---
-<BaseLayout title="Field Notes" description="Numbers, charts, and notes from the Bionic Banker lab: AML benchmark values, agent observability, learning concepts, and visible limits.">
+<BaseLayout title="Field Notes" description="Numbers, charts, and notes from the Bionic Banker lab: wallet-risk benchmark values, agent observability, learning concepts, and visible limits.">
   <div class="page-header">
     <div class="page-label">Field Notes</div>
     <h1 class="page-title">Numbers with context</h1>
@@ -71,7 +71,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
           <span class="tag-pill tag-green">Snapshot</span>
         </div>
         <h3>What is moving</h3>
-        <p>The current catalog tracks {labProjects.length} experiments, {totalSources} source entries, {totalMetrics} metric statements, and {totalLimitations} explicit limits.</p>
+        <p>The current catalog tracks {labProjects.length} experiments, {totalSources} source entries, {totalMetrics} number notes, and {totalLimitations} visible limits.</p>
         <p>The learning layer adds {concepts.length} concepts and {guideSteps} guide steps, so the numbers do not float without language around them.</p>
         <div class="card-footer">
           <a class="read-more" href="/projects">Open experiments -></a>
@@ -106,7 +106,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
     <section class="report-panel">
       <div class="section-label">Signal Map</div>
       <h2>Experiments by source trail</h2>
-      <p>Each lane is scored by linked source entries. This is a simple visibility measure, not a quality ranking.</p>
+      <p>Each lane shows how many links and notes sit behind it. This is a quick visibility map, not a ranking.</p>
       <div class="bar-list">
         {sourceRows.map((row) => (
           <div class="bar-row">
@@ -127,7 +127,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
       <h2>Measured notes</h2>
       <p>These values come from existing summaries. Bars use a display scale per metric family, so percentages, function counts, tests, and prediction counts stay readable without pretending they measure the same thing.</p>
       <div class="chart-wrap">
-        <svg viewBox="0 0 760 360" role="img" aria-label="Benchmark metrics chart">
+        <svg viewBox="0 0 760 360" role="img" aria-label="Benchmark numbers chart">
           <line x1="72" y1="28" x2="72" y2="304" class="axis-line" />
           <line x1="72" y1="304" x2="724" y2="304" class="axis-line" />
           {benchmarkMetrics.map((metric, index) => {
@@ -159,7 +159,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
     <section class="report-panel">
       <div class="section-label">Radar</div>
       <h2>Where the lab feels strong or thin</h2>
-      <p>This is a practical map. AML, agent coordination, and observability are already readable. Deployment is the next visible question.</p>
+      <p>This is a practical map. Wallet-risk notes, agent coordination, and observability are already readable. Deployment is the next visible question.</p>
       <div class="coverage-grid">
         {coverageBars.map((item) => (
           <div class="coverage-item">
