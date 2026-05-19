@@ -21,7 +21,7 @@ const sourceTiles = brain.entry_points.map((entry) => ({
     : entry.id === 'reports'
       ? `${metrics.length} field-note metrics, benchmark bars, and signal maps.`
       : entry.id === 'learn'
-        ? `${concepts.length} plain-language concepts for AI agents, RAG, RBAC, observability, AML, and deployment.`
+        ? `${concepts.length} plain-language concepts for AI agents, RAG, RBAC, observability, wallet risk, and deployment.`
         : entry.id === 'questions'
           ? `${questions.length} modern AI questions mapped to answers, examples, and routes.`
           : entry.body
@@ -34,13 +34,13 @@ const uxStats = [
   { value: questions.length, label: 'questions' }
 ];
 ---
-<BaseLayout title="Ask Bionic Banker" description="Ask Bionic Banker questions about Himanshu, AI finance experiments, AML work, field notes, learning notes, and live signal pages.">
+<BaseLayout title="Ask the Lab" description="Ask Bionic Banker questions about Himanshu, AI finance experiments, wallet-risk work, field notes, learning notes, and live signal pages.">
   <main class="ask-shell">
     <section class="ask-hero">
       <div class="hero-copy">
         <div class="route-kicker">Bionic Banker site guide</div>
-        <h1>Ask Bionic Banker where to go.</h1>
-        <p>This page is a guide for the website. Ask about Himanshu, AML, agents, field notes, AI terms, live signals, or experiments. The answer points you to the right corner of the lab.</p>
+        <h1>Ask the Lab where to go.</h1>
+        <p>This page is a guide for the website. Ask about Himanshu, wallet risk, agents, field notes, AI terms, live signals, or experiments. The answer points you to the right corner of the lab.</p>
         <div class="hero-actions-mini" aria-label="Fast routes">
           <a href="/proof-tour/">Enter the lab</a>
           <a href="/reports/">See reports</a>
@@ -50,7 +50,7 @@ const uxStats = [
       <aside class="guide-panel" aria-label="Site guide status">
         <div class="panel-topline">
           <span>Guide mode</span>
-          <strong>Local routing</strong>
+          <strong>Find your route</strong>
         </div>
         <p>Answers come from visible pages, experiment cards, field notes, learning notes, and signal pages. The goal is simple: help a visitor find the right door fast.</p>
         <div class="stat-strip">
@@ -67,13 +67,13 @@ const uxStats = [
     <section class="ask-console" data-site-agent>
       <div class="console-head">
         <div>
-          <span>Ask console</span>
+          <span>Ask the lab</span>
           <h2>Type one question. Get a route.</h2>
         </div>
-        <p>Works locally in the browser from a visible routing index. No account, no form, no wait.</p>
+        <p>Works in the browser from the public site map. No account, no form, no wait.</p>
       </div>
       <div class="prompt-row">
-        <input id="site-question" type="text" placeholder="Try: show me AML, explain agents, where are the charts..." autocomplete="off" />
+        <input id="site-question" type="text" placeholder="Try: show me wallet risk, explain agents, where are the charts..." autocomplete="off" />
         <button id="site-ask" type="button" aria-label="Ask Bionic Banker">Ask</button>
       </div>
       <div class="prompt-chips" aria-label="Suggested questions">
@@ -98,7 +98,7 @@ const uxStats = [
 
     <section class="source-panel">
         <div class="panel-head">
-        <span>Navigation logic</span>
+        <span>Route map</span>
         <h2>{sourceTiles.length} routes, one question box.</h2>
       </div>
       <div class="source-grid">
