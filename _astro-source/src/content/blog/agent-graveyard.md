@@ -1,6 +1,6 @@
 ---
 title: "The agent graveyard. I tried more than a dozen. A handful survived. Here is the autopsy."
-description: "Everyone is selling you on building an agent. Nobody is telling you what breaks when they run at 3am and you are asleep. I have tried more than a dozen. A handful are still breathing. The rest taught me rules I now enforce automatically. Here is the honest field report, and a direct ask at the end to anyone else quietly doing this work."
+description: "A field note from the agent graveyard: what survived, what broke at 3am, and the rules that came out of the failures."
 date: "2026-04-19"
 slug: "agent-graveyard"
 tags: ["AI", "Agents", "Engineering", "Systems", "Failure"]

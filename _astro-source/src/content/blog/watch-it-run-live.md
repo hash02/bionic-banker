@@ -1,9 +1,9 @@
 ---
 title: "I built an AI financial advisor. Watch it run live."
-description: "Most people write about AI advisors. I am just going to show you mine. Running. Right now. With a coverage bar, six scanner workers, three funds, and a guardian layer auditing itself. You can watch the coverage flip in real time."
+description: "A live note from the finance lab: six scanners, three funds, a coverage bar, and a guardian layer checking the work while it runs."
 date: "2026-04-21"
 slug: "watch-it-run-live"
-tags: ["AI", "Agents", "Finance", "DeFi", "Systems", "Portfolio"]
+tags: ["AI", "Agents", "Finance", "DeFi", "Systems"]
 readTime: "7 min"
 featured: true
 image: "/blog-visuals/png/watch-it-run-live-hero.png"
