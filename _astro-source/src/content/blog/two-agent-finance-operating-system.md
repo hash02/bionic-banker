@@ -1,8 +1,8 @@
 ---
 title: "How I Built a Two-Agent Finance Operating System"
-description: "A source-linked case study on a two-agent operating layer for finance and compliance work: shared board state, approval gates, audit trails, and honest limits."
+description: "Two AI agents, one shared board, and a simple rule: one moves, the other checks. A field note on making finance work easier to trust."
 date: "2026-05-18"
-tags: ["AI", "Agent Systems", "Finance", "Career"]
+tags: ["AI", "Agent Systems", "Finance"]
 readTime: "7 min"
 category: "AI"
 featured: false
