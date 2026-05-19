@@ -3,12 +3,11 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-YS428H3H44');
-  </script><!-- Open Graph --><meta property="og:title" content="How AML Detection Works on Blockchain Rails - Bionic Banker"><meta property="og:description" content="A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me."><meta property="og:type" content="article"><meta property="og:url" content="https://bionicbanker.tech/blog/aml-engine/"><meta property="og:site_name" content="Bionic Banker"><meta property="og:image" content="https://bionicbanker.tech/blog-visuals/aml-engine/social-preview.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How AML Detection Works on Blockchain Rails - Bionic Banker"><meta name="twitter:description" content="A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me."><meta name="twitter:image" content="https://bionicbanker.tech/blog-visuals/aml-engine/social-preview.png"><meta name="twitter:site" content="@BionicBanker"><meta name="twitter:creator" content="@BionicBanker"><link rel="canonical" href="https://bionicbanker.tech/blog/aml-engine/"><!-- JSON-LD Structured Data --><!-- Styles --><link rel="stylesheet" href="/styles/global.css"><link rel="stylesheet" href="../../styles/global.css"><style>body,html{background:#08080e!important}canvas[data-astro-cid-37fxchfa]{background:#08080e!important}.nav-right{display:flex!important;align-items:center;gap:1rem;min-width:0}@media(max-width:1400px){nav{gap:1rem}.nav-links{gap:1rem}.nav-cta{display:none}}@media(max-width:640px){.nav-right{display:none!important}}
-</style></head> <body data-astro-cid-37fxchfa> <!-- NAV --> <nav data-astro-cid-37fxchfa> <a href="/" class="nav-logo" data-astro-cid-37fxchfa>Bionic <span data-astro-cid-37fxchfa>Banker</span></a> <div class="nav-right" data-astro-cid-37fxchfa> <ul class="nav-links" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/gaps" data-astro-cid-37fxchfa>Questions</a></li> <li data-astro-cid-37fxchfa><a href="/learn" data-astro-cid-37fxchfa>Learn</a></li> <li data-astro-cid-37fxchfa><a href="/proof-tour" data-astro-cid-37fxchfa>The Lab</a></li> <li data-astro-cid-37fxchfa><a href="/reports" data-astro-cid-37fxchfa>Field Notes</a></li> <li data-astro-cid-37fxchfa><a href="/intelligence" data-astro-cid-37fxchfa>Live Signals</a></li> <li data-astro-cid-37fxchfa><a href="/articles" data-astro-cid-37fxchfa>Writing</a></li> <li data-astro-cid-37fxchfa><a href="/site-agent" data-astro-cid-37fxchfa>Ask</a></li> <li data-astro-cid-37fxchfa><a href="/#about" data-astro-cid-37fxchfa>About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu" data-astro-cid-37fxchfa>&#9776;</button> </nav> <!-- MAIN CONTENT -->  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How AML Detection Works on Blockchain Rails","description":"A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me.","datePublished":"2026-02-27T00:00:00.000Z","dateModified":"2026-02-27T00:00:00.000Z","author":{"@type":"Person","name":"Himanshu","url":"https://linkedin.com/in/himanshu-h-a357684a"},"publisher":{"@type":"Organization","name":"Bionic Banker","url":"https://bionicbanker.tech"},"mainEntityOfPage":"https://bionicbanker.tech/blog/aml-engine/","image":"https://bionicbanker.tech/blog-visuals/aml-engine/social-preview.png","keywords":"AML, Blockchain, AI"}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bionicbanker.tech"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://bionicbanker.tech/articles"},{"@type":"ListItem","position":3,"name":"How AML Detection Works on Blockchain Rails","item":"https://bionicbanker.tech/blog/aml-engine/"}]}</script> <article class="article-page"> <div class="article-hero"> <div class="article-meta-top"> <span class="article-category">Finance</span> <span class="article-date">February 26, 2026</span> <span class="article-read-time">9 min read</span> </div> <h1 class="article-title">How AML Detection Works on Blockchain Rails</h1> <p class="article-desc">A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me.</p> <div class="article-tags"> <span class="tag">AML</span><span class="tag">Blockchain</span><span class="tag">AI</span> </div> </div> <div class="article-body">  <p>AML detection is not one magic score.</p>
-<p>It is a chain of small checks: known risk rules, transaction patterns, wallet behavior, anomaly signals, and a final triage layer that decides what deserves human attention first.</p>
-<p>That is what I tried to build here. A blockchain AML engine that reads public transaction data, maps suspicious behavior into explainable signals, and shows why a wallet or transaction deserves a closer look.</p>
+  </script><!-- Open Graph --><meta property="og:title" content="How AML Detection Works on Blockchain Rails - Bionic Banker"><meta property="og:description" content="A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me."><meta property="og:type" content="article"><meta property="og:url" content="https://bionicbanker.tech/blog/aml-engine/"><meta property="og:site_name" content="Bionic Banker"><meta property="og:image" content="https://bionicbanker.tech/blog-visuals/aml-engine/social-preview.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How AML Detection Works on Blockchain Rails - Bionic Banker"><meta name="twitter:description" content="A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me."><meta name="twitter:image" content="https://bionicbanker.tech/blog-visuals/aml-engine/social-preview.png"><meta name="twitter:site" content="@BionicBanker"><meta name="twitter:creator" content="@BionicBanker"><link rel="canonical" href="https://bionicbanker.tech/blog/aml-engine/"><!-- JSON-LD Structured Data --><!-- Styles --><link rel="stylesheet" href="/styles/global.css"><link rel="stylesheet" href="../../styles/global.css"><!-- Lottie player (custom element, defer safe) --><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script><style>body,html{background:#08080e!important}canvas[data-astro-cid-37fxchfa]{background:#08080e!important}.nav-right{display:flex!important;align-items:center;gap:1rem;min-width:0}@media(max-width:1400px){nav{gap:1rem}.nav-links{gap:1rem}.nav-cta{display:none}}@media(max-width:640px){.nav-right{display:none!important}}
+</style></head> <body data-astro-cid-37fxchfa> <!-- NAV --> <nav data-astro-cid-37fxchfa> <a href="/" class="nav-logo" data-astro-cid-37fxchfa>Bionic <span data-astro-cid-37fxchfa>Banker</span></a> <div class="nav-right" data-astro-cid-37fxchfa> <ul class="nav-links" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/gaps" data-astro-cid-37fxchfa>Questions</a></li> <li data-astro-cid-37fxchfa><a href="/learn" data-astro-cid-37fxchfa>Learn</a></li> <li data-astro-cid-37fxchfa><a href="/proof-tour" data-astro-cid-37fxchfa>The Lab</a></li> <li data-astro-cid-37fxchfa><a href="/reports" data-astro-cid-37fxchfa>Field Notes</a></li> <li data-astro-cid-37fxchfa><a href="/intelligence" data-astro-cid-37fxchfa>Live Signals</a></li> <li data-astro-cid-37fxchfa><a href="/articles" data-astro-cid-37fxchfa>Writing</a></li> <li data-astro-cid-37fxchfa><a href="/site-agent" data-astro-cid-37fxchfa>Ask</a></li> <li data-astro-cid-37fxchfa><a href="/#about" data-astro-cid-37fxchfa>About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu" data-astro-cid-37fxchfa>&#9776;</button> </nav> <!-- MAIN CONTENT -->  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How AML Detection Works on Blockchain Rails","description":"A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me.","datePublished":"2026-02-27T00:00:00.000Z","dateModified":"2026-02-27T00:00:00.000Z","author":{"@type":"Person","name":"Himanshu","url":"https://linkedin.com/in/himanshu-h-a357684a"},"publisher":{"@type":"Organization","name":"Bionic Banker","url":"https://bionicbanker.tech"},"mainEntityOfPage":"https://bionicbanker.tech/blog/aml-engine/","image":"https://bionicbanker.tech/blog-visuals/aml-engine/social-preview.png","keywords":"AML, Blockchain, AI"}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bionicbanker.tech"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://bionicbanker.tech/articles"},{"@type":"ListItem","position":3,"name":"How AML Detection Works on Blockchain Rails","item":"https://bionicbanker.tech/blog/aml-engine/"}]}</script> <article class="article-page"> <div class="article-hero"> <div class="article-meta-top"> <span class="article-category">Finance</span> <span class="article-date">February 26, 2026</span> <span class="article-read-time">9 min read</span> </div> <h1 class="article-title">How AML Detection Works on Blockchain Rails</h1> <p class="article-desc">A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me.</p> <div class="article-tags"> <span class="tag">AML</span><span class="tag">Blockchain</span><span class="tag">AI</span> </div> </div> <div class="article-body">  <p>AML detection is not one magic score. It is a three-layer system: 28 detection rules that catch known patterns, a machine learning anomaly layer that flags unusual behavior even when no rule fires, and a triage layer that decides which cases a human analyst should read first.</p>
+<p>That is what I built here. A blockchain AML engine that reads public transaction data, maps suspicious behavior into explainable signals, and shows why a wallet or transaction deserves a closer look.</p>
 <p>The useful part is not only the flag.</p>
-<p>The useful part is the sentence under the flag.</p>
+<p>The useful part is the sentence under the flag. A score without a reason is just a number with anxiety attached.</p>
 <h2 id="the-question-that-started-it">The question that started it</h2>
 <p>I started with a simple question about mixers.</p>
 <p>If a blockchain is public, how does money still get hidden?</p>
@@ -125,19 +124,48 @@
     overlay.addEventListener('click', closeMenu);
     panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
   })();
-  </script> <!-- 3D background handled by ParticleHero component on homepage --> <!-- Scroll Animations --> <script>
+  </script> <!-- 3D background handled by ParticleHero component on homepage --> <!-- Scroll Animations - GSAP ScrollTrigger with IO fallback --> <script>
   (function() {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    function initGSAP() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+      window.gsap.registerPlugin(window.ScrollTrigger);
 
-    document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
-      observer.observe(el);
-    });
+      window.gsap.utils.toArray('.animate-on-scroll').forEach(function(el) {
+        window.gsap.fromTo(el,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+          }
+        );
+      });
+
+      window.gsap.utils.toArray('.proof-route-grid, .mag-grid').forEach(function(grid) {
+        var cards = grid.querySelectorAll('.article-card, .moving-now-card');
+        if (!cards.length) return;
+        window.gsap.fromTo(cards,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
+          }
+        );
+      });
+    }
+
+    function loadScript(src, onload) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = onload;
+      document.head.appendChild(s);
+    }
+
+    loadScript(
+      'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+      function() {
+        loadScript(
+          'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+          initGSAP
+        );
+      }
+    );
   })();
   </script> </body> </html>

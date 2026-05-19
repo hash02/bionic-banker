@@ -10,15 +10,13 @@ slug: "aml-engine"
 image: "/blog-visuals/aml-engine/social-preview.png"
 ---
 
-AML detection is not one magic score.
+AML detection is not one magic score. It is a three-layer system: 28 detection rules that catch known patterns, a machine learning anomaly layer that flags unusual behavior even when no rule fires, and a triage layer that decides which cases a human analyst should read first.
 
-It is a chain of small checks: known risk rules, transaction patterns, wallet behavior, anomaly signals, and a final triage layer that decides what deserves human attention first.
-
-That is what I tried to build here. A blockchain AML engine that reads public transaction data, maps suspicious behavior into explainable signals, and shows why a wallet or transaction deserves a closer look.
+That is what I built here. A blockchain AML engine that reads public transaction data, maps suspicious behavior into explainable signals, and shows why a wallet or transaction deserves a closer look.
 
 The useful part is not only the flag.
 
-The useful part is the sentence under the flag.
+The useful part is the sentence under the flag. A score without a reason is just a number with anxiety attached.
 
 ## The question that started it
 
