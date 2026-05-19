@@ -16,11 +16,11 @@ const grouped = categories
   }))
   .filter((group) => group.items.length > 0);
 ---
-<BaseLayout title="Questions the Market Is Asking" description="A reader-facing question atlas for modern AI, finance automation, engineering source trails, and useful explanations.">
+<BaseLayout title="Questions the Market Is Asking" description="A plain question map for modern AI, finance automation, engineering notes, and useful explanations.">
   <div class="page-header">
     <div class="page-label">Question Atlas</div>
     <h1 class="page-title">Questions the Market Is Asking</h1>
-    <p class="page-sub">A reader-facing map for modern AI, finance automation, and engineering source trails. Start with a question, read the plain answer, then open the lab or learning link when you want more depth.</p>
+    <p class="page-sub">A plain map for modern AI, finance automation, and engineering notes. Start with a question, read the simple answer, then open the lab or learning link when you want more depth.</p>
   </div>
 
   <div class="articles-wrap">
@@ -35,7 +35,7 @@ const grouped = categories
           <p>{guide.plain_answer}</p>
         </article>
         <article>
-          <span>Useful for</span>
+          <span>Good when</span>
           <p>{guide.useful_for_reader}</p>
         </article>
         <article>
@@ -59,8 +59,8 @@ const grouped = categories
           <span class="tag-pill tag-green">Guidance</span>
         </div>
         <h3>How to read this page</h3>
-        <p>Every card starts as a question because that is how real engineering starts. The page avoids private architecture and focuses on concepts a reader can use.</p>
-        <p>Each row maps a modern question to why people ask it, a plain answer, an existing public example, and the next useful click.</p>
+        <p>Every card starts as a question because that is how real engineering starts. The page avoids private architecture and stays on concepts anyone can use.</p>
+        <p>Each row maps a modern question to why people ask it, a plain answer, a public example, and the next useful click.</p>
         <div class="card-footer">
           <a class="read-more" href="/reports">Open reports -></a>
           <a class="read-more" href="/projects">Open experiments -></a>
@@ -73,7 +73,7 @@ const grouped = categories
         </div>
         <h3>What makes a useful AI page?</h3>
         <p>{websiteScan.reader_value}</p>
-        <p>Good AI content should help a reader ask a sharper question, learn the term, inspect an example, and understand the limit.</p>
+        <p>Good AI content should help someone ask a sharper question, learn the term, inspect an example, and understand the limit.</p>
       </article>
     </section>
 
@@ -116,10 +116,10 @@ const grouped = categories
               <p><strong>Why people ask:</strong> {question.why_market_asks}</p>
               <p><strong>Plain answer:</strong> {question.plain_answer}</p>
               <p><strong>Existing example:</strong> {question.already_built_example}</p>
-              <p><strong>Useful for reader:</strong> {question.useful_for_reader}</p>
+              <p><strong>Good when:</strong> {question.useful_for_reader}</p>
               <div class="card-footer">
                 <a class="read-more" href={question.website_surface}>Learn concept -></a>
-                <a class="read-more" href={question.report_surface}>Inspect source -></a>
+                <a class="read-more" href={question.report_surface}>Follow note -></a>
               </div>
             </article>
           ))}

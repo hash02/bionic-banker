@@ -1,13 +1,13 @@
 {
   "generated_at": "2026-05-19T02:45:00Z",
-  "status": "reader_question_atlas_v4",
-  "purpose": "Reader-facing question atlas for people who want to understand modern AI, finance automation, source trails, and engineering notes.",
-  "privacy_boundary": "Reader-facing market signals, source-linked summaries, questions, and concept explanations only.",
+  "status": "question_atlas_v5",
+  "purpose": "Plain question atlas for people who want to understand modern AI, finance automation, source paths, and engineering notes.",
+  "privacy_boundary": "Public market signals, source-linked summaries, questions, and concept explanations only.",
   "market_sources": [
     {
       "label": "Senior Lead AI Engineering role, LangGraph, RAG systems",
       "url": "https://agentic-engineering-jobs.com/jobs/codvoai-senior-lead-ai-engineering-langgraph-haystack-rag-systems-pjuUYP",
-      "signal": "LangGraph, RAG, FastAPI, vector databases, Docker, governance, observability, and audit trails."
+      "signal": "LangGraph, RAG, FastAPI, vector databases, Docker, agent rules, observability, and audit logs."
     },
     {
       "label": "Glean LLM Evals and Observability role",
@@ -58,12 +58,12 @@
   "reader_guide": {
     "headline": "Use this page like a question map.",
     "plain_answer": "Start with a question. Read the plain answer. Open the source link when the concept needs evidence.",
-    "useful_for_reader": "AI learners, founders, operators, builders, and curious readers who want simple language before source links and source trail.",
+    "useful_for_reader": "AI learners, founders, operators, builders, and curious people who want simple language before source links and source notes.",
     "how_to_read": [
       "Start with the question you already have.",
       "Read the plain answer first.",
       "Open the Learn link when a term is unfamiliar.",
-      "Open the source link when you want to inspect examples, numbers, limits, or public snapshots."
+      "Open the note link when you want to inspect examples, numbers, limits, or public snapshots."
     ]
   },
   "website_scan": {
@@ -74,7 +74,7 @@
     "interface_principles": [
       "Show questions before claims.",
       "Use definitions and examples instead of future-plan language.",
-      "Prefer inspectable source links over backend details.",
+      "Prefer inspectable notes and public links over backend details.",
       "Use charts, rows, and public snapshots where numbers help the reader.",
       "Keep the learning surface useful without exposing operational details."
     ]
@@ -108,7 +108,7 @@
       "question": "If you have two AI components, how do you connect them without creating a messy system?",
       "why_market_asks": "Modern AI work often has separate parts: retrieval, tools, memory, evaluation, user interface, and approval gates.",
       "plain_answer": "Give each component a clear contract. One part should know what it receives, what it returns, what it is allowed to do, and what gets logged.",
-      "already_built_example": "Lab Tour shows connected lanes for AML, agent coordination, heartbeat rows, governance, reports, and learning concepts.",
+      "already_built_example": "Lab Tour shows connected lanes for wallet risk, agent coordination, heartbeat rows, agent rules, reports, and learning concepts.",
       "useful_for_reader": "Useful if you are trying to understand how small AI pieces become one usable workflow.",
       "website_surface": "/proof-tour",
       "report_surface": "/reports"
@@ -126,22 +126,22 @@
     },
     {
       "id": "agent-governance",
-      "category": "Governance",
+      "category": "Agent Rules",
       "question": "What should an AI agent be allowed to do by itself?",
       "why_market_asks": "Finance, healthcare, and compliance workflows need role boundaries, approval gates, and reviewable actions.",
-      "plain_answer": "Start with roles. Some actions can be read-only, some require review, and some should stay human-only. The log is part of the product.",
-      "already_built_example": "Learn defines RBAC, audit logs, tool calling, and MCP as one governance pattern.",
+      "plain_answer": "Start with roles. Some actions can be read-only, some require review, and some should stay human-only. The log is part of the system.",
+      "already_built_example": "Learn defines RBAC, audit logs, tool calling, and MCP as one rule pattern.",
       "useful_for_reader": "Useful if you are thinking about AI agents in regulated or high-trust workflows.",
       "website_surface": "/learn#rbac",
       "report_surface": "/reports"
     },
     {
       "id": "interactive-source-demo",
-      "category": "Source trail",
+      "category": "Source Path",
       "question": "Can a technical portfolio explain itself before the first call?",
-      "why_market_asks": "Readers, customers, and collaborators usually need a fast path from claim to source trail.",
-      "plain_answer": "A lab route should answer four things quickly: what exists, what source trail supports it, what the limits are, and where to click next.",
-      "already_built_example": "Lab Tour gives a guided route through AML, agent coordination, heartbeat, governance, reports, and modern stack signals.",
+      "why_market_asks": "Readers, customers, and collaborators usually need a fast path from a claim to something they can inspect.",
+      "plain_answer": "A lab route should answer four things quickly: what exists, what supports it, what the limits are, and where to click next.",
+      "already_built_example": "Lab Tour gives a guided route through wallet risk, agent coordination, heartbeat, agent rules, reports, and modern stack signals.",
       "useful_for_reader": "Useful if you want to inspect technical work without reading the whole archive first.",
       "website_surface": "/proof-tour",
       "report_surface": "/reports"
@@ -150,8 +150,8 @@
       "id": "privacy-aware-source-trail",
       "category": "Security",
       "question": "How do you show AI work without exposing private systems?",
-      "why_market_asks": "Technical work needs a source trail, but that trail should not leak keys, paths, client data, infrastructure, or employer details.",
-      "plain_answer": "Show source-linked artifacts: summaries, screenshots, manifests, synthetic examples, public APIs, and limits. Keep the page focused on what a reader can inspect.",
+      "why_market_asks": "Technical work needs context, but that context should not leak keys, paths, client data, infrastructure, or employer details.",
+      "plain_answer": "Show source-linked artifacts: summaries, screenshots, notes, synthetic examples, public APIs, and limits. Keep the page focused on what a visitor can inspect.",
       "already_built_example": "AI Intelligence shows public heartbeat rows, market context, and snapshot limits without backend details.",
       "useful_for_reader": "Useful if you need to present technical work while protecting security and privacy.",
       "website_surface": "/intelligence",
