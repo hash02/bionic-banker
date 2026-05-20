@@ -17,9 +17,10 @@ const { title, description, date, tags, readTime, image, category = 'Tech' } = A
 const allPosts = await getCollection('blog');
 const currentPath = Astro.url.pathname;
 const currentSlug = currentPath.replace(/^\/blog\//, '').replace(/\/$/, '');
+const getPostSlug = (post: typeof allPosts[number]) => post.data.slug || post.id;
 
 const related = allPosts
-  .filter(p => p.slug !== currentSlug)
+  .filter(p => getPostSlug(p) !== currentSlug)
   .filter(p => {
     const pt = (p.data.tags || []).map((t: string) => t.toLowerCase());
     const ct = (tags || []).map((t: string) => t.toLowerCase());
@@ -124,7 +125,7 @@ const breadcrumbSchema = {
         <h2 class="related-heading">Keep reading</h2>
         <div class="related-grid">
           {related.map(post => (
-            <a href={`/blog/${post.slug}/`} class="related-card">
+            <a href={`/blog/${getPostSlug(post)}/`} class="related-card">
               <span class="related-cat">{post.data.category || 'Article'}</span>
               <strong class="related-title">{post.data.title}</strong>
               <span class="related-meta">{post.data.readTime} read</span>
