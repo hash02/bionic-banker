@@ -1,6 +1,6 @@
 ---
 title: "Top 10 Latest Trends in Blockchain Technology: 2024 Update"
-description: "The 10 blockchain trends actually reshaping finance, identity, and infrastructure in 2024. From DePIN to account abstraction — what matters and what is hype."
+description: "The 10 blockchain trends actually reshaping finance, identity, and infrastructure in 2024. From DePIN to account abstraction, what matters and what is hype."
 date: "2024-09-20"
 tags: ["Blockchain · Technology · Trends"]
 readTime: "9 min"
