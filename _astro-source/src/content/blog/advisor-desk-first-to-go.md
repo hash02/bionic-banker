@@ -86,4 +86,13 @@ Read the signals or be one of them.
 
 ## Sources and data.
 
-Layoffs and labor data: [Fortune on CFO survey Mar 2026](https://fortune.com/2026/03/24/cfo-survey-ai-job-cuts-productivity-paradox-2026/), [HBR on AI layoffs Jan 2026](https://hbr.org/2026/01/companies-are-laying-off-workers-because-of-ais-potential-not-its-performance), [CBS News on AI layoffs 2026](https://www.cbsnews.com/news/ai-layoffs-2026-artificial-intelligence-amazon-pinterest/). Anthropic Economic Index: [January 2026 report](https://www.anthropic.com/research/anthropic-economic-index-january-2026-report). Finance team agentic AI adoption: [Wolters Kluwer via Neurons Lab](https://neurons-lab.com/article/agentic-ai-in-financial-services-2026/). Wealth management efficiency: [Cognizant 2026 predictions](https://www.cognizant.com/us/en/insights/insights-blog/ai-in-banking-predictions-for-2026). Altman UBI study: [CBS News summary](https://www.cbsnews.com/news/sam-altman-universal-basic-income-study-open-research/), [BIEN analysis](https://basicincome.org/news/2024/08/did-sam-altmans-basic-income-experiment-succeed-or-fail/). Aave and DeFi: [DefiLlama Aave](https://defillama.com/protocol/aave), [CoinLaw Aave statistics 2026](https://coinlaw.io/aave-statistics/). NVIDIA GR00T: [NVIDIA Newsroom GR00T N1](https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks). Open banking Canada: [C.D. Howe Institute](https://cdhowe.org/publication/canada-cant-afford-to-wait-for-open-banking/), [Open Banking Tracker](https://www.openbankingtracker.com/blog/open-banking-canada-what-is-coming-in-2026-and-2027). Goldman Sachs: [AI labor market analysis](https://www.goldmansachs.com/insights/articles/how-will-ai-affect-the-us-labor-market). WEF workforce projection: referenced via [ALM Corp displacement statistics](https://almcorp.com/blog/ai-job-displacement-statistics/).
+- Layoffs and labor data: Fortune CFO survey Mar 2026, HBR on AI layoffs Jan 2026, CBS News on AI layoffs 2026.
+- Anthropic Economic Index: January 2026 report.
+- Finance team agentic AI adoption: Wolters Kluwer via Neurons Lab.
+- Wealth management efficiency: Cognizant 2026 predictions.
+- Altman UBI study: CBS News summary and BIEN analysis.
+- Aave and DeFi: DeFiLlama Aave and CoinLaw Aave statistics 2026.
+- NVIDIA GR00T: NVIDIA Newsroom GR00T N1.
+- Open banking Canada: C.D. Howe Institute and Open Banking Tracker.
+- Goldman Sachs: AI labor market analysis.
+- WEF workforce projection: referenced via ALM Corp displacement statistics.
