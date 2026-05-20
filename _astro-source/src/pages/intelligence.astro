@@ -45,7 +45,7 @@ const resultLabel = (row) => {
 const signalRoutes = [
   {
     eyebrow: 'Start',
-    title: 'Read the latest pulse',
+    title: 'Read the latest signal',
     text: 'A small row that says what moved, when it moved, and where the line is.',
     href: '#recent-rows'
   },
@@ -75,7 +75,7 @@ const signalRoutes = [
       <div class="console-copy">
         <span class="section-label">Right Now</span>
         <h2>What moved recently</h2>
-        <p>Market rows refresh when the public source answers. Pulse rows show the last read, when it happened, and the limit around it.</p>
+        <p>Market rows refresh when the public source answers. Signal rows show the last read, when it happened, and the limit around it.</p>
         <div class="console-actions">
           <a href="/proof-tour/" class="action-btn primary">Open Lab Tour</a>
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>
@@ -144,7 +144,7 @@ const signalRoutes = [
       <div class="reason-steps">
         <article>
           <span>Source</span>
-          <strong>Saved pulse row</strong>
+          <strong>Saved signal row</strong>
           <p>{leadRow.iso ? formatTime(leadRow.iso) : 'Waiting for the next snapshot.'}</p>
         </article>
         <article>
@@ -168,7 +168,7 @@ const signalRoutes = [
     <section class="recent-panel" id="recent-rows">
       <div class="panel-head">
         <div>
-          <span class="section-label">Pulse Rows</span>
+          <span class="section-label">Signal Rows</span>
           <h2>Recent reads</h2>
         </div>
         <a href="/dashboard-data/heartbeat.json" target="_blank" rel="noopener">open snapshot -></a>
