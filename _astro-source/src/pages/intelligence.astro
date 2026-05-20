@@ -112,7 +112,10 @@ const signalRoutes = [
     <section class="market-strip" id="market-row" data-feeds={JSON.stringify(feeds)}>
       <div class="strip-head">
         <span class="section-label">Market Row</span>
-        <button class="refresh-btn" type="button" data-refresh-market>Refresh</button>
+        <div class="market-controls">
+          <span id="market-countdown" class="market-countdown">Refreshes in 60s</span>
+          <button class="refresh-btn" type="button" data-refresh-market>Refresh</button>
+        </div>
       </div>
       <div class="market-grid" data-market-grid>
         {feeds.map((feed) => (
@@ -238,6 +241,8 @@ const signalRoutes = [
     const strip = document.querySelector('.market-strip');
     const feedNote = document.querySelector('[data-feed-note]');
     const refreshButton = document.querySelector('[data-refresh-market]');
+    const countdownEl = document.getElementById('market-countdown');
+    let secondsLeft = 60;
 
     function formatPrice(value) {
       if (typeof value !== 'number') return 'n/a';
@@ -281,9 +286,31 @@ const signalRoutes = [
       }
     }
 
-    refreshButton?.addEventListener('click', refreshMarket);
+    function updateCountdown() {
+      if (countdownEl) countdownEl.textContent = `Refreshes in ${secondsLeft}s`;
+    }
+
+    function resetCountdown() {
+      secondsLeft = 60;
+      updateCountdown();
+    }
+
+    function tickMarketCountdown() {
+      secondsLeft -= 1;
+      updateCountdown();
+      if (secondsLeft <= 0) {
+        resetCountdown();
+        refreshMarket();
+      }
+    }
+
+    refreshButton?.addEventListener('click', () => {
+      resetCountdown();
+      refreshMarket();
+    });
+    updateCountdown();
     refreshMarket();
-    window.setInterval(refreshMarket, 120000);
+    window.setInterval(tickMarketCountdown, 1000);
 
     // BTC Sparkline
     (function loadSparkline() {
@@ -591,6 +618,21 @@ const signalRoutes = [
       padding: 0.45rem 0.8rem;
       cursor: pointer;
       min-height: 44px;
+    }
+
+    .market-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .market-countdown {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      color: var(--text-3);
+      min-width: 92px;
     }
 
     .market-card small {
