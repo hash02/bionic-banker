@@ -10,6 +10,8 @@ slug: "advisor-desk-first-to-go"
 image: "/blog-visuals/png/advisor-desk-hero-v2.png"
 ---
 
+55,000 AI-attributed layoffs in 2025, 44 percent of finance teams running agentic AI, and Sam Altman's UBI pilot showing 1.3 fewer hours worked per week: the compression curve in white-collar work has moved from forecast to measurement.
+
 # Where the jobs go. And why Elon keeps saying UBI.
 
 Two signals from the Bank of Canada in the same month. Aave got a formal paper calling it a functioning non-bank lender with zero bad debt. Open banking got a press statement saying a 2026 launch would be premature. Most people read those as separate stories. They are the same story at different speeds.
