@@ -152,7 +152,7 @@ Engage with online communities like Reddit's r/personalfinance and r/investing t
 
 Starting your financial management journey as Gen Z in 2024 is exciting. By understanding the basics, setting clear goals, creating a budget, building an emergency fund, managing debt, and investing wisely, you're setting yourself up for success. Remember, this journey is ongoing, and continuous learning is the key to thriving financially.
 
-Embark on this journey with curiosity, confidence, and caution. Share your experiences, ask questions, and keep learning. Happy navigating!
+Start this journey with curiosity, confidence, and caution. Share your experiences, ask questions, and keep learning. Happy navigating!
 
 **FAQs****What are some excellent budgeting tools for beginners?**
 
