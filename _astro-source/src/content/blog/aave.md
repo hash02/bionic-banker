@@ -10,6 +10,8 @@ slug: "aave"
 image: "/blog-visuals/aave/social-preview.png"
 ---
 
+Aave is an on-chain credit market built around shared lending pools, collateral rules, live interest rates, liquidation behavior, and governance. This field note follows why DeFi lending feels less like a bank loan and more like a risk machine you can inspect while it runs.
+
 Okay so here is the simple version.
 
 Aave is a lending market without a bank branch in the middle. People deposit crypto assets into shared pools. Other people borrow from those pools by locking up collateral. The protocol keeps score, adjusts interest rates, and liquidates risky positions when collateral falls too far.

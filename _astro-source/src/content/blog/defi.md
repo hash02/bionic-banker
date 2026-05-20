@@ -10,6 +10,8 @@ slug: "defi"
 image: "/blog-visuals/defi/social-preview.png"
 ---
 
+DeFi means financial activity on blockchain rails: lending pools, swap pools, collateral, liquidation, oracle prices, and smart contracts. This field note follows why the clean wallet interface can hide fast-moving risk underneath.
+
 DeFi looks simple from the outside.
 
 Open a wallet. Connect to a protocol. Lend, borrow, swap, stake, bridge. A few clicks and the money moves.

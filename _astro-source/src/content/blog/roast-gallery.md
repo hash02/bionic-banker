@@ -9,7 +9,7 @@ featured: false
 slug: "roast-gallery"
 ---
 
-A field-note gallery of 190 sample wallet-risk analyses from the AML detection engine, each showing the rule match, risk score, and plain-language flag explanation that triggered the review.
+The Roast Gallery collects 190 sample wallet-risk notes from the AML detection engine. Each note shows the rule match, risk score, and plain-language explanation that made a transaction pattern worth a second look.
 
 ## The Roast Gallery
 

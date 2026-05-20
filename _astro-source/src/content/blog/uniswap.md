@@ -10,6 +10,8 @@ slug: "uniswap"
 image: "/blog-visuals/uniswap/social-preview.png"
 ---
 
+Uniswap is an automated market maker built around liquidity pools, swap formulas, fee tiers, slippage, and concentrated liquidity. This field note follows why the swap button looks simple while the pool underneath carries the real design.
+
 Okay so Uniswap is one of those ideas that looks too simple at first.
 
 You open the page. You choose one token. You choose another token. You swap.
