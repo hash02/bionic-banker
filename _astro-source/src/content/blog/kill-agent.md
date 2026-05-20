@@ -54,3 +54,57 @@ The concept borrows from every tradition that understood the same thing: what su
         </iframe>
         
 INTERACTIVE The three-agent triad: one designs, one builds, one proves — or disproves
+
+The three-agent triad is the pattern the kill agent fits into. One agent generates output. One agent processes that output. The kill agent verifies the processing was correct. Independent verification is the whole design. Without the third agent, the first two are evaluating themselves.
+
+## What the Kill Agent Actually Does
+
+The kill agent does not try to break infrastructure. It tests assumptions.
+
+Every agent in the system makes assumptions about the data it receives: that the JSON is valid, that the wallet address is in the right format, that the timestamp is recent, that the health status it is reading is current. The kill agent systematically violates those assumptions and checks whether the system catches the violation or silently accepts bad data.
+
+A malformed wallet address test sends a string that looks like an address but is twelve characters too short. Does the validation layer catch it? A staleness injection test writes an old timestamp into a health file and then triggers a health check. Does the system flag the stale data or report everything as green?
+
+The results across the first two weeks of running the kill agent were uncomfortable.
+
+20 percent survival rate. That means 80 percent of the attack scenarios found something the system did not catch.
+
+Not all of those were critical. Some were formatting edge cases that would never appear in real data. Some were authentication boundary cases that the actual usage pattern would never hit. But some were real. One attack module found that the coordinator was accepting health status reports from processes that had already exited. The process was gone but the status file was still showing active. The coordinator was reporting a clean system from ghost data.
+
+That would have been invisible without an independent attacker.
+
+## Why 20 Percent Survival Is the Right Number
+
+When I first saw the results I felt like I had failed. 80 percent of attacks finding something sounds like a broken system.
+
+It is not. It is a calibrated system.
+
+A system that survives 100 percent of attack scenarios is a system where the attacks are too weak. You are testing easy cases that your production safeguards already catch. The attack suite is theater.
+
+A system that survives 20 percent of attack scenarios has discovered where its actual vulnerability surface is. Now you know what to harden. Now you know what the real error paths look like, and you can build recovery procedures around them instead of around hypothetical failures.
+
+The kill agent is not supposed to fail to find things. It is supposed to find the things the regular monitoring misses. That is its whole job.
+
+## What Changed After Running It
+
+Several things got rebuilt after the first two weeks.
+
+The health status format got a required timestamp field and a staleness threshold. If the most recent entry is more than ten minutes old, the coordinator flags the agent as unresponsive rather than active. Ghost status reports no longer count.
+
+The wallet address validation got stricter. Address format checks now happen at the input boundary, not inside the processing function. Malformed addresses get rejected before they touch any downstream logic.
+
+The JSON parsing across all agents got wrapped in explicit validation against a schema rather than trusting whatever came in. If the schema does not match, the message goes to an error queue rather than getting processed.
+
+None of those changes were on any roadmap. They came directly from what the kill agent found.
+
+## The Deeper Point
+
+Building the kill agent changed how I think about system design generally.
+
+If I build something, I am the worst person to evaluate whether it works. I know what I intended. I know what cases I tested. I am blind to the cases I did not think of.
+
+An independent attacker does not have my assumptions. It probes the edges I did not consider because it does not know what I considered. It finds the gaps not by being smarter but by approaching the system without the biases I built in.
+
+That is why the kill agent runs on a schedule rather than on demand. On demand, I would run it when I suspected a problem. Scheduled, it runs whether I suspect a problem or not. Most of the useful things it finds are in the sessions where I thought everything was fine.
+
+The system is always lying to you about how healthy it is. The kill agent is how you catch the lie before production does.
