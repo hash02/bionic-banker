@@ -18,22 +18,23 @@
     window.addEventListener('scroll', update, { passive: true });
     update();
   })();
-  </script>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-hero" data-astro-cid-zm77yjld> <div class="article-meta-top" data-astro-cid-zm77yjld> <span class="article-category" data-astro-cid-zm77yjld>Tech</span> <span class="article-date" data-astro-cid-zm77yjld>March 16, 2026</span> <span class="article-read-time" data-astro-cid-zm77yjld>11 min read</span> </div> <h1 class="article-title" data-astro-cid-zm77yjld>Claude Max as Your Personal API</h1> <p class="article-desc" data-astro-cid-zm77yjld>$100/month flat rate. Unlimited API requests. Here&#39;s how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint.</p> <div class="article-tags" data-astro-cid-zm77yjld> <span class="tag" data-astro-cid-zm77yjld>AI · Economics · Code</span> </div> </div> <nav id="article-toc" class="article-toc" aria-label="In this article" data-astro-cid-zm77yjld></nav> <div class="article-body" data-astro-cid-zm77yjld>  <p>Okay so—here’s the problem. Claude API is metered per token. Every request costs something. You’re building an agent? That’s 100 requests a day minimum. Testing a chatbot? Friction everywhere. And if you’re serious about AI, you want to experiment without checking your credit card balance after every spike.</p>
+  </script>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-hero" data-astro-cid-zm77yjld> <div class="article-meta-top" data-astro-cid-zm77yjld> <span class="article-category" data-astro-cid-zm77yjld>Tech</span> <span class="article-date" data-astro-cid-zm77yjld>March 16, 2026</span> <span class="article-read-time" data-astro-cid-zm77yjld>11 min read</span> </div> <h1 class="article-title" data-astro-cid-zm77yjld>Claude Max as Your Personal API</h1> <p class="article-desc" data-astro-cid-zm77yjld>$100/month flat rate. Unlimited API requests. Here&#39;s how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint.</p> <div class="article-tags" data-astro-cid-zm77yjld> <span class="tag" data-astro-cid-zm77yjld>AI · Economics · Code</span> </div> </div> <nav id="article-toc" class="article-toc" aria-label="In this article" data-astro-cid-zm77yjld></nav> <div class="article-body" data-astro-cid-zm77yjld>  <p>A local Flask proxy turns Claude Max into an OpenAI-shaped endpoint with <code>/v1/chat/completions</code>, <code>/v1/models</code>, streaming responses, and a Groq fallback. This note walks through the thin translation layer that lets local agent tests run against a flat $100/month subscription instead of per-token API billing.</p>
+<p>Okay so, here’s the problem. Claude API is metered per token. Every request costs something. You’re building an agent? That’s 100 requests a day minimum. Testing a chatbot? Friction everywhere. And if you’re serious about AI, you want to experiment without checking your credit card balance after every spike.</p>
 <p>But Claude Max is $100 a month. Flat rate. Unlimited requests. No per-token treadmill.</p>
 <p>The gap between these two worlds is wild. You’ve already paid for Claude Max on your local machine. But there’s no official way to use it programmatically. The <code>claude</code> CLI talks to you. It doesn’t talk to code.</p>
 <p>Until now.</p>
 <p>Here’s what I built: a Python proxy that wraps the Claude CLI into an OpenAI-compatible API endpoint. Your agents and tools think they’re hitting a normal API. They’re actually talking to the <code>claude</code> command on your local machine. Same interface shape. Different engine underneath.</p>
 <p>$100/month flat rate. Unlimited agent requests. Problem solved.</p>
 <h2 id="why-this-matters">Why This Matters</h2>
-<p>Think about the economics for a second. Claude API is like $3 per million input tokens, $15 per million output tokens. You run a few agent tests and you’re bleeding money—not a lot of money individually, but it adds up. Every experiment costs something. Every iteration costs something.</p>
-<p>With Max, you’ve already paid $100. One time. The marginal cost of the next request is zero. And I mean zero. Not “small”—actually zero.</p>
+<p>Think about the economics for a second. Claude API is like $3 per million input tokens, $15 per million output tokens. You run a few agent tests and you’re bleeding money. Not a lot of money individually, but it adds up. Every experiment costs something. Every iteration costs something.</p>
+<p>With Max, you’ve already paid $100. One time. The marginal cost of the next request is zero. And I mean zero. Not “small”. Actually zero.</p>
 <p>Now imagine building an agent system. Or running 100 variations of a prompt. Or doing recursive reasoning where the model thinks about its own thinking. In the cloud, you’re optimizing for fewer tests because tests cost money. When tests are free? You run everything. You stress-test without fear. You find the breaking points because you’re not afraid to look.</p>
 <p>That’s a different way of working entirely.</p>
 <h2 id="how-the-proxy-works">How the Proxy Works</h2>
 <p>The architecture is straightforward. Three layers.</p>
-<p><strong>Layer 1: HTTP Server</strong> — Flask app listening on localhost:8000. It exposes the OpenAI-compatible endpoints: <code>/v1/chat/completions</code>, <code>/v1/models</code>, etc. Any tool that speaks OpenAI just works.</p>
-<p><strong>Layer 2: Request Translation</strong> — When a request arrives, the proxy unpacks the OpenAI format and rebuilds it as a Claude prompt. System message goes to the system parameter, user messages get concatenated, parameters like <code>temperature</code> and <code>max_tokens</code> get passed through.</p>
-<p><strong>Layer 3: CLI Bridge</strong> — The key part. Instead of hitting the API endpoint, we call <code>claude -p</code> in a subprocess. Same tool you use in the terminal. Same authentication (Claude CLI already has your credentials). Same underlying service.</p>
+<p><strong>Layer 1: HTTP Server.</strong> Flask app listening on localhost:8000. It exposes the OpenAI-compatible endpoints: <code>/v1/chat/completions</code>, <code>/v1/models</code>, etc. Any tool that speaks OpenAI just works.</p>
+<p><strong>Layer 2: Request Translation.</strong> When a request arrives, the proxy reads the OpenAI format and rebuilds it as a Claude prompt. System message goes to the system parameter, user messages get concatenated, parameters like <code>temperature</code> and <code>max_tokens</code> get passed through.</p>
+<p><strong>Layer 3: CLI Bridge.</strong> The key part. Instead of hitting the API endpoint, we call <code>claude -p</code> in a subprocess. Same tool you use in the terminal. Same authentication (Claude CLI already has your credentials). Same underlying service.</p>
 <p>Here’s the core logic:</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>import subprocess</span></span>
 <span class="line"><span>import json</span></span>
@@ -101,9 +102,9 @@
 <span class="line"><span></span></span>
 <span class="line"><span>if __name__ == '__main__':</span></span>
 <span class="line"><span>    app.run(host='localhost', port=8000, debug=False)</span></span></code></pre>
-<p>That’s it. You point your tool at <code>http://localhost:8000</code>, set the model to <code>claude-3-5-sonnet</code>, and it works. LangChain, CrewAI, custom agents—doesn’t matter. They all speak OpenAI format. The proxy translates it to CLI calls. The tool never knows the difference.</p>
+<p>That’s it. You point your tool at <code>http://localhost:8000</code>, set the model to <code>claude-3-5-sonnet</code>, and it works. LangChain, CrewAI, custom agents. Doesn’t matter. They all speak OpenAI format. The proxy translates it to CLI calls. The tool never knows the difference.</p>
 <h2 id="streaming-the-real-time-version">Streaming: The Real-Time Version</h2>
-<p>The basic version works for batch calls. But here’s where it gets better—streaming.</p>
+<p>The basic version works for batch calls. But here’s where it gets better: streaming.</p>
 <p>Most LLM tools want responses arriving in real time, chunk by chunk. Not one giant blob at the end. The Claude CLI supports streaming natively (add the <code>--stream</code> flag), so the proxy just pipes it through:</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@app.route('/v1/chat/completions', methods=['POST'])</span></span>
 <span class="line"><span>def chat_completions():</span></span>
@@ -145,9 +146,9 @@
 <span class="line"><span>        return Response(generate(), mimetype='text/event-stream')</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>    # ... non-streaming path ...</span></span></code></pre>
-<p>The subprocess spawns, output flows back line by line, converted to SSE format. Your tool consumes it exactly like it would from OpenAI. Real-time tokens arriving as they’re generated. There’s maybe 200—500ms of subprocess overhead, but that’s noise compared to generation time.</p>
+<p>The subprocess spawns, output flows back line by line, converted to SSE format. Your tool consumes it exactly like it would from OpenAI. Real-time tokens arriving as they’re generated. There’s maybe 200 to 500ms of subprocess overhead, but that’s noise compared to generation time.</p>
 <h2 id="groq-fallback-because-resilience-matters">Groq Fallback: Because Resilience Matters</h2>
-<p>Here’s something I added because I’m paranoid about uptime—and because systems should have backups.</p>
+<p>Here’s something I added because I’m paranoid about uptime, and because systems should have backups.</p>
 <p>If Claude fails (network issue, CLI crash, whatever), the proxy falls back to Groq. Free Groq API. Open source models. Lower quality, but it runs.</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>def get_response(prompt, system_msg, max_tokens, temperature):</span></span>
 <span class="line"><span>    """</span></span>
@@ -205,7 +206,7 @@
 <h2 id="what-you-get">What You Get</h2>
 <p><strong>Free agent requests.</strong> Claude Max pays for itself if you’re testing agents or building systems.</p>
 <p><strong>No per-token math.</strong> Your Max subscription is one flat price. No “quota exceeded” errors. No checking the billing page after each experiment.</p>
-<p><strong>OpenAI-compatible.</strong> Any tool that speaks OpenAI format works immediately. LangChain, CrewAI, your own custom code—drop in the localhost endpoint and it runs.</p>
+<p><strong>OpenAI-compatible.</strong> Any tool that speaks OpenAI format works immediately. LangChain, CrewAI, your own custom code. Drop in the localhost endpoint and it runs.</p>
 <p><strong>Streaming responses.</strong> Real-time tokens arriving as they’re generated. Feels snappy. Tools that consume streaming just work.</p>
 <p><strong>Fallback resilience.</strong> Claude fails? Groq picks up. System keeps running in degraded mode.</p>
 <p><strong>Local execution.</strong> No data leaves your machine. No third-party service. Just your CLI, Python, and your network.</p>
@@ -213,15 +214,15 @@
 <p>This isn’t a replacement for production cloud infrastructure. It’s a proxy, not a platform.</p>
 <p><strong>Single machine.</strong> Everything runs on one box. If your machine goes down, so does the proxy. If you need high availability across multiple regions, you’re back to the API. But for building and testing locally? This is fine.</p>
 <p><strong>No horizontal scaling.</strong> You can’t load-balance across 10 machines. If you need that, you’d write a coordinator that spawns multiple proxy instances on different ports and routes to them. Worth doing if you need it, but it’s not built in.</p>
-<p><strong>CLI latency.</strong> Every request spawns a new subprocess. That overhead (maybe 200—500ms) is small compared to token generation time, but it’s there. A direct API call is faster.</p>
+<p><strong>CLI latency.</strong> Every request spawns a new subprocess. That overhead, maybe 200 to 500ms, is small compared to token generation time, but it’s there. A direct API call is faster.</p>
 <p><strong>Sequential requests.</strong> If two requests arrive simultaneously, they queue. The CLI processes them one at a time. For local development and small agent systems, this is fine. For high-concurrency scenarios, you’d need to rearchitect.</p>
 <p><strong>ToS gray area.</strong> I’m reading Anthropic’s terms. Using Claude Max programmatically isn’t explicitly forbidden, but it’s not explicitly blessed either. The CLI is a first-party tool, so technically you own the request. But if you’re building something commercial, you should probably ask Anthropic first.</p>
-<p><strong>No multi-turn state.</strong> Every request is independent. The proxy doesn’t remember conversation history. You pass it back each time. It’s doable—you manage state in your calling code—but it’s not automatic.</p>
+<p><strong>No multi-turn state.</strong> Every request is independent. The proxy doesn’t remember conversation history. You pass it back each time. It’s doable. You manage state in your calling code, but it’s not automatic.</p>
 <h2 id="what-we-actually-learned">What We Actually Learned</h2>
 <p>The real insight here isn’t about saving money on Claude API. It’s about abstraction layers.</p>
 <p>The Claude CLI and the Claude API are two different interfaces to the same underlying service. Both are useful. The API scales horizontally but costs per token. The CLI is local and flat-rate but doesn’t integrate with code.</p>
-<p>By writing a translation layer between them, we’re not exploiting a loophole—we’re just adapting one interface to work with tools that expect another. This is how good systems get built. Stripe’s API wraps payment processing. OpenAI’s API wraps their models. A proxy wraps the CLI.</p>
-<p>The proxy itself is thin. Maybe 100 lines of real logic. It doesn’t add intelligence—it just adapts. And that’s the lesson: sometimes the biggest value is in the glue layer. The thing that makes incompatible pieces talk to each other.</p>
+<p>By writing a translation layer between them, we’re not exploiting a loophole. We’re just adapting one interface to work with tools that expect another. This is how good systems get built. Stripe’s API wraps payment processing. OpenAI’s API wraps their models. A proxy wraps the CLI.</p>
+<p>The proxy itself is thin. Maybe 100 lines of real logic. It doesn’t add intelligence. It just adapts. And that’s the lesson: sometimes the biggest value is in the glue layer. The thing that makes incompatible pieces talk to each other.</p>
 <h2 id="how-to-build-this">How to Build This</h2>
 <p>Here’s what you need:</p>
 <ol>
@@ -240,11 +241,11 @@
 </ol>
 <p>The full code is about 250 lines. Flask app, streaming, fallback, model endpoint. Took me about 4 hours to stabilize and test.</p>
 <h2 id="why-this-actually-matters">Why This Actually Matters</h2>
-<p>Here’s the thing: you already bought Claude Max. You’re paying $100 a month. The cost of the next request is actually zero—not “small,” literally zero.</p>
+<p>Here’s the thing: you already bought Claude Max. You’re paying $100 a month. The cost of the next request is actually zero. Not “small,” literally zero.</p>
 <p>This changes how you work. When every test costs money, you optimize for fewer tests. You polish arguments instead of running them. You guess instead of verify.</p>
 <p>When tests are free? You run 100 variations. You break things intentionally. You find the breaking points because you’re not afraid to look.</p>
 <p>That’s a different system entirely.</p>
-<p>Also: if you’re serious about agents, about building systems that think, about running experiments—this pays for itself immediately. Your Max subscription probably costs you nothing per agent request, when the economics actually matter.</p>
+<p>Also: if you’re serious about agents, about building systems that think, about running experiments, this pays for itself immediately. Your Max subscription probably costs you nothing per agent request, when the economics actually matter.</p>
 <h2 id="one-last-thing">One Last Thing</h2>
 <p>If Anthropic releases an official way to use Claude Max programmatically, this post becomes a museum piece. And that’s fine. That’s the healthy outcome. But until they do, this is a working exploit of the economics. $100/month beats per-token billing every time, if your use case fits.</p>
 <p>You already own the tool. Might as well make it work for what you’re actually building.</p>
@@ -260,7 +261,7 @@
 <h3 id="unlock-free-agent-requests">Unlock Free Agent Requests</h3>
 <p>The proxy code runs locally. No APIs, no cloud bills, no per-token math. Just your Claude Max and the freedom to experiment.</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>    [</span></span>
-<span class="line"><span>      View on GitHub →</span></span>
+<span class="line"><span>      View on GitHub</span></span>
 <span class="line"><span>    ](https://github.com/hash02)</span></span></code></pre>  </div> <section class="related-articles" data-astro-cid-zm77yjld> <h2 class="related-heading" data-astro-cid-zm77yjld>Keep reading</h2> <div class="related-grid" data-astro-cid-zm77yjld> <a href="/blog/two-agent-finance-operating-system/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>How I Built a Two-Agent Finance Operating System</strong> <span class="related-meta" data-astro-cid-zm77yjld>7 min read</span> </a><a href="/blog/watch-it-run-live/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>I built an AI financial advisor. Watch it run live.</strong> <span class="related-meta" data-astro-cid-zm77yjld>7 min read</span> </a><a href="/blog/agent-graveyard/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>The agent graveyard. I tried more than a dozen. A handful survived. Here is the autopsy.</strong> <span class="related-meta" data-astro-cid-zm77yjld>9 min read</span> </a> </div> </section> <div class="article-footer" data-astro-cid-zm77yjld> <div class="article-share" data-astro-cid-zm77yjld> <span data-astro-cid-zm77yjld>Share this:</span> <a href="https://twitter.com/intent/tweet?text=Claude%20Max%20as%20Your%20Personal%20API&#38;url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fclaude-proxy-api%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>X / Twitter</a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fclaude-proxy-api%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>LinkedIn</a> <button class="share-btn copy-link-btn" data-url="https://bionicbanker.tech/blog/claude-proxy-api/" data-astro-cid-zm77yjld>Copy link</button> </div> <a href="/articles" class="back-to-articles" data-astro-cid-zm77yjld>&larr; All Articles</a> </div> </article> <button id="back-to-top" aria-label="Back to top" title="Back to top" data-astro-cid-zm77yjld>&#8593;</button> <script>
   (function() {
     // Copy link
