@@ -1,5 +1,5 @@
 ---
-title: "Canada's Top 10 Banks Are Going All In on AI. Here's What Each One Is Building."
+title: "Canada's Biggest Banks Are Going All In on AI. Here's What Each One Is Building."
 description: "A data-backed look at how Canada's biggest banks are adopting AI, from RBC's 10-year head start to TD's agentic push and BMO's advisor augmentation strategy."
 date: "2026-03-29"
 tags: ["AI", "Banking", "Canada", "Finance"]
@@ -12,7 +12,7 @@ image: "/blog-visuals/canada-banks-ai/social-preview.png"
 
 RBC has a 10-year AI head start. TD is making the largest tech transformation in Canadian banking. BMO, Scotiabank, and Desjardins are each running named AI programs with public deployment numbers. This is what each Canadian bank is actually building, based on published reports only.
 
-# Canada's Top 10 Banks Are Going All In on AI
+# Canada's Biggest Banks Are Going All In on AI
 
 Every major Canadian bank is building with AI right now. Not talking about it. Building it. Deploying it. Measuring the results.
 
@@ -50,7 +50,7 @@ Scotiabank's global footprint means their AI models need to be more adaptable th
 
 ## 5. National Bank of Canada
 
-National Bank is proving that you do not need to be the biggest to be innovative with AI. Their digital banking platform has been recognized for its user experience, and AI plays a growing role in how they personalize services for clients.
+National Bank is proving that you do not need to be the biggest to build useful AI. Their digital banking platform has been recognized for its user experience, and AI plays a growing role in how they personalize services for clients.
 
 Their focus on Quebec's market gives them a unique advantage: deep knowledge of a specific customer base combined with AI tools that can optimize for that focus.
 
@@ -80,7 +80,7 @@ Their approach proves that smaller institutions can compete with the Big Five on
 
 ## What This Means
 
-The pattern across all ten institutions is clear. AI is no longer a pilot project or an innovation lab experiment. It is becoming infrastructure. Every bank is building, deploying, and measuring.
+The pattern across these institutions is clear. AI is no longer a pilot project or an innovation lab experiment. It is becoming infrastructure. Every bank is building, deploying, and measuring.
 
 The differences are in approach, not ambition. RBC invested in research first. TD is pushing toward autonomous agents. BMO is augmenting advisors. Scotiabank is solving multi-market complexity.
 

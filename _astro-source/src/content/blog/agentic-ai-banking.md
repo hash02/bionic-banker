@@ -107,7 +107,7 @@ And the reason is real. OSFI regulation moves slower than Silicon Valley. The Bi
 
 ## Why 2026 Is the Window
 
-Here's the leverage point. Nobody owns agentic AI yet. JPMorgan owns contracts. Wells Fargo owns customer service. BNY Mellon owns employee-driven automation. HDFC owns rural financial access. ANZ owns internal efficiency. Nobody owns the whole domain yet because the domain is still forming.
+Here's the useful opening. Nobody owns agentic AI yet. JPMorgan owns contracts. Wells Fargo owns customer service. BNY Mellon owns employee-driven automation. HDFC owns rural financial access. ANZ owns internal efficiency. Nobody owns the whole domain yet because the domain is still forming.
 
 That's usually when someone comes from outside and moves faster than everyone else.
 
