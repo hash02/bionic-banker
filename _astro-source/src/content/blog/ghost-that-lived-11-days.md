@@ -7,6 +7,8 @@ slug: ghost-that-lived-11-days
 canonical_url: https://bionicbanker.tech/blog/ghost-that-lived-11-days/
 ---
 
+A forensic on a zombie agent: a function named call_ollama() that routed 9,917 of 9,996 model calls to external providers instead of the local Ollama instance, running undetected for eleven days on a home server.
+
 # The Ghost That Lived for Eleven Days
 
 Here is the kind of bug that shipped quietly and fed off my infrastructure for eleven days before I noticed.

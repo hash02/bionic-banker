@@ -9,6 +9,8 @@ featured: false
 slug: "roast-gallery"
 ---
 
+A field-note gallery of 190 sample wallet-risk analyses from the AML detection engine, each showing the rule match, risk score, and plain-language flag explanation that triggered the review.
+
 ## The Roast Gallery
 
 Some transaction patterns are hard to read cold. A score helps. A rule list helps. But the most useful layer is usually the sentence that explains why the row made the system pause.

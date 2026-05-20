@@ -9,6 +9,8 @@ featured: false
 slug: "folder-agent-part2"
 ---
 
+Part 2 of building a folder-watching agent in Python: the gap between an event listener and a real agent, the watchdog library for filesystem events, and the routing script that made the folder respond to file changes instead of just detecting them.
+
 ## The Honest Confession
 
       

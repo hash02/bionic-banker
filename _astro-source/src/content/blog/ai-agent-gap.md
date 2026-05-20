@@ -10,6 +10,8 @@ slug: "ai-agent-gap"
 image: "/blog-visuals/ai-agent-gap.png"
 ---
 
+The global AI banking market reached $20.6 billion in 2026 and is projected to hit $67.74 billion by 2030, with 88 percent of organizations using AI but only 21 percent running autonomous agents in production, according to McKinsey and NVIDIA surveys.
+
 # The AI Agent Gap
 
 The global AI banking market hit $20.6 billion in 2026. That number gets thrown around a lot, but what matters more is where that money is going. And where it is not going yet. The gap between "we use AI" and "we have autonomous agents in production" is where the real opportunity lives right now.

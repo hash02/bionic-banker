@@ -10,6 +10,8 @@ slug: "how-to-start-crypto"
 image: "/blog-visuals/how-to-start-crypto/social-preview.png"
 ---
 
+A beginner's guide to getting started with cryptocurrency in 2024: Bitcoin and Ethereum basics, self-custody wallets, centralized exchanges like Coinbase and Kraken, and the blockchain concept explained with no assumed prior knowledge.
+
 ### Introduction: Approach to Crypto
 
 Imagine you’re sitting in a cozy, sunlit café, and your friend, who knows next to nothing about crypto, asks you to explain it. Channeling your inner Richard Feynman, the legendary physicist known for his ability to break down complex concepts into simple terms, you take a deep breath and start:
