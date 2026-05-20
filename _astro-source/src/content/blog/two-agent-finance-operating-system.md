@@ -76,7 +76,7 @@ For finance and DeFi work, the same structure can track:
 - policy gates
 - research lanes
 - risk checks
-- reader-facing reporting
+- public reporting
 
 The important part is that the board is not a chat transcript. It is an operating surface.
 
@@ -115,7 +115,7 @@ It can prepare draft application material. It cannot submit the application.
 
 It can draft an outreach email. It cannot send the email.
 
-It can build a reader-facing project summary. It cannot expose sensitive system details, wallet details, or client information.
+It can build a public project summary. It cannot expose sensitive system details, wallet details, or client information.
 
 It can write a website spec. It cannot publish the page without approval.
 
