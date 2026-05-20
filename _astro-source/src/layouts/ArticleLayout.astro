@@ -222,12 +222,16 @@ const breadcrumbSchema = {
 
     .article-toc {
       display: block;
-      background: rgba(31,160,104,0.05);
-      border: 1px solid rgba(31,160,104,0.15);
+      position: relative;
+      z-index: 2;
+      background: #0d0d11;
+      border: 1px solid rgba(31,160,104,0.20);
       border-radius: 8px;
       padding: 1rem 1.25rem 1rem;
       margin: 0 0 2rem;
+      width: 100%;
       max-width: 540px;
+      box-sizing: border-box;
     }
     .article-toc:empty { display: none; }
     .article-toc :global(.toc-label) {
