@@ -10,6 +10,8 @@ slug: "fintech"
 image: "/blog-visuals/fintech/social-preview.png"
 ---
 
+Fintech is finance turning into software rails: payments, lending, investing, open banking, fraud checks, identity, and data permissions. This field note follows why the app can look boring while the rail underneath changes how money moves.
+
 Okay so fintech is one of those words that got too big to be useful.
 
 People use it for payment apps, stock apps, crypto wallets, online lending, open banking, fraud tools, digital identity, robo-advisors, and probably ten more things by the time this sentence is stale.

@@ -10,6 +10,8 @@ slug: "agent-replacement"
 image: "/blog-visuals/agent-replacement/hero.png"
 ---
 
+The Agent Wake-Up Call is about the gap between workplace AI limits and what autonomous agents can already do after hours. It tracks NemoClaw, Agentforce at $2.9B ARR, 17 enterprise partners, and why agent practice may become the new worker advantage.
+
 I was at a tech and finance seminar a few weeks ago.
 
 Mixed crowd. Bankers, lawyers, developers, healthcare people. Lanyards and LinkedIn smiles.

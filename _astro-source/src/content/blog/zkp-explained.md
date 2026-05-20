@@ -10,6 +10,8 @@ slug: "zkp-explained"
 image: "/blog-visuals/zkp-explained/social-preview.png"
 ---
 
+Zero-knowledge systems let one side confirm a statement without exposing the private data behind it. This note maps that idea to AI in banking: identity checks, compliance workflows, model review, and the privacy boundary between useful context and overexposure.
+
 Here is the shape of the problem.
 
 AI wants context. Finance is full of sensitive context.
