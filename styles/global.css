@@ -333,14 +333,80 @@ nav {
   border-top: 1px solid rgba(31,160,104,0.07);
 }
 .section-label-text {
-  font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 0.2rem;
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1fa068;
+  margin-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid #1fa068;
 }
 .section-title-text {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(1.3rem, 2.5vw, 1.65rem); font-weight: 700;
-  letter-spacing: 0; color: var(--text);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--text, #e4e4ec);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ── PROOF STRIP ── */
+.proof-strip {
+  background: #0a0a0e;
+  border-top: 1px solid rgba(31, 160, 104, 0.10);
+  border-bottom: 1px solid rgba(31, 160, 104, 0.10);
+  padding: 1.1rem 2rem;
+}
+
+.proof-strip-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.ps-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.4rem 2rem;
+}
+
+.ps-n {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1fa068;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.ps-l {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.65rem;
+  color: #888890;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ps-div {
+  width: 1px;
+  height: 1.5rem;
+  background: rgba(31, 160, 104, 0.15);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .proof-strip { padding: 1rem; }
+  .ps-item { padding: 0.4rem 1rem; }
+  .ps-div { display: none; }
+  .ps-n { font-size: 1.1rem; }
 }
 .view-all {
   font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--text-3);

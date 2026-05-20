@@ -81,32 +81,35 @@ const signalRoutes = [
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>
         </div>
       </div>
-      <div class="heartbeat-card">
-        <div class="heartbeat-top">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          <strong>{status.mode || 'Snapshot'}</strong>
-          <small>{generatedAt}</small>
+      <div class="terminal-bar">
+        <div class="tbar-metric">
+          <span class="tbar-label">Signal Rows</span>
+          <strong class="tbar-value">{status.predictions_made || 'n/a'}</strong>
+          <span class="tbar-sub">total logged</span>
         </div>
-        <div class="heartbeat-metrics">
-          <div>
-            <span>Rows</span>
-            <strong>{status.predictions_made || 'n/a'}</strong>
-          </div>
-          <div>
-            <span>Last 100</span>
-            <strong>{accuracy}</strong>
-          </div>
-          <div>
-            <span>Last read</span>
-            <strong>{predictionValue.direction || 'n/a'}</strong>
-          </div>
-          <div>
-            <span>Confidence</span>
-            <strong>{confidence}</strong>
-          </div>
+        <div class="tbar-divider"></div>
+        <div class="tbar-metric">
+          <span class="tbar-label">Last 100</span>
+          <strong class="tbar-value tbar-accent">{accuracy}</strong>
+          <span class="tbar-sub">accuracy</span>
         </div>
-        <p class="snapshot-note">For research only. Not investment advice, not trading performance, and not a recommendation.</p>
+        <div class="tbar-divider"></div>
+        <div class="tbar-metric">
+          <span class="tbar-label">Last Read</span>
+          <strong class="tbar-value">{predictionValue.direction || 'n/a'}</strong>
+          <span class="tbar-sub">{confidence} confidence</span>
+        </div>
+        <div class="tbar-divider"></div>
+        <div class="tbar-metric">
+          <span class="tbar-label">Status</span>
+          <strong class="tbar-value tbar-accent">
+            <span class="pulse-dot" aria-hidden="true" style="display:inline-block;margin-right:0.3rem;"></span>
+            {status.mode || 'LIVE'}
+          </strong>
+          <span class="tbar-sub">{generatedAt ? generatedAt.slice(0, 10) : 'snapshot'}</span>
+        </div>
       </div>
+      <p class="snapshot-note" style="margin-top:0.75rem;">For research only. Not investment advice, not trading performance, and not a recommendation.</p>
     </section>
 
     <section class="market-strip" id="market-row" data-feeds={JSON.stringify(feeds)}>
@@ -393,10 +396,9 @@ const signalRoutes = [
     }
 
     .alive-console {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      display: flex;
+      flex-direction: column;
       gap: 1.25rem;
-      align-items: stretch;
     }
 
     .console-copy h2,
@@ -774,6 +776,60 @@ const signalRoutes = [
     .result-miss { color: #e05555; }
     .result-pending { color: var(--text-3); }
 
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: #0e0e12;
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tbar-metric {
+      flex: 1;
+      min-width: 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.25rem 1rem;
+    }
+
+    .tbar-divider {
+      width: 1px;
+      height: 2.5rem;
+      background: rgba(31, 160, 104, 0.15);
+      flex-shrink: 0;
+    }
+
+    .tbar-label {
+      font-family: var(--mono, monospace);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3, #888890);
+    }
+
+    .tbar-value {
+      font-family: var(--mono, monospace);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text, #e4e4ec);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .tbar-accent {
+      color: #1fa068;
+    }
+
+    .tbar-sub {
+      font-family: var(--mono, monospace);
+      font-size: 0.62rem;
+      color: var(--text-3, #888890);
+    }
+
     .spark-wrap {
       background: #08080e;
       border: 1px solid rgba(31, 160, 104, 0.22);
@@ -795,6 +851,13 @@ const signalRoutes = [
       font-family: var(--mono);
       margin: 0.45rem 0 0;
       line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+      .terminal-bar { gap: 1rem; padding: 1rem; }
+      .tbar-divider { display: none; }
+      .tbar-metric { min-width: calc(50% - 0.5rem); padding: 0; }
+      .tbar-value { font-size: 1.2rem; }
     }
 
     @media (max-width: 860px) {
