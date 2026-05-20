@@ -1,6 +1,6 @@
 ---
 title: "The Agentic Gap: How the World's Banks Are Deploying AI Agents, and Where Canada Fits"
-description: "Real production data from JPMorgan, HDFC, ANZ, RBC, Scotiabank, and CIBC. 99% of banks plan autonomous agents. Only 11% have deployed. Where does Canada stand?"
+description: "Real production data from JPMorgan, HDFC, ANZ, RBC, and Scotiabank. 99% of banks plan autonomous agents. Only 11% have deployed. Where does Canada stand?"
 date: "2026-04-06"
 tags: ["AI", "Banking", "Finance", "Agents"]
 readTime: "12 min"
@@ -10,7 +10,7 @@ slug: "agentic-ai-banking"
 image: "/blog-visuals/agentic-ai-banking/01-hero-banner.png"
 ---
 
-99% of global banks plan to deploy autonomous AI agents. Only 11% have. JPMorgan, HDFC, ANZ, RBC, Scotiabank, and CIBC are in that 11%. This is what each of them is actually running, and where Canada sits in the gap.
+99% of global banks plan to deploy autonomous AI agents. Only 11% have. JPMorgan, HDFC, ANZ, RBC, and Scotiabank are in that 11%. This is what each of them is actually running, and where Canada sits in the gap.
 
 # The Agentic Gap
 
@@ -92,8 +92,6 @@ RBC built Aiden. It's an analyst platform that lets one analyst cover 50 compani
 
 Scotiabank built AIDox. It handles 90% of their 1,500 daily commercial emails autonomously. Emails that used to take hours to triage now take minutes. They redeployed 70% of the team that used to handle that work. Since 2018 they've been investing in this, and 2025 was the year they upgraded it to agentic.
 
-CIBC has CAI. The numbers are loud. One point two million hours saved in Q1 2026 alone. Thirty thousand active users. A 44% lift in savings account outcomes that can be traced to AI. They've run 200,000 hours of pilots. They won the Best Gen-AI Initiative award at Digital Banker in 2025 and again in 2026. That's not noise. That's two years running of recognition for doing the work right.
-
 TD saw a greater than 20% increase in their Evident AI Index score year over year. BMO has been rising in AI talent development. The Big 5 are not sleeping.
 
 So where's the gap?
@@ -153,4 +151,4 @@ That's not about competing globally. That's about leading locally. And then bein
 
 ---
 
-**Sources:** Evident AI Index 2025 · KPMG Agentic AI Market Report · Deloitte "Agentic AI in Banking" (2026) · BCG "How Retail Banks Can Put Agentic AI to Work" (2026) · Oracle "Future of Banking" (2026) · Wolters Kluwer Finance Team Survey · JPMorgan COiN Case Studies · ANZ Newsroom (Feb 2026) · RBC/NVIDIA Capital Markets Case Study · PYMNTS "RBC Embeds AI at the Core" (Mar 2026) · Scotiabank GTB "AI Agents Transforming Payment Operations" · Scotiabank Perspectives "Agentic AI" (Jul 2025) · CIBC Mediaroom (May 2025) · CIBC Q1 2026 Earnings · HDFC Bank Eva Documentation · CIO Dive "Banks Aim for Agentic AI Scale" (2026)
+**Sources:** Evident AI Index 2025 · KPMG Agentic AI Market Report · Deloitte "Agentic AI in Banking" (2026) · BCG "How Retail Banks Can Put Agentic AI to Work" (2026) · Oracle "Future of Banking" (2026) · Wolters Kluwer Finance Team Survey · JPMorgan COiN Case Studies · ANZ Newsroom (Feb 2026) · RBC/NVIDIA Capital Markets Case Study · PYMNTS "RBC Embeds AI at the Core" (Mar 2026) · Scotiabank GTB "AI Agents Transforming Payment Operations" · Scotiabank Perspectives "Agentic AI" (Jul 2025) · HDFC Bank Eva Documentation · CIO Dive "Banks Aim for Agentic AI Scale" (2026)

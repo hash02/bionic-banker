@@ -88,7 +88,7 @@ Goldman Sachs partnered with Anthropic in late 2025 to build internal AI agents 
 
 JPMorgan has been building their own large language models internally and deploying AI across trading, research, and operations. Their LLM Suite reportedly processes over a million queries daily from employees. They are investing in agents for trade execution optimization and regulatory compliance monitoring.
 
-In Canada, the picture is especially compelling. CIBC's CAI platform, which I covered in detail in my [post on Canadian banks and AI](/blog/canada-banks-ai), went from pilot to 20,000+ employees in eight months. That speed of deployment is rare in banking. TD Bank has been vocal about their push into agentic AI, with leadership specifically calling out autonomous systems as the next phase of their AI strategy. RBC's Borealis AI lab continues to be one of the most productive financial AI research groups in the world.
+In Canada, the picture is especially compelling. TD Bank has been vocal about their push into agentic AI, with leadership specifically calling out autonomous systems as the next phase of their AI strategy. RBC's Borealis AI lab continues to be one of the most productive financial AI research groups in the world.
 
 <div class="timeline">
   <div class="timeline-item">
@@ -98,10 +98,6 @@ In Canada, the picture is especially compelling. CIBC's CAI platform, which I co
   <div class="timeline-item">
     <div class="timeline-date">2025 Q4</div>
     <div class="timeline-text"><span class="timeline-bold">JPMorgan:</span> Expanded LLM Suite to over 1M daily employee queries. Launched agentic pilots in trading and compliance.</div>
-  </div>
-  <div class="timeline-item">
-    <div class="timeline-date">2025 Q4</div>
-    <div class="timeline-text"><span class="timeline-bold">CIBC:</span> CAI rollout surpassed 20,000 employees, saving 600,000+ hours. First Canadian bank to sign federal GenAI Code of Conduct.</div>
   </div>
   <div class="timeline-item">
     <div class="timeline-date">2026 Q1</div>
@@ -142,11 +138,6 @@ I wrote about each of the Big Five and beyond in my [breakdown of Canada's top b
       <td>CAD $1B AI investment target by 2027</td>
     </tr>
     <tr>
-      <td>CIBC</td>
-      <td>Fast deployment (CAI platform, enterprise-wide)</td>
-      <td>600,000+ hours saved, 20,000+ users</td>
-    </tr>
-    <tr>
       <td>TD</td>
       <td>Agentic push (Layer 6 acquisition, modernization)</td>
       <td>Largest tech transformation in Canadian banking</td>
@@ -164,7 +155,7 @@ I wrote about each of the Big Five and beyond in my [breakdown of Canada's top b
   </tbody>
 </table>
 
-Each bank has optimized for different strengths. RBC went deep on research. CIBC moved fast on deployment. TD is betting on agents. BMO is augmenting human expertise. Scotiabank is solving multi-market complexity. All of them are investing heavily, and all of them are producing measurable results.
+Each bank has optimized for different strengths. RBC went deep on research. TD is betting on agents. BMO is augmenting human expertise. Scotiabank is solving multi-market complexity. All of them are investing heavily, and all of them are producing measurable results.
 
 The concentrated nature of Canadian banking means these five institutions can move an entire national financial system forward faster than the more fragmented American or European markets. When one bank ships something that works, the others notice and respond within quarters, not years.
 
@@ -187,8 +178,6 @@ Only 37% of financial institutions are training staff properly on AI tools (Delo
 </div>
 
 The gap between those two numbers represents the largest opportunity in banking AI right now. Tools without training create shelfware. Training without the right tools creates frustration. The institutions that pair both together are the ones posting the numbers worth paying attention to.
-
-CIBC's approach is instructive. When they rolled out CAI, they did not just give people access and hope for the best. They built structured onboarding programs, created internal champions in each business unit, and measured adoption at a granular level. The result was 600,000+ hours of productivity gained within the first year. That is what happens when deployment and training move together.
 
 The same principle applies to agentic AI. Agents are more capable than copilot tools, but they also require more sophisticated human oversight. The people supervising agents need to understand what the agent can do, where its boundaries are, and when to intervene. That requires training that goes beyond "here is how to use the tool" and into "here is how to work alongside an autonomous system."
 
