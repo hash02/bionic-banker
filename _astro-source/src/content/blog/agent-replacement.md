@@ -36,9 +36,9 @@ That gap between what I'm allowed to do at 9-to-5 and what I'm capable of at mid
 
 ## The Numbers Are Staggering
 
-- **30 years** — What took Linux 30 years, AI agent frameworks did in weeks
-- **$2.9B** — Salesforce Agentforce annual recurring revenue
-- **17** — Enterprise partners signed to NVIDIA NemoClaw on day one
+- **30 years:** What took Linux 30 years, AI agent frameworks did in weeks
+- **$2.9B:** Salesforce Agentforce annual recurring revenue
+- **17:** Enterprise partners signed to NVIDIA NemoClaw on day one
 
 NVIDIA just launched NemoClaw at GTC. An open-source AI agent platform. 17 enterprise companies signed on day one, including Salesforce, Adobe, and SAP. Salesforce's own Agentforce just crossed $2.9 billion in annual recurring revenue. Anthropic open-sourced the same Agent SDK that powers Claude Code. Microsoft is embedding Copilot agents into every Office product.
 
