@@ -97,7 +97,7 @@ h1, h2, h3, h4, .nav-logo, .footer-brand {
 .hcard-title,
 .nl-text h3 { text-shadow: 0 0 30px rgba(31,160,104,0.10); }
 .hstat-n, .astat-n { text-shadow: 0 0 35px rgba(31,160,104,0.25); color: var(--accent); }
-.section-label-text, .hero-card-label,
+.section-label-text, .section-label, .hero-card-label,
 .about-role, .hcard-tag, .featured-badge,
 .page-label { text-shadow: 0 0 20px rgba(31,160,104,0.12); }
 .tag-pill { text-shadow: 0 0 10px currentColor; }
@@ -316,8 +316,8 @@ nav {
 .content-wrap { max-width: var(--max); margin: 0 auto; padding: 2.75rem 2rem 3rem; }
 
 .section-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 1.4rem; flex-wrap: wrap; gap: 0.85rem;
   position: relative; padding-left: 1rem;
 }
 .section-header::before {
@@ -332,17 +332,18 @@ nav {
   padding-top: 2.5rem;
   border-top: 1px solid rgba(31,160,104,0.07);
 }
-.section-label-text {
+.section-label-text,
+.section-label {
   display: block;
+  width: fit-content;
   font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #1fa068;
-  margin-bottom: 0.5rem;
-  padding-left: 0.75rem;
-  border-left: 2px solid #1fa068;
+  line-height: 1.15;
+  margin: 0 0 0.42rem;
 }
 .section-title-text {
   font-family: 'Bricolage Grotesque', sans-serif;
@@ -350,7 +351,7 @@ nav {
   font-weight: 700;
   color: var(--text, #e4e4ec);
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 /* ── PROOF STRIP ── */
