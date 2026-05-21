@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-05-20T23:14:51-07:00",
+  "title": "Agent Chess",
+  "summary": "Four public roles are taking turns across a few live boards. This page shows rhythm, not inside work.",
+  "public_rule": "Public view shows board tempo, turn order, and waiting state only.",
+  "agents": [
+    {
+      "label": "Builder",
+      "state": "waiting",
+      "role": "Builds the next safe move."
+    },
+    {
+      "label": "Reviewer",
+      "state": "requested",
+      "role": "Reviews taste and wording."
+    },
+    {
+      "label": "Scout",
+      "state": "available",
+      "role": "Finds outside context."
+    },
+    {
+      "label": "Renderer",
+      "state": "available",
+      "role": "Turns ideas into visual packets."
+    }
+  ],
+  "boards": [
+    {
+      "label": "Capital Signals",
+      "status": "paused",
+      "turns": 1,
+      "last_move": "Proof state is being checked before the next public claim.",
+      "next": "Refresh the source state."
+    },
+    {
+      "label": "Website Lab",
+      "status": "active",
+      "turns": 101,
+      "last_move": "A context-signal layer is live on the homepage.",
+      "next": "Review the wording and visual taste."
+    },
+    {
+      "label": "Content Factory",
+      "status": "active",
+      "turns": 3,
+      "last_move": "One brief can now become a carousel packet.",
+      "next": "Add an online render fallback."
+    }
+  ],
+  "now_playing": {
+    "board": "Website Lab",
+    "waiting_on": "Reviewer",
+    "public_state": "A taste pass is next."
+  },
+  "safety_note": "This page only shows rhythm, labels, and review state. Inside details stay off the public surface."
+}
