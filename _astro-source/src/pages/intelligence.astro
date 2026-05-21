@@ -485,6 +485,7 @@ const signalRoutes = [
       border-radius: 999px;
       background: var(--accent);
       box-shadow: 0 0 18px rgba(31, 160, 104, 0.45);
+      animation: pulseBlink 1.4s ease-in-out infinite;
     }
 
     .heartbeat-metrics,
@@ -776,14 +777,27 @@ const signalRoutes = [
     .result-pending { color: var(--text-3); }
 
     .terminal-bar {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 0;
       background: #0e0e12;
       border: 1px solid rgba(31, 160, 104, 0.22);
       border-radius: 10px;
-      padding: 1.25rem 1.5rem;
+      padding: 1.75rem 1.5rem 1.25rem;
       flex-wrap: wrap;
+    }
+
+    .terminal-bar::before {
+      content: "live signal feed";
+      position: absolute;
+      top: 0.65rem;
+      left: 1.5rem;
+      color: #1fa068;
+      font-family: var(--mono, monospace);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .tbar-metric {
@@ -793,7 +807,15 @@ const signalRoutes = [
       flex-direction: column;
       gap: 0.2rem;
       padding: 0.25rem 1rem;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: feedRowIn 420ms ease forwards;
     }
+
+    .tbar-metric:nth-of-type(1) { animation-delay: 80ms; }
+    .tbar-metric:nth-of-type(3) { animation-delay: 180ms; }
+    .tbar-metric:nth-of-type(5) { animation-delay: 280ms; }
+    .tbar-metric:nth-of-type(7) { animation-delay: 380ms; }
 
     .tbar-divider {
       width: 1px;
@@ -827,6 +849,52 @@ const signalRoutes = [
       font-family: var(--mono, monospace);
       font-size: 0.62rem;
       color: var(--text-3, #888890);
+    }
+
+    .tbar-metric:last-child .tbar-sub::after {
+      content: "";
+      display: inline-block;
+      width: 0.42rem;
+      height: 0.9em;
+      margin-left: 0.35rem;
+      vertical-align: -0.08em;
+      background: #1fa068;
+      animation: cursorBlink 1s steps(2, start) infinite;
+    }
+
+    @keyframes feedRowIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes cursorBlink {
+      50% { opacity: 0; }
+    }
+
+    @keyframes pulseBlink {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 18px rgba(31, 160, 104, 0.45);
+      }
+      50% {
+        opacity: 0.45;
+        box-shadow: 0 0 8px rgba(31, 160, 104, 0.28);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pulse-dot,
+      .tbar-metric,
+      .tbar-metric:last-child .tbar-sub::after {
+        animation: none;
+      }
+
+      .tbar-metric {
+        opacity: 1;
+        transform: none;
+      }
     }
 
     .spark-wrap {
