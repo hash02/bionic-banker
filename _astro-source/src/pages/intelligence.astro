@@ -326,41 +326,40 @@ const signalRoutes = [
       function initChart() {
         const canvas = document.getElementById('btc-spark');
         if (!canvas || !window.Chart) return;
-        // Set explicit pixel dimensions before Chart.js touches the canvas
-        // responsive:true reads container height which is unconstrained → renders full-page tall line
-        const wrap = canvas.parentElement;
-        const w = wrap ? wrap.clientWidth : 600;
-        canvas.width = w;
-        canvas.height = 90;
-        new window.Chart(canvas, {
-          type: 'line',
-          data: {
-            labels,
-            datasets: [{
-              data: prices,
-              borderColor: '#1fa068',
-              borderWidth: 2,
-              pointRadius: 3,
-              pointHoverRadius: 5,
-              pointBackgroundColor: '#1fa068',
-              fill: true,
-              backgroundColor: 'rgba(31, 160, 104, 0.09)',
-              tension: 0.38,
-            }]
-          },
-          options: {
-            responsive: false,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false },
-              tooltip: { callbacks: { label: (c) => `$${Math.round(c.parsed.y).toLocaleString('en-US')}` } }
+        requestAnimationFrame(() => {
+          const wrap = canvas.parentElement;
+          const w = wrap ? wrap.clientWidth : 600;
+          canvas.width = w;
+          canvas.height = 90;
+          new window.Chart(canvas, {
+            type: 'line',
+            data: {
+              labels,
+              datasets: [{
+                data: prices,
+                borderColor: '#1fa068',
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                pointBackgroundColor: '#1fa068',
+                fill: true,
+                backgroundColor: 'rgba(31, 160, 104, 0.09)',
+                tension: 0.38,
+              }]
             },
-            scales: { x: { display: false }, y: { display: false } }
-          }
+            options: {
+              responsive: false,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: (c) => `$${Math.round(c.parsed.y).toLocaleString('en-US')}` } }
+              },
+              scales: { x: { display: false }, y: { display: false } }
+            }
+          });
+          canvas.style.width = '100%';
+          canvas.style.height = '90px';
         });
-        // After render, let CSS handle display width so it fills the container
-        canvas.style.width = '100%';
-        canvas.style.height = '90px';
       }
 
       if (window.Chart) {
@@ -835,6 +834,7 @@ const signalRoutes = [
       border: 1px solid rgba(31, 160, 104, 0.22);
       border-radius: 8px;
       padding: 1rem 1.1rem 0.6rem;
+      position: relative;
       overflow: hidden;
     }
 
