@@ -5,12 +5,15 @@ import { getCollection } from 'astro:content';
 const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const heartbeatData = await import('../../public/dashboard-data/heartbeat.json');
+const contextSignals = await import('../../public/dashboard-data/context-signals.json');
 
 // GET ARTICLE COUNT - computed, never hardcoded again
 const allPosts = await getCollection('blog');
 const articleCount = allPosts.length;
 const proofCount = proofCatalog.default.projects.length;
 const questionCount = gapCatalog.default.modern_questions.length;
+const contextCards = contextSignals.default.cards ?? [];
+const contextSources = contextSignals.default.sources ?? [];
 const featuredPosts = allPosts.filter(p => p.data.featured);
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const latestPost = sortedPosts[0];
@@ -144,6 +147,46 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
         <span class="ps-l">weeks running live</span>
       </div>
     </div>
+  </div>
+
+  <div class="content-wrap context-wrap">
+    <section class="context-signal-section animate-on-scroll">
+      <div class="section-header">
+        <div>
+          <div class="section-label-text">Context Signals</div>
+          <div class="section-title-text">Numbers that explain why this lab matters</div>
+        </div>
+        <a href="/reports" class="view-all">Open field notes -></a>
+      </div>
+      <div class="context-signal-grid">
+        {contextCards.map(card => (
+          <article class="context-signal-card">
+            <div class="context-card-top">
+              <span class="context-label">{card.label}</span>
+              {card.source_url && <a href={card.source_url} class="context-source" target={card.source_url.startsWith('http') ? '_blank' : undefined} rel={card.source_url.startsWith('http') ? 'noopener noreferrer' : undefined}>Source</a>}
+            </div>
+            <h3>{card.title}</h3>
+            <div class="context-value-row">
+              <strong>{card.value}</strong>
+              <span>{card.unit}</span>
+            </div>
+            <p>{card.detail}</p>
+            <div class="context-bars" aria-hidden="true">
+              {card.series.map(point => (
+                <span class="context-bar" style={`--h:${point.pct}%`}>
+                  <i>{point.year}</i>
+                </span>
+              ))}
+            </div>
+            <div class="context-credit">{card.source}</div>
+          </article>
+        ))}
+      </div>
+      <p class="context-note">
+        External context uses public Our World in Data chart data with source links. Bionic Banker is responsible for this page and interpretation.
+        {contextSources[0]?.url && <a href={contextSources[0].url} target="_blank" rel="noopener noreferrer"> API notes</a>}.
+      </p>
+    </section>
   </div>
 
   <!-- ARTICLES -->
@@ -378,6 +421,130 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
   </script>
 
   <style>
+    .context-wrap {
+      padding-top: 0;
+      padding-bottom: 0.5rem;
+    }
+    .context-signal-section {
+      border-top: 1px solid var(--b1);
+      border-bottom: 1px solid var(--b1);
+      padding: 2rem 0 2.2rem;
+    }
+    .context-signal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .context-signal-card {
+      background: rgba(31,160,104,0.035);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius);
+      padding: 1.15rem;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .context-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .context-label,
+    .context-source,
+    .context-credit {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .context-label { color: var(--accent); }
+    .context-source { color: var(--text-3); transition: color 0.2s; }
+    .context-source:hover { color: var(--accent); }
+    .context-signal-card h3 {
+      font-size: 1rem;
+      line-height: 1.25;
+      color: var(--text);
+    }
+    .context-value-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+    .context-value-row strong {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+      color: var(--accent);
+    }
+    .context-value-row span {
+      color: var(--text-3);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .context-signal-card p {
+      color: var(--text-2);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    .context-bars {
+      display: flex;
+      align-items: end;
+      gap: 0.32rem;
+      min-height: 86px;
+      padding-top: 0.25rem;
+      border-top: 1px solid var(--b1);
+    }
+    .context-bar {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      height: max(8px, var(--h));
+      background: rgba(31,160,104,0.2);
+      border: 1px solid rgba(31,160,104,0.26);
+      border-radius: 4px 4px 0 0;
+    }
+    .context-bar i {
+      position: absolute;
+      left: 50%;
+      bottom: -1.25rem;
+      transform: translateX(-50%);
+      font-style: normal;
+      color: var(--text-4);
+      font-family: var(--mono);
+      font-size: 0.52rem;
+    }
+    .context-credit {
+      color: var(--text-4);
+      letter-spacing: 0.03em;
+      text-transform: none;
+      line-height: 1.4;
+      margin-top: 0.65rem;
+    }
+    .context-note {
+      margin-top: 1rem;
+      color: var(--text-3);
+      font-size: 0.72rem;
+      line-height: 1.55;
+    }
+    .context-note a {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+    }
+    @media (max-width: 900px) {
+      .context-signal-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .context-signal-section { padding: 1.4rem 0 1.8rem; }
+      .context-signal-card { padding: 1rem; }
+      .context-bars { min-height: 74px; gap: 0.22rem; }
+      .context-bar i { display: none; }
+    }
     .mn-label { color: var(--text-3); font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; }
     .mn-source { color: var(--text-3); font-family: var(--mono); font-size: 0.68rem; margin-left: auto; }
     .mn-live-badge {
