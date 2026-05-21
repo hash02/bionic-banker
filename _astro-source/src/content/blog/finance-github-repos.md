@@ -43,7 +43,7 @@ This one genuinely surprised me when I first saw it. gs-quant is the derivative 
 
 Derivative pricing is not a generic problem. The math involves stochastic processes, volatility models, and a lot of numerical methods that have to be fast and accurate simultaneously. Banks spend significant time building and calibrating these internally.
 
-The fact that Goldman published this means one of two things: either they're confident enough in their execution edge that the pricing library itself isn't the moat, or they see value in the ecosystem benefits from open-sourcing it. Probably both.
+The fact that Goldman published this means one of two things: either they're confident enough in their execution edge that the pricing library itself isn't the moat, or they see value in the shared tooling benefits from open-sourcing it. Probably both.
 
 For anyone building quantitative tools or learning how institutional derivative pricing actually works, this is a reference you can actually run. Not a textbook. Working code.
 
@@ -116,7 +116,7 @@ This one looks the least impressive at first glance. Auto-import management for 
 
 That's genuinely useful for researchers working in notebooks all day. But the interesting part is in the footnote: D.E. Shaw funded the development of IPython itself.
 
-IPython is the interactive Python shell that became the foundation of Jupyter notebooks. Every data scientist, quant researcher, and ML engineer who works in notebooks is working in an environment that D.E. Shaw partially financed. They needed better interactive Python tooling for their own research, so they funded it at the ecosystem level.
+IPython is the interactive Python shell that became the foundation of Jupyter notebooks. Every data scientist, quant researcher, and ML engineer who works in notebooks is working in an environment that D.E. Shaw partially financed. They needed better interactive Python tooling for their own research, so they funded it at the field's tooling layer.
 
 That's a different category of contribution than open-sourcing a library. That's shaping the tool that the entire field uses.
 
