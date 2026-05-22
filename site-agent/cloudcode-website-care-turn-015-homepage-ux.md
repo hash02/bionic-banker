@@ -49,22 +49,41 @@ Design lock is active. Two tiers of changes:
 
 ---
 
-## HASH Approval — Tier 2 Confirmed + 5-Section Priority
+## HASH Approval — Full Scope Confirmed (Updated)
 
-HASH confirmed: fix everything, ASAP.
+HASH confirmed: fix everything, ASAP. Additional direction received:
 
-The 5 things the homepage should communicate clearly (in order of priority):
-1. **Hero** — big idea, who is this, what is the main title/hook
-2. **Blog/Writing** — the articles, with a prominent CTA to go read them
-3. **The Lab** — experiments and live signals
-4. **Contact + Social** — how to reach HASH (contact form + Twitter/X + Telegram)
-5. **Newsletter** — subscribe/stay in the loop
+**Core principle from HASH:** Too much information = people get bored and read nothing. Every section should be: **Title → One line → Button**. That is the pattern. No paragraphs. No stat grids. No dense card descriptions on the homepage.
 
-Sections that are currently pulling attention but are NOT in the top 5: "Context Signals" (the 3-stat cards with bar charts) and "Moving Now" (live price/wallet/writing cards). These can stay but must be visually subordinate — smaller, less prominent than the 5 priority sections. Do not delete them. Just ensure they don't compete with the 5 primary sections.
+**The 5 things the homepage must communicate clearly:**
+1. **Hero** — big idea, main title, one-line hook, 2-3 CTAs
+2. **Writing/Blog** — title + one line + "Read all articles →" button
+3. **Experiments/Signals** — title + one line + button into that page
+4. **Contact + Social** — Twitter/X first, Telegram, LinkedIn, then form
+5. **Newsletter** — subscribe strip
+
+**Remove entirely:**
+- `hero-stats-row` (the "44 Articles / 5 Experiments / 10 Questions" row in the hero) — numbers are too small, looks beginner
+- `proof-strip` (the "3,286 signal rows / 44 articles / 12+ weeks" strip below hero) — same reason
+- The dense paragraph descriptions in each section card on the homepage — keep card titles, strip body text to one line or remove
+
+**Rename:**
+- Nav item "Learn" → "Learn AI" (clearer what it is)
+- "The Lab" section label is confusing — rename to "Experiments" or just drop the label
+
+**Section template going forward (apply to each section):**
+```
+[Section label — small caps]
+[Section title — 1-2 words]
+[One-line description — max 12 words]
+[Button → ]
+```
+
+**Screenshot incoming from HASH** — hold execution until screenshot arrives if there is additional visual direction. If screenshot does not arrive within the session, execute with the above scope.
 
 Tier 2 CSS is approved: add section visual separators. Specifically:
 - `border-top: 2px solid var(--b1)` and `padding-top: 3rem` on each major section container to create clear visual breaks
-- Context Signals and Moving Now sections: add a subtle `background: rgba(31,160,104,0.03)` tint to distinguish them as secondary/data sections vs primary content sections
+- Context Signals and Moving Now sections: if they survive the cut, add a subtle `background: rgba(31,160,104,0.03)` tint
 - This is targeted CSS only — no layout restructuring, no flexbox/grid changes
 
 ---

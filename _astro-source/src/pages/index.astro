@@ -93,11 +93,6 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
             </a>
           ))}
         </div>
-        <div class="hero-stats-row">
-          <div class="hstat"><span class="hstat-n">{articleCount}</span><span class="hstat-l">Articles</span></div>
-          <div class="hstat"><span class="hstat-n">{proofCount}</span><span class="hstat-l">Experiments</span></div>
-          <div class="hstat"><span class="hstat-n">{questionCount}</span><span class="hstat-l">Questions</span></div>
-        </div>
       </div>
 
       <div class="hero-right">
@@ -124,26 +119,8 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
     </div>
   </div>
 
-  <!-- PROOF STRIP -->
-  <div class="proof-strip">
-    <div class="proof-strip-inner">
-      <a href="/intelligence/" class="ps-item">
-        <strong class="ps-n">3,286</strong>
-        <span class="ps-l">signal rows logged</span>
-      </a>
-      <div class="ps-item">
-        <strong class="ps-n">{articleCount}</strong>
-        <span class="ps-l">articles published</span>
-      </div>
-      <div class="ps-item">
-        <strong class="ps-n">12+</strong>
-        <span class="ps-l">weeks running</span>
-      </div>
-    </div>
-  </div>
-
   <div class="content-wrap context-wrap">
-    <section class="context-signal-section animate-on-scroll">
+    <section class="context-signal-section section-alt animate-on-scroll">
       <div class="section-header">
         <div>
           <div class="section-label-text">Context Signals</div>
@@ -185,7 +162,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
 
   <!-- ARTICLES -->
   <div class="content-wrap" id="articles">
-    <section class="moving-now-section animate-on-scroll">
+    <section class="moving-now-section section-divide animate-on-scroll">
       <div class="section-header">
         <div>
           <div class="section-label-text">Moving Now</div>
@@ -215,11 +192,11 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       </div>
     </section>
 
-    <section class="proof-route-section animate-on-scroll">
+    <section class="proof-route-section section-alt animate-on-scroll">
       <div class="section-header">
         <div>
-          <div class="section-label-text">The Lab</div>
-          <div class="section-title-text">Pick a door</div>
+          <div class="section-label-text">Experiments</div>
+          <div class="section-title-text">Pick where to start</div>
         </div>
         <a href="/proof-tour" class="view-all">Walk the lab -></a>
       </div>
@@ -228,37 +205,37 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
         <a href="/proof-tour" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
           <h3>Walk the lab</h3>
-          <p>A quick path through the pieces already moving: AML stories, agent loops, live signals, charts, and the questions underneath them.</p>
+          <p>AML stories, agent loops, signals, and what is moving.</p>
           <div class="card-footer"><span class="read-more">Start walking -></span></div>
         </a>
         <a href="/projects" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Experiments</span></div>
           <h3>Things that run</h3>
-          <p>AML engines, wallet risk notes, agent workflows, observability sketches, and technical stories from the build floor.</p>
+          <p>AML engines, wallet risk, and agent workflows. All shipped.</p>
           <div class="card-footer"><span class="read-more">Open experiments -></span></div>
         </a>
         <a href="/reports" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Field Notes</span></div>
           <h3>Numbers with context</h3>
-          <p>Charts, counts, limits, benchmark notes, and the parts of the system that are easier to understand when they are measured.</p>
+          <p>Charts, benchmarks, and limits. Measured, not guessed.</p>
           <div class="card-footer"><span class="read-more">Read field notes -></span></div>
         </a>
         <a href="/gaps" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Questions</span></div>
           <h3>Questions I keep asking</h3>
-          <p>How do two AI parts talk to each other? When does a signal become useful? How do you explain risk without hiding behind jargon?</p>
+          <p>Open problems worth answering. No answers yet.</p>
           <div class="card-footer"><span class="read-more">Open questions -></span></div>
         </a>
         <a href="/learn" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Learn</span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">Learn AI</span></div>
           <h3>Concepts without fog</h3>
-          <p>RAG, agents, RBAC, observability, embeddings, AML, deployment. The words sound bigger than they are. Start simple.</p>
+          <p>RAG, agents, AML, embeddings. Less fog, more signal.</p>
           <div class="card-footer"><span class="read-more">Learn the terms -></span></div>
         </a>
         <a href="/site-agent" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Ask</span></div>
           <h3>Ask the lab</h3>
-          <p>Type what you are curious about and get pointed to the right corner: AML, agents, charts, learning notes, or live signal rows.</p>
+          <p>Type a question. Get pointed to the right corner.</p>
           <div class="card-footer"><span class="read-more">Ask a question -></span></div>
         </a>
       </div>
@@ -267,7 +244,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       </div>
     </section>
 
-    <div class="section-header">
+    <div class="section-header section-divide">
       <div>
         <div class="section-label-text">Writings</div>
         <div class="section-title-text">Articles</div>
@@ -432,15 +409,19 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       border-top: 2px solid var(--b1);
       border-bottom: 1px solid var(--b1);
       padding: 3rem 0 2.2rem;
-      background: rgba(31,160,104,0.03);
     }
-    .moving-now-section,
-    .proof-route-section {
+    .section-divide {
       border-top: 2px solid var(--b1);
       padding-top: 3rem;
     }
-    .moving-now-section {
-      background: rgba(31,160,104,0.03);
+    .section-alt {
+      background: #0d0f18;
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      padding-left: calc(50vw - 50%);
+      padding-right: calc(50vw - 50%);
     }
     .content-wrap > .section-header {
       border-top: 2px solid var(--b1);
@@ -604,12 +585,17 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
   </style>
 
   <!-- CONTACT -->
-  <div class="contact-section animate-on-scroll" id="contact">
+    <div class="contact-section section-alt animate-on-scroll" id="contact">
     <div class="section-header" style="margin-bottom:1.5rem;">
       <div>
         <div class="section-label-text">Get in touch</div>
         <div class="section-title-text">Contact</div>
       </div>
+    </div>
+    <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+      <a href="https://twitter.com/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Twitter / X -></a>
+      <a href="https://t.me/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Telegram -></a>
+      <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener" class="btn-ghost">LinkedIn -></a>
     </div>
     <form class="contact-form" action="https://formspree.io/f/xdaljypn" method="POST">
       <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
