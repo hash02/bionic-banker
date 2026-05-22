@@ -6,6 +6,7 @@ const proofCatalog = await import('../../public/dashboard-data/public-proof-cata
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const heartbeatData = await import('../../public/dashboard-data/heartbeat.json');
 const contextSignals = await import('../../public/dashboard-data/context-signals.json');
+const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
 
 // GET ARTICLE COUNT - computed, never hardcoded again
 const allPosts = await getCollection('blog');
@@ -14,6 +15,8 @@ const proofCount = proofCatalog.default.projects.length;
 const questionCount = gapCatalog.default.modern_questions.length;
 const contextCards = contextSignals.default.cards ?? [];
 const contextSources = contextSignals.default.sources ?? [];
+const reportMetrics = reportCatalog.default.summary_metrics ?? [];
+const benchmarkMetrics = reportCatalog.default.benchmark_metrics ?? [];
 const featuredPosts = allPosts.filter(p => p.data.featured);
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const latestPost = sortedPosts[0];
@@ -64,6 +67,60 @@ const movingRows = [
     href: `/blog/${latestPost.data.slug || latestPost.id}`,
     livePrice: false
   }
+];
+
+const metricByLabel = (label) => reportMetrics.find((metric) => metric.label === label);
+const proofSnapshot = [
+  {
+    label: 'Experiments',
+    value: proofCount,
+    unit: 'lanes',
+    source: 'public catalog',
+  },
+  {
+    label: 'Articles',
+    value: articleCount,
+    unit: 'notes',
+    source: 'content collection',
+  },
+  {
+    label: 'Number notes',
+    value: metricByLabel('Number notes')?.value ?? 0,
+    unit: 'measured rows',
+    source: 'field notes',
+  },
+  {
+    label: 'Limits named',
+    value: metricByLabel('Limits named')?.value ?? 0,
+    unit: 'boundaries',
+    source: 'field notes',
+  },
+];
+const benchmarkSnapshot = benchmarkMetrics.slice(0, 4);
+const visibleLanes = proofCatalog.default.projects.slice(0, 4).map((project) => ({
+  name: project.name,
+  numbers: project.numbers?.slice(0, 2) ?? [],
+  sourceCount: project.sources?.length ?? 0,
+  limitCount: project.limits?.length ?? 0,
+}));
+const heartbeatSnapshot = [
+  {
+    label: 'Heartbeat',
+    value: hb?.status?.mode ?? 'n/a',
+    detail: `${(hb?.status?.predictions_made ?? 0).toLocaleString('en-US')} predictions logged`,
+  },
+  {
+    label: 'Last 100',
+    value: typeof hb?.status?.accuracy_last_100 === 'number'
+      ? `${Math.round(hb.status.accuracy_last_100 * 100)}%`
+      : 'n/a',
+    detail: 'BTC direction accuracy snapshot',
+  },
+  {
+    label: 'Last price',
+    value: snapshotPriceStr ?? 'n/a',
+    detail: snapshotTime ? `snapshot ${snapshotTime}` : 'public heartbeat snapshot',
+  },
 ];
 
 const geoDescription = `Bionic Banker is a finance and AI learning site with ${articleCount} articles, visible experiments, field notes, and reader-facing signal pages from someone building inside finance.`;
@@ -117,6 +174,79 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="content-wrap proof-data-wrap">
+    <section class="proof-data-section section-divide animate-on-scroll">
+      <div class="section-header">
+        <div>
+          <div class="section-label-text">Proof Snapshot</div>
+          <div class="section-title-text">The data on the table</div>
+        </div>
+      </div>
+      <p class="section-orient">A compact read of the public surface: what exists, how many evidence rows sit behind it, and which live signal is moving now.</p>
+
+      <div class="proof-stat-grid">
+        {proofSnapshot.map((item) => (
+          <article class="proof-stat-card">
+            <span>{item.label}</span>
+            <strong>{item.value}</strong>
+            <small>{item.unit}</small>
+            <em>{item.source}</em>
+          </article>
+        ))}
+      </div>
+
+      <div class="proof-data-grid">
+        <section class="proof-panel">
+          <div class="proof-panel-head">
+            <span>Benchmarks</span>
+            <strong>{benchmarkSnapshot.length} measured rows</strong>
+          </div>
+          <div class="proof-metric-list">
+            {benchmarkSnapshot.map((metric) => (
+              <div class="proof-metric-row">
+                <span>{metric.label}</span>
+                <strong>{metric.value} {metric.unit}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="proof-panel">
+          <div class="proof-panel-head">
+            <span>Visible Lanes</span>
+            <strong>{visibleLanes.length} shown here</strong>
+          </div>
+          <div class="proof-lane-list">
+            {visibleLanes.map((lane) => (
+              <article>
+                <h3>{lane.name}</h3>
+                <p>{lane.numbers[0] ?? 'Evidence row available in catalog.'}</p>
+                {lane.numbers[1] && <p>{lane.numbers[1]}</p>}
+                <div>{lane.sourceCount} sources / {lane.limitCount} limits</div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="proof-panel">
+          <div class="proof-panel-head">
+            <span>Live Row</span>
+            <strong>{heartbeatData.default.generated_at}</strong>
+          </div>
+          <div class="proof-heartbeat-list">
+            {heartbeatSnapshot.map((item) => (
+              <div>
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+                <small>{item.detail}</small>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </section>
   </div>
 
   <div class="content-wrap context-wrap">
@@ -399,6 +529,166 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
       padding-top: 0;
       padding-bottom: 0.5rem;
     }
+    .proof-data-wrap {
+      padding-top: 0;
+      padding-bottom: 0.5rem;
+    }
+    .proof-data-section {
+      padding-bottom: 2.25rem;
+    }
+    .proof-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin: 1.25rem 0;
+    }
+    .proof-stat-card,
+    .proof-panel {
+      background: rgba(31,160,104,0.035);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius);
+      min-width: 0;
+    }
+    .proof-stat-card {
+      padding: 1rem;
+      display: grid;
+      gap: 0.3rem;
+    }
+    .proof-stat-card span,
+    .proof-stat-card small,
+    .proof-stat-card em,
+    .proof-panel-head span,
+    .proof-panel-head strong,
+    .proof-metric-row span,
+    .proof-metric-row strong,
+    .proof-heartbeat-list span,
+    .proof-heartbeat-list small,
+    .proof-lane-list div {
+      font-family: var(--mono);
+    }
+    .proof-stat-card span,
+    .proof-panel-head span,
+    .proof-heartbeat-list span {
+      color: var(--text-3);
+      font-size: 0.64rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .proof-stat-card strong {
+      color: var(--accent);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.95;
+    }
+    .proof-stat-card small {
+      color: var(--text);
+      font-size: 0.72rem;
+    }
+    .proof-stat-card em {
+      color: var(--text-4);
+      font-size: 0.62rem;
+      font-style: normal;
+    }
+    .proof-data-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.35fr 0.95fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    .proof-panel {
+      padding: 1rem;
+    }
+    .proof-panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--b1);
+      margin-bottom: 0.9rem;
+    }
+    .proof-panel-head strong {
+      color: var(--accent);
+      font-size: 0.64rem;
+      font-weight: 600;
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .proof-metric-list,
+    .proof-heartbeat-list {
+      display: grid;
+      gap: 0.8rem;
+    }
+    .proof-metric-row {
+      display: grid;
+      gap: 0.2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .proof-metric-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .proof-metric-row span {
+      color: var(--text-2);
+      font-size: 0.72rem;
+      line-height: 1.35;
+    }
+    .proof-metric-row strong {
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    .proof-lane-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .proof-lane-list article {
+      background: rgba(0,0,0,0.14);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 0.8rem;
+      min-width: 0;
+    }
+    .proof-lane-list h3 {
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+    .proof-lane-list p {
+      color: var(--text-2);
+      font-size: 0.74rem;
+      line-height: 1.45;
+      margin-bottom: 0.35rem;
+    }
+    .proof-lane-list div {
+      color: var(--accent);
+      font-size: 0.62rem;
+      margin-top: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .proof-heartbeat-list div {
+      background: rgba(0,0,0,0.14);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 0.8rem;
+      display: grid;
+      gap: 0.25rem;
+    }
+    .proof-heartbeat-list strong {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 1.15rem;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+    .proof-heartbeat-list small {
+      color: var(--text-3);
+      font-size: 0.68rem;
+      line-height: 1.4;
+    }
     .context-signal-section {
       border-top: 2px solid var(--b1);
       border-bottom: 1px solid var(--b1);
@@ -536,9 +826,18 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
     }
     @media (max-width: 900px) {
       .context-signal-grid { grid-template-columns: 1fr; }
+      .proof-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .proof-data-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .context-signal-section { padding: 1.4rem 0 1.8rem; }
+      .proof-stat-grid,
+      .proof-lane-list {
+        grid-template-columns: 1fr;
+      }
+      .proof-stat-card strong {
+        font-size: 2.4rem;
+      }
       .context-signal-card { padding: 1rem; }
       .context-bars { min-height: 74px; gap: 0.22rem; }
       .context-bar i { display: none; }

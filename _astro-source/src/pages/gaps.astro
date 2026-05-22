@@ -4,9 +4,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const questions = gapCatalog.default.modern_questions;
 const sources = gapCatalog.default.market_sources;
-const guide = gapCatalog.default.reader_guide;
 const websiteScan = gapCatalog.default.website_scan;
 const verifiedDate = new Date(gapCatalog.default.generated_at).toISOString().slice(0, 10);
+const prioritySources = sources.slice(0, 4);
+const remainingSources = sources.slice(4);
 
 const categories = [...new Set(questions.map((question) => question.category))];
 const grouped = categories
@@ -22,22 +23,22 @@ const featuredQuestions = [
   questions.find((question) => question.id === 'ai-route-map'),
 ].filter(Boolean);
 ---
-<BaseLayout title="Questions the Market Is Asking" description="A plain question map for modern AI, finance automation, engineering notes, and useful explanations.">
+<BaseLayout title="Market Signals and Questions" description="A public signal board for modern AI, finance automation, engineering notes, and useful explanations.">
   <div class="page-header">
-    <div class="page-label">Questions by topic</div>
-    <h1 class="page-title">Questions the Market Is Asking</h1>
-    <p class="page-sub">A plain map for modern AI, finance automation, and engineering notes. Start with a question, read the simple answer, then open the experiment or learning link when you want more depth.</p>
+    <div class="page-label">Market Gaps</div>
+    <h1 class="page-title">Market Signals and Questions</h1>
+    <p class="page-sub">Public signals, open questions, and plain answers from the AI engineering market. The page starts with the data, then shows the questions it creates.</p>
   </div>
 
   <div class="articles-wrap">
     <p class="verified-note">Last refreshed from the question catalog: {verifiedDate}. Current board: {sources.length} outside signals and {questions.length} public questions.</p>
-    <p class="gap-intro">These are the questions the work keeps returning to. Some have partial answers in the experiments. Most are still open.</p>
+    <p class="gap-intro">{websiteScan.current_strength}</p>
 
     <section class="question-console">
       <div class="question-console-copy">
-        <div class="section-label">Start here</div>
-        <h2>Pick the kind of question you have.</h2>
-        <p>AI gets easier when the first click is a question, not a wall of terms. This rail groups the page by the thing you are trying to understand.</p>
+        <div class="section-label">Question Board</div>
+        <h2>What the signals turn into.</h2>
+        <p>The catalog turns outside job signals, demo patterns, observability pages, and research into public questions a reader can inspect.</p>
       </div>
       <div class="category-rail" aria-label="Question categories">
         {grouped.map((group) => (
@@ -60,62 +61,46 @@ const featuredQuestions = [
       ))}
     </section>
 
-    <section class="website-scan-panel">
-      <div class="section-label">Reader Guide</div>
-      <h2>{guide.headline}</h2>
-      <div class="scan-grid">
-        <article>
-          <span>Plain answer</span>
-          <p>{guide.plain_answer}</p>
+    <section class="market-signal-strip">
+      <div class="market-signal-header">
+        <div>
+          <div class="section-label">Market Signals Now</div>
+          <h2>What the page is reading.</h2>
+        </div>
+        <p>{websiteScan.main_question}</p>
+      </div>
+      <div class="market-signal-counts" aria-label="Market gap counts">
+        <article class="signal-count-card">
+          <span>{sources.length}</span>
+          <strong>outside signals</strong>
         </article>
-        <article>
-          <span>Useful when</span>
-          <p>{guide.useful_for_reader}</p>
+        <article class="signal-count-card">
+          <span>{questions.length}</span>
+          <strong>public questions</strong>
         </article>
-        <article>
-          <span>Center question</span>
-          <p>{websiteScan.main_question}</p>
+        <article class="signal-count-card">
+          <span>{categories.length}</span>
+          <strong>question lanes</strong>
         </article>
       </div>
-      <div class="scan-next">
-        <h3>How to use it</h3>
-        <ul>
-          {guide.how_to_read.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
+      <div class="priority-source-grid">
+        {prioritySources.map((source) => (
+          <article class="source-card">
+            <h3>{source.label}</h3>
+            <p>{source.signal}</p>
+            <a href={source.url} target="_blank" rel="noopener">Source -></a>
+          </article>
+        ))}
       </div>
+      <p class="market-boundary">Boundary: public market links and public website surfaces only. No private systems, keys, client data, or backend paths.</p>
     </section>
 
-    <section class="matrix-intro-grid">
-      <article class="article-card">
-        <div class="article-tags">
-          <span class="tag-pill tag-green">Guidance</span>
-        </div>
-        <h3>How to read this page</h3>
-        <p>Every card starts as a question because that is how real engineering starts. The page stays on concepts, examples, and public routes anyone can open.</p>
-        <p>Each row moves from question to plain answer to example, then gives one next click.</p>
-        <div class="card-footer">
-          <a class="read-more" href="/reports">Open reports -></a>
-          <a class="read-more" href="/projects">Open experiments -></a>
-        </div>
-      </article>
-
-      <article class="article-card">
-        <div class="article-tags">
-          <span class="tag-pill tag-green">Current read</span>
-        </div>
-        <h3>What makes a useful AI page?</h3>
-        <p>{websiteScan.reader_value}</p>
-        <p>Good AI content should help someone ask a sharper question, learn the term, inspect an example, and understand the limit.</p>
-      </article>
-    </section>
-
+    {remainingSources.length > 0 && (
     <section class="source-panel">
-      <div class="section-label">Market Signals</div>
-      <h2>Why these questions matter now</h2>
+      <div class="section-label">More Signals</div>
+      <h2>Additional outside rows</h2>
       <div class="source-grid">
-        {sources.map((source) => (
+        {remainingSources.map((source) => (
           <article class="source-card">
             <h3>{source.label}</h3>
             <p>{source.signal}</p>
@@ -124,6 +109,7 @@ const featuredQuestions = [
         ))}
       </div>
     </section>
+    )}
 
     <section class="source-panel">
       <div class="section-label">Interface Principles</div>
@@ -255,7 +241,7 @@ const featuredQuestions = [
       align-items: center;
     }
 
-    .matrix-intro-grid,
+    .priority-source-grid,
     .source-grid,
     .gap-grid {
       display: grid;
@@ -266,7 +252,7 @@ const featuredQuestions = [
 
     .source-panel,
     .gap-section,
-    .website-scan-panel {
+    .market-signal-strip {
       border: 1px solid rgba(31, 160, 104, 0.22);
       background: rgba(255, 255, 255, 0.035);
       border-radius: 8px;
@@ -275,44 +261,58 @@ const featuredQuestions = [
     }
 
     .source-panel h2,
-    .website-scan-panel h2 {
+    .market-signal-strip h2 {
       margin: 0.25rem 0 1rem;
       font-size: clamp(1.35rem, 2vw, 2rem);
     }
 
-    .scan-grid {
+    .market-signal-header {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1.2fr);
       gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: start;
+    }
+
+    .market-signal-header p,
+    .market-boundary {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .market-signal-counts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
       margin-bottom: 1rem;
     }
 
-    .scan-grid article,
-    .scan-next {
+    .signal-count-card {
       border: 1px solid rgba(228, 228, 236, 0.12);
       border-radius: 8px;
-      padding: 1rem;
+      padding: 0.9rem;
       background: rgba(2, 2, 4, 0.42);
+      min-width: 0;
     }
 
-    .scan-grid span {
+    .signal-count-card span {
       display: block;
       color: #1fa068;
       font-family: var(--mono);
-      font-size: 0.75rem;
-      text-transform: uppercase;
+      font-size: clamp(1.4rem, 3vw, 2.35rem);
+      line-height: 1;
       margin-bottom: 0.4rem;
     }
 
-    .scan-next h3 {
-      margin: 0 0 0.7rem;
+    .signal-count-card strong {
+      display: block;
+      font-size: 0.92rem;
+      letter-spacing: 0;
     }
 
-    .scan-next ul {
-      margin: 0;
-      padding-left: 1.1rem;
-      color: var(--text-2);
-      line-height: 1.7;
+    .priority-source-grid {
+      margin-bottom: 1rem;
     }
 
     .source-card,
@@ -342,7 +342,6 @@ const featuredQuestions = [
       align-items: center;
     }
 
-    .matrix-intro-grid .read-more,
     .gap-card .read-more {
       min-height: 44px;
       align-items: center;
@@ -373,7 +372,8 @@ const featuredQuestions = [
 
     @media (max-width: 900px) {
       .question-console,
-      .featured-question-grid {
+      .featured-question-grid,
+      .market-signal-header {
         grid-template-columns: 1fr;
       }
     }
@@ -385,6 +385,10 @@ const featuredQuestions = [
 
       .category-rail {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .market-signal-counts {
+        grid-template-columns: 1fr;
       }
     }
   </style>
