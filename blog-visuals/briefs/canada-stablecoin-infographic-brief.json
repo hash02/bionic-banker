@@ -1,0 +1,90 @@
+{
+  "brief_version": "1.0",
+  "slug": "canada-stablecoin-settlement",
+  "theme": {
+    "bg": "#020204",
+    "primary": "#1fa068",
+    "text": "#e4e4ec",
+    "muted": "#8a8aa0",
+    "accent_line": "#1fa068"
+  },
+  "infographics": [
+    {
+      "id": "hero-timeline",
+      "type": "timeline",
+      "title": "The 10-Year Gap: When the Tech Existed vs When Canada Used It",
+      "subtitle": "Stablecoin settlement technology was available globally years before Canada adopted it",
+      "dimensions": { "width": 1200, "height": 630 },
+      "items": [
+        { "year": "2015", "label": "Ethereum Launches", "sublabel": "Smart contract settlement infrastructure goes live globally", "lane": "global" },
+        { "year": "2018", "label": "USDC Launches", "sublabel": "First regulated USD-backed stablecoin. Institutional-grade settlement tool exists.", "lane": "global" },
+        { "year": "2019", "label": "Stablecoins Hit $1B Daily Volume", "sublabel": "On-chain settlement running at scale. Tether, USDC operating globally.", "lane": "global" },
+        { "year": "2022", "label": "FINTRAC Crypto Guidance Begins", "sublabel": "Canada starts building regulatory framework. Banks wait.", "lane": "canada" },
+        { "year": "2024", "label": "FINTRAC Guidance Matures", "sublabel": "Clear compliance path for regulated fintechs. Blocker 3 clears.", "lane": "canada" },
+        { "year": "2025", "label": "Tetra Launches", "sublabel": "First regulated CAD-backed stablecoin. Blocker 1 clears.", "lane": "canada" },
+        { "year": "2026", "label": "Wealthsimple + Visa Pilot", "sublabel": "First real-money stablecoin settlement by a regulated Canadian FI. The gap closes.", "lane": "canada" }
+      ],
+      "legend": [
+        { "label": "Technology Available Globally", "color": "#1fa068" },
+        { "label": "Canada Adoption", "color": "#8a8aa0" }
+      ],
+      "caption": "Authorization happens in seconds. Settlement took years — not because of the tech, but because of the infrastructure around it."
+    },
+    {
+      "id": "settlement-path-comparison",
+      "type": "flowchart_comparison",
+      "title": "Two Settlement Paths. Same Compliance. Different Speed.",
+      "subtitle": "What the Wealthsimple pilot actually replaced",
+      "dimensions": { "width": 1200, "height": 700 },
+      "columns": [
+        {
+          "label": "Traditional Card Settlement",
+          "color": "#8a8aa0",
+          "steps": [
+            "Customer swipes card",
+            "Authorization (seconds)",
+            "Scheme Clearing (same day batch)",
+            "Issuer Settlement (T+1)",
+            "Acquirer Settlement (T+2)",
+            "Merchant receives funds (T+2 to T+3)"
+          ],
+          "note": "2-3 business days. Fees at each step. Counterparty risk across the chain."
+        },
+        {
+          "label": "Stablecoin Settlement Layer",
+          "color": "#1fa068",
+          "steps": [
+            "Customer swipes card",
+            "Authorization + On-chain settlement (seconds)",
+            "Cryptographic confirmation = receipt",
+            "Merchant receives funds (minutes)"
+          ],
+          "note": "Same KYC. Same FINTRAC reporting. Same compliance. Shorter path.",
+          "highlight": true
+        }
+      ],
+      "shared_layer": {
+        "label": "Both paths: KYC, AML screening, FINTRAC reporting unchanged",
+        "color": "#1fa068",
+        "opacity": 0.3
+      }
+    },
+    {
+      "id": "big6-radar",
+      "type": "status_grid",
+      "title": "Where the Big 6 Stand on Stablecoin Payments",
+      "subtitle": "Based on public record only",
+      "dimensions": { "width": 1200, "height": 500 },
+      "items": [
+        { "name": "TD", "status": "Active Research", "note": "Blockchain Centre of Excellence. Interac RT rails partnership.", "level": 3 },
+        { "name": "RBC", "status": "Quiet Investment", "note": "Venture investments in blockchain infra. Internal digital asset team.", "level": 2 },
+        { "name": "Scotiabank", "status": "Watching", "note": "Digital Factory team. Conservative public posture.", "level": 2 },
+        { "name": "BMO", "status": "CBDC Focus", "note": "Bank of Canada CBDC working groups. Stablecoin: cautious.", "level": 2 },
+        { "name": "CIBC", "status": "RT Rails First", "note": "Digital payments innovation. Interac RT rails focus.", "level": 2 },
+        { "name": "National Bank", "status": "Quietly Experimental", "note": "Quebec DeFi ecosystem. Smallest Big 6, most agile.", "level": 3 }
+      ],
+      "scale": { "1": "Watching", "2": "Researching", "3": "Piloting", "4": "Shipped" },
+      "note": "None of the Big 6 has shipped externally. All are watching Wealthsimple."
+    }
+  ]
+}

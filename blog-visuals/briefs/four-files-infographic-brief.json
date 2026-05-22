@@ -1,0 +1,115 @@
+{
+  "brief_version": "1.0",
+  "slug": "four-files-system-what-they-left-out",
+  "theme": {
+    "bg": "#020204",
+    "primary": "#1fa068",
+    "text": "#e4e4ec",
+    "muted": "#8a8aa0",
+    "accent_line": "#1fa068"
+  },
+  "infographics": [
+    {
+      "id": "hero-system-map",
+      "type": "system_diagram",
+      "title": "The Real 4-File System (After 6 Months of Iteration)",
+      "subtitle": "What the diagram doesn't show is what makes it actually work",
+      "dimensions": { "width": 1200, "height": 700 },
+      "nodes": [
+        {
+          "id": "claude_md",
+          "label": "CLAUDE.md",
+          "sublabel": "Context + Boot Protocol",
+          "description": "6,000 words. Not a brand sheet. An operating manual with error patterns, boundary rules, and session protocol.",
+          "color": "#1fa068",
+          "tier": 1
+        },
+        {
+          "id": "mistakes_md",
+          "label": "MISTAKES.md",
+          "sublabel": "The Immune System",
+          "description": "47 entries. 6 HIGH flags. Read FIRST every session. Patterns, not incidents. The file the diagram doesn't show.",
+          "color": "#1fa068",
+          "tier": 1,
+          "highlight": true,
+          "badge": "Not on the diagram"
+        },
+        {
+          "id": "agent_map",
+          "label": "AGENT_MAP.md",
+          "sublabel": "Agent Boundaries",
+          "description": "Two agents, one server, one training pipeline. Each has a boundary: what it can touch, what needs approval.",
+          "color": "#8a8aa0",
+          "tier": 2
+        },
+        {
+          "id": "memory",
+          "label": "memory/ (20 files)",
+          "sublabel": "Split, Not Flat",
+          "description": "User preferences, project state, feedback, references. One file per domain. Single files get stale.",
+          "color": "#8a8aa0",
+          "tier": 2
+        },
+        {
+          "id": "oracle",
+          "label": "Oracle Rule",
+          "sublabel": "External Check Required",
+          "description": "Every critical output needs one check the system didn't produce. A test. A second agent. A chain audit.",
+          "color": "#1fa068",
+          "tier": 3,
+          "highlight": true,
+          "badge": "Not on the diagram"
+        },
+        {
+          "id": "kill_protocol",
+          "label": "Kill Protocol",
+          "sublabel": "Break It Before Reality Does",
+          "description": "Every session runs one stress scenario. Every failure logs: what broke, why, fix, new MISTAKES entry.",
+          "color": "#1fa068",
+          "tier": 3,
+          "highlight": true,
+          "badge": "Not on the diagram"
+        }
+      ],
+      "flow": [
+        { "from": "claude_md", "to": "agent_map", "label": "loads" },
+        { "from": "mistakes_md", "to": "claude_md", "label": "read first" },
+        { "from": "agent_map", "to": "memory", "label": "updates" },
+        { "from": "oracle", "to": "memory", "label": "validates" },
+        { "from": "kill_protocol", "to": "mistakes_md", "label": "feeds" }
+      ],
+      "caption": "The diagram shows the happy path. The immune system is what keeps it compounding toward the right answer."
+    },
+    {
+      "id": "compounding-truth",
+      "type": "two_column",
+      "title": "What Actually Compounds",
+      "dimensions": { "width": 1200, "height": 500 },
+      "columns": [
+        {
+          "label": "What the Diagram Promises",
+          "color": "#8a8aa0",
+          "items": [
+            "AI gets smarter each session",
+            "Context accumulates automatically",
+            "One file for all memory",
+            "System improves without intervention",
+            "Four files, clean loop"
+          ]
+        },
+        {
+          "label": "What Actually Happens",
+          "color": "#1fa068",
+          "items": [
+            "Context cost drops to zero — AI operates from files",
+            "Accumulated judgment lives in files, not model weights",
+            "Memory splits by domain so only the right file updates",
+            "Immune system catches patterns before they compound wrong",
+            "Six files minimum — MISTAKES.md is the most important"
+          ]
+        }
+      ],
+      "caption": "The compounding is not intelligence. It is amortized context. By month six, you re-explain nothing."
+    }
+  ]
+}

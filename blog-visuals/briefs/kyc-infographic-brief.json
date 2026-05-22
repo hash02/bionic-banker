@@ -1,0 +1,130 @@
+{
+  "brief_version": "1.0",
+  "slug": "what-claude-cant-do-for-kyc",
+  "theme": {
+    "bg": "#020204",
+    "primary": "#1fa068",
+    "text": "#e4e4ec",
+    "muted": "#8a8aa0",
+    "accent_line": "#1fa068"
+  },
+  "infographics": [
+    {
+      "id": "kyc-production-chain",
+      "type": "vertical_step_chain",
+      "title": "KYC Is a Production Chain, Not a Chat Prompt",
+      "subtitle": "AI can help with extraction. Production KYC still needs screening, auditability, exception routing, and monitoring.",
+      "dimensions": { "width": 1200, "height": 900 },
+      "steps": [
+        {
+          "number": 1,
+          "label": "Collect identity evidence",
+          "zone": "Demo layer",
+          "tone": "muted",
+          "note": "User documents, forms, and declared profile data enter the flow."
+        },
+        {
+          "number": 2,
+          "label": "Extract and normalize fields",
+          "zone": "Demo layer",
+          "tone": "muted",
+          "note": "Names, dates, addresses, IDs, and entity fields become structured data."
+        },
+        {
+          "number": 3,
+          "label": "Screen the profile",
+          "zone": "Production KYC",
+          "tone": "standard",
+          "note": "Sanctions, PEP, adverse media, and internal risk lists."
+        },
+        {
+          "number": 4,
+          "label": "Check authenticity and liveness",
+          "zone": "Production KYC",
+          "tone": "standard",
+          "note": "Document integrity, selfie or liveness signals, and tamper checks."
+        },
+        {
+          "number": 5,
+          "label": "Link behavior and counterparties",
+          "zone": "AML Engine layer",
+          "tone": "accent",
+          "note": "Accounts, external relationships, counterparties, and transaction behavior connect to risk logic."
+        },
+        {
+          "number": 6,
+          "label": "Route exceptions to review",
+          "zone": "Production KYC",
+          "tone": "standard",
+          "note": "Humans handle the cases the system should not auto-clear."
+        },
+        {
+          "number": 7,
+          "label": "Preserve the audit trail",
+          "zone": "Production KYC",
+          "tone": "standard",
+          "note": "Every decision needs regulator-readable evidence and replayable reasoning."
+        },
+        {
+          "number": 8,
+          "label": "Monitor after onboarding",
+          "zone": "AML Engine layer",
+          "tone": "accent",
+          "note": "Risk does not stop when the account opens. Behavior keeps changing."
+        }
+      ],
+      "legend": [
+        { "label": "Demo layer", "color": "#8a8aa0" },
+        { "label": "Production KYC", "color": "#e4e4ec" },
+        { "label": "AML Engine layer", "color": "#1fa068" }
+      ],
+      "caption": "The hard part is not extracting a name from a document. The hard part is making a decision chain that survives audit, exceptions, and time."
+    },
+    {
+      "id": "aml-engine-placement",
+      "type": "segmented_placement_diagram",
+      "title": "Where the AML Engine Actually Fits",
+      "subtitle": "AI demos mostly cover the front door. Production KYC lives in the layers after that.",
+      "dimensions": { "width": 1200, "height": 680 },
+      "segments": [
+        {
+          "label": "What AI demos cover",
+          "color": "#8a8aa0",
+          "steps": [
+            "1. Collect evidence",
+            "2. Extract and normalize fields"
+          ],
+          "note": "Useful, but not enough to make a regulated decision."
+        },
+        {
+          "label": "What production KYC needs",
+          "color": "#e4e4ec",
+          "steps": [
+            "3. Screen profile",
+            "4. Check authenticity and liveness",
+            "5. Link behavior and counterparties",
+            "6. Route exceptions",
+            "7. Preserve audit trail",
+            "8. Monitor after onboarding"
+          ],
+          "note": "This is where compliance, evidence, and operational risk live."
+        }
+      ],
+      "highlights": [
+        {
+          "step": 5,
+          "label": "AML Engine scope",
+          "color": "#1fa068",
+          "description": "Behavior, counterparties, account links, and transaction risk."
+        },
+        {
+          "step": 8,
+          "label": "AML Engine scope",
+          "color": "#1fa068",
+          "description": "Ongoing monitoring after onboarding, where static KYC becomes live risk."
+        }
+      ],
+      "caption": "Claude can help shape the front-end intelligence. The AML Engine belongs where risk becomes behavioral and evidence has to persist."
+    }
+  ]
+}
