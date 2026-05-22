@@ -45,12 +45,12 @@ const routeLabels: Record<string, string> = {
   'aml-roaster': 'Finance humor',
 };
 ---
-<BaseLayout title="Writing" description={`${articleCount} field notes on finance, AI, agents, blockchain, and the strange edges where they meet.`}>
+<BaseLayout title="Articles" description={`${articleCount} articles on finance, AI, agents, blockchain, and learning by building.`}>
 
   <div class="page-header">
-    <div class="page-label">Writing</div>
+    <div class="page-label">Articles</div>
     <h1 class="page-title">Pick a thread.</h1>
-    <p class="page-sub">{articleCount} notes on finance, AI, agents, blockchain, and the strange edges where they meet. Start anywhere that pulls on your sleeve.</p>
+    <p class="page-sub">{articleCount} notes on finance, AI, agents, blockchain, and learning by building. Start with the piece that matches the question in front of you.</p>
 
     <div class="filter-bar" id="filter-bar">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -64,9 +64,9 @@ const routeLabels: Record<string, string> = {
     <div class="featured-head">
       <div>
         <p class="section-kicker">Start here</p>
-        <h2>Four good doors in.</h2>
+        <h2>Four good starting points.</h2>
       </div>
-      <p>Systems, live notes, broken experiments, and the lighter side of suspicious transaction patterns.</p>
+      <p>Systems, live notes, broken experiments, and lighter notes from the finance and AI workbench.</p>
     </div>
     <div class="featured-grid">
       {featuredPosts.map((post) => (
@@ -83,15 +83,15 @@ const routeLabels: Record<string, string> = {
   <section class="learn-bridge" aria-label="Learning route">
     <div>
       <p class="section-kicker">New to the terms?</p>
-      <h2>Open the plain notes first, then come back to the writing.</h2>
+      <h2>Open AI Learning first, then come back to the articles.</h2>
     </div>
-    <a href="/learn/">Open Learn</a>
+    <a href="/learn/">Open AI Learning</a>
   </section>
 
   <div class="articles-wrap">
     <div class="archive-note">
       <p class="section-kicker">Full archive</p>
-      <p>Filter by theme, or just scroll until something catches.</p>
+      <p>Filter by theme, or scan the full list.</p>
     </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (

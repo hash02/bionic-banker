@@ -19,19 +19,19 @@ const grouped = categories
 const featuredQuestions = [
   questions.find((question) => question.id === 'ai-components'),
   questions.find((question) => question.id === 'production-rag'),
-  questions.find((question) => question.id === 'ai-website-agent'),
+  questions.find((question) => question.id === 'ai-route-map'),
 ].filter(Boolean);
 ---
 <BaseLayout title="Questions the Market Is Asking" description="A plain question map for modern AI, finance automation, engineering notes, and useful explanations.">
   <div class="page-header">
     <div class="page-label">Questions by topic</div>
     <h1 class="page-title">Questions the Market Is Asking</h1>
-    <p class="page-sub">A plain map for modern AI, finance automation, and engineering notes. Start with a question, read the simple answer, then open the lab or learning link when you want more depth.</p>
+    <p class="page-sub">A plain map for modern AI, finance automation, and engineering notes. Start with a question, read the simple answer, then open the experiment or learning link when you want more depth.</p>
   </div>
 
   <div class="articles-wrap">
     <p class="verified-note">Last refreshed from the question catalog: {verifiedDate}. Current board: {sources.length} outside signals and {questions.length} public questions.</p>
-    <p class="gap-intro">These are the questions the lab keeps returning to. Some have partial answers in the experiments. Most are still open.</p>
+    <p class="gap-intro">These are the questions the work keeps returning to. Some have partial answers in the experiments. Most are still open.</p>
 
     <section class="question-console">
       <div class="question-console-copy">

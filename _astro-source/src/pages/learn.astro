@@ -51,11 +51,11 @@ const basicsRoute = [
   },
 ];
 ---
-<BaseLayout title="Learn AI Systems" description="Plain-English concepts behind the Bionic Banker lab stack: AI agents, LLMs, VLMs, RAG, LangChain, RBAC, AML, observability, and deployment basics.">
+<BaseLayout title="AI Learning" description="Plain-English concepts behind the Bionic Banker public work: AI agents, LLMs, VLMs, RAG, LangChain, RBAC, AML, observability, and deployment basics.">
   <div class="page-header">
-    <div class="page-label">Learn</div>
-    <h1 class="page-title">Learn the System</h1>
-    <p class="page-sub">Plain-English notes behind the lab cards. No hype. Just what the concept means, why it matters, and where it shows up in the work.</p>
+    <div class="page-label">AI Learning</div>
+    <h1 class="page-title">Learn the terms behind the work.</h1>
+    <p class="page-sub">Plain-English notes for the public pages. No hype. Just what each concept means, why it matters, and where it shows up.</p>
   </div>
 
   <div class="articles-wrap">
@@ -65,12 +65,12 @@ const basicsRoute = [
       </div>
       <h3>The rule</h3>
       <p>The best way to learn AI is to build one small loop, make the output visible, and add a check so the system cannot only clap for itself.</p>
-      <p>This page is the map behind the lab pages. If a card says tool calling, RAG, RBAC, AML, false positive, or observability, this page explains the idea without making you read the whole archive.</p>
+      <p>This page is the map behind the public pages. If a card says tool calling, RAG, RBAC, AML, false positive, or observability, this page explains the idea without making you read the whole archive.</p>
       <div class="concept-jump-list">
         {conceptLinks.map((item) => (
           <a href={`#${item.id}`}>{item.label}</a>
         ))}
-        <a href="/wallet-risk">Open Wallet Risk Lab</a>
+        <a href="/wallet-risk">Open Wallet Risk</a>
         <a href="/projects">Open experiments</a>
         <a href="/reports">Field notes</a>
         <a href="/gaps">Questions</a>
@@ -80,13 +80,13 @@ const basicsRoute = [
     <section class="route-rail" aria-label="Bionic Banker learning route">
       <div>
         <span class="section-label">Route</span>
-        <h2>Follow the lab path</h2>
-        <p>Start with a question, learn the term, walk the lab, then check the numbers. Each page is a different doorway into the same work.</p>
+        <h2>Follow the proof path</h2>
+        <p>Start with a question, learn the term, open the proof tour, then check the numbers. Each page is a different doorway into the same work.</p>
       </div>
       <div class="route-links">
         <a href="/gaps">Questions</a>
-        <a href="/learn">Learn terms</a>
-        <a href="/proof-tour">Walk the lab</a>
+        <a href="/learn">AI Learning</a>
+        <a href="/proof-tour">Proof Tour</a>
         <a href="/reports">Field notes</a>
         <a href="/intelligence">Live signals</a>
       </div>
@@ -96,7 +96,7 @@ const basicsRoute = [
       <div class="basics-head">
         <span class="section-label">Basics</span>
         <h2>Start with the rails.</h2>
-        <p>These are the plain notes I would hand someone before the lab gets technical: money movement, pools, lending, privacy, and the risk that follows each layer.</p>
+        <p>These are the plain notes I would hand someone before the work gets technical: money movement, pools, lending, privacy, and the risk that follows each layer.</p>
       </div>
       <div class="basics-grid">
         {basicsRoute.map((item) => (
@@ -109,13 +109,13 @@ const basicsRoute = [
     </section>
 
     <section class="stack-radar-panel">
-      <div class="section-label">AI Stack Map</div>
+      <div class="section-label">AI Learning Map</div>
       <div class="radar-head">
         <div>
-          <h2>What the lab keeps returning to</h2>
-          <p>AI work is not only prompting. It is retrieval, evals, traces, permission checks, deployment, and enough context that another person can inspect the path.</p>
+          <h2>What the work keeps returning to</h2>
+          <p>AI work is not only prompting. It is retrieval, evals, traces, permission checks, deployment, and enough context that another person can follow the path.</p>
         </div>
-        <a href="/proof-tour">Walk the lab -></a>
+        <a href="/proof-tour">Open the proof tour -></a>
       </div>
       <div class="radar-grid">
         {stackRadar.map((item, index) => (

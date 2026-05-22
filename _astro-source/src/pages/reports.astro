@@ -42,7 +42,7 @@ const sourceRows = labProjects.map((project) => ({
 
 const maxSources = Math.max(...sourceRows.map((row) => row.sources));
 ---
-<BaseLayout title="Field Notes" description="Numbers, charts, and notes from the Bionic Banker lab: wallet-risk measured values, agent observability, learning concepts, and visible limits.">
+<BaseLayout title="Field Notes" description="Numbers, charts, and notes from Bionic Banker: wallet-risk measured values, agent observability, learning concepts, and visible limits.">
   <div class="page-header">
     <div class="page-label">Field Notes</div>
     <h1 class="page-title">Numbers with context</h1>
@@ -52,7 +52,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
   <div class="articles-wrap">
     <div class="lab-strip">
       <div>
-        <h2>A lab notebook with charts</h2>
+        <h2>A field notebook with charts</h2>
         <p>Numbers are useful when they explain what is happening. These charts keep the work readable without turning it into a pitch deck.</p>
       </div>
       <div class="lab-strip-links">
@@ -68,13 +68,13 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
     <section class="route-rail" aria-label="Bionic Banker learning route">
       <div>
         <span class="section-label">Route</span>
-        <h2>Follow the lab path</h2>
-        <p>Start with a question, learn the term, walk the lab, then come here for the numbers. The notes make more sense in motion.</p>
+        <h2>Follow the proof path</h2>
+        <p>Start with a question, learn the term, open the proof tour, then come here for the numbers. The notes make more sense in motion.</p>
       </div>
       <div class="route-links">
         <a href="/gaps">Questions</a>
-        <a href="/learn">Learn terms</a>
-        <a href="/proof-tour">Walk the lab</a>
+        <a href="/learn">AI Learning</a>
+        <a href="/proof-tour">Proof Tour</a>
         <a href="/reports">Field notes</a>
         <a href="/intelligence">Live signals</a>
       </div>
@@ -158,7 +158,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
 
     <section class="report-panel">
       <div class="section-label">Shape</div>
-      <h2>Where the lab feels strong or thin</h2>
+      <h2>Where the evidence feels strong or thin</h2>
       <p>This is a practical map. Wallet-risk notes, agent coordination, and observability are already readable. Deployment is the next visible question.</p>
       <div class="coverage-grid">
         {coverageBars.map((item) => (

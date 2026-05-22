@@ -41,7 +41,7 @@ const movingRows = [
     id: 'market',
     label: 'Market',
     title: snapshotPriceStr ? `BTC · ${snapshotPriceStr}` : 'BTC on watch',
-    detail: 'Price updates from a public API when available. Snapshot from the lab heartbeat as fallback.',
+    detail: 'Price updates from a public API when available. Snapshot from the public heartbeat as fallback.',
     source: 'Live · CoinGecko',
     href: '/intelligence',
     livePrice: true
@@ -49,7 +49,7 @@ const movingRows = [
   {
     id: 'wallets',
     label: 'Wallets',
-    title: 'Wallet Risk Lab is open',
+    title: 'Wallet Risk is open',
     detail: 'Score, rule, plain note, and the limit of what the row is claiming.',
     source: 'Risk notes',
     href: '/wallet-risk',
@@ -57,7 +57,7 @@ const movingRows = [
   },
   {
     id: 'writing',
-    label: 'Writing',
+    label: 'Articles',
     title: latestPost.data.title,
     detail: latestPost.data.description,
     source: latestPost.data.readTime,
@@ -66,7 +66,7 @@ const movingRows = [
   }
 ];
 
-const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleCount} articles on AML detection, blockchain agents, wallet risk, and financial systems - with live signals, field-tested experiments, and notes from someone building inside finance.`;
+const geoDescription = `Bionic Banker is a finance and AI learning site with ${articleCount} articles, visible experiments, field notes, and reader-facing signal pages from someone building inside finance.`;
 ---
 <BaseLayout title="Home" description={geoDescription}>
 
@@ -79,7 +79,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       <div class="hero-left">
         <div class="hero-eyebrow">Finance / AI / Systems</div>
         <h1>Most risk tools give you a number. No reason. No limit. I built the alternative.</h1>
-        <p class="hero-sub">I work inside finance and build the things it cannot easily explain. An AML detection engine. A wallet risk scorer that shows its reasoning. Agent systems that coordinate in real time. All running in public, all open to inspect.</p>
+        <p class="hero-sub">I work inside finance and build around the things it cannot easily explain: AML patterns, wallet-risk signals, AI agents, and the gap between a clean number and the reasoning behind it. The public site shows the pieces that are safe to inspect.</p>
         <div class="hero-actions">
           <a href="/gaps" class="btn-primary">Start with Questions -></a>
           <a href="/projects" class="btn-ghost">Open Experiments</a>
@@ -124,7 +124,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       <div class="section-header">
         <div>
           <div class="section-label-text">Context Signals</div>
-          <div class="section-title-text">Numbers that explain why this lab matters</div>
+          <div class="section-title-text">Numbers that explain why this work matters</div>
         </div>
         <a href="/reports" class="view-all">Open field notes -></a>
       </div>
@@ -204,7 +204,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       <div class="proof-route-grid">
         <a href="/proof-tour" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
-          <h3>Walk the lab</h3>
+          <h3>Open the proof tour</h3>
           <p>AML stories, agent loops, signals, and what is moving.</p>
           <div class="card-footer"><span class="read-more">Start walking -></span></div>
         </a>
@@ -227,32 +227,26 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
           <div class="card-footer"><span class="read-more">Open questions -></span></div>
         </a>
         <a href="/learn" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Learn AI</span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">AI Learning</span></div>
           <h3>Concepts without fog</h3>
           <p>RAG, agents, AML, embeddings. Less fog, more signal.</p>
           <div class="card-footer"><span class="read-more">Learn the terms -></span></div>
         </a>
-        <a href="/site-agent" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Ask</span></div>
-          <h3>Ask the lab</h3>
-          <p>Type a question. Get pointed to the right corner.</p>
-          <div class="card-footer"><span class="read-more">Ask a question -></span></div>
-        </a>
       </div>
       <div style="text-align:center;margin:2rem 0 0.5rem;">
-        <a href="/proof-tour" class="btn-primary">Walk the full lab -></a>
+        <a href="/proof-tour" class="btn-primary">Open the proof tour -></a>
       </div>
     </section>
 
     <div class="section-header section-divide">
       <div>
-        <div class="section-label-text">Writings</div>
+        <div class="section-label-text">Articles</div>
         <div class="section-title-text">Articles</div>
       </div>
       <a href="/articles" class="view-all">View all {articleCount} →</a>
     </div>
 
-    <p class="section-orient">A living notebook on AML detection, blockchain infrastructure, AI agents, Canadian finance, and what the inside of a bank looks like when you are also building outside it.</p>
+    <p class="section-orient">A living notebook on AML detection, blockchain infrastructure, AI agents, Canadian finance, and the practical work of learning by building.</p>
     <div class="mag-grid animate-on-scroll">
       <div class="mag-featured">
         <a href={`/blog/${featuredArticle.data.slug || featuredArticle.id}`} class="article-card-featured">
@@ -308,7 +302,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       <div>
         <div class="section-header" style="margin-bottom:0.75rem;">
           <div>
-            <div class="section-label-text">Personal Writing</div>
+            <div class="section-label-text">Personal Notes</div>
             <div class="section-title-text">Thoughts</div>
           </div>
         </div>
@@ -338,7 +332,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
             <div class="about-name">Himanshu</div>
             <div class="about-role">Finance / Blockchain / Builder</div>
             <p class="about-bio">Computer engineer. Financial advisor. Builder. I work inside banking and build systems around the things it cannot easily explain: fraud patterns, risk signals, agent coordination, and the gap between what financial tools report and what they actually see.</p>
-            <p class="about-bio">This lab is the result. An AML engine with 28 detection rules. A wallet risk scorer that explains its own output in plain language. Agent systems that coordinate in real time. All running in public, all open to inspect.</p>
+            <p class="about-bio">This site is the reader-facing layer: articles, field notes, wallet-risk explanations, AI learning pages, and selected experiments that can be shown without exposing workbench details.</p>
           </div>
           <div class="about-stat-row">
             <div class="astat"><div class="astat-n">{articleCount}</div><div class="astat-l">Articles</div></div>
