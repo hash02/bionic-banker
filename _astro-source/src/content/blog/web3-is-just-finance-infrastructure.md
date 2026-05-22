@@ -5,6 +5,7 @@ date: "2026-05-22T12:00:00-07:00"
 tags: ["Web3", "Finance", "DeFi", "Infrastructure", "Banking", "Blockchain"]
 readTime: "7 min"
 category: "Finance"
+image: "/blog-visuals/web3-is-just-finance-infrastructure/hero.svg"
 ---
 
 # Web3 Companies Are Just Rebuilding Finance Infrastructure. With Different Names.
@@ -27,7 +28,9 @@ It is not "crypto versus finance."
 
 It is custody, settlement, credit, risk, markets, messaging, and data access. The same old functions. Just with wallets, smart contracts, tokens, and blockchains underneath.
 
-<!-- INFOGRAPHIC: web3-tradfi-table - pending render -->
+<div class="embed-visual">
+  <iframe src="/blog-visuals/web3-is-just-finance-infrastructure/translation-table.html" title="Different names. Familiar functions." style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 ## The Translation Table
 
@@ -133,7 +136,9 @@ Event markets are becoming real enough that regulators, exchanges, traders, and 
 
 Every company on that Web3 infrastructure list is doing one of five things.
 
-<!-- INFOGRAPHIC: five-functions-radial - pending render -->
+<div class="embed-visual">
+  <iframe src="/blog-visuals/web3-is-just-finance-infrastructure/five-functions.html" title="Finance keeps doing five things" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 - Moving money faster.
 - Holding assets more safely.

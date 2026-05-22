@@ -5,6 +5,7 @@ date: "2026-05-20"
 tags: ["Finance", "Builder", "AI"]
 readTime: "7 min"
 category: "Finance"
+image: "/blog-visuals/finance-github-repos/hero.svg"
 featured: false
 slug: "finance-github-repos"
 ---
@@ -16,6 +17,10 @@ And then they put some of it on GitHub.
 Not marketing demos. Not hello-world tutorials. Real internal tools. The stuff their engineers and traders actually use.
 
 I went through seven of them, one from each firm. Here's what caught my attention and why.
+
+<div class="embed-visual">
+  <iframe src="/blog-visuals/finance-github-repos/repo-map.html" title="What elite finance open-sources" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 ---
 

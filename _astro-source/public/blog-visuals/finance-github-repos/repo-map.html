@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; background:#020204; color:#e4e4ec; font-family: Arial, sans-serif; }
+  .wrap { min-height:100vh; box-sizing:border-box; padding:34px; background: radial-gradient(circle at 80% 10%, rgba(31,160,104,.16), transparent 28%), #020204; }
+  .shell { border:1px solid rgba(31,160,104,.35); border-radius:18px; padding:28px; background:rgba(8,8,14,.92); box-shadow:0 22px 80px rgba(0,0,0,.38); }
+  .kicker { color:#1fa068; font-size:12px; letter-spacing:.16em; text-transform:uppercase; margin:0 0 10px; }
+  h1 { font-size:clamp(30px, 5vw, 56px); line-height:1.02; margin:0; max-width:980px; letter-spacing:0; }
+  .sub { color:#b8bbc9; max-width:880px; font-size:18px; line-height:1.55; margin:14px 0 24px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:14px; }
+  .card { border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:18px; background:rgba(255,255,255,.035); min-height:150px; }
+  .card span { display:block; color:#1fa068; font-size:12px; text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px; }
+  .card strong { display:block; font-size:22px; line-height:1.15; margin-bottom:12px; }
+  .card p { color:#b8bbc9; font-size:15px; line-height:1.45; margin:0; }
+  .footer { margin-top:20px; color:#8a8aa0; font-size:14px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="shell">
+    <p class="kicker">Bionic Banker visual note</p>
+    <h1>What elite finance open-sources</h1>
+    <p class="sub">The public repos are not flashy demos. They are infrastructure problems that show what expensive engineering teams care about.</p>
+    <div class="grid"><article class="card">
+    <span>Latency</span>
+    <strong>Jane Street</strong>
+    <p>Instruction-level tracing when estimation is not good enough.</p>
+  </article><article class="card">
+    <span>Pricing</span>
+    <strong>Goldman Sachs</strong>
+    <p>Derivative pricing code from a desk-level quant environment.</p>
+  </article><article class="card">
+    <span>Streaming</span>
+    <strong>JPMorgan</strong>
+    <p>Real-time data visualization built for market speed.</p>
+  </article><article class="card">
+    <span>Optimization</span>
+    <strong>BlackRock</strong>
+    <p>Portfolio solvers where scale and constraints are the real problem.</p>
+  </article></div>
+    <p class="footer">The moat is not only the strategy. It is the infrastructure that lets the strategy run.</p>
+  </section>
+</main>
+</body>
+</html>

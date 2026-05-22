@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; background:#020204; color:#e4e4ec; font-family: Arial, sans-serif; }
+  .wrap { min-height:100vh; box-sizing:border-box; padding:34px; background: radial-gradient(circle at 80% 10%, rgba(31,160,104,.16), transparent 28%), #020204; }
+  .shell { border:1px solid rgba(31,160,104,.35); border-radius:18px; padding:28px; background:rgba(8,8,14,.92); box-shadow:0 22px 80px rgba(0,0,0,.38); }
+  .kicker { color:#1fa068; font-size:12px; letter-spacing:.16em; text-transform:uppercase; margin:0 0 10px; }
+  h1 { font-size:clamp(30px, 5vw, 56px); line-height:1.02; margin:0; max-width:980px; letter-spacing:0; }
+  .sub { color:#b8bbc9; max-width:880px; font-size:18px; line-height:1.55; margin:14px 0 24px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:14px; }
+  .card { border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:18px; background:rgba(255,255,255,.035); min-height:150px; }
+  .card span { display:block; color:#1fa068; font-size:12px; text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px; }
+  .card strong { display:block; font-size:22px; line-height:1.15; margin-bottom:12px; }
+  .card p { color:#b8bbc9; font-size:15px; line-height:1.45; margin:0; }
+  .footer { margin-top:20px; color:#8a8aa0; font-size:14px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="shell">
+    <p class="kicker">Bionic Banker visual note</p>
+    <h1>Where the AML Engine fits</h1>
+    <p class="sub">It does not verify identity documents. It belongs near transaction behavior and ongoing monitoring.</p>
+    <div class="grid"><article class="card">
+    <span>Not this</span>
+    <strong>Passport reader</strong>
+    <p>Identity extraction and document checks are a different layer.</p>
+  </article><article class="card">
+    <span>This</span>
+    <strong>Behavior risk</strong>
+    <p>Counterparties, movement patterns, exposure, and changing behavior.</p>
+  </article><article class="card">
+    <span>Why it matters</span>
+    <strong>Proof survives later</strong>
+    <p>Risk decisions need evidence that a reviewer or auditor can inspect.</p>
+  </article></div>
+    <p class="footer">Put each system where it belongs.</p>
+  </section>
+</main>
+</body>
+</html>

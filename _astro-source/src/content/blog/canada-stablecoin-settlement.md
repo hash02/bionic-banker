@@ -5,6 +5,7 @@ date: "2026-05-22T12:00:00-07:00"
 tags: ["Finance", "Blockchain", "Canada", "Stablecoin", "Banking", "Open Banking"]
 readTime: "8 min"
 category: "Finance"
+image: "/blog-visuals/canada-stablecoin-settlement/hero.svg"
 ---
 
 # Canada Just Settled Dollars on a Blockchain. Nobody Noticed.
@@ -23,7 +24,9 @@ That tells us something.
 
 It tells us the question has changed from "is this real?" to "where does this fit?"
 
-<!-- INFOGRAPHIC: stablecoin-settlement-map - pending render -->
+<div class="embed-visual">
+  <iframe src="/blog-visuals/canada-stablecoin-settlement/settlement-map.html" title="Same compliance. Shorter settlement path." style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 ## What Actually Happened
 
@@ -63,7 +66,9 @@ None of this means banks are asleep.
 
 It means they are waiting for the proof stack to be strong enough.
 
-<!-- INFOGRAPHIC: canada-stablecoin-timeline - pending render -->
+<div class="embed-visual">
+  <iframe src="/blog-visuals/canada-stablecoin-settlement/canada-timeline.html" title="Why Canada took years to get here" style="width:100%;min-height:520px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 ## What the Big Banks Are Actually Doing
 
@@ -125,7 +130,9 @@ The slow settlement layer. The float. The reconciliation work. The fees around m
 
 That is the part that starts getting compressed.
 
-<!-- INFOGRAPHIC: open-banking-stablecoin-stack - pending render -->
+<div class="embed-visual">
+  <iframe src="/blog-visuals/canada-stablecoin-settlement/open-banking-stack.html" title="The possible Canadian stack" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 ## The Honest Prediction
 

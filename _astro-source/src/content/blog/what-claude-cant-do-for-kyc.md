@@ -5,6 +5,7 @@ date: "2026-05-22T12:00:00-07:00"
 tags: ["AI", "Banking", "Compliance", "KYC", "AML", "Canada"]
 readTime: "7 min"
 category: "AI"
+image: "/blog-visuals/what-claude-cant-do-for-kyc/hero.svg"
 ---
 
 # What Claude Can't Do for KYC Yet (And Why That Matters for Canadian Banks)
@@ -63,7 +64,9 @@ That is where the demo stops and production starts.
 
 The clean way to think about KYC is as an eight-step chain.
 
-<!-- INFOGRAPHIC: kyc-production-chain - pending render -->
+<div class="embed-visual">
+  <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/production-chain.html" title="KYC is an eight-step production chain" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 1. Collect identity evidence.
 2. Extract and normalize fields.
@@ -100,7 +103,9 @@ That is valuable. But it is not the whole KYC stack.
 
 And that distinction matters.
 
-<!-- INFOGRAPHIC: aml-engine-placement - pending render -->
+<div class="embed-visual">
+  <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/aml-placement.html" title="Where the AML Engine fits" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
 
 ## The Missing Middle
 
