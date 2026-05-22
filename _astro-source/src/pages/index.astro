@@ -79,7 +79,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       <div class="hero-left">
         <div class="hero-eyebrow">Finance / AI / Systems</div>
         <h1>Most risk tools give you a number. No reason. No limit. I built the alternative.</h1>
-        <p class="hero-sub">An AML engine with 28 detection rules. A wallet risk scorer that explains itself in plain language. Agent systems that coordinate in real time. Built by someone working inside finance, all running in public.</p>
+        <p class="hero-sub">I work inside finance and build the things it cannot easily explain. An AML detection engine. A wallet risk scorer that shows its reasoning. Agent systems that coordinate in real time. All running in public, all open to inspect.</p>
         <div class="hero-actions">
           <a href="/gaps" class="btn-primary">Start with Questions -></a>
           <a href="/proof-tour" class="btn-ghost">Enter the Lab</a>
@@ -151,6 +151,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
         </div>
         <a href="/reports" class="view-all">Open field notes -></a>
       </div>
+      <p class="section-orient">Three numbers that show why building in this space right now is not a hobby. It is a bet on timing.</p>
       <div class="context-signal-grid">
         {contextCards.map(card => (
           <article class="context-signal-card">
@@ -192,6 +193,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
         </div>
         <a href="/intelligence" class="view-all">Open live signals -></a>
       </div>
+      <p class="section-orient">A live market price, a wallet risk snapshot, and the latest piece of writing, refreshed automatically.</p>
       <div class="moving-now-grid">
         {movingRows.map(row => (
           <a href={row.href} class="moving-now-card" data-moving-id={row.id}>
@@ -221,6 +223,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
         </div>
         <a href="/proof-tour" class="view-all">Walk the lab -></a>
       </div>
+      <p class="section-orient">Five entry points into the work. Pick whichever fits where you are right now.</p>
       <div class="proof-route-grid">
         <a href="/proof-tour" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
@@ -259,6 +262,9 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
           <div class="card-footer"><span class="read-more">Ask a question -></span></div>
         </a>
       </div>
+      <div style="text-align:center;margin:2rem 0 0.5rem;">
+        <a href="/proof-tour" class="btn-primary">Walk the full lab -></a>
+      </div>
     </section>
 
     <div class="section-header">
@@ -269,6 +275,7 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       <a href="/articles" class="view-all">View all {articleCount} →</a>
     </div>
 
+    <p class="section-orient">A living notebook on AML detection, blockchain infrastructure, AI agents, Canadian finance, and what the inside of a bank looks like when you are also building outside it.</p>
     <div class="mag-grid animate-on-scroll">
       <div class="mag-featured">
         <a href={`/blog/${featuredArticle.data.slug || featuredArticle.id}`} class="article-card-featured">
@@ -314,6 +321,9 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
           </div>
         </a>
       ))}
+    </div>
+    <div style="text-align:center;margin:2rem 0 1rem;">
+      <a href="/articles" class="btn-primary">Read all {articleCount} articles -></a>
     </div>
 
     <!-- BOTTOM SPLIT -->
@@ -419,9 +429,29 @@ const geoDescription = `Bionic Banker is a public finance and AI lab. ${articleC
       padding-bottom: 0.5rem;
     }
     .context-signal-section {
-      border-top: 1px solid var(--b1);
+      border-top: 2px solid var(--b1);
       border-bottom: 1px solid var(--b1);
-      padding: 2rem 0 2.2rem;
+      padding: 3rem 0 2.2rem;
+      background: rgba(31,160,104,0.03);
+    }
+    .moving-now-section,
+    .proof-route-section {
+      border-top: 2px solid var(--b1);
+      padding-top: 3rem;
+    }
+    .moving-now-section {
+      background: rgba(31,160,104,0.03);
+    }
+    .content-wrap > .section-header {
+      border-top: 2px solid var(--b1);
+      padding-top: 3rem;
+    }
+    .section-orient {
+      color: var(--text-2);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin: -0.25rem 0 1.25rem;
+      max-width: 640px;
     }
     .context-signal-grid {
       display: grid;
