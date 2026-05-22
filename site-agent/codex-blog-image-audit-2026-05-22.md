@@ -10,19 +10,19 @@ Scope: Astro source posts that are currently publishable. Status means:
 
 ## Summary Before Upgrade
 
-- good: 2
-- missing hero: 21
+- good: 7
+- missing hero: 16
 - missing infographic: 21
 
 ## Priority Upgrades Completed
 
 | Post | Before | After |
 |---|---|---|
-| canada-stablecoin-settlement | missing hero | good |
-| web3-is-just-finance-infrastructure | missing hero | good |
-| what-claude-cant-do-for-kyc | missing hero | good |
-| ai-model-benchmark-cost | missing hero | good |
-| finance-github-repos | missing hero | good |
+| canada-stablecoin-settlement | good | good |
+| web3-is-just-finance-infrastructure | good | good |
+| what-claude-cant-do-for-kyc | good | good |
+| ai-model-benchmark-cost | good | good |
+| finance-github-repos | good | good |
 
 ## Full Audit After Upgrade
 

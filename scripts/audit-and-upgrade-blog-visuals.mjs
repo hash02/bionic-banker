@@ -280,8 +280,11 @@ function addImageFrontmatter(post, image) {
 }
 
 function iframeFor(slug, file, height, title) {
+  const src = file.endsWith(".html")
+    ? `/blog-visuals/${slug}/${file.replace(/\.html$/, "")}/`
+    : `/blog-visuals/${slug}/${file}`;
   return `<div class="embed-visual">
-  <iframe src="/blog-visuals/${slug}/${file}" title="${escapeHtml(title)}" style="width:100%;min-height:${height}px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="${src}" title="${escapeHtml(title)}" style="width:100%;min-height:${height}px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>`;
 }
 
@@ -289,7 +292,15 @@ function writeVisualPair(slug, file, content) {
   const dirs = [path.join(publicVisuals, slug), path.join(rootVisuals, slug)];
   for (const dir of dirs) {
     ensureDir(dir);
-    fs.writeFileSync(path.join(dir, file), content, "utf8");
+    if (file.endsWith(".html")) {
+      const oldFile = path.join(dir, file);
+      if (fs.existsSync(oldFile)) fs.unlinkSync(oldFile);
+      const routeDir = path.join(dir, file.replace(/\.html$/, ""));
+      ensureDir(routeDir);
+      fs.writeFileSync(path.join(routeDir, "index.html"), content, "utf8");
+    } else {
+      fs.writeFileSync(path.join(dir, file), content, "utf8");
+    }
   }
 }
 
