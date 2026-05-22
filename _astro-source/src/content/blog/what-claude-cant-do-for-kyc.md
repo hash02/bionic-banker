@@ -65,7 +65,7 @@ That is where the demo stops and production starts.
 The clean way to think about KYC is as an eight-step chain.
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/production-chain.html" title="KYC is an eight-step production chain" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/production-chain/" title="KYC is an eight-step production chain" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 1. Collect identity evidence.
@@ -104,7 +104,7 @@ That is valuable. But it is not the whole KYC stack.
 And that distinction matters.
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/aml-placement.html" title="Where the AML Engine fits" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/aml-placement/" title="Where the AML Engine fits" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 ## The Missing Middle

@@ -19,7 +19,11 @@ Not marketing demos. Not hello-world tutorials. Real internal tools. The stuff t
 I went through seven of them, one from each firm. Here's what caught my attention and why.
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/finance-github-repos/repo-map.html" title="What elite finance open-sources" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/finance-github-repos/repo-map/" title="What elite finance open-sources" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
+
+<div class="embed-visual">
+  <iframe src="/blog-visuals/finance-github-repos/repo-map/" title="What elite finance open-sources" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 ---

@@ -304,10 +304,31 @@ function writeVisualPair(slug, file, content) {
   }
 }
 
+function routeFor(slug, file) {
+  return file.endsWith(".html")
+    ? `/blog-visuals/${slug}/${file.replace(/\.html$/, "")}/`
+    : `/blog-visuals/${slug}/${file}`;
+}
+
+function normalizeVisualRoutes(slug, content, cfg) {
+  const files = [
+    ...Object.values(cfg.replacements || {}).map((visual) => visual.file),
+    cfg.insert?.file,
+  ].filter(Boolean);
+
+  let next = content;
+  for (const file of files) {
+    if (!file.endsWith(".html")) continue;
+    const oldPath = `/blog-visuals/${slug}/${file}`;
+    next = next.replaceAll(oldPath, routeFor(slug, file));
+  }
+  return next;
+}
+
 function upgradePost(post) {
   const cfg = upgrades[post.slug];
   if (!cfg) return false;
-  let next = addImageFrontmatter(post, cfg.image);
+  let next = normalizeVisualRoutes(post.slug, addImageFrontmatter(post, cfg.image), cfg);
   writeVisualPair(post.slug, "hero.svg", heroSvg(cfg.hero));
 
   if (cfg.replacements) {

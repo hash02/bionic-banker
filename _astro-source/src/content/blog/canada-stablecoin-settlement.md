@@ -25,7 +25,7 @@ That tells us something.
 It tells us the question has changed from "is this real?" to "where does this fit?"
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/canada-stablecoin-settlement/settlement-map.html" title="Same compliance. Shorter settlement path." style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/canada-stablecoin-settlement/settlement-map/" title="Same compliance. Shorter settlement path." style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 ## What Actually Happened
@@ -67,7 +67,7 @@ None of this means banks are asleep.
 It means they are waiting for the proof stack to be strong enough.
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/canada-stablecoin-settlement/canada-timeline.html" title="Why Canada took years to get here" style="width:100%;min-height:520px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/canada-stablecoin-settlement/canada-timeline/" title="Why Canada took years to get here" style="width:100%;min-height:520px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 ## What the Big Banks Are Actually Doing
@@ -131,7 +131,7 @@ The slow settlement layer. The float. The reconciliation work. The fees around m
 That is the part that starts getting compressed.
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/canada-stablecoin-settlement/open-banking-stack.html" title="The possible Canadian stack" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/canada-stablecoin-settlement/open-banking-stack/" title="The possible Canadian stack" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 ## The Honest Prediction

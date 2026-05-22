@@ -19,7 +19,11 @@ And I get it. #1 is a clean headline.
 But I work in finance, and the first thing they teach you when you read a table of numbers is: what column is everyone ignoring?
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/ai-model-benchmark-cost/score-per-dollar.html" title="The leaderboard has a hidden column" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/ai-model-benchmark-cost/score-per-dollar/" title="The leaderboard has a hidden column" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+</div>
+
+<div class="embed-visual">
+  <iframe src="/blog-visuals/ai-model-benchmark-cost/score-per-dollar/" title="The leaderboard has a hidden column" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 ---

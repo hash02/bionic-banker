@@ -29,7 +29,7 @@ It is not "crypto versus finance."
 It is custody, settlement, credit, risk, markets, messaging, and data access. The same old functions. Just with wallets, smart contracts, tokens, and blockchains underneath.
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/web3-is-just-finance-infrastructure/translation-table.html" title="Different names. Familiar functions." style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/web3-is-just-finance-infrastructure/translation-table/" title="Different names. Familiar functions." style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 ## The Translation Table
@@ -137,7 +137,7 @@ Event markets are becoming real enough that regulators, exchanges, traders, and 
 Every company on that Web3 infrastructure list is doing one of five things.
 
 <div class="embed-visual">
-  <iframe src="/blog-visuals/web3-is-just-finance-infrastructure/five-functions.html" title="Finance keeps doing five things" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
+  <iframe src="/blog-visuals/web3-is-just-finance-infrastructure/five-functions/" title="Finance keeps doing five things" style="width:100%;min-height:560px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
 - Moving money faster.
