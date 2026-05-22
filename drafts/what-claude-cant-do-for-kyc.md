@@ -1,4 +1,4 @@
-﻿---
+---
 title: "What Claude Can't Do for KYC Yet (And Why That Matters for Canadian Banks)"
 description: "AI can read documents and flag issues. Production KYC is a bigger system: screening, case review, audit trail, and accountability."
 date: "2026-05-22T12:00:00-07:00"
@@ -12,51 +12,29 @@ draft: true
 
 Okay so here is the thing.
 
-Most AI demos for KYC look amazing for about 90 seconds.
-
-You upload a passport. The model reads the name, date of birth, address, maybe the expiry date. It spots a mismatch. It gives a clean little summary. Maybe it says "high risk" or "needs review."
-
-And if you are watching from the outside, it feels like the whole KYC problem is almost solved.
-
-But if you have worked near the banking side of it, you know that is only the front door.
-
 The real KYC problem is not "can a model read a document?"
 
-The real question is: can the system prove why it accepted or rejected a person, keep that proof, route the weird cases to a human, and still explain the decision months later when someone asks?
+It is: can the system prove why it accepted or rejected a person, keep that proof, route the edge cases to a human, and explain the decision months later when a regulator asks?
 
-That is the part most demos skip.
+Most demos stop before that question. The extraction part — reading a passport, normalizing fields, catching a mismatch — is a clean demo. What comes after it is not.
 
-And honestly, I get why. The skipped part is not as pretty. It is not a clean upload screen. It is not one prompt. It is a chain.
+## The Gap Between Extraction and Production
 
-## The Demo Version
+Extraction is step 2 of an 8-step chain.
 
-The demo version of KYC is simple.
+A model that reads messy documents, normalizes names, and catches field mismatches is genuinely useful — better first-pass, faster analyst review. But calling that "KYC automated" is like calling a receipt scanner "accounting closed." The scanner helps. It does not close the books.
 
-1. Upload document.
-2. Extract fields.
-3. Compare fields.
-4. Flag mismatch.
-5. Done.
+The hard questions start after extraction:
 
-That is useful. I do not want to minimize it.
+The name matches, but the person is politically exposed?
 
-A model that can read messy documents, normalize names, catch expiry dates, and explain inconsistencies is valuable. It saves time. It gives analysts a better first pass. It can reduce the boring part of review.
+The document is clean, but the customer owns a company with a hidden beneficial owner?
 
-But calling that "KYC solved" is like looking at a receipt scanner and saying accounting is solved.
+The customer passes onboarding, then starts moving funds in a layering pattern?
 
-The scanner helps. It does not close the books.
+The model flags something, but the reviewer disagrees?
 
-In banking, the hard part is what happens after extraction.
-
-What if the name matches, but the person is politically exposed?
-
-What if the document looks fine, but the customer owns a company with a hidden beneficial owner?
-
-What if the customer passes onboarding, then starts moving funds in a pattern that looks like layering?
-
-What if the model flags something, but the reviewer disagrees?
-
-What if six months later a regulator asks why the file was approved?
+Six months later a regulator asks why the file was approved?
 
 That is where the demo stops and production starts.
 
@@ -141,15 +119,11 @@ The model can help read. It can help explain. It can help summarize. But the ins
 
 ## Why Canadian Banks Care
 
-Canada is a careful banking market.
-
-That can be frustrating if you are building fast. But it also means the bar for trust is real.
-
 A Canadian bank cannot treat KYC like a hackathon demo.
 
-The system has to survive internal audit. It has to survive regulator questions. It has to fit into FINTRAC obligations around client identification, beneficial ownership, suspicious transaction reporting, ongoing monitoring, and record keeping.
+The output has to survive FINTRAC audit — client identification, beneficial ownership, STRs, ongoing monitoring, record keeping. Not because the bar is arbitrary. Because "the AI said it was fine" is not a defensible answer when the regulator asks for the decision trail.
 
-That does not mean every KYC process is perfect. It means the output has to be explainable in a banking language.
+What that looks like in practice:
 
 Not:
 
@@ -197,7 +171,7 @@ The right answer is not to pretend one model does everything.
 
 The right answer is to put each piece where it belongs.
 
-## What Closing The Gap Looks Like
+## What Closing the Gap Looks Like
 
 If I were designing the real version, I would not start with "one AI agent does KYC."
 

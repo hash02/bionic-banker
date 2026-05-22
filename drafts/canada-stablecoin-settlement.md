@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Canada Just Settled Dollars on a Blockchain. Nobody Noticed."
 description: "Wealthsimple and Visa ran a stablecoin settlement pilot in Canada. The technology is old. The timing is the story."
 date: "2026-05-22T12:00:00-07:00"
@@ -28,35 +28,27 @@ It tells us the question has changed from "is this real?" to "where does this fi
 
 ## What Actually Happened
 
-Wealthsimple is not a crypto company. That is the important part.
+The signal here is not that a blockchain moved value. It is that the compliance wrapper stayed intact through the settlement leg.
 
-It is a regulated Canadian fintech. It operates with KYC, compliance controls, and reporting obligations. So when Wealthsimple and Visa test stablecoin settlement, the interesting point is not that a blockchain moved value. The interesting point is that the compliance wrapper stayed intact.
+T+3 persists not because faster settlement is technically unavailable — the rails can clear faster. It persists because the clearing and reconciliation stack was built around it, and dismantling that stack is operational and counterparty risk, not an engineering problem. The pilot tested a bypass: stablecoin settlement for the finality leg, with an on-chain receipt instead of a chain of delayed clearing messages.
 
-A card transaction can authorize in seconds. Settlement is the slower part. That is where obligations between institutions actually get resolved. Traditional settlement can take days because it runs through layered clearing, banking, reconciliation, and payment network processes. T+3 is the standard. Risk moves continuously but settlement does not catch up until days later.
+The pilot did not say "replace finance." It said "upgrade one slow segment of the finality path."
 
-The pilot tested a shorter path. Stablecoin settlement can move the settlement leg closer to real time, with an on-chain receipt that is easier to reconcile than a chain of delayed messages. The gap between T+3 and near-instantaneous is not a technical limitation. It is an infrastructure decision.
-
-But notice what did not disappear.
-
-KYC did not disappear. Compliance did not disappear. Visa did not disappear. Wealthsimple did not become a bankless island.
-
-That is why this is interesting. The pilot did not say "replace finance." It said "upgrade one slow part of the plumbing."
-
-That is usually how real financial technology wins.
+That is usually how financial infrastructure actually changes.
 
 ## Why This Took So Long
 
-Ethereum launched in 2015. USDC launched in 2018. Stablecoins have been used for settlement outside Canada for years.
+Stablecoins have been moving institutional value outside Canada for years. The question was never whether the technology works.
 
 So why did Canada get here in 2026?
 
-I think there were four blockers.
+I think there were five blockers.
 
 **First, Canada needed a serious CAD stablecoin path.** Tetra Digital Group launched CADD in May 2026, after earlier partner testing in late 2025. Before that, most stablecoin settlement conversation in Canada still had a currency mismatch problem. USDC can settle value, but it is still a U.S. dollar instrument. For Canadian payments, that creates FX and treasury questions right away.
 
 **Second, Interac is a closed domestic rail.** Interac is extremely strong in Canada, but you cannot just plug a new settlement layer into it because you feel like it. Visa was the cleaner test path because card networks already have more global settlement architecture around them.
 
-**Third, regulators needed the shape to become clearer.** Canada has been moving toward consumer-driven banking, also called open banking, and the federal framework is still being built through 2025 and 2026. Crypto-asset guidance has also become more concrete over time. Regulated institutions usually do not move because the technology is ready. They move when the liability is legible.
+**Third, regulators needed the shape to become clearer.** Canada has been moving toward consumer-driven banking, and the federal framework is still being built through 2025 and 2026. Regulated institutions usually do not move because the technology is ready. They move when the liability is legible.
 
 **Fourth, the U.S. framework just clarified the global map.** The GENIUS Act, passed federally in the U.S., includes a reciprocity provision. Jurisdictions that build frameworks substantially similar to it can have their stablecoins recognized in the U.S. market. That is a strong incentive for Canada and every other G20 country to align. The regulatory direction is no longer ambiguous at the international level.
 
@@ -74,7 +66,7 @@ This is where I want to be careful.
 
 I do not think the right claim is "the Big 6 are doing nothing." That is too easy, and probably wrong.
 
-The public record shows Canadian banks have been around digital assets, blockchain experiments, CBDC research, venture investing, payment modernization, and real-time rails for years. BMO tested a blockchain mirror of a Canadian-dollar fixed income issuance back in 2018. Scotiabank had a blockchain proof-of-technology with AlphaPoint in 2017. RBCx and RBC Ventures show that RBC has a structure for technology investing. Bank of Canada research around digital money and Project Jasper pulled in major Canadian financial infrastructure players.
+The public record shows Canadian banks have been around digital assets, blockchain experiments, CBDC research, venture investing, and payment modernization for years. BMO tested a blockchain mirror of a Canadian-dollar fixed income issuance back in 2018. Scotiabank had a blockchain proof-of-technology with AlphaPoint in 2017. RBCx and RBC Ventures show that RBC has a structure for technology investing. Bank of Canada research around digital money and Project Jasper pulled in major Canadian financial infrastructure players.
 
 But that is different from saying each Big 6 bank has a public stablecoin settlement product ready to ship.
 
@@ -82,11 +74,9 @@ They do not. Or at least, they have not shown it publicly.
 
 Meanwhile, the international picture has moved further than most people realize.
 
-The CFTC in the U.S. has authorized USDC as eligible collateral for derivatives markets. Not just crypto exchanges. We are talking oil futures on classical derivatives exchanges. Global systemically important banks are now using stablecoins for internal cross-border capital movement across their international divisions. The Circle Payments Network has over 55 financial institutions on it, running business-to-business cross-border settlement in live conditions. These are not pilots. These are operating conditions.
+The CFTC in the U.S. has authorized USDC as eligible collateral for derivatives markets. Not just crypto exchanges — oil futures on classical derivatives exchanges. Global systemically important banks are using stablecoins for internal cross-border capital movement across their international divisions. The Circle Payments Network has over 55 financial institutions on it, running business-to-business cross-border settlement in live conditions. These are not pilots. These are operating conditions.
 
 The point of listing all of this is not to say Canadian banks are behind. It is to say the reference class has shifted. The question is no longer "will institutions use this?" It is "when does each institution decide the proof stack is sufficient to move?"
-
-So the clean read is this:
 
 The banks are not ignoring the space. They are staying close to it without turning it into a public product until the regulatory, operational, and reputational risk makes sense.
 
@@ -102,13 +92,9 @@ That is how the conversation changes.
 
 ## What Open Banking Changes
 
-Open banking sounds boring until you connect it to settlement.
+Consumer-driven banking is where the funding leg gets cleaner.
 
-Right now, if money starts in a bank account and needs to land in a faster settlement product, the bank relationship still controls a lot of the movement. The account is there. The consent path is messy. The payment initiation path is limited. The user experience often depends on old rails.
-
-Consumer-driven banking changes the shape.
-
-If regulated third parties can access account data and eventually initiate payments through standardized, permissioned APIs, then the funding leg becomes cleaner. The bank can still hold the deposit. But the customer has more ways to route value into the next layer.
+Right now the bank relationship controls most of the routing. Standardized, permissioned payment initiation APIs change that — the bank keeps the deposit, but the customer has controlled pathways into the next layer.
 
 Now pair that with a regulated CAD stablecoin.
 
@@ -124,9 +110,7 @@ CAD stablecoin settlement.
 
 Merchant, broker, fintech, or treasury workflow.
 
-That stack does not kill banks. That is not the point. Banks still hold deposits, manage credit, run risk, and maintain trust.
-
-What it does is pressure the middle.
+What that stack pressures is the middle.
 
 The slow settlement layer. The float. The reconciliation work. The fees around movement. The places where money waits because the system is old.
 
