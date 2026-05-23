@@ -18,7 +18,7 @@ Not a crypto app pretending to be a bank. Not a random token launch. A regulated
 
 That is the part that matters.
 
-The blockchain piece is not new. Stablecoins have been moving money for years. The real story is that Canada, a very conservative banking market, is finally letting the payment stack touch this technology without treating it like a side quest.
+The blockchain piece is not new. Stablecoins have been moving value for years. The global market is close to $300 billion. The real story is that Canada, a very conservative banking market, is finally letting the payment stack touch this technology without treating it like a side quest.
 
 That tells us something.
 
@@ -30,21 +30,13 @@ It tells us the question has changed from "is this real?" to "where does this fi
 
 ## What Actually Happened
 
-Wealthsimple is not a crypto company. That is the important part.
+The signal here is not that a blockchain moved value. It is that the compliance wrapper stayed intact through the settlement leg.
 
-It is a regulated Canadian fintech. It operates with KYC, compliance controls, and reporting obligations. So when Wealthsimple and Visa test stablecoin settlement, the interesting point is not that a blockchain moved value. The interesting point is that the compliance wrapper stayed intact.
-
-A card transaction can authorize in seconds. Settlement is the slower part. That is where obligations between institutions actually get resolved. Traditional settlement can take days because it runs through layered clearing, banking, reconciliation, and payment network processes.
-
-The pilot tested a shorter path. Stablecoin settlement can move the settlement leg closer to real time, with an on-chain receipt that is easier to reconcile than a chain of delayed messages.
-
-But notice what did not disappear.
+T+3 persists not because faster settlement is technically unavailable. The rails can clear faster. It persists because the clearing and reconciliation stack was built around that cadence, and unwinding it is counterparty risk and operational complexity, not an engineering problem. The pilot tested a bypass: stablecoin settlement for the finality leg, with an on-chain receipt instead of a chain of delayed clearing messages.
 
 KYC did not disappear. Compliance did not disappear. Visa did not disappear. Wealthsimple did not become a bankless island.
 
-That is why this is interesting. The pilot did not say "replace finance." It said "upgrade one slow part of the plumbing."
-
-That is usually how real financial technology wins.
+The pilot did not say "replace finance." It said "upgrade one slow segment of the finality path." That is how financial infrastructure actually changes.
 
 ## Why This Took So Long
 
@@ -52,15 +44,17 @@ Ethereum launched in 2015. USDC launched in 2018. Stablecoins have been used for
 
 So why did Canada get here in 2026?
 
-I think there were four blockers.
+I think there were five blockers.
 
 **First, Canada needed a serious CAD stablecoin path.** Tetra Digital Group launched CADD in May 2026, after earlier partner testing in late 2025. Before that, most stablecoin settlement conversation in Canada still had a currency mismatch problem. USDC can settle value, but it is still a U.S. dollar instrument. For Canadian payments, that creates FX and treasury questions right away.
 
 **Second, Interac is a closed domestic rail.** Interac is extremely strong in Canada, but you cannot just plug a new settlement layer into it because you feel like it. Visa was the cleaner test path because card networks already have more global settlement architecture around them.
 
-**Third, regulators needed the shape to become clearer.** Canada has been moving toward consumer-driven banking, also called open banking, and the federal framework is still being built through 2025 and 2026. Crypto-asset guidance has also become more concrete over time. Regulated institutions usually do not move because the technology is ready. They move when the liability is legible.
+**Third, regulators needed the shape to become clearer.** Canada has been moving toward consumer-driven banking and the federal framework is still being built through 2025 and 2026. Regulated institutions usually do not move because the technology is ready. They move when the liability is legible.
 
-**Fourth, large banks do not get paid to be first on weird infrastructure.** They get paid to be trusted. That changes the incentive. If a smaller regulated player proves the path first, the larger institutions can enter later with less career risk and more regulatory cover.
+**Fourth, the U.S. framework clarified the global map.** The GENIUS Act passed federally in the U.S. with a reciprocity provision: jurisdictions that build frameworks substantially similar to it can have their stablecoins recognized in the U.S. market. That is a real external incentive for Canada and every other G20 country to align. Regulatory direction at the international level stopped being ambiguous.
+
+**Fifth, large banks do not get paid to be first on weird infrastructure.** They get paid to be trusted. That changes the incentive. If a smaller regulated player proves the path first, the larger institutions can enter later with less career risk and more regulatory cover.
 
 None of this means banks are asleep.
 
@@ -80,9 +74,15 @@ The public record shows Canadian banks have been around digital assets, blockcha
 
 But that is different from saying each Big 6 bank has a public stablecoin settlement product ready to ship.
 
-They do not.
+They do not. Or at least, they have not shown it publicly.
 
-Or at least, they have not shown it publicly.
+Meanwhile, the reference class has moved.
+
+The CFTC has authorized USDC as eligible collateral for derivatives markets. Not just crypto exchanges. Oil futures on classical derivatives infrastructure. The Circle Payments Network has over 55 financial institutions on it running live business-to-business cross-border settlement. Global systemically important banks are using stablecoins for internal cross-border capital movement across their international divisions.
+
+These are not pilots. These are operating conditions.
+
+The question is no longer "will institutions use this?" It is "when does each institution decide the proof stack is sufficient to move?"
 
 So the clean read is this:
 
