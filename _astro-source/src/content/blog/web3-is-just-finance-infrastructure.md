@@ -92,17 +92,13 @@ Sometimes it is obviously yes.
 
 ## The Canadian Angle
 
-I keep coming back to Canada because that is where I sit.
+Canada will probably use this infrastructure before it builds it.
 
-The major companies in this list are mostly built outside Canada, or at least outside the Canadian banking center of gravity. Phantom is U.S.-based. Morpho is closely tied to France. Ondo and Circle are U.S.-based. Fireblocks has roots in Israel and New York. Monad is U.S.-based. Polymarket and Kalshi are U.S.-centered in different ways.
+The reference-point companies are not coming from here. Phantom, Ondo, Circle, Monad, Polymarket, Kalshi are U.S.-based. Morpho is closely tied to France. Fireblocks has roots in Israel and New York. The global Web3 infrastructure layer is being built somewhere else.
 
-So I would soften the claim.
+That is not a knock on Canadian talent. Toronto and Montreal have serious technical people. Canada has crypto companies, AI capability, payment expertise, and bank talent.
 
-It is not that Canada has no builders. Canada has talent. Toronto and Montreal have serious technical people. Canada has crypto companies, AI talent, payment talent, and bank talent.
-
-But the big Web3 infrastructure companies that become global reference points are mostly being built somewhere else.
-
-That matters because Canada may become a consumer of this infrastructure before it becomes a builder of it.
+But talent and reference points are different things. The companies that define what a custody platform is, what stablecoin settlement looks like at scale, what an on-chain lending market means. Those are being defined outside Canada.
 
 The Big 6 banks will eventually integrate with pieces of this stack. Stablecoin settlement. Institutional custody. Tokenized treasury products. Cross-chain or cross-venue messaging. Risk tooling. Maybe prediction-market style signals, if regulation ever gets comfortable with that category.
 
