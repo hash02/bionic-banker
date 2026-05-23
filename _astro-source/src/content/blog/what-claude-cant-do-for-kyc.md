@@ -62,7 +62,7 @@ That is where the demo stops and production starts.
 
 ## The Production Chain
 
-The clean way to think about KYC is as an eight-step chain.
+KYC is an eight-step chain.
 
 <div class="embed-visual">
   <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/production-chain/" title="KYC is an eight-step production chain" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
@@ -151,7 +151,7 @@ That can be frustrating if you are building fast. But it also means the bar for 
 
 A Canadian bank cannot treat KYC like a hackathon demo.
 
-The system has to survive internal audit. It has to survive regulator questions. It has to fit into FINTRAC obligations around client identification, beneficial ownership, suspicious transaction reporting, ongoing monitoring, and record keeping.
+The system has to survive internal audit, regulator questions, and FINTRAC obligations. Record keeping, ongoing monitoring, suspicious transaction reporting, beneficial ownership. All of it has to hold up under examination, not just at onboarding.
 
 That does not mean every KYC process is perfect. It means the output has to be explainable in a banking language.
 
