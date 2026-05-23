@@ -150,40 +150,25 @@ Trust comes from clean edges.
 
 ## Why It Matters
 
-This is where AI in finance gets interesting to me.
+In finance and compliance, a draft and an action are not the same thing.
 
-The hard part is not making a model write a paragraph. The hard part is making a workflow that knows the difference between a paragraph, a recommendation, an approval, and an external action.
+A model that writes a case narrative is useful. A model that writes a case narrative, stores the evidence, marks the assumptions, asks for review, and refuses to send anything without approval is a different class of tool.
 
-In finance and compliance, those differences matter.
+The workflow has to know the difference between those steps. Not because compliance says so. Because the moment an AI system collapses draft and action into one move, you lose the control surface.
 
-An AI system that drafts a case narrative is useful.
+That is what the two-agent architecture actually builds: a control surface between output and consequence.
 
-An AI system that drafts a case narrative, stores the evidence, marks the assumptions, asks for review, and refuses to send anything without approval is much more useful.
-
-That is the direction I am building toward.
-
-Not "AI replaces judgment."
-
-More like:
-
-AI does the heavy lifting around memory, drafting, comparison, and evidence. Humans keep judgment, accountability, and final action.
+AI carries the memory, drafting, comparison, and evidence. Humans keep judgment, accountability, and final action.
 
 ## The Honest Limitation
 
-This is not an enterprise compliance deployment.
+This is a personal-scale production system.
 
-It is a personal-scale production system built to prove the architecture pattern:
+Not an enterprise compliance deployment. Not a vendor product. A working proof of the architecture pattern: agentic workflows, shared board state, approval gates, audit trails, policy boundaries, evidence-preserving automation.
 
-- agentic workflows
-- shared board state
-- approval gates
-- audit trails
-- policy boundaries
-- evidence-preserving automation
+The pattern itself is what scales. The next step is running it inside a team, under real compliance leadership, with real data governance, access controls, model-risk review, and production ownership.
 
-The next step is to apply this pattern inside a team, under real compliance leadership, with real data governance, access controls, model-risk review, and production ownership.
-
-That is exactly the kind of work I want to do.
+That is the gap this system is designed to close.
 
 ## The Simple Version
 
