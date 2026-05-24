@@ -1,0 +1,384 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const proof = await import('../../public/dashboard-data/aml-proof-public.json');
+const generatedDate = new Date(proof.default.generated_at).toISOString().slice(0, 10);
+const provenance = proof.default.provenance;
+const boundary = proof.default.boundary;
+const checks = proof.default.checks ?? [];
+const claims = proof.default.visible_claims ?? [];
+const nextSteps = proof.default.next_steps ?? [];
+
+const proofCards = [
+  {
+    label: 'Evidence contract',
+    title: 'A status row has to earn trust.',
+    body: 'The AML status contract only treats a row as evidence-backed when source metadata, counts, rule coverage, and freshness checks are present.',
+    source: provenance.contract_doc,
+  },
+  {
+    label: 'Gate behavior',
+    title: 'The planner can pause. It cannot execute.',
+    body: `Every compliance gate keeps may_execute set to ${String(boundary.may_execute)}. Clean means proposal-only, not action authority.`,
+    source: provenance.planning_endpoint,
+  },
+  {
+    label: 'Artifact provenance',
+    title: 'The receipt shape is defined before the public claim.',
+    body: 'The local contract defines JSON and Markdown proof artifacts, latest aliases, and SHA-256 sidecars so a later reader can inspect what backed the status.',
+    source: provenance.local_artifact_pattern,
+  },
+];
+---
+<BaseLayout title="AML Proof" description="A public-safe proof page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what is only local proof, and what authority is explicitly not granted.">
+  <main class="aml-proof-shell">
+    <section class="aml-proof-hero">
+      <div>
+        <span class="eyebrow">AML Proof</span>
+        <h1>The important part is not the flag. It is the receipt behind the flag.</h1>
+        <p>
+          This page makes the AML Layer 1 proof visible without turning it into a product claim. It shows the contract, the artifact provenance, the planner boundary, and the parts that still stay local.
+        </p>
+        <div class="proof-actions">
+          <a href="#proof-cards">Read the proof</a>
+          <a href="/wallet-risk">Open wallet-risk lab</a>
+          <a href="/dashboard-data/aml-proof-public.json">Open public JSON</a>
+        </div>
+      </div>
+      <aside class="authority-card" aria-label="AML proof authority boundary">
+        <span>Authority boundary</span>
+        <strong>may_execute: false</strong>
+        <p>No wallet, trade, filing, or deploy authority. No KYC approval authority.</p>
+        <small>Snapshot: {generatedDate}</small>
+      </aside>
+    </section>
+
+    <section class="proof-grid" id="proof-cards">
+      {proofCards.map((card) => (
+        <article class="proof-card">
+          <span>{card.label}</span>
+          <h2>{card.title}</h2>
+          <p>{card.body}</p>
+          <small>{card.source}</small>
+        </article>
+      ))}
+    </section>
+
+    <section class="proof-panel split-panel">
+      <div>
+        <span class="eyebrow">What is visible</span>
+        <h2>Public-safe claims</h2>
+        <ul class="proof-list">
+          {claims.map((claim) => <li>{claim}</li>)}
+        </ul>
+      </div>
+      <div>
+        <span class="eyebrow">What stays bounded</span>
+        <h2>Not an execution system</h2>
+        <ul class="boundary-list">
+          <li>may_execute: {String(boundary.may_execute)}</li>
+          <li>KYC approval authority: {String(boundary.kyc_approval_authority)}</li>
+          <li>Wallet or trade authority: {String(boundary.wallet_or_trade_authority)}</li>
+          <li>Filing authority: {String(boundary.filing_authority)}</li>
+          <li>Deploy authority: {String(boundary.deploy_authority)}</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="proof-panel">
+      <div class="panel-head">
+        <span>Artifact provenance</span>
+        <h2>The proof path is a contract, not a vibe.</h2>
+        <p>Public readers get repository-relative provenance. The local machine details, private paths, and operational internals stay off the public site.</p>
+      </div>
+      <div class="provenance-grid">
+        <article>
+          <span>Contract doc</span>
+          <strong>{provenance.contract_doc}</strong>
+        </article>
+        <article>
+          <span>Contract module</span>
+          <strong>{provenance.contract_module}</strong>
+        </article>
+        <article>
+          <span>Refresher module</span>
+          <strong>{provenance.refresher_module}</strong>
+        </article>
+        <article>
+          <span>Artifact pattern</span>
+          <strong>{provenance.local_artifact_pattern}</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="proof-panel">
+      <div class="panel-head">
+        <span>Verification receipts</span>
+        <h2>What was checked locally</h2>
+        <p>These are local verification commands recorded in the proof receipts. They are shown as evidence trail, not as hosted compliance certification.</p>
+      </div>
+      <div class="check-list">
+        {checks.map((check) => (
+          <article>
+            <span>{check.label}</span>
+            <code>{check.command}</code>
+            <p>{check.recorded_result}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="proof-panel split-panel">
+      <div>
+        <span class="eyebrow">Next hardening</span>
+        <h2>Where this should get stronger</h2>
+        <ul class="proof-list">
+          {nextSteps.map((step) => <li>{step}</li>)}
+        </ul>
+      </div>
+      <div>
+        <span class="eyebrow">Plain English</span>
+        <h2>What this means</h2>
+        <p>
+          The AML proof page is a window into the safety rails: evidence first, boundaries beside every claim, and no jump from a local proof artifact to an operational decision.
+        </p>
+      </div>
+    </section>
+
+    <section class="proof-links">
+      <a href="/wallet-risk">
+        <span>Wallet Risk Lab</span>
+        <strong>See the readable risk layer</strong>
+      </a>
+      <a href="/proof-tour">
+        <span>Proof Tour</span>
+        <strong>Follow the wider proof route</strong>
+      </a>
+      <a href="/projects">
+        <span>Experiments</span>
+        <strong>Return to the public workbench</strong>
+      </a>
+    </section>
+  </main>
+
+  <style>
+    .aml-proof-shell {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3.5rem 2rem 4rem;
+      overflow-x: hidden;
+    }
+
+    .aml-proof-shell,
+    .aml-proof-shell * {
+      box-sizing: border-box;
+    }
+
+    .aml-proof-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
+      gap: 1.25rem;
+      align-items: stretch;
+      margin-bottom: 1.25rem;
+    }
+
+    .aml-proof-hero > div,
+    .authority-card,
+    .proof-card,
+    .proof-panel,
+    .proof-links a {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .aml-proof-hero > div {
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .eyebrow,
+    .proof-card span,
+    .authority-card span,
+    .panel-head span,
+    .provenance-grid span,
+    .check-list span,
+    .proof-links span {
+      display: inline-flex;
+      color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .aml-proof-hero h1 {
+      max-width: 820px;
+      margin: 0 0 1rem;
+      font-size: clamp(2.4rem, 6vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+    }
+
+    .aml-proof-hero p,
+    .proof-panel p,
+    .proof-card p,
+    .check-list p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .proof-actions,
+    .proof-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.4rem;
+    }
+
+    .proof-actions a,
+    .proof-links a {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .proof-actions a {
+      border: 1px solid rgba(228, 228, 236, 0.14);
+      border-radius: 999px;
+      padding: 0.75rem 1rem;
+      background: rgba(57, 255, 136, 0.08);
+      font-weight: 800;
+    }
+
+    .authority-card {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(57, 255, 136, 0.16), transparent 36%),
+        rgba(255, 255, 255, 0.04);
+    }
+
+    .authority-card strong {
+      display: block;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.04em;
+      color: var(--accent);
+      margin: 1rem 0;
+      overflow-wrap: anywhere;
+    }
+
+    .authority-card small,
+    .proof-card small {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .proof-card,
+    .proof-panel {
+      padding: 1.25rem;
+    }
+
+    .proof-card h2,
+    .proof-panel h2 {
+      margin: 0 0 0.75rem;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .split-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .proof-list,
+    .boundary-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .boundary-list li::marker,
+    .proof-list li::marker {
+      color: var(--accent);
+    }
+
+    .panel-head {
+      max-width: 780px;
+      margin-bottom: 1rem;
+    }
+
+    .provenance-grid,
+    .check-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .provenance-grid article,
+    .check-list article {
+      border: 1px solid rgba(228, 228, 236, 0.1);
+      border-radius: 8px;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.18);
+      min-width: 0;
+    }
+
+    .provenance-grid strong,
+    .check-list code {
+      display: block;
+      color: var(--fg);
+      overflow-wrap: anywhere;
+      line-height: 1.55;
+    }
+
+    .check-list code {
+      color: var(--accent);
+      font-size: 0.84rem;
+    }
+
+    .proof-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 1rem;
+    }
+
+    .proof-links a {
+      padding: 1.1rem;
+    }
+
+    .proof-links strong {
+      display: block;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 860px) {
+      .aml-proof-shell {
+        padding: 2rem 1rem 3rem;
+      }
+
+      .aml-proof-hero,
+      .proof-grid,
+      .split-panel,
+      .provenance-grid,
+      .check-list,
+      .proof-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</BaseLayout>
