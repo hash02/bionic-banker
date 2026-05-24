@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const proof = await import('../../public/dashboard-data/aml-proof-public.json');
+const proof = await import('../../public/dashboard-data/aml-status-evidence-public.json');
 const generatedDate = new Date(proof.default.generated_at).toISOString().slice(0, 10);
 const provenance = proof.default.provenance;
 const boundary = proof.default.boundary;
@@ -30,22 +30,22 @@ const proofCards = [
   },
 ];
 ---
-<BaseLayout title="AML Proof" description="A public-safe proof page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what is only local proof, and what authority is explicitly not granted.">
+<BaseLayout title="AML Status Evidence" description="A public-safe AML status evidence page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what remains local, and what authority is explicitly not granted.">
   <main class="aml-proof-shell">
     <section class="aml-proof-hero">
       <div>
-        <span class="eyebrow">AML Proof</span>
+        <span class="eyebrow">AML Status Evidence</span>
         <h1>The important part is not the flag. It is the receipt behind the flag.</h1>
         <p>
-          This page makes the AML Layer 1 proof visible without turning it into a product claim. It shows the contract, the artifact provenance, the planner boundary, and the parts that still stay local.
+          This page makes the AML Layer 1 status evidence visible without turning it into a compliance claim. It shows the contract, the artifact provenance, the planner boundary, and the parts that still stay local.
         </p>
         <div class="proof-actions">
-          <a href="#proof-cards">Read the proof</a>
+          <a href="#proof-cards">Read the evidence</a>
           <a href="/wallet-risk">Open wallet-risk lab</a>
-          <a href="/dashboard-data/aml-proof-public.json">Open public JSON</a>
+          <a href="/dashboard-data/aml-status-evidence-public.json">Open public JSON</a>
         </div>
       </div>
-      <aside class="authority-card" aria-label="AML proof authority boundary">
+      <aside class="authority-card" aria-label="AML status evidence authority boundary">
         <span>Authority boundary</span>
         <strong>may_execute: false</strong>
         <p>No wallet, trade, filing, or deploy authority. No KYC approval authority.</p>
@@ -140,7 +140,7 @@ const proofCards = [
         <span class="eyebrow">Plain English</span>
         <h2>What this means</h2>
         <p>
-          The AML proof page is a window into the safety rails: evidence first, boundaries beside every claim, and no jump from a local proof artifact to an operational decision.
+          The AML status evidence page is a window into the safety rails: evidence first, boundaries beside every claim, and no jump from a local evidence artifact to an operational decision.
         </p>
       </div>
     </section>

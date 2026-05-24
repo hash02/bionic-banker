@@ -1,15 +1,15 @@
 {
   "generated_at": "2026-05-24T06:14:25Z",
-  "status": "public_aml_proof_v1",
-  "purpose": "Public-safe proof card for AML Layer 1 evidence wiring. It explains what was verified, where the evidence contract lives, and what authority the system still does not have.",
+  "status": "public_aml_status_evidence_v1",
+  "purpose": "Public-safe AML status evidence card for AML Layer 1 evidence wiring. It explains what was verified, where the evidence contract lives, and what authority the system still does not have.",
   "privacy_boundary": "Repository-relative docs and public-safe summaries only. No local machine paths, secrets, private infrastructure, account-level details, employer data, or client data.",
   "reading_rule": "Every visible claim should resolve to a contract doc, test receipt, artifact contract, or explicit boundary.",
   "visible_claims": [
     "AML status can only be treated as evidence-backed when stub is false, counts exist, source metadata exists, rules are loaded, and freshness checks pass.",
     "Planning/advisor gate outputs carry proposal_clean and may_execute fields, with may_execute remaining false on every branch.",
-    "Canonical local proof artifacts are defined as JSON, Markdown, latest aliases, and SHA-256 sidecars under the vault operations log pattern.",
-    "Mission Control UI surfaces evidence status, blockers, source freshness, proof artifact status, artifact path, proof hash, and artifact age.",
-    "The public page is a proof surface, not an operational compliance product."
+    "Canonical local evidence artifacts are defined as JSON, Markdown, latest aliases, and SHA-256 sidecars under the vault operations log pattern.",
+    "Mission Control UI surfaces evidence status, blockers, source freshness, evidence artifact status, artifact path, evidence hash, and artifact age.",
+    "The public page is a evidence surface, not an operational compliance product."
   ],
   "provenance": {
     "contract_doc": "30-infrastructure/aml-engine/AML_LAYER1_STATUS_CONTRACT.md",
@@ -49,8 +49,8 @@
     "boundary_label": "No wallet, trade, filing, or deploy authority. No KYC approval authority."
   },
   "next_steps": [
-    "Add detached signature support if proof artifacts move across machines.",
+    "Add detached signature support if evidence artifacts move across machines.",
     "Add retention and rotation policy once artifact volume is known.",
-    "Add a small public proof-card endpoint if future surfaces should fetch only provenance metadata."
+    "Add a small public evidence-card endpoint if future surfaces should fetch only provenance metadata."
   ]
 }
