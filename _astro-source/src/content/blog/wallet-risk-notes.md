@@ -6,7 +6,7 @@ tags: ["Tech"]
 readTime: "5 min"
 category: "Tech"
 featured: false
-slug: "roast-gallery"
+slug: "wallet-risk-notes"
 ---
 
 Wallet Risk Notes collects 190 sample wallet-risk notes from the AML detection engine. Each note shows the rule match, risk score, and plain-language explanation that made a transaction pattern worth a second look.
