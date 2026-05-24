@@ -5,7 +5,7 @@ const root = process.cwd();
 const pagePath = path.join(root, 'src/pages/aml-status-evidence.astro');
 const layoutPath = path.join(root, 'src/layouts/BaseLayout.astro');
 const projectsPath = path.join(root, 'src/pages/projects.astro');
-const proofTourPath = path.join(root, 'src/pages/proof-tour.astro');
+const proofTourPath = path.join(root, 'src/pages/risk-evidence-overview.astro');
 const catalogPath = path.join(root, 'public/dashboard-data/aml-status-evidence-public.json');
 
 function assert(condition, message) {
@@ -34,7 +34,7 @@ assert(page.includes('No wallet, trade, filing, or deploy authority'), 'AML stat
 assert(page.includes('artifact provenance'), 'AML status evidence page must include artifact provenance wording.');
 
 assert(layout.includes('href="/aml-status-evidence"'), 'Primary layout must expose /aml-status-evidence in navigation/mobile/footer.');
-assert(projects.includes('/aml-status-evidence'), 'Experiments page must link to the AML status evidence page.');
+assert(projects.includes('/aml-status-evidence'), 'Systems page must link to the AML status evidence page.');
 assert(proofTour.includes('/aml-status-evidence'), 'Proof tour must link to the AML status evidence page.');
 
 assert(catalog.status === 'public_aml_status_evidence_v1', 'AML status evidence catalog status must be public_aml_status_evidence_v1.');

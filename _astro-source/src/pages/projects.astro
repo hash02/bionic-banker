@@ -6,8 +6,8 @@ const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().s
 
 const projects = [
   {
-    name: 'Wallet Risk Lab',
-    description: 'A small proof surface for reading blockchain wallet-risk rows without turning every score into a verdict.',
+    name: 'Wallet Risk Assessment',
+    description: 'A small evidence view for reading blockchain wallet-risk rows without turning every score into a verdict.',
     role: 'Wallets / Risk / Notes',
     url: '/wallet-risk',
     proof: 'The current map has 28 detection abilities and 23 direct functions. The interesting part is how the row, rule, score, and plain note sit together.',
@@ -26,11 +26,11 @@ const projects = [
     description: 'A public-safe AML status evidence page for the AML Layer 1 evidence contract, artifact provenance, planner gate, and authority boundaries.',
     role: 'AML / Evidence / Boundary',
     url: '/aml-status-evidence',
-    proof: 'Shows the contract path, local artifact pattern, receipt docs, and the hard boundary that may_execute remains false.',
+    proof: 'Shows the contract path, local artifact pattern, evidence record docs, and the hard boundary that may_execute remains false.',
     limitation: 'Evidence surface only. No wallet, trade, filing, deploy, or KYC approval authority.',
     links: [
       { label: 'Open AML status evidence', url: '/aml-status-evidence' },
-      { label: 'Public evidence JSON', url: '/dashboard-data/aml-status-evidence-public.json' },
+      { label: 'Evidence JSON', url: '/dashboard-data/aml-status-evidence-public.json' },
       { label: 'Wallet risk', url: '/wallet-risk' },
       { label: 'AML', url: '/learn#aml' },
     ],
@@ -44,18 +44,18 @@ const projects = [
     limitation: 'Personal operating system. The public page shows tempo and broad roles only. No autonomous public publishing or external actions.',
     links: [
       { label: 'Story', url: '/blog/two-agent-finance-operating-system' },
-      { label: 'Proof notes', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Evidence records', url: '/dashboard-data/public-proof-catalog.json' },
       { label: 'AI agent', url: '/learn#agent' },
       { label: 'Audit log', url: '/learn#audit-log' },
     ],
   },
   {
-    name: 'Agent Framework Lab',
-    description: 'A local proof stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
+    name: 'Agent Workflow System',
+    description: 'A local evidence stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
     role: 'Agent Tools / Traces / Permissions',
     url: 'https://github.com/hash02/agent-framework-proof',
     proof: 'The stack covers tool-calling, graph workflows, retrieval notes, permission checks, trace rows, and observability output, with 70 local checks around the pieces.',
-    limitation: 'Local proof stack, not a production hosted agent or credentialed integration.',
+    limitation: 'Local evidence stack, not a production hosted agent or credentialed integration.',
     links: [
       { label: 'GitHub Repo', url: 'https://github.com/hash02/agent-framework-proof' },
       { label: 'LangChain', url: '/learn#langchain' },
@@ -65,7 +65,7 @@ const projects = [
     ],
   },
   {
-    name: 'Agent Heartbeat Lab',
+    name: 'Agent Monitoring Heartbeat',
     description: 'A visible status snapshot showing an agent loop can wake up, write state, score prior predictions, and expose recent health.',
     role: 'Signals / Health / Loop',
     url: '/dashboard-data/heartbeat.json',
@@ -73,7 +73,7 @@ const projects = [
     limitation: 'Research and observability only. Not investment advice, live trading performance, or infrastructure disclosure.',
     links: [
       { label: 'Heartbeat JSON', url: '/dashboard-data/heartbeat.json' },
-      { label: 'Proof notes', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Evidence records', url: '/dashboard-data/public-proof-catalog.json' },
       { label: 'Heartbeat', url: '/learn#heartbeat' },
       { label: 'Observability', url: '/learn#observability' },
     ],
@@ -99,7 +99,7 @@ const projects = [
     proof: 'The package has seven small files: a manifest, queue notes, trace examples, tool boundaries, and approval gates.',
     limitation: 'Template kit. Not legal advice, certification, or enterprise governance software.',
     links: [
-      { label: 'Proof notes', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Evidence records', url: '/dashboard-data/public-proof-catalog.json' },
       { label: 'Tool calling', url: '/learn#tool-calling' },
       { label: 'RBAC', url: '/learn#rbac' },
       { label: 'Audit log', url: '/learn#audit-log' },
@@ -120,25 +120,25 @@ const projects = [
   },
   {
     name: 'Bionic Banker',
-    description: 'The public writing and proof page for AI, finance, blockchain, risk-system design, and builder experiments.',
+    description: 'The public writing and evidence page for AI, finance, blockchain, risk-system design, and builder systems.',
     role: 'Articles / Signals / Systems',
     url: 'https://bionicbanker.tech',
-    proof: 'Live site with 38 source articles, signal snapshots, proof notes, and linked pages that keep growing with the work.',
+    proof: 'Live site with 38 source articles, signal snapshots, evidence records, and linked pages that keep growing with the work.',
     limitation: 'This page exists because the work used to be scattered across GitHub, articles, and notes.',
     links: [
       { label: 'Articles', url: '/articles' },
-      { label: 'Proof notes', url: '/dashboard-data/public-proof-catalog.json' },
-      { label: 'AI Learning', url: '/learn' },
+      { label: 'Evidence records', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Knowledge Base', url: '/learn' },
       { label: 'Field notes', url: '/reports' },
       { label: 'Questions', url: '/gaps' },
     ],
   },
 ];
 ---
-<BaseLayout title="Experiments" description="AI, finance, wallet-risk, and agent-system experiments by Himanshu. What runs, what it shows, and where the limits are.">
+<BaseLayout title="Systems" description="AI, finance, wallet-risk, and agent-system systems by Himanshu. What runs, what it shows, and where the limits are.">
   <div class="page-header">
-    <div class="page-label">Experiments</div>
-    <h1 class="page-title">Experiments</h1>
+    <div class="page-label">Systems</div>
+    <h1 class="page-title">Systems</h1>
     <p class="page-sub">Small machines, strange questions, and finance systems made visible. Each card shows what it is, what it watches, and where the boundary is.</p>
   </div>
 
@@ -146,7 +146,7 @@ const projects = [
     <div class="lab-strip">
       <div>
         <h2>Things that run, write, watch, or explain</h2>
-        <p>This is the public workbench: wallet-risk stories, agent loops, wallet checks, live signals, and notes from the edge of finance and AI.</p>
+        <p>This is the systems index: wallet-risk stories, agent loops, wallet checks, live signals, and notes from the edge of finance and AI.</p>
       </div>
       <div class="lab-strip-links">
         <span>Wallet risk</span>
@@ -169,7 +169,7 @@ const projects = [
         <a href="/reports" class="read-more">Open field notes -></a>
         <a href="/gaps" class="read-more">See questions -></a>
         <a href="/learn" class="read-more">Learn the concepts -></a>
-        <a href="/dashboard-data/public-proof-catalog.json" class="read-more">Open proof notes -></a>
+        <a href="/dashboard-data/public-proof-catalog.json" class="read-more">Open evidence records -></a>
       </div>
     </div>
 

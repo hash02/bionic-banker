@@ -1,5 +1,5 @@
 ---
-title: "Roast Gallery - Wallet Risk Notes | Bionic Banker"
+title: "Wallet Risk Notes | Bionic Banker"
 description: "A field-note gallery showing how wallet-risk patterns can be explained with rules, scores, and a plain-language voice layer."
 date: "2026-03-14"
 tags: ["Tech"]
@@ -9,9 +9,9 @@ featured: false
 slug: "roast-gallery"
 ---
 
-The Roast Gallery collects 190 sample wallet-risk notes from the AML detection engine. Each note shows the rule match, risk score, and plain-language explanation that made a transaction pattern worth a second look.
+Wallet Risk Notes collects 190 sample wallet-risk notes from the AML detection engine. Each note shows the rule match, risk score, and plain-language explanation that made a transaction pattern worth a second look.
 
-## The Roast Gallery
+## Wallet Risk Notes
 
 Some transaction patterns are hard to read cold. A score helps. A rule list helps. But the most useful layer is usually the sentence that explains why the row made the system pause.
 
@@ -101,13 +101,13 @@ The rule list says what fired. The score sorts what to inspect first. The plain 
 
 ### 3. Bound The Claim
 
-This is the important part. A score is not a legal finding. A rule hit is not a filing decision. A sample row is not proof of wrongdoing. It is a reason to inspect context.
+This is the important part. A score is not a legal finding. A rule hit is not a filing decision. A sample row is not evidence of wrongdoing. It is a reason to inspect context.
 
 ## Start With The Safer Page
 
-The cleaner front door for this idea is now the Wallet Risk Lab:
+The cleaner front door for this idea is now the Wallet Risk Assessment:
 
-[Open Wallet Risk Lab](/wallet-risk/)
+[Open Wallet Risk Assessment](/wallet-risk/)
 
 If you want the numbers and source trail, start with the field notes:
 

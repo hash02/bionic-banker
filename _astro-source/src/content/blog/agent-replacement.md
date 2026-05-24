@@ -16,7 +16,7 @@ I was at a tech and finance seminar a few weeks ago.
 
 Mixed crowd. Bankers, lawyers, developers, healthcare people. Lanyards and LinkedIn smiles.
 
-Someone brought up AI. You know the vibe. Eye rolls. "What's next, my toaster writes my emails?"
+Someone brought up AI. You know the pattern. Eye rolls. "What's next, my toaster writes my emails?"
 
 Big laughs.
 

@@ -9,49 +9,49 @@
       "term": "AI",
       "plain_definition": "Software that performs tasks that normally require reasoning, pattern recognition, language understanding, prediction, or decision support.",
       "why_it_matters": "AI is the umbrella. The useful question is what task it helps, what evidence it uses, and where a human still makes the final call.",
-      "used_in": ["Bionic Banker", "AI Learning", "Experiments"]
+      "used_in": ["Bionic Banker", "Knowledge Base", "Systems"]
     },
     {
       "id": "llm",
       "term": "LLM",
       "plain_definition": "A language model trained to read and generate text. It can summarize, classify, draft, reason over context, and call tools when connected to a workflow.",
       "why_it_matters": "LLMs are useful when they are grounded in sources, tests, citations, and approval gates. Without that, they can sound confident while being wrong.",
-      "used_in": ["AI Learning", "Public learning notes"]
+      "used_in": ["Knowledge Base", "Public learning notes"]
     },
     {
       "id": "vlm",
       "term": "VLM",
       "plain_definition": "A vision-language model that can reason over images and text together.",
       "why_it_matters": "VLMs are useful for screenshots, chart review, UI QA, document inspection, and visual review workflows.",
-      "used_in": ["Visual review", "AI Learning"]
+      "used_in": ["Visual review", "Knowledge Base"]
     },
     {
       "id": "agent",
       "term": "AI agent",
       "plain_definition": "An AI workflow that can observe state, choose a next step, use tools, write outputs, and wait for human approval when the action matters.",
       "why_it_matters": "The agent is not just the model. The agent is the loop around the model: memory, tools, rules, tests, logs, and gates.",
-      "used_in": ["Agent notes", "Heartbeat notes", "Experiments"]
+      "used_in": ["Agent notes", "Heartbeat notes", "Systems"]
     },
     {
       "id": "tool-calling",
       "term": "Tool calling",
       "plain_definition": "A pattern where a model asks to use a defined tool, such as search, a database query, a file read, or a calculation, instead of guessing.",
       "why_it_matters": "Tool calling turns a model from a text generator into a controlled worker. The boundary is the tool contract.",
-      "used_in": ["AI Learning", "Agent rules"]
+      "used_in": ["Knowledge Base", "Agent rules"]
     },
     {
       "id": "langchain",
       "term": "LangChain",
       "plain_definition": "A developer framework for connecting language models to tools, prompts, memory, retrieval, and workflow steps.",
       "why_it_matters": "LangChain is one way to structure AI apps. The value is not name-dropping it. The value is showing tool boundaries and testable behavior.",
-      "used_in": ["AI Learning"]
+      "used_in": ["Knowledge Base"]
     },
     {
       "id": "langgraph",
       "term": "LangGraph",
       "plain_definition": "A graph-based framework for building stateful agent workflows where steps can branch, loop, pause, and resume.",
       "why_it_matters": "It maps well to real systems because real work is not always one straight chain. There are retries, approvals, validators, and fallbacks.",
-      "used_in": ["AI Learning", "Agent workflow notes"]
+      "used_in": ["Knowledge Base", "Agent workflow notes"]
     },
     {
       "id": "rag",
@@ -72,28 +72,28 @@
       "term": "MCP",
       "plain_definition": "Model Context Protocol. A standard pattern for letting AI systems connect to tools and data sources through defined interfaces.",
       "why_it_matters": "MCP matters because agents need clean boundaries. A tool should say what it can do, what inputs it accepts, and what output it returns.",
-      "used_in": ["AI Learning", "Tool-boundary design"]
+      "used_in": ["Knowledge Base", "Tool-boundary design"]
     },
     {
       "id": "rbac",
       "term": "RBAC",
       "plain_definition": "Role-based access control. A way to decide who or what is allowed to perform each action.",
       "why_it_matters": "RBAC is essential for regulated AI because not every agent should be allowed to do every action.",
-      "used_in": ["AI Learning", "Agent rules"]
+      "used_in": ["Knowledge Base", "Agent rules"]
     },
     {
       "id": "audit-log",
       "term": "Audit log",
       "plain_definition": "A record of what happened, when it happened, what tool or person did it, and what evidence supported it.",
       "why_it_matters": "If a system cannot explain its own actions later, it is not ready for serious finance, healthcare, or compliance work.",
-      "used_in": ["Wallet Risk Lab", "Agent notes", "Agent rules"]
+      "used_in": ["Wallet Risk Assessment", "Agent notes", "Agent rules"]
     },
     {
       "id": "observability",
       "term": "Observability",
       "plain_definition": "The ability to see whether a system is alive, what it is doing, what failed, and what changed over time.",
       "why_it_matters": "Invisible automation is risky. Observable automation can be trusted, debugged, and improved.",
-      "used_in": ["Heartbeat notes", "AI Learning"]
+      "used_in": ["Heartbeat notes", "Knowledge Base"]
     },
     {
       "id": "heartbeat",
@@ -107,14 +107,14 @@
       "term": "AML",
       "plain_definition": "Anti-money laundering. The work of detecting, investigating, and preventing financial activity that may be tied to crime or sanctions risk.",
       "why_it_matters": "AML is where finance, data, rules, and judgment meet. Good AML systems explain why a transaction looks risky.",
-      "used_in": ["Wallet Risk Lab", "Wallet Risk Notes", "Wallet Risk Check"]
+      "used_in": ["Wallet Risk Assessment", "Wallet Risk Notes", "Wallet Risk Check"]
     },
     {
       "id": "false-positive",
       "term": "False positive",
       "plain_definition": "A system flags something as risky, but after review it is not actually risky.",
       "why_it_matters": "False positives matter because they waste review time. In compliance, accuracy is not only detection. It is also how much noise the system creates.",
-      "used_in": ["Wallet Risk Lab"]
+      "used_in": ["Wallet Risk Assessment"]
     },
     {
       "id": "evm",
@@ -185,9 +185,9 @@
       "id": "interactive-source",
       "layer": "Interactive evidence path",
       "why_2026_teams_care": "People understand technical work faster when they can inspect a working page instead of only reading claims.",
-      "learn_here": "Use the Experiments and Field Notes pages to move from a working page to the numbers, limits, and next question.",
+      "learn_here": "Use the Systems and Field Notes pages to move from a working page to the numbers, limits, and next question.",
       "reader_question": "Can someone understand the path without reading the full project archive?",
-      "linked_surface": "/proof-tour/"
+      "linked_surface": "/risk-evidence-overview/"
     },
     {
       "id": "rag-quality",
@@ -216,9 +216,9 @@
     {
       "id": "deployment-reliability",
       "layer": "Deployment reliability",
-      "why_2026_teams_care": "A demo becomes stronger when it can be packaged, health-checked, monitored, and redeployed predictably.",
-      "learn_here": "Use Docker and Kubernetes as the path from local demo to reliable service behavior.",
-      "reader_question": "What makes an AI demo repeatable, observable, and easier to trust?",
+      "why_2026_teams_care": "A demonstration becomes stronger when it can be packaged, health-checked, monitored, and redeployed predictably.",
+      "learn_here": "Use Docker and Kubernetes as the path from local demonstration to reliable service behavior.",
+      "reader_question": "What makes an AI demonstration repeatable, observable, and easier to trust?",
       "linked_surface": "/gaps#deployment-source-trail"
     }
   ]

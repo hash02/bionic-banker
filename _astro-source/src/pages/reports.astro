@@ -19,10 +19,10 @@ const getLimits = (project) => project.limits || [];
 const getTags = (project) => project.tags || [];
 
 const displayNames = {
-  'aml-engine-roaster': 'Wallet Risk Engine + Roast Notes',
-  'agent-framework-proof-v2': 'Agent Workflow Lab',
+  'aml-engine-roaster': 'Wallet Risk Engine + Assessment Notes',
+  'agent-framework-proof-v2': 'Agent Workflow System',
   'agent-chess': 'Agent Chess',
-  'agent-heartbeat-lab': 'Heartbeat Lab',
+  'agent-heartbeat-lab': 'Monitoring Heartbeat',
   'governance-starter-kit': 'Agent Notes Kit',
 };
 
@@ -59,7 +59,7 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
         <span>Signals</span>
         <span>Charts</span>
         <span>Limits</span>
-        <a href="/projects">Experiments</a>
+        <a href="/projects">Systems</a>
         <a href="/gaps">Questions</a>
       </div>
     </div>
@@ -68,13 +68,13 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
     <section class="route-rail" aria-label="Bionic Banker learning route">
       <div>
         <span class="section-label">Route</span>
-        <h2>Follow the proof path</h2>
-        <p>Start with a question, learn the term, open the proof tour, then come here for the numbers. The notes make more sense in motion.</p>
+        <h2>Follow the evidence workflow</h2>
+        <p>Start with a question, learn the term, open the risk and evidence overview, then come here for the numbers. The notes make more sense in motion.</p>
       </div>
       <div class="route-links">
         <a href="/gaps">Questions</a>
-        <a href="/learn">AI Learning</a>
-        <a href="/proof-tour">Proof Tour</a>
+        <a href="/learn">Knowledge Base</a>
+        <a href="/risk-evidence-overview">Risk & Evidence Overview</a>
         <a href="/reports">Field notes</a>
         <a href="/intelligence">Live signals</a>
       </div>
@@ -86,10 +86,10 @@ const maxSources = Math.max(...sourceRows.map((row) => row.sources));
           <span class="tag-pill tag-green">Snapshot</span>
         </div>
         <h3>What is moving</h3>
-        <p>The current catalog tracks {labProjects.length} experiments, {totalSources} source entries, {totalMetrics} number notes, and {totalLimitations} visible limits.</p>
+        <p>The current catalog tracks {labProjects.length} systems, {totalSources} source entries, {totalMetrics} number notes, and {totalLimitations} visible limits.</p>
         <p>The learning layer adds {concepts.length} concepts and {guideSteps} guide steps, so the numbers do not float without language around them.</p>
         <div class="card-footer">
-          <a class="read-more" href="/projects">Open experiments -></a>
+          <a class="read-more" href="/projects">Open systems -></a>
           <a class="read-more" href="/learn">Open learning layer -></a>
           <a class="read-more" href="/gaps">Open questions -></a>
         </div>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="NEXUS-RISK | Investigate Any Wallet" description="Paste an Ethereum wallet address for a public lab demo. Sample wallets show preloaded risk narratives and unknown wallets return demo-mode output.">
+<BaseLayout title="NEXUS-RISK | Investigate Any Wallet" description="Paste an Ethereum wallet address for a public risk-screening demonstration. Sample wallets show preloaded risk narratives and unknown wallets return sample-mode output.">
 
 <div class="investigate-wrap">
 
@@ -9,8 +9,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <h1>Investigate Any <span>Wallet</span></h1>
     <p class="investigate-sub">
-      Paste an Ethereum address. sample and demo-mode risk signals are shown with clear boundaries.
-      Then an AI agent roasts whatever it finds.
+      Paste an Ethereum address. Sample and demonstration-mode risk signals are shown with clear boundaries.
+      The result shows risk signals, supporting context, and assessment limits.
     </p>
 
     <div class="input-group">
@@ -52,9 +52,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
-      <!-- Roast -->
+      <!-- Assessment note -->
       <div class="roast-card">
-        <div class="roast-label">🔥 NEXUS-RISK says</div>
+        <div class="roast-label">Risk assessment note</div>
         <p class="roast-text" id="roastText"></p>
       </div>
 
@@ -91,7 +91,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
         risk_score: 97,
         risk_level: 'CRITICAL',
-        roast: "This wallet has more red flags than a Soviet parade. Direct links to Lazarus Group, state-sponsored laundering through mixers, bridge exploits, and enough layering to make an onion cry. If compliance had a most-wanted poster, this address would be the centerfold.",
+        roast: "This sample wallet is associated with high-risk indicators including Lazarus Group attribution, state-sponsored laundering patterns, mixer exposure, bridge exploit activity, and multi-hop layering. The result should be treated as a reason for enhanced review, not as a legal conclusion.",
         tx_count: 847,
         flagged_count: 312,
         total_volume: 625000000,
@@ -105,7 +105,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
         risk_score: 94,
         risk_level: 'CRITICAL',
-        roast: "Ronin Bridge exploiter, $625M stolen in a single transaction. This wallet is the reason every bridge protocol now has nightmares. The funds scattered through dozens of intermediary wallets faster than you can say 'decentralized'.",
+        roast: "This sample is associated with the Ronin Bridge exploit and high-value fund dispersal. The pattern shows rapid movement through intermediary wallets and should be reviewed as a critical-risk exposure scenario.",
         tx_count: 1203,
         flagged_count: 456,
         total_volume: 625000000,
@@ -119,7 +119,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         address: '0x0836222F2B2B24A3F36f98668Ed8F0B38D1a872f',
         risk_score: 91,
         risk_level: 'CRITICAL',
-        roast: "Tornado Cash router contract. Every transaction here is designed to do exactly one thing: make the trail disappear. OFAC sanctioned, universally flagged, and still somehow getting deposits. The cockroach of DeFi.",
+        roast: "This sample references a Tornado Cash router contract with sanctions exposure and mixer-related activity. The pattern indicates privacy-protocol interaction and should be treated as a critical-risk screening signal.",
         tx_count: 28450,
         flagged_count: 28450,
         total_volume: 7800000000,
@@ -284,7 +284,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         return;
       }
 
-      // For unknown addresses, generate a demo result
+      // For unknown addresses, generate a demonstration result
       setTimeout(function() {
         var score = 15 + Math.floor(Math.random() * 40);
         var level = score > 60 ? 'HIGH' : score > 35 ? 'MEDIUM' : 'LOW';
@@ -292,14 +292,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           address: address,
           risk_score: score,
           risk_level: level,
-          roast: "This address doesn't match any known threat actors in our database. Transaction volume is moderate, no mixer interactions detected, and the behavioral patterns look... actually normal. Suspicious in its normalcy, if you ask me.",
+          roast: "This address does not match the sample threat-actor patterns in this demonstration dataset. Transaction volume is moderate, no mixer interactions are detected, and the visible behavioral indicators are low risk for this sample view.",
           tx_count: 50 + Math.floor(Math.random() * 500),
           flagged_count: Math.floor(Math.random() * 5),
           total_volume: 1000 + Math.random() * 500000,
           avg_risk_score: score,
           signals: score > 35 ? ['Moderate Activity Volume', 'Multiple Counterparties'] : ['Low Activity'],
           risk_distribution: score > 35 ? { MEDIUM: 2, LOW: 4 } : { LOW: 3 },
-          engine: 'AML Detection Engine v12, 28 rules (Demo)',
+          engine: 'AML Detection Engine v12, 28 rules (Demonstration)',
           elapsed: (2 + Math.random() * 3).toFixed(1)
         });
       }, 5000);
@@ -552,7 +552,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       letter-spacing: -0.02em;
     }
 
-    /* Roast card */
+    /* Assessment note card */
     .roast-card {
       background: var(--bg2);
       border: 1px solid var(--accent-border);

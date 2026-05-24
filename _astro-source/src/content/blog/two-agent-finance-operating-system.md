@@ -95,7 +95,7 @@ The turn says:
 
 That sounds small, but it matters.
 
-It means the system does not depend on vibes. It has receipts.
+It means the system does not depend on informal judgment. It has traceable records.
 
 If one agent drafts a resume, the other agent can review it for overclaiming. If one agent proposes a public portfolio page, the other agent can check whether the links are real. If one agent wants to build a page, the other agent can say, "wait, this card has no public URL yet."
 

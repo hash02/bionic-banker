@@ -37,15 +37,15 @@ const readingSteps = [
   },
   {
     title: 'Limit',
-    body: 'This lab uses sample rows and visible summaries. It does not use employer data, client data, private wallet data, or live filing workflows.',
+    body: 'This assessment view uses sample rows and visible summaries. It does not use employer data, client data, private wallet data, or live filing workflows.',
   },
 ];
 ---
-<BaseLayout title="Wallet Risk Lab" description="A plain-language wallet-risk lab showing how transaction rules, scores, and explanation notes can sit next to each other without exposing private data.">
+<BaseLayout title="Wallet Risk Assessment" description="A plain-language wallet risk assessment showing how transaction rules, scores, and explanation notes can sit next to each other without exposing private data.">
   <main class="wallet-shell">
     <section class="wallet-hero">
       <div class="wallet-hero-copy">
-        <span class="eyebrow">Wallet Risk Lab</span>
+        <span class="eyebrow">Wallet Risk Assessment</span>
         <h1>Some rows only get interesting when the rules explain why.</h1>
         <p>
           This is the quieter front door for the AML Engine and Roaster idea. A transaction pattern gets scored, the rules say what fired, and the voice layer turns it into a note a human can actually read.
@@ -114,7 +114,7 @@ const readingSteps = [
         </div>
         <div class="voice-note">
           <span>Plain note</span>
-          <p>A row like this is not proof of wrongdoing. It is a reason to slow down, read the surrounding activity, and ask whether the pattern repeats.</p>
+          <p>A row like this is not evidence of wrongdoing. It is a reason to slow down, read the surrounding activity, and ask whether the pattern repeats.</p>
         </div>
       </article>
 
@@ -137,7 +137,7 @@ const readingSteps = [
       <div class="panel-head">
         <span>Numbers I am watching</span>
         <h2>Useful numbers need their limits beside them.</h2>
-        <p>These values come from the local report catalog snapshot on {catalogDate}. They are shown as lab notes, not product certification.</p>
+        <p>These values come from the local report catalog snapshot on {catalogDate}. They are shown as research notes, not product certification.</p>
       </div>
       <div class="metric-strip">
         {walletMetrics.map((metric) => (
@@ -172,8 +172,8 @@ const readingSteps = [
         <span>Learning layer</span>
         <strong>Read the AML plain-English note</strong>
       </a>
-      <a href="/proof-tour">
-        <span>Proof Tour</span>
+      <a href="/risk-evidence-overview">
+        <span>Risk & Evidence Overview</span>
         <strong>Follow the full route</strong>
       </a>
       <a href="/reports">

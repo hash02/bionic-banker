@@ -1,6 +1,6 @@
 ---
-title: "My AML Engine Doesn't Just Flag Wallets. It Roasts Them."
-description: "A strange little AML experiment: scan suspicious Ethereum patterns, explain what fired, then make the finding impossible to ignore."
+title: "My AML Engine Turns Wallet Flags Into Risk Notes."
+description: "A blockchain AML monitoring workflow that scans suspicious Ethereum patterns, explains triggered rules, and produces reviewer-ready risk notes."
 date: "2026-03-08"
 tags: ["AML · AI · Blockchain"]
 readTime: "8 min"
@@ -26,10 +26,10 @@ The systems we have for catching money laundering — the compliance reports, th
 Crime is evolving faster than compliance can keep up. And the gap isn't intelligence — we have the data, we have the models, we have the rules. The gap is that the output is so boring that the humans in the loop check out before the signal lands.
 
     
-So I did something kind of stupid. I built an AML engine that roasts suspicious wallets. Like, actually roasts them — sarcastic, pointed, impossible to ignore.
+I built an AML engine that turns suspicious-wallet signals into plain-language risk notes: direct, readable, and difficult to ignore.
 
     
-And somehow it's the best compliance tool I've ever made.
+The useful part is not novelty. It is that the output becomes clear enough for a human reviewer to act on.
 
     <!-- ═══════════════ STATS EMBED ═══════════════ -->
     
@@ -44,7 +44,7 @@ And somehow it's the best compliance tool I've ever made.
 ## The scale of what we're fighting
 
     
-Before I get into the build, you need context on why this matters beyond a fun side project.
+Before the system details, the operating context matters.
 
     
 The Lazarus Group — North Korea's state-sponsored hacking operation — has stolen over $6.75 billion in crypto since 2017. In February 2025 alone, they hit Bybit for $1.5 billion. One hack. That single heist was bigger than everything they stole across 47 separate incidents in all of 2024.
@@ -68,20 +68,20 @@ The regulatory landscape is shifting under everyone's feet while the crime scale
 ## What the engine actually does
 
     
-The AML Roaster is a real detection system. 13 active rules, scanning Ethereum mainnet every 30 minutes via GitHub Actions. It watches 11 addresses — Tornado Cash pools, OFAC-flagged entities, Lazarus Group wallets, the Ronin Bridge exploiter.
+The AML risk-note generator is a working detection system. 13 active rules, scanning Ethereum mainnet every 30 minutes via GitHub Actions. It watches 11 addresses — Tornado Cash pools, OFAC-flagged entities, Lazarus Group wallets, the Ronin Bridge exploiter.
 
     
 When it finds something suspicious, it does what any AML system does: assigns a risk score, tags the rules that fired, generates a report.
 
     
-But then it does something different. It sends the finding to an LLM and says: explain what happened like you're telling a friend at a bar. Then roast them.
+But then it does something different. It sends the finding to an LLM and says: explain what happened in plain language, state the risk rationale, and recommend the next review action.
 
     
-Here's an actual roast from a real scan — a wallet that sent five identical zero-value transactions to Tornado Cash's 0.1 ETH pool:
+Here is an actual assessment note from a scan — a wallet that sent five identical zero-value transactions to Tornado Cash's 0.1 ETH pool:
 
     
       
-"It takes a special kind of genius to send five identical transactions of 0.0000 ETH to a sanctioned mixer — I mean, who needs actual money when you can just smurf your way to OFAC's bad side? The structuring pattern is just the cherry on top, because who doesn't love a good game of 'let's make all our transactions look identical.'"
+"The wallet sent five identical zero-value transactions to a mixer address. The repeated pattern, sanctions exposure, and mixer contact raise critical review priority even though no value moved in these calls."
 
       
         Risk Score: 530 — CRITICAL
@@ -91,25 +91,25 @@ Here's an actual roast from a real scan — a wallet that sent five identical ze
     
 
     
-That's not a report you skim.
+That is the kind of summary a reviewer can quickly understand and challenge.
 
     
-## Why humor is actually the missing layer
+## Why plain-language explanation matters
 
     
-This isn't a gimmick. There's a real insight underneath it.
+The core point is not style. It is reviewer comprehension.
 
     
 The problem with traditional AML output isn't that it lacks information — it has too much. A wall of technical text triggers the same response in everyone: glazed eyes, checkbox mentality, move to the next one. The signal drowns in its own formatting.
 
     
-The roast forces the AI to actually understand what happened. You can't roast something you don't understand. Try writing a sarcastic take on "the wallet exhibited layering characteristics" — you can't. But if you understand that someone sent five empty transactions to a mixer like they're testing the waters before doing something real? Now you've got material.
+The assessment note forces the system to explain what happened in operational terms. A phrase like "the wallet exhibited layering characteristics" is not enough. The useful version states that the wallet sent repeated zero-value transactions to a mixer, which may indicate probing before higher-value movement.
 
     
-And the person reading it? They remember it. You'll forget "risk score 530, OFAC sanctions match, structuring detected" by tomorrow. You won't forget the wallet that smurfed its way to OFAC's bad side.
+The reviewer gets both the numeric score and the reason it matters: repeated zero-value mixer interaction can be probing behavior, sanctions exposure, or preparation for larger movement.
 
     
-> *"The hard part was never making the AI smarter. It's making the output worth a human's time. We're drowning in AI-generated text that nobody reads. The bottleneck isn't intelligence. It's engagement."*
+> *The hard part is not only detecting the signal. It is making the evidence readable enough that a human reviewer can evaluate it, contest it, and decide what to review next.*
 
     
 ## The pipeline
@@ -118,7 +118,7 @@ And the person reading it? They remember it. You'll forget "risk score 530, OFAC
     
       </iframe>
       
-        From Ethereum block to roast report — the 5-stage pipeline
+        From Ethereum block to risk assessment report — the 5-stage pipeline
         Interactive
       
     
@@ -130,16 +130,16 @@ And the person reading it? They remember it. You'll forget "risk score 530, OFAC
 **Score** — Each rule has a weight. Mixer touch is +100, OFAC hit is +200, structuring is +70. Scores compound. A wallet hitting multiple rules climbs fast — 400+ is CRITICAL.
 
     
-**Roast** — The finding goes to an LLM with context: rules triggered, scores, transaction details. It generates a plain-English summary, the roast, and a risk verdict with recommended action. This is where the dry data becomes something you actually want to read.
+**Assessment Note** — The finding goes to an LLM with context: rules triggered, scores, and transaction details. It generates a plain-English summary, risk rationale, and recommended action. This is where dry data becomes reviewable context.
 
     
-**Dashboard** — Single-page HTML, auto-updates from the scan data. Three stats, roast cards with the actual text, two charts. Minimal, clean.
+**Dashboard** — Single-page HTML, auto-updates from the scan data. Three stats, assessment cards with the actual text, and two charts. Minimal, clean.
 
     
 **Storage** — Every scan appends to a JSON file. Markdown reports get generated per scan. The whole thing runs on GitHub Actions' free tier — zero infrastructure cost.
 
     
-The entire system is automated. I don't touch it. Every 30 minutes it wakes up, scans Ethereum, checks the watchlist, and if it finds something, it roasts it.
+The entire system is automated. I don't touch it. Every 30 minutes it wakes up, scans Ethereum, checks the watchlist, and if it finds something, it generates a risk note.
 
     
 ## What it caught
@@ -148,10 +148,10 @@ The entire system is automated. I don't touch it. Every 30 minutes it wakes up, 
 In 24 scans so far, it found 2 CRITICAL wallets — both interacting with Tornado Cash's 0.1 ETH pool. One sent 5 identical zero-value transactions (score: 530, six rules fired). Another sent 2 zero-value calls (score: 400, four rules).
 
     
-Zero-value transactions to a mixer are interesting because they're not moving money. They're probing — testing the contract, or relaying for someone else. The engine caught both and the roasts made the difference obvious: one was "smurfing to OFAC's bad side," the other was "spinning dirty laundry on a budget."
+Zero-value transactions to a mixer are interesting because they're not moving money. They're probing — testing the contract, or relaying for someone else. The engine caught both and the risk notes made the difference obvious: one resembled structuring around sanctions exposure, while the other resembled low-value mixer probing.
 
     
-That kind of plain-language distinction is what turns a detection system into an investigation tool. The rules catch the pattern. The roast explains why you should care.
+That kind of plain-language distinction is what turns a detection system into an investigation tool. The rules catch the pattern. The assessment note explains why the reviewer should care.
 
     
 ## AI is about to change how we interact with crime data
@@ -163,13 +163,13 @@ Here's the bigger picture and why I think this matters beyond one engine.
 We're at this weird inflection point where AI can process massive amounts of financial data in real-time — but the way we present that information to humans hasn't changed since the 90s. Same spreadsheets, same PDF reports, same dashboards with red and green numbers.
 
     
-What happens when AI doesn't just detect patterns but explains them in a way that makes investigators actually engage? What happens when every suspicious transaction comes with context, personality, and a recommendation that reads like a colleague briefing you instead of a system alert?
+What happens when AI does not only detect patterns, but explains them with context, limitations, and a recommended next review step? What happens when every suspicious transaction comes with enough evidence for an investigator to inspect instead of another opaque alert?
 
     
 The way we interact with crime data — and honestly, with all monitoring data — is about to fundamentally change. Not because the models get smarter, but because someone finally makes the output worth reading.
 
     
-That's what the Roaster proved to me. The detection was always possible. The rules work. The scoring works. The thing that was missing — the thing that makes a human actually stop and pay attention — is voice.
+That is what the risk-note workflow showed me. The detection was always possible. The rules work. The scoring works. The thing that was missing — the thing that makes a human actually stop and pay attention — is voice.
 
     
 And once you see that, you start seeing it everywhere. Security alerts nobody reads. Fraud flags that get auto-dismissed. Monitoring dashboards that exist to satisfy auditors, not to actually inform anyone. The problem is always the same: the output doesn't respect the human's attention.
@@ -180,18 +180,18 @@ $82 billion laundered through crypto last year. Less than 1% caught globally. Ma
     <!-- ═══════════════ FOOTER CTA ═══════════════ -->
     
       
-The AML Roaster is open source and runs live.
+The AML risk-note workflow is open source and runs on a scheduled monitoring loop.
 
       
-The roaster scans Ethereum every 30 minutes. The full AML Detection Engine (28 rules, 94.9% detection rate) has a live demo. I write about building at the intersection of AI, blockchain, and finance.
+The risk-note generator scans Ethereum every 30 minutes. The full AML Detection Engine (28 rules, 94.9% detection rate) has a public demonstration. I write about building at the intersection of AI, blockchain, and finance.
 
       
         [
-          AML Roaster — GitHub
+          AML Risk Notes — GitHub
         ](https://github.com/hash02/aml-roaster)
         [
           Full AML Engine →
         ](https://github.com/hash02/aml-detection-engine)
         [
-          Live Demo →
+          Public Demonstration →
         ](https://aml-detection-engine-ewxnmkbekcg8scjjes7caa.streamlit.app/)

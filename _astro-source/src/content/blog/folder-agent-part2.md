@@ -1,6 +1,6 @@
 ---
 title: "How to Build a Folder Agent"
-description: "Part 2 of the folder-agent idea: the pieces, the missing parts, and the small script that made the folder feel alive."
+description: "Part 2 of the folder-agent idea: the pieces, the missing parts, and the small script that made the folder show current status."
 date: "2026-03-09"
 tags: ["AI", "Agents", "Code"]
 readTime: "12 min"

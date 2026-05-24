@@ -3,7 +3,7 @@
   "status": "public_aml_status_evidence_v1",
   "purpose": "Public-safe AML status evidence card for AML Layer 1 evidence wiring. It explains what was verified, where the evidence contract lives, and what authority the system still does not have.",
   "privacy_boundary": "Repository-relative docs and public-safe summaries only. No local machine paths, secrets, private infrastructure, account-level details, employer data, or client data.",
-  "reading_rule": "Every visible claim should resolve to a contract doc, test receipt, artifact contract, or explicit boundary.",
+  "reading_rule": "Every visible claim should resolve to a contract doc, test evidence record, artifact contract, or explicit boundary.",
   "visible_claims": [
     "AML status can only be treated as evidence-backed when stub is false, counts exist, source metadata exists, rules are loaded, and freshness checks pass.",
     "Planning/advisor gate outputs carry proposal_clean and may_execute fields, with may_execute remaining false on every branch.",
@@ -21,7 +21,7 @@
       "console/src/pages/Planning.jsx"
     ],
     "local_artifact_pattern": "70-ops-logs/aml-evidence/<timestamp>-aml-evidence.{json,md} plus aml-evidence-latest aliases and .sha256 sidecar",
-    "receipt_docs": [
+    "evidence_record_docs": [
       "70-ops-logs/vault-reviews/20260524-aml-layer1-status-contract.md",
       "70-ops-logs/vault-reviews/20260524-aml-hole-closure.md",
       "70-ops-logs/vault-reviews/20260524-0605-aml-artifact-provenance-hardening.md"

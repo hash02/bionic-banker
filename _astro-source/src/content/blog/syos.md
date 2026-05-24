@@ -97,7 +97,7 @@ I didn't plan that connection. I found it. And when I found it, a lot of things 
 SYOS v3 is about 70% deployable. What that means practically: the capsule system works. You can take a SYOS context and move it across different AI models and the reasoning framework transfers. The trait system is documented and evolving. The EchoTrace protocol runs reliably.
 
     
-What's still being built: the falsification layer. A real test, not "does it seem to work" but "here's a specific metric, here's 50 trials, here's a number." That's the next milestone. Because the most interesting claim SYOS makes is that it can detect when an LLM is drifting from sound reasoning, and that claim needs a real test, not just good vibes from conversations.
+What's still being built: the falsification layer. A real test, not "does it seem to work" but "here's a specific metric, here's 50 trials, here's a number." That's the next milestone. Because the most interesting claim SYOS makes is that it can detect when an LLM is drifting from sound reasoning, and that claim needs a real test, not just positive impressions from conversations.
 
     
 I'm also thinking about how SYOS and the AML engine converge. A reasoning audit layer that runs on top of financial AI decisions, checking not just whether the model flagged something, but whether the reasoning chain that led to that flag is internally consistent. That's not a hypothetical. That's the next version of what I'm building.

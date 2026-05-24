@@ -82,15 +82,15 @@ The startups watching them and saying "they are so slow" are probably right abou
 
 ## What Vibe Coding Means in a Regulated Environment
 
-Karpathy described vibe coding as using English as code. Ideal for rapid prototyping. Good when existing software does not fit. Challenges include deployment, auth, and devops still being bottlenecks.
+Karpathy described natural-language coding as using English as code. Ideal for rapid prototyping. Good when existing software does not fit. Challenges include deployment, auth, and devops still being bottlenecks.
 
 Every word of that is accurate inside a financial institution, with one addition: compliance review is another bottleneck that does not exist in most startup contexts.
 
-When I build something using vibe coding patterns and want to show it to someone inside a financial institution, the conversation is not just "does this work" and "can we deploy it." It is "what data does this touch," "what is the audit trail," "how do we explain this to a regulator if something goes wrong."
+When I build something using AI-assisted prototyping patterns and want to show it to someone inside a financial institution, the conversation is not just "does this work" and "can we deploy it." It is "what data does this touch," "what is the audit trail," "how do we explain this to a regulator if something goes wrong."
 
 That is not a reason to not build. It is the context the building happens in.
 
-The interesting thing is that vibe coding is actually making the internal prototyping loop faster for the first time. You can get something in front of the right people faster, get feedback earlier, and either kill it or send it to proper development sooner. The waste in the old process was not in development. It was in the months of meetings before development started. That part is compressing.
+The interesting thing is that AI-assisted prototyping is actually making the internal prototyping loop faster for the first time. You can get something in front of the right people faster, get feedback earlier, and either kill it or send it to proper development sooner. The waste in the old process was not in development. It was in the months of meetings before development started. That part is compressing.
 
 ## What Karpathy Left Out (That Matters in Finance)
 

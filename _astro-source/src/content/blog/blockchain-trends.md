@@ -34,7 +34,7 @@ AI and blockchain together can enhance financial modelling and decision-making i
 
 **Blockchain for Data Integrity**
 
-Blockchain ensures the integrity and authenticity of data, which is crucial for reliable financial modelling. By providing a tamper-proof record of transactions, blockchain allows AI to work with high-quality data, improving the accuracy of its analyses and predictions.
+Blockchain ensures the integrity and authenticity of data, which is crucial for reliable financial modelling. By providing a tamper-evidence record of transactions, blockchain allows AI to work with high-quality data, improving the accuracy of its analyses and predictions.
 
 **Synergistic Insights**
 

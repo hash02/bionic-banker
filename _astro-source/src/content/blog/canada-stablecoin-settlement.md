@@ -58,7 +58,7 @@ I think there were five blockers.
 
 None of this means banks are asleep.
 
-It means they are waiting for the proof stack to be strong enough.
+It means they are waiting for the evidence stack to be strong enough.
 
 <div class="embed-visual">
   <iframe src="/blog-visuals/canada-stablecoin-settlement/canada-timeline/" title="Why Canada took years to get here" style="width:100%;min-height:520px;border:none;border-radius:12px;" loading="lazy"></iframe>
@@ -82,7 +82,7 @@ The CFTC has authorized USDC as eligible collateral for derivatives markets. Not
 
 These are not pilots. These are operating conditions.
 
-The question is no longer "will institutions use this?" It is "when does each institution decide the proof stack is sufficient to move?"
+The question is no longer "will institutions use this?" It is "when does each institution decide the evidence stack is sufficient to move?"
 
 So the clean read is this:
 
@@ -160,7 +160,7 @@ One pilot does not change the system. But one clean pilot gives everyone else pe
 
 That is the actual game.
 
-The Wealthsimple and Visa pilot is not the finish line. It is a proof point. And in a market like Canada, proof points matter more than hype because nobody wants to be the first institution explaining to a regulator why a shiny idea broke something important.
+The Wealthsimple and Visa pilot is not the finish line. It is a proof point. And in a market like Canada, evidence points matter more than hype because nobody wants to be the first institution explaining to a regulator why a shiny idea broke something important.
 
 So yes, the headline is stablecoins.
 

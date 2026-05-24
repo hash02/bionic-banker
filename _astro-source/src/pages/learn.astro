@@ -51,9 +51,9 @@ const basicsRoute = [
   },
 ];
 ---
-<BaseLayout title="AI Learning" description="Plain-English concepts behind the Bionic Banker public work: AI agents, LLMs, VLMs, RAG, LangChain, RBAC, AML, observability, and deployment basics.">
+<BaseLayout title="Knowledge Base" description="Plain-English concepts behind the Bionic Banker public work: AI agents, LLMs, VLMs, RAG, LangChain, RBAC, AML, observability, and deployment basics.">
   <div class="page-header">
-    <div class="page-label">AI Learning</div>
+    <div class="page-label">Knowledge Base</div>
     <h1 class="page-title">Learn the terms behind the work.</h1>
     <p class="page-sub">Plain-English notes for the public pages. No hype. Just what each concept means, why it matters, and where it shows up.</p>
   </div>
@@ -71,7 +71,7 @@ const basicsRoute = [
           <a href={`#${item.id}`}>{item.label}</a>
         ))}
         <a href="/wallet-risk">Open Wallet Risk</a>
-        <a href="/projects">Open experiments</a>
+        <a href="/projects">Open systems</a>
         <a href="/reports">Field notes</a>
         <a href="/gaps">Questions</a>
       </div>
@@ -80,13 +80,13 @@ const basicsRoute = [
     <section class="route-rail" aria-label="Bionic Banker learning route">
       <div>
         <span class="section-label">Route</span>
-        <h2>Follow the proof path</h2>
-        <p>Start with a question, learn the term, open the proof tour, then check the numbers. Each page is a different doorway into the same work.</p>
+        <h2>Follow the evidence workflow</h2>
+        <p>Start with a question, learn the term, open the risk and evidence overview, then check the numbers. Each page is a different doorway into the same work.</p>
       </div>
       <div class="route-links">
         <a href="/gaps">Questions</a>
-        <a href="/learn">AI Learning</a>
-        <a href="/proof-tour">Proof Tour</a>
+        <a href="/learn">Knowledge Base</a>
+        <a href="/risk-evidence-overview">Risk & Evidence Overview</a>
         <a href="/reports">Field notes</a>
         <a href="/intelligence">Live signals</a>
       </div>
@@ -109,13 +109,13 @@ const basicsRoute = [
     </section>
 
     <section class="stack-radar-panel">
-      <div class="section-label">AI Learning Map</div>
+      <div class="section-label">Knowledge Map</div>
       <div class="radar-head">
         <div>
           <h2>What the work keeps returning to</h2>
           <p>AI work is not only prompting. It is retrieval, evals, traces, permission checks, deployment, and enough context that another person can follow the path.</p>
         </div>
-        <a href="/proof-tour">Open the proof tour -></a>
+        <a href="/risk-evidence-overview">Open the Risk & Evidence Overview -></a>
       </div>
       <div class="radar-grid">
         {stackRadar.map((item, index) => (
@@ -176,7 +176,7 @@ const basicsRoute = [
           <p><strong>Why it matters:</strong> {concept.why_it_matters}</p>
           <p><strong>Shows up in:</strong> {concept.used_in.join(' / ')}</p>
           <div class="card-footer">
-            <a class="read-more" href="/projects">Back to experiments -></a>
+            <a class="read-more" href="/projects">Back to systems -></a>
             <a class="read-more" href="/reports">View report -></a>
             <a class="read-more" href="/gaps">View questions -></a>
           </div>

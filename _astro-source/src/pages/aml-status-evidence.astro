@@ -24,8 +24,8 @@ const proofCards = [
   },
   {
     label: 'Artifact provenance',
-    title: 'The receipt shape is defined before the public claim.',
-    body: 'The local contract defines JSON and Markdown proof artifacts, latest aliases, and SHA-256 sidecars so a later reader can inspect what backed the status.',
+    title: 'The evidence record shape is defined before the public claim.',
+    body: 'The local contract defines JSON and Markdown evidence artifacts, latest aliases, and SHA-256 sidecars so a later reader can inspect what backed the status.',
     source: provenance.local_artifact_pattern,
   },
 ];
@@ -35,14 +35,14 @@ const proofCards = [
     <section class="aml-proof-hero">
       <div>
         <span class="eyebrow">AML Status Evidence</span>
-        <h1>The important part is not the flag. It is the receipt behind the flag.</h1>
+        <h1>The status is only useful when the supporting evidence, control boundary, and review record are visible.</h1>
         <p>
           This page makes the AML Layer 1 status evidence visible without turning it into a compliance claim. It shows the contract, the artifact provenance, the planner boundary, and the parts that still stay local.
         </p>
         <div class="proof-actions">
-          <a href="#proof-cards">Read the evidence</a>
-          <a href="/wallet-risk">Open wallet-risk lab</a>
-          <a href="/dashboard-data/aml-status-evidence-public.json">Open public JSON</a>
+          <a href="#proof-cards">Review supporting evidence</a>
+          <a href="/wallet-risk">Open wallet risk assessment</a>
+          <a href="/dashboard-data/aml-status-evidence-public.json">Open evidence JSON</a>
         </div>
       </div>
       <aside class="authority-card" aria-label="AML status evidence authority boundary">
@@ -88,7 +88,7 @@ const proofCards = [
     <section class="proof-panel">
       <div class="panel-head">
         <span>Artifact provenance</span>
-        <h2>The proof path is a contract, not a vibe.</h2>
+        <h2>The evidence workflow is a contract, not an unsupported claim.</h2>
         <p>Public readers get repository-relative provenance. The local machine details, private paths, and operational internals stay off the public site.</p>
       </div>
       <div class="provenance-grid">
@@ -113,9 +113,9 @@ const proofCards = [
 
     <section class="proof-panel">
       <div class="panel-head">
-        <span>Verification receipts</span>
+        <span>Verification records</span>
         <h2>What was checked locally</h2>
-        <p>These are local verification commands recorded in the proof receipts. They are shown as evidence trail, not as hosted compliance certification.</p>
+        <p>These are local verification commands recorded in the evidence records. They are shown as evidence trail, not as hosted compliance certification.</p>
       </div>
       <div class="check-list">
         {checks.map((check) => (
@@ -147,16 +147,16 @@ const proofCards = [
 
     <section class="proof-links">
       <a href="/wallet-risk">
-        <span>Wallet Risk Lab</span>
+        <span>Wallet Risk Assessment</span>
         <strong>See the readable risk layer</strong>
       </a>
-      <a href="/proof-tour">
-        <span>Proof Tour</span>
-        <strong>Follow the wider proof route</strong>
+      <a href="/risk-evidence-overview">
+        <span>Risk & Evidence Overview</span>
+        <strong>Follow the broader evidence workflow</strong>
       </a>
       <a href="/projects">
-        <span>Experiments</span>
-        <strong>Return to the public workbench</strong>
+        <span>Systems</span>
+        <strong>Return to the systems index</strong>
       </a>
     </section>
   </main>

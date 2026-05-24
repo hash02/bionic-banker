@@ -72,7 +72,7 @@ const movingRows = [
 const metricByLabel = (label) => reportMetrics.find((metric) => metric.label === label);
 const proofSnapshot = [
   {
-    label: 'Experiments',
+    label: 'Systems',
     value: proofCount,
     unit: 'lanes',
     source: 'public catalog',
@@ -123,7 +123,7 @@ const heartbeatSnapshot = [
   },
 ];
 
-const geoDescription = `Bionic Banker is a finance and AI learning site with ${articleCount} articles, visible experiments, field notes, and reader-facing signal pages from someone building inside finance.`;
+const geoDescription = `Bionic Banker is a finance and AI learning site with ${articleCount} articles, visible systems, field notes, and reader-facing signal pages from someone building inside finance.`;
 ---
 <BaseLayout title="Home" description={geoDescription}>
 
@@ -139,8 +139,8 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
         <p class="hero-sub">I work inside finance and build around the things it cannot easily explain: AML patterns, wallet-risk signals, AI agents, and the gap between a clean number and the reasoning behind it. The public site shows the pieces that are safe to inspect.</p>
         <div class="hero-actions">
           <a href="/gaps" class="btn-primary">Start with Questions -></a>
-          <a href="/projects" class="btn-ghost">Open Experiments</a>
-          <a href="/intelligence" class="btn-ghost">Watch Live Signals</a>
+          <a href="/projects" class="btn-ghost">Open Systems</a>
+          <a href="/intelligence" class="btn-ghost">Watch Risk Signals</a>
         </div>
         <div class="hero-signal-row" aria-label="Signals on the table">
           {movingRows.map(row => (
@@ -180,7 +180,7 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
     <section class="proof-data-section section-divide animate-on-scroll">
       <div class="section-header">
         <div>
-          <div class="section-label-text">Proof Snapshot</div>
+          <div class="section-label-text">Evidence Snapshot</div>
           <div class="section-title-text">The data on the table</div>
         </div>
       </div>
@@ -325,24 +325,24 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
     <section class="proof-route-section section-alt animate-on-scroll">
       <div class="section-header">
         <div>
-          <div class="section-label-text">Experiments</div>
+          <div class="section-label-text">Systems</div>
           <div class="section-title-text">Pick where to start</div>
         </div>
-        <a href="/projects" class="view-all">Open experiments -></a>
+        <a href="/projects" class="view-all">Open systems -></a>
       </div>
       <p class="section-orient">Five entry points into the work. Pick whichever fits where you are right now.</p>
       <div class="proof-route-grid">
-        <a href="/proof-tour" class="article-card">
+        <a href="/risk-evidence-overview" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
-          <h3>Open the proof tour</h3>
+          <h3>Open the risk and evidence overview</h3>
           <p>AML stories, agent loops, signals, and what is moving.</p>
           <div class="card-footer"><span class="read-more">Start walking -></span></div>
         </a>
         <a href="/projects" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Experiments</span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">Systems</span></div>
           <h3>Things that run</h3>
           <p>AML engines, wallet risk, and agent workflows. All shipped.</p>
-          <div class="card-footer"><span class="read-more">Open experiments -></span></div>
+          <div class="card-footer"><span class="read-more">Open systems -></span></div>
         </a>
         <a href="/reports" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Field Notes</span></div>
@@ -357,14 +357,14 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
           <div class="card-footer"><span class="read-more">Open questions -></span></div>
         </a>
         <a href="/learn" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">AI Learning</span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">Knowledge Base</span></div>
           <h3>Concepts without fog</h3>
           <p>RAG, agents, AML, embeddings. Less fog, more signal.</p>
           <div class="card-footer"><span class="read-more">Learn the terms -></span></div>
         </a>
       </div>
       <div style="text-align:center;margin:2rem 0 0.5rem;">
-        <a href="/proof-tour" class="btn-primary">Open the proof tour -></a>
+        <a href="/risk-evidence-overview" class="btn-primary">Open the Risk & Evidence Overview -></a>
       </div>
     </section>
 
@@ -462,11 +462,11 @@ const geoDescription = `Bionic Banker is a finance and AI learning site with ${a
             <div class="about-name">Himanshu</div>
             <div class="about-role">Finance / Blockchain / Builder</div>
             <p class="about-bio">Computer engineer. Financial advisor. Builder. I work inside banking and build systems around the things it cannot easily explain: fraud patterns, risk signals, agent coordination, and the gap between what financial tools report and what they actually see.</p>
-            <p class="about-bio">This site is the reader-facing layer: articles, field notes, wallet-risk explanations, AI learning pages, and selected experiments that can be shown without exposing workbench details.</p>
+            <p class="about-bio">This site is the reader-facing layer: articles, field notes, wallet-risk explanations, AI learning pages, and selected systems that can be shown without exposing workbench details.</p>
           </div>
           <div class="about-stat-row">
             <div class="astat"><div class="astat-n">{articleCount}</div><div class="astat-l">Articles</div></div>
-            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Experiments</div></div>
+            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Systems</div></div>
             <div class="astat"><div class="astat-n">5+</div><div class="astat-l">Years</div></div>
             <div class="astat"><div class="astat-n">∞</div><div class="astat-l">Questions</div></div>
           </div>
