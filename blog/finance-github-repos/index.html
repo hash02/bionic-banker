@@ -29,11 +29,11 @@
   <iframe src="/blog-visuals/finance-github-repos/repo-map/" title="What elite finance open-sources" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 <hr>
-<h2 id="1-jane-street-magic-trace">1. Jane Street: magic-trace</h2>
+<h2 id="1-jane-street-magic-trace-process-tracing">1. Jane Street: magic-trace process tracing</h2>
 <p><strong>Repo:</strong> <a href="https://github.com/janestreet/magic-trace">janestreet/magic-trace</a>
 <strong>Stars:</strong> 5.3k</p>
 <p>Jane Street is an OCaml shop. That’s already a signal. While everyone else is writing Python and Go, Jane Street builds their core infrastructure in a language that makes you think harder about types before the code even compiles. That’s a cultural choice about what matters.</p>
-<p>magic-trace is a process tracer powered by Intel PT (Processor Trace). What that means practically: when your profiler tells you a function is slow, you can see every CPU instruction that ran to get there. Not sampling. Every instruction.</p>
+<p>Jane Street magic-trace is a process tracer powered by Intel PT (Processor Trace). What that means practically: when your profiler tells you a function is slow, you can see every CPU instruction that ran to get there. Not sampling. Every instruction.</p>
 <p>Normal profilers sample. They check in at intervals and estimate where time is being spent. That’s fine for most applications. When you’re running strategies where milliseconds are money, “estimate” is not good enough. You need to know exactly what happened, in exactly what order, at exactly what time.</p>
 <p>This is what that level of precision looks like when it’s packaged into a usable tool and open-sourced.</p>
 <hr>

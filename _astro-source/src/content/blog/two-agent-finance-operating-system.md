@@ -188,6 +188,6 @@ Not one giant agent doing everything.
 
 More like small agents with roles, memory, boundaries, and a scoreboard.
 
-Less magic.
+Less mystery.
 
 More operating system.

@@ -107,7 +107,7 @@ Building this, a few things surprised me:
 
 **Memory quality matters more than model quality.** I could upgrade to a more advanced LLM tomorrow. But honestly? The conversation quality barely changes. What matters is: how good is the memory? Did the AI pick up on the right patterns? Is it reading the history before responding? With bad memory, a smart model is wasted. With good memory, a smaller model is actually useful.
 
-**Markdown is an underrated interface.** I expected it to be janky,AI reading text files, updating text files. But it's not. It's clean. You can version it. You can see exactly what the system thinks it knows. You can edit it directly. You can put it on GitHub. There's no magic-box database hiding your data.
+**Markdown is an underrated operating interface.** I expected it to be janky,AI reading text files, updating text files. But it's not. It's clean. You can version it. You can see exactly what the system thinks it knows. You can edit it directly. You can put it on GitHub. There is no opaque database hiding your data.
 
 **The 24/7 availability changes behavior.** When the AI is always on, you stop thinking of it as a tool you use and start thinking of it as someone (something?) that's available. You ask different questions. You're more likely to actually follow through on something if you know the AI is tracking it. You're more likely to report back if you know it will remember.
 

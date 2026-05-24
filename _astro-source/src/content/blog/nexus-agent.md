@@ -39,7 +39,7 @@ The reports were decent. It caught obvious patterns — high-frequency transfers
 The moment I threw something ambiguous at it — a wallet that MIGHT be structuring, or a pattern that looks like layering but could just be DeFi yield farming — it fell apart. Not because the model was dumb. Because it had no memory. Every investigation started from zero. No context about what it saw five minutes ago. No ability to say "wait, I've seen this pattern before."
 
     
-> **What broke:** Memory. Or rather, the complete absence of it. A single-shot agent is just a fancy prompt. The difference between a prompt and an agent is the ability to carry context forward. Without that, you're not investigating — you're just asking a really expensive Magic 8-Ball.
+> **What broke:** Memory. Or rather, the complete absence of it. A single-shot agent is just a fancy prompt. The difference between a prompt and an agent is the ability to carry context forward. Without that, you're not investigating — you're just asking an expensive one-shot prompt to guess.
 
     
 ## v3: Two Brains Arguing With Each Other

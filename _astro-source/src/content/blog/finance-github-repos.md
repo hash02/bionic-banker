@@ -28,14 +28,14 @@ I went through seven of them, one from each firm. Here's what caught my attentio
 
 ---
 
-## 1. Jane Street: magic-trace
+## 1. Jane Street: magic-trace process tracing
 
 **Repo:** [janestreet/magic-trace](https://github.com/janestreet/magic-trace)
 **Stars:** 5.3k
 
 Jane Street is an OCaml shop. That's already a signal. While everyone else is writing Python and Go, Jane Street builds their core infrastructure in a language that makes you think harder about types before the code even compiles. That's a cultural choice about what matters.
 
-magic-trace is a process tracer powered by Intel PT (Processor Trace). What that means practically: when your profiler tells you a function is slow, you can see every CPU instruction that ran to get there. Not sampling. Every instruction.
+Jane Street magic-trace is a process tracer powered by Intel PT (Processor Trace). What that means practically: when your profiler tells you a function is slow, you can see every CPU instruction that ran to get there. Not sampling. Every instruction.
 
 Normal profilers sample. They check in at intervals and estimate where time is being spent. That's fine for most applications. When you're running strategies where milliseconds are money, "estimate" is not good enough. You need to know exactly what happened, in exactly what order, at exactly what time.
 

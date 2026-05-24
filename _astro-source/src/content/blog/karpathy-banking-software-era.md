@@ -80,7 +80,7 @@ The Big Five Canadian banks are not moving slow because they do not understand t
 
 The startups watching them and saying "they are so slow" are probably right about the speed. They may be wrong about what slow means for an institution that needs to still be running in fifty years.
 
-## What Vibe Coding Means in a Regulated Environment
+## What Fast AI-Assisted Coding Means in a Regulated Environment
 
 Karpathy described natural-language coding as using English as code. Ideal for rapid prototyping. Good when existing software does not fit. Challenges include deployment, auth, and devops still being bottlenecks.
 

@@ -137,7 +137,7 @@ And if they are touching finance, risk, compliance, or money, they need proof be
 
 That is the part I am building now.
 
-Not one magic agent.
+Not one universal agent.
 
 A small operating system of agents, reports, memory, and human gates.
 

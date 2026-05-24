@@ -72,7 +72,7 @@ These are not small questions. They are the kind of questions that decide whethe
 
 ## The trade
 
-Zero-knowledge is not a magic privacy switch.
+Zero-knowledge is not a universal privacy switch.
 
 It can be expensive to run. It can be hard to build. The developer experience is improving, but it is still not as easy as adding a normal database check.
 

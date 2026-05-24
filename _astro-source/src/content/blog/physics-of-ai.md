@@ -10,7 +10,7 @@ slug: "physics-of-ai"
 image: "/blog-visuals/physics-of-ai/social-preview.png"
 ---
 
-Hopfield networks map AI learning onto physics through energy surfaces, spin glass equations, and the 0.138N memory-capacity limit. This note explains why Hopfield and Hinton winning the 2024 Nobel Prize in Physics changes how AI safety, training, and model limits make sense.
+Hopfield networks map AI model learning onto physics through energy surfaces, spin glass equations, and the 0.138N memory-capacity limit. This note explains why Hopfield and Hinton winning the 2024 Nobel Prize in Physics changes how AI safety, training, and model limits make sense.
 
 Okay so here's the thing that stopped me when I first read it. John Hopfield and Geoffrey Hinton won the Nobel Prize in Physics in 2024. Not computer science. Not mathematics. *Physics.*
 
@@ -100,7 +100,7 @@ And this is what powers everything now. ChatGPT, Claude, GPT-4 , every training 
 The whole "AI is unpredictable" conversation looks different through this lens. If AI is physics, we can predict it because energy minimization is deterministic. We can constrain it because you shape the energy surface. We understand the limits because physical laws aren't negotiable.
 
     
-It's not magic. It's not alien intelligence. It's a physical system minimizing a function, the same way matter has been doing since the universe started.
+It is not unexplained behavior. It is not alien intelligence. It's a physical system minimizing a function, the same way matter has been doing since the universe started.
 
     
 Which means the path to controllable AI isn't just more compute or better architecture. It's understanding the physics well enough to shape the surface the system is rolling down.

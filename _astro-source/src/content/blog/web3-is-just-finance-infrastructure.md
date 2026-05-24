@@ -42,7 +42,7 @@ Let me map it directly.
 
 **Ondo Finance** is the on-chain version of short-duration fixed income and money market access. The underlying idea is familiar: people want treasury exposure, yield, and liquidity. Ondo changes the wrapper and the settlement path. The T-bill is not new. The distribution rail is.
 
-**Morpho** is lending infrastructure. The closest TradFi analogy is not one single market, but collateralized lending generally: repo, private credit plumbing, and bank credit infrastructure. Morpho lets lending markets be created and priced on-chain. That is not magic. It is credit market design with a different ledger.
+**Morpho** is lending infrastructure. The closest TradFi analogy is not one single market, but collateralized lending generally: repo, private credit plumbing, and bank credit infrastructure. Morpho lets lending markets be created and priced on-chain. That is not mysterious. It is credit market design with a different ledger.
 
 **Chaos Labs** is a risk desk for protocols. Banks have teams watching exposures, liquidity, stress scenarios, and concentration. DeFi protocols need the same function because on-chain markets can break quickly. Same math. Different data source.
 

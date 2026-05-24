@@ -26,7 +26,7 @@ In a basic automated market maker, liquidity providers put assets into a pool. T
 
 If people keep buying one side, that side gets scarcer in the pool, and its price rises. If people sell into the pool, the balance moves the other way.
 
-It is not magic. It is inventory math.
+It is not mysterious. It is inventory math.
 
 But it means a market can exist anywhere someone can deploy a pool and someone else is willing to supply liquidity.
 

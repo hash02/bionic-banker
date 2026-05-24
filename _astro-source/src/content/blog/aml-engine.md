@@ -10,7 +10,7 @@ slug: "aml-engine"
 image: "/blog-visuals/aml-engine/social-preview.png"
 ---
 
-AML detection is not one magic score. It is a three-layer system: 28 detection rules that catch known patterns, a machine learning anomaly layer that flags unusual behavior even when no rule fires, and a triage layer that decides which cases a human analyst should read first.
+AML detection is not one universal score. It is a three-layer system: 28 detection rules that catch known patterns, a machine learning anomaly layer that flags unusual behavior even when no rule fires, and a triage layer that decides which cases a human analyst should read first.
 
 That is what I built here. A blockchain AML engine that reads public transaction data, maps suspicious behavior into explainable signals, and shows why a wallet or transaction deserves a closer look.
 
@@ -139,7 +139,7 @@ For some patterns, transaction-level monitoring is enough. For others, you need 
 
 ## What this is and is not
 
-This is a public lab engine.
+This is a public research engine.
 
 It reads patterns, fires rules, adds anomaly signals, and explains why a row is worth attention.
 

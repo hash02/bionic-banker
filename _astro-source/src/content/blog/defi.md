@@ -10,7 +10,7 @@ slug: "defi"
 image: "/blog-visuals/defi/social-preview.png"
 ---
 
-DeFi means financial activity on blockchain rails: lending pools, swap pools, collateral, liquidation, oracle prices, and smart contracts. This field note follows why the clean wallet interface can hide fast-moving risk underneath.
+DeFi means financial activity on blockchain rails: lending pools, swap pools, collateral, liquidation, oracle prices, and smart contracts. This field note follows why the simple wallet interface can hide fast-moving risk underneath.
 
 DeFi looks simple from the outside.
 
@@ -48,7 +48,7 @@ I give token A. I receive token B.
 
 Under that button, a pool is doing the work. Liquidity providers put assets into the pool, traders use the pool, and the pool price moves as the ratio changes.
 
-This is elegant, but it is not magic. Large trades can move the price. Thin pools can be fragile. Liquidity providers can earn fees and still lose ground if prices move hard enough.
+This is elegant, but it is not automatic safety. Large trades can move the price. Thin pools can be fragile. Liquidity providers can earn fees and still lose ground if prices move hard enough.
 
 So again, the button is simple. The risk is underneath.
 
