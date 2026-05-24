@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
 const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().slice(0, 10);
+const catalogProjectCount = proofCatalog.default.projects.length;
+const catalogSourceCount = proofCatalog.default.projects.reduce((sum, project) => sum + (project.sources?.length ?? 0), 0);
+const catalogLimitCount = proofCatalog.default.projects.reduce((sum, project) => sum + (project.limits?.length ?? 0), 0);
 
 const projects = [
   {
@@ -140,9 +143,15 @@ const projects = [
     <div class="page-label">Systems</div>
     <h1 class="page-title">Systems</h1>
     <p class="page-sub">Small machines, strange questions, and finance systems made visible. Each card shows what it is, what it watches, and where the boundary is.</p>
+    <div class="page-metric-row" aria-label="Systems evidence snapshot">
+      <div><strong>{projects.length}</strong><span>public cards</span></div>
+      <div><strong>{catalogProjectCount}</strong><span>catalog lanes</span></div>
+      <div><strong>{catalogSourceCount}</strong><span>source rows</span></div>
+      <div><strong>{catalogLimitCount}</strong><span>named limits</span></div>
+    </div>
   </div>
 
-  <div class="articles-wrap">
+  <div class="articles-wrap systems-wrap">
     <div class="lab-strip">
       <div>
         <h2>Things that run, write, watch, or explain</h2>
@@ -156,9 +165,17 @@ const projects = [
         <a href="/reports">Field Notes</a>
       </div>
     </div>
-    <p class="verified-note">Notebook snapshot: {verifiedDate}.</p>
+    <p class="verified-note">Notebook snapshot: {verifiedDate}. Counts above are computed from this page and the public proof catalog.</p>
 
-    <div class="article-card" style="margin-bottom: 1.25rem;">
+    <section class="systems-audit-panel" aria-label="How this systems page should be judged">
+      <div>
+        <span class="systems-audit-label">Quality rule</span>
+        <strong>Every card has to earn its surface area.</strong>
+      </div>
+      <p>What runs, what evidence is visible, what boundary is explicit, and where a reader can inspect the source. Anything weaker stays in notes until it has proof.</p>
+    </section>
+
+    <div class="article-card systems-guide-card" style="margin-bottom: 1.25rem;">
       <div class="article-tags">
         <span class="tag-pill tag-green">How to read it</span>
       </div>
@@ -180,16 +197,23 @@ const projects = [
             <span class="tag-pill tag-green">{project.role}</span>
           </div>
           <h3>{project.name}</h3>
-          <p>{project.description}</p>
-          <p><strong>What to notice:</strong> {project.proof}</p>
-          <p><strong>Limit:</strong> {project.limitation}</p>
+          <p class="system-desc">{project.description}</p>
+          <div class="system-proof-grid">
+            <div>
+              <span>What to notice</span>
+              <p>{project.proof}</p>
+            </div>
+            <div>
+              <span>Boundary</span>
+              <p>{project.limitation}</p>
+            </div>
+          </div>
           {project.links && (
-            <p><strong>Links:</strong> {project.links.map((link, index) => (
-              <>
-                <span>{index > 0 ? ' / ' : ''}</span>
+            <div class="system-link-cloud" aria-label={`Inspection links for ${project.name}`}>
+              {project.links.map((link) => (
                 <a href={link.url} target={link.url.startsWith('http') ? '_blank' : undefined} rel={link.url.startsWith('http') ? 'noopener' : undefined}>{link.label}</a>
-              </>
-            ))}</p>
+              ))}
+            </div>
           )}
           <div class="card-footer">
             <a href={project.url} class="read-more" target={project.url.startsWith('http') ? '_blank' : undefined} rel={project.url.startsWith('http') ? 'noopener' : undefined}>Open route -></a>
