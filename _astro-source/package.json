@@ -12,7 +12,8 @@
     "test:homepage-evidence-surface": "node scripts/check-homepage-evidence-surface.mjs",
     "test": "npm run test:aml-status-evidence && npm run test:public-copy && npm run test:agent-chess-showcase && npm run test:homepage-evidence-surface && npm run test:projects-public-positioning",
     "test:agent-chess-showcase": "node scripts/check-agent-chess-showcase.mjs",
-    "test:projects-public-positioning": "node scripts/check-projects-public-positioning.mjs"
+    "test:projects-public-positioning": "node scripts/check-projects-public-positioning.mjs",
+    "qa:mobile": "npm run build && node scripts/qa-mobile.mjs --site dist"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +22,8 @@
     "@astrojs/cloudflare": "^13.1.3",
     "@astrojs/sitemap": "^3.7.1",
     "astro": "^6.0.8"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
   }
 }

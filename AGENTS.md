@@ -23,6 +23,7 @@ Bionic Banker is HASH's public thought platform. The caretaker job is to keep it
 - Every public claim about numbers, rules, counts, or dates must be computed from source.
 - Public copy must follow `PUBLIC_COPY_STANDARD.md`: use serious risk/evidence/audit/control language, avoid the informal terms listed there in visible public surfaces, and keep legal/compliance/trading authority boundaries explicit.
 - Before publishing public-copy changes, run `npm run test:public-copy` from `_astro-source` and fix any blockers.
+- Before publishing layout/navigation/dashboard changes, run `npm run qa:mobile` from `_astro-source`; inspect `qa-reports/latest/report.md` and screenshots when it fails.
 
 ## Caretaker Loop
 

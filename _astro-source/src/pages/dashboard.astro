@@ -33,7 +33,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="card" style="margin-bottom:24px;">
         <div class="section-title"><span class="icon">&#127806;</span> Top DeFi Yields (Risk-Adjusted)</div>
-        <div style="overflow-x:auto;">
+        <div class="table-scroll">
             <table class="yields-table" id="yieldsTable">
                 <thead><tr><th>Protocol</th><th>Chain</th><th>Pool</th><th>APY</th><th>Base / Reward</th><th>TVL</th><th>Risk</th></tr></thead>
                 <tbody id="yieldsBody"></tbody>
@@ -295,7 +295,7 @@ setInterval(init,300000);
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
         @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
 
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; min-width: 0; overflow: hidden; }
 
         /* Market Grid */
         .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; }
@@ -310,7 +310,8 @@ setInterval(init,300000);
         .market-item .chg.down { color: var(--red); }
 
         /* Yields Table */
-        .yields-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        .table-scroll { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .yields-table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 0.82rem; }
         .yields-table th {
             text-align: left; font-size: 0.68rem; text-transform: uppercase;
             letter-spacing: 0.06em; color: var(--text-muted); padding: 8px 10px;
@@ -383,6 +384,7 @@ setInterval(init,300000);
             .card { padding: 16px; }
             .risk-note-header { align-items: flex-start; flex-direction: column; gap: 6px; }
             .chart-wrap { height: 190px; }
+            .yields-table { min-width: 560px; }
         }
         @media (max-width: 420px) {
             .kpi-row { grid-template-columns: 1fr; }
