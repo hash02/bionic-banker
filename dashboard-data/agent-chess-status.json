@@ -1,28 +1,83 @@
 {
-  "generated_at": "2026-05-20T23:14:51-07:00",
-  "title": "Agent Chess",
-  "summary": "Four public roles are taking turns across a few live boards. This page shows rhythm, not inside work.",
-  "public_rule": "Public view shows board tempo, turn order, and waiting state only.",
-  "agents": [
+  "generated_at": "2026-05-24T00:00:00-07:00",
+  "title": "Agent Chess Operations Board",
+  "summary": "A public-safe view of how multiple agent roles coordinate work through moves, reviews, gates, and artifacts without exposing internal instructions or private infrastructure.",
+  "public_rule": "Public view shows role boundaries, board tempo, review gates, and safe artifact types only.",
+  "showcase_status": "public_safe_overview_v1",
+  "no_private_data_policy": [
+    "No internal agent instructions are displayed.",
+    "No local machine paths, server addresses, account identifiers, keys, tokens, or credentials are displayed.",
+    "No employer, client, or personally sensitive records are used.",
+    "External action stays behind a human approval gate."
+  ],
+  "lanes": [
+    {
+      "label": "Move Lane",
+      "status": "active",
+      "purpose": "A worker proposes one bounded next move with a visible outcome and a stated limit.",
+      "public_artifact": "Move summary"
+    },
+    {
+      "label": "Review Lane",
+      "status": "guarded",
+      "purpose": "A separate reviewer checks wording, risk, claims, and whether the move exposes too much detail.",
+      "public_artifact": "Review verdict"
+    },
+    {
+      "label": "Gate Lane",
+      "status": "required",
+      "purpose": "Human approval is required before publishing, pushing, sending, or changing external state.",
+      "public_artifact": "Gate state"
+    },
+    {
+      "label": "Artifact Lane",
+      "status": "inspectable",
+      "purpose": "Only public-safe summaries, JSON snapshots, screenshots, or article links are allowed onto the website.",
+      "public_artifact": "Safe artifact index"
+    }
+  ],
+  "flow": [
+    {
+      "step": "01",
+      "label": "Move",
+      "description": "One role advances a bounded task."
+    },
+    {
+      "step": "02",
+      "label": "Review",
+      "description": "Another role checks claims, taste, and safety."
+    },
+    {
+      "step": "03",
+      "label": "Gate",
+      "description": "External action waits for explicit approval."
+    },
+    {
+      "step": "04",
+      "label": "Artifact",
+      "description": "A safe public record is published or linked."
+    }
+  ],
+  "roles": [
     {
       "label": "Builder",
       "state": "waiting",
-      "role": "Builds the next safe move."
+      "boundary": "Can draft and implement bounded changes; cannot approve its own public claim."
     },
     {
       "label": "Reviewer",
       "state": "requested",
-      "role": "Reviews taste and wording."
+      "boundary": "Can challenge wording, risk, and evidence; cannot bypass the gate."
     },
     {
       "label": "Scout",
       "state": "available",
-      "role": "Finds outside context."
+      "boundary": "Can collect outside context; cannot introduce private records."
     },
     {
       "label": "Renderer",
       "state": "available",
-      "role": "Turns ideas into visual packets."
+      "boundary": "Can create visual packets from approved public briefs; cannot expose source internals."
     }
   ],
   "boards": [
@@ -30,28 +85,28 @@
       "label": "Capital Signals",
       "status": "paused",
       "turns": 1,
-      "last_move": "Proof state is being checked before the next public claim.",
-      "next": "Refresh the source state."
+      "last_move": "Evidence state is checked before the next public claim.",
+      "next": "Refresh public-safe source state."
     },
     {
       "label": "Website Operations",
       "status": "active",
       "turns": 101,
       "last_move": "A context-signal layer is live on the homepage.",
-      "next": "Review the wording and visual taste."
+      "next": "Review wording and visual taste."
     },
     {
       "label": "Content Operations",
       "status": "active",
       "turns": 3,
-      "last_move": "One brief can now become a carousel packet.",
-      "next": "Add an online render fallback."
+      "last_move": "One brief can become a carousel packet.",
+      "next": "Add a safe render fallback."
     }
   ],
   "now_playing": {
     "board": "Website Operations",
     "waiting_on": "Reviewer",
-    "public_state": "A taste pass is next."
+    "public_state": "A taste and boundary pass is next."
   },
-  "safety_note": "This page only shows rhythm, labels, and review state. Inside details stay off the public surface."
+  "safety_note": "This page shows orchestration patterns only. It does not expose internal instructions, private paths, credentials, account details, internal infrastructure, or autonomous authority."
 }

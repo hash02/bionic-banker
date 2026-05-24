@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const labCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
 const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
 const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
+const agentChessStatus = await import('../../public/dashboard-data/agent-chess-status.json');
 
 const projects = labCatalog.default.projects;
 const questions = gapCatalog.default.modern_questions;
@@ -11,6 +12,11 @@ const reportMetrics = reportCatalog.default.summary_metrics;
 const benchmarkMetrics = reportCatalog.default.benchmark_metrics;
 const coverageBars = reportCatalog.default.coverage_bars;
 const marketSources = gapCatalog.default.market_sources;
+const agentChess = agentChessStatus.default;
+const agentChessLanes = agentChess.lanes || [];
+const agentChessFlow = agentChess.flow || [];
+const agentChessRoles = agentChess.roles || agentChess.agents || [];
+const agentChessPolicy = agentChess.no_private_data_policy || [];
 const verifiedDate = new Date(labCatalog.default.generated_at).toISOString().slice(0, 10);
 
 const getSources = (project) => project.sources || [];
@@ -267,6 +273,72 @@ const inspectionRows = scenes
         ))}
         <a href="/reports">Open reports -></a>
       </aside>
+    </section>
+
+
+
+    <section class="agent-chess-showcase" aria-labelledby="agent-chess-showcase-title">
+      <div class="chess-hero-card">
+        <div>
+          <span class="section-kicker">Agent Chess board</span>
+          <h2 id="agent-chess-showcase-title">Move, review, gate, artifact</h2>
+          <p>{agentChess.summary}</p>
+        </div>
+        <div class="chess-now-card">
+          <span>Now playing</span>
+          <strong>{agentChess.now_playing.board}</strong>
+          <small>Waiting on {agentChess.now_playing.waiting_on}: {agentChess.now_playing.public_state}</small>
+        </div>
+      </div>
+
+      <div class="chess-flow" aria-label="Agent Chess public flow">
+        {agentChessFlow.map((item) => (
+          <article>
+            <span>{item.step}</span>
+            <strong>{item.label}</strong>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="chess-lane-grid">
+        {agentChessLanes.map((lane) => (
+          <article class="chess-lane-card">
+            <div>
+              <span>{lane.status}</span>
+              <h3>{lane.label}</h3>
+            </div>
+            <p>{lane.purpose}</p>
+            <small>Public artifact: {lane.public_artifact}</small>
+          </article>
+        ))}
+      </div>
+
+      <div class="chess-roles-boundaries">
+        <div class="chess-role-panel">
+          <span class="section-kicker">Roles and boundaries</span>
+          <h3>Separate hands, visible limits</h3>
+          <div class="role-list">
+            {agentChessRoles.map((role) => (
+              <div>
+                <strong>{role.label}</strong>
+                <span>{role.state}</span>
+                <p>{role.boundary || role.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="chess-policy-panel">
+          <span class="section-kicker">No private data policy</span>
+          <h3>What stays off the public surface</h3>
+          <ul>
+            {agentChessPolicy.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+          <p>{agentChess.safety_note}</p>
+        </div>
+      </div>
     </section>
 
     <section class="route-rail" aria-label="Bionic Banker learning route">
@@ -971,6 +1043,184 @@ const inspectionRows = scenes
       text-decoration: none;
     }
 
+
+
+    .agent-chess-showcase {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(91, 115, 248, 0.16), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(31, 160, 104, 0.14), transparent 30%),
+        rgba(255, 255, 255, 0.035);
+      padding: 1rem;
+      margin-top: 1rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .section-kicker,
+    .chess-now-card span,
+    .chess-flow span,
+    .chess-lane-card span {
+      display: block;
+      color: #8b6cf7;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .chess-hero-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.38fr);
+      gap: 1rem;
+      align-items: stretch;
+      margin-bottom: 1rem;
+    }
+
+    .chess-hero-card h2 {
+      margin: 0 0 0.55rem;
+      font-size: clamp(1.7rem, 3.5vw, 2.75rem);
+      letter-spacing: -0.04em;
+    }
+
+    .chess-hero-card p,
+    .chess-flow p,
+    .chess-lane-card p,
+    .role-list p,
+    .chess-policy-panel p,
+    .chess-policy-panel li {
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .chess-now-card,
+    .chess-flow article,
+    .chess-lane-card,
+    .chess-role-panel,
+    .chess-policy-panel {
+      border: 1px solid rgba(228, 228, 236, 0.12);
+      border-radius: 10px;
+      background: rgba(2, 2, 4, 0.48);
+      min-width: 0;
+    }
+
+    .chess-now-card {
+      padding: 0.9rem;
+      display: grid;
+      align-content: center;
+      gap: 0.25rem;
+    }
+
+    .chess-now-card strong {
+      color: var(--text);
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .chess-now-card small,
+    .chess-lane-card small,
+    .role-list span {
+      color: var(--text-3);
+      line-height: 1.45;
+    }
+
+    .chess-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .chess-flow article {
+      padding: 0.85rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chess-flow article::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 2px;
+      background: linear-gradient(90deg, #5b73f8, #8b6cf7, #1fa068);
+      opacity: 0.75;
+    }
+
+    .chess-flow strong,
+    .chess-lane-card h3,
+    .chess-role-panel h3,
+    .chess-policy-panel h3 {
+      display: block;
+      color: var(--text);
+      margin: 0 0 0.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    .chess-lane-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .chess-lane-card {
+      padding: 0.9rem;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .chess-lane-card span {
+      color: #1fa068;
+    }
+
+    .chess-roles-boundaries {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.75fr);
+      gap: 0.75rem;
+    }
+
+    .chess-role-panel,
+    .chess-policy-panel {
+      padding: 1rem;
+    }
+
+    .role-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .role-list div {
+      border: 1px solid rgba(228, 228, 236, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      padding: 0.75rem;
+    }
+
+    .role-list strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .role-list span {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .chess-policy-panel ul {
+      display: grid;
+      gap: 0.5rem;
+      margin: 0 0 0.85rem;
+      padding-left: 1.1rem;
+    }
+
     @media (max-width: 980px) {
       .tour-app {
         grid-template-columns: 1fr;
@@ -984,7 +1234,14 @@ const inspectionRows = scenes
       }
       .deep-grid,
       .scene-status,
-      .method-grid {
+      .method-grid,
+      .chess-hero-card,
+      .chess-flow,
+      .chess-lane-grid,
+      .chess-roles-boundaries {
+        grid-template-columns: 1fr;
+      }
+      .role-list {
         grid-template-columns: 1fr;
       }
     }
