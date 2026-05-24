@@ -40,6 +40,58 @@ const readingSteps = [
     body: 'This assessment view uses sample rows and visible summaries. It does not use employer data, client data, private wallet data, or live filing workflows.',
   },
 ];
+
+const sourceCards = [
+  {
+    title: 'Readable source package',
+    body: 'The public source route points to the wallet-risk and AML engine repositories so the implementation can be inspected beside the page copy, not treated as a hidden claim.',
+  },
+  {
+    title: 'Evidence-first positioning',
+    body: 'The page presents benchmark metrics, mapped detection abilities, sample rows, and supporting evidence language. It stays portfolio-grade: useful for review, not a licensed compliance product.',
+  },
+  {
+    title: 'Authority boundary',
+    body: 'No KYC approval, no SAR filing authority, no wallet authority, no trade authority, and no production monitoring claim. Human review remains required before any operational decision.',
+  },
+];
+
+const proofFlow = [
+  {
+    label: 'Public row',
+    detail: 'Masked sample transaction context only',
+  },
+  {
+    label: 'Rules fire',
+    detail: 'Timing, routing, mixer, sanctions-context, and behavior flags',
+  },
+  {
+    label: 'Score sorts',
+    detail: 'Priority signal for human review, not a legal finding',
+  },
+  {
+    label: 'Note explains',
+    detail: 'Plain-language reason with the limits kept visible',
+  },
+];
+
+const sourceLinks = [
+  {
+    label: 'Metrics JSON',
+    href: '/dashboard-data/engineering-report-catalog.json',
+    detail: 'The public metric snapshot that feeds the numbers on this page.',
+  },
+  {
+    label: 'AML engine source',
+    href: 'https://github.com/hash02/aml-detection-engine',
+    detail: 'The repository link for inspecting the detection-engine package named in the proof card.',
+  },
+  {
+    label: 'Wallet checker source',
+    href: 'https://github.com/hash02/wallet-risk-check',
+    detail: 'The repository link for the wallet-risk screening surface.',
+  },
+];
 ---
 <BaseLayout title="Wallet Risk Assessment" description="A plain-language wallet risk assessment showing how transaction rules, scores, and explanation notes can sit next to each other without exposing private data.">
   <main class="wallet-shell">
@@ -135,6 +187,48 @@ const readingSteps = [
 
     <section class="wallet-panel">
       <div class="panel-head">
+        <span>Source and evidence boundary</span>
+        <h2>Portfolio-grade evidence, not a commercial compliance claim.</h2>
+        <p>The useful presentation is the source, metrics, sample row, and limitation shown together. The boundary is part of the card, not a footnote.</p>
+      </div>
+      <div class="step-grid">
+        {sourceCards.map((card, index) => (
+          <article>
+            <small>{String(index + 1).padStart(2, '0')}</small>
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="wallet-panel proof-panel" aria-label="Wallet risk proof flow diagram">
+      <div class="panel-head">
+        <span>Proof flow</span>
+        <h2>The diagram is intentionally boring: row → rules → score → note.</h2>
+        <p>No single box is the product. The proof is that each layer keeps its source, role, and limit visible before a human makes a decision.</p>
+      </div>
+      <div class="proof-flow">
+        {proofFlow.map((step, index) => (
+          <article>
+            <small>{String(index + 1).padStart(2, '0')}</small>
+            <h3>{step.label}</h3>
+            <p>{step.detail}</p>
+          </article>
+        ))}
+      </div>
+      <div class="source-list" aria-label="Wallet risk source citations">
+        {sourceLinks.map((source) => (
+          <a href={source.href} target={source.href.startsWith('http') ? '_blank' : undefined} rel={source.href.startsWith('http') ? 'noopener' : undefined}>
+            <span>{source.label}</span>
+            <strong>{source.detail}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="wallet-panel">
+      <div class="panel-head">
         <span>Numbers I am watching</span>
         <h2>Useful numbers need their limits beside them.</h2>
         <p>These values come from the local report catalog snapshot on {catalogDate}. They are shown as research notes, not product certification.</p>
@@ -164,8 +258,16 @@ const readingSteps = [
     </section>
 
     <section class="wallet-links">
+      <a href="https://github.com/hash02/aml-detection-engine" target="_blank" rel="noopener">
+        <span>Source package</span>
+        <strong>Inspect the AML engine repository</strong>
+      </a>
+      <a href="https://github.com/hash02/wallet-risk-check" target="_blank" rel="noopener">
+        <span>Wallet screening source</span>
+        <strong>Open the wallet-risk checker</strong>
+      </a>
       <a href="/dashboard">
-        <span>Live dashboard</span>
+        <span>Dashboard</span>
         <strong>Open the wider signal board</strong>
       </a>
       <a href="/learn#aml">
@@ -209,7 +311,8 @@ const readingSteps = [
     .risk-card,
     .wallet-panel,
     .sample-row-card,
-    .wallet-links a {
+    .wallet-links a,
+    .source-list a {
       border: 1px solid rgba(228, 228, 236, 0.12);
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.035);
@@ -226,7 +329,8 @@ const readingSteps = [
     .panel-head span,
     .risk-card-top span,
     .voice-note span,
-    .wallet-links span {
+    .wallet-links span,
+    .source-list span {
       display: block;
       color: #1fa068;
       font-family: var(--mono);
@@ -366,14 +470,17 @@ const readingSteps = [
 
     .step-grid,
     .metric-strip,
-    .wallet-links {
+    .wallet-links,
+    .proof-flow,
+    .source-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 0.85rem;
     }
 
     .step-grid article,
-    .metric-strip article {
+    .metric-strip article,
+    .proof-flow article {
       border: 1px solid rgba(228, 228, 236, 0.12);
       border-radius: 8px;
       padding: 0.9rem;
@@ -381,16 +488,59 @@ const readingSteps = [
       min-width: 0;
     }
 
-    .step-grid small {
+    .step-grid small,
+    .proof-flow small {
       display: block;
       color: #1fa068;
       font-family: var(--mono);
       margin-bottom: 0.7rem;
     }
 
-    .step-grid h3 {
+    .step-grid h3,
+    .proof-flow h3 {
       margin: 0 0 0.45rem;
       letter-spacing: 0;
+    }
+
+    .proof-panel {
+      background:
+        linear-gradient(135deg, rgba(31, 160, 104, 0.07), transparent 34%),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .proof-flow article {
+      position: relative;
+    }
+
+    .proof-flow article:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      top: 0.75rem;
+      right: 0.85rem;
+      color: rgba(31, 160, 104, 0.72);
+      font-family: var(--mono);
+    }
+
+    .proof-flow p,
+    .source-list strong {
+      color: var(--text-2);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .source-list {
+      margin-top: 0.85rem;
+    }
+
+    .source-list a {
+      color: var(--text);
+      padding: 0.85rem;
+      text-decoration: none;
+    }
+
+    .source-list strong {
+      display: block;
+      font-weight: 500;
     }
 
     .sample-layout {
