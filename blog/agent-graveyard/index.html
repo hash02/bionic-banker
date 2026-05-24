@@ -220,21 +220,82 @@
       });
     }
 
+    function revealElement(el) {
+      el.classList.add('animate-in');
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      if (el.matches && el.matches('.proof-route-grid, .mag-grid')) {
+        Array.prototype.slice.call(el.querySelectorAll('.article-card, .article-card-featured, .moving-now-card')).forEach(function(card) {
+          card.dataset.revealed = '1';
+          card.classList.add('animate-in');
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      }
+    }
+
+    function initRevealFallback() {
+      var targets = Array.prototype.slice.call(document.querySelectorAll('.animate-on-scroll'));
+      var cardTargets = Array.prototype.slice.call(document.querySelectorAll('.proof-route-grid .article-card, .mag-grid .article-card, .mag-grid .article-card-featured'));
+      targets = targets.concat(cardTargets);
+      if (!targets.length) return;
+
+      function revealVisible() {
+        targets.forEach(function(el) {
+          if (el.dataset.revealed === '1') return;
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.96 && rect.bottom > -80) {
+            el.dataset.revealed = '1';
+            revealElement(el);
+          }
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach(revealElement);
+        return;
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.dataset.revealed = '1';
+          revealElement(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -4% 0px', threshold: 0 });
+      targets.forEach(function(el) { observer.observe(el); });
+      revealVisible();
+      window.addEventListener('scroll', revealVisible, { passive: true });
+      window.addEventListener('resize', revealVisible);
+      var fallbackTicks = 0;
+      var fallbackTimer = window.setInterval(function() {
+        revealVisible();
+        fallbackTicks += 1;
+        if (fallbackTicks > 16) window.clearInterval(fallbackTimer);
+      }, 500);
+    }
+
     function loadScript(src, onload) {
       var s = document.createElement('script');
       s.src = src;
       s.onload = onload;
+      s.onerror = initRevealFallback;
       document.head.appendChild(s);
     }
 
+    initRevealFallback();
     loadScript(
       'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
       function() {
         loadScript(
           'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
-          initGSAP
+          function() {
+            initGSAP();
+            window.setTimeout(initRevealFallback, 1200);
+          }
         );
       }
     );
+    window.setTimeout(initRevealFallback, 2500);
   })();
   </script> </body> </html>
