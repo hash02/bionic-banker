@@ -123,6 +123,39 @@ const heartbeatSnapshot = [
   },
 ];
 
+const heroRoutes = [
+  {
+    label: 'Wallet Risk',
+    title: 'Wallet Risk Assessment',
+    detail: 'Reviewer-ready score, rationale, and limitation for sample wallet screening rows.',
+    href: '/wallet-risk',
+  },
+  {
+    label: 'Evidence',
+    title: 'Risk & Evidence Overview',
+    detail: 'A guided route through AML status, risk signals, and authority boundaries.',
+    href: '/risk-evidence-overview',
+  },
+  {
+    label: 'Systems',
+    title: 'Projects',
+    detail: 'Public-safe case studies for agentic finance, compliance, and reporting systems.',
+    href: '/projects',
+  },
+  {
+    label: 'Agents',
+    title: 'Agent Chess board',
+    detail: 'Move, review, gate, artifact orchestration without exposing prompt content or live authority.',
+    href: '/risk-evidence-overview#agent-chess-showcase',
+  },
+];
+
+const heroSystemChecks = [
+  'No wallet or trade authority',
+  'Human review required',
+  'Public-safe evidence only',
+];
+
 const geoDescription = `Bionic Banker is a finance and AI systems site with ${articleCount} articles, visible systems, field notes, and reader-facing signal pages from someone building inside finance.`;
 ---
 <BaseLayout title="Home" description={geoDescription}>
@@ -134,13 +167,13 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
     <ParticleHero />
     <div class="hero">
       <div class="hero-left">
-        <div class="hero-eyebrow">Finance / AI / Systems</div>
-        <h1>Most risk tools give you a number. No reason. No limit. I built the alternative.</h1>
-        <p class="hero-sub">I work inside finance and build around the things it cannot easily explain: AML patterns, wallet-risk signals, AI agents, and the gap between a clean number and the reasoning behind it. The public site shows the pieces that are safe to inspect.</p>
+        <div class="hero-eyebrow">Agentic finance / compliance / evidence</div>
+        <h1>Bionic Banker is the evidence surface for agentic finance systems.</h1>
+        <p class="hero-sub">It connects wallet screening, AML status evidence, market-risk monitoring, and agent orchestration into one public-safe operating view: what was assessed, what supports it, what the limit is, and what authority is explicitly not granted.</p>
         <div class="hero-actions">
-          <a href="/gaps" class="btn-primary">Start with Questions -></a>
-          <a href="/projects" class="btn-ghost">Open Systems</a>
-          <a href="/intelligence" class="btn-ghost">Watch Risk Signals</a>
+          <a href="/risk-evidence-overview" class="btn-primary">Open Evidence Overview -></a>
+          <a href="/wallet-risk" class="btn-ghost">Wallet Risk</a>
+          <a href="/projects" class="btn-ghost">Projects</a>
         </div>
         <div class="hero-signal-row" aria-label="Signals on the table">
           {movingRows.map(row => (
@@ -153,25 +186,35 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
       </div>
 
       <div class="hero-right">
-        <div class="hero-card-label">Latest</div>
-        <a href={`/blog/${latestPost.data.slug || latestPost.id}`} class="hero-article-card">
-          <div class="hcard-tag">{(latestPost.data.featured ? 'Featured · ' : '') + latestPost.data.tags.join(' · ')}</div>
-          <div class="hcard-title">{latestPost.data.title}</div>
-          <div class="hcard-desc">{latestPost.data.description}</div>
-          <div class="hcard-footer">
-            <span class="hcard-read">Read the full story →</span>
-            <span class="hcard-time">{latestPost.data.readTime}</span>
+        <div class="hero-card-label">Operating view</div>
+        <section class="hero-os-panel" aria-label="Bionic Banker operating-system routes">
+          <div class="hero-os-topline">
+            <span>Evidence surface</span>
+            <strong>{proofCount} system lanes</strong>
           </div>
-        </a>
-        <div class="hero-mini-stack">
-          {sortedPosts.slice(1, 4).map(post => (
-            <a href={`/blog/${post.data.slug || post.id}`} class="hero-mini-card">
-              <div class="mini-dot"></div>
-              <div class="mini-title">{post.data.title}</div>
-              <span class="mini-time">{post.data.readTime}</span>
-            </a>
-          ))}
-        </div>
+          <div class="hero-os-title">Assess → explain → gate → publish</div>
+          <p>Each route is framed as a bounded evidence view, not a promise of autonomous compliance, trading, or filing authority.</p>
+          <div class="hero-os-metrics">
+            {proofSnapshot.slice(0, 3).map((item) => (
+              <div>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+          <div class="hero-route-stack">
+            {heroRoutes.map((route) => (
+              <a href={route.href} class="hero-route-card">
+                <span>{route.label}</span>
+                <strong>{route.title}</strong>
+                <small>{route.detail}</small>
+              </a>
+            ))}
+          </div>
+          <div class="hero-boundary-row">
+            {heroSystemChecks.map((check) => <span>{check}</span>)}
+          </div>
+        </section>
       </div>
     </div>
   </div>
