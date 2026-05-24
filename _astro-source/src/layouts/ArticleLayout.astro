@@ -233,6 +233,10 @@ const breadcrumbSchema = {
       max-width: 540px;
       box-sizing: border-box;
     }
+    .article-toc:has(ul) {
+      min-height: 11rem;
+      overflow: hidden;
+    }
     .article-toc:empty { display: none; }
     .article-toc :global(.toc-label) {
       display: block; font-size: 0.72rem; font-family: var(--mono);
