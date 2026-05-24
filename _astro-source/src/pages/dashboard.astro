@@ -10,8 +10,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="meta">
             <span><span class="live-dot"></span> Live</span>
             <span id="lastUpdate">Loading...</span>
-            <a href="index.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.8rem;">&#8592; bionicbanker.tech</a>
+            <a href="/" style="color:var(--accent-blue);text-decoration:none;font-size:0.8rem;">&#8592; bionicbanker.tech</a>
         </div>
+    </div>
+
+    <div class="dashboard-boundary">
+        Public signal dashboard for market rows, yield context, and wallet-risk notes. This is a research and evidence view only: no wallet authority, no trading authority, and no compliance filing authority.
     </div>
 
     <div class="kpi-row" id="kpiRow"></div>
@@ -61,7 +65,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </div>
 
 <script>
-const DEFI_URL = 'dashboard-data/defi-scout-latest.json';
+const DEFI_URL = '/dashboard-data/defi-scout-latest.json';
 const RISK_NOTES_URL = 'https://raw.githubusercontent.com/hash02/aml-roaster/main/reports/data.json';
 
 const FALLBACK = {
@@ -177,6 +181,7 @@ function safeWhatFor(r,ru){
 let yieldChartInst=null, amlChartInst=null;
 
 function renderYieldChart(y){
+    if(!window.Chart)return;
     if(yieldChartInst)yieldChartInst.destroy();
     const ctx=document.getElementById('yieldChart').getContext('2d');
     const s=[...y].sort((a,b)=>b.apy-a.apy).slice(0,8);
@@ -184,6 +189,7 @@ function renderYieldChart(y){
 }
 
 function renderAMLChart(st){
+    if(!window.Chart)return;
     if(amlChartInst)amlChartInst.destroy();
     const ctx=document.getElementById('amlChart').getContext('2d');
     amlChartInst=new Chart(ctx,{type:'doughnut',data:{labels:['Quiet','Attention'],datasets:[{data:[st.clean||12844,st.flagged||3],backgroundColor:['rgba(31,160,104,0.8)','rgba(31,160,104,0.35)'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#8888a0',font:{size:11},padding:16}},tooltip:{callbacks:{label:function(c){const t=c.dataset.data.reduce((a,b)=>a+b,0);return c.label+': '+c.parsed.toLocaleString()+' ('+(c.parsed/t*100).toFixed(1)+'%)'}}}}}});
@@ -241,15 +247,27 @@ setInterval(init,300000);
         /* Header */
         .dash-header {
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+            gap: 16px;
+            margin-bottom: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
         }
         .dash-header h1 {
             font-size: 1.5rem; font-weight: 700;
             background: var(--gradient); -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; background-clip: text;
         }
+        .dashboard-boundary {
+            background: rgba(31,160,104,0.07);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--green);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            padding: 14px 16px;
+        }
         .dash-header .meta {
-            display: flex; align-items: center; gap: 16px;
+            display: flex; align-items: center; flex-wrap: wrap; gap: 12px 16px;
             font-size: 0.8rem; color: var(--text-muted);
         }
         .live-dot {
@@ -353,6 +371,22 @@ setInterval(init,300000);
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+        @media (max-width: 640px) {
+            .dashboard { padding: 18px 14px; }
+            .dash-header { align-items: flex-start; flex-direction: column; margin-bottom: 14px; }
+            .dash-header h1 { font-size: 1.35rem; }
+            .dashboard-boundary { font-size: 0.78rem; padding: 12px; }
+            .kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .kpi-card { padding: 14px; }
+            .kpi-value { font-size: 1.18rem; }
+            .card { padding: 16px; }
+            .risk-note-header { align-items: flex-start; flex-direction: column; gap: 6px; }
+            .chart-wrap { height: 190px; }
+        }
+        @media (max-width: 420px) {
+            .kpi-row { grid-template-columns: 1fr; }
+        }
     
 </style>
 

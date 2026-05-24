@@ -22,7 +22,9 @@ const requiredSourcePhrases = [
   '/wallet-risk',
   '/risk-evidence-overview',
   '/projects',
+  '/dashboard',
   'agent-chess-showcase',
+  'hero-mobile-route-strip',
   'No wallet or trade authority',
   'Human review required',
   'Public-safe evidence only',
@@ -52,6 +54,7 @@ const requiredBuiltLinks = [
   'href="/wallet-risk"',
   'href="/risk-evidence-overview"',
   'href="/projects"',
+  'href="/dashboard"',
   'href="/risk-evidence-overview#agent-chess-showcase"',
 ];
 
