@@ -158,7 +158,7 @@ const routeLabels: Record<string, string> = {
 
     .featured-head h2 {
       margin: 0;
-      color: var(--text-primary, #f7f7fb);
+      color: var(--text-primary, var(--text));
       font-size: clamp(1.45rem, 2vw, 2rem);
       letter-spacing: 0;
     }
@@ -184,7 +184,7 @@ const routeLabels: Record<string, string> = {
       padding: 1rem;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(31, 160, 104, 0.055);
       color: inherit;
       text-decoration: none;
       transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
@@ -207,7 +207,7 @@ const routeLabels: Record<string, string> = {
 
     .featured-card h3 {
       margin: 1.1rem 0 0.75rem;
-      color: var(--text-primary, #f7f7fb);
+      color: var(--text-primary, var(--text));
       font-size: 1.1rem;
       line-height: 1.25;
       letter-spacing: 0;
@@ -222,7 +222,7 @@ const routeLabels: Record<string, string> = {
 
     .featured-card strong {
       margin-top: 1rem;
-      color: var(--text-primary, #f7f7fb);
+      color: var(--text-primary, var(--text));
       font-size: 0.9rem;
     }
 
@@ -246,7 +246,7 @@ const routeLabels: Record<string, string> = {
 
     .learn-bridge h2 {
       margin: 0;
-      color: var(--text-primary, #f7f7fb);
+      color: var(--text-primary, var(--text));
       font-size: clamp(1.05rem, 1.8vw, 1.4rem);
       letter-spacing: 0;
       line-height: 1.3;
@@ -256,7 +256,7 @@ const routeLabels: Record<string, string> = {
       min-height: 44px;
       border: 1px solid rgba(228, 228, 236, 0.16);
       border-radius: 999px;
-      color: #e4e4ec;
+      color: var(--text);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -269,7 +269,7 @@ const routeLabels: Record<string, string> = {
     .learn-bridge a:hover,
     .learn-bridge a:focus-visible {
       border-color: rgba(31, 160, 104, 0.55);
-      color: #f7f7fb;
+      color: var(--text);
       outline: none;
     }
 

@@ -180,7 +180,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     function riskColor(level) {
       var map = { CRITICAL: '#ef4444', HIGH: '#f97316', MEDIUM: '#eab308', LOW: '#1fa068' };
-      return map[level] || '#c8c8d8';
+      return map[level] || '#def8e5';
     }
 
     function formatVolume(v) {
@@ -361,7 +361,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     .investigate-sub {
       font-size: 1rem;
-      color: #c8c8d8;
+      color: #def8e5;
       line-height: 1.7;
       margin-bottom: 2.5rem;
       max-width: 600px;
@@ -420,7 +420,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .sample-btn {
       background: transparent;
       border: 1px solid var(--b2);
-      color: #c8c8d8;
+      color: #def8e5;
       font-family: var(--mono);
       font-size: 0.72rem;
       font-weight: 500;
@@ -583,7 +583,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     .risk-note-text {
       font-size: 1.05rem;
-      color: #e4e4ec;
+      color: var(--text);
       line-height: 1.75;
       font-style: italic;
     }
@@ -613,7 +613,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       font-family: var(--mono);
       font-size: 0.68rem;
       font-weight: 500;
-      color: #e4e4ec;
+      color: var(--text);
       background: rgba(31,160,104,0.06);
       border: 1px solid rgba(31,160,104,0.18);
       border-radius: 6px;
@@ -659,7 +659,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .dist-count {
       font-family: var(--mono);
       font-size: 0.72rem;
-      color: #c8c8d8;
+      color: #def8e5;
       width: 30px;
       text-align: right;
     }
