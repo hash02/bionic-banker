@@ -13,7 +13,7 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 const isHome = title === 'Home';
 const routeDepth = Astro.url.pathname === '/' ? 0 : Astro.url.pathname.split('/').filter(Boolean).length;
 const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
-const globalCssVersion = 'green-canvas-2f48566';
+const globalCssVersion = 'green-theme-173cbd6';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -253,6 +253,11 @@ const globalCssVersion = 'green-canvas-2f48566';
       targets = targets.concat(cardTargets);
       if (!targets.length) return;
 
+      // Public-proof pages must never look empty when a browser screenshot,
+      // crawler, or slow third-party animation script misses scroll events.
+      // Reveal immediately; CSS transitions still keep the page calm.
+      targets.forEach(revealElement);
+
       function revealVisible() {
         targets.forEach(function(el) {
           if (el.dataset.revealed === '1') return;
@@ -297,19 +302,7 @@ const globalCssVersion = 'green-canvas-2f48566';
     }
 
     initRevealFallback();
-    loadScript(
-      'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
-      function() {
-        loadScript(
-          'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
-          function() {
-            initGSAP();
-            window.setTimeout(initRevealFallback, 1200);
-          }
-        );
-      }
-    );
-    window.setTimeout(initRevealFallback, 2500);
+    window.setTimeout(initRevealFallback, 500);
   })();
   </script>
   <style is:global>

@@ -19,6 +19,7 @@ const sourceFiles = {
   about: path.join(root, 'src/pages/about.astro'),
   home: path.join(root, 'src/pages/index.astro'),
   projects: path.join(root, 'src/pages/projects.astro'),
+  apps: path.join(root, 'src/pages/apps.astro'),
   layout: path.join(root, 'src/layouts/BaseLayout.astro'),
 };
 
@@ -91,8 +92,15 @@ for (const glyph of ['—', '–']) {
   assert(!noLongDashSurface.includes(glyph), `Edited public conversion surface contains long dash glyph: ${glyph}`);
 }
 
-const cyanPattern = /#67e8f9|#a7f3d0|rgba\(103,\s*232,\s*249/i;
-for (const [name, text] of Object.entries({ startHere: source.startHere, fieldPack: source.fieldPack, about: source.about })) {
+const cyanPattern = /#67e8f9|#a7f3d0|#6fe7ff|rgba\(103,\s*232,\s*249|rgba\(111,\s*231,\s*255/i;
+for (const [name, text] of Object.entries({
+  startHere: source.startHere,
+  fieldPack: source.fieldPack,
+  about: source.about,
+  home: source.home,
+  projects: source.projects,
+  apps: source.apps,
+})) {
   assert(!cyanPattern.test(text), `${name} still contains cyan/blue accent styling instead of green/black/white theme`);
 }
 

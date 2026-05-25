@@ -3,7 +3,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-YS428H3H44');
-  </script><!-- Open Graph --><meta property="og:title" content="AML Status Evidence - Bionic Banker"><meta property="og:description" content="A public-safe AML status evidence page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what remains local, and what authority is explicitly not granted."><meta property="og:type" content="article"><meta property="og:url" content="https://bionicbanker.tech/aml-status-evidence/"><meta property="og:site_name" content="Bionic Banker"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="AML Status Evidence - Bionic Banker"><meta name="twitter:description" content="A public-safe AML status evidence page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what remains local, and what authority is explicitly not granted."><meta name="twitter:site" content="@BionicBanker"><meta name="twitter:creator" content="@BionicBanker"><link rel="canonical" href="https://bionicbanker.tech/aml-status-evidence/"><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"><!-- JSON-LD Structured Data --><!-- Styles --><link rel="stylesheet" href="/styles/global.css"><link rel="stylesheet" href="../styles/global.css"><!-- Lottie player (custom element, defer safe) --><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script><style>body,html{background:#08080e!important}canvas[data-astro-cid-37fxchfa]{background:#08080e!important}.nav-right{display:flex!important;align-items:center;gap:1rem;min-width:0}@media(max-width:1400px){nav{gap:1rem}.nav-links{gap:1rem}.nav-cta{display:none}}@media(max-width:900px){.nav-right{display:none!important}#bb-hamburger{display:inline-flex!important}}
+  </script><!-- Open Graph --><meta property="og:title" content="AML Status Evidence - Bionic Banker"><meta property="og:description" content="A public-safe AML status evidence page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what remains local, and what authority is explicitly not granted."><meta property="og:type" content="article"><meta property="og:url" content="https://bionicbanker.tech/aml-status-evidence/"><meta property="og:site_name" content="Bionic Banker"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="AML Status Evidence - Bionic Banker"><meta name="twitter:description" content="A public-safe AML status evidence page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what remains local, and what authority is explicitly not granted."><meta name="twitter:site" content="@BionicBanker"><meta name="twitter:creator" content="@BionicBanker"><link rel="canonical" href="https://bionicbanker.tech/aml-status-evidence/"><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"><!-- JSON-LD Structured Data --><!-- Styles --><link rel="stylesheet" href="/styles/global.css?v=green-theme-173cbd6"><link rel="stylesheet" href="../styles/global.css?v=green-theme-173cbd6"><!-- Lottie player (custom element, defer safe) --><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script><style>body,html{background:#010302}canvas[data-astro-cid-37fxchfa]{background:transparent}.nav-right{display:flex!important;align-items:center;gap:1rem;min-width:0}@media(max-width:1400px){nav{gap:1rem}.nav-links{gap:1rem}.nav-cta{display:none}}@media(max-width:900px){.nav-right{display:none!important}#bb-hamburger{display:inline-flex!important}}
 </style>
 <link rel="stylesheet" href="/_astro/aml-status-evidence@_@astro.CjMarfAT.css"></head> <body data-astro-cid-37fxchfa> <!-- NAV --> <nav data-astro-cid-37fxchfa> <a href="/" class="nav-logo" data-astro-cid-37fxchfa>Bionic <span data-astro-cid-37fxchfa>Banker</span></a> <div class="nav-right" data-astro-cid-37fxchfa> <ul class="nav-links" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/start-here" data-astro-cid-37fxchfa>Start Quest</a></li> <li data-astro-cid-37fxchfa><a href="/apps" data-astro-cid-37fxchfa>Apps</a></li> <li data-astro-cid-37fxchfa><a href="/signals" data-astro-cid-37fxchfa>Signals</a></li> <li data-astro-cid-37fxchfa><a href="/ai-intelligence" data-astro-cid-37fxchfa>AI Intelligence</a></li> <li data-astro-cid-37fxchfa><a href="/articles" data-astro-cid-37fxchfa>Blog</a></li> <li data-astro-cid-37fxchfa><a href="/about" data-astro-cid-37fxchfa>About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu" data-astro-cid-37fxchfa>&#9776;</button> </nav> <!-- MAIN CONTENT -->  <main class="aml-proof-shell" data-astro-cid-2dmom2db> <section class="aml-proof-hero" data-astro-cid-2dmom2db> <div data-astro-cid-2dmom2db> <span class="eyebrow" data-astro-cid-2dmom2db>AML Status Evidence</span> <h1 data-astro-cid-2dmom2db>The status is only useful when the supporting evidence, control boundary, and review record are visible.</h1> <p data-astro-cid-2dmom2db>
 This page makes the AML Layer 1 status evidence visible without turning it into a compliance claim. It shows the contract, the artifact provenance, the planner boundary, and the parts that still stay local.
@@ -87,6 +87,11 @@ The AML status evidence page is a window into the safety rails: evidence first, 
       targets = targets.concat(cardTargets);
       if (!targets.length) return;
 
+      // Public-proof pages must never look empty when a browser screenshot,
+      // crawler, or slow third-party animation script misses scroll events.
+      // Reveal immediately; CSS transitions still keep the page calm.
+      targets.forEach(revealElement);
+
       function revealVisible() {
         targets.forEach(function(el) {
           if (el.dataset.revealed === '1') return;
@@ -131,18 +136,6 @@ The AML status evidence page is a window into the safety rails: evidence first, 
     }
 
     initRevealFallback();
-    loadScript(
-      'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
-      function() {
-        loadScript(
-          'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
-          function() {
-            initGSAP();
-            window.setTimeout(initRevealFallback, 1200);
-          }
-        );
-      }
-    );
-    window.setTimeout(initRevealFallback, 2500);
+    window.setTimeout(initRevealFallback, 500);
   })();
   </script> </body> </html>
