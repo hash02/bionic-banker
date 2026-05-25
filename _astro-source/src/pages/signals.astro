@@ -67,7 +67,7 @@ const signalRoutes = [
   <div class="page-header">
     <div class="page-label">Signal Board</div>
     <h1 class="page-title">Signals</h1>
-    <p class="page-sub">Some ideas only make sense when you watch them move. This page collects market rows, risk reads, agent heartbeat data, and the limits around each signal.</p>
+    <p class="page-sub">Some ideas only make sense when you watch them move. This page collects market rows, risk reads, agent heartbeat data, and the limits around each signal. It is a research board, not a trading board.</p>
   </div>
 
   <main class="intel-shell">
@@ -75,7 +75,7 @@ const signalRoutes = [
       <div class="console-copy">
         <span class="section-label">Right Now</span>
         <h2>What moved recently</h2>
-        <p>Market rows refresh when the public source answers. Signal rows show the last read, when it happened, and the limit around it.</p>
+        <p>Market rows refresh when the public source answers. Saved signal rows show the last read, when it happened, why it was recorded, and what it cannot decide.</p>
         <div class="console-actions">
           <a href="/risk-evidence-overview/" class="action-btn primary">Open Risk & Evidence Overview</a>
           <a href="/gaps/" class="action-btn secondary">Open Questions</a>
@@ -109,7 +109,7 @@ const signalRoutes = [
           <span class="tbar-sub">{generatedAt ? generatedAt.slice(0, 10) : 'snapshot'}</span>
         </div>
       </div>
-      <p class="snapshot-note" style="margin-top:0.75rem;">For research only. Not investment advice, not trading performance, and not a recommendation.</p>
+      <p class="snapshot-note" style="margin-top:0.75rem;">For research only. Not investment advice, not trading performance, not a recommendation, and not a claim that the next row can be predicted.</p>
     </section>
 
     <section class="market-strip" id="market-row" data-feeds={JSON.stringify(feeds)}>
@@ -163,7 +163,7 @@ const signalRoutes = [
         <article>
           <span>Limit</span>
           <strong>Research note</strong>
-          <p>Not advice, not a trade, and not a promise that the next row will agree.</p>
+          <p>Not advice, not a trade, not a fund result, and not a promise that the next row will agree.</p>
         </article>
       </div>
     </section>
@@ -191,6 +191,20 @@ const signalRoutes = [
             <span class={resultClass(row)}>{resultLabel(row)}</span>
           </div>
         ))}
+      </div>
+    </section>
+
+    <section class="reason-panel" aria-label="Signal operating rule">
+      <div class="reason-copy">
+        <span class="section-label">Operating Rule</span>
+        <h2>Signals are prompts for judgment</h2>
+        <p>A useful signal should create a better question, not a blind action. The board is allowed to observe, compare, and explain. It is not allowed to recommend a trade or hide uncertainty.</p>
+      </div>
+      <div class="reason-steps">
+        <article><span>Observe</span><strong>What changed</strong><p>Market price, heartbeat state, confidence, or a source row.</p></article>
+        <article><span>Explain</span><strong>Why it matters</strong><p>Connect the row to risk, workflow design, or a learning note.</p></article>
+        <article><span>Bound</span><strong>What it cannot do</strong><p>No advice, no autonomous action, no performance claim.</p></article>
+        <article><span>Package</span><strong>What comes next</strong><p>Turn useful patterns into an app improvement, field note, or checker.</p></article>
       </div>
     </section>
 
