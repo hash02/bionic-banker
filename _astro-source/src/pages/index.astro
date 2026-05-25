@@ -72,10 +72,10 @@ const movingRows = [
 const metricByLabel = (label) => reportMetrics.find((metric) => metric.label === label);
 const proofSnapshot = [
   {
-    label: 'Systems',
+    label: 'Catalog lanes',
     value: proofCount,
-    unit: 'lanes',
-    source: 'public catalog',
+    unit: 'evidence lanes',
+    source: 'public proof catalog',
   },
   {
     label: 'Articles',
@@ -231,7 +231,7 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
         <section class="hero-os-panel" aria-label="Bionic Banker operating-system routes">
           <div class="hero-os-topline">
             <span>Evidence surface</span>
-            <strong>{proofCount} system lanes</strong>
+            <strong>{proofCount} evidence catalog lanes</strong>
           </div>
           <div class="hero-os-title">Assess → explain → gate → publish</div>
           <p>Each route is framed as a bounded evidence view, not a promise of autonomous compliance, trading, or filing authority.</p>
