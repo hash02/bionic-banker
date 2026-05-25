@@ -131,16 +131,16 @@ const heroRoutes = [
     href: '/wallet-risk',
   },
   {
-    label: 'Evidence',
-    title: 'Risk & Evidence Overview',
-    detail: 'A guided route through AML status, risk signals, and authority boundaries.',
-    href: '/risk-evidence-overview',
+    label: 'AML Evidence',
+    title: 'AML Status Evidence',
+    detail: 'Artifact provenance, checks, and explicit authority limits for human review.',
+    href: '/aml-status-evidence',
   },
   {
-    label: 'Systems',
-    title: 'Projects',
-    detail: 'Public-safe case studies for agentic finance, compliance, and reporting systems.',
-    href: '/projects',
+    label: 'Fraud Triage',
+    title: 'Fraud Alert Workflow',
+    detail: 'Synthetic alert signals assembled into a reviewer-ready case packet.',
+    href: '/fraud-alert-triage',
   },
   {
     label: 'Agents',
@@ -151,9 +151,28 @@ const heroRoutes = [
 ];
 
 const heroSystemChecks = [
+  'Evidence-first workflow',
   'No wallet or trade authority',
   'Human review required',
-  'Public-safe evidence only',
+  'No autonomous compliance decisions',
+];
+
+const marketPositioningCards = [
+  {
+    label: 'Category',
+    title: 'AI-assisted finance risk workflows',
+    body: 'Closest market neighbors are Unit21, Chainalysis/TRM, LangGraph-style agent control, and founder proof labs — but Bionic Banker stays public-proof humble.',
+  },
+  {
+    label: 'Differentiator',
+    title: 'Show-your-work evidence packets',
+    body: 'The core pattern is signal intake → risk reasoning → source trail → reviewer note → human decision boundary, not a black-box compliance answer.',
+  },
+  {
+    label: 'Trust boundary',
+    title: 'Agents prepare; humans decide',
+    body: 'The site does not claim filing, trading, wallet, enforcement, or final compliance authority. It demonstrates review-ready artifacts and guardrails.',
+  },
 ];
 
 const flagshipSystems = [
@@ -191,7 +210,7 @@ const flagshipSystems = [
   },
 ];
 
-const geoDescription = `Bionic Banker is a finance and AI systems site with ${articleCount} articles, visible systems, field notes, and reader-facing signal pages from someone building inside finance.`;
+const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted finance risk workflows: wallet risk, AML evidence, fraud triage, and human-reviewed agent systems.`;
 ---
 <BaseLayout title="Home" description={geoDescription}>
 
@@ -202,13 +221,13 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
     <ParticleHero />
     <div class="hero">
       <div class="hero-left">
-        <div class="hero-eyebrow">Agentic finance / compliance / evidence</div>
-        <h1>Bionic Banker is the evidence surface for agentic finance systems.</h1>
-        <p class="hero-sub">It connects wallet screening, AML status evidence, market-risk monitoring, and agent orchestration into one public-safe operating view: what was assessed, what supports it, what the limit is, and what authority is explicitly not granted.</p>
+        <div class="hero-eyebrow">AI agents / finance risk / human review</div>
+        <h1>AI agents for finance risk — evidence-first, human-reviewed.</h1>
+        <p class="hero-sub">Bionic Banker turns wallet signals, AML checks, fraud alerts, and agent workflows into review-ready evidence packets with visible sources, traces, guardrails, and human decision boundaries.</p>
         <div class="hero-actions">
-          <a href="/risk-evidence-overview" class="btn-primary">Open Evidence Overview -></a>
+          <a href="/evidence" class="btn-primary">View Evidence Catalog -></a>
           <a href="/wallet-risk" class="btn-ghost">Wallet Risk</a>
-          <a href="/projects" class="btn-ghost">Projects</a>
+          <a href="/proof/site-health" class="btn-ghost">Proof QA</a>
         </div>
         <div class="hero-signal-row" aria-label="Signals on the table">
           {movingRows.map(row => (
@@ -219,9 +238,9 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
           ))}
         </div>
         <nav class="hero-mobile-route-strip" aria-label="Mobile evidence routes">
-          <a href="/risk-evidence-overview">Evidence Overview</a>
-          <a href="/dashboard">Dashboard</a>
-          <a href="/risk-evidence-overview#agent-chess-showcase">Agent Chess</a>
+          <a href="/evidence">Evidence Catalog</a>
+          <a href="/wallet-risk">Wallet Risk</a>
+          <a href="/fraud-alert-triage">Fraud Triage</a>
           <a href="/aml-status-evidence">AML Status</a>
         </nav>
       </div>
@@ -230,11 +249,11 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
         <div class="hero-card-label">Operating view</div>
         <section class="hero-os-panel" aria-label="Bionic Banker operating-system routes">
           <div class="hero-os-topline">
-            <span>Evidence surface</span>
-            <strong>{proofCount} evidence catalog lanes</strong>
+            <span>Market position</span>
+            <strong>AI-assisted risk workflows</strong>
           </div>
-          <div class="hero-os-title">Assess → explain → gate → publish</div>
-          <p>Each route is framed as a bounded evidence view, not a promise of autonomous compliance, trading, or filing authority.</p>
+          <div class="hero-os-title">Signal → evidence → review → artifact</div>
+          <p>Closest to agentic fraud/AML ops and wallet intelligence — but framed as public proof, not production authority.</p>
           <div class="hero-os-metrics">
             {proofSnapshot.slice(0, 3).map((item) => (
               <div>
@@ -266,11 +285,11 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
       <div class="section-header">
         <div>
           <div class="section-label-text">Start Here</div>
-          <div class="section-title-text">What to look at first</div>
+          <div class="section-title-text">First 90-second reader path</div>
         </div>
         <a href="/projects" class="view-all">Open all systems -></a>
       </div>
-      <p class="section-orient">If you are reviewing this for a role, collaboration, or early company conversation, start with the visual systems. They show the practical capability: web app surfaces, evidence records, and human-approved agent workflows.</p>
+      <p class="section-orient">If you are reviewing this for a role, collaboration, investment, executive scan, or learning path, start here. These routes show risk judgment, evidence packaging, human-gated agent workflows, and public proof hygiene.</p>
       <div class="flagship-system-grid">
         {flagshipSystems.map((system) => (
           <a href={system.href} class="flagship-system-card">
@@ -289,7 +308,29 @@ const geoDescription = `Bionic Banker is a finance and AI systems site with ${ar
       </div>
       <div class="operator-positioning-strip">
         <strong>Positioning:</strong>
-        <span>Finance operator building evidence-preserving AI systems for risk, compliance, and human-approved automation.</span>
+        <span>Founder/operator proof lab for AI-assisted finance risk workflows: wallet risk, AML evidence, fraud triage, and human-reviewed agent systems.</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="content-wrap market-positioning-wrap">
+    <section class="proof-route-section section-alt animate-on-scroll" aria-label="Market positioning intelligence">
+      <div class="section-header">
+        <div>
+          <div class="section-label-text">Market Positioning Intelligence</div>
+          <div class="section-title-text">What category this belongs to</div>
+        </div>
+        <a href="/proof/site-health" class="view-all">Open proof QA -></a>
+      </div>
+      <p class="section-orient">The benchmark points to one clear lane: AI agents that accelerate finance-risk work only when they preserve evidence, show reasoning, and leave final decisions with people. The public surface now separates public system cards from evidence catalog lanes so readers do not confuse project count with proof-catalog structure.</p>
+      <div class="proof-route-grid">
+        {marketPositioningCards.map((card) => (
+          <article class="article-card">
+            <div class="article-tags"><span class="tag-pill tag-green">{card.label}</span></div>
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
       </div>
     </section>
   </div>

@@ -17,17 +17,19 @@ const source = read(sourcePath);
 const built = read(builtPath);
 
 const requiredSourcePhrases = [
-  'Bionic Banker is the evidence surface for agentic finance systems.',
-  'what authority is explicitly not granted',
+  'AI agents for finance risk — evidence-first, human-reviewed.',
+  'review-ready evidence packets with visible sources, traces, guardrails, and human decision boundaries',
   '/wallet-risk',
-  '/risk-evidence-overview',
-  '/projects',
-  '/dashboard',
+  '/evidence',
+  '/fraud-alert-triage',
+  '/proof/site-health',
   'agent-chess-showcase',
   'hero-mobile-route-strip',
+  'Evidence-first workflow',
   'No wallet or trade authority',
   'Human review required',
-  'Public-safe evidence only',
+  'No autonomous compliance decisions',
+  'Market Positioning Intelligence',
   'hero-os-panel',
 ];
 
@@ -36,12 +38,14 @@ for (const phrase of requiredSourcePhrases) {
 }
 
 const requiredBuiltPhrases = [
-  'Bionic Banker is the evidence surface for agentic finance systems.',
+  'AI agents for finance risk — evidence-first, human-reviewed.',
   'Operating view',
-  'Assess → explain → gate → publish',
+  'Signal → evidence → review → artifact',
   'Wallet Risk Assessment',
-  'Risk &amp; Evidence Overview',
+  'AML Status Evidence',
+  'Fraud Alert Workflow',
   'Agent Chess board',
+  'Market Positioning Intelligence',
   'No wallet or trade authority',
   'Human review required',
 ];
@@ -51,10 +55,12 @@ for (const phrase of requiredBuiltPhrases) {
 }
 
 const requiredBuiltLinks = [
+  'href="/evidence"',
   'href="/wallet-risk"',
+  'href="/fraud-alert-triage"',
+  'href="/proof/site-health"',
   'href="/risk-evidence-overview"',
   'href="/projects"',
-  'href="/dashboard"',
   'href="/risk-evidence-overview#agent-chess-showcase"',
 ];
 

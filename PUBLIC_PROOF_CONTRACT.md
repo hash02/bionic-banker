@@ -29,7 +29,7 @@ Every public count must use one label and one source.
 - **Public system cards**
   - Source: cards in `_astro-source/src/pages/projects.astro`.
   - Meaning: rendered public-facing system/project cards.
-  - Current value: 10.
+  - Current value: 11.
 
 - **Evidence catalog lanes**
   - Source: `projects.length` in `_astro-source/public/dashboard-data/public-proof-catalog.json`.
