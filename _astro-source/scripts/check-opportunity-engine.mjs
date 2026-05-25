@@ -44,7 +44,8 @@ const startHerePhrases = [
 const fieldPackPhrases = [
   'Bionic Banker Field Pack',
   'AI-assisted finance risk missions',
-  'Five missions, one map',
+  'Six missions, one map',
+  'Evidence-Preserved Agent Workflow Sprint',
   'Evidence map',
   'Technical stack',
   'Trust boundary',

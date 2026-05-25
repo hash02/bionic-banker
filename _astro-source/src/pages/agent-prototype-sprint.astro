@@ -1,0 +1,484 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Evidence-Preserved Agent Workflow Sprint';
+const description = 'A public-safe one-page evidence view showing how a messy finance-risk workflow can become a reviewer-ready packet with human approval boundaries.';
+
+const workflowSteps = [
+  ['1', 'Define the boundary', 'Pick one workflow, define inputs and outputs, and list the actions the system is not allowed to take.'],
+  ['2', 'Preserve source evidence', 'Capture the signal row, evidence status, source freshness, missing context, and limitations.'],
+  ['3', 'Draft the reviewer summary', 'Use the agent to classify, explain, and prepare a reviewer-ready note without making the final decision.'],
+  ['4', 'Hand off to a human gate', 'Give the reviewer options, decision history, and authority boundary before any external action.']
+];
+
+const allowedActions = [
+  'Ingest a synthetic or sanitized signal row',
+  'Classify the signal into a review queue',
+  'Preserve source evidence and limitations',
+  'Draft a reviewer-ready summary',
+  'Propose next-action options for a human',
+  'Write an audit-friendly evidence record'
+];
+
+const blockedActions = [
+  'Customer messaging or account communication',
+  'KYC, AML, fraud, or legal final decisions',
+  'SAR filing, regulatory filing, or sign-off authority',
+  'Account block, release, transfer, wallet movement, trade, or payment execution',
+  'Claims of measured savings, loss reduction, accuracy, or false-positive reduction without fresh evidence'
+];
+
+const evidencePacket = [
+  ['Case summary', 'Short explanation of the signal and why it deserves review.'],
+  ['Source evidence', 'Timeline, rule hits, source freshness, evidence status, and unavailable fields.'],
+  ['Reasoning draft', 'Plain-English rationale that separates observed facts from generated explanation.'],
+  ['Limitations', 'What the system cannot know from the available data.'],
+  ['Reviewer options', 'Escalate, request more information, close as low priority, or continue monitoring under approved policy.'],
+  ['Audit trail', 'Timestamp, artifact ID, source status, checksum when available, and decision boundary.']
+];
+
+const sampleRow = [
+  ['Signal type', 'Unusual transfer or counterparty pattern'],
+  ['Source status', 'Synthetic or sanitized sample row'],
+  ['Review context', 'Possible AML, fraud, or account-risk escalation'],
+  ['Evidence available', 'Timeline, counterparty novelty, rule hits, source freshness, reviewer checklist'],
+  ['Evidence unavailable', 'Customer identity, private transaction history, internal policy documents, live account controls'],
+  ['Prototype authority', 'Decision support only']
+];
+
+const roleFit = [
+  ['Risk and compliance leaders', 'Shows how agent assistance can stay inside review, evidence, limitation, and authority controls.'],
+  ['FinTech founders', 'Turns one workflow into a compact artifact that can be inspected before building a production system.'],
+  ['Fraud and AML operators', 'Connects scattered signals to a case note, review queue, and escalation checklist.'],
+  ['AI governance reviewers', 'Separates source evidence, generated explanation, human decision authority, and audit trail.']
+];
+---
+<BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/agent-prototype-sprint/">
+  <main class="evidence-page">
+    <section class="evidence-hero">
+      <div class="evidence-kicker">Public-safe evidence view</div>
+      <h1>Evidence-Preserved Agent Workflow Sprint</h1>
+      <p class="evidence-lede">A 90-second case view for turning one messy finance-risk workflow into a reviewer-ready evidence packet. The agent can classify, summarize, explain, and draft. It cannot approve, message, file, trade, move funds, or make the final decision.</p>
+      <div class="reviewer-callout"><span>Reviewer question</span><strong>Can Hash turn a vague agent idea into a controlled finance-risk workflow?</strong></div>
+      <p class="evidence-positioning">This is a public demonstration built from synthetic framing only. It is not customer data, legal advice, investment advice, a licensed compliance product, or a claim of production deployment.</p>
+      <div class="evidence-badges" aria-label="Evidence boundaries">
+        <span>Synthetic framing</span>
+        <span>Decision support</span>
+        <span>Human review required</span>
+        <span>No execution authority</span>
+      </div>
+    </section>
+
+    <section class="evidence-section evidence-map" aria-label="90-second workflow map">
+      <div class="section-label">90-second workflow map</div>
+      <div class="evidence-map-grid">
+        {workflowSteps.map(([step, heading, body]) => (
+          <article class="evidence-map-card">
+            <span>{step}</span>
+            <h3>{heading}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="evidence-section evidence-intro">
+      <div>
+        <div class="section-label">Why this matters</div>
+        <h2>Agent value appears when the evidence record is clearer than the chat transcript.</h2>
+      </div>
+      <p>Finance, risk, and compliance teams do not need an agent that sounds confident. They need a controlled workflow that says what was inspected, what evidence supports the draft, what is missing, and which choices remain human-owned.</p>
+    </section>
+
+    <section class="evidence-grid">
+      <div class="evidence-card wide">
+        <div class="section-label">Sample input row</div>
+        <div class="evidence-table">
+          {sampleRow.map(([field, value]) => (
+            <div class="evidence-row">
+              <div class="evidence-cell label">{field}</div>
+              <div class="evidence-cell value">{value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <aside class="evidence-card boundary-card">
+        <div class="section-label">Authority boundary</div>
+        <h2>No external action authority</h2>
+        <p>The output is a reviewer packet. It does not message customers, approve KYC, file reports, block accounts, release funds, move wallets, place trades, or make final compliance decisions.</p>
+      </aside>
+    </section>
+
+    <section class="evidence-section">
+      <div class="section-label">Evidence packet</div>
+      <div class="packet-grid">
+        {evidencePacket.map(([item, body]) => (
+          <article class="packet-item">
+            <h3>{item}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="evidence-section case-note">
+      <div class="section-label">Reviewer-ready summary draft</div>
+      <blockquote>
+        Review required. The signal shows a short-window pattern involving a novel counterparty and activity that could be relevant to account-risk, fraud, or AML review. The available evidence is enough to prepare a reviewer packet, but not enough to make a final compliance, account, or legal decision. Route the case to a human reviewer with the source timeline, rule contribution summary, unavailable-evidence list, and policy-specific next-action checklist attached.
+      </blockquote>
+    </section>
+
+    <section class="evidence-grid">
+      <div class="evidence-card">
+        <div class="section-label">The workflow can support</div>
+        <ul class="check-list">
+          {allowedActions.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="evidence-card muted-card">
+        <div class="section-label">The workflow must not claim</div>
+        <ul class="no-list">
+          {blockedActions.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="evidence-section">
+      <div class="section-label">Who should inspect it</div>
+      <div class="role-grid">
+        {roleFit.map(([role, fit]) => (
+          <article class="role-card">
+            <h3>{role}</h3>
+            <p>{fit}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="evidence-section approval-box">
+      <div class="section-label">Public-use boundary</div>
+      <h2>Evidence view first, commercial conversation second.</h2>
+      <p>This page is safe to review as a public portfolio artifact after final approval. Any client version would require scoped inputs, approved data handling, policy review, and explicit human gates before use outside a controlled prototype.</p>
+      <div class="approval-links">
+        <a href="/fraud-alert-triage/">Compare fraud triage workflow</a>
+        <a href="/aml-status-evidence/">Inspect AML status evidence</a>
+        <a href="/proof-pack/">Open Field Pack</a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .evidence-page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .evidence-hero {
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .evidence-kicker,
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+
+    .evidence-hero h1 {
+      max-width: 920px;
+      font-size: clamp(2.4rem, 7vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      text-shadow: 0 0 80px rgba(31,160,104,0.12);
+    }
+
+    .evidence-lede {
+      max-width: 820px;
+      color: var(--text-2);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.75;
+    }
+
+    .evidence-positioning {
+      max-width: 780px;
+      margin-top: 1rem;
+      color: var(--text-3);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .reviewer-callout {
+      max-width: 780px;
+      margin-top: 1.25rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius);
+      background: rgba(31,160,104,0.06);
+    }
+
+    .reviewer-callout span {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .reviewer-callout strong {
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .evidence-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+    }
+
+    .evidence-badges span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      background: var(--accent-glow);
+      border-radius: 999px;
+      padding: 0.38rem 0.7rem;
+    }
+
+    .evidence-section,
+    .evidence-grid {
+      margin-top: 2rem;
+    }
+
+    .evidence-map-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .evidence-map-card,
+    .evidence-card,
+    .case-note,
+    .approval-box,
+    .packet-item,
+    .role-card {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .evidence-map-card,
+    .packet-item,
+    .role-card {
+      padding: 1.15rem;
+    }
+
+    .evidence-map-card span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-bottom: 0.8rem;
+      border-radius: 999px;
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      background: var(--accent-glow);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .evidence-map-card h3,
+    .packet-item h3,
+    .role-card h3 {
+      color: var(--text);
+      font-size: 0.98rem;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .evidence-map-card p,
+    .evidence-section p,
+    .evidence-card p,
+    .packet-item p,
+    .role-card p {
+      color: var(--text-2);
+      font-size: 0.95rem;
+      line-height: 1.72;
+    }
+
+    .evidence-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .evidence-section h2,
+    .evidence-card h2,
+    .approval-box h2 {
+      font-size: clamp(1.45rem, 3vw, 2.3rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .evidence-card,
+    .case-note,
+    .approval-box {
+      padding: 1.5rem;
+    }
+
+    .boundary-card {
+      border-color: var(--accent-border);
+      background: linear-gradient(180deg, rgba(31,160,104,0.055), rgba(10,10,14,0.95));
+    }
+
+    .evidence-table {
+      display: grid;
+      border: 1px solid var(--b1);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .evidence-row {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--b1);
+      background: var(--bg3);
+    }
+
+    .evidence-row:last-child {
+      border-bottom: 0;
+    }
+
+    .evidence-cell.label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .evidence-cell.value {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .packet-grid,
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .case-note blockquote {
+      color: var(--text);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.78;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+    }
+
+    .check-list,
+    .no-list {
+      display: grid;
+      gap: 0.7rem;
+      list-style: none;
+    }
+
+    .check-list li,
+    .no-list li {
+      position: relative;
+      color: var(--text-2);
+      padding-left: 1.35rem;
+      line-height: 1.55;
+    }
+
+    .check-list li::before,
+    .no-list li::before {
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: var(--mono);
+    }
+
+    .check-list li::before {
+      content: '+';
+    }
+
+    .no-list li::before {
+      content: 'x';
+      color: var(--text-3);
+    }
+
+    .muted-card {
+      background: rgba(255,255,255,0.025);
+    }
+
+    .approval-box {
+      border-color: var(--accent-border);
+    }
+
+    .approval-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .approval-links a {
+      display: inline-flex;
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      color: var(--accent);
+      background: rgba(31,160,104,0.06);
+      padding: 0.58rem 0.85rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 900px) {
+      .evidence-page {
+        padding: 0 1rem 3rem;
+      }
+
+      .evidence-map-grid,
+      .packet-grid,
+      .role-grid,
+      .evidence-grid,
+      .evidence-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</BaseLayout>

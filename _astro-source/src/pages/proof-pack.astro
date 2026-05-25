@@ -5,6 +5,7 @@ const systems = [
   ['Wallet Risk Assessment', '/wallet-risk', 'Risk judgment', 'Score, rule explanation, and plain-language note for sample wallet-risk rows.'],
   ['AML Status Evidence', '/aml-status-evidence', 'Auditability', 'Artifact provenance, checks, visible claims, and explicit authority boundaries.'],
   ['Fraud Alert Triage Workflow', '/fraud-alert-triage', 'Alert operations', 'Synthetic signals converted into a field packet, reviewer case note, and human next step.'],
+  ['Evidence-Preserved Agent Workflow Sprint', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into an evidence packet, reviewer summary, and human gate.'],
   ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public artifacts without live authority.'],
   ['Site Health / Health Board', '/proof/site-health', 'Self-checking evidence', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
 ];
@@ -54,7 +55,7 @@ const questions = [
 
     <section class="pack-section">
       <span>Flagship systems</span>
-      <h2>Five missions, one map.</h2>
+      <h2>Six missions, one map.</h2>
       <div class="system-table">
         {systems.map(([name, href, signal, detail]) => (
           <a href={href} class="system-row">
