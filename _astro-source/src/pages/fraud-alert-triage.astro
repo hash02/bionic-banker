@@ -1,0 +1,557 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Fraud Alert Triage Workflow';
+const description = 'A public-safe synthetic proof sample showing how fraud signals become reviewer-ready evidence packets with human approval boundaries.';
+
+const proofMap = [
+  ['1', 'Detect the pattern', 'A fictional transfer sequence combines device, geography, recipient, and payment-timing signals.'],
+  ['2', 'Assemble the evidence', 'The workflow turns scattered events into a traceable packet a reviewer can inspect.'],
+  ['3', 'Draft the reviewer note', 'The system proposes a concise case note without declaring fraud or taking account action.'],
+  ['4', 'Keep authority human', 'Final decisions stay with a reviewer operating under approved policy.']
+];
+
+const alertSignals = [
+  ['Case type', 'Suspicious transfer pattern', 'Possible account-takeover or unauthorized transfer attempt.'],
+  ['Trigger window', '18 minutes', 'Short gap between login anomaly, test payments, and larger transfer attempt.'],
+  ['Device signal', 'New device', 'Risk-relevant only when paired with payment anomalies.'],
+  ['Geography signal', 'New geography', 'Context signal requiring human review, not a standalone fraud decision.'],
+  ['Payment signal', '2 low-value tests + 1 larger transfer attempt', 'Common suspicious pattern, but not conclusive without reviewer context.'],
+  ['Recipient history', 'No prior recipient history', 'Recipient novelty increases review priority.'],
+  ['Automation boundary', 'Decision-support only', 'No automatic block, release, reimbursement, or account action.']
+];
+
+const evidencePacket = [
+  ['Event timeline', 'Synthetic event sequence', 'Shows order of login anomaly, test transactions, and larger transfer attempt.'],
+  ['Rule contribution', 'Deterministic indicators', 'Reviewer can see which checks fired and challenge the logic.'],
+  ['Priority tier', 'High review', 'Queue sorting support, not a final fraud decision.'],
+  ['Case note', 'Generated draft from source evidence', 'Reduces documentation burden while preserving traceability.'],
+  ['Human next step', 'Reviewer checklist', 'Keeps final decision inside approved policy and human judgment.']
+];
+
+const ruleSnapshot = [
+  ['New device', 'Yes', 'Device novelty increases risk only when combined with payment anomalies.'],
+  ['New geography', 'Yes', 'Geography mismatch adds context, not a final decision.'],
+  ['Test transactions', 'Yes', 'Low-value tests can precede unauthorized larger movement.'],
+  ['New recipient burst', 'Yes', 'Multiple new recipients in a short window increase operational risk.'],
+  ['Larger transfer after tests', 'Yes', 'Escalates from suspicious behavior to funds-at-risk review.']
+];
+
+const canSupport = [
+  'Evidence collection',
+  'Case-note drafting',
+  'Rule explanation',
+  'Triage priority',
+  'Reviewer checklist creation',
+  'Outcome capture for feedback loops'
+];
+
+const mustNotClaim = [
+  'Legal advice or regulatory sign-off',
+  'SAR filing decisions or KYC approval decisions',
+  'Automated account blocking, release, reimbursement, or fund movement',
+  'Measured impact on alert quality or fraud losses without fresh evidence',
+  'Validated deployment in a regulated compliance environment'
+];
+
+const roleFit = [
+  ['Fraud / AML / RegTech', 'Shows alert review judgment: suspicious activity framing, escalation context, reviewer-ready evidence, and clear limits.'],
+  ['Applied AI Ops', 'Shows bounded automation: messy event signals become operational artifacts without hiding source evidence.'],
+  ['AI governance / model risk', 'Shows separation between source facts, generated text, deterministic rules, and human authority.'],
+  ['FinTech decision support', 'Shows product sense for regulated workflows: useful assistance without pretending to be the final decision-maker.']
+];
+---
+<BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/fraud-alert-triage/">
+  <main class="proof-page">
+    <section class="proof-hero">
+      <div class="proof-kicker">Public-safe proof sample</div>
+      <h1>Fraud Alert Triage Workflow</h1>
+      <p class="proof-lede">A synthetic example of evidence-preserving automation for regulated financial workflows: suspicious signal → source evidence → rule explanation → reviewer-ready case note → human-approved next action.</p>
+      <p class="proof-positioning">Built as a portfolio proof for AI + finance + fraud operations: not a production claim, not a compliance promise, and not real customer data.</p>
+      <div class="proof-actions" aria-label="Proof exports">
+        <a href="/proof/fraud-alert-triage/one-page-card.html">Open one-page card</a>
+        <a href="/proof/fraud-alert-triage/one-page-card.pdf">Download PDF card</a>
+        <a href="/proof/fraud-alert-triage/linkedin-project-bullets.md">LinkedIn / project bullets</a>
+      </div>
+      <div class="proof-badges" aria-label="Proof boundaries">
+        <span>Synthetic data only</span>
+        <span>Decision support</span>
+        <span>Human approval required</span>
+      </div>
+    </section>
+
+    <section class="proof-section proof-map" aria-label="90-second proof map">
+      <div class="section-label">90-second proof map</div>
+      <div class="proof-map-grid">
+        {proofMap.map(([step, heading, body]) => (
+          <article class="proof-map-card">
+            <span>{step}</span>
+            <h3>{heading}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="proof-section proof-intro">
+      <div>
+        <div class="section-label">Problem</div>
+        <h2>Fraud alerts are not just predictions. They are review workflows.</h2>
+      </div>
+      <p>In regulated finance, the useful artifact is not a magic score. Reviewers need a traceable packet: what happened, which rules contributed, what evidence is attached, what action is suggested, and which decisions remain human-owned. This draft shows that workflow using fictional data only.</p>
+    </section>
+
+    <section class="proof-section">
+      <div class="section-label">Synthetic alert row</div>
+      <div class="proof-table cards-table">
+        {alertSignals.map(([field, value, meaning]) => (
+          <div class="proof-row">
+            <div class="proof-cell label">{field}</div>
+            <div class="proof-cell value">{value}</div>
+            <div class="proof-cell meaning">{meaning}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="proof-grid">
+      <div class="proof-card wide">
+        <div class="section-label">Evidence packet</div>
+        <h2>What a reviewer should receive</h2>
+        <div class="packet-list">
+          {evidencePacket.map(([item, status, reason]) => (
+            <article class="packet-item">
+              <strong>{item}</strong>
+              <span>{status}</span>
+              <p>{reason}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+      <aside class="proof-card boundary-card">
+        <div class="section-label">Boundary</div>
+        <h2>No autonomous account action</h2>
+        <p>This sample supports review. It does not block accounts, move money, release funds, reimburse customers, file regulatory reports, approve KYC, or make final fraud determinations.</p>
+      </aside>
+    </section>
+
+    <section class="proof-section">
+      <div class="section-label">Rule contribution snapshot</div>
+      <div class="rule-grid">
+        {ruleSnapshot.map(([indicator, fired, reason]) => (
+          <article class="rule-card">
+            <div class="rule-top">
+              <h3>{indicator}</h3>
+              <span>{fired}</span>
+            </div>
+            <p>{reason}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="proof-section case-note">
+      <div class="section-label">Reviewer-ready case note draft</div>
+      <blockquote>
+        Priority: high review. A new device and new geography appeared before two low-value transfers to new recipients, followed by a larger transfer attempt. The pattern may indicate account-takeover probing, but this workflow does not declare fraud automatically. Route to human fraud review with event timeline, recipient history, device/session context, and transfer authorization evidence attached. Reviewer should decide whether to block, release, reimburse, escalate, or request more information according to approved policy.
+      </blockquote>
+    </section>
+
+    <section class="proof-grid">
+      <div class="proof-card">
+        <div class="section-label">This workflow can support</div>
+        <ul class="check-list">
+          {canSupport.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="proof-card muted-card">
+        <div class="section-label">This workflow must not claim</div>
+        <ul class="no-list">
+          {mustNotClaim.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="proof-section">
+      <div class="section-label">Role relevance</div>
+      <div class="role-grid">
+        {roleFit.map(([role, fit]) => (
+          <article class="role-card">
+            <h3>{role}</h3>
+            <p>{fit}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="proof-section approval-box">
+      <div class="section-label">Public-use boundary</div>
+      <h2>Public proof, bounded claims.</h2>
+      <p>This page is a public-safe proof artifact for reviewer inspection. It uses no employer data, client data, private wallet data, secrets, or real customer identifiers. It should be read as a synthetic workflow demonstration, not as a claim of operational deployment, regulatory approval, or autonomous account authority.</p>
+    </section>
+  </main>
+
+  <style>
+    .proof-page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .proof-hero {
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .proof-kicker,
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+
+    .proof-hero h1 {
+      max-width: 860px;
+      font-size: clamp(2.4rem, 7vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      text-shadow: 0 0 80px rgba(31,160,104,0.12);
+    }
+
+    .proof-lede {
+      max-width: 780px;
+      color: var(--text-2);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.75;
+    }
+
+    .proof-positioning {
+      max-width: 760px;
+      margin-top: 1rem;
+      color: var(--text-3);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .proof-map-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .proof-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .proof-actions a {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      color: var(--accent);
+      background: rgba(31,160,104,0.06);
+      padding: 0.58rem 0.85rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .proof-actions a:hover {
+      color: var(--text);
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(31,160,104,0.14);
+    }
+
+    .proof-map-card {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-top: 1px solid var(--accent-border);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .proof-map-card span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-bottom: 0.8rem;
+      border-radius: 999px;
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      background: var(--accent-glow);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .proof-map-card h3 {
+      color: var(--text);
+      font-size: 0.98rem;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .proof-map-card p {
+      color: var(--text-2);
+      font-size: 0.86rem;
+      line-height: 1.62;
+    }
+
+    .proof-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+    }
+
+    .proof-badges span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      background: var(--accent-glow);
+      border-radius: 999px;
+      padding: 0.38rem 0.7rem;
+    }
+
+    .proof-section,
+    .proof-grid {
+      margin-top: 2rem;
+    }
+
+    .proof-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .proof-section h2,
+    .proof-card h2,
+    .approval-box h2 {
+      font-size: clamp(1.45rem, 3vw, 2.3rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .proof-section p,
+    .proof-card p,
+    .role-card p,
+    .packet-item p {
+      color: var(--text-2);
+      line-height: 1.72;
+      font-size: 0.95rem;
+    }
+
+    .proof-table,
+    .proof-card,
+    .case-note,
+    .approval-box {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr 1.6fr;
+      gap: 1rem;
+      padding: 1rem 1.15rem;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .proof-row:last-child {
+      border-bottom: 0;
+    }
+
+    .proof-cell.label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .proof-cell.value {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .proof-cell.meaning {
+      color: var(--text-2);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .proof-card {
+      padding: 1.5rem;
+    }
+
+    .proof-card.wide {
+      min-width: 0;
+    }
+
+    .boundary-card {
+      border-color: var(--accent-border);
+      background: linear-gradient(180deg, rgba(31,160,104,0.055), rgba(10,10,14,0.95));
+    }
+
+    .packet-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .packet-item,
+    .rule-card,
+    .role-card {
+      background: var(--bg3);
+      border: 1px solid var(--b1);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+
+    .packet-item strong,
+    .role-card h3,
+    .rule-card h3 {
+      display: block;
+      color: var(--text);
+      font-size: 0.98rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .packet-item span,
+    .rule-top span {
+      display: inline-flex;
+      width: fit-content;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      background: var(--accent-glow);
+      border-radius: 4px;
+      padding: 0.18rem 0.45rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .rule-grid,
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .rule-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .case-note {
+      padding: 1.5rem;
+    }
+
+    .case-note blockquote {
+      color: var(--text);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.78;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+    }
+
+    .check-list,
+    .no-list {
+      display: grid;
+      gap: 0.7rem;
+      list-style: none;
+    }
+
+    .check-list li,
+    .no-list li {
+      position: relative;
+      color: var(--text-2);
+      padding-left: 1.35rem;
+      line-height: 1.55;
+    }
+
+    .check-list li::before,
+    .no-list li::before {
+      position: absolute;
+      left: 0;
+      top: 0.02rem;
+      color: var(--accent);
+      font-family: var(--mono);
+    }
+
+    .check-list li::before { content: '+'; }
+    .no-list li::before { content: '–'; }
+
+    .muted-card {
+      border-color: rgba(228,228,236,0.12);
+    }
+
+    .approval-box {
+      padding: 1.5rem;
+      border-color: var(--accent-border);
+    }
+
+    @media (max-width: 900px) {
+      .proof-intro,
+      .proof-grid,
+      .proof-row {
+        grid-template-columns: 1fr;
+      }
+
+      .packet-list,
+      .rule-grid,
+      .role-grid,
+      .proof-map-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-hero {
+        padding-top: 3.5rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .proof-page {
+        padding: 0 1rem 3rem;
+      }
+
+      .proof-card,
+      .case-note,
+      .approval-box {
+        padding: 1.15rem;
+      }
+
+      .proof-row {
+        padding: 0.9rem;
+      }
+    }
+  </style>
+</BaseLayout>
