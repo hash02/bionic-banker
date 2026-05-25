@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const systems = [
+  ['Wallet Risk Assessment', '/wallet-risk', 'Risk judgment', 'Score, rule explanation, and plain-language note for sample wallet-risk rows.'],
+  ['AML Status Evidence', '/aml-status-evidence', 'Auditability', 'Artifact provenance, checks, visible claims, and explicit authority boundaries.'],
+  ['Fraud Alert Triage Workflow', '/fraud-alert-triage', 'Alert operations', 'Synthetic signals converted into an evidence packet, reviewer case note, and human next step.'],
+  ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public artifacts without live authority.'],
+  ['Site Health / Proof QA', '/proof/site-health', 'Self-auditing proof', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
+];
+
+const evidenceMap = [
+  ['Public system cards', '11', 'Rendered systems a reviewer can inspect.'],
+  ['Evidence catalog lanes', '8', 'Catalog-backed proof lanes with sources and boundaries.'],
+  ['Catalog evidence sources', '21', 'Public-safe sources linked from the evidence catalog.'],
+  ['Catalog boundaries', '36', 'Explicit limits that prevent overclaiming.'],
+  ['Articles / notes', '45', 'Writing corpus that supports the finance, AI, and agent-system context.'],
+];
+
+const stack = [
+  'Astro static site with committed static output',
+  'Public-safe JSON artifacts for evidence and site health',
+  'Deterministic Node.js QA checks for copy, links, metrics, and route framing',
+  'Mobile QA gate for layout regressions',
+  'GitHub-hosted source and cache-aware live verification',
+];
+
+const questions = [
+  'Which finance-risk workflow should be made more inspectable first?',
+  'Where should AI draft evidence while a human keeps final authority?',
+  'Which review packet would reduce analyst friction without hiding the source trail?',
+  'What public-safe artifact would prove judgment without exposing private data?',
+  'Which system boundary matters most: wallet authority, filing authority, deployment authority, or data privacy?',
+];
+---
+<BaseLayout title="Proof Pack" description="A compressed Bionic Banker proof pack for reviewers: positioning, flagship systems, evidence map, stack, boundaries, and questions to ask Hash.">
+  <main class="pack-shell">
+    <section class="pack-hero">
+      <div class="pack-kicker">Bionic Banker Proof Pack</div>
+      <h1>A compressed proof packet for AI-assisted finance risk workflows.</h1>
+      <p>Use this when you want the shortest serious read: what Bionic Banker is, which systems prove it, what evidence exists, what stays bounded, and what to ask next.</p>
+      <div class="pack-actions">
+        <a href="/start-here">Start Here</a>
+        <a href="/projects">Systems</a>
+        <a href="/evidence">Evidence Catalog</a>
+      </div>
+    </section>
+
+    <section class="pack-section thesis-card">
+      <span>Positioning</span>
+      <h2>AI agents for finance risk — evidence-first, human-reviewed.</h2>
+      <p>Bionic Banker sits between RegTech proof packaging, wallet-risk intelligence, fraud/AML workflow design, and human-gated agent operations. The differentiator is not claiming autonomy; it is showing the evidence packet and the authority boundary.</p>
+    </section>
+
+    <section class="pack-section">
+      <span>Flagship systems</span>
+      <h2>Five proof routes, one narrative spine.</h2>
+      <div class="system-table">
+        {systems.map(([name, href, signal, detail]) => (
+          <a href={href} class="system-row">
+            <strong>{name}</strong>
+            <em>{signal}</em>
+            <p>{detail}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="pack-section">
+      <span>Evidence map</span>
+      <h2>The public proof spine is counted and bounded.</h2>
+      <div class="metric-grid">
+        {evidenceMap.map(([label, value, detail]) => (
+          <article>
+            <strong>{value}</strong>
+            <span>{label}</span>
+            <p>{detail}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="pack-section split">
+      <div>
+        <span>Technical stack</span>
+        <h2>Built like a public evidence system, not just a portfolio page.</h2>
+        <ul>{stack.map((item) => <li>{item}</li>)}</ul>
+      </div>
+      <div class="boundary-card">
+        <span>Trust boundary</span>
+        <h2>What the proof pack does not claim.</h2>
+        <ul>
+          <li>No live wallet, trade, transfer, or fund authority.</li>
+          <li>No SAR filing, KYC approval, enforcement, or final compliance decision.</li>
+          <li>No private prompts, secrets, raw logs, customer data, or employer data.</li>
+          <li>No guarantee that synthetic samples reflect production performance.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="pack-section">
+      <span>Questions to ask Hash</span>
+      <h2>The right conversation starts with workflow boundaries.</h2>
+      <div class="question-grid">
+        {questions.map((question) => <article>{question}</article>)}
+      </div>
+      <div class="pack-footer-cta">
+        <strong>Best next click:</strong>
+        <a href="/start-here">Open the 90-second reviewer guide -></a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .pack-shell { max-width: 1160px; margin: 0 auto; padding: 6rem 1.25rem 4rem; color: #f6f7fb; }
+  .pack-hero, .pack-section { border: 1px solid rgba(255,255,255,.12); background: radial-gradient(circle at top left, rgba(103,232,249,.12), transparent 34%), linear-gradient(135deg, rgba(15,17,28,.95), rgba(8,9,15,.96)); border-radius: 28px; padding: clamp(1.4rem, 3vw, 3rem); margin-bottom: 1.25rem; }
+  .pack-kicker, .pack-section > span, .boundary-card span { color: #a7f3d0; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; }
+  .pack-hero h1 { font-size: clamp(2.2rem, 5.6vw, 4.8rem); line-height: .96; margin: .75rem 0 1rem; max-width: 940px; }
+  .pack-hero p, .pack-section p, .pack-section li { color: #c6d0df; line-height: 1.7; }
+  .pack-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
+  .pack-actions a, .pack-footer-cta a { text-decoration: none; border-radius: 999px; padding: .78rem 1rem; border: 1px solid rgba(255,255,255,.18); color: #f6f7fb; font-weight: 800; }
+  .pack-actions a:first-child { background: #a7f3d0; color: #071018; border: 0; }
+  .system-table { display: grid; gap: .8rem; margin-top: 1rem; }
+  .system-row { display: grid; grid-template-columns: minmax(190px,.8fr) minmax(120px,.45fr) minmax(0,1.4fr); gap: 1rem; align-items: center; padding: 1rem; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; color: inherit; text-decoration: none; background: rgba(255,255,255,.04); }
+  .system-row em { color: #67e8f9; font-style: normal; font-weight: 800; }
+  .system-row p { margin: 0; }
+  .metric-grid, .question-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .9rem; margin-top: 1rem; }
+  .metric-grid article, .question-grid article, .boundary-card { border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 1rem; background: rgba(255,255,255,.045); }
+  .metric-grid strong { display: block; font-size: 2rem; color: #67e8f9; }
+  .metric-grid span { display: block; font-weight: 900; margin: .35rem 0; }
+  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.9fr); gap: 1rem; }
+  .pack-footer-cta { margin-top: 1.2rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  @media (max-width: 760px) { .system-row, .split { grid-template-columns: 1fr; } .pack-shell { padding-top: 4.5rem; } }
+</style>

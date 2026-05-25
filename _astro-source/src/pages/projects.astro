@@ -14,6 +14,7 @@ const projects = [
     signal: 'Risk UX + reviewer-ready evidence',
     flagship: true,
     description: 'A small evidence view for reading blockchain wallet-risk rows without turning every score into a verdict.',
+    reviewerQuestion: 'Can Hash reason about risk signals without turning a score into a verdict?',
     role: 'Wallets / Risk / Notes',
     url: '/wallet-risk',
     proof: 'Demonstrates wallet-screening judgment: 28 mapped detection abilities, 23 direct functions, visible scoring logic, and a plain-language reviewer note.',
@@ -33,6 +34,7 @@ const projects = [
     signal: 'AML status + audit boundaries',
     flagship: true,
     description: 'A public-safe AML status evidence page for the AML Layer 1 evidence contract, artifact provenance, planner gate, and authority boundaries.',
+    reviewerQuestion: 'Can Hash preserve auditability and authority boundaries?',
     role: 'AML / Evidence / Boundary',
     url: '/aml-status-evidence',
     proof: 'Shows how an AML-related evidence record can be inspected without giving the system authority to approve, file, trade, deploy, or execute.',
@@ -50,6 +52,7 @@ const projects = [
     signal: 'Alert-to-evidence packet',
     flagship: true,
     description: 'A public-safe fraud operations page showing how suspicious signals become an evidence packet, reviewer note, and explicit human approval boundary.',
+    reviewerQuestion: 'Can Hash turn messy fraud signals into a review-ready packet?',
     role: 'Fraud Ops / Evidence / Review',
     url: '/fraud-alert-triage',
     proof: 'Demonstrates the market-positioning pattern from alert signal to source evidence, rule explanation, analyst-ready case note, and bounded next action.',
@@ -67,6 +70,7 @@ const projects = [
     signal: 'Human-gated orchestration',
     flagship: true,
     description: 'A two-agent operating pattern where independent agents take turns, review each other, preserve board state, and hold external actions behind approval.',
+    reviewerQuestion: 'Can Hash design AI-agent workflows where humans keep authority?',
     role: 'Agents / Memory / Turns',
     url: '/blog/two-agent-finance-operating-system',
     proof: 'Demonstrates human-gated agent operations: independent turns, review roles, recoverable board state, and public artifacts without exposing private prompts.',
@@ -85,6 +89,7 @@ const projects = [
     signal: 'Inspectable AI-agent operations',
     flagship: true,
     description: 'A local evidence stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
+    reviewerQuestion: 'Can Hash make AI-agent work inspectable after the run?',
     role: 'Agent Tools / Traces / Permissions',
     url: 'https://github.com/hash02/agent-framework-proof',
     proof: 'Demonstrates inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, permission checks, trace rows, observability output, and 70 local checks.',
@@ -263,6 +268,12 @@ const projects = [
           </div>
           <h3>{project.name}</h3>
           <p class="system-desc">{project.description}</p>
+          {project.reviewerQuestion && (
+            <div class="reviewer-question">
+              <span>Reviewer question</span>
+              <strong>{project.reviewerQuestion}</strong>
+            </div>
+          )}
           <div class="system-proof-grid">
             <div>
               <span>What to notice</span>
@@ -288,3 +299,27 @@ const projects = [
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .reviewer-question {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.8rem;
+    margin: 0.15rem 0 0.65rem;
+    border: 1px solid rgba(103, 232, 249, 0.22);
+    border-radius: 12px;
+    background: rgba(103, 232, 249, 0.055);
+  }
+  .reviewer-question span {
+    color: #67e8f9;
+    font-family: var(--mono, monospace);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .reviewer-question strong {
+    color: var(--text, #f6f7fb);
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+</style>

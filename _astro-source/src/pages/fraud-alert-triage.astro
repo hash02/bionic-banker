@@ -67,6 +67,7 @@ const roleFit = [
       <div class="proof-kicker">Public-safe proof sample</div>
       <h1>Fraud Alert Triage Workflow</h1>
       <p class="proof-lede">A synthetic example of evidence-preserving automation for regulated financial workflows: suspicious signal → source evidence → rule explanation → reviewer-ready case note → human-approved next action.</p>
+      <div class="reviewer-callout"><span>Reviewer question</span><strong>Can Hash turn messy fraud signals into a review-ready packet?</strong></div>
       <p class="proof-positioning">Built as a portfolio proof for AI + finance + fraud operations: not a production claim, not a compliance promise, and not real customer data.</p>
       <div class="proof-actions" aria-label="Proof exports">
         <a href="/proof/fraud-alert-triage/one-page-card.html">Open one-page card</a>
@@ -555,3 +556,9 @@ const roleFit = [
     }
   </style>
 </BaseLayout>
+
+<style>
+  .reviewer-callout { display: grid; gap: .35rem; max-width: 760px; margin: 1rem 0; padding: .9rem 1rem; border: 1px solid rgba(103,232,249,.26); border-radius: 16px; background: rgba(103,232,249,.06); }
+  .reviewer-callout span { color: #67e8f9; font-family: monospace; font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
+  .reviewer-callout strong { color: #f6f7fb; line-height: 1.35; }
+</style>

@@ -175,6 +175,27 @@ const marketPositioningCards = [
   },
 ];
 
+const readerEntryCards = [
+  {
+    role: 'Recruiter',
+    href: '/start-here',
+    prompt: '90-second reviewer guide',
+    body: 'Follow the strongest reviewer path: risk judgment, AML evidence, fraud triage, agent workflow, and site QA.',
+  },
+  {
+    role: 'Collaborator',
+    href: '/proof-pack',
+    prompt: 'Compressed proof pack',
+    body: 'See the category thesis, flagship systems, evidence map, stack, boundaries, and questions to ask Hash.',
+  },
+  {
+    role: 'Technical reviewer',
+    href: '/proof/site-health',
+    prompt: 'Self-auditing proof spine',
+    body: 'Inspect metric contracts, route framing, link checks, mobile QA, and public health status.',
+  },
+];
+
 const flagshipSystems = [
   {
     label: 'Interactive Web App',
@@ -225,9 +246,9 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
         <h1>AI agents for finance risk — evidence-first, human-reviewed.</h1>
         <p class="hero-sub">Bionic Banker turns wallet signals, AML checks, fraud alerts, and agent workflows into review-ready evidence packets with visible sources, traces, guardrails, and human decision boundaries.</p>
         <div class="hero-actions">
-          <a href="/evidence" class="btn-primary">View Evidence Catalog -></a>
-          <a href="/wallet-risk" class="btn-ghost">Wallet Risk</a>
-          <a href="/proof/site-health" class="btn-ghost">Proof QA</a>
+          <a href="/start-here" class="btn-primary">Start Here -></a>
+          <a href="/proof-pack" class="btn-ghost">Proof Pack</a>
+          <a href="/evidence" class="btn-ghost">Evidence Catalog</a>
         </div>
         <div class="hero-signal-row" aria-label="Signals on the table">
           {movingRows.map(row => (
@@ -238,6 +259,8 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           ))}
         </div>
         <nav class="hero-mobile-route-strip" aria-label="Mobile evidence routes">
+          <a href="/start-here">Start Here</a>
+          <a href="/proof-pack">Proof Pack</a>
           <a href="/evidence">Evidence Catalog</a>
           <a href="/wallet-risk">Wallet Risk</a>
           <a href="/fraud-alert-triage">Fraud Triage</a>
@@ -287,9 +310,18 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="section-label-text">Start Here</div>
           <div class="section-title-text">First 90-second reader path</div>
         </div>
-        <a href="/projects" class="view-all">Open all systems -></a>
+        <a href="/start-here" class="view-all">Open reviewer guide -></a>
       </div>
       <p class="section-orient">If you are reviewing this for a role, collaboration, investment, executive scan, or learning path, start here. These routes show risk judgment, evidence packaging, human-gated agent workflows, and public proof hygiene.</p>
+      <div class="reader-entry-grid" aria-label="Reader-specific entry points">
+        {readerEntryCards.map((card) => (
+          <a href={card.href} class="reader-entry-card">
+            <span>{card.role}</span>
+            <strong>{card.prompt}</strong>
+            <p>{card.body}</p>
+          </a>
+        ))}
+      </div>
       <div class="flagship-system-grid">
         {flagshipSystems.map((system) => (
           <a href={system.href} class="flagship-system-card">
@@ -704,6 +736,38 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
       gap: 1rem;
       margin: 1.25rem 0 1rem;
     }
+    .reader-entry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .reader-entry-card {
+      display: grid;
+      gap: 0.45rem;
+      padding: 1rem;
+      border: 1px solid rgba(111, 231, 255, 0.22);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(111,231,255,0.10), rgba(255,255,255,0.025));
+      min-width: 0;
+    }
+    .reader-entry-card span {
+      color: #67e8f9;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .reader-entry-card strong {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+    .reader-entry-card p {
+      color: var(--text-2);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
     .flagship-system-card {
       position: relative;
       min-width: 0;
@@ -1108,6 +1172,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
       .context-signal-grid { grid-template-columns: 1fr; }
 
       .flagship-system-grid { grid-template-columns: 1fr; }
+      .reader-entry-grid { grid-template-columns: 1fr; }
       .proof-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .proof-data-grid { grid-template-columns: 1fr; }
     }

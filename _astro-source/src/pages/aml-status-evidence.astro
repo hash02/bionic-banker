@@ -39,6 +39,7 @@ const proofCards = [
         <p>
           This page makes the AML Layer 1 status evidence visible without turning it into a compliance claim. It shows the contract, the artifact provenance, the planner boundary, and the parts that still stay local.
         </p>
+        <div class="reviewer-callout"><span>Reviewer question</span><strong>Can Hash preserve auditability and authority boundaries?</strong></div>
         <div class="proof-actions">
           <a href="#proof-cards">Review supporting evidence</a>
           <a href="/wallet-risk">Open wallet risk assessment</a>
@@ -382,3 +383,9 @@ const proofCards = [
     }
   </style>
 </BaseLayout>
+
+<style>
+  .reviewer-callout { display: grid; gap: .35rem; margin: 1rem 0; padding: .9rem 1rem; border: 1px solid rgba(103,232,249,.26); border-radius: 16px; background: rgba(103,232,249,.06); }
+  .reviewer-callout span { color: #67e8f9; font-family: monospace; font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
+  .reviewer-callout strong { color: #f6f7fb; line-height: 1.35; }
+</style>
