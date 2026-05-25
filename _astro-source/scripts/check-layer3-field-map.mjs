@@ -23,6 +23,8 @@ const required = [
   ['apps', 'Apps you can enter'],
   ['apps', 'bionicbanker.tech.com'],
   ['apps', 'The strongest serious route is Wallet Risk'],
+  ['apps', 'Evidence-Preserved Agent Workflow Sprint'],
+  ['apps', '/agent-prototype-sprint'],
   ['signals', '<h1 class="page-title">Signals</h1>'],
   ['signals', 'It is a research board, not a trading board.'],
   ['signals', 'Signals are prompts for judgment'],

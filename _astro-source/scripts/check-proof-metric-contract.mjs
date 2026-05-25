@@ -22,7 +22,7 @@ if (catalogLanes !== 8) fail(`expected 8 evidence catalog lanes, found ${catalog
 if (catalogSources !== 21) fail(`expected 21 catalog evidence sources, found ${catalogSources}`);
 if (catalogBoundaries !== 36) fail(`expected 36 catalog boundaries, found ${catalogBoundaries}`);
 if (articleCount !== 45) fail(`expected 45 source articles, found ${articleCount}`);
-if (publicCardCount !== 11) fail(`expected 11 public system cards, found ${publicCardCount}`);
+if (publicCardCount !== 12) fail(`expected 12 public system cards, found ${publicCardCount}`);
 
 const requiredPhrases = [
   [projectsSource, 'public system cards', 'projects source public system cards label'],

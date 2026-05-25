@@ -84,6 +84,7 @@ for (const phrase of [
   'Can Hash preserve auditability and authority boundaries?',
   'Can Hash turn messy fraud signals into a review-ready packet?',
   'Can Hash design AI-agent workflows where humans keep authority?',
+  'Can Hash turn an AI-agent sprint into inspectable public proof without overclaiming authority?',
 ]) {
   assert(source.projects.includes(phrase), `Projects source missing reviewer question: ${phrase}`);
 }
