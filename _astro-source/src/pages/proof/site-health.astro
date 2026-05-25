@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const health = await import('../../../public/dashboard-data/site-health.json');
+const data = health.default;
+const generatedDate = new Date(data.generated_at).toISOString().replace('T', ' ').slice(0, 16);
+const metrics = data.metrics ?? {};
+const checks = data.checks ?? [];
+---
+<BaseLayout title="Site Health / Proof QA" description="Public-safe QA status for the Bionic Banker public evidence spine.">
+  <main class="page-shell systems-wrap">
+    <section class="page-hero">
+      <span class="eyebrow">SITE HEALTH / PROOF QA</span>
+      <h1 class="page-title">The proof surface audits itself.</h1>
+      <p class="page-sub">A public-safe status page for Layer 3 proof hygiene: metric contract, reader-facing evidence routes, link and asset health, and the current public-proof spine.</p>
+      <div class="page-metric-row" aria-label="Site health metrics">
+        <div><strong>{data.status}</strong><span>proof QA status</span></div>
+        <div><strong>{metrics.public_system_cards}</strong><span>public system cards</span></div>
+        <div><strong>{metrics.evidence_catalog_lanes}</strong><span>evidence catalog lanes</span></div>
+        <div><strong>{metrics.articles}</strong><span>articles</span></div>
+      </div>
+    </section>
+
+    <section class="systems-audit-panel" aria-label="Mission and audience">
+      <div>
+        <span class="systems-audit-label">MISSION</span>
+        <strong>{data.mission}</strong>
+        <p>{data.audience}</p>
+      </div>
+      <div>
+        <span class="systems-audit-label">STYLE</span>
+        <strong>AI-agent founder portfolio</strong>
+        <p>{data.style}</p>
+      </div>
+      <div>
+        <span class="systems-audit-label">BOUNDARY</span>
+        <strong>Public-safe status only</strong>
+        <p>{data.boundary}</p>
+      </div>
+    </section>
+
+    <section class="articles-grid" aria-label="Proof QA checks">
+      {checks.map((check) => (
+        <article class="article-card">
+          <span>{check.status}</span>
+          <h2>{check.label}</h2>
+          <p>{check.summary}</p>
+        </article>
+      ))}
+    </section>
+
+    <section class="systems-audit-panel" aria-label="Flagship order">
+      <div>
+        <span class="systems-audit-label">FLAGSHIP ORDER</span>
+        <strong>Recommended reader path</strong>
+        <ol class="system-list">
+          {data.flagship_order.map((item) => <li>{item}</li>)}
+        </ol>
+      </div>
+      <div>
+        <span class="systems-audit-label">LAST GENERATED</span>
+        <strong>{generatedDate} UTC</strong>
+        <p>Generated from deterministic local checks during the Layer 3 proof spine hardening workflow.</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
