@@ -6,8 +6,8 @@ interface Props {
   canonical?: string;
 }
 
-const { title, description = "Inside finance. Building playable maps for what comes next. Blockchain, AI, DeFi, and raw thoughts from someone who works inside financial systems and builds on top of them.", ogImage, canonical } = Astro.props;
-const fullTitle = title === 'Home' ? 'Bionic Banker - Where Finance Meets the Future' : `${title} - Bionic Banker`;
+const { title, description = "Inside finance. Mapping AI agents, risk signals, apps, and field notes for people who want to understand what comes next.", ogImage, canonical } = Astro.props;
+const fullTitle = title === 'Home' ? 'Bionic Banker - AI Finance Field Map' : `${title} - Bionic Banker`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 const isHome = title === 'Home';
@@ -102,15 +102,11 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="/start-here">Start Quest</a></li>
-        <li><a href="/learn">Knowledge Base</a></li>
-        <li><a href="/projects">Systems</a></li>
-        <li><a href="/proof-pack">Field Pack</a></li>
+        <li><a href="/apps">Apps</a></li>
+        <li><a href="/signals">Signals</a></li>
+        <li><a href="/ai-intelligence">AI Intelligence</a></li>
+        <li><a href="/articles">Blog</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/evidence">Evidence</a></li>
-        <li><a href="/risk-evidence-overview">Evidence Overview</a></li>
-        <li><a href="/aml-status-evidence">AML Status Evidence</a></li>
-        <li><a href="/intelligence">Risk Signals</a></li>
-        <li><a href="/articles">Articles</a></li>
       </ul>
       <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener">Join Telegram</a>
     </div>
@@ -143,22 +139,21 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
     <div class="footer-wrap">
       <div class="footer-brand">
         <a href="/" class="footer-logo">Bionic <span>Banker</span></a>
-        <p class="footer-tagline">Inside finance. Building playable maps for what comes next.</p>
+        <p class="footer-tagline">Inside finance. Mapping agents, signals, apps, and field notes.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
           <h4>Explore</h4>
           <a href="/start-here">Start Quest</a>
-          <a href="/learn">Knowledge Base</a>
-          <a href="/projects">Systems</a>
-          <a href="/proof-pack">Field Pack</a>
+          <a href="/apps">Apps</a>
+          <a href="/signals">Signals</a>
+          <a href="/ai-intelligence">AI Intelligence</a>
+          <a href="/articles">Blog</a>
           <a href="/about">About</a>
-          <a href="/evidence">Evidence</a>
-          <a href="/risk-evidence-overview">Evidence Overview</a>
+          <a href="/proof-pack">Field Pack</a>
           <a href="/aml-status-evidence">AML Status Evidence</a>
-          <a href="/dashboard">Dashboard</a>
-          <a href="/intelligence">Risk Signals</a>
-          <a href="/articles">Articles</a>
+          <a href="/evidence">Evidence</a>
+          <a href="/proof/site-health">Health Board</a>
         </div>
         <div class="footer-col">
           <h4>Connect</h4>
@@ -188,16 +183,12 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
     panel.innerHTML =
       '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
       '<a href="/start-here" class="bb-panel-primary">Start Quest</a>' +
-      '<a href="/learn" class="bb-panel-primary">Knowledge Base</a>' +
-      '<a href="/projects" class="bb-panel-primary">Systems</a>' +
-      '<a href="/proof-pack" class="bb-panel-primary">Field Pack</a>' +
+      '<a href="/apps" class="bb-panel-primary">Apps</a>' +
+      '<a href="/signals" class="bb-panel-primary">Signals</a>' +
+      '<a href="/ai-intelligence" class="bb-panel-primary">AI Intelligence</a>' +
+      '<a href="/articles" class="bb-panel-primary">Blog</a>' +
       '<a href="/about" class="bb-panel-primary">About</a>' +
-      '<a href="/evidence" class="bb-panel-primary">Evidence</a>' +
-      '<a href="/risk-evidence-overview" class="bb-panel-primary">Evidence Overview</a>' +
-      '<a href="/aml-status-evidence" class="bb-panel-primary">AML Status Evidence</a>' +
-      '<a href="/dashboard" class="bb-panel-primary">Dashboard</a>' +
-      '<a href="/intelligence" class="bb-panel-primary">Risk Signals</a>' +
-      '<a href="/articles" class="bb-panel-primary">Articles</a>' +
+      '<a href="/proof-pack" class="bb-panel-primary">Field Pack</a>' +
       '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
     document.body.appendChild(panel);
 

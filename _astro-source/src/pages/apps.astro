@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().slice(0, 10);
+const catalogProjectCount = proofCatalog.default.projects.length;
+const catalogSourceCount = proofCatalog.default.projects.reduce((sum, project) => sum + (project.sources?.length ?? 0), 0);
+const catalogLimitCount = proofCatalog.default.projects.reduce((sum, project) => sum + (project.limits?.length ?? 0), 0);
+
+const projects = [
+  {
+    name: 'Wallet Risk Assessment',
+    surface: 'Interactive web app',
+    signal: 'Risk UX + reviewer-ready evidence',
+    flagship: true,
+    description: 'A small evidence view for reading blockchain wallet-risk rows without turning every score into a verdict.',
+    reviewerQuestion: 'Can Hash reason about risk signals without turning a score into a verdict?',
+    role: 'Wallets / Risk / Notes',
+    url: '/wallet-risk',
+    proof: 'Demonstrates wallet-screening judgment: 28 mapped detection abilities, 23 direct functions, visible scoring logic, and a plain-language reviewer note.',
+    limitation: 'Research and learning page. Not legal advice, filing software, or a licensed compliance product.',
+    links: [
+      { label: 'Open wallet risk', url: '/wallet-risk' },
+      { label: 'Field note', url: '/blog/wallet-risk-notes' },
+      { label: 'Engine notes', url: '/blog/aml-engine' },
+      { label: 'GitHub', url: 'https://github.com/hash02/aml-detection-engine' },
+      { label: 'AML', url: '/learn#aml' },
+      { label: 'False positives', url: '/learn#false-positive' },
+    ],
+  },
+  {
+    name: 'AML Status Evidence',
+    surface: 'Evidence web app',
+    signal: 'AML status + audit boundaries',
+    flagship: true,
+    description: 'A public-safe AML status evidence page for the AML Layer 1 evidence contract, artifact provenance, planner gate, and authority boundaries.',
+    reviewerQuestion: 'Can Hash preserve auditability and authority boundaries?',
+    role: 'AML / Evidence / Boundary',
+    url: '/aml-status-evidence',
+    proof: 'Shows how an AML-related evidence record can be inspected without giving the system authority to approve, file, trade, deploy, or execute.',
+    limitation: 'Evidence surface only. No wallet, trade, filing, deploy, or KYC approval authority.',
+    links: [
+      { label: 'Open AML status evidence', url: '/aml-status-evidence' },
+      { label: 'Evidence JSON', url: '/dashboard-data/aml-status-evidence-public.json' },
+      { label: 'Wallet risk', url: '/wallet-risk' },
+      { label: 'AML', url: '/learn#aml' },
+    ],
+  },
+  {
+    name: 'Fraud Alert Triage Workflow',
+    surface: 'Synthetic fraud workflow',
+    signal: 'Alert-to-evidence packet',
+    flagship: true,
+    description: 'A public-safe fraud operations page showing how suspicious signals become an evidence packet, reviewer note, and explicit human approval boundary.',
+    reviewerQuestion: 'Can Hash turn messy fraud signals into a review-ready packet?',
+    role: 'Fraud Ops / Evidence / Review',
+    url: '/fraud-alert-triage',
+    proof: 'Demonstrates the market-positioning pattern from alert signal to source evidence, rule explanation, analyst-ready case note, and bounded next action.',
+    limitation: 'Synthetic sample only. Not fraud prevention software, enforcement authority, guaranteed detection, or autonomous case decisioning.',
+    links: [
+      { label: 'Open fraud triage', url: '/fraud-alert-triage' },
+      { label: 'One-page card', url: '/proof/fraud-alert-triage/one-page-card.html' },
+      { label: 'Evidence page', url: '/evidence' },
+      { label: 'Audit log', url: '/learn#audit-log' },
+    ],
+  },
+  {
+    name: 'Agent Chess',
+    surface: 'Agent-operations surface',
+    signal: 'Human-gated orchestration',
+    flagship: true,
+    description: 'A two-agent operating pattern where independent agents take turns, review each other, preserve board state, and hold external actions behind approval.',
+    reviewerQuestion: 'Can Hash design AI-agent workflows where humans keep authority?',
+    role: 'Agents / Memory / Turns',
+    url: '/blog/two-agent-finance-operating-system',
+    proof: 'Demonstrates human-gated agent operations: independent turns, review roles, recoverable board state, and public artifacts without exposing private prompts.',
+    limitation: 'Personal operating system. The public page shows tempo and broad roles only. No autonomous public publishing or external actions.',
+    links: [
+      { label: 'Story', url: '/blog/two-agent-finance-operating-system' },
+      { label: 'Evidence page', url: '/evidence' },
+      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'AI agent', url: '/learn#agent' },
+      { label: 'Audit log', url: '/learn#audit-log' },
+    ],
+  },
+  {
+    name: 'Agent Workflow System',
+    surface: 'Engineering repository',
+    signal: 'Inspectable AI-agent operations',
+    flagship: true,
+    description: 'A local evidence stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
+    reviewerQuestion: 'Can Hash make AI-agent work inspectable after the run?',
+    role: 'Agent Tools / Traces / Permissions',
+    url: 'https://github.com/hash02/agent-framework-proof',
+    proof: 'Demonstrates inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, permission checks, trace rows, observability output, and 70 local checks.',
+    limitation: 'Local evidence stack, not a production hosted agent or credentialed integration.',
+    links: [
+      { label: 'GitHub Repo', url: 'https://github.com/hash02/agent-framework-proof' },
+      { label: 'LangChain', url: '/learn#langchain' },
+      { label: 'LangGraph', url: '/learn#langgraph' },
+      { label: 'RAG', url: '/learn#rag' },
+      { label: 'RBAC', url: '/learn#rbac' },
+    ],
+  },
+  {
+    name: 'Agent Monitoring Heartbeat',
+    surface: 'Status JSON + dashboard feed',
+    signal: 'Monitoring and scoring loop',
+    description: 'A visible status snapshot showing an agent loop can wake up, write state, score prior predictions, and expose recent health.',
+    role: 'Signals / Health / Loop',
+    url: '/dashboard-data/heartbeat.json',
+    proof: 'Latest snapshot shows alive and healthy status, 2,514 predictions made, and 53 percent accuracy over the last 100 BTC direction checks.',
+    limitation: 'Research and observability only. Not investment advice, live trading performance, or infrastructure disclosure.',
+    links: [
+      { label: 'Heartbeat JSON', url: '/dashboard-data/heartbeat.json' },
+      { label: 'Evidence page', url: '/evidence' },
+      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Heartbeat', url: '/learn#heartbeat' },
+      { label: 'Observability', url: '/learn#observability' },
+    ],
+  },
+  {
+    name: 'Hermes Kite',
+    surface: 'Public testnet repository',
+    signal: 'Paper-mode agent discipline',
+    description: 'Kite testnet and decentralized-infrastructure work framed as a bounded engineering record: paper portfolio state, public testnet markers, and agent-run discipline.',
+    role: 'Testnet / Decentralized Infra / Agents',
+    url: 'https://github.com/hash02/hermes-kite',
+    proof: 'The public repository presents a Kite AI Global Hackathon 2026 submission with paper-mode portfolio state, one-shot workers, and Kite testnet settlement markers.',
+    limitation: 'Public testnet and paper-mode engineering record only. No real-fund execution, no wallet authority, no order authority, and no production capital management claim.',
+    links: [
+      { label: 'GitHub Repo', url: 'https://github.com/hash02/hermes-kite' },
+      { label: 'Portfolio monitor', url: '/portfolio' },
+      { label: 'Docker', url: '/learn#docker' },
+      { label: 'Kubernetes', url: '/learn#kubernetes' },
+    ],
+  },
+  {
+    name: 'Hardware Compute Environment',
+    surface: 'Architecture field note',
+    signal: 'Local compute and recovery discipline',
+    description: 'A bounded local-compute and agent-infrastructure environment for learning how small AI systems behave when they have to run, recover, and leave inspectable state.',
+    role: 'Compute / Agents / Observability',
+    url: '/blog/agent-graveyard',
+    proof: 'The public field note documents a modest always-on server, a second security-testing machine, local model usage, one-job agents, queueing, recovery, and observability lessons.',
+    limitation: 'Public architecture summary only. No private topology, addresses, credentials, wallet control, external action authority, or production-service guarantee.',
+    links: [
+      { label: 'Field note', url: '/blog/agent-graveyard' },
+      { label: 'Agent workflow system', url: 'https://github.com/hash02/agent-framework-proof' },
+      { label: 'Observability', url: '/learn#observability' },
+      { label: 'RBAC', url: '/learn#rbac' },
+    ],
+  },
+  {
+    name: 'Agent Rules Starter Kit',
+    surface: 'Governance starter kit',
+    signal: 'Tool boundaries and approval gates',
+    description: 'A small starter kit for writing down how an agent is allowed to use tools, leave traces, and wait for a human before the serious moves.',
+    role: 'Agent Rules / Review / Tools',
+    url: '/evidence',
+    proof: 'The package has seven small files: a manifest, queue notes, trace examples, tool boundaries, and approval gates.',
+    limitation: 'Template kit. Not legal advice, certification, or enterprise governance software.',
+    links: [
+      { label: 'Evidence page', url: '/evidence' },
+      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Tool calling', url: '/learn#tool-calling' },
+      { label: 'RBAC', url: '/learn#rbac' },
+      { label: 'Audit log', url: '/learn#audit-log' },
+    ],
+  },
+  {
+    name: 'Wallet Risk Check',
+    surface: 'CLI / repository',
+    signal: 'EVM wallet triage',
+    description: 'Lightweight EVM wallet triage helper that converts wallet signals into RED / YELLOW / GREEN risk ratings.',
+    role: 'Wallets / Risk / Triage',
+    url: 'https://github.com/hash02/wallet-risk-check',
+    proof: 'Supports Ethereum, Polygon, Base, Arbitrum, Optimism, and 50+ EVM chains through Blockscout according to the README.',
+    limitation: 'Quick triage helper, not a replacement for full blockchain intelligence platforms.',
+    links: [
+      { label: 'GitHub Repo', url: 'https://github.com/hash02/wallet-risk-check' },
+      { label: 'EVM', url: '/learn#evm' },
+      { label: 'AML', url: '/learn#aml' },
+    ],
+  },
+  {
+    name: 'Bionic Banker',
+    surface: 'Public evidence website',
+    signal: 'Writing + systems packaging',
+    description: 'The public writing and evidence page for AI, finance, blockchain, risk-system design, and builder systems.',
+    role: 'Articles / Signals / Systems',
+    url: 'https://bionicbanker.tech',
+    proof: 'Live site with 45 source articles, signal snapshots, evidence records, and linked pages that keep growing with the work.',
+    limitation: 'This page exists because the work used to be scattered across GitHub, articles, and notes.',
+    links: [
+      { label: 'Articles', url: '/articles' },
+      { label: 'Evidence page', url: '/evidence' },
+      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Knowledge Base', url: '/learn' },
+      { label: 'Field notes', url: '/reports' },
+      { label: 'Questions', url: '/gaps' },
+    ],
+  },
+];
+---
+<BaseLayout title="Apps" description="Clickable Bionic Banker apps for wallet risk, AML evidence, fraud triage, agent workflows, and public system health.">
+  <div class="page-header">
+    <div class="page-label">Apps</div>
+    <h1 class="page-title">Apps you can enter</h1>
+    <p class="page-sub">Clickable finance-risk and agent surfaces. Each app says what it does, what evidence supports it, and what it cannot decide for you.</p>
+    <div class="page-metric-row" aria-label="Systems evidence snapshot">
+      <div><strong>{projects.length}</strong><span>public system cards</span></div>
+      <div><strong>{catalogProjectCount}</strong><span>evidence catalog lanes</span></div>
+      <div><strong>{catalogSourceCount}</strong><span>catalog evidence sources</span></div>
+      <div><strong>{catalogLimitCount}</strong><span>catalog boundaries</span></div>
+    </div>
+  </div>
+
+  <div class="articles-wrap systems-wrap apps-wrap">
+    <div class="lab-strip">
+      <div>
+        <h2>Start with the apps that show judgment</h2>
+        <p>Open one surface at a time. Wallet risk shows reasoning. AML evidence shows boundaries. Fraud triage shows case assembly. Agent Chess shows human-gated operations.</p>
+      </div>
+      <div class="lab-strip-links">
+        <span>Wallet risk</span>
+        <span>Agents</span>
+        <span>Observability</span>
+        <a href="https://github.com/hash02" target="_blank" rel="noopener">GitHub</a>
+        <a href="/reports">Field Notes</a>
+      </div>
+    </div>
+    <p class="verified-note">App evidence snapshot: {verifiedDate}. “Public system cards” counts the cards on this page. “Evidence catalog lanes,” sources, and boundaries come from the public proof catalog.</p>
+
+    <section class="systems-audit-panel" aria-label="How this systems page should be judged">
+      <div>
+        <span class="systems-audit-label">Quality rule</span>
+        <strong>Every card has to earn its surface area.</strong>
+      </div>
+      <p>What runs, what supporting evidence is visible, what boundary is explicit, and where a reader can inspect the source. Anything weaker stays in private notes until it has evidence.</p>
+    </section>
+
+    <div class="article-card systems-guide-card" style="margin-bottom: 1.25rem;">
+      <div class="article-tags">
+        <span class="tag-pill tag-green">How to read it</span>
+      </div>
+      <h3>Recommended path</h3>
+      <p>Start with Wallet Risk Assessment for risk judgment, AML Status Evidence for audit boundaries, then Agent Chess for human-gated agent operations. That sequence shows the core pattern: assess a financial object, preserve the evidence record, and keep external authority behind a human gate.</p>
+        <p><strong>Evidence rule:</strong> if a line cannot point to a source, a number, a screenshot, a test, or a clear boundary, it does not belong here yet.</p>
+      <div class="card-footer">
+        <a href="/reports" class="read-more">Open field notes</a>
+        <a href="/gaps" class="read-more">See questions</a>
+        <a href="/learn" class="read-more">Learn concepts</a>
+        <a href="/evidence" class="read-more">Open evidence catalog</a>
+      </div>
+    </div>
+
+    <div class="articles-grid stagger-children">
+      {projects.map((project) => (
+        <article class={`article-card animate-on-scroll ${project.flagship ? 'system-flagship-card' : ''}`}>
+          <div class="article-tags system-card-tags">
+            {project.flagship && <span class="tag-pill tag-green">Start here</span>}
+            <span class="tag-pill">{project.surface}</span>
+          </div>
+          <div class="system-signal-row">
+            <span>{project.role}</span>
+            <strong>{project.signal}</strong>
+          </div>
+          <h3>{project.name}</h3>
+          <p class="system-desc">{project.description}</p>
+          {project.reviewerQuestion && (
+            <div class="reviewer-question">
+              <span>Reviewer question</span>
+              <strong>{project.reviewerQuestion}</strong>
+            </div>
+          )}
+          <div class="system-proof-grid">
+            <div>
+              <span>What to notice</span>
+              <p>{project.proof}</p>
+            </div>
+            <div>
+              <span>Boundary</span>
+              <p>{project.limitation}</p>
+            </div>
+          </div>
+          {project.links && (
+            <div class="system-link-cloud" aria-label={`Inspection links for ${project.name}`}>
+              {project.links.map((link) => (
+                <a href={link.url} target={link.url.startsWith('http') ? '_blank' : undefined} rel={link.url.startsWith('http') ? 'noopener' : undefined}>{link.label}</a>
+              ))}
+            </div>
+          )}
+          <div class="card-footer">
+            <a href={project.url} class="read-more" target={project.url.startsWith('http') ? '_blank' : undefined} rel={project.url.startsWith('http') ? 'noopener' : undefined}>Enter app</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .reviewer-question {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.8rem;
+    margin: 0.15rem 0 0.65rem;
+    border: 1px solid rgba(103, 232, 249, 0.22);
+    border-radius: 12px;
+    background: rgba(103, 232, 249, 0.055);
+  }
+  .reviewer-question span {
+    color: #1fa068;
+    font-family: var(--mono, monospace);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .reviewer-question strong {
+    color: var(--text, #e4e4ec);
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+</style>

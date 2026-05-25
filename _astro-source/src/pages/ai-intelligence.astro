@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const intelligenceCards = [
+  {
+    label: 'Agents',
+    title: 'Agents are becoming operating layers',
+    body: 'The useful question is not whether an agent sounds smart. The question is what it can touch, what it records, and when it stops for a person.',
+    href: '/learn#agent'
+  },
+  {
+    label: 'Tools',
+    title: 'Tools change the shape of work',
+    body: 'Hermes, LangGraph, local models, notebooks, and browser agents are not just software names. They are new ways to turn thought into repeatable work.',
+    href: '/learn#tool-calling'
+  },
+  {
+    label: 'Finance risk',
+    title: 'Risk needs evidence, not mood',
+    body: 'Wallet scores, AML status, fraud alerts, and market signals only matter when the source trail stays visible and the human boundary is clear.',
+    href: '/risk-evidence-overview'
+  },
+  {
+    label: 'Publishing loop',
+    title: 'Learning becomes content',
+    body: 'When a new tool matters, the site can turn it into a field note: what it is, why it matters, how we tested it, and what we are not claiming.',
+    href: '/articles'
+  }
+];
+
+const watchList = [
+  'Agent browsers and computer-use tools',
+  'Local agent operating systems',
+  'RegTech and wallet intelligence workflows',
+  'AI coding agents with traceable output',
+  '3D and animated explanation layers for public learning'
+];
+---
+<BaseLayout title="AI Intelligence" description="Bionic Banker AI intelligence map: agents, tools, finance-risk workflows, and field notes for what comes next.">
+  <div class="page-header">
+    <div class="page-label">AI Intelligence</div>
+    <h1 class="page-title">What Her is watching</h1>
+    <p class="page-sub">A public map for agents, tools, AI finance workflows, and the learning loop behind Bionic Banker. Not a news feed. A filter for what may change the work.</p>
+  </div>
+
+  <main class="articles-wrap ai-intel-wrap">
+    <section class="systems-audit-panel" aria-label="AI intelligence rule">
+      <div>
+        <span class="systems-audit-label">Rule</span>
+        <strong>Every new tool has to earn a field note.</strong>
+      </div>
+      <p>If a technology changes how we build, review, automate, or explain finance-risk systems, it becomes a candidate for a blog post, app improvement, or experiment.</p>
+    </section>
+
+    <div class="articles-grid stagger-children">
+      {intelligenceCards.map((card) => (
+        <a href={card.href} class="article-card animate-on-scroll">
+          <div class="article-tags"><span class="tag-pill tag-green">{card.label}</span></div>
+          <h3>{card.title}</h3>
+          <p>{card.body}</p>
+          <div class="card-footer"><span class="read-more">Open path</span></div>
+        </a>
+      ))}
+    </div>
+
+    <section class="article-card systems-guide-card" style="margin-top: 1.25rem;">
+      <div class="article-tags"><span class="tag-pill tag-green">Watchlist</span></div>
+      <h3>Things worth tracking now</h3>
+      <div class="system-link-cloud" aria-label="AI intelligence watchlist">
+        {watchList.map((item) => <span>{item}</span>)}
+      </div>
+      <p class="verified-note">This page is the learning engine. Signals show what is moving. Blog posts explain what was learned. Apps turn the useful parts into something inspectable.</p>
+    </section>
+  </main>
+</BaseLayout>

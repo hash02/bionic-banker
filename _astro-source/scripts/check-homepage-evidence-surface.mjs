@@ -19,10 +19,11 @@ const built = read(builtPath);
 assert(!source.includes('<!-- HERO -\n'), 'Homepage source has a damaged HERO comment that can hide page content.');
 
 const requiredSourcePhrases = [
-  'AI agents for finance risk. Evidence first, human reviewed.',
-  'review-ready evidence packets with visible sources, traces, guardrails, and human decision boundaries',
+  'AI, finance, and the world ahead.',
+  'Bionic Banker follows how technology is changing money, risk, work, and the systems people trust.',
   '/wallet-risk',
-  '/evidence',
+  '/apps',
+  '/signals',
   '/fraud-alert-triage',
   '/proof/site-health',
   'agent-chess-showcase',
@@ -40,9 +41,9 @@ for (const phrase of requiredSourcePhrases) {
 }
 
 const requiredBuiltPhrases = [
-  'AI agents for finance risk. Evidence first, human reviewed.',
+  'AI, finance, and the world ahead.',
   'Operating view',
-  'Signal to evidence to review to artifact',
+  'Signal becomes evidence. Evidence becomes a decision.',
   'Wallet Risk Assessment',
   'AML Status Evidence',
   'Fraud Alert Workflow',
@@ -57,12 +58,13 @@ for (const phrase of requiredBuiltPhrases) {
 }
 
 const requiredBuiltLinks = [
-  'href="/evidence"',
+  'href="/apps"',
+  'href="/signals"',
   'href="/wallet-risk"',
   'href="/fraud-alert-triage"',
   'href="/proof/site-health"',
   'href="/risk-evidence-overview"',
-  'href="/projects"',
+  'href="/apps"',
   'href="/risk-evidence-overview#agent-chess-showcase"',
 ];
 
