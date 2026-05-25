@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const modes = [
+  ['Explorer', 'I learn by building small maps of hard systems, then testing where the map breaks.'],
+  ['Finance operator', 'I care about wallets, AML, fraud, risk, and the places where automation needs a human limit.'],
+  ['Agent builder', 'I use AI agents as teammates for drafts, checks, code, and evidence trails, not as unchecked authorities.'],
+  ['Public learner', 'I publish the route so other people can inspect the work, question it, and build from it.'],
+];
+
+const collaboration = [
+  'AI and finance risk prototypes',
+  'RegTech, AML, fraud, and wallet-risk workflows',
+  'Human-reviewed agent systems',
+  'Evidence maps for technical portfolios or public projects',
+  'Clear writing that turns complex systems into useful routes',
+];
+---
+<BaseLayout title="About" description="About Himanshu and Bionic Banker: finance, AI agents, evidence maps, and collaboration style.">
+  <main class="about-shell">
+    <section class="about-hero">
+      <div class="about-kicker">About Hash</div>
+      <h1>I build maps for finance, AI agents, and risk work.</h1>
+      <p>Bionic Banker is not only a portfolio. It is a playable version of how I think: pick a mission, inspect the evidence, see the boundary, and decide what should be built next.</p>
+      <div class="about-actions">
+        <a href="/start-here">Start the quest</a>
+        <a href="/proof-pack">Open field pack</a>
+        <a href="https://t.me/BionicBanker" target="_blank" rel="noopener">Message me</a>
+      </div>
+    </section>
+
+    <section class="about-section split">
+      <div>
+        <span>Philosophy</span>
+        <h2>Serious work can still feel alive.</h2>
+        <p>Finance and compliance can get heavy fast. My goal is to make the work easier to inspect without making it fake or childish. A good system should feel like a map: you know where you are, what the next move is, and what the rules are.</p>
+        <p>I like evidence, but I do not want the site to feel like paperwork. The better direction is a calm game board: tasks, levels, signals, limits, and clear next moves.</p>
+      </div>
+      <div class="stat-card">
+        <strong>Core loop</strong>
+        <ol>
+          <li>Find the signal</li>
+          <li>Build the evidence</li>
+          <li>Name the boundary</li>
+          <li>Ask for review</li>
+          <li>Ship the next map</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <span>How I work</span>
+      <h2>Four modes, one direction.</h2>
+      <div class="mode-grid">
+        {modes.map(([title, body]) => (
+          <article>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="about-section split">
+      <div>
+        <span>Collaboration</span>
+        <h2>Good conversations start with a concrete mission.</h2>
+        <p>If you want to collaborate, send a problem, a workflow, or a system boundary. I am most useful when the question has stakes: money movement, fraud risk, analyst review, public evidence, or agent control.</p>
+      </div>
+      <div class="chips">
+        {collaboration.map((item) => <span>{item}</span>)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .about-shell { max-width: 1160px; margin: 0 auto; padding: 6rem 1.25rem 4rem; color: #e4e4ec; }
+  .about-hero, .about-section { border: 1px solid rgba(31,160,104,.14); background: rgba(10,10,14,.96); border-radius: 24px; padding: clamp(1.4rem, 3vw, 3rem); margin-bottom: 1.25rem; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+  .about-kicker, .about-section > span { color: #1fa068; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; }
+  .about-hero h1 { font-size: clamp(2.2rem, 5.6vw, 4.8rem); line-height: .96; margin: .75rem 0 1rem; max-width: 920px; }
+  .about-hero p, .about-section p, .about-section li { color: #b0b0b8; line-height: 1.7; font-size: 1.02rem; }
+  .about-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
+  .about-actions a { text-decoration: none; border-radius: 999px; padding: .78rem 1rem; border: 1px solid rgba(31,160,104,.24); color: #e4e4ec; font-weight: 800; }
+  .about-actions a:first-child { background: #1fa068; color: #08080e; border: 0; }
+  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.82fr); gap: 1rem; }
+  .stat-card, .mode-grid article, .chips span { border: 1px solid rgba(31,160,104,.14); border-radius: 18px; background: rgba(31,160,104,.05); padding: 1rem; }
+  .stat-card strong { display: block; margin-bottom: .7rem; color: #e4e4ec; }
+  .stat-card ol { margin-left: 1.2rem; color: #b0b0b8; line-height: 1.9; }
+  .mode-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .9rem; margin-top: 1rem; }
+  .mode-grid h3 { margin-bottom: .45rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .7rem; align-content: start; }
+  .chips span { color: #e4e4ec; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } .about-shell { padding-top: 4.5rem; } }
+</style>

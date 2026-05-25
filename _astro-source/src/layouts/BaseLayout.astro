@@ -6,7 +6,7 @@ interface Props {
   canonical?: string;
 }
 
-const { title, description = "Inside finance. Building its future. Blockchain, AI, DeFi, and raw thoughts from someone who works inside financial systems and builds on top of them.", ogImage, canonical } = Astro.props;
+const { title, description = "Inside finance. Building playable maps for what comes next. Blockchain, AI, DeFi, and raw thoughts from someone who works inside financial systems and builds on top of them.", ogImage, canonical } = Astro.props;
 const fullTitle = title === 'Home' ? 'Bionic Banker - Where Finance Meets the Future' : `${title} - Bionic Banker`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
@@ -101,10 +101,11 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
     <a href="/" class="nav-logo">Bionic <span>Banker</span></a>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="/start-here">Start Here</a></li>
+        <li><a href="/start-here">Start Quest</a></li>
         <li><a href="/learn">Knowledge Base</a></li>
         <li><a href="/projects">Systems</a></li>
-        <li><a href="/proof-pack">Proof Pack</a></li>
+        <li><a href="/proof-pack">Field Pack</a></li>
+        <li><a href="/about">About</a></li>
         <li><a href="/evidence">Evidence</a></li>
         <li><a href="/risk-evidence-overview">Evidence Overview</a></li>
         <li><a href="/aml-status-evidence">AML Status Evidence</a></li>
@@ -142,15 +143,16 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
     <div class="footer-wrap">
       <div class="footer-brand">
         <a href="/" class="footer-logo">Bionic <span>Banker</span></a>
-        <p class="footer-tagline">Inside finance. Building its future.</p>
+        <p class="footer-tagline">Inside finance. Building playable maps for what comes next.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
           <h4>Explore</h4>
-          <a href="/start-here">Start Here</a>
+          <a href="/start-here">Start Quest</a>
           <a href="/learn">Knowledge Base</a>
           <a href="/projects">Systems</a>
-          <a href="/proof-pack">Proof Pack</a>
+          <a href="/proof-pack">Field Pack</a>
+          <a href="/about">About</a>
           <a href="/evidence">Evidence</a>
           <a href="/risk-evidence-overview">Evidence Overview</a>
           <a href="/aml-status-evidence">AML Status Evidence</a>
@@ -185,10 +187,11 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
     panel.id = 'bb-panel';
     panel.innerHTML =
       '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
-      '<a href="/start-here" class="bb-panel-primary">Start Here</a>' +
+      '<a href="/start-here" class="bb-panel-primary">Start Quest</a>' +
       '<a href="/learn" class="bb-panel-primary">Knowledge Base</a>' +
       '<a href="/projects" class="bb-panel-primary">Systems</a>' +
-      '<a href="/proof-pack" class="bb-panel-primary">Proof Pack</a>' +
+      '<a href="/proof-pack" class="bb-panel-primary">Field Pack</a>' +
+      '<a href="/about" class="bb-panel-primary">About</a>' +
       '<a href="/evidence" class="bb-panel-primary">Evidence</a>' +
       '<a href="/risk-evidence-overview" class="bb-panel-primary">Evidence Overview</a>' +
       '<a href="/aml-status-evidence" class="bb-panel-primary">AML Status Evidence</a>' +
@@ -324,8 +327,9 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
       .nav-links { gap: 1rem; }
       .nav-cta { display: none; }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
       .nav-right { display: none !important; }
+      #bb-hamburger { display: inline-flex !important; }
     }
   </style>
 </body>

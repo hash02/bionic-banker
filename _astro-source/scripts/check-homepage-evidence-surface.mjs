@@ -16,8 +16,10 @@ function read(file) {
 const source = read(sourcePath);
 const built = read(builtPath);
 
+assert(!source.includes('<!-- HERO -\n'), 'Homepage source has a damaged HERO comment that can hide page content.');
+
 const requiredSourcePhrases = [
-  'AI agents for finance risk — evidence-first, human-reviewed.',
+  'AI agents for finance risk. Evidence first, human reviewed.',
   'review-ready evidence packets with visible sources, traces, guardrails, and human decision boundaries',
   '/wallet-risk',
   '/evidence',
@@ -38,9 +40,9 @@ for (const phrase of requiredSourcePhrases) {
 }
 
 const requiredBuiltPhrases = [
-  'AI agents for finance risk — evidence-first, human-reviewed.',
+  'AI agents for finance risk. Evidence first, human reviewed.',
   'Operating view',
-  'Signal → evidence → review → artifact',
+  'Signal to evidence to review to artifact',
   'Wallet Risk Assessment',
   'AML Status Evidence',
   'Fraud Alert Workflow',
@@ -67,6 +69,9 @@ const requiredBuiltLinks = [
 for (const link of requiredBuiltLinks) {
   assert(built.includes(link), `Built homepage is missing route link: ${link}`);
 }
+
+assert(built.includes('class="hero-wrap"'), 'Built homepage is missing the hero body. The BaseLayout slot may be empty or commented out.');
+assert(built.includes('Mission map for a 90-second visit'), 'Built homepage is missing the gamified Start Quest section.');
 
 const stylesheetRefs = Array.from(built.matchAll(/href="([^"]+\.css)"/g), (match) => match[1]);
 assert(stylesheetRefs.length > 0, 'Built homepage must reference at least one stylesheet.');

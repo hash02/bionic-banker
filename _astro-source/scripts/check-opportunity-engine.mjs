@@ -15,52 +15,66 @@ function read(file) {
 
 const sourceFiles = {
   startHere: path.join(root, 'src/pages/start-here.astro'),
-  proofPack: path.join(root, 'src/pages/proof-pack.astro'),
+  fieldPack: path.join(root, 'src/pages/proof-pack.astro'),
+  about: path.join(root, 'src/pages/about.astro'),
   home: path.join(root, 'src/pages/index.astro'),
   projects: path.join(root, 'src/pages/projects.astro'),
+  layout: path.join(root, 'src/layouts/BaseLayout.astro'),
 };
 
 const source = Object.fromEntries(Object.entries(sourceFiles).map(([key, file]) => [key, read(file)]));
 
 const startHerePhrases = [
-  'Start Here / Reviewer Guide',
-  'AI-assisted finance risk workflows that show their work and keep humans in control',
-  '90-second path',
+  'Start Quest',
+  'Mission Map',
+  '90-second quest',
   'Wallet Risk Assessment',
   'AML Status Evidence',
   'Fraud Alert Triage Workflow',
   'Agent Chess / Agent Workflow',
-  'Site Health / Proof QA',
+  'Health Board',
   'Recruiter',
   'Collaborator',
   'Executive / investor',
-  'Technical reviewer',
-  'No live trading, wallet movement, or fund-transfer authority',
+  'Technical explorer',
+  'No live trading, wallet movement, or fund transfer authority',
 ];
 
-const proofPackPhrases = [
-  'Bionic Banker Proof Pack',
-  'A compressed proof packet for AI-assisted finance risk workflows',
-  'Flagship systems',
+const fieldPackPhrases = [
+  'Bionic Banker Field Pack',
+  'AI-assisted finance risk missions',
+  'Five missions, one map',
   'Evidence map',
   'Technical stack',
   'Trust boundary',
-  'Questions to ask Hash',
-  'Public system cards',
-  'Evidence catalog lanes',
+  'Questions for Hash',
+  'System cards',
+  'Evidence map lanes',
   'No SAR filing, KYC approval, enforcement, or final compliance decision',
+];
+
+const aboutPhrases = [
+  'About Hash',
+  'I build maps for finance, AI agents, and risk work',
+  'Serious work can still feel alive',
+  'Core loop',
+  'Good conversations start with a concrete mission',
 ];
 
 for (const phrase of startHerePhrases) {
   assert(source.startHere.includes(phrase), `/start-here source is missing required phrase: ${phrase}`);
 }
 
-for (const phrase of proofPackPhrases) {
-  assert(source.proofPack.includes(phrase), `/proof-pack source is missing required phrase: ${phrase}`);
+for (const phrase of fieldPackPhrases) {
+  assert(source.fieldPack.includes(phrase), `/proof-pack source is missing required phrase: ${phrase}`);
 }
 
-for (const phrase of ['/start-here', '/proof-pack']) {
-  assert(source.home.includes(phrase), `Homepage source must link to ${phrase}`);
+for (const phrase of aboutPhrases) {
+  assert(source.about.includes(phrase), `/about source is missing required phrase: ${phrase}`);
+}
+
+for (const phrase of ['/start-here', '/proof-pack', '/about']) {
+  assert(source.home.includes(phrase) || source.layout.includes(phrase), `Site source must link to ${phrase}`);
 }
 
 for (const phrase of [
@@ -72,9 +86,20 @@ for (const phrase of [
   assert(source.projects.includes(phrase), `Projects source missing reviewer question: ${phrase}`);
 }
 
+const noLongDashSurface = [source.startHere, source.fieldPack, source.about, source.home].join('\n');
+for (const glyph of ['—', '–']) {
+  assert(!noLongDashSurface.includes(glyph), `Edited public conversion surface contains long dash glyph: ${glyph}`);
+}
+
+const cyanPattern = /#67e8f9|#a7f3d0|rgba\(103,\s*232,\s*249/i;
+for (const [name, text] of Object.entries({ startHere: source.startHere, fieldPack: source.fieldPack, about: source.about })) {
+  assert(!cyanPattern.test(text), `${name} still contains cyan/blue accent styling instead of green/black/white theme`);
+}
+
 const builtChecks = [
-  [path.join(repoRoot, 'start-here/index.html'), ['Start Here / Reviewer Guide', '90-second path', 'No live trading, wallet movement, or fund-transfer authority']],
-  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Proof Pack', 'Evidence map', 'Questions to ask Hash']],
+  [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
+  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Field Pack', 'Evidence map', 'Questions for Hash']],
+  [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],
   [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/proof-pack"']],
 ];
 
@@ -103,4 +128,4 @@ for (const phrase of banned) {
   assert(!combined.includes(phrase), `Opportunity engine source contains banned phrase: ${phrase}`);
 }
 
-console.log('OPPORTUNITY_ENGINE_CHECK PASS — reviewer guide, proof pack, homepage links, and reviewer questions are present.');
+console.log('OPPORTUNITY_ENGINE_CHECK PASS — mission map, field pack, about page, green theme guard, and no-long-dash guard are present.');

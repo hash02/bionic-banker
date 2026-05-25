@@ -75,7 +75,7 @@ const proofSnapshot = [
     label: 'Catalog lanes',
     value: proofCount,
     unit: 'evidence lanes',
-    source: 'public proof catalog',
+    source: 'public evidence map',
   },
   {
     label: 'Articles',
@@ -161,16 +161,16 @@ const marketPositioningCards = [
   {
     label: 'Category',
     title: 'AI-assisted finance risk workflows',
-    body: 'Closest market neighbors are Unit21, Chainalysis/TRM, LangGraph-style agent control, and founder proof labs — but Bionic Banker stays public-proof humble.',
+    body: 'Closest market neighbors are Unit21, Chainalysis/TRM, LangGraph-style agent control, and founder labs. Bionic Banker stays public and careful.',
   },
   {
     label: 'Differentiator',
-    title: 'Show-your-work evidence packets',
-    body: 'The core pattern is signal intake → risk reasoning → source trail → reviewer note → human decision boundary, not a black-box compliance answer.',
+    title: 'Evidence packets you can inspect',
+    body: 'The core pattern is signal intake to risk reasoning to source trail to reviewer note to human decision boundary, not a black-box compliance answer.',
   },
   {
     label: 'Trust boundary',
-    title: 'Agents prepare; humans decide',
+    title: 'Agents prepare. Humans decide',
     body: 'The site does not claim filing, trading, wallet, enforcement, or final compliance authority. It demonstrates review-ready artifacts and guardrails.',
   },
 ];
@@ -185,14 +185,14 @@ const readerEntryCards = [
   {
     role: 'Collaborator',
     href: '/proof-pack',
-    prompt: 'Compressed proof pack',
-    body: 'See the category thesis, flagship systems, evidence map, stack, boundaries, and questions to ask Hash.',
+    prompt: 'Field pack',
+    body: 'Open the short map: systems, evidence, limits, and the questions worth asking.',
   },
   {
     role: 'Technical reviewer',
     href: '/proof/site-health',
-    prompt: 'Self-auditing proof spine',
-    body: 'Inspect metric contracts, route framing, link checks, mobile QA, and public health status.',
+    prompt: 'System health board',
+    body: 'Check the tests that keep the public map honest.',
   },
 ];
 
@@ -231,7 +231,7 @@ const flagshipSystems = [
   },
 ];
 
-const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted finance risk workflows: wallet risk, AML evidence, fraud triage, and human-reviewed agent systems.`;
+const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted finance risk workflows: wallet risk, AML evidence, fraud triage, and human reviewed agent systems.`;
 ---
 <BaseLayout title="Home" description={geoDescription}>
 
@@ -243,12 +243,12 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
     <div class="hero">
       <div class="hero-left">
         <div class="hero-eyebrow">AI agents / finance risk / human review</div>
-        <h1>AI agents for finance risk — evidence-first, human-reviewed.</h1>
+        <h1>AI agents for finance risk. Evidence first, human reviewed.</h1>
         <p class="hero-sub">Bionic Banker turns wallet signals, AML checks, fraud alerts, and agent workflows into review-ready evidence packets with visible sources, traces, guardrails, and human decision boundaries.</p>
         <div class="hero-actions">
-          <a href="/start-here" class="btn-primary">Start Here -></a>
-          <a href="/proof-pack" class="btn-ghost">Proof Pack</a>
-          <a href="/evidence" class="btn-ghost">Evidence Catalog</a>
+          <a href="/start-here" class="btn-primary">Start Quest</a>
+          <a href="/proof-pack" class="btn-ghost">Field Pack</a>
+          <a href="/evidence" class="btn-ghost">Evidence Map</a>
         </div>
         <div class="hero-signal-row" aria-label="Signals on the table">
           {movingRows.map(row => (
@@ -260,8 +260,8 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
         </div>
         <nav class="hero-mobile-route-strip" aria-label="Mobile evidence routes">
           <a href="/start-here">Start Here</a>
-          <a href="/proof-pack">Proof Pack</a>
-          <a href="/evidence">Evidence Catalog</a>
+          <a href="/proof-pack">Field Pack</a>
+          <a href="/evidence">Evidence Map</a>
           <a href="/wallet-risk">Wallet Risk</a>
           <a href="/fraud-alert-triage">Fraud Triage</a>
           <a href="/aml-status-evidence">AML Status</a>
@@ -275,8 +275,8 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
             <span>Market position</span>
             <strong>AI-assisted risk workflows</strong>
           </div>
-          <div class="hero-os-title">Signal → evidence → review → artifact</div>
-          <p>Closest to agentic fraud/AML ops and wallet intelligence — but framed as public proof, not production authority.</p>
+          <div class="hero-os-title">Signal to evidence to review to artifact</div>
+          <p>Closest to agentic fraud/AML ops and wallet intelligence. Framed as public evidence, not production authority.</p>
           <div class="hero-os-metrics">
             {proofSnapshot.slice(0, 3).map((item) => (
               <div>
@@ -308,11 +308,11 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
       <div class="section-header">
         <div>
           <div class="section-label-text">Start Here</div>
-          <div class="section-title-text">First 90-second reader path</div>
+          <div class="section-title-text">Mission map for a 90-second visit</div>
         </div>
-        <a href="/start-here" class="view-all">Open reviewer guide -></a>
+        <a href="/start-here" class="view-all">Open mission map</a>
       </div>
-      <p class="section-orient">If you are reviewing this for a role, collaboration, investment, executive scan, or learning path, start here. These routes show risk judgment, evidence packaging, human-gated agent workflows, and public proof hygiene.</p>
+      <p class="section-orient">If you are reviewing this for a role, collaboration, investment, executive scan, or learning path, start with the map. Each stop shows a task, the evidence behind it, and the human limit.</p>
       <div class="reader-entry-grid" aria-label="Reader-specific entry points">
         {readerEntryCards.map((card) => (
           <a href={card.href} class="reader-entry-card">
@@ -334,13 +334,13 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
             <div class="flagship-skill-row">
               {system.skills.map((skill) => <span>{skill}</span>)}
             </div>
-            <div class="flagship-card-footer">View system -></div>
+            <div class="flagship-card-footer">Enter system</div>
           </a>
         ))}
       </div>
       <div class="operator-positioning-strip">
         <strong>Positioning:</strong>
-        <span>Founder/operator proof lab for AI-assisted finance risk workflows: wallet risk, AML evidence, fraud triage, and human-reviewed agent systems.</span>
+        <span>Founder/operator field map for AI-assisted finance risk: wallet risk, AML evidence, fraud triage, and human reviewed agent systems.</span>
       </div>
     </section>
   </div>
@@ -352,9 +352,9 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="section-label-text">Market Positioning Intelligence</div>
           <div class="section-title-text">What category this belongs to</div>
         </div>
-        <a href="/proof/site-health" class="view-all">Open proof QA -></a>
+        <a href="/proof/site-health" class="view-all">Open health board</a>
       </div>
-      <p class="section-orient">The benchmark points to one clear lane: AI agents that accelerate finance-risk work only when they preserve evidence, show reasoning, and leave final decisions with people. The public surface now separates public system cards from evidence catalog lanes so readers do not confuse project count with proof-catalog structure.</p>
+      <p class="section-orient">The benchmark points to one clear lane: AI agents can help with finance-risk work when they preserve evidence, show reasoning, and leave final decisions with people. The public surface now separates public system cards from evidence catalog lanes so readers do not confuse project count with evidence-map structure.</p>
       <div class="proof-route-grid">
         {marketPositioningCards.map((card) => (
           <article class="article-card">
@@ -447,7 +447,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="section-label-text">Context Signals</div>
           <div class="section-title-text">Numbers that explain why this work matters</div>
         </div>
-        <a href="/reports" class="view-all">Open field notes -></a>
+        <a href="/reports" class="view-all">Open field notes</a>
       </div>
       <p class="section-orient">Three numbers that show why building in this space right now is not a hobby. It is a bet on timing.</p>
       <div class="context-signal-grid">
@@ -489,7 +489,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="section-label-text">Moving Now</div>
           <div class="section-title-text">A few signals on the table</div>
         </div>
-        <a href="/intelligence" class="view-all">Open risk signals -></a>
+        <a href="/intelligence" class="view-all">Open risk signals</a>
       </div>
       <p class="section-orient">A live market price, a wallet risk snapshot, and the latest piece of writing, refreshed automatically.</p>
       <div class="moving-now-grid">
@@ -519,7 +519,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="section-label-text">Systems</div>
           <div class="section-title-text">Pick where to start</div>
         </div>
-        <a href="/projects" class="view-all">Open systems -></a>
+        <a href="/projects" class="view-all">Open systems</a>
       </div>
       <p class="section-orient">Six entry points into the work. Pick whichever fits where you are right now.</p>
       <div class="proof-route-grid">
@@ -527,41 +527,41 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
           <h3>Open the risk and evidence overview</h3>
           <p>AML stories, agent loops, signals, and what is moving.</p>
-          <div class="card-footer"><span class="read-more">Start walking -></span></div>
+          <div class="card-footer"><span class="read-more">Start walking</span></div>
         </a>
         <a href="/projects" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Systems</span></div>
           <h3>Things that run</h3>
           <p>AML engines, wallet risk, and agent workflows. All shipped.</p>
-          <div class="card-footer"><span class="read-more">Open systems -></span></div>
+          <div class="card-footer"><span class="read-more">Open systems</span></div>
         </a>
         <a href="/fraud-alert-triage" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Fraud Ops</span></div>
           <h3>Fraud alert triage workflow</h3>
           <p>Synthetic signals assembled into an evidence packet, reviewer note, and human approval boundary.</p>
-          <div class="card-footer"><span class="read-more">Inspect workflow -></span></div>
+          <div class="card-footer"><span class="read-more">Inspect workflow</span></div>
         </a>
         <a href="/reports" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Field Notes</span></div>
           <h3>Numbers with context</h3>
           <p>Charts, benchmarks, and limits. Measured, not guessed.</p>
-          <div class="card-footer"><span class="read-more">Read field notes -></span></div>
+          <div class="card-footer"><span class="read-more">Read field notes</span></div>
         </a>
         <a href="/gaps" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Questions</span></div>
           <h3>Questions I keep asking</h3>
           <p>Open problems worth answering. No answers yet.</p>
-          <div class="card-footer"><span class="read-more">Open questions -></span></div>
+          <div class="card-footer"><span class="read-more">Open questions</span></div>
         </a>
         <a href="/learn" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Knowledge Base</span></div>
           <h3>Concepts without fog</h3>
           <p>RAG, agents, AML, embeddings. Less fog, more signal.</p>
-          <div class="card-footer"><span class="read-more">Learn the terms -></span></div>
+          <div class="card-footer"><span class="read-more">Learn the terms</span></div>
         </a>
       </div>
       <div style="text-align:center;margin:2rem 0 0.5rem;">
-        <a href="/risk-evidence-overview" class="btn-primary">Open the Risk & Evidence Overview -></a>
+        <a href="/risk-evidence-overview" class="btn-primary">Open the Risk & Evidence Overview</a>
       </div>
     </section>
 
@@ -621,7 +621,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
       ))}
     </div>
     <div style="text-align:center;margin:2rem 0 1rem;">
-      <a href="/articles" class="btn-primary">Read all {articleCount} articles -></a>
+      <a href="/articles" class="btn-primary">Read all {articleCount} articles</a>
     </div>
 
     <!-- BOTTOM SPLIT -->
@@ -1233,9 +1233,9 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
       </div>
     </div>
     <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;">
-      <a href="https://twitter.com/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Twitter / X -></a>
-      <a href="https://t.me/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Telegram -></a>
-      <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener" class="btn-ghost">LinkedIn -></a>
+      <a href="https://twitter.com/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Twitter / X </a>
+      <a href="https://t.me/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Telegram </a>
+      <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener" class="btn-ghost">LinkedIn </a>
     </div>
     <form class="contact-form" action="https://formspree.io/f/xdaljypn" method="POST">
       <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
