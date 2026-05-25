@@ -11,16 +11,16 @@
 /* ── DESIGN TOKENS ── */
 :root {
   /* Backgrounds - green-black-white depth stack */
-  --bg:   #020403;
-  --bg2:  #06100a;
-  --bg3:  #09170f;
-  --bg4:  #0d2115;
+  --bg:   #010302;
+  --bg2:  #031008;
+  --bg3:  #06170d;
+  --bg4:  #0a2414;
 
   /* Text: soft white with green tint, not grey */
-  --text:   #f4fff7;
-  --text-2: #d8f5df;
-  --text-3: #9eddb0;
-  --text-4: #214d31;
+  --text:   #f7fff9;
+  --text-2: #def8e5;
+  --text-3: #9ee6b5;
+  --text-4: #2f6540;
 
   /* Borders (green tint) */
   --b1: rgba(31,160,104,0.07);
@@ -718,30 +718,36 @@ a.ps-item:focus-visible .ps-l {
 .hero-wrap {
   border-bottom: 1px solid var(--b1);
   position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(31,160,104,0.11), transparent 38%),
+    linear-gradient(180deg, #010302 0%, #031008 48%, #010302 100%);
+  isolation: isolate;
 }
 .hero-wrap::before {
   content: '';
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(31,160,104,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(31,160,104,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(31,160,104,0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,160,104,0.022) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 5%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 5%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
 }
 .hero-wrap::after {
   content: '';
   position: absolute; top: -120px; left: 0; right: 0; height: 500px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(31,160,104,0.06) 0%, transparent 55%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(31,160,104,0.045) 0%, transparent 55%);
   pointer-events: none;
+  z-index: 0;
 }
 
 .hero {
   max-width: var(--max); margin: 0 auto;
   padding: 3.5rem 2rem 3.25rem;
   display: grid; grid-template-columns: 1fr 360px; gap: 3rem; align-items: center;
-  position: relative; z-index: 1;
+  position: relative; z-index: 2;
 }
 .hero-left { min-width: 0; }
 .hero-eyebrow {
@@ -781,7 +787,7 @@ a.ps-item:focus-visible .ps-l {
   width: 100%;
 }
 .hero-signal-pill {
-  background: rgba(14,14,18,0.72);
+  background: rgba(3,16,8,0.78);
   border: 1px solid var(--b1);
   border-radius: 8px;
   color: var(--text-2);
@@ -906,8 +912,8 @@ a.ps-item:focus-visible .ps-l {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 15% 0%, rgba(31,160,104,0.16), transparent 34%),
-    linear-gradient(180deg, rgba(14,14,18,0.94), rgba(8,8,14,0.98));
+    radial-gradient(circle at 15% 0%, rgba(31,160,104,0.14), transparent 34%),
+    linear-gradient(180deg, rgba(3,16,8,0.96), rgba(1,3,2,0.99));
   border: 1px solid rgba(31,160,104,0.18);
   border-top-color: rgba(31,160,104,0.42);
   border-radius: var(--radius-lg);
@@ -970,7 +976,7 @@ a.ps-item:focus-visible .ps-l {
 .hero-os-metrics div {
   border: 1px solid rgba(31,160,104,0.12);
   border-radius: 8px;
-  background: rgba(8,8,14,0.72);
+  background: rgba(1,3,2,0.74);
   padding: 0.65rem 0.55rem;
 }
 .hero-os-metrics strong {
@@ -997,7 +1003,7 @@ a.ps-item:focus-visible .ps-l {
   align-items: baseline;
   border: 1px solid rgba(31,160,104,0.11);
   border-radius: 9px;
-  background: rgba(8,8,14,0.66);
+  background: rgba(1,3,2,0.68);
   padding: 0.72rem 0.78rem;
   transition: border-color 0.2s, transform 0.2s, background 0.2s;
 }
@@ -1213,6 +1219,12 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   }
 
   .hero { padding: 2.5rem 1.25rem 2rem; }
+  .hero-wrap {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(31,160,104,0.075), transparent 34%),
+      linear-gradient(180deg, #010302 0%, #031008 56%, #010302 100%);
+  }
+  .hero-wrap::after { opacity: 0.55; }
   .hero-actions {
     align-items: stretch;
     gap: 0.65rem;
@@ -1288,8 +1300,10 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
 #particle-canvas {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
+  background: transparent !important;
+  opacity: 0.42;
 }
 
 /* Glow pulse on accent elements */
@@ -1325,7 +1339,7 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.035;
+  opacity: 0.022;
   pointer-events: none;
   animation: orbFloat 12s ease-in-out infinite alternate;
 }
@@ -1524,7 +1538,7 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
 #bb-overlay.open { opacity: 1; pointer-events: auto; }
 #bb-panel {
   position: fixed; top: 0; right: 0; bottom: 0; width: 280px; max-width: 85vw;
-  background: #0e0e12; z-index: 9999;
+  background: #031008; z-index: 9999;
   transform: translateX(100%); transition: transform 0.3s ease;
   display: flex; flex-direction: column; padding: 1.5rem;
   box-shadow: -4px 0 24px rgba(0,0,0,0.5);
@@ -1579,8 +1593,8 @@ footer { border-top: 1px solid var(--b1); padding: 1.5rem 2rem; margin-top: 1rem
   .newsletter-section { padding: 2rem 1.25rem; }
 }
 
-/* Prevent canvas white flash during load */
-canvas { background: #08080e !important; }
+/* Prevent canvas white flash during load without turning hero canvases opaque */
+canvas { background: transparent; }
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1861,7 +1875,12 @@ canvas { background: #08080e !important; }
 }
 
 /* Homepage section hierarchy: alternating backgrounds and separators */
-.section-alt { background: #0d0f18; padding-top: 3rem; padding-bottom: 2.5rem; }
+.section-alt { background: #031008; padding-top: 3rem; padding-bottom: 2.5rem; }
+
+@media (max-width: 640px) {
+  #particle-canvas { opacity: 0.28; }
+  .glow-orb { opacity: 0.012; filter: blur(64px); }
+}
 .section-divide { border-top: 2px solid var(--b1); padding-top: 3rem; margin-top: 0; }
 .section-orient { color: var(--text-2); font-size: 0.88rem; line-height: 1.6; margin: -0.25rem 0 1.25rem; max-width: 640px; }
 

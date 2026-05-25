@@ -29,8 +29,12 @@ const required = [
   ['ai', 'What Her is watching'],
   ['ai', 'How Hash and Her watch the AI world'],
   ['ai', 'outside-world signal becomes a question'],
-  ['css', '--bg:   #020403'],
-  ['css', '--text:   #f4fff7'],
+  ['css', '--bg:   #010302'],
+  ['css', '--text:   #f7fff9'],
+  ['css', '#particle-canvas'],
+  ['css', 'background: transparent !important'],
+  ['css', 'opacity: 0.28'],
+  ['layout', 'body,html{background:#010302}canvas{background:transparent}'],
 ];
 
 const failures = [];
