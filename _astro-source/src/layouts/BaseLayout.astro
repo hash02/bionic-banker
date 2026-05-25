@@ -13,6 +13,7 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 const isHome = title === 'Home';
 const routeDepth = Astro.url.pathname === '/' ? 0 : Astro.url.pathname.split('/').filter(Boolean).length;
 const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
+const globalCssVersion = 'green-canvas-2f48566';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -89,8 +90,8 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
   ) : null}
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles/global.css" />
-  <link rel="stylesheet" href={`${relativeAssetRoot}styles/global.css`} />
+  <link rel="stylesheet" href={`/styles/global.css?v=${globalCssVersion}`} />
+  <link rel="stylesheet" href={`${relativeAssetRoot}styles/global.css?v=${globalCssVersion}`} />
 
   <!-- Lottie player (custom element, defer safe) -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
