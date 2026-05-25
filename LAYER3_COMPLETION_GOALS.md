@@ -29,12 +29,12 @@ The Apps page should answer a cold reviewer in one pass:
 - what boundary keeps it honest
 - which three apps should I inspect first
 
-## Goal 4: AI Intelligence becomes the Her plus Hash watch surface
+## Goal 4: AI Intelligence becomes the Agent Her plus Hash watch surface
 
 The AI Intelligence page should show the collaboration loop:
 
 - Hash brings outside-world signals and finance context
-- Her turns them into questions, tests, pages, and safer systems
+- Agent Her turns them into questions, tests, pages, and safer systems
 - useful patterns become apps, field notes, or checkers
 - hype stays out until it can produce evidence
 
