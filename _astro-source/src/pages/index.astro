@@ -1223,6 +1223,18 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
       font-family: var(--mono);
       font-size: 0.78rem;
     }
+    .contact-section.section-alt {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @media (max-width: 640px) {
+      .contact-section.section-alt {
+        width: 100%;
+        max-width: 100%;
+        padding: 2rem max(1.25rem, env(safe-area-inset-right)) 2rem max(1.25rem, env(safe-area-inset-left));
+        overflow-x: hidden;
+      }
+    }
   </style>
 
   <!-- CONTACT -->
@@ -1233,7 +1245,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
         <div class="section-title-text">Contact</div>
       </div>
     </div>
-    <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+    <div class="contact-social-row">
       <a href="https://twitter.com/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Twitter / X </a>
       <a href="https://t.me/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Telegram </a>
       <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener" class="btn-ghost">LinkedIn </a>
