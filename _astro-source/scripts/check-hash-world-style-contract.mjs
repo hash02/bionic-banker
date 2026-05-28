@@ -9,7 +9,7 @@ const read = (p) => fs.readFileSync(p, 'utf8');
 const pages = {
   home: read(path.join(sourceRoot, 'src/pages/index.astro')),
   startHere: read(path.join(sourceRoot, 'src/pages/start-here.astro')),
-  fieldPack: read(path.join(sourceRoot, 'src/pages/proof-pack.astro')),
+  systemMap: read(path.join(sourceRoot, 'src/pages/system-map.astro')),
   amlStatus: read(path.join(sourceRoot, 'src/pages/aml-status-evidence.astro')),
   agentCase: read(path.join(sourceRoot, 'src/pages/agent-prototype-sprint.astro')),
   apps: read(path.join(sourceRoot, 'src/pages/apps.astro')),
@@ -30,7 +30,7 @@ const required = [
   [read(path.join(sourceRoot, 'src/pages/learn.astro')), 'The explanation pattern', 'knowledge base explanation pattern'],
   [pages.agents, 'Every public claim about numbers, rules, counts, or dates must be computed from source.', 'agent rule for computed claims'],
   [pages.startHere, 'AI-assisted finance risk workflows, mapped like missions with humans in control.', 'Start Quest thesis'],
-  [pages.fieldPack, 'AI agents for finance risk. Simple records first, human control always.', 'System Map thesis'],
+  [pages.systemMap, 'AI agents for finance risk. Simple records first, human control always.', 'System Map thesis'],
   [pages.home, 'AI-assisted finance risk workflows', 'homepage category phrase'],
   [pages.home, 'Agents prepare. Humans decide', 'homepage human-control phrase'],
   [pages.baseLayout, 'Start Quest', 'nav start quest'],
@@ -44,7 +44,7 @@ for (const [text, phrase, label] of required) {
 const visiblePublicFiles = [
   ['home', pages.home],
   ['start-here', pages.startHere],
-  ['field-pack', pages.fieldPack],
+  ['field-pack', pages.systemMap],
   ['aml-status', pages.amlStatus],
   ['agent-case-review', pages.agentCase],
   ['apps', pages.apps],

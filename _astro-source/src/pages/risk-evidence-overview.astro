@@ -566,9 +566,13 @@ const inspectionRows = scenes
       color: var(--text-2);
       text-align: left;
       border-radius: 6px;
-      padding: 0.65rem;
+      padding: 0.75rem;
       cursor: pointer;
       font-family: var(--mono);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 48px;
     }
 
     .tour-tab span {
@@ -763,6 +767,10 @@ const inspectionRows = scenes
     .tour-metrics a {
       color: #1fa068;
       text-decoration: none;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 0;
     }
 
     .scene-next {

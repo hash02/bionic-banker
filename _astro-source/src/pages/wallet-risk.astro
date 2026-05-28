@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DataRepresentationCard from '../components/DataRepresentationCard.astro';
 
 const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
 
@@ -127,6 +128,15 @@ const sourceLinks = [
         <p>Pattern note: a masked sample row with mixer context, repeated timing, and routing behavior. Interesting enough to inspect. Not a finding by itself.</p>
       </aside>
     </section>
+
+    <DataRepresentationCard
+      signal="A masked wallet row carries timing, routing, mixer-context, and behavior flags that deserve slower review."
+      source="Public-safe sample rows, benchmark metrics, mapped detection abilities, and linked wallet-risk source repositories."
+      record="A review score, fired rules, and a plain-language note that explains why the row was paused."
+      missing="Customer identity, private transaction history, internal policy, and the surrounding operational context."
+      nextQuestion="Does the surrounding activity repeat the pattern, or does fresh context make the row less important?"
+      limit="The score sorts attention. It is not a legal finding, filing decision, accusation, or production monitoring claim."
+    />
 
     <section class="wallet-panel">
       <div class="panel-head">

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DataRepresentationCard from '../components/DataRepresentationCard.astro';
 
 const title = 'Fraud Alert Triage Workflow';
 const description = 'A synthetic review sample showing how fraud signals become clear case packets with human review steps.';
@@ -54,11 +55,11 @@ const mustNotClaim = [
   'Validated deployment in a regulated compliance environment'
 ];
 
-const roleFit = [
-  ['Fraud / AML / RegTech', 'Shows alert review judgment: suspicious activity framing, escalation context, readable source trail, and clear limits.'],
-  ['Applied AI Ops', 'Shows bounded automation: messy event signals become operational case records without hiding the source trail.'],
-  ['AI governance / model risk', 'Shows separation between source facts, generated text, deterministic rules, and human review.'],
-  ['FinTech decision support', 'Shows product sense for regulated workflows: useful assistance without pretending to be the final decision-maker.']
+const readingAngles = [
+  ['Risk pattern', 'Shows suspicious activity framing, escalation context, readable source trail, and clear limits.'],
+  ['Workflow pattern', 'Shows bounded automation: messy event signals become operational case records without hiding the source trail.'],
+  ['Review pattern', 'Shows separation between source facts, generated text, deterministic rules, and human review.'],
+  ['Product pattern', 'Shows regulated workflow design: useful assistance without pretending to be the final decision-maker.']
 ];
 ---
 <BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/fraud-alert-triage/">
@@ -68,7 +69,7 @@ const roleFit = [
       <h1>Fraud Alert Triage Workflow</h1>
       <p class="proof-lede">A synthetic example of source-preserving automation for regulated financial workflows: suspicious signal, source trail, rule explanation, case note, human-approved next step.</p>
       <div class="reviewer-callout"><span>What this shows</span><strong>Messy fraud signals can become a simple case note, source list, and human next step.</strong></div>
-      <p class="proof-positioning">Built as a portfolio case record for AI + finance + fraud operations: not a production claim, not a compliance promise, and not real customer data.</p>
+      <p class="proof-positioning">Built as a public case record for AI + finance + fraud operations: not a production claim, not a compliance promise, and not real customer data.</p>
       <div class="proof-actions" aria-label="Case exports">
         <a href="/proof/fraud-alert-triage/one-page-card.html">Open one-page card</a>
         <a href="/proof/fraud-alert-triage/one-page-card.pdf">Download PDF card</a>
@@ -80,6 +81,15 @@ const roleFit = [
         <span>Human review required</span>
       </div>
     </section>
+
+    <DataRepresentationCard
+      signal="A synthetic sequence combines new device, new geography, test payments, recipient novelty, and a larger transfer attempt."
+      source="Synthetic event timeline, deterministic rule contribution, priority tier, case-note draft, and review checklist."
+      record="A traceable case note that separates observed signals from generated explanation and human next step."
+      missing="Real customer context, verified identity, internal policy, outcome history, and confirmed loss or intent."
+      nextQuestion="What extra context would change the review priority before any account action is considered?"
+      limit="No automatic block, release, reimbursement, filing, legal sign-off, or final fraud decision."
+    />
 
     <section class="proof-section proof-map" aria-label="90-second case map">
       <div class="section-label">90-second case map</div>
@@ -176,7 +186,7 @@ const roleFit = [
     <section class="proof-section">
       <div class="section-label">Role relevance</div>
       <div class="role-grid">
-        {roleFit.map(([role, fit]) => (
+        {readingAngles.map(([role, fit]) => (
           <article class="role-card">
             <h3>{role}</h3>
             <p>{fit}</p>

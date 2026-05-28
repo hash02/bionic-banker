@@ -1,0 +1,97 @@
+---
+interface Props {
+  eyebrow?: string;
+  signal: string;
+  source: string;
+  record: string;
+  missing: string;
+  nextQuestion: string;
+  limit: string;
+}
+
+const {
+  eyebrow = 'Data representation',
+  signal,
+  source,
+  record,
+  missing,
+  nextQuestion,
+  limit,
+} = Astro.props;
+
+const rows = [
+  ['Signal', signal],
+  ['Source trail', source],
+  ['System record', record],
+  ['What is missing', missing],
+  ['Human next question', nextQuestion],
+  ['Limit', limit],
+];
+---
+<section class="data-representation-card" aria-label="Data representation summary">
+  <div class="data-card-head">
+    <span>{eyebrow}</span>
+    <h2>Read this as a record, not a claim.</h2>
+    <p>The page is strongest when the reader can see the signal, the source trail, the record, the missing context, the next human question, and the boundary.</p>
+  </div>
+  <div class="data-card-grid">
+    {rows.map(([label, body]) => (
+      <article>
+        <strong>{label}</strong>
+        <p>{body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .data-representation-card {
+    border: 1px solid rgba(31,160,104,.18);
+    background: linear-gradient(135deg, rgba(31,160,104,.085), rgba(1,3,2,.94));
+    border-radius: 28px;
+    padding: clamp(1.35rem, 3vw, 2.4rem);
+    margin: 1.25rem 0;
+    color: var(--text);
+  }
+  .data-card-head span {
+    color: #1fa068;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: .78rem;
+    font-weight: 900;
+  }
+  .data-card-head h2 {
+    margin: .55rem 0 .45rem;
+    font-size: clamp(1.65rem, 3vw, 2.55rem);
+    line-height: 1.05;
+  }
+  .data-card-head p,
+  .data-card-grid p {
+    color: #b0b0b8;
+    line-height: 1.65;
+  }
+  .data-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .75rem;
+    margin-top: 1.1rem;
+  }
+  .data-card-grid article {
+    min-width: 0;
+    border: 1px solid rgba(31,160,104,.15);
+    border-radius: 18px;
+    padding: 1rem;
+    background: rgba(0,0,0,.18);
+  }
+  .data-card-grid strong {
+    display: block;
+    color: #1fa068;
+    margin-bottom: .35rem;
+  }
+  .data-card-grid p {
+    margin: 0;
+  }
+  @media (max-width: 860px) {
+    .data-card-grid { grid-template-columns: 1fr; }
+  }
+</style>

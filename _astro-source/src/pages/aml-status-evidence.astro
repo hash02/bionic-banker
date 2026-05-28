@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DataRepresentationCard from '../components/DataRepresentationCard.astro';
 
 const proof = await import('../../public/dashboard-data/aml-status-evidence-public.json');
 const generatedDate = new Date(proof.default.generated_at).toISOString().slice(0, 10);
@@ -53,6 +54,15 @@ const proofCards = [
         <small>Snapshot: {generatedDate}</small>
       </aside>
     </section>
+
+    <DataRepresentationCard
+      signal="An AML-related status is only useful when the checked rule, source trail, and action boundary are visible together."
+      source="The public status JSON, contract documentation, provenance fields, check rows, and local artifact pattern."
+      record="A status snapshot with visible claims, freshness checks, source references, and explicit outside-action refusal."
+      missing="Private logs, customer data, employer data, confidential policy, and any real filing or approval context."
+      nextQuestion="Which missing field would a human need before treating the status as operationally meaningful?"
+      limit="The planner can prepare a proposal record. It cannot approve, file, trade, deploy, enforce, or execute."
+    />
 
     <section class="proof-grid" id="proof-cards">
       {proofCards.map((card) => (

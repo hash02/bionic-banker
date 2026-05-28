@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DataRepresentationCard from '../components/DataRepresentationCard.astro';
 
 const title = 'Agent Workflow Case Review';
 const description = 'A one-page review summary showing how a messy finance-risk workflow can become a clear case packet with human review steps.';
@@ -46,11 +47,11 @@ const sampleRow = [
   ['Prototype limit', 'Decision support only']
 ];
 
-const roleFit = [
-  ['Risk and compliance leaders', 'Shows how agent assistance can stay inside review, records, limits, and human-control checks.'],
-  ['FinTech founders', 'Turns one workflow into a compact review packet that can be inspected before building a production system.'],
-  ['Fraud and AML operators', 'Connects scattered signals to a case note, review queue, and escalation checklist.'],
-  ['AI governance readers', 'Separates source trail, generated explanation, human decision control, and audit trail.']
+const readingAngles = [
+  ['Control lens', 'Shows how agent assistance can stay inside review, records, limits, and human-control checks.'],
+  ['System lens', 'Turns one workflow into a compact review record that can be inspected before any production claim.'],
+  ['Operations lens', 'Connects scattered signals to a case note, review queue, and escalation checklist.'],
+  ['Governance lens', 'Separates source trail, generated explanation, human decision control, and audit trail.']
 ];
 ---
 <BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/agent-prototype-sprint/">
@@ -68,6 +69,15 @@ const roleFit = [
         <span>No execution power</span>
       </div>
     </section>
+
+    <DataRepresentationCard
+      signal="One messy finance-risk workflow needs a bounded way to classify, summarize, explain, and hand off."
+      source="Synthetic or sanitized signal row, source status, freshness notes, unavailable fields, and review options."
+      record="A compact case summary with source trail, reasoning draft, limits, human options, and audit-friendly metadata."
+      missing="Private prompts, customer records, internal policy, live account controls, and measured production outcomes."
+      nextQuestion="Which decision stays with the person, and what record should the system preserve before handoff?"
+      limit="The agent prepares a review record. It cannot approve, message, file, trade, move funds, or decide."
+    />
 
     <section class="evidence-section evidence-map" aria-label="90-second case map">
       <div class="section-label">90-second case map</div>
@@ -146,7 +156,7 @@ const roleFit = [
     <section class="evidence-section">
       <div class="section-label">Who should review it</div>
       <div class="role-grid">
-        {roleFit.map(([role, fit]) => (
+        {readingAngles.map(([role, fit]) => (
           <article class="role-card">
             <h3>{role}</h3>
             <p>{fit}</p>
@@ -162,7 +172,7 @@ const roleFit = [
       <div class="approval-links">
         <a href="/fraud-alert-triage/">Compare fraud triage case review</a>
         <a href="/aml-status-evidence/">View AML status</a>
-        <a href="/proof-pack/">View system map</a>
+        <a href="/system-map/">View system map</a>
       </div>
     </section>
   </main>

@@ -15,7 +15,7 @@ function read(file) {
 
 const sourceFiles = {
   startHere: path.join(root, 'src/pages/start-here.astro'),
-  fieldPack: path.join(root, 'src/pages/proof-pack.astro'),
+  systemMap: path.join(root, 'src/pages/system-map.astro'),
   worldMap: path.join(root, 'src/pages/world-map.astro'),
   about: path.join(root, 'src/pages/about.astro'),
   home: path.join(root, 'src/pages/index.astro'),
@@ -42,7 +42,7 @@ const startHerePhrases = [
   'No live trading, wallet movement, or fund transfer authority',
 ];
 
-const fieldPackPhrases = [
+const systemMapPhrases = [
   'Bionic Banker System Map',
   'simple map of AI-assisted finance risk work',
   'Six missions, one map',
@@ -78,8 +78,8 @@ for (const phrase of startHerePhrases) {
   assert(source.startHere.includes(phrase), `/start-here source is missing required phrase: ${phrase}`);
 }
 
-for (const phrase of fieldPackPhrases) {
-  assert(source.fieldPack.includes(phrase), `/proof-pack source is missing required phrase: ${phrase}`);
+for (const phrase of systemMapPhrases) {
+  assert(source.systemMap.includes(phrase), `/system-map source is missing required phrase: ${phrase}`);
 }
 
 for (const phrase of worldMapPhrases) {
@@ -90,7 +90,7 @@ for (const phrase of aboutPhrases) {
   assert(source.about.includes(phrase), `/about source is missing required phrase: ${phrase}`);
 }
 
-for (const phrase of ['/start-here', '/proof-pack', '/world-map', '/about']) {
+for (const phrase of ['/start-here', '/system-map', '/world-map', '/about']) {
   assert(source.home.includes(phrase) || source.layout.includes(phrase), `Site source must link to ${phrase}`);
 }
 
@@ -104,7 +104,7 @@ for (const phrase of [
   assert(source.projects.includes(phrase), `Projects source missing plain-language proof line: ${phrase}`);
 }
 
-const noLongDashSurface = [source.startHere, source.fieldPack, source.worldMap, source.about, source.home].join('\n');
+const noLongDashSurface = [source.startHere, source.systemMap, source.worldMap, source.about, source.home].join('\n');
 for (const glyph of ['—', '–']) {
   assert(!noLongDashSurface.includes(glyph), `Edited public conversion surface contains long dash glyph: ${glyph}`);
 }
@@ -112,7 +112,7 @@ for (const glyph of ['—', '–']) {
 const cyanPattern = /#67e8f9|#a7f3d0|#6fe7ff|rgba\(103,\s*232,\s*249|rgba\(111,\s*231,\s*255/i;
 for (const [name, text] of Object.entries({
   startHere: source.startHere,
-  fieldPack: source.fieldPack,
+  fieldPack: source.systemMap,
   worldMap: source.worldMap,
   about: source.about,
   home: source.home,
@@ -124,7 +124,7 @@ for (const [name, text] of Object.entries({
 
 const builtChecks = [
   [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
-  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker System Map', 'Record map', 'Questions for Hash']],
+  [path.join(repoRoot, 'system-map/index.html'), ['Bionic Banker System Map', 'Record map', 'Questions for Hash']],
   [path.join(repoRoot, 'world-map/index.html'), ['AI + Finance World Map', 'Five systems, one data story', 'Reading paths']],
   [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],
   [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/world-map"']],
