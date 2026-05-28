@@ -1,6 +1,6 @@
 ---
 title: "The AI Agent Gap: $67 Billion Market, 21% in Production"
-description: "88% of organizations use AI. Only 21% have agentic AI in production. The space between adoption and deployment is where the next decade of banking gets built."
+description: "A source-led reading of the gap between AI adoption and production agent systems in finance: adoption is high, but governance, review, training, and operating records remain the hard part."
 date: "2026-03-31"
 tags: ["AI", "Banking", "Agents", "Finance"]
 readTime: "10 min"
@@ -14,7 +14,7 @@ The global AI banking market reached $20.6 billion in 2026 and is projected to h
 
 # The AI Agent Gap
 
-The global AI banking market hit $20.6 billion in 2026. That number gets thrown around a lot, but what matters more is where that money is going. And where it is not going yet. The gap between "we use AI" and "we have autonomous agents in production" is where the real opportunity lives right now.
+The global AI banking market hit $20.6 billion in 2026. That number gets thrown around a lot, but what matters more is where that money is going. And where it is not going yet. The gap between "we use AI" and "we have governed agents in production" is where the real operating work lives right now.
 
 <div class="callout-stat">
   <div class="callout-num" data-target="20.6">$20.6B</div>
@@ -50,7 +50,7 @@ That last number is the one worth sitting with. Almost everyone is using AI. Les
   </div>
 </div>
 
-The spread tells a story. Adoption is near-universal. Experimentation is growing fast. But production deployment of autonomous agents is still early. The firms that close this gap first will define the next generation of financial services.
+The spread tells a story. Adoption is near-universal. Experimentation is growing fast. But production deployment of autonomous agents is still early. The firms that close this gap carefully will define the next generation of financial services.
 
 <div class="bar-chart">
   <div class="bar-item">
@@ -82,7 +82,7 @@ The spread tells a story. Adoption is near-universal. Experimentation is growing
 
 That bottom bar is the quiet one. According to Accenture's 2026 Banking Technology Vision, only 12% of financial institutions have a well-defined, enterprise-wide AI agent strategy. Plenty of banks have AI strategies. Far fewer have agent strategies. The distinction matters because agents require a fundamentally different approach to governance, risk management, and human oversight.
 
-## Who Is Building
+## Who Is Publishing Useful Signals
 
 The institutions making real moves on agentic AI share a common trait: they committed early and are iterating fast. This is not about which bank is "winning." Every institution below is solving a different version of the same problem, and the variety of approaches is what makes this moment interesting.
 

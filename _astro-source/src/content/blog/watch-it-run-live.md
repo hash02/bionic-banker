@@ -1,6 +1,6 @@
 ---
-title: "I built an AI financial advisor. Watch it run live."
-description: "A live note from the finance lab: six scanners, three funds, a coverage bar, and a guardian layer checking the work while it runs."
+title: "A Live Portfolio Monitor With Visible Guardrails"
+description: "A public record of a portfolio-monitoring page: scanner status, coverage, guardrails, heartbeat checks, and the limits that keep the page informational rather than advisory."
 date: "2026-04-21"
 slug: "watch-it-run-live"
 tags: ["AI", "Agents", "Finance", "DeFi", "Systems"]
@@ -10,13 +10,13 @@ image: "/blog-visuals/png/watch-it-run-live-hero.png"
 category: "AI"
 ---
 
-Six scanner workers, three funds, sixteen funded sleeves, one guardian layer running continuous health checks. The system is live at bionicbanker.tech/portfolio and the coverage number is shown on the page.
+Six scanner workers, three funds, sixteen sleeves, and one guardian layer. The page is useful only if the status, coverage, heartbeat, and boundaries stay visible.
 
-# I built an AI financial advisor. Watch it run live.
+# A Live Portfolio Monitor With Visible Guardrails
 
-Most of what I read about AI advisors is one of two things. Either a landing page promising personalized wealth intelligence with no public numbers behind it. Or a long essay arguing whether AI should touch money at all. Both skip the part I actually care about. What does it look like when one is just running.
+Most public AI finance pages hide the operating layer. They show a promise, not the state of the system. The better question is simpler: what is running, what is stale, what is bounded, and what still needs a person?
 
-So I made that part the product.
+So I made that part the record.
 
 You can go to [bionicbanker.tech/portfolio](/portfolio/) right now and watch my system move. Coverage bar, six scanner workers, three funds, a guardian layer. Data refreshes every minute. When a sleeve flips from empty to funded, you see it flip. When a worker misses a heartbeat, you see the row go grey. Nothing hidden.
 
@@ -60,9 +60,9 @@ Two reasons.
 
 First, it keeps me honest. The moment a coverage number becomes public, you cannot quietly skip a sleeve. You have to build the worker. You have to wire the guardian. You have to actually close the loop.
 
-Second, most people who claim to have built an AI system for finance have nothing to show you. I would rather be the person with a boring live page that refreshes every minute than the person with a pitch deck full of charts that exist only in March.
+Second, finance systems should be read through records before claims. A boring page that shows status, coverage, and limits is more useful than a polished chart with no live trail behind it.
 
-Same philosophy as my AML engine. Same philosophy as the article list on this site. If I say I built it, there is a URL where you can watch it breathe.
+Same philosophy as the AML engine and source catalog: if a system is public, the reader should be able to inspect the record, not just the conclusion.
 
 ## What is next
 
@@ -75,9 +75,7 @@ The portfolio page is version one. It shows state. The next version will show hi
 
 The data is already being written. Every scanner emits cycle data. Every orchestrator run is logged. What is missing is the rendering. That ships next.
 
-If you want to watch the next sleeve get built, or the next worker go live, [subscribe to the newsletter](/#newsletter). One piece at a time. When it is worth saying.
-
-And if you are quietly doing something similar, running real systems for real money with a real uptime story, send me a note. I want to compare notes.
+If you want to follow the next version, [subscribe to the newsletter](/#newsletter). The useful updates are the ones where a new record, limit, or review path becomes visible.
 
 The page: [bionicbanker.tech/portfolio](/portfolio/)
 

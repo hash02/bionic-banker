@@ -1,6 +1,6 @@
 ---
-title: "The agent graveyard. I tried more than a dozen. A handful survived. Here is the autopsy."
-description: "A report from the agent graveyard: what survived, what broke at 3am, and the rules that came out of the failures."
+title: "Agent Failure Records: What Survived, What Broke, and Why"
+description: "A failure-record note for agent systems: context collapse, silent failure, loop limits, model routing, approval timing, cost caps, and the controls that made surviving agents easier to inspect."
 date: "2026-04-19"
 slug: "agent-graveyard"
 tags: ["AI", "Agents", "Engineering", "Systems", "Failure"]
@@ -10,19 +10,19 @@ image: "/blog-visuals/png/agent-graveyard-hero.png"
 category: "AI"
 ---
 
-More than a dozen AI agents built and tested. A handful still running. The rest failed at 3am for reasons that only make sense after you watch them die. This is the autopsy, the patterns across failures, and the rules that came out of it.
+More than a dozen AI agents were built and tested. A handful kept running. The useful part is the failure record: what broke, what signal was missing, and what control would have made the failure visible earlier.
 
-# The agent graveyard. I tried more than a dozen. A handful survived. Here is the autopsy.
+# Agent Failure Records: What Survived, What Broke, and Why
 
 Everyone is talking about agents like they are easy. Build an agent. Deploy an agent. Buy an agent. Scroll any feed for ten minutes and you will see five posts selling the same clean story.
 
 Here is the version nobody posts. I have tried more than a dozen of them. A handful are still alive. The rest are in the graveyard, and every one of them died for a reason I could not have predicted until I watched it die.
 
-This is the autopsy. It is also an ask for help at the end, so stick around.
+This is the failure record. The point is not the graveyard. The point is the controls that came out of it.
 
 ## The count
 
-On a used Linux box I call Wukong, which sits in my closet and has been powered on most days, I have run at different times:
+On a small local server that stays powered on most days, I have run at different times:
 
 - A trading orchestrator with four strategy workers. One worker is dead. The orchestrator is alive.
 - An AML detection engine. Twelve versions. Twenty-eight rules. Alive and growing.
@@ -32,7 +32,7 @@ On a used Linux box I call Wukong, which sits in my closet and has been powered 
 - A minimal coding agent built by someone else that I am still learning from. Alive.
 - A content pipeline with four scripts that chain together. All four alive now, but three died at least once before the current versions.
 - A fund router for portfolio rebalancing. Alive. Scaffold only.
-- A red-team agent called Kala, Sanskrit for time and space, running on a second older laptop with Kali Linux. Still experimental. Its job is to probe the other machines for weaknesses on purpose so someone else does not find them first.
+- A red-team test node on a second older laptop. Still experimental. Its job is to probe the other machines for weaknesses on purpose so someone else does not find them first.
 - Several early experiments I do not name anymore because naming them makes them too easy to mourn.
 
 More than a dozen is the lower bound. If you count every worker, every sub-process, every retry of a thing that broke, the real number is higher. I stopped counting when the graveyard started outgrowing the living.
@@ -121,21 +121,21 @@ So I am not discouraged by the graveyard. I am saying honestly that getting here
 
 If any of this is useful, here is the concrete tool list. You can swap any of these for equivalents. The shape of the system matters more than the specific names.
 
-**Hardware.** One used laptop running Debian 13 with an NVIDIA GTX 1650 and modest RAM. I call it Wukong because in the story it is the monkey king that holds the crew together. Lid closed, plugged into a wall, on a Tailscale mesh with my other machines and my phone. Cost under five hundred dollars.
+**Hardware.** One used laptop running Debian with an older NVIDIA GPU and modest RAM. Lid closed, plugged into a wall, on a private mesh with my other machines and my phone. Cost under five hundred dollars.
 
-A second older laptop runs Kali Linux. That one is Kala. Kali is the operating system. Kala is the agent that lives on it. I like the pun.
+A second older laptop runs Kali Linux for security testing. It stays separated from the main work and is treated as experimental.
 
 **LLMs.** Most of the crew runs on a local Ollama server. I use gemma2 at 9B for reasoning-light work, hermes3 at 8B for tool calling, and nomic-embed-text for embeddings. All of them free, all of them local, none of them phone home. If you are starting from zero, learn Ollama first. The cost discipline you build on free local models makes you smarter about when to pay.
 
 For heavier reasoning I pay for Claude through the Max plan. For cheap fallback I route through OpenRouter. My total cloud bill is under ten dollars a month.
 
-**Named agents in the crew.** Hermes is the trading orchestrator, custom Python. Agent Zero is open source and does research. Pi is Mario Zechner's minimal CLI coding agent that I am studying to learn how a small agent is built from scratch. The AML engine and the content pipeline are both custom Python running on Wukong. Kala is the red-team agent on Kali, still experimental, built on top of a mix of open-source pentesting tools.
+**Named roles in the crew.** One custom Python orchestrator handles paper-mode portfolio state. One research worker reads public sources. One small coding-agent pattern is used for study. The AML engine and content pipeline are custom Python. The security-testing node remains experimental and separated from the main system.
 
 **Coding agents I drive, and how they differ.** I use Claude Code for one kind of work, Cowork for another, and something like OpenHands for a third. Each one has a different kind of friction. Claude Code is sharp but narrow. Cowork gives me the file system and the browser and the computer at the same time, which is great until it is not. OpenHands makes you feel every edge because it is more raw. The honest answer is I use all three, and when one is giving me a bad day I try the same problem on another and see if the rhythm comes back.
 
 **Memory and knowledge layer.** Obsidian holds every session transcript and every note, with a graph view that lets me find things I half-remember. Notion holds the project board, the career log, and the investigation databases. A single SQLite file holds the message queue that lets all the agents talk to each other. I have tried fancier stacks. This one keeps working.
 
-**The mesh.** Tailscale across every node. Free for personal use. Encrypted. The single most underrated piece of infrastructure for anyone running a small crew of agents on cheap hardware. If you are doing this on one box only, you will outgrow the box. Plan for a second node from the start.
+**The mesh.** A private mesh connects the nodes. The single most underrated piece of infrastructure for anyone running a small crew of agents on cheap hardware is boring, reliable connectivity. If you are doing this on one box only, you will outgrow the box. Plan for a second node from the start.
 
 **Data sources.** Public and free, by design. DeFiLlama for on-chain liquidity and yield. Blockscout for block-level transaction data. OFAC public lists for sanctions checks. Crypto.com for market data. Every one of these has a free tier that is enough for personal and paper-trading use. Paying for data is the second-fastest way to end up with a dead agent. The first is paying for a bad model.
 
@@ -163,12 +163,8 @@ Here is what the living have that the dead ones did not.
 
 **One job per agent.** The moment you give an agent two responsibilities, you have built something that will forget how to do both. Generalist agents are a myth at this stage of the technology. Specialists that talk to each other are real. Build the specialists. Let them talk.
 
-## A direct ask, at the end
+## What this record is useful for
 
-I am going to close this honestly. I have rules now. I have a routine. I have a small crew of specialists that mostly behave. I still do not know if I am doing this the smart way.
+This note is not a claim that the system is finished. It is a failure record. The useful parts are the controls that survived contact with real runs: recovery runbooks, external validators, one-job workers, visible heartbeats, spend caps, and hard stops for loops.
 
-If you are one of the people quietly running more than three agents in production, unattended, for months, on real workloads, I want to hear from you. Not a demo. Not a pitch. How are you doing. How is your uptime. What broke last week. Which tool finally gave you the rhythm. Which one still makes you fight for every frame.
-
-The infrastructure for running small crews of agents is still being invented. Most of it is happening in closets and on home servers and in side projects. The people doing it well are not all writing about it yet, and the people writing about it loudly are often not doing it at scale. If you are one of the quiet ones, reply, message, drop a comment. Tell me how your system is holding up.
-
-I will learn more from one honest conversation with you than from another week of building alone.
+The remaining gap is still the same: small agent crews need better operating standards. They need records that show what ran, what failed, what changed, and what a human still has to decide. That is the part worth continuing to build.

@@ -1,6 +1,6 @@
 ---
-title: "Someone Made a List of 30 AI Agents Every Engineer Must Build. I Cross-Referenced It Against What I Actually Shipped."
-description: "A 30-agent engineering map showed up after I had already shipped 14 agents in 15 days. The useful part was not the list. It was seeing which layers I had built, which ones were missing, and which failures the framework would have caught earlier."
+title: "A 30-Agent Framework, Read Against Real Build Records"
+description: "A public framework read against real agent build records: which layers existed, which controls were missing, and which failure modes the framework would have made visible sooner."
 date: "2026-05-20"
 tags: ["AI", "Agents", "Builder", "Blockchain"]
 readTime: "11 min"
@@ -10,15 +10,15 @@ slug: "30-agents-which-ones-i-built"
 image: "/blog-visuals/png/30-agents-hero.png"
 ---
 
-A 30-agent engineering map showed up in my feed after I had already shipped 14 agents in 15 days.
+A 30-agent engineering map is useful when it is compared against real build records, missing controls, and failure modes.
 
 That timing changed how I read it. I was not asking, "What should I build?" I was asking a better question: "Which parts did I accidentally build, which layers are still missing, and which failures would this map have prevented?"
 
-# Someone Made a List of 30 AI Agents Every Engineer Must Build. I Cross-Referenced It Against What I Actually Shipped.
+# A 30-Agent Framework, Read Against Real Build Records
 
 There is a reference going around right now. 30 AI agents, organized by category, with a DASH framework for designing each one, a 30-rule prompt core, and a rules list at the bottom. GenAI Works published it. Six million people follow that account. The image has been reshared across LinkedIn and Twitter more times than I can count.
 
-I built 14 agents in 15 days before I ever saw this framework. I wrote about how that happened in an earlier post. I started with an 80-line Python AML script. Then I followed the annoying problems. Memory kept resetting. So I built memory. Tasks got lost. So I built a queue. Outputs needed checking. So I built a reviewer. Eventually the system was monitoring wallets, running paper trades, writing content drafts, and sending me updates while I was at work.
+Before seeing the framework, I had already built a small set of agents around wallet monitoring, queues, review, memory, and status reporting. That made the framework useful as a control map rather than a build checklist.
 
 So when this framework showed up in my feed, I did not read it like a beginner. I read it like someone comparing notes.
 

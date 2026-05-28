@@ -1,6 +1,6 @@
 ---
-title: "From One Script to 14 Agents in 15 Days"
-description: "I started with a Python script that checked a few blockchain transactions. 15 days later I had 14 autonomous agents, a three-brain architecture, and a system that runs while I sleep. Here's the real story."
+title: "From One Script to a Small Agent System"
+description: "A build record showing how a wallet-checking script turned into queues, monitors, agent roles, and review points. The useful lesson is not the count. It is how coordination problems became system records."
 date: "2026-03-17"
 tags: ["AI", "Blockchain", "Builder"]
 readTime: "12 min"
@@ -9,7 +9,7 @@ featured: true
 slug: "agent-evolution"
 ---
 
-From one 80-line Python script on Day 0 to 14 autonomous agents generating 438 reports and monitoring 190 blockchain wallets by Day 15. This is the unplanned sequence of problems that built it.
+A wallet-checking script became a small agent system because each failure created a record, a queue, or a review point. This is the build path, the numbers, and the limits.
 
 ## The Starting Point Was Embarrassingly Simple
 
@@ -26,7 +26,7 @@ That was Day 0. Fifteen days later, I had 14 autonomous agents running on a loca
 Here's the thing nobody tells you about building with AI: the hard part isn't the code. The hard part is that every solution reveals three more problems, and those problems are more interesting than what you were originally doing. You follow the dots. One to the next to the next to the next. And you look up and suddenly you've built something you didn't plan to build.
 
       
-## The Numbers (Because I Know You're Skeptical)
+## The Numbers, Read as Operating Records
 
 14 agents. 438 reports generated. 190 blockchain wallets under active monitoring. Paper trades logged with entry rationale. Content drafts produced automatically. Security stress tests running against the system's own vulnerabilities. All of this live on a home server while I was sitting at a desk doing a completely different job.
 
@@ -90,7 +90,7 @@ That constraint made the system more reliable than most of my early experiments,
 
 ## What Came Next
 
-The 15-day version was a proof of concept more than a product. It proved the architecture could hold. It proved that autonomous agents could coordinate. It proved that a system built from cheap components with a good messaging layer could do meaningful work without a human babysitting it.
+The 15-day version was an operating record, not a finished product. It showed that the queue, role boundaries, logs, and status checks could hold together long enough to teach the next design constraint.
 
 The AML engine that came out of that period is still running. The rule set expanded. The report format improved. The paper trading got a proper backtesting layer. New agents got added as new problems appeared.
 
