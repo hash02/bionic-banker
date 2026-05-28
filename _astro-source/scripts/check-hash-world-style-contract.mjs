@@ -16,6 +16,7 @@ const pages = {
   projects: read(path.join(sourceRoot, 'src/pages/projects.astro')),
   fraudTriage: read(path.join(sourceRoot, 'src/pages/fraud-alert-triage.astro')),
   riskOverview: read(path.join(sourceRoot, 'src/pages/risk-evidence-overview.astro')),
+  sourceCatalog: read(path.join(sourceRoot, 'src/pages/evidence.astro')),
   baseLayout: read(path.join(sourceRoot, 'src/layouts/BaseLayout.astro')),
   publicCopyStandard: read(path.join(repoRoot, 'PUBLIC_COPY_STANDARD.md')),
   agents: read(path.join(repoRoot, 'AGENTS.md')),
@@ -50,6 +51,7 @@ const visiblePublicFiles = [
   ['projects', pages.projects],
   ['fraud-triage', pages.fraudTriage],
   ['risk-evidence-overview', pages.riskOverview],
+  ['source-catalog', pages.sourceCatalog],
   ['base-layout', pages.baseLayout],
 ];
 
@@ -70,6 +72,7 @@ const staleVisiblePhrases = [
   ['field packet wording', /field packet/i],
   ['surface area wording', /surface area/i],
   ['evidence catalog lanes wording', /evidence catalog lanes/i],
+  ['public evidence catalog label', /PUBLIC EVIDENCE CATALOG/i],
   ['risk evidence overview visible title', /Risk & Evidence Overview/i],
   ['evidence-first workflow wording', /Evidence-first workflow/i],
   ['evidence snapshot wording', /Evidence Snapshot/i],
