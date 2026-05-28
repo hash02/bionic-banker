@@ -73,6 +73,7 @@ const staleVisiblePhrases = [
   ['risk evidence overview visible title', /Risk & Evidence Overview/i],
   ['evidence-first workflow wording', /Evidence-first workflow/i],
   ['evidence snapshot wording', /Evidence Snapshot/i],
+  ['footer evidence link label', />Evidence<\/a>/i],
   ['visible permission checks wording', /permission checks/i],
   ['catalog evidence sources wording', /catalog evidence sources/i],
   ['visible evidence role label', /role:\s*'[^']*\/ Evidence \//i],
