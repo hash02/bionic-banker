@@ -18,7 +18,7 @@ const screenshotRoot = join(reportRoot, 'screenshots');
 
 const routes = [
   { path: '/', name: 'home', requiredText: ['Bionic Banker', 'Start Quest', 'Signals', 'Apps'] },
-  { path: '/risk-evidence-overview/', name: 'risk-evidence-overview', requiredText: ['Risk & Evidence Overview', 'Wallet Risk', 'Agent Chess'] },
+  { path: '/risk-evidence-overview/', name: 'risk-evidence-overview', requiredText: ['Risk Review Overview', 'Wallet Risk', 'Agent Chess'] },
   { path: '/signals/', name: 'signals', requiredText: ['Signals', 'not trading performance'] },
   { path: '/apps/', name: 'apps', requiredText: ['Apps you can enter', 'Wallet Risk Assessment'] },
   { path: '/ai-intelligence/', name: 'ai-intelligence', requiredText: ['AI Intelligence', 'What Agent Her is watching'] },

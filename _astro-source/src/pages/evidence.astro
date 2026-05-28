@@ -14,21 +14,21 @@ const orderedProjects = [
   ...projects.filter((project) => !flagshipOrder.includes(project.id)),
 ];
 ---
-<BaseLayout title="Evidence Catalog" description="Rendered public evidence catalog for Bionic Banker catalog sections, sources, numbers, and boundaries.">
+<BaseLayout title="Source Catalog" description="Rendered public source catalog for Bionic Banker catalog sections, sources, numbers, and boundaries.">
   <main class="page-shell systems-wrap">
     <section class="page-hero">
       <span class="eyebrow">PUBLIC EVIDENCE CATALOG</span>
-      <h1 class="page-title">Evidence, not raw JSON first.</h1>
+      <h1 class="page-title">Source trails, not raw JSON first.</h1>
       <p class="page-sub">A rendered reader-facing catalog of the public catalog sections behind Bionic Banker. Raw data is still available, but the primary path explains what each lane shows, what supports it, and what remains bounded.</p>
-      <div class="page-metric-row" aria-label="Evidence catalog metrics">
+      <div class="page-metric-row" aria-label="Source catalog metrics">
         <div><strong>{projects.length}</strong><span>catalog sections</span></div>
-        <div><strong>{sourceCount}</strong><span>catalog evidence sources</span></div>
+        <div><strong>{sourceCount}</strong><span>catalog source trails</span></div>
         <div><strong>{numberCount}</strong><span>catalog number notes</span></div>
         <div><strong>{boundaryCount}</strong><span>catalog boundaries</span></div>
       </div>
     </section>
 
-    <section class="systems-audit-panel" aria-label="How to read the evidence catalog">
+    <section class="systems-audit-panel" aria-label="How to read the source catalog">
       <div>
         <span class="systems-audit-label">READER PATH</span>
         <strong>Start with the flagship catalog sections.</strong>
@@ -46,10 +46,10 @@ const orderedProjects = [
       </div>
     </section>
 
-    <section class="articles-grid" aria-label="Evidence sections">
+    <section class="articles-grid" aria-label="Source sections">
       {orderedProjects.map((project) => (
         <article class="article-card" id={project.id}>
-          <span>{project.status?.label ?? 'Evidence section'}</span>
+          <span>{project.status?.label ?? 'Source section'}</span>
           <h2>{project.name}</h2>
           <p>{project.what_it_is}</p>
           <div class="system-proof-grid">
@@ -70,7 +70,7 @@ const orderedProjects = [
               </div>
             </div>
           ) : null}
-          <div class="system-link-cloud" aria-label={`Evidence links for ${project.name}`}>
+          <div class="system-link-cloud" aria-label={`Source links for ${project.name}`}>
             {project.sources?.slice(0, 4).map((source) => source.url ? <a href={source.url}>{source.label}</a> : <span>{source.label}</span>)}
           </div>
         </article>
@@ -86,7 +86,7 @@ const orderedProjects = [
       <div>
         <span class="systems-audit-label">SOURCE RECORD</span>
         <strong>Raw JSON available for inspection</strong>
-        <p><a href="/dashboard-data/public-proof-catalog.json">View public evidence catalog JSON</a></p>
+        <p><a href="/dashboard-data/public-proof-catalog.json">View public source catalog JSON</a></p>
       </div>
     </section>
   </main>

@@ -28,7 +28,7 @@ const requiredSourcePhrases = [
   '/proof/site-health',
   'agent-chess-showcase',
   'hero-mobile-route-strip',
-  'Evidence-first workflow',
+  'Source-first workflow',
   'No wallet or trade power',
   'Human review required',
   'No autonomous compliance decisions',
@@ -43,7 +43,7 @@ for (const phrase of requiredSourcePhrases) {
 const requiredBuiltPhrases = [
   'AI, finance, and the world ahead.',
   'Operating view',
-  'Signal becomes evidence. Evidence becomes a decision.',
+  'Signal becomes a record. A record becomes a decision.',
   'Wallet Risk Assessment',
   'AML Status',
   'Fraud Alert Workflow',

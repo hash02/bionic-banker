@@ -50,7 +50,7 @@ const mustNotClaim = [
   'Legal advice or regulatory sign-off',
   'SAR filing decisions or KYC approval decisions',
   'Automated account blocking, release, reimbursement, or fund movement',
-  'Measured impact on alert quality or fraud losses without fresh evidence',
+  'Measured impact on alert quality or fraud losses without fresh records',
   'Validated deployment in a regulated compliance environment'
 ];
 
@@ -117,7 +117,7 @@ const roleFit = [
 
     <section class="proof-grid">
       <div class="proof-card wide">
-        <div class="section-label">Evidence packet</div>
+        <div class="section-label">Review packet</div>
         <h2>What a human should receive</h2>
         <div class="packet-list">
           {evidencePacket.map(([item, status, reason]) => (

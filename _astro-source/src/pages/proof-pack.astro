@@ -7,13 +7,13 @@ const systems = [
   ['Fraud Alert Triage Workflow', '/fraud-alert-triage', 'Alert operations', 'Synthetic signals converted into a proof packet, case note, and human next step.'],
   ['Agent Workflow Case Review', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into a case packet, review summary, and human review step.'],
   ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public records without outside-action power.'],
-  ['Site Health / Health Board', '/proof/site-health', 'Self-checking evidence', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
+  ['Site Health / Health Board', '/proof/site-health', 'Self-checking records', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
 ];
 
-const evidenceMap = [
+const sourceMap = [
   ['System cards', '12', 'Rendered systems a reader can inspect.'],
   ['Catalog sections', '8', 'Catalog-backed sections with sources and boundaries.'],
-  ['Source links', '21', 'Public-safe sources linked from the evidence catalog.'],
+  ['Source links', '21', 'Public-safe sources linked from the source catalog.'],
   ['Named limits', '36', 'Explicit limits that prevent overclaiming.'],
   ['Articles / notes', '45', 'Writing that supports the finance, AI, and agent-system context.'],
 ];
@@ -72,7 +72,7 @@ const questions = [
       <span>Record map</span>
       <h2>The public record map is counted and limited.</h2>
       <div class="metric-grid">
-        {evidenceMap.map(([label, value, detail]) => (
+        {sourceMap.map(([label, value, detail]) => (
           <article>
             <strong>{value}</strong>
             <span>{label}</span>
