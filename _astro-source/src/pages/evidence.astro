@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const catalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const catalog = await import('../../public/dashboard-data/source-catalog.json');
 const data = catalog.default;
 const projects = data.projects ?? [];
 const generatedDate = new Date(data.generated_at).toISOString().slice(0, 10);
@@ -28,7 +28,7 @@ const orderedProjects = [
       </div>
     </section>
 
-    <section class="systems-audit-panel" aria-label="How to read the source catalog">
+    <section class="systems-audit-panel representation-strip" aria-label="How to read the source catalog">
       <div>
         <span class="systems-audit-label">READER PATH</span>
         <strong>Start with the flagship catalog sections.</strong>
@@ -43,6 +43,11 @@ const orderedProjects = [
         <span class="systems-audit-label">RAW DATA</span>
         <strong>Raw JSON is secondary.</strong>
         <p>Use the rendered page first. Open the raw JSON only when you want to inspect the source record behind the page.</p>
+      </div>
+      <div>
+        <span class="systems-audit-label">READING METHOD</span>
+        <strong>Signal, source, record, gap, question, limit.</strong>
+        <p>Each catalog section should help the reader see what was observed, what supports it, what is missing, and what remains a human decision.</p>
       </div>
     </section>
 
@@ -81,12 +86,12 @@ const orderedProjects = [
       <div>
         <span class="systems-audit-label">GENERATED</span>
         <strong>{generatedDate}</strong>
-        <p>Metrics on this page are computed from <code>public-proof-catalog.json</code>.</p>
+        <p>Metrics on this page are computed from the public source catalog record.</p>
       </div>
       <div>
         <span class="systems-audit-label">SOURCE RECORD</span>
         <strong>Raw JSON available for inspection</strong>
-        <p><a href="/dashboard-data/public-proof-catalog.json">View public source catalog JSON</a></p>
+        <p><a href="/dashboard-data/source-catalog.json">View source catalog JSON</a></p>
       </div>
     </section>
   </main>

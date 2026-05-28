@@ -29,20 +29,20 @@ const cleanText = (value = '') => value
 
 const getSlug = (post: typeof sortedPosts[number]) => post.data.slug || post.id;
 const featuredSlugs = [
+  'agent-governance-flow',
+  'wallet-risk-notes',
+  'aml-engine',
   'two-agent-finance-operating-system',
-  'watch-it-run-live',
-  'agent-graveyard',
-  'aml-roaster',
 ];
 const featuredPosts = featuredSlugs
   .map((slug) => sortedPosts.find((post) => getSlug(post) === slug))
   .filter(Boolean);
 
 const routeLabels: Record<string, string> = {
+  'agent-governance-flow': 'Agent control',
+  'wallet-risk-notes': 'Wallet risk',
+  'aml-engine': 'AML notes',
   'two-agent-finance-operating-system': 'AI systems',
-  'watch-it-run-live': 'Risk signals',
-  'agent-graveyard': 'What broke',
-  'aml-roaster': 'Wallet risk notes',
 };
 ---
 <BaseLayout title="Articles" description={`${articleCount} articles on finance, AI, agents, blockchain, and learning by building.`}>
@@ -64,9 +64,9 @@ const routeLabels: Record<string, string> = {
     <div class="featured-head">
       <div>
         <p class="section-kicker">Start here</p>
-        <h2>Four good starting points.</h2>
+        <h2>Four system-first starting points.</h2>
       </div>
-      <p>Systems, live notes, broken systems, and lighter notes from the finance and AI workbench.</p>
+      <p>Start with records, controls, wallet-risk notes, and the operating pattern before scanning the full archive.</p>
     </div>
     <div class="featured-grid">
       {featuredPosts.map((post) => (
@@ -91,7 +91,7 @@ const routeLabels: Record<string, string> = {
   <div class="articles-wrap">
     <div class="archive-note">
       <p class="section-kicker">Full archive</p>
-      <p>Filter by theme, or scan the full list.</p>
+      <p>The full archive is useful, but the system-first notes above are the cleaner front door.</p>
     </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (

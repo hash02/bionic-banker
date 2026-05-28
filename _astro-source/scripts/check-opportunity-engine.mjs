@@ -64,6 +64,8 @@ const worldMapPhrases = [
   'The same records can be read from four angles',
   'No live trading, transfer, wallet-control, or fund-movement claim',
   'Public records only',
+  'Representation standard',
+  'Every useful page should answer six quiet questions',
 ];
 
 const aboutPhrases = [
@@ -154,9 +156,17 @@ const banned = [
   'role packet',
   'role packets',
   'recruiter',
+  'review packet',
+  'review packets',
+  'case packet',
+  'case packets',
+  'portfolio-grade',
+  'founder/operator proof map',
+  'if you are reviewing this for a role',
+  'questions for hash',
 ];
 for (const phrase of banned) {
   assert(!combined.includes(phrase), `World map source contains banned phrase: ${phrase}`);
 }
 
-console.log('WORLD_MAP_CHECK PASS — mission map, system map, world map, about page, green theme guard, and no-long-dash guard are present.');
+console.log('WORLD_MAP_CHECK PASS — mission map, system map, world map, source-led wording, green theme guard, and no-long-dash guard are present.');

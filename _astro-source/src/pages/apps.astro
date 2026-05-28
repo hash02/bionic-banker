@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
+const proofCatalog = await import('../../public/dashboard-data/source-catalog.json');
 const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().slice(0, 10);
 const catalogProjectCount = proofCatalog.default.projects.length;
 const catalogSourceCount = proofCatalog.default.projects.reduce((sum, project) => sum + (project.sources?.length ?? 0), 0);
@@ -96,7 +96,7 @@ const projects = [
     links: [
       { label: 'Story', url: '/blog/two-agent-finance-operating-system' },
       { label: 'Catalog', url: '/evidence' },
-      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'AI agent', url: '/learn#agent' },
       { label: 'Audit log', url: '/learn#audit-log' },
     ],
@@ -132,7 +132,7 @@ const projects = [
     links: [
       { label: 'Heartbeat JSON', url: '/dashboard-data/heartbeat.json' },
       { label: 'Catalog', url: '/evidence' },
-      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'Heartbeat', url: '/learn#heartbeat' },
       { label: 'System health', url: '/learn#observability' },
     ],
@@ -180,7 +180,7 @@ const projects = [
     limitation: 'Template kit. Not legal advice, certification, or enterprise governance software.',
     links: [
       { label: 'Catalog', url: '/evidence' },
-      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'Tool calling', url: '/learn#tool-calling' },
       { label: 'RBAC', url: '/learn#rbac' },
       { label: 'Audit log', url: '/learn#audit-log' },
@@ -213,7 +213,7 @@ const projects = [
     links: [
       { label: 'Articles', url: '/articles' },
       { label: 'Catalog', url: '/evidence' },
-      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'Knowledge Base', url: '/learn' },
       { label: 'Reports', url: '/reports' },
       { label: 'Questions', url: '/gaps' },

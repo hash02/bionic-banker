@@ -36,25 +36,25 @@ const mapSystems = [
 
 const readingPaths = [
   {
-    title: 'AI Finance Evaluator',
-    bestFor: 'How to test financial reasoning, source use, and unsupported claims in AI output.',
-    shows: ['finance answer review', 'unsupported-claim detection', 'plain-language explanation', 'source-backed reasoning'],
+    title: 'Financial reasoning',
+    bestFor: 'How to test a finance answer against sources, missing context, and unsupported claims.',
+    shows: ['answer review', 'unsupported-claim detection', 'plain-language explanation', 'source-backed reasoning'],
     links: ['/start-here', '/system-map', '/wallet-risk'],
   },
   {
-    title: 'AML / RegTech / Fraud',
-    bestFor: 'How AML, fraud, wallet-risk, and transaction-monitoring examples separate signal from decision.',
+    title: 'Risk and status work',
+    bestFor: 'How wallet-risk, AML-style status, and fraud examples separate signal from decision.',
     shows: ['case-note structure', 'status records', 'human review steps', 'no filing or approval authority'],
     links: ['/aml-status-evidence', '/fraud-alert-triage', '/evidence'],
   },
   {
-    title: 'FinTech Implementation',
-    bestFor: 'How product, support, documentation, and workflow clarity make finance software easier to trust.',
-    shows: ['workflow translation', 'client-readable documentation', 'dashboard discipline', 'clear escalation limits'],
+    title: 'Interface clarity',
+    bestFor: 'How product surfaces, support notes, documentation, and workflow clarity make finance software easier to trust.',
+    shows: ['workflow translation', 'reader-ready documentation', 'dashboard discipline', 'clear escalation limits'],
     links: ['/apps', '/projects', '/proof/site-health'],
   },
   {
-    title: 'AI Operations / Agent Systems',
+    title: 'Agent control',
     bestFor: 'How agent workflows can preserve state, review steps, and boundaries without hiding the work.',
     shows: ['review loops', 'tool boundaries', 'recoverable state', 'public-safe system records'],
     links: ['/risk-evidence-overview#agent-chess-showcase', '/agent-prototype-sprint', '/proof/site-health'],
@@ -111,19 +111,33 @@ const nextMoves = [
     <section class="opp-section">
       <span>Reading paths</span>
       <h2>The same records can be read from four angles.</h2>
-      <div class="packet-grid">
-        {readingPaths.map((packet) => (
-          <article class="packet-card">
-            <h3>{packet.title}</h3>
-            <p>{packet.bestFor}</p>
+      <div class="reading-grid">
+        {readingPaths.map((path) => (
+          <article class="reading-card">
+            <h3>{path.title}</h3>
+            <p>{path.bestFor}</p>
             <ul>
-              {packet.shows.map((item) => <li>{item}</li>)}
+              {path.shows.map((item) => <li>{item}</li>)}
             </ul>
-            <div class="packet-links">
-              {packet.links.map((href) => <a href={href}>Open record</a>)}
+            <div class="reading-links">
+              {path.links.map((href) => <a href={href}>Open record</a>)}
             </div>
           </article>
         ))}
+      </div>
+    </section>
+
+
+    <section class="opp-section representation-standard">
+      <span>Representation standard</span>
+      <h2>Every useful page should answer six quiet questions.</h2>
+      <div class="standard-grid">
+        <article><strong>Signal</strong><p>What changed, appeared, or became worth checking?</p></article>
+        <article><strong>Source trail</strong><p>What record, row, file, public source, or metric supports it?</p></article>
+        <article><strong>System record</strong><p>What did the page preserve so the reader can inspect the path?</p></article>
+        <article><strong>Missing context</strong><p>What is not known, not public, or not safe to infer?</p></article>
+        <article><strong>Next question</strong><p>What should a human reader ask before any real decision?</p></article>
+        <article><strong>Limit</strong><p>What authority, claim, or action is explicitly outside the page?</p></article>
       </div>
     </section>
 
@@ -158,14 +172,14 @@ const nextMoves = [
   .opp-kicker, .opp-section > span, .system-card small { color: #1fa068; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; }
   .opp-hero h1 { font-size: clamp(2.2rem, 5.8vw, 5rem); line-height: .95; margin: .75rem 0 1rem; max-width: 980px; }
   .opp-hero p, .opp-section p, .opp-section li { color: #b0b0b8; line-height: 1.7; }
-  .opp-actions, .packet-links, .opp-footer-cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
-  .opp-actions a, .packet-links a, .opp-footer-cta a { text-decoration: none; border-radius: 999px; padding: .78rem 1rem; border: 1px solid rgba(31,160,104,.24); color: var(--text); font-weight: 800; }
+  .opp-actions, .reading-links, .opp-footer-cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
+  .opp-actions a, .reading-links a, .opp-footer-cta a { text-decoration: none; border-radius: 999px; padding: .78rem 1rem; border: 1px solid rgba(31,160,104,.24); color: var(--text); font-weight: 800; }
   .opp-actions a:first-child { background: #1fa068; color: #010302; border: 0; }
-  .system-grid, .packet-grid, .move-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
-  .system-card, .packet-card, .move-grid article { border: 1px solid rgba(31,160,104,.16); border-radius: 20px; padding: 1.1rem; background: rgba(31,160,104,.055); color: inherit; text-decoration: none; }
-  .system-card h3, .packet-card h3 { margin: .55rem 0; }
-  .packet-card ul, .limit-list { margin: 1rem 0 0; padding-left: 1.2rem; }
-  .packet-links a { font-size: .86rem; padding: .62rem .78rem; }
+  .system-grid, .reading-grid, .move-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .system-card, .reading-card, .move-grid article { border: 1px solid rgba(31,160,104,.16); border-radius: 20px; padding: 1.1rem; background: rgba(31,160,104,.055); color: inherit; text-decoration: none; }
+  .system-card h3, .reading-card h3 { margin: .55rem 0; }
+  .reading-card ul, .limit-list { margin: 1rem 0 0; padding-left: 1.2rem; }
+  .reading-links a { font-size: .86rem; padding: .62rem .78rem; }
   .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.9fr); gap: 1.2rem; align-items: start; }
   .limit-list { border: 1px solid rgba(31,160,104,.16); border-radius: 20px; padding: 1.1rem 1.1rem 1.1rem 2rem; background: rgba(31,160,104,.055); }
   @media (max-width: 760px) { .split { grid-template-columns: 1fr; } .opp-shell { padding-top: 4.5rem; } }
