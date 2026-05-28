@@ -33,7 +33,7 @@ const evidencePacket = [
   ['Source trail', 'Timeline, rule hits, source freshness, source status, and unavailable fields.'],
   ['Reasoning draft', 'Plain-English rationale that separates observed facts from generated explanation.'],
   ['Limits', 'What the available data cannot answer.'],
-  ['Reviewer options', 'Escalate, request more information, close as low priority, or continue monitoring under approved policy.'],
+  ['Human options', 'Escalate, request more information, close as low priority, or continue monitoring under approved policy.'],
   ['Audit trail', 'Timestamp, record ID, source status, checksum when available, and decision limit.']
 ];
 
@@ -103,7 +103,7 @@ const roleFit = [
         </div>
       </div>
       <aside class="evidence-card boundary-card">
-        <div class="section-label">Authority boundary</div>
+        <div class="section-label">Clear limit</div>
         <h2>No external action authority</h2>
         <p>The output is a review packet. It does not message customers, approve KYC, file reports, block accounts, release funds, move wallets, place trades, or make final compliance decisions.</p>
       </aside>
@@ -122,7 +122,7 @@ const roleFit = [
     </section>
 
     <section class="evidence-section case-note">
-      <div class="section-label">Reviewer summary draft</div>
+      <div class="section-label">Human review note</div>
       <blockquote>
         Review required. The signal shows a short-window pattern involving a novel counterparty and activity that could be relevant to account-risk, fraud, or AML review. The available source detail is enough to prepare a review packet, but not enough to make a final compliance, account, or legal decision. Send the case to a human reader with the source timeline, rule contribution summary, unavailable-detail list, and policy-specific next-action checklist attached.
       </blockquote>

@@ -30,6 +30,17 @@ Every public page or card should answer:
 4. What can the reader check?
 5. What can it not do?
 
+## World and voice anchors
+
+The public site should carry the same pattern as Hash's wider operating world, but translated for normal readers:
+
+- The private world is a falsifiability machine. The public site should say this as: show the source, show the check, show the limit.
+- Bionic Banker is the public surface for finance, AI, compliance, agent workflows, and career/business trust. The public reader should not need to know vault paths, agent names, or internal boards to understand it.
+- The loop is one thing at a time: signal, source trail, plain-language note, human decision.
+- The voice should sound like Hash explaining a system out loud: direct, specific, cautious, and useful. If it sounds like a pitch deck, rewrite it.
+- Counts, dates, rule numbers, article totals, system-card totals, and status claims must be computed or checked from source files before they appear in public copy.
+- Do not use internal shorthand as visible labels. Prefer clear reader labels such as clear limits, source trail, review note, case packet, system health, and field pack.
+
 ## Do not use publicly
 
 Avoid these words/phrases in navigation, titles, hero sections, route labels, product descriptions, dashboard cards, JSON shown to the site, and generated public HTML:

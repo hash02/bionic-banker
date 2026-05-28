@@ -1,0 +1,68 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const sourceRoot = process.cwd();
+const repoRoot = path.resolve('..');
+const fail = (msg) => { console.error(`HASH_WORLD_STYLE_CONTRACT FAIL: ${msg}`); process.exitCode = 1; };
+const read = (p) => fs.readFileSync(p, 'utf8');
+
+const pages = {
+  home: read(path.join(sourceRoot, 'src/pages/index.astro')),
+  startHere: read(path.join(sourceRoot, 'src/pages/start-here.astro')),
+  fieldPack: read(path.join(sourceRoot, 'src/pages/proof-pack.astro')),
+  amlStatus: read(path.join(sourceRoot, 'src/pages/aml-status-evidence.astro')),
+  agentCase: read(path.join(sourceRoot, 'src/pages/agent-prototype-sprint.astro')),
+  baseLayout: read(path.join(sourceRoot, 'src/layouts/BaseLayout.astro')),
+  publicCopyStandard: read(path.join(repoRoot, 'PUBLIC_COPY_STANDARD.md')),
+  agents: read(path.join(repoRoot, 'AGENTS.md')),
+};
+
+const required = [
+  [pages.publicCopyStandard, 'what it is, what it does, what supports it, what stays private, and what the system cannot do', 'public copy standard reader-first shape'],
+  [pages.publicCopyStandard, 'World and voice anchors', 'public copy standard world anchors'],
+  [pages.agents, 'Every public claim about numbers, rules, counts, or dates must be computed from source.', 'agent rule for computed claims'],
+  [pages.startHere, 'AI-assisted finance risk workflows, mapped like missions with humans in control.', 'Start Quest thesis'],
+  [pages.fieldPack, 'AI agents for finance risk. Simple records first, human control always.', 'Field Pack thesis'],
+  [pages.home, 'AI-assisted finance risk workflows', 'homepage category phrase'],
+  [pages.home, 'Agents prepare. Humans decide', 'homepage human-control phrase'],
+  [pages.baseLayout, 'Start Quest', 'nav start quest'],
+  [pages.baseLayout, 'Field Pack', 'nav/footer field pack'],
+];
+
+for (const [text, phrase, label] of required) {
+  if (!text.includes(phrase)) fail(`missing ${label}: ${phrase}`);
+}
+
+const visiblePublicFiles = [
+  ['home', pages.home],
+  ['start-here', pages.startHere],
+  ['field-pack', pages.fieldPack],
+  ['aml-status', pages.amlStatus],
+  ['agent-case-review', pages.agentCase],
+  ['base-layout', pages.baseLayout],
+];
+
+const staleVisiblePhrases = [
+  ['Authority boundary', /Authority boundary/],
+  ['Reviewer summary draft', /Reviewer summary draft/],
+  ['AML Evidence label', /label:\s*'AML Evidence'/],
+  ['Can approve outside action', /Can approve outside action/],
+  ['human gates', /Human gates|human gates/],
+  ['11 stale system cards', /\['System cards',\s*'11'/],
+  ['proof page wording', /proof page/i],
+  ['proof surface wording', /proof surface/i],
+  ['proof route wording', /proof route/i],
+  ['Open route wording', /Open route/i],
+  ['artifact provenance wording', /artifact provenance/i],
+  ['human-gated wording', /human-gated/i],
+];
+
+for (const [name, text] of visiblePublicFiles) {
+  for (const [label, pattern] of staleVisiblePhrases) {
+    if (pattern.test(text)) fail(`${name} still contains stale/internal wording: ${label}`);
+  }
+}
+
+if (!process.exitCode) {
+  console.log('HASH_WORLD_STYLE_CONTRACT PASS — reader-first style, world anchors, current metrics, and clear-limit language are locked.');
+}

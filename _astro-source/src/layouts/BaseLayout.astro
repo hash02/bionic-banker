@@ -253,7 +253,7 @@ const globalCssVersion = 'green-theme-consistent-053955d';
       targets = targets.concat(cardTargets);
       if (!targets.length) return;
 
-      // Public-proof pages must never look empty when a browser screenshot,
+      // Public pages must never look empty when a browser screenshot,
       // crawler, or slow third-party animation script misses scroll events.
       // Reveal immediately; CSS transitions still keep the page calm.
       targets.forEach(revealElement);

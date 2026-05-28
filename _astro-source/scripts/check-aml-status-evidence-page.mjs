@@ -27,8 +27,8 @@ const catalog = JSON.parse(read(catalogPath));
 
 assert(page.includes('<BaseLayout title="AML Status"'), 'AML status page must use BaseLayout with title "AML Status".');
 assert(page.includes('aml-status-evidence-public.json'), 'AML status evidence page must import the public AML status evidence JSON catalog.');
-assert(page.includes('Can approve outside action') || page.includes('No outside action'), 'AML status page must explain action approval in reader-facing language.');
-assert(page.includes('Can approve outside action') && page.includes('No outside action'), 'AML status page must visibly explain that outside action is not approved.');
+assert(page.includes('Outside action allowed') || page.includes('No outside action'), 'AML status page must explain action approval in reader-facing language.');
+assert(page.includes('Outside action allowed') && page.includes('No outside action'), 'AML status page must visibly explain that outside action is not approved.');
 assert(page.includes('No wallet, trade, filing, deploy, or KYC approval power'), 'AML status page must state the KYC and execution limits plainly.');
 assert(page.includes('No wallet, trade, filing, deploy, or KYC approval power'), 'AML status page must state the execution limits plainly.');
 assert(page.includes('source trail'), 'AML status page must include source trail wording.');
