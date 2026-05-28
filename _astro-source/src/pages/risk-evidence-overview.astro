@@ -100,7 +100,7 @@ const inspectionRows = scenes
     };
   });
 ---
-<BaseLayout title="Risk & Evidence Overview" description="A guided tour through Bionic Banker systems, field notes, modern questions, and live signal pages.">
+<BaseLayout title="Risk & Evidence Overview" description="A guided tour through Bionic Banker systems, reports, modern questions, and live signal pages.">
   <main class="tour-shell">
     <section class="tour-hero">
       <div>
@@ -255,7 +255,7 @@ const inspectionRows = scenes
                   <span>Next question</span>
                   <p>{scene.next}</p>
                 </div>
-                 <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>View details</a>
+                 <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>View page</a>
               </div>
             </article>
           ))}
@@ -353,7 +353,7 @@ const inspectionRows = scenes
         <a href="/risk-evidence-overview">Risk & Evidence Overview</a>
         <a href="/aml-status-evidence">AML Status</a>
         <a href="/dashboard">Signal dashboard</a>
-        <a href="/reports">Field notes</a>
+        <a href="/reports">Reports</a>
         <a href="/intelligence">Risk signals</a>
       </div>
     </section>

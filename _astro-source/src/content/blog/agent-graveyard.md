@@ -1,6 +1,6 @@
 ---
 title: "The agent graveyard. I tried more than a dozen. A handful survived. Here is the autopsy."
-description: "A field note from the agent graveyard: what survived, what broke at 3am, and the rules that came out of the failures."
+description: "A report from the agent graveyard: what survived, what broke at 3am, and the rules that came out of the failures."
 date: "2026-04-19"
 slug: "agent-graveyard"
 tags: ["AI", "Agents", "Engineering", "Systems", "Failure"]

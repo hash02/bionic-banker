@@ -1,6 +1,6 @@
 ---
 title: "Aave, Lending, and the Shape of On-Chain Credit"
-description: "A quick field note on pooled lending, collateral, governance, and the risks that make DeFi credit interesting."
+description: "A quick report on pooled lending, collateral, governance, and the risks that make DeFi credit interesting."
 date: "2024-06-15"
 tags: ["DeFi", "Blockchain", "Lending"]
 readTime: "2 min"
@@ -10,7 +10,7 @@ slug: "aave"
 image: "/blog-visuals/aave/social-preview.png"
 ---
 
-Aave is an on-chain credit market built around shared lending pools, collateral rules, live interest rates, liquidation behavior, and governance. This field note follows why DeFi lending feels less like a bank loan and more like a risk machine you can inspect while it runs.
+Aave is an on-chain credit market built around shared lending pools, collateral rules, live interest rates, liquidation behavior, and governance. This report follows why DeFi lending feels less like a bank loan and more like a risk machine you can inspect while it runs.
 
 Okay so here is the simple version.
 

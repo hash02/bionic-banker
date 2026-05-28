@@ -61,6 +61,7 @@ const staleVisiblePhrases = [
   ['proof surface wording', /proof surface/i],
   ['proof route wording', /proof route/i],
   ['Open route wording', /Open route/i],
+  ['Field Notes wording', /Field Notes|field notes|field note/i],
   ['artifact provenance wording', /artifact provenance/i],
   ['human-gated wording', /human-gated/i],
   ['stale domain typo', /bionicbanker\.tech\.com/i],

@@ -109,6 +109,6 @@ The cleaner front door for this idea is now the Wallet Risk Assessment:
 
 [Open Wallet Risk Assessment](/wallet-risk/)
 
-If you want the numbers and source trail, start with the field notes:
+If you want the numbers and source trail, start with the reports:
 
-[Open Field Notes](/reports/)
+[View Reports](/reports/)

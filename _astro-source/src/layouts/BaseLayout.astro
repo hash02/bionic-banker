@@ -6,7 +6,7 @@ interface Props {
   canonical?: string;
 }
 
-const { title, description = "Inside finance. Mapping AI agents, risk signals, apps, and field notes for people who want to understand what comes next.", ogImage, canonical } = Astro.props;
+const { title, description = "Inside finance. Mapping AI agents, risk signals, apps, and reports for people who want to understand what comes next.", ogImage, canonical } = Astro.props;
 const fullTitle = title === 'Home' ? 'Bionic Banker - AI Finance Field Map' : `${title} - Bionic Banker`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
@@ -140,7 +140,7 @@ const globalCssVersion = 'green-theme-consistent-053955d';
     <div class="footer-wrap">
       <div class="footer-brand">
         <a href="/" class="footer-logo">Bionic <span>Banker</span></a>
-        <p class="footer-tagline">Inside finance. Mapping agents, signals, apps, and field notes.</p>
+        <p class="footer-tagline">Inside finance. Mapping agents, signals, apps, and reports.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">

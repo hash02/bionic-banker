@@ -9,7 +9,7 @@ featured: false
 slug: "aml-roaster"
 ---
 
-This is a field note on a blockchain AML engine that does something most compliance tools refuse to: it scans suspicious Ethereum patterns using 28 detection rules, scores the wallet, then explains what it found in language a human analyst cannot ignore.
+This is a report on a blockchain AML engine that does something most compliance tools refuse to: it scans suspicious Ethereum patterns using 28 detection rules, scores the wallet, then explains what it found in language a human analyst cannot ignore.
 
 Okay so — here is a number that should bother you more than it does.
 

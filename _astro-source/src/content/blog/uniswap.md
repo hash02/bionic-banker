@@ -1,6 +1,6 @@
 ---
 title: "Uniswap and the Strange Genius of the Pool"
-description: "A field note on automated market makers, liquidity pools, and why a simple swap button changed on-chain trading."
+description: "A report on automated market makers, liquidity pools, and why a simple swap button changed on-chain trading."
 date: "2024-05-25"
 tags: ["DeFi", "Blockchain", "DEX"]
 readTime: "2 min"
@@ -10,7 +10,7 @@ slug: "uniswap"
 image: "/blog-visuals/uniswap/social-preview.png"
 ---
 
-Uniswap is an automated market maker built around liquidity pools, swap formulas, fee tiers, slippage, and concentrated liquidity. This field note follows why the swap button looks simple while the pool underneath carries the real design.
+Uniswap is an automated market maker built around liquidity pools, swap formulas, fee tiers, slippage, and concentrated liquidity. This report follows why the swap button looks simple while the pool underneath carries the real design.
 
 Okay so Uniswap is one of those ideas that looks too simple at first.
 

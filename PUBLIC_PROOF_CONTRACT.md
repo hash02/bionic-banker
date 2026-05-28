@@ -19,7 +19,7 @@ The site should be understandable to any AI-and-finance-literate reader: recruit
 1. Wallet Risk Assessment — shows risk judgment and reviewer-facing explanation.
 2. AML Status Evidence — shows audit boundary and evidence packaging.
 3. Fraud Alert Triage — shows regulated workflow packaging with synthetic data.
-4. Agent Chess / Agent Workflow — shows human-gated agent operations.
+4. Agent Chess / Agent Workflow — shows agent work that requires human review.
 5. Site Health / Proof QA — shows the public proof surface audits itself.
 
 ## Metric contract
@@ -31,7 +31,7 @@ Every public count must use one label and one source.
   - Meaning: rendered public-facing system/project cards.
   - Current value: 11.
 
-- **Evidence catalog lanes**
+- **Evidence catalog sections**
   - Source: `projects.length` in `_astro-source/public/dashboard-data/public-proof-catalog.json`.
   - Meaning: public proof-catalog entries used for evidence rows and guided evidence surfaces.
   - Current value: 8.
@@ -63,7 +63,7 @@ Do not use these words interchangeably:
 Preferred public labels:
 
 - Public system cards
-- Evidence catalog lanes
+- Evidence catalog sections
 - Catalog evidence sources
 - Catalog boundaries
 - Articles

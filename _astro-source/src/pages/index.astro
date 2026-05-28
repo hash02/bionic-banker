@@ -87,13 +87,13 @@ const proofSnapshot = [
     label: 'Number notes',
     value: metricByLabel('Number notes')?.value ?? 0,
     unit: 'measured rows',
-    source: 'field notes',
+    source: 'reports',
   },
   {
     label: 'Limits named',
     value: metricByLabel('Limits named')?.value ?? 0,
     unit: 'boundaries',
-    source: 'field notes',
+    source: 'reports',
   },
 ];
 const benchmarkSnapshot = benchmarkMetrics.slice(0, 4);
@@ -448,7 +448,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="section-label-text">Context Signals</div>
           <div class="section-title-text">Numbers that explain why this work matters</div>
         </div>
-        <a href="/reports" class="view-all">Open field notes</a>
+        <a href="/reports" class="view-all">View reports</a>
       </div>
       <p class="section-orient">Three numbers that show why building in this space right now is not a hobby. It is a bet on timing.</p>
       <div class="context-signal-grid">
@@ -543,10 +543,10 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           <div class="card-footer"><span class="read-more">Inspect workflow</span></div>
         </a>
         <a href="/reports" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Field Notes</span></div>
+          <div class="article-tags"><span class="tag-pill tag-green">Reports</span></div>
           <h3>Numbers with context</h3>
           <p>Charts, benchmarks, and limits. Measured, not guessed.</p>
-          <div class="card-footer"><span class="read-more">Read field notes</span></div>
+          <div class="card-footer"><span class="read-more">Read reports</span></div>
         </a>
         <a href="/gaps" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Questions</span></div>
@@ -660,7 +660,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
             <div class="about-name">Himanshu</div>
             <div class="about-role">Finance / Blockchain / Builder</div>
             <p class="about-bio">Computer engineer. Financial advisor. Builder. I work inside banking and build systems around the things it cannot easily explain: fraud patterns, risk signals, agent coordination, and the gap between what financial tools report and what they actually see.</p>
-            <p class="about-bio">This site is the reader-facing layer: articles, field notes, wallet-risk explanations, AI systems pages, and selected systems that can be shown without exposing workbench details.</p>
+            <p class="about-bio">This site is the reader-facing layer: articles, reports, wallet-risk explanations, AI systems pages, and selected systems that can be shown without exposing workbench details.</p>
           </div>
           <div class="about-stat-row">
             <div class="astat"><div class="astat-n">{articleCount}</div><div class="astat-l">Articles</div></div>

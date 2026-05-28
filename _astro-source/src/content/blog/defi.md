@@ -1,5 +1,5 @@
 ---
-title: "DeFi: A Field Note on Money Without the Usual Rails"
+title: "DeFi: A Report on Money Without the Usual Rails"
 description: "A plain note on DeFi: lending pools, swap pools, collateral, liquidation, and the reason the whole thing feels simple until risk starts moving."
 date: "2024-05-10"
 tags: ["DeFi", "Blockchain", "Finance"]
@@ -10,7 +10,7 @@ slug: "defi"
 image: "/blog-visuals/defi/social-preview.png"
 ---
 
-DeFi means financial activity on blockchain rails: lending pools, swap pools, collateral, liquidation, oracle prices, and smart contracts. This field note follows why the simple wallet interface can hide fast-moving risk underneath.
+DeFi means financial activity on blockchain rails: lending pools, swap pools, collateral, liquidation, oracle prices, and smart contracts. This report follows why the simple wallet interface can hide fast-moving risk underneath.
 
 DeFi looks simple from the outside.
 

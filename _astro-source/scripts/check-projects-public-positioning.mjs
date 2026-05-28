@@ -66,7 +66,7 @@ assert(hermesKite.limits.some((limit) => /No real-fund execution power/i.test(li
 assert(hermesKite.limits.some((limit) => /No wallet power/i.test(limit)), 'Hermes Kite catalog entry must state no wallet authority.');
 assert(hermesKite.limits.some((limit) => /No order power/i.test(limit)), 'Hermes Kite catalog entry must state no order authority.');
 
-assert(hardware.sources.some((source) => source.url === 'https://bionicbanker.tech/blog/agent-graveyard/'), 'Hardware compute catalog entry must cite the public field note.');
+assert(hardware.sources.some((source) => source.url === 'https://bionicbanker.tech/blog/agent-graveyard/'), 'Hardware compute catalog entry must cite the public report.');
 assert(hardware.limits.some((limit) => /No private topology or addresses/i.test(limit)), 'Hardware compute catalog entry must state topology/address boundary.');
 assert(hardware.limits.some((limit) => /No credentials/i.test(limit)), 'Hardware compute catalog entry must state credential boundary.');
 assert(hardware.limits.some((limit) => /No wallet control or outside-action power/i.test(limit)), 'Hardware compute catalog entry must state outside action limits.');

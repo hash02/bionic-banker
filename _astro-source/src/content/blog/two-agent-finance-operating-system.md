@@ -1,6 +1,6 @@
 ---
 title: "How I Built a Two-Agent Finance Operating System"
-description: "Two AI agents, one shared board, and a simple rule: one moves, the other checks. A field note on making finance work easier to trust."
+description: "Two AI agents, one shared board, and a simple rule: one moves, the other checks. A report on making finance work easier to trust."
 date: "2026-05-18"
 tags: ["AI", "Agent Systems", "Finance"]
 readTime: "7 min"

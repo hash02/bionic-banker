@@ -1,6 +1,6 @@
 ---
 title: "How AML Detection Works on Blockchain Rails"
-description: "A plain field note on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me."
+description: "A plain report on the AML engine: rules, anomaly detection, triage, known cases, and what the limits taught me."
 date: "2026-02-27"
 tags: ["AML", "Blockchain", "AI"]
 readTime: "9 min"

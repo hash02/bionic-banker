@@ -1,6 +1,6 @@
 ---
 title: "The Agent Wake-Up Call"
-description: "A field note on agent adoption, old experience, and why the next finance worker may need a different kind of practice."
+description: "A report on agent adoption, old experience, and why the next finance worker may need a different kind of practice."
 date: "2026-03-20"
 tags: ["AI", "Agents", "Future of Work"]
 readTime: "8 min"

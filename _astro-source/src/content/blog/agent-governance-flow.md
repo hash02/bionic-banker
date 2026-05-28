@@ -52,7 +52,7 @@ That is the difference between automation as a convenience layer and automation 
 
 “Human in the loop” is too vague on its own.
 
-A real loop needs state. It needs a record. It needs a clear authority boundary.
+A real loop needs state. It needs a record. It needs a clear approval limit.
 
 In sensitive workflows, an agent should be able to help with inspection, drafting, classification, testing, summarization, reporting, and packaging.
 

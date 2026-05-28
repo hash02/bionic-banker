@@ -82,7 +82,7 @@ Avoid these words/phrases in navigation, titles, hero sections, route labels, pr
 - proof → supporting record, evidence record, verification, audit trail, or benchmark result
 - Wallet Risk Lab → Wallet Risk Assessment
 - Live Signals → Risk Signals or Market & Risk Signals
-- Experiments → Systems, Case Studies, Workflows, or Field Notes
+- Experiments → Systems, Case Studies, Workflows, or Reports
 - AI Learning → Knowledge Base
 - receipt → evidence record or audit entry
 - roast / roaster → risk note, assessment note, risk-note generator, reader-ready summary, risk rationale
