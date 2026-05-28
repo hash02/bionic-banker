@@ -14,6 +14,8 @@ const pages = {
   agentCase: read(path.join(sourceRoot, 'src/pages/agent-prototype-sprint.astro')),
   apps: read(path.join(sourceRoot, 'src/pages/apps.astro')),
   projects: read(path.join(sourceRoot, 'src/pages/projects.astro')),
+  fraudTriage: read(path.join(sourceRoot, 'src/pages/fraud-alert-triage.astro')),
+  riskOverview: read(path.join(sourceRoot, 'src/pages/risk-evidence-overview.astro')),
   baseLayout: read(path.join(sourceRoot, 'src/layouts/BaseLayout.astro')),
   publicCopyStandard: read(path.join(repoRoot, 'PUBLIC_COPY_STANDARD.md')),
   agents: read(path.join(repoRoot, 'AGENTS.md')),
@@ -43,6 +45,8 @@ const visiblePublicFiles = [
   ['agent-case-review', pages.agentCase],
   ['apps', pages.apps],
   ['projects', pages.projects],
+  ['fraud-triage', pages.fraudTriage],
+  ['risk-evidence-overview', pages.riskOverview],
   ['base-layout', pages.baseLayout],
 ];
 
@@ -63,6 +67,7 @@ const staleVisiblePhrases = [
   ['AML evidence public label', /AML evidence/i],
   ['permissions wording', /permissions/i],
   ['approval gates wording', /approval gates/i],
+  ['human approval wording', /human approval/i],
 ];
 
 for (const [name, text] of visiblePublicFiles) {

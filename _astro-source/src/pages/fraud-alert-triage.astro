@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Fraud Alert Triage Workflow';
-const description = 'A synthetic review sample showing how fraud signals become clear case packets with human approval steps.';
+const description = 'A synthetic review sample showing how fraud signals become clear case packets with human review steps.';
 
 const proofMap = [
   ['1', 'Detect the pattern', 'A fictional transfer sequence combines device, geography, recipient, and payment-timing signals.'],
@@ -57,7 +57,7 @@ const mustNotClaim = [
 const roleFit = [
   ['Fraud / AML / RegTech', 'Shows alert review judgment: suspicious activity framing, escalation context, readable source trail, and clear limits.'],
   ['Applied AI Ops', 'Shows bounded automation: messy event signals become operational case records without hiding the source trail.'],
-  ['AI governance / model risk', 'Shows separation between source facts, generated text, deterministic rules, and human approval.'],
+  ['AI governance / model risk', 'Shows separation between source facts, generated text, deterministic rules, and human review.'],
   ['FinTech decision support', 'Shows product sense for regulated workflows: useful assistance without pretending to be the final decision-maker.']
 ];
 ---
@@ -77,7 +77,7 @@ const roleFit = [
       <div class="proof-badges" aria-label="Case boundaries">
         <span>Synthetic data only</span>
         <span>Decision support</span>
-        <span>Human approval required</span>
+        <span>Human review required</span>
       </div>
     </section>
 

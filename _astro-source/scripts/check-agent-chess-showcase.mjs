@@ -24,7 +24,7 @@ const builtData = JSON.parse(builtJsonText);
 
 assert(page.includes('agent-chess-status.json'), 'Risk overview must import agent-chess-status.json.');
 assert(page.includes('agent-chess-showcase'), 'Risk overview must render the Agent Chess showcase section.');
-assert(page.includes('Coordinated AI work with human approval'), 'Showcase must name the public orchestration flow.');
+assert(page.includes('Coordinated AI work with human review'), 'Showcase must name the public orchestration flow.');
 assert(page.includes('No private data policy'), 'Showcase must render the no-private-data policy.');
 assert(page.includes('agentChessLanes.map'), 'Showcase lanes must be backed by JSON data.');
 assert(page.includes('agentChessFlow.map'), 'Showcase flow must be backed by JSON data.');
@@ -39,11 +39,11 @@ assert(JSON.stringify(data) === JSON.stringify(builtData), 'Source and committed
 
 const requiredBuiltPhrases = [
   'Agent Chess board',
-  'Coordinated AI work with human approval',
+  'Coordinated AI work with human review',
   'No private data policy',
   'Public record: Move summary',
   'Public record: Review verdict',
-  'Human approval is required'
+  'Human review is required'
 ];
 for (const phrase of requiredBuiltPhrases) {
   assert(builtHtml.includes(phrase), `Built risk overview is missing Agent Chess phrase: ${phrase}`);
