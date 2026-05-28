@@ -13,6 +13,7 @@ const pages = {
   amlStatus: read(path.join(sourceRoot, 'src/pages/aml-status-evidence.astro')),
   agentCase: read(path.join(sourceRoot, 'src/pages/agent-prototype-sprint.astro')),
   apps: read(path.join(sourceRoot, 'src/pages/apps.astro')),
+  projects: read(path.join(sourceRoot, 'src/pages/projects.astro')),
   baseLayout: read(path.join(sourceRoot, 'src/layouts/BaseLayout.astro')),
   publicCopyStandard: read(path.join(repoRoot, 'PUBLIC_COPY_STANDARD.md')),
   agents: read(path.join(repoRoot, 'AGENTS.md')),
@@ -41,6 +42,7 @@ const visiblePublicFiles = [
   ['aml-status', pages.amlStatus],
   ['agent-case-review', pages.agentCase],
   ['apps', pages.apps],
+  ['projects', pages.projects],
   ['base-layout', pages.baseLayout],
 ];
 
