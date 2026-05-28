@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { title, description = "Inside finance. Mapping AI agents, risk signals, apps, and reports for people who want to understand what comes next.", ogImage, canonical } = Astro.props;
-const fullTitle = title === 'Home' ? 'Bionic Banker - AI Finance Field Map' : `${title} - Bionic Banker`;
+const fullTitle = title === 'Home' ? 'Bionic Banker - AI Finance Proof Map' : `${title} - Bionic Banker`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 const isHome = title === 'Home';
@@ -151,7 +151,7 @@ const globalCssVersion = 'green-theme-consistent-053955d';
           <a href="/ai-intelligence">AI Intelligence</a>
           <a href="/articles">Blog</a>
           <a href="/about">About</a>
-          <a href="/proof-pack">Field Pack</a>
+          <a href="/proof-pack">Proof Pack</a>
           <a href="/aml-status-evidence">AML Status</a>
           <a href="/evidence">Evidence</a>
           <a href="/proof/site-health">Health Board</a>
@@ -189,7 +189,7 @@ const globalCssVersion = 'green-theme-consistent-053955d';
       '<a href="/ai-intelligence" class="bb-panel-primary">AI Intelligence</a>' +
       '<a href="/articles" class="bb-panel-primary">Blog</a>' +
       '<a href="/about" class="bb-panel-primary">About</a>' +
-      '<a href="/proof-pack" class="bb-panel-primary">Field Pack</a>' +
+      '<a href="/proof-pack" class="bb-panel-primary">Proof Pack</a>' +
       '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
     document.body.appendChild(panel);
 

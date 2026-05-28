@@ -42,7 +42,7 @@ const startHerePhrases = [
 ];
 
 const fieldPackPhrases = [
-  'Bionic Banker Field Pack',
+  'Bionic Banker Proof Pack',
   'simple map of AI-assisted finance risk work',
   'Six missions, one map',
   'Agent Workflow Case Review',
@@ -108,7 +108,7 @@ for (const [name, text] of Object.entries({
 
 const builtChecks = [
   [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
-  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Field Pack', 'Record map', 'Questions for Hash']],
+  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Proof Pack', 'Record map', 'Questions for Hash']],
   [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],
   [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/proof-pack"']],
 ];
@@ -138,4 +138,4 @@ for (const phrase of banned) {
   assert(!combined.includes(phrase), `Opportunity engine source contains banned phrase: ${phrase}`);
 }
 
-console.log('OPPORTUNITY_ENGINE_CHECK PASS — mission map, field pack, about page, green theme guard, and no-long-dash guard are present.');
+console.log('OPPORTUNITY_ENGINE_CHECK PASS — mission map, proof pack, about page, green theme guard, and no-long-dash guard are present.');

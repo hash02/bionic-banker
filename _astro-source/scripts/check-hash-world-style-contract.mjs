@@ -26,11 +26,11 @@ const required = [
   [pages.publicCopyStandard, 'World and voice anchors', 'public copy standard world anchors'],
   [pages.agents, 'Every public claim about numbers, rules, counts, or dates must be computed from source.', 'agent rule for computed claims'],
   [pages.startHere, 'AI-assisted finance risk workflows, mapped like missions with humans in control.', 'Start Quest thesis'],
-  [pages.fieldPack, 'AI agents for finance risk. Simple records first, human control always.', 'Field Pack thesis'],
+  [pages.fieldPack, 'AI agents for finance risk. Simple records first, human control always.', 'Proof Pack thesis'],
   [pages.home, 'AI-assisted finance risk workflows', 'homepage category phrase'],
   [pages.home, 'Agents prepare. Humans decide', 'homepage human-control phrase'],
   [pages.baseLayout, 'Start Quest', 'nav start quest'],
-  [pages.baseLayout, 'Field Pack', 'nav/footer field pack'],
+  [pages.baseLayout, 'Proof Pack', 'nav/footer proof pack'],
 ];
 
 for (const [text, phrase, label] of required) {
@@ -62,6 +62,12 @@ const staleVisiblePhrases = [
   ['proof route wording', /proof route/i],
   ['Open route wording', /Open route/i],
   ['Field Notes wording', /Field Notes|field notes|field note/i],
+  ['Field Pack wording', /Field Pack|field pack/i],
+  ['Field Map wording', /Field Map|field map/i],
+  ['field packet wording', /field packet/i],
+  ['surface area wording', /surface area/i],
+  ['evidence catalog lanes wording', /evidence catalog lanes/i],
+  ['strongest serious route wording', /strongest serious route/i],
   ['artifact provenance wording', /artifact provenance/i],
   ['human-gated wording', /human-gated/i],
   ['stale domain typo', /bionicbanker\.tech\.com/i],

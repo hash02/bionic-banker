@@ -39,7 +39,7 @@ The public site should carry the same pattern as Hash's wider operating world, b
 - The loop is one thing at a time: signal, source trail, plain-language note, human decision.
 - The voice should sound like Hash explaining a system out loud: direct, specific, cautious, and useful. If it sounds like a pitch deck, rewrite it.
 - Counts, dates, rule numbers, article totals, system-card totals, and status claims must be computed or checked from source files before they appear in public copy.
-- Do not use internal shorthand as visible labels. Prefer clear reader labels such as clear limits, source trail, review note, case packet, system health, and field pack.
+- Do not use internal shorthand as visible labels. Prefer clear reader labels such as clear limits, source trail, review note, case packet, system health, and proof pack.
 
 ## Do not use publicly
 
@@ -91,7 +91,7 @@ Avoid these words/phrases in navigation, titles, hero sections, route labels, pr
 - demo → public demonstration, prototype, walkthrough, or reproducible example
 - lab → system, sandbox, research environment, or controlled environment
 - approval power / outside-action power → what the system cannot do or clear limit
-- human-gated → requires human approval
+- human-reviewed agent work → requires human review
 - reviewer question → what this shows
 
 ## Allowed technical exceptions
