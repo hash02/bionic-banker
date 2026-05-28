@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const proofSystems = [
+  {
+    name: 'Wallet Risk Assessment',
+    href: '/wallet-risk',
+    signal: 'Risk judgment',
+    detail: 'A wallet-risk row becomes a score, rationale, and plain-language note a person can inspect.',
+  },
+  {
+    name: 'AML Status',
+    href: '/aml-status-evidence',
+    signal: 'Status records',
+    detail: 'An AML-related status claim shows source trail, checks, visible claims, and clear limits.',
+  },
+  {
+    name: 'Fraud Alert Triage Workflow',
+    href: '/fraud-alert-triage',
+    signal: 'Case review',
+    detail: 'Synthetic fraud signals become a source list, rule explanation, case note, and human next step.',
+  },
+  {
+    name: 'Agent Chess / Agent Workflow',
+    href: '/risk-evidence-overview#agent-chess-showcase',
+    signal: 'Agent operations',
+    detail: 'Independent agents can prepare, review, and preserve state while outside actions stay with people.',
+  },
+  {
+    name: 'Health Board',
+    href: '/proof/site-health',
+    signal: 'Self-checking site',
+    detail: 'Public pages are checked with link, metric, JSON-framing, copy, and mobile gates.',
+  },
+];
+
+const rolePackets = [
+  {
+    title: 'AI Finance Evaluator',
+    bestFor: 'Finance AI trainer, model response reviewer, data annotation, financial reasoning QA.',
+    shows: ['finance answer review', 'unsupported-claim detection', 'plain-language explanation', 'source-backed reasoning'],
+    links: ['/start-here', '/proof-pack', '/wallet-risk'],
+  },
+  {
+    title: 'AML / RegTech / Fraud',
+    bestFor: 'AML, fraud ops, transaction monitoring, wallet-risk, and RegTech product roles.',
+    shows: ['case-note structure', 'status records', 'human review steps', 'no filing or approval authority'],
+    links: ['/aml-status-evidence', '/fraud-alert-triage', '/evidence'],
+  },
+  {
+    title: 'FinTech Implementation',
+    bestFor: 'Implementation, customer success, product support, AI enablement, and banking SaaS roles.',
+    shows: ['workflow translation', 'client-readable documentation', 'dashboard discipline', 'clear escalation limits'],
+    links: ['/apps', '/projects', '/proof/site-health'],
+  },
+  {
+    title: 'AI Operations / Agent Systems',
+    bestFor: 'AI ops, agent workflow, internal automation, QA, and systems documentation roles.',
+    shows: ['review loops', 'tool boundaries', 'recoverable state', 'public-safe system records'],
+    links: ['/risk-evidence-overview#agent-chess-showcase', '/agent-prototype-sprint', '/proof/site-health'],
+  },
+];
+
+const limits = [
+  'No live trading, transfer, wallet-control, or fund-movement claim.',
+  'No SAR filing, KYC approval, enforcement, or final compliance decision.',
+  'No employer data, customer data, private prompts, secrets, keys, tokens, or private infrastructure details.',
+  'Public portfolio-grade records only. Commercial deployment requires separate governance, testing, data access, legal review, and production ownership.',
+];
+
+const nextMoves = [
+  'Use the AI Finance Evaluator packet for model-review and finance QA applications.',
+  'Use the AML / RegTech / Fraud packet for wallet-risk, fraud ops, and compliance automation roles.',
+  'Use the FinTech Implementation packet for banking SaaS, product support, and AI enablement conversations.',
+  'Use the AI Operations packet for agent workflow, internal-tool, and automation roles.',
+];
+---
+<BaseLayout title="Opportunity Pack" description="A compact AI and finance opportunity pack for reviewing Hash's regulated finance background, public systems work, role fit, and clear limits.">
+  <main class="opp-shell">
+    <section class="opp-hero">
+      <div class="opp-kicker">AI + Finance Opportunity Pack</div>
+      <h1>Regulated finance judgment, made visible through AI system records.</h1>
+      <p>Hash combines financial-services work with public AI systems that show how wallet-risk, AML-style status, fraud triage, and agent operations can be reviewed without giving software final authority.</p>
+      <div class="opp-actions">
+        <a href="/start-here">Start with the mission map</a>
+        <a href="/proof-pack">View proof pack</a>
+        <a href="/evidence">Open source catalog</a>
+      </div>
+    </section>
+
+    <section class="opp-section thesis-card">
+      <span>Positioning</span>
+      <h2>Best fit: AI plus finance risk, where source trails and human review matter.</h2>
+      <p>This work is strongest when a team needs financial judgment, clear explanations, review packets, status records, and careful limits around what AI can and cannot decide.</p>
+    </section>
+
+    <section class="opp-section">
+      <span>What to inspect first</span>
+      <h2>Five proof systems, one opportunity story.</h2>
+      <div class="system-grid">
+        {proofSystems.map((item) => (
+          <a class="system-card" href={item.href}>
+            <small>{item.signal}</small>
+            <h3>{item.name}</h3>
+            <p>{item.detail}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="opp-section">
+      <span>Role match</span>
+      <h2>Four packets convert the same work into different reader paths.</h2>
+      <div class="packet-grid">
+        {rolePackets.map((packet) => (
+          <article class="packet-card">
+            <h3>{packet.title}</h3>
+            <p>{packet.bestFor}</p>
+            <ul>
+              {packet.shows.map((item) => <li>{item}</li>)}
+            </ul>
+            <div class="packet-links">
+              {packet.links.map((href) => <a href={href}>View detail</a>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="opp-section split">
+      <div>
+        <span>Clear limits</span>
+        <h2>The restraint is part of the value.</h2>
+        <p>The public work is intentionally careful. It shows reasoning, records, checks, and boundaries without exposing private data or claiming regulated authority.</p>
+      </div>
+      <ul class="limit-list">
+        {limits.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="opp-section">
+      <span>Next use</span>
+      <h2>Use this pack to choose the next conversation.</h2>
+      <div class="move-grid">
+        {nextMoves.map((item) => <article>{item}</article>)}
+      </div>
+      <div class="opp-footer-cta">
+        <strong>Best next step:</strong>
+        <a href="/proof-pack">Inspect the compressed proof pack</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .opp-shell { max-width: 1160px; margin: 0 auto; padding: 6rem 1.25rem 4rem; color: var(--text); }
+  .opp-hero, .opp-section { border: 1px solid rgba(31,160,104,.16); background: rgba(3,16,8,.92); border-radius: 28px; padding: clamp(1.4rem, 3vw, 3rem); margin-bottom: 1.25rem; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+  .opp-kicker, .opp-section > span, .system-card small { color: #1fa068; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; }
+  .opp-hero h1 { font-size: clamp(2.2rem, 5.8vw, 5rem); line-height: .95; margin: .75rem 0 1rem; max-width: 980px; }
+  .opp-hero p, .opp-section p, .opp-section li { color: #b0b0b8; line-height: 1.7; }
+  .opp-actions, .packet-links, .opp-footer-cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
+  .opp-actions a, .packet-links a, .opp-footer-cta a { text-decoration: none; border-radius: 999px; padding: .78rem 1rem; border: 1px solid rgba(31,160,104,.24); color: var(--text); font-weight: 800; }
+  .opp-actions a:first-child { background: #1fa068; color: #010302; border: 0; }
+  .system-grid, .packet-grid, .move-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .system-card, .packet-card, .move-grid article { border: 1px solid rgba(31,160,104,.16); border-radius: 20px; padding: 1.1rem; background: rgba(31,160,104,.055); color: inherit; text-decoration: none; }
+  .system-card h3, .packet-card h3 { margin: .55rem 0; }
+  .packet-card ul, .limit-list { margin: 1rem 0 0; padding-left: 1.2rem; }
+  .packet-links a { font-size: .86rem; padding: .62rem .78rem; }
+  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.9fr); gap: 1.2rem; align-items: start; }
+  .limit-list { border: 1px solid rgba(31,160,104,.16); border-radius: 20px; padding: 1.1rem 1.1rem 1.1rem 2rem; background: rgba(31,160,104,.055); }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } .opp-shell { padding-top: 4.5rem; } }
+</style>

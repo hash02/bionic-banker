@@ -16,6 +16,7 @@ function read(file) {
 const sourceFiles = {
   startHere: path.join(root, 'src/pages/start-here.astro'),
   fieldPack: path.join(root, 'src/pages/proof-pack.astro'),
+  opportunityPack: path.join(root, 'src/pages/opportunity-pack.astro'),
   about: path.join(root, 'src/pages/about.astro'),
   home: path.join(root, 'src/pages/index.astro'),
   projects: path.join(root, 'src/pages/projects.astro'),
@@ -55,6 +56,17 @@ const fieldPackPhrases = [
   'No SAR filing, KYC approval, enforcement, or final compliance decision',
 ];
 
+const opportunityPackPhrases = [
+  'AI + Finance Opportunity Pack',
+  'Regulated finance judgment, made visible through AI system records',
+  'AI Finance Evaluator',
+  'AML / RegTech / Fraud',
+  'FinTech Implementation',
+  'AI Operations / Agent Systems',
+  'No live trading, transfer, wallet-control, or fund-movement claim',
+  'Public portfolio-grade records only',
+];
+
 const aboutPhrases = [
   'About Hash',
   'I build maps for finance, AI agents, and risk work',
@@ -71,11 +83,15 @@ for (const phrase of fieldPackPhrases) {
   assert(source.fieldPack.includes(phrase), `/proof-pack source is missing required phrase: ${phrase}`);
 }
 
+for (const phrase of opportunityPackPhrases) {
+  assert(source.opportunityPack.includes(phrase), `/opportunity-pack source is missing required phrase: ${phrase}`);
+}
+
 for (const phrase of aboutPhrases) {
   assert(source.about.includes(phrase), `/about source is missing required phrase: ${phrase}`);
 }
 
-for (const phrase of ['/start-here', '/proof-pack', '/about']) {
+for (const phrase of ['/start-here', '/proof-pack', '/opportunity-pack', '/about']) {
   assert(source.home.includes(phrase) || source.layout.includes(phrase), `Site source must link to ${phrase}`);
 }
 
@@ -89,7 +105,7 @@ for (const phrase of [
   assert(source.projects.includes(phrase), `Projects source missing plain-language proof line: ${phrase}`);
 }
 
-const noLongDashSurface = [source.startHere, source.fieldPack, source.about, source.home].join('\n');
+const noLongDashSurface = [source.startHere, source.fieldPack, source.opportunityPack, source.about, source.home].join('\n');
 for (const glyph of ['—', '–']) {
   assert(!noLongDashSurface.includes(glyph), `Edited public conversion surface contains long dash glyph: ${glyph}`);
 }
@@ -98,6 +114,7 @@ const cyanPattern = /#67e8f9|#a7f3d0|#6fe7ff|rgba\(103,\s*232,\s*249|rgba\(111,\
 for (const [name, text] of Object.entries({
   startHere: source.startHere,
   fieldPack: source.fieldPack,
+  opportunityPack: source.opportunityPack,
   about: source.about,
   home: source.home,
   projects: source.projects,
@@ -109,8 +126,9 @@ for (const [name, text] of Object.entries({
 const builtChecks = [
   [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
   [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Proof Pack', 'Record map', 'Questions for Hash']],
+  [path.join(repoRoot, 'opportunity-pack/index.html'), ['AI + Finance Opportunity Pack', 'AI Finance Evaluator', 'AML / RegTech / Fraud']],
   [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],
-  [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/proof-pack"']],
+  [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/proof-pack"', 'href="/opportunity-pack"']],
 ];
 
 for (const [file, phrases] of builtChecks) {
@@ -138,4 +156,4 @@ for (const phrase of banned) {
   assert(!combined.includes(phrase), `Opportunity engine source contains banned phrase: ${phrase}`);
 }
 
-console.log('OPPORTUNITY_ENGINE_CHECK PASS — mission map, proof pack, about page, green theme guard, and no-long-dash guard are present.');
+console.log('OPPORTUNITY_ENGINE_CHECK PASS — mission map, proof pack, opportunity pack, about page, green theme guard, and no-long-dash guard are present.');
