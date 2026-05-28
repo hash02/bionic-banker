@@ -35,9 +35,9 @@ const projects = [
     flagship: true,
     description: 'An AML status page for the Layer 1 status contract, source trail, planner gate, and clear limits.',
     reviewerQuestion: 'An AML status can show what was checked while still refusing to approve, file, trade, deploy, or execute.',
-    role: 'AML / Evidence / Limits',
+    role: 'AML / Records / Limits',
     url: '/aml-status-evidence',
-    proof: 'Shows how an AML-related evidence record can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
+    proof: 'Shows how an AML-related status record can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
     limitation: 'Status summary only. No wallet, trade, filing, deploy, or KYC approval power.',
     links: [
       { label: 'View AML status', url: '/aml-status-evidence' },
@@ -53,7 +53,7 @@ const projects = [
     flagship: true,
     description: 'A fraud operations page showing how suspicious signals become a review packet, case note, and human review step.',
     reviewerQuestion: 'Messy fraud signals can become a simple case note, source list, and human next step.',
-    role: 'Fraud Ops / Evidence / Review',
+    role: 'Fraud Ops / Records / Review',
     url: '/fraud-alert-triage',
     proof: 'Demonstrates the market-positioning pattern from alert signal to source trail, rule explanation, analyst-ready case note, and bounded next action.',
     limitation: 'Synthetic sample only. Not fraud prevention software, enforcement power, guaranteed detection, or autonomous case decisioning.',
@@ -70,7 +70,7 @@ const projects = [
     signal: 'Move, review, gate, record',
     description: 'A focused page showing how an agent-assisted workflow can keep the source trail visible, preserve review steps, and publish a bounded summary without exposing private prompts.',
     reviewerQuestion: 'AI-assisted case work can leave a readable record without exposing private prompts or taking outside action.',
-    role: 'Agents / Evidence / Review',
+    role: 'Agents / Records / Review',
     url: '/agent-prototype-sprint',
     proof: 'Shows the path from AI-assisted case work to review, Proof Pack placement, and clear limits on outside action control.',
     limitation: 'Workflow summary only. No autonomous deployment, wallet movement, compliance decision, or private prompt disclosure.',
@@ -229,7 +229,7 @@ const projects = [
     <div class="page-metric-row" aria-label="Systems snapshot">
       <div><strong>{projects.length}</strong><span>public system cards</span></div>
       <div><strong>{catalogProjectCount}</strong><span>catalog sections</span></div>
-      <div><strong>{catalogSourceCount}</strong><span>catalog evidence sources</span></div>
+      <div><strong>{catalogSourceCount}</strong><span>catalog source trails</span></div>
       <div><strong>{catalogLimitCount}</strong><span>catalog limits</span></div>
     </div>
   </div>

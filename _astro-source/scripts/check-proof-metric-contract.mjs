@@ -19,7 +19,7 @@ const articleCount = fs.readdirSync(blogDir).filter((name) => name.endsWith('.md
 const publicCardCount = [...projectsSource.matchAll(/name:\s*'/g)].length;
 
 if (catalogSections !== 8) fail(`expected 8 catalog sections, found ${catalogSections}`);
-if (catalogSources !== 21) fail(`expected 21 catalog evidence sources, found ${catalogSources}`);
+if (catalogSources !== 21) fail(`expected 21 catalog sources, found ${catalogSources}`);
 if (catalogLimits !== 36) fail(`expected 36 catalog limits, found ${catalogLimits}`);
 if (articleCount !== 45) fail(`expected 45 source articles, found ${articleCount}`);
 if (publicCardCount !== 12) fail(`expected 12 public system cards, found ${publicCardCount}`);
@@ -27,7 +27,7 @@ if (publicCardCount !== 12) fail(`expected 12 public system cards, found ${publi
 const requiredPhrases = [
   [projectsSource, 'public system cards', 'projects source public system cards label'],
   [projectsSource, 'catalog sections', 'projects source catalog sections label'],
-  [projectsSource, 'catalog evidence sources', 'projects source catalog evidence sources label'],
+  [projectsSource, 'catalog source trails', 'projects source catalog source trails label'],
   [projectsSource, 'catalog limits', 'projects source catalog limits label'],
   [indexSource, 'Catalog sections', 'homepage catalog lanes label'],
   [indexSource, 'catalog sections', 'homepage catalog sections phrase'],

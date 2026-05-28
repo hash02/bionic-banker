@@ -70,6 +70,8 @@ const staleVisiblePhrases = [
   ['field packet wording', /field packet/i],
   ['surface area wording', /surface area/i],
   ['evidence catalog lanes wording', /evidence catalog lanes/i],
+  ['catalog evidence sources wording', /catalog evidence sources/i],
+  ['visible evidence role label', /role:\s*'[^']*\/ Evidence \//i],
   ['strongest serious route wording', /strongest serious route/i],
   ['artifact provenance wording', /artifact provenance/i],
   ['human-gated wording', /human-gated/i],

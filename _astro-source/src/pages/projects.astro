@@ -35,9 +35,9 @@ const projects = [
     flagship: true,
     description: 'An AML status page for the Layer 1 status contract, source trail, planner gate, and clear limits.',
     reviewerQuestion: 'An AML status can show what was checked while still refusing to approve, file, trade, deploy, or execute.',
-    role: 'AML / Evidence / Limits',
+    role: 'AML / Records / Limits',
     url: '/aml-status-evidence',
-    proof: 'Shows how an AML-related evidence record can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
+    proof: 'Shows how an AML-related status record can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
     limitation: 'Status summary only. No wallet, trade, filing, deploy, or KYC approval power.',
     links: [
       { label: 'View AML status', url: '/aml-status-evidence' },
@@ -53,7 +53,7 @@ const projects = [
     flagship: true,
     description: 'A fraud operations page showing how suspicious signals become a review packet, case note, and human review step.',
     reviewerQuestion: 'Messy fraud signals can become a simple case note, source list, and human next step.',
-    role: 'Fraud Ops / Evidence / Review',
+    role: 'Fraud Ops / Records / Review',
     url: '/fraud-alert-triage',
     proof: 'Demonstrates the market-positioning pattern from alert signal to source trail, rule explanation, analyst-ready case note, and bounded next action.',
     limitation: 'Synthetic sample only. Not fraud prevention software, enforcement power, guaranteed detection, or autonomous case decisioning.',
@@ -70,7 +70,7 @@ const projects = [
     signal: 'Move, review, gate, record',
     description: 'A focused page showing how an agent-assisted workflow can keep the source trail visible, preserve review steps, and publish a bounded summary without exposing private prompts.',
     reviewerQuestion: 'AI-assisted case work can leave a readable record without exposing private prompts or taking outside action.',
-    role: 'Agents / Evidence / Review',
+    role: 'Agents / Records / Review',
     url: '/agent-prototype-sprint',
     proof: 'Shows the path from AI-assisted case work to review, Proof Pack placement, and clear limits on outside action control.',
     limitation: 'Workflow summary only. No autonomous deployment, wallet movement, compliance decision, or private prompt disclosure.',
@@ -106,12 +106,12 @@ const projects = [
     surface: 'Engineering repository',
     signal: 'Readable AI-agent records',
     flagship: true,
-    description: 'A local evidence stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
+    description: 'A local review stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
     reviewerQuestion: 'An AI-agent run should leave tool calls, notes, limits, and checks that another person can inspect.',
     role: 'Agent Tools / Traces / Limits',
     url: 'https://github.com/hash02/agent-framework-proof',
     proof: 'Demonstrates inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, access checks, trace rows, monitoring output, and 70 local checks.',
-    limitation: 'Local evidence stack, not a production hosted agent or credentialed integration.',
+    limitation: 'Local review stack, not a production hosted agent or credentialed integration.',
     links: [
       { label: 'GitHub repository', url: 'https://github.com/hash02/agent-framework-proof' },
       { label: 'LangChain', url: '/learn#langchain' },
@@ -203,12 +203,12 @@ const projects = [
   },
   {
     name: 'Bionic Banker',
-    surface: 'Public evidence website',
+    surface: 'Public systems website',
     signal: 'Writing + systems packaging',
-    description: 'The public writing and evidence page for AI, finance, blockchain, risk-system design, and builder systems.',
+    description: 'The public writing and systems page for AI, finance, blockchain, risk-system design, and builder systems.',
     role: 'Articles / Signals / Systems',
     url: 'https://bionicbanker.tech',
-    proof: 'Live site with 45 source articles, signal snapshots, evidence records, and linked pages that keep growing with the work.',
+    proof: 'Live site with 45 source articles, signal snapshots, case records, and linked pages that keep growing with the work.',
     limitation: 'This page exists because the work used to be scattered across GitHub, articles, and notes.',
     links: [
       { label: 'Articles', url: '/articles' },
@@ -229,7 +229,7 @@ const projects = [
     <div class="page-metric-row" aria-label="Systems snapshot">
       <div><strong>{projects.length}</strong><span>public system cards</span></div>
       <div><strong>{catalogProjectCount}</strong><span>catalog sections</span></div>
-      <div><strong>{catalogSourceCount}</strong><span>catalog evidence sources</span></div>
+      <div><strong>{catalogSourceCount}</strong><span>catalog source trails</span></div>
       <div><strong>{catalogLimitCount}</strong><span>catalog limits</span></div>
     </div>
   </div>
@@ -264,7 +264,7 @@ const projects = [
       </div>
       <h3>Recommended path</h3>
       <p>Start with Wallet Risk Assessment for risk judgment, AML Status for clear audit limits, Fraud Alert Triage for case assembly, Agent Workflow Case Review for review discipline, then Agent Chess for human-reviewed agent operations. That sequence shows the core pattern: assess a financial object, keep the source visible, review the AI move, and keep outside actions behind human review.</p>
-        <p><strong>Evidence rule:</strong> if a line cannot point to a source, a number, a screenshot, a test, or a clear limit, it does not belong here yet.</p>
+        <p><strong>Source rule:</strong> if a line cannot point to a source, a number, a screenshot, a test, or a clear limit, it does not belong here yet.</p>
       <div class="card-footer">
         <a href="/reports" class="read-more">View reports</a>
         <a href="/gaps" class="read-more">See questions</a>
