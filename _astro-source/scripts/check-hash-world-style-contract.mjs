@@ -12,6 +12,7 @@ const pages = {
   fieldPack: read(path.join(sourceRoot, 'src/pages/proof-pack.astro')),
   amlStatus: read(path.join(sourceRoot, 'src/pages/aml-status-evidence.astro')),
   agentCase: read(path.join(sourceRoot, 'src/pages/agent-prototype-sprint.astro')),
+  apps: read(path.join(sourceRoot, 'src/pages/apps.astro')),
   baseLayout: read(path.join(sourceRoot, 'src/layouts/BaseLayout.astro')),
   publicCopyStandard: read(path.join(repoRoot, 'PUBLIC_COPY_STANDARD.md')),
   agents: read(path.join(repoRoot, 'AGENTS.md')),
@@ -39,6 +40,7 @@ const visiblePublicFiles = [
   ['field-pack', pages.fieldPack],
   ['aml-status', pages.amlStatus],
   ['agent-case-review', pages.agentCase],
+  ['apps', pages.apps],
   ['base-layout', pages.baseLayout],
 ];
 
@@ -55,6 +57,10 @@ const staleVisiblePhrases = [
   ['Open route wording', /Open route/i],
   ['artifact provenance wording', /artifact provenance/i],
   ['human-gated wording', /human-gated/i],
+  ['stale domain typo', /bionicbanker\.tech\.com/i],
+  ['AML evidence public label', /AML evidence/i],
+  ['permissions wording', /permissions/i],
+  ['approval gates wording', /approval gates/i],
 ];
 
 for (const [name, text] of visiblePublicFiles) {

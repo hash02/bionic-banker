@@ -21,7 +21,7 @@ const required = [
   ['home', 'AI, finance, and the world ahead.'],
   ['home', 'Bionic Banker follows how technology is changing money, risk, work, and the systems people trust.'],
   ['apps', 'Apps you can enter'],
-  ['apps', 'bionicbanker.tech.com'],
+  ['apps', 'bionicbanker.tech'],
   ['apps', 'The clearest path is Wallet Risk'],
   ['apps', 'Agent Workflow Case Review'],
   ['apps', '/agent-prototype-sprint'],
