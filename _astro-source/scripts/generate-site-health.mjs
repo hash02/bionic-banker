@@ -25,9 +25,9 @@ const publicCardCount = [...projectsSource.matchAll(/name:\s*'/g)].length;
 const payload = {
   generated_at: new Date().toISOString(),
   status: results.every((r) => r.status === 'pass') ? 'pass' : 'fail',
-  mission: 'Layer 3 public proof spine health',
-  audience: 'AI-and-finance-literate readers, recruiters, collaborators, executives, investors, and serious learners.',
-  style: 'AI-agent founder portfolio: sharp, product-forward, evidence-backed, and clear-limit aware.',
+  mission: 'Layer 3 public system-map health',
+  audience: 'AI-and-finance-literate readers, collaborators, operators, builders, and serious learners.',
+  style: 'AI-agent finance map: sharp, product-forward, source-backed, and clear-limit aware.',
   flagship_order: ['Wallet Risk Assessment', 'AML Status Evidence', 'Fraud Alert Triage', 'Agent Chess / Agent Workflow', 'Site Health / Proof QA'],
   metrics: {
     public_system_cards: publicCardCount,

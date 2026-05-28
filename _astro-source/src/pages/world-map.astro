@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const proofSystems = [
+const mapSystems = [
   {
     name: 'Wallet Risk Assessment',
     href: '/wallet-risk',
@@ -34,28 +34,28 @@ const proofSystems = [
   },
 ];
 
-const rolePackets = [
+const readingPaths = [
   {
     title: 'AI Finance Evaluator',
-    bestFor: 'Finance AI trainer, model response reviewer, data annotation, financial reasoning QA.',
+    bestFor: 'How to test financial reasoning, source use, and unsupported claims in AI output.',
     shows: ['finance answer review', 'unsupported-claim detection', 'plain-language explanation', 'source-backed reasoning'],
     links: ['/start-here', '/proof-pack', '/wallet-risk'],
   },
   {
     title: 'AML / RegTech / Fraud',
-    bestFor: 'AML, fraud ops, transaction monitoring, wallet-risk, and RegTech product roles.',
+    bestFor: 'How AML, fraud, wallet-risk, and transaction-monitoring examples separate signal from decision.',
     shows: ['case-note structure', 'status records', 'human review steps', 'no filing or approval authority'],
     links: ['/aml-status-evidence', '/fraud-alert-triage', '/evidence'],
   },
   {
     title: 'FinTech Implementation',
-    bestFor: 'Implementation, customer success, product support, AI enablement, and banking SaaS roles.',
+    bestFor: 'How product, support, documentation, and workflow clarity make finance software easier to trust.',
     shows: ['workflow translation', 'client-readable documentation', 'dashboard discipline', 'clear escalation limits'],
     links: ['/apps', '/projects', '/proof/site-health'],
   },
   {
     title: 'AI Operations / Agent Systems',
-    bestFor: 'AI ops, agent workflow, internal automation, QA, and systems documentation roles.',
+    bestFor: 'How agent workflows can preserve state, review steps, and boundaries without hiding the work.',
     shows: ['review loops', 'tool boundaries', 'recoverable state', 'public-safe system records'],
     links: ['/risk-evidence-overview#agent-chess-showcase', '/agent-prototype-sprint', '/proof/site-health'],
   },
@@ -65,40 +65,40 @@ const limits = [
   'No live trading, transfer, wallet-control, or fund-movement claim.',
   'No SAR filing, KYC approval, enforcement, or final compliance decision.',
   'No employer data, customer data, private prompts, secrets, keys, tokens, or private infrastructure details.',
-  'Public portfolio-grade records only. Commercial deployment requires separate governance, testing, data access, legal review, and production ownership.',
+  'Public records only. Any real deployment needs separate governance, testing, data access, legal review, and ownership.',
 ];
 
 const nextMoves = [
-  'Use the AI Finance Evaluator packet for model-review and finance QA applications.',
-  'Use the AML / RegTech / Fraud packet for wallet-risk, fraud ops, and compliance automation roles.',
-  'Use the FinTech Implementation packet for banking SaaS, product support, and AI enablement conversations.',
-  'Use the AI Operations packet for agent workflow, internal-tool, and automation roles.',
+  'Compare one finance answer against the source trail, the claim, and the missing context.',
+  'Read one AML or fraud example for the difference between a status record and a final decision.',
+  'Follow one interface from input to record to limit so the system becomes understandable.',
+  'Use the health board to see which checks keep the public map honest.',
 ];
 ---
-<BaseLayout title="Opportunity Pack" description="A compact AI and finance opportunity pack for reviewing Hash's regulated finance background, public systems work, role fit, and clear limits.">
+<BaseLayout title="World Map" description="A compact map of AI, finance risk, source trails, system records, and human review limits.">
   <main class="opp-shell">
     <section class="opp-hero">
-      <div class="opp-kicker">AI + Finance Opportunity Pack</div>
+      <div class="opp-kicker">AI + Finance World Map</div>
       <h1>Regulated finance judgment, made visible through AI system records.</h1>
       <p>Hash combines financial-services work with public AI systems that show how wallet-risk, AML-style status, fraud triage, and agent operations can be reviewed without giving software final authority.</p>
       <div class="opp-actions">
         <a href="/start-here">Start with the mission map</a>
-        <a href="/proof-pack">View proof pack</a>
+        <a href="/proof-pack">Read the system map</a>
         <a href="/evidence">Open source catalog</a>
       </div>
     </section>
 
     <section class="opp-section thesis-card">
-      <span>Positioning</span>
-      <h2>Best fit: AI plus finance risk, where source trails and human review matter.</h2>
-      <p>This work is strongest when a team needs financial judgment, clear explanations, review packets, status records, and careful limits around what AI can and cannot decide.</p>
+      <span>Frame</span>
+      <h2>The useful pattern: finance risk work becomes clearer when signals, records, and limits stay visible.</h2>
+      <p>The site is strongest when it turns complex finance and AI material into structured records: what happened, what supports it, what is missing, and what a person still has to decide.</p>
     </section>
 
     <section class="opp-section">
-      <span>What to inspect first</span>
-      <h2>Five proof systems, one opportunity story.</h2>
+      <span>What to read first</span>
+      <h2>Five systems, one data story.</h2>
       <div class="system-grid">
-        {proofSystems.map((item) => (
+        {mapSystems.map((item) => (
           <a class="system-card" href={item.href}>
             <small>{item.signal}</small>
             <h3>{item.name}</h3>
@@ -109,10 +109,10 @@ const nextMoves = [
     </section>
 
     <section class="opp-section">
-      <span>Role match</span>
-      <h2>Four packets convert the same work into different reader paths.</h2>
+      <span>Reading paths</span>
+      <h2>The same records can be read from four angles.</h2>
       <div class="packet-grid">
-        {rolePackets.map((packet) => (
+        {readingPaths.map((packet) => (
           <article class="packet-card">
             <h3>{packet.title}</h3>
             <p>{packet.bestFor}</p>
@@ -120,7 +120,7 @@ const nextMoves = [
               {packet.shows.map((item) => <li>{item}</li>)}
             </ul>
             <div class="packet-links">
-              {packet.links.map((href) => <a href={href}>View detail</a>)}
+              {packet.links.map((href) => <a href={href}>Open record</a>)}
             </div>
           </article>
         ))}
@@ -139,14 +139,14 @@ const nextMoves = [
     </section>
 
     <section class="opp-section">
-      <span>Next use</span>
-      <h2>Use this pack to choose the next conversation.</h2>
+      <span>How to use this map</span>
+      <h2>Use this map to find the next useful question.</h2>
       <div class="move-grid">
         {nextMoves.map((item) => <article>{item}</article>)}
       </div>
       <div class="opp-footer-cta">
         <strong>Best next step:</strong>
-        <a href="/proof-pack">Inspect the compressed proof pack</a>
+        <a href="/proof-pack">Read the compressed system map</a>
       </div>
     </section>
   </main>

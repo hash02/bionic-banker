@@ -1,6 +1,6 @@
 # Fraud Alert Triage Workflow — LinkedIn / project bullets
 
-Public-safe draft copy for LinkedIn, resume project sections, recruiter messages, or application proof packets.
+Public-safe draft copy for LinkedIn, project sections, or short system summaries.
 
 ## One-line project description
 
@@ -15,9 +15,9 @@ I packaged a synthetic fraud-alert triage workflow as a public proof artifact fo
 - Designed a public-safe fraud-alert triage proof workflow translating suspicious payment, device, geography, and recipient signals into a reviewer-ready evidence packet.
 - Framed AI assistance around regulated-workflow boundaries: evidence collection, rule explanation, case-note drafting, triage priority, and human approval.
 - Built a synthetic case-note example that supports fraud review without declaring fraud, filing regulatory reports, approving KYC, moving funds, or blocking accounts autonomously.
-- Packaged the workflow as a recruiter-readable Bionic Banker proof page with explicit limitations, role relevance, and public-safety guardrails.
+- Packaged the workflow as a reader-friendly Bionic Banker system page with explicit limitations, source trails, and public-safety guardrails.
 
-## Recruiter-facing summary
+## Reader-facing summary
 
 This artifact demonstrates applied AI product judgment in a regulated finance context: not just model output, but the operational layer around it — evidence, explanation, triage, documentation, and approval boundaries.
 

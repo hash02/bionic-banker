@@ -16,7 +16,7 @@ function read(file) {
 const sourceFiles = {
   startHere: path.join(root, 'src/pages/start-here.astro'),
   fieldPack: path.join(root, 'src/pages/proof-pack.astro'),
-  opportunityPack: path.join(root, 'src/pages/opportunity-pack.astro'),
+  worldMap: path.join(root, 'src/pages/world-map.astro'),
   about: path.join(root, 'src/pages/about.astro'),
   home: path.join(root, 'src/pages/index.astro'),
   projects: path.join(root, 'src/pages/projects.astro'),
@@ -35,15 +35,15 @@ const startHerePhrases = [
   'Fraud Alert Triage Workflow',
   'Agent Chess / Agent Workflow',
   'Health Board',
-  'Recruiter',
+  'Reader',
   'Collaborator',
-  'Executive / investor',
+  'Strategic reader',
   'Technical explorer',
   'No live trading, wallet movement, or fund transfer authority',
 ];
 
 const fieldPackPhrases = [
-  'Bionic Banker Proof Pack',
+  'Bionic Banker System Map',
   'simple map of AI-assisted finance risk work',
   'Six missions, one map',
   'Agent Workflow Case Review',
@@ -56,15 +56,14 @@ const fieldPackPhrases = [
   'No SAR filing, KYC approval, enforcement, or final compliance decision',
 ];
 
-const opportunityPackPhrases = [
-  'AI + Finance Opportunity Pack',
+const worldMapPhrases = [
+  'AI + Finance World Map',
   'Regulated finance judgment, made visible through AI system records',
-  'AI Finance Evaluator',
-  'AML / RegTech / Fraud',
-  'FinTech Implementation',
-  'AI Operations / Agent Systems',
+  'Five systems, one data story',
+  'Reading paths',
+  'The same records can be read from four angles',
   'No live trading, transfer, wallet-control, or fund-movement claim',
-  'Public portfolio-grade records only',
+  'Public records only',
 ];
 
 const aboutPhrases = [
@@ -83,15 +82,15 @@ for (const phrase of fieldPackPhrases) {
   assert(source.fieldPack.includes(phrase), `/proof-pack source is missing required phrase: ${phrase}`);
 }
 
-for (const phrase of opportunityPackPhrases) {
-  assert(source.opportunityPack.includes(phrase), `/opportunity-pack source is missing required phrase: ${phrase}`);
+for (const phrase of worldMapPhrases) {
+  assert(source.worldMap.includes(phrase), `/world-map source is missing required phrase: ${phrase}`);
 }
 
 for (const phrase of aboutPhrases) {
   assert(source.about.includes(phrase), `/about source is missing required phrase: ${phrase}`);
 }
 
-for (const phrase of ['/start-here', '/proof-pack', '/opportunity-pack', '/about']) {
+for (const phrase of ['/start-here', '/proof-pack', '/world-map', '/about']) {
   assert(source.home.includes(phrase) || source.layout.includes(phrase), `Site source must link to ${phrase}`);
 }
 
@@ -105,7 +104,7 @@ for (const phrase of [
   assert(source.projects.includes(phrase), `Projects source missing plain-language proof line: ${phrase}`);
 }
 
-const noLongDashSurface = [source.startHere, source.fieldPack, source.opportunityPack, source.about, source.home].join('\n');
+const noLongDashSurface = [source.startHere, source.fieldPack, source.worldMap, source.about, source.home].join('\n');
 for (const glyph of ['—', '–']) {
   assert(!noLongDashSurface.includes(glyph), `Edited public conversion surface contains long dash glyph: ${glyph}`);
 }
@@ -114,7 +113,7 @@ const cyanPattern = /#67e8f9|#a7f3d0|#6fe7ff|rgba\(103,\s*232,\s*249|rgba\(111,\
 for (const [name, text] of Object.entries({
   startHere: source.startHere,
   fieldPack: source.fieldPack,
-  opportunityPack: source.opportunityPack,
+  worldMap: source.worldMap,
   about: source.about,
   home: source.home,
   projects: source.projects,
@@ -125,10 +124,10 @@ for (const [name, text] of Object.entries({
 
 const builtChecks = [
   [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
-  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Proof Pack', 'Record map', 'Questions for Hash']],
-  [path.join(repoRoot, 'opportunity-pack/index.html'), ['AI + Finance Opportunity Pack', 'AI Finance Evaluator', 'AML / RegTech / Fraud']],
+  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker System Map', 'Record map', 'Questions for Hash']],
+  [path.join(repoRoot, 'world-map/index.html'), ['AI + Finance World Map', 'Five systems, one data story', 'Reading paths']],
   [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],
-  [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/proof-pack"', 'href="/opportunity-pack"']],
+  [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/world-map"']],
 ];
 
 for (const [file, phrases] of builtChecks) {
@@ -151,9 +150,13 @@ const banned = [
   'sar filing authority: true',
   'guaranteed return',
   'autonomous profit',
+  'opportunity pack',
+  'role packet',
+  'role packets',
+  'recruiter',
 ];
 for (const phrase of banned) {
-  assert(!combined.includes(phrase), `Opportunity engine source contains banned phrase: ${phrase}`);
+  assert(!combined.includes(phrase), `World map source contains banned phrase: ${phrase}`);
 }
 
-console.log('OPPORTUNITY_ENGINE_CHECK PASS — mission map, proof pack, opportunity pack, about page, green theme guard, and no-long-dash guard are present.');
+console.log('WORLD_MAP_CHECK PASS — mission map, system map, world map, about page, green theme guard, and no-long-dash guard are present.');

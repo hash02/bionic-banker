@@ -30,11 +30,11 @@ const required = [
   [read(path.join(sourceRoot, 'src/pages/learn.astro')), 'The explanation pattern', 'knowledge base explanation pattern'],
   [pages.agents, 'Every public claim about numbers, rules, counts, or dates must be computed from source.', 'agent rule for computed claims'],
   [pages.startHere, 'AI-assisted finance risk workflows, mapped like missions with humans in control.', 'Start Quest thesis'],
-  [pages.fieldPack, 'AI agents for finance risk. Simple records first, human control always.', 'Proof Pack thesis'],
+  [pages.fieldPack, 'AI agents for finance risk. Simple records first, human control always.', 'System Map thesis'],
   [pages.home, 'AI-assisted finance risk workflows', 'homepage category phrase'],
   [pages.home, 'Agents prepare. Humans decide', 'homepage human-control phrase'],
   [pages.baseLayout, 'Start Quest', 'nav start quest'],
-  [pages.baseLayout, 'Proof Pack', 'nav/footer proof pack'],
+  [pages.baseLayout, 'System Map', 'nav/footer system map'],
 ];
 
 for (const [text, phrase, label] of required) {
