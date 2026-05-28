@@ -103,7 +103,7 @@ Fix that came late: one job per agent, and the name encodes the specific job, no
 
 A paid-API agent ran in a retry loop for three days because one upstream service was throwing a flaky 503. The retry logic was correct in the narrow sense. It was catastrophic in the wide sense. Four hundred dollars of API spend for zero output.
 
-Fix that came late: every paid-API agent gets a daily spend cap, enforced at the code level, not the wishful-thinking level. And for anything that does not genuinely need a paid model, the free-tier local runtime wins by default. Most of the agents I run now hit a local Ollama model on Wukong. My monthly cloud bill is under ten dollars.
+Fix that came late: every paid-API agent gets a daily spend cap, enforced at the code level, not the wishful-thinking level. And for anything that does not genuinely need a paid model, the free-tier local runtime wins by default. Most of the agents now hit a local model first. The point is the cap: paid routes need explicit limits, and local routes should be the default when quality is good enough.
 
 ## What actually works, and has been working for a while
 
@@ -125,9 +125,9 @@ If any of this is useful, here is the concrete tool list. You can swap any of th
 
 A second older laptop runs Kali Linux for security testing. It stays separated from the main work and is treated as experimental.
 
-**LLMs.** Most of the crew runs on a local Ollama server. I use gemma2 at 9B for reasoning-light work, hermes3 at 8B for tool calling, and nomic-embed-text for embeddings. All of them free, all of them local, none of them phone home. If you are starting from zero, learn Ollama first. The cost discipline you build on free local models makes you smarter about when to pay.
+**Models.** Most of the crew runs on a local model server. Small local models handle reasoning-light work, tool-calling tests, and embeddings. The specific model names matter less than the rule: use local defaults where possible, then pay only when the task genuinely needs stronger reasoning.
 
-For heavier reasoning I pay for Claude through the Max plan. For cheap fallback I route through OpenRouter. My total cloud bill is under ten dollars a month.
+For heavier reasoning I use a paid model route with a strict budget. For fallback, I use cheaper routes with logging. The important part is not the vendor. It is that model routing decisions are visible and capped.
 
 **Named roles in the crew.** One custom Python orchestrator handles paper-mode portfolio state. One research worker reads public sources. One small coding-agent pattern is used for study. The AML engine and content pipeline are custom Python. The security-testing node remains experimental and separated from the main system.
 
@@ -139,7 +139,7 @@ For heavier reasoning I pay for Claude through the Max plan. For cheap fallback 
 
 **Data sources.** Public and free, by design. DeFiLlama for on-chain liquidity and yield. Blockscout for block-level transaction data. OFAC public lists for sanctions checks. Crypto.com for market data. Every one of these has a free tier that is enough for personal and paper-trading use. Paying for data is the second-fastest way to end up with a dead agent. The first is paying for a bad model.
 
-**What I would pick if I was starting over this week.** Debian on a used laptop. Ollama with gemma2. Tailscale. Obsidian. A Claude Max plan if I could afford it, otherwise OpenRouter with a cheap model. One custom Python agent doing one thing. A plain SQLite file for message passing. Nothing more until that works.
+**What I would pick if I was starting over this week.** A used laptop, a local model server, a private mesh, a notes system, one paid reasoning route if the budget allows, one custom Python agent doing one thing, and a plain SQLite file for message passing. Nothing more until that works.
 
 ## What the survivors have in common
 
