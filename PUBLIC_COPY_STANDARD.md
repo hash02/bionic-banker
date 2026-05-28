@@ -30,6 +30,19 @@ Every public page or card should answer:
 4. What can the reader check?
 5. What can it not do?
 
+
+## Explanation ladder
+
+When a page explains a hard finance, AI, wallet, or agent concept, use this ladder before adding polish:
+
+1. Name the thing in plain words.
+2. Show what the reader sees on the page.
+3. Explain what is happening underneath.
+4. Point to the record, log, check, or source trail.
+5. Name the limit in a normal sentence.
+
+This is the house style: start from the screen, move to the system, then show the check and the limit. Do not copy outside books, sites, or articles. Learn from clear teaching patterns, then write in Hash's voice: direct, cautious, practical, and simple enough that a reader can repeat it back.
+
 ## World and voice anchors
 
 The public site should carry the same pattern as Hash's wider operating world, but translated for normal readers:

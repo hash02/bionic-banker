@@ -24,6 +24,9 @@ const pages = {
 const required = [
   [pages.publicCopyStandard, 'what it is, what it does, what supports it, what stays private, and what the system cannot do', 'public copy standard reader-first shape'],
   [pages.publicCopyStandard, 'World and voice anchors', 'public copy standard world anchors'],
+  [pages.publicCopyStandard, 'Explanation ladder', 'public copy standard explanation ladder'],
+  [pages.publicCopyStandard, 'start from the screen, move to the system, then show the check and the limit', 'screen to system explanation pattern'],
+  [read(path.join(sourceRoot, 'src/pages/learn.astro')), 'The explanation pattern', 'knowledge base explanation pattern'],
   [pages.agents, 'Every public claim about numbers, rules, counts, or dates must be computed from source.', 'agent rule for computed claims'],
   [pages.startHere, 'AI-assisted finance risk workflows, mapped like missions with humans in control.', 'Start Quest thesis'],
   [pages.fieldPack, 'AI agents for finance risk. Simple records first, human control always.', 'Proof Pack thesis'],
