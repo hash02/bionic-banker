@@ -50,7 +50,7 @@ const systemMapPhrases = [
   'Record map',
   'Technical stack',
   'What it cannot do',
-  'Questions for Hash',
+  'Questions for the reader',
   'System cards',
   'Catalog sections',
   'No SAR filing, KYC approval, enforcement, or final compliance decision',
@@ -124,7 +124,7 @@ for (const [name, text] of Object.entries({
 
 const builtChecks = [
   [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
-  [path.join(repoRoot, 'system-map/index.html'), ['Bionic Banker System Map', 'Record map', 'Questions for Hash']],
+  [path.join(repoRoot, 'system-map/index.html'), ['Bionic Banker System Map', 'Record map', 'Questions for the reader']],
   [path.join(repoRoot, 'world-map/index.html'), ['AI + Finance World Map', 'Five systems, one data story', 'Reading paths']],
   [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],
   [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/world-map"']],

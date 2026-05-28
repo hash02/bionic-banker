@@ -5,7 +5,7 @@ const systems = [
   ['Wallet Risk Assessment', '/wallet-risk', 'Risk judgment', 'Score, rule explanation, and plain-language note for sample wallet-risk rows.'],
   ['AML Status', '/aml-status-evidence', 'Auditability', 'Source trail, checks, visible claims, and explicit clear limits.'],
   ['Fraud Alert Triage Workflow', '/fraud-alert-triage', 'Alert operations', 'Synthetic signals converted into a system record, case note, and human next step.'],
-  ['Agent Workflow Case Review', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into a case packet, review summary, and human review step.'],
+  ['Agent Workflow Case Review', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into a case record, review summary, and human review step.'],
   ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public records without outside-action power.'],
   ['Site Health / Health Board', '/proof/site-health', 'Self-checking records', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
 ];
@@ -30,7 +30,7 @@ const stack = [
 const questions = [
   'Which finance-risk workflow should be made more inspectable first?',
   'Where should AI draft a note while a human keeps final approval?',
-  'Which review packet would help an analyst without hiding the source?',
+  'Which review record would help a reader without hiding the source?',
   'What public summary would show judgment without exposing private data?',
   'Which limit matters most: wallet control, filing power, deployment power, or data privacy?',
 ];
@@ -102,7 +102,7 @@ const questions = [
     </section>
 
     <section class="pack-section">
-      <span>Questions for Hash</span>
+      <span>Questions for the reader</span>
       <h2>The useful conversation starts with one workflow at a time.</h2>
       <div class="question-grid">
         {questions.map((question) => <article>{question}</article>)}
