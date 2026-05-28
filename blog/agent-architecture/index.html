@@ -42,22 +42,22 @@
 <li><strong>on: task > 7 days idle</strong> — Staleness detector finds tasks gathering dust → writes recommendation</li>
 <li><strong>on: pattern threshold (3+)</strong> — Outcome tracker detects recurring failure pattern → logs observation</li>
 <li><strong>on: proposal generated</strong> — Rule proposer generates a fix proposal from detected pattern → alerts for review</li>
-<li><strong>on: HASH approves rule</strong> — Approval granted → rule activates and logs. The agent just improved itself.</li>
+<li><strong>on: approval granted</strong> — A reviewed rule activates and logs. The system improves only after a human review step.</li>
 </ol>
 <h3 id="two-brain-system">Two-Brain System</h3>
-<p>Cowork (the mind): browser automation, content writing, design strategy, web search. Claude Code (the body): git, Python, native Windows execution, scripts. They talk via INBOX/OUTBOX—a shared filesystem message board. 6 batches. 39 tasks shipped. Both brains reading, both brains writing.</p>
+<p>Hermes Agent handles local tools, scheduled runs, file access, and message delivery. Claude Code handles one coding lane. Other open coding agents can be tested as reviewers or builders. They talk through a shared filesystem message board: simple inbox, simple outbox, visible records.</p>
 <h3 id="cross-folder-portability">Cross-Folder Portability</h3>
 <p>Identity and memory travel. SESSION_LOG stays (it’s the current project’s narrative). When the agent moves to a new folder, it carries:</p>
 <ul>
-<li>MEMORY_CORE.md (inherited lessons)</li>
-<li>CLAUDE.md (identity rules and voice)</li>
-<li>Skills and scripts that apply everywhere</li>
-<li>A fresh SESSION_LOG for the new project</li>
+<li>project memory notes</li>
+<li>agent instruction files</li>
+<li>skills and scripts that apply everywhere</li>
+<li>a fresh session log for the new project</li>
 </ul>
 <p>The agent doesn’t reset. It continues.</p>
 <h3 id="autonomy-roadmap">Autonomy Roadmap</h3>
 <p>L0 (Manual) → L1 (Assisted) → L2 (Scripted) → L3 (Scheduled) → L4 (Reactive) → L5 (Adaptive)</p>
-<p>From “HASH tells Claude what to do” to “Claude improves its own skills.”</p>
+<p>From manual commands to reviewed improvement proposals. The human keeps approval over new rules.</p>
 <h3 id="build-log">Build Log</h3>
 <ul>
 <li><strong>BATCH 6</strong>: Level 5 Adaptive — Outcome tracker, rule proposer, pattern detection</li>

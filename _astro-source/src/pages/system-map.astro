@@ -23,8 +23,19 @@ const stack = [
   'GitHub repositories for code, issues, and public change history',
   'Hermes Agent for local agent runs, scheduled checks, and tool use',
   'Codex, Claude Code, and OpenCode-style coding agents tested as builders and reviewers',
+  'Ollama-style local models for low-cost local reasoning tests',
+  'SQLite ledgers and queues for small-system records',
   'Node.js QA checks for copy, links, metrics, and page framing',
   'Mobile QA gate for layout regressions',
+];
+
+const visualAnchors = [
+  ['Hermes Agent', 'Local agent operating layer', 'Good future visual: agent console, scheduled run, tool-call trace, or mission-control card.'],
+  ['Claude Code / Codex / OpenCode', 'Builder and reviewer lane', 'Good future visual: code review diff, test gate, reviewer lane, or build trace.'],
+  ['Ollama / local models', 'Local model route', 'Good future visual: small GPU node, local model card, cost cap, or routing decision.'],
+  ['SQLite', 'Record and queue layer', 'Good future visual: ledger row, message queue, run history, or recovery record.'],
+  ['GitHub', 'Public change history', 'Good future visual: commit trail, issue map, release note, or validator check.'],
+  ['OpenClaw / agent security research', 'External risk reference', 'Good future visual: skill supply-chain diagram, trust boundary, or malicious-skill case note.'],
 ];
 
 const questions = [
@@ -101,6 +112,22 @@ const questions = [
       </div>
     </section>
 
+
+    <section class="pack-section">
+      <span>Visual stack anchors</span>
+      <h2>Named tools are useful when they clarify the system.</h2>
+      <p>Some names should stay private. Some names make the record easier to understand. These are public-safe anchors that can support future diagrams, screenshots, or tool imagery without turning the site into a vendor pitch.</p>
+      <div class="anchor-grid">
+        {visualAnchors.map(([name, role, visual]) => (
+          <article>
+            <strong>{name}</strong>
+            <span>{role}</span>
+            <p>{visual}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <section class="pack-section">
       <span>Questions for the reader</span>
       <h2>The useful conversation starts with one workflow at a time.</h2>
@@ -128,8 +155,10 @@ const questions = [
   .system-row { display: grid; grid-template-columns: minmax(190px,.8fr) minmax(120px,.45fr) minmax(0,1.4fr); gap: 1rem; align-items: center; padding: 1rem; border: 1px solid rgba(31,160,104,.16); border-radius: 18px; color: inherit; text-decoration: none; background: rgba(31,160,104,.055); }
   .system-row em { color: #1fa068; font-style: normal; font-weight: 800; }
   .system-row p { margin: 0; }
-  .metric-grid, .question-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .9rem; margin-top: 1rem; }
-  .metric-grid article, .question-grid article, .boundary-card { border: 1px solid rgba(31,160,104,.16); border-radius: 18px; padding: 1rem; background: rgba(31,160,104,.055); }
+  .metric-grid, .question-grid, .anchor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .9rem; margin-top: 1rem; }
+  .metric-grid article, .question-grid article, .anchor-grid article, .boundary-card { border: 1px solid rgba(31,160,104,.16); border-radius: 18px; padding: 1rem; background: rgba(31,160,104,.055); }
+  .anchor-grid strong { display: block; color: #f4f7f1; margin-bottom: .35rem; }
+  .anchor-grid span { color: #1fa068; font-weight: 900; font-size: .9rem; }
   .metric-grid strong { display: block; font-size: 2rem; color: #1fa068; }
   .metric-grid span { display: block; font-weight: 900; margin: .35rem 0; }
   .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.9fr); gap: 1rem; }

@@ -49,20 +49,20 @@ The nervous system listens for seven kinds of events:
 4. **on: task > 7 days idle** — Staleness detector finds tasks gathering dust → writes recommendation
 5. **on: pattern threshold (3+)** — Outcome tracker detects recurring failure pattern → logs observation
 6. **on: proposal generated** — Rule proposer generates a fix proposal from detected pattern → alerts for review
-7. **on: HASH approves rule** — Approval granted → rule activates and logs. The agent just improved itself.
+7. **on: approval granted** — A reviewed rule activates and logs. The system improves only after a human review step.
 
 ### Two-Brain System
 
-Cowork (the mind): browser automation, content writing, design strategy, web search. Claude Code (the body): git, Python, native Windows execution, scripts. They talk via INBOX/OUTBOX—a shared filesystem message board. 6 batches. 39 tasks shipped. Both brains reading, both brains writing.
+Hermes Agent handles local tools, scheduled runs, file access, and message delivery. Claude Code handles one coding lane. Other open coding agents can be tested as reviewers or builders. They talk through a shared filesystem message board: simple inbox, simple outbox, visible records.
 
 ### Cross-Folder Portability
 
 Identity and memory travel. SESSION_LOG stays (it's the current project's narrative). When the agent moves to a new folder, it carries:
 
-- MEMORY_CORE.md (inherited lessons)
-- CLAUDE.md (identity rules and voice)
-- Skills and scripts that apply everywhere
-- A fresh SESSION_LOG for the new project
+- project memory notes
+- agent instruction files
+- skills and scripts that apply everywhere
+- a fresh session log for the new project
 
 The agent doesn't reset. It continues.
 
@@ -70,7 +70,7 @@ The agent doesn't reset. It continues.
 
 L0 (Manual) → L1 (Assisted) → L2 (Scripted) → L3 (Scheduled) → L4 (Reactive) → L5 (Adaptive)
 
-From "HASH tells Claude what to do" to "Claude improves its own skills."
+From manual commands to reviewed improvement proposals. The human keeps approval over new rules.
 
 ### Build Log
 

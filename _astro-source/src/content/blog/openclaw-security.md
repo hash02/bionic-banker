@@ -11,6 +11,8 @@ slug: "openclaw-security"
 
 OpenClaw security is a supply-chain problem, not just an agent problem. Cisco scanned 31,000+ skills, found 26% malicious or exploitable, and this note follows how key theft, poisoned skills, and multi-agent trust failures turn into real infrastructure risk.
 
+Public visual hook: this is a good place for an OpenClaw-style skill supply-chain diagram later. The useful image would not be decoration. It would show trust boundaries: user, agent runtime, skill package, secret store, external API, and review gate.
+
 Okay so, everyone's talking about how powerful AI agents are. They're going to automate this, orchestrate that, coordinate entire workflows across your infrastructure. Agents are the next big thing. And yeah, they're powerful. I build them. I know what they can do.
 
 But here's the thing nobody's really grappling with: agents are also the most efficient attack surface ever created. And we've basically open-sourced the attack playbook.

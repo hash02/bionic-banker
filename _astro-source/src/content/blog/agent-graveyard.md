@@ -131,7 +131,7 @@ For heavier reasoning I use a paid model route with a strict budget. For fallbac
 
 **Named roles in the crew.** One custom Python orchestrator handles paper-mode portfolio state. One research worker reads public sources. One small coding-agent pattern is used for study. The AML engine and content pipeline are custom Python. The security-testing node remains experimental and separated from the main system.
 
-**Coding agents I drive, and how they differ.** I use Claude Code for one kind of work, Cowork for another, and something like OpenHands for a third. Each one has a different kind of friction. Claude Code is sharp but narrow. Cowork gives me the file system and the browser and the computer at the same time, which is great until it is not. OpenHands makes you feel every edge because it is more raw. The honest answer is I use all three, and when one is giving me a bad day I try the same problem on another and see if the rhythm comes back.
+**Coding agents I drive, and how they differ.** I use Claude Code for one kind of work, Hermes Agent for local tool use and scheduled runs, and open coding agents such as OpenHands for another kind of test. Each one has a different kind of friction. Claude Code is sharp but narrow. Hermes Agent is useful when the job needs local files, tools, schedules, and messaging in the same operating layer. OpenHands makes you feel more of the raw edge. The honest answer is I use multiple tools, and when one is giving me a bad day I try the same problem on another and see if the rhythm comes back.
 
 **Memory and knowledge layer.** Obsidian holds every session transcript and every note, with a graph view that lets me find things I half-remember. Notion holds the project board, the career log, and the investigation databases. A single SQLite file holds the message queue that lets all the agents talk to each other. I have tried fancier stacks. This one keeps working.
 
@@ -151,7 +151,7 @@ Here is what the living have that the dead ones did not.
 
 **External ground truth.** No agent is allowed to validate its own output. The AML engine checks itself against a public sanctions list. The trading orchestrator checks itself against the actual on-chain portfolio. The content pipeline checks itself against the live article count on the public site. If the agent has no external validator, it does not go into production.
 
-**One job.** Each of them does exactly one thing. Hermes trades. The AML engine flags. The content pipeline publishes. The research agent reads. None of them is allowed to drift. The moment you ask an agent to do two things, it starts forgetting how to do either.
+**One job.** Each of them does exactly one thing. The paper-mode portfolio worker records. The AML engine flags. The content pipeline publishes. The research agent reads. None of them is allowed to drift. The moment you ask an agent to do two things, it starts forgetting how to do either.
 
 **Visibility.** Every one of them writes to a place I actually look. Dashboard, message queue, public URL, SQLite ledger. If I cannot see it working today, I assume it is broken.
 
