@@ -14,14 +14,14 @@ const orderedProjects = [
   ...projects.filter((project) => !flagshipOrder.includes(project.id)),
 ];
 ---
-<BaseLayout title="Evidence Catalog" description="Rendered public evidence catalog for Bionic Banker proof lanes, sources, numbers, and boundaries.">
+<BaseLayout title="Evidence Catalog" description="Rendered public evidence catalog for Bionic Banker catalog sections, sources, numbers, and boundaries.">
   <main class="page-shell systems-wrap">
     <section class="page-hero">
-      <span class="eyebrow">PUBLIC PROOF CATALOG</span>
+      <span class="eyebrow">PUBLIC EVIDENCE CATALOG</span>
       <h1 class="page-title">Evidence, not raw JSON first.</h1>
-      <p class="page-sub">A rendered reader-facing catalog of the public proof lanes behind Bionic Banker. Raw data is still available, but the primary path explains what each lane shows, what supports it, and what remains bounded.</p>
+      <p class="page-sub">A rendered reader-facing catalog of the public catalog sections behind Bionic Banker. Raw data is still available, but the primary path explains what each lane shows, what supports it, and what remains bounded.</p>
       <div class="page-metric-row" aria-label="Evidence catalog metrics">
-        <div><strong>{projects.length}</strong><span>evidence catalog lanes</span></div>
+        <div><strong>{projects.length}</strong><span>catalog sections</span></div>
         <div><strong>{sourceCount}</strong><span>catalog evidence sources</span></div>
         <div><strong>{numberCount}</strong><span>catalog number notes</span></div>
         <div><strong>{boundaryCount}</strong><span>catalog boundaries</span></div>
@@ -31,25 +31,25 @@ const orderedProjects = [
     <section class="systems-audit-panel" aria-label="How to read the evidence catalog">
       <div>
         <span class="systems-audit-label">READER PATH</span>
-        <strong>Start with the flagship proof lanes.</strong>
-        <p>Wallet Risk, AML Status Evidence, Fraud Alert Triage, and Agent Chess show the main pattern: assess a financial object, preserve evidence, explain the boundary, and keep authority human-gated.</p>
+        <strong>Start with the flagship catalog sections.</strong>
+        <p>Wallet Risk, AML Status, Fraud Alert Triage, and Agent Chess show the main pattern: assess a financial object, preserve the source trail, explain the limit, and keep authority with a human reader.</p>
       </div>
       <div>
         <span class="systems-audit-label">BOUNDARY</span>
-        <strong>Public proof is not production authority.</strong>
+        <strong>Public records are not production authority.</strong>
         <p>This catalog does not claim autonomous compliance approval, filing authority, trade execution, wallet control, or guaranteed fraud detection.</p>
       </div>
       <div>
         <span class="systems-audit-label">RAW DATA</span>
         <strong>Raw JSON is secondary.</strong>
-        <p>Use the rendered page first. Open the raw JSON only when you want to inspect the source artifact behind the page.</p>
+        <p>Use the rendered page first. Open the raw JSON only when you want to inspect the source record behind the page.</p>
       </div>
     </section>
 
-    <section class="articles-grid" aria-label="Evidence lanes">
+    <section class="articles-grid" aria-label="Evidence sections">
       {orderedProjects.map((project) => (
         <article class="article-card" id={project.id}>
-          <span>{project.status?.label ?? 'Evidence lane'}</span>
+          <span>{project.status?.label ?? 'Evidence section'}</span>
           <h2>{project.name}</h2>
           <p>{project.what_it_is}</p>
           <div class="system-proof-grid">
@@ -77,16 +77,16 @@ const orderedProjects = [
       ))}
     </section>
 
-    <section class="systems-audit-panel" aria-label="Catalog provenance">
+    <section class="systems-audit-panel" aria-label="Catalog source trail">
       <div>
         <span class="systems-audit-label">GENERATED</span>
         <strong>{generatedDate}</strong>
         <p>Metrics on this page are computed from <code>public-proof-catalog.json</code>.</p>
       </div>
       <div>
-        <span class="systems-audit-label">SOURCE ARTIFACT</span>
+        <span class="systems-audit-label">SOURCE RECORD</span>
         <strong>Raw JSON available for inspection</strong>
-        <p><a href="/dashboard-data/public-proof-catalog.json">Open raw public proof catalog JSON</a></p>
+        <p><a href="/dashboard-data/public-proof-catalog.json">View public evidence catalog JSON</a></p>
       </div>
     </section>
   </main>

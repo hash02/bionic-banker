@@ -27,17 +27,17 @@ const payload = {
   status: results.every((r) => r.status === 'pass') ? 'pass' : 'fail',
   mission: 'Layer 3 public proof spine health',
   audience: 'AI-and-finance-literate readers, recruiters, collaborators, executives, investors, and serious learners.',
-  style: 'AI-agent founder portfolio: sharp, product-forward, evidence-backed, and boundary-aware.',
+  style: 'AI-agent founder portfolio: sharp, product-forward, evidence-backed, and clear-limit aware.',
   flagship_order: ['Wallet Risk Assessment', 'AML Status Evidence', 'Fraud Alert Triage', 'Agent Chess / Agent Workflow', 'Site Health / Proof QA'],
   metrics: {
     public_system_cards: publicCardCount,
     evidence_catalog_lanes: catalog.projects.length,
     catalog_evidence_sources: catalog.projects.reduce((sum, project) => sum + (project.sources?.length || 0), 0),
-    catalog_boundaries: catalog.projects.reduce((sum, project) => sum + (project.limits?.length || 0), 0),
+    catalog_limits: catalog.projects.reduce((sum, project) => sum + (project.limits?.length || 0), 0),
     articles: articleCount,
   },
   checks: results,
-  boundary: 'Public-safe health summary only. No secrets, prompts, private paths, raw logs, wallet authority, trading authority, or compliance approval authority.',
+  limit_note: 'Public-safe health summary only. No secrets, prompts, private paths, raw logs, wallet power, trading power, or compliance approval power.',
 };
 const out = path.join(sourceRoot, 'public/dashboard-data/site-health.json');
 fs.writeFileSync(out, `${JSON.stringify(payload, null, 2)}\n`);

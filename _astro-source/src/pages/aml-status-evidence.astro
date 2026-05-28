@@ -11,45 +11,45 @@ const nextSteps = proof.default.next_steps ?? [];
 
 const proofCards = [
   {
-    label: 'Evidence contract',
-    title: 'A status row has to earn trust.',
-    body: 'The AML status contract only treats a row as evidence-backed when source metadata, counts, rule coverage, and freshness checks are present.',
+    label: 'Status rule',
+    title: 'A status row has to show its work.',
+    body: 'The AML status contract only trusts a row when the source, counts, rule coverage, and freshness checks are present.',
     source: provenance.contract_doc,
   },
   {
-    label: 'Gate behavior',
-    title: 'The planner can pause. It cannot execute.',
-    body: `Every compliance gate keeps may_execute set to ${String(boundary.may_execute)}. Clean means proposal-only, not action authority.`,
+    label: 'What it cannot do',
+    title: 'The planner can prepare a note. It cannot act.',
+    body: `Every compliance gate keeps action approval set to ${String(boundary.may_execute)}. In plain English: this can prepare a proposal, but it cannot approve, file, trade, deploy, or execute.`,
     source: provenance.planning_endpoint,
   },
   {
-    label: 'Artifact provenance',
-    title: 'The evidence record shape is defined before the public claim.',
-    body: 'The local contract defines JSON and Markdown evidence artifacts, latest aliases, and SHA-256 sidecars so a later reader can inspect what backed the status.',
+    label: 'Source trail',
+    title: 'The record shape comes before the public claim.',
+    body: 'The local contract defines JSON and Markdown records, latest aliases, and SHA-256 sidecars so a later reader can inspect what supported the status.',
     source: provenance.local_artifact_pattern,
   },
 ];
 ---
-<BaseLayout title="AML Status Evidence" description="A public-safe AML status evidence page for the Bionic Banker AML Layer 1 evidence contract: what is verified, what remains local, and what authority is explicitly not granted.">
+<BaseLayout title="AML Status" description="An AML status page for Bionic Banker: what was checked, what stays local, and what the system cannot do.">
   <main class="aml-proof-shell">
     <section class="aml-proof-hero">
       <div>
-        <span class="eyebrow">AML Status Evidence</span>
-        <h1>The status is only useful when the supporting evidence, control boundary, and review record are visible.</h1>
+        <span class="eyebrow">AML Status</span>
+        <h1>The status is only useful when a reader can see what was checked and what the system cannot do.</h1>
         <p>
-          This page makes the AML Layer 1 status evidence visible without turning it into a compliance claim. It shows the contract, the artifact provenance, the planner boundary, and the parts that still stay local.
+          This page shows an AML status record without turning it into a compliance claim. It explains the rule, the source trail, the planner limit, and the parts that stay local.
         </p>
-        <div class="reviewer-callout"><span>Reviewer question</span><strong>Can Hash preserve auditability and authority boundaries?</strong></div>
+        <div class="reviewer-callout"><span>What this shows</span><strong>An AML status can be checked and explained without giving the system approval, filing, wallet, trade, or deploy power.</strong></div>
         <div class="proof-actions">
-          <a href="#proof-cards">Review supporting evidence</a>
+          <a href="#proof-cards">Review supporting records</a>
           <a href="/wallet-risk">Open wallet risk assessment</a>
-          <a href="/dashboard-data/aml-status-evidence-public.json">Open evidence JSON</a>
+          <a href="/dashboard-data/aml-status-evidence-public.json">View source data</a>
         </div>
       </div>
-      <aside class="authority-card" aria-label="AML status evidence authority boundary">
-        <span>Authority boundary</span>
-        <strong>may_execute: false</strong>
-        <p>No wallet, trade, filing, or deploy authority. No KYC approval authority.</p>
+      <aside class="authority-card" aria-label="AML status limit">
+        <span>What it cannot do</span>
+        <strong>No outside action</strong>
+        <p>No wallet, trade, filing, deploy, or KYC approval power.</p>
         <small>Snapshot: {generatedDate}</small>
       </aside>
     </section>
@@ -77,20 +77,20 @@ const proofCards = [
         <span class="eyebrow">What stays bounded</span>
         <h2>Not an execution system</h2>
         <ul class="boundary-list">
-          <li>may_execute: {String(boundary.may_execute)}</li>
-          <li>KYC approval authority: {String(boundary.kyc_approval_authority)}</li>
-          <li>Wallet or trade authority: {String(boundary.wallet_or_trade_authority)}</li>
-          <li>Filing authority: {String(boundary.filing_authority)}</li>
-          <li>Deploy authority: {String(boundary.deploy_authority)}</li>
+          <li>Can approve outside action: {String(boundary.may_execute)}</li>
+          <li>Can approve KYC: {String(boundary.kyc_approval_authority)}</li>
+          <li>Can move wallets or trades: {String(boundary.wallet_or_trade_authority)}</li>
+          <li>Can file reports: {String(boundary.filing_authority)}</li>
+          <li>Can deploy changes: {String(boundary.deploy_authority)}</li>
         </ul>
       </div>
     </section>
 
     <section class="proof-panel">
       <div class="panel-head">
-        <span>Artifact provenance</span>
-        <h2>The evidence workflow is a contract, not an unsupported claim.</h2>
-        <p>Public readers get repository-relative provenance. The local machine details, private paths, and operational internals stay off the public site.</p>
+        <span>Source trail</span>
+        <h2>The record has a source trail. It is not just a claim.</h2>
+        <p>Readers can see repository-relative source references. Local machine details, private paths, and operational internals stay off the public site.</p>
       </div>
       <div class="provenance-grid">
         <article>
@@ -106,7 +106,7 @@ const proofCards = [
           <strong>{provenance.refresher_module}</strong>
         </article>
         <article>
-          <span>Artifact pattern</span>
+          <span>Record pattern</span>
           <strong>{provenance.local_artifact_pattern}</strong>
         </article>
       </div>
@@ -116,7 +116,7 @@ const proofCards = [
       <div class="panel-head">
         <span>Verification records</span>
         <h2>What was checked locally</h2>
-        <p>These are local verification commands recorded in the evidence records. They are shown as evidence trail, not as hosted compliance certification.</p>
+        <p>These local verification commands are recorded beside the status. They show what was checked; they are not hosted compliance certification.</p>
       </div>
       <div class="check-list">
         {checks.map((check) => (
@@ -141,7 +141,7 @@ const proofCards = [
         <span class="eyebrow">Plain English</span>
         <h2>What this means</h2>
         <p>
-          The AML status evidence page is a window into the safety rails: evidence first, boundaries beside every claim, and no jump from a local evidence artifact to an operational decision.
+          The AML status page keeps the simple order: show the source, show the check, show the limit, and do not jump from a local record to a real-world decision.
         </p>
       </div>
     </section>
@@ -153,7 +153,7 @@ const proofCards = [
       </a>
       <a href="/risk-evidence-overview">
         <span>Risk & Evidence Overview</span>
-        <strong>Follow the broader evidence workflow</strong>
+        <strong>Follow the broader review map</strong>
       </a>
       <a href="/projects">
         <span>Systems</span>

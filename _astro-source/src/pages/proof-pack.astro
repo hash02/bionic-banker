@@ -3,54 +3,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const systems = [
   ['Wallet Risk Assessment', '/wallet-risk', 'Risk judgment', 'Score, rule explanation, and plain-language note for sample wallet-risk rows.'],
-  ['AML Status Evidence', '/aml-status-evidence', 'Auditability', 'Artifact provenance, checks, visible claims, and explicit authority boundaries.'],
-  ['Fraud Alert Triage Workflow', '/fraud-alert-triage', 'Alert operations', 'Synthetic signals converted into a field packet, reviewer case note, and human next step.'],
-  ['Evidence-Preserved Agent Workflow Sprint', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into an evidence packet, reviewer summary, and human gate.'],
-  ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public artifacts without live authority.'],
+  ['AML Status', '/aml-status-evidence', 'Auditability', 'Source trail, checks, visible claims, and explicit clear limits.'],
+  ['Fraud Alert Triage Workflow', '/fraud-alert-triage', 'Alert operations', 'Synthetic signals converted into a field packet, case note, and human next step.'],
+  ['Agent Workflow Case Review', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into a case packet, review summary, and human approval step.'],
+  ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public records without outside-action power.'],
   ['Site Health / Health Board', '/proof/site-health', 'Self-checking evidence', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
 ];
 
 const evidenceMap = [
-  ['System cards', '11', 'Rendered systems a reviewer can inspect.'],
-  ['Evidence map lanes', '8', 'Catalog-backed evidence lanes with sources and boundaries.'],
-  ['Evidence sources', '21', 'Public-safe sources linked from the evidence catalog.'],
-  ['Named boundaries', '36', 'Explicit limits that prevent overclaiming.'],
+  ['System cards', '11', 'Rendered systems a reader can inspect.'],
+  ['Catalog sections', '8', 'Catalog-backed sections with sources and boundaries.'],
+  ['Source links', '21', 'Public-safe sources linked from the evidence catalog.'],
+  ['Named limits', '36', 'Explicit limits that prevent overclaiming.'],
   ['Articles / notes', '45', 'Writing that supports the finance, AI, and agent-system context.'],
 ];
 
 const stack = [
   'Astro static site with committed static output',
-  'Public-safe JSON artifacts for evidence and site health',
-  'Deterministic Node.js QA checks for copy, links, metrics, and route framing',
+  'GitHub repositories for code, issues, and public change history',
+  'Hermes Agent for local agent runs, scheduled checks, and tool use',
+  'Codex, Claude Code, and OpenCode-style coding agents tested as builders and reviewers',
+  'Node.js QA checks for copy, links, metrics, and page framing',
   'Mobile QA gate for layout regressions',
-  'GitHub-hosted source and cache-aware live verification',
 ];
 
 const questions = [
   'Which finance-risk workflow should be made more inspectable first?',
-  'Where should AI draft evidence while a human keeps final authority?',
-  'Which review packet would reduce analyst friction without hiding the source trail?',
-  'What public-safe artifact would prove judgment without exposing private data?',
-  'Which system boundary matters most: wallet authority, filing authority, deployment authority, or data privacy?',
+  'Where should AI draft a note while a human keeps final approval?',
+  'Which review packet would help an analyst without hiding the source?',
+  'What public summary would show judgment without exposing private data?',
+  'Which limit matters most: wallet control, filing power, deployment power, or data privacy?',
 ];
 ---
-<BaseLayout title="Field Pack" description="A compact Bionic Banker field pack: missions, evidence map, system stack, boundaries, and questions for Hash.">
+<BaseLayout title="Field Pack" description="A compact Bionic Banker field pack: what the work is, what runs, what supports it, and what the systems cannot do.">
   <main class="pack-shell">
     <section class="pack-hero">
       <div class="pack-kicker">Bionic Banker Field Pack</div>
-      <h1>A compact field pack for AI-assisted finance risk missions.</h1>
-      <p>Use this when you want the shortest serious read: what Bionic Banker is, which missions matter, what evidence exists, what stays bounded, and what to ask next.</p>
+      <h1>A simple map of AI-assisted finance risk work.</h1>
+      <p>Use this when you want the shortest serious read: what Bionic Banker is, what runs, what records support it, what stays private, and what to check next.</p>
       <div class="pack-actions">
         <a href="/start-here">Start Quest</a>
         <a href="/projects">Systems</a>
-        <a href="/evidence">Evidence Catalog</a>
+        <a href="/evidence">Source Catalog</a>
       </div>
     </section>
 
     <section class="pack-section thesis-card">
       <span>Positioning</span>
-      <h2>AI agents for finance risk. Evidence first, human reviewed.</h2>
-      <p>Bionic Banker sits between RegTech field packaging, wallet-risk intelligence, fraud/AML workflow design, and human-gated agent operations. The difference is simple: show the field packet and the authority boundary instead of pretending the agent owns the decision.</p>
+      <h2>AI agents for finance risk. Simple records first, human control always.</h2>
+      <p>Bionic Banker connects wallet-risk review, fraud and AML case work, agent workflows, and public writing. The rule is simple: show what happened, show what was checked, and keep the final decision with a person.</p>
     </section>
 
     <section class="pack-section">
@@ -68,8 +69,8 @@ const questions = [
     </section>
 
     <section class="pack-section">
-      <span>Evidence map</span>
-      <h2>The public evidence map is counted and bounded.</h2>
+      <span>Record map</span>
+      <h2>The public record map is counted and limited.</h2>
       <div class="metric-grid">
         {evidenceMap.map(([label, value, detail]) => (
           <article>
@@ -84,14 +85,14 @@ const questions = [
     <section class="pack-section split">
       <div>
         <span>Technical stack</span>
-        <h2>Built like a map someone can inspect, not just a portfolio page.</h2>
+        <h2>Built from simple pieces a reader can recognize.</h2>
         <ul>{stack.map((item) => <li>{item}</li>)}</ul>
       </div>
       <div class="boundary-card">
-        <span>Trust boundary</span>
-        <h2>What stays outside the game.</h2>
+        <span>What it cannot do</span>
+        <h2>What stays outside the system.</h2>
         <ul>
-          <li>No live wallet, trade, transfer, or fund authority.</li>
+          <li>No live wallet, trade, transfer, or fund power.</li>
           <li>No SAR filing, KYC approval, enforcement, or final compliance decision.</li>
           <li>No private prompts, secrets, raw logs, customer data, or employer data.</li>
           <li>No guarantee that synthetic samples reflect production performance.</li>
@@ -101,7 +102,7 @@ const questions = [
 
     <section class="pack-section">
       <span>Questions for Hash</span>
-      <h2>The useful conversation starts with workflow boundaries.</h2>
+      <h2>The useful conversation starts with one workflow at a time.</h2>
       <div class="question-grid">
         {questions.map((question) => <article>{question}</article>)}
       </div>

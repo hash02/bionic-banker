@@ -72,9 +72,9 @@ const movingRows = [
 const metricByLabel = (label) => reportMetrics.find((metric) => metric.label === label);
 const proofSnapshot = [
   {
-    label: 'Catalog lanes',
+    label: 'Catalog sections',
     value: proofCount,
-    unit: 'evidence lanes',
+    unit: 'catalog sections',
     source: 'public evidence map',
   },
   {
@@ -97,7 +97,7 @@ const proofSnapshot = [
   },
 ];
 const benchmarkSnapshot = benchmarkMetrics.slice(0, 4);
-const visibleLanes = proofCatalog.default.projects.slice(0, 4).map((project) => ({
+const visibleSections = proofCatalog.default.projects.slice(0, 4).map((project) => ({
   name: project.name,
   numbers: project.numbers?.slice(0, 2) ?? [],
   sourceCount: project.sources?.length ?? 0,
@@ -127,32 +127,32 @@ const heroRoutes = [
   {
     label: 'Wallet Risk',
     title: 'Wallet Risk Assessment',
-    detail: 'Reviewer-ready score, rationale, and limitation for sample wallet screening rows.',
+    detail: 'Reader-ready score, rationale, and limitation for sample wallet screening rows.',
     href: '/wallet-risk',
   },
   {
     label: 'AML Evidence',
-    title: 'AML Status Evidence',
-    detail: 'Artifact provenance, checks, and explicit authority limits for human review.',
+    title: 'AML Status',
+    detail: 'Source trail, checks, and clear limits for human review.',
     href: '/aml-status-evidence',
   },
   {
     label: 'Fraud Triage',
     title: 'Fraud Alert Workflow',
-    detail: 'Synthetic alert signals assembled into a reviewer-ready case packet.',
+    detail: 'Synthetic alert signals assembled into a clear case packet.',
     href: '/fraud-alert-triage',
   },
   {
     label: 'Agents',
     title: 'Agent Chess board',
-    detail: 'Move, review, gate, artifact orchestration without exposing prompt content or live authority.',
+    detail: 'Move, review, gate, record orchestration without exposing prompt content or outside-action power.',
     href: '/risk-evidence-overview#agent-chess-showcase',
   },
 ];
 
 const heroSystemChecks = [
   'Evidence-first workflow',
-  'No wallet or trade authority',
+  'No wallet or trade power',
   'Human review required',
   'No autonomous compliance decisions',
 ];
@@ -161,17 +161,17 @@ const marketPositioningCards = [
   {
     label: 'Category',
     title: 'AI-assisted finance risk workflows',
-    body: 'Closest market neighbors are Unit21, Chainalysis/TRM, LangGraph-style agent control, and founder labs. Bionic Banker stays public and careful.',
+    body: 'Closest market neighbors are Unit21, Chainalysis/TRM, LangGraph-style agent control, and agent infrastructure teams. Bionic Banker stays public and careful.',
   },
   {
     label: 'Differentiator',
     title: 'Evidence packets you can inspect',
-    body: 'The core pattern is signal intake to risk reasoning to source trail to reviewer note to human decision boundary, not a black-box compliance answer.',
+    body: 'The core pattern is signal intake to risk reasoning to source trail to case note to human decision limit, not a black-box compliance answer.',
   },
   {
-    label: 'Trust boundary',
+    label: 'Clear limits',
     title: 'Agents prepare. Humans decide',
-    body: 'The site does not claim filing, trading, wallet, enforcement, or final compliance authority. It demonstrates review-ready artifacts and guardrails.',
+    body: 'The site does not claim filing, trading, wallet, enforcement, or final compliance power. It shows review notes and guardrails.',
   },
 ];
 
@@ -179,8 +179,8 @@ const readerEntryCards = [
   {
     role: 'Recruiter',
     href: '/start-here',
-    prompt: '90-second reviewer guide',
-    body: 'Follow the strongest reviewer path: risk judgment, AML evidence, fraud triage, agent workflow, and site QA.',
+    prompt: '90-second visitor guide',
+    body: 'Follow the strongest reading path: risk judgment, AML evidence, fraud triage, agent workflow, and site QA.',
   },
   {
     role: 'Collaborator',
@@ -189,7 +189,7 @@ const readerEntryCards = [
     body: 'Open the short map: systems, evidence, limits, and the questions worth asking.',
   },
   {
-    role: 'Technical reviewer',
+    role: 'Technical reader',
     href: '/proof/site-health',
     prompt: 'System health board',
     body: 'Check the tests that keep the public map honest.',
@@ -202,31 +202,31 @@ const flagshipSystems = [
     title: 'Wallet Risk Assessment',
     href: '/wallet-risk',
     status: 'Visible interface',
-    outcome: 'Turns wallet-risk signals into a reviewer-ready score, rationale, and limitation so a human can inspect the row instead of trusting a black box.',
-    skills: ['Risk UX', 'Reviewer notes', 'Boundary language'],
+    outcome: 'Turns wallet-risk signals into a review score, rationale, and limitation so a human can inspect the row instead of trusting a black box.',
+    skills: ['Risk UX', 'Review notes', 'Clear-limit language'],
   },
   {
     label: 'Evidence App',
-    title: 'AML Status Evidence',
+    title: 'AML Status',
     href: '/aml-status-evidence',
     status: 'Audit view',
-    outcome: 'Packages AML-related status, artifact provenance, checks, and authority boundaries into a public-safe page without granting approval, filing, wallet, or trade authority.',
+    outcome: 'Packages AML-related status, source trail, checks, and clear limits into a public-safe page without granting approval, filing, wallet, or trade power.',
     skills: ['AML evidence', 'Audit trail', 'Human gates'],
   },
   {
     label: 'Agent Ops Surface',
     title: 'Agent Chess',
     href: '/risk-evidence-overview#agent-chess-showcase',
-    status: 'Human-gated workflow',
-    outcome: 'Shows how agents can move, review, recover state, and publish bounded artifacts while external actions remain behind explicit human approval.',
+    status: 'Human-reviewed workflow',
+    outcome: 'Shows how agents can move, review, recover state, and publish bounded records while external actions remain behind explicit human approval.',
     skills: ['Agent orchestration', 'Review gates', 'Operational memory'],
   },
   {
     label: 'Synthetic Fraud Workflow',
     title: 'Fraud Alert Triage Workflow',
     href: '/fraud-alert-triage',
-    status: 'Reviewer packet',
-    outcome: 'Packages suspicious financial signals into source evidence, rule explanation, reviewer-ready case note, and explicit human approval boundary.',
+    status: 'Review packet',
+    outcome: 'Packages suspicious financial signals into source trail, rule explanation, case note, and explicit human approval step.',
     skills: ['Fraud ops', 'Evidence packets', 'Human gates'],
   },
 ];
@@ -277,7 +277,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
             <strong>AI-assisted risk workflows</strong>
           </div>
           <div class="hero-os-title">Signal becomes evidence. Evidence becomes a decision.</div>
-          <p>Closest to agentic fraud/AML ops and wallet intelligence. Framed as public evidence, not production authority.</p>
+          <p>Closest to agentic fraud/AML ops and wallet intelligence. Framed as public evidence, not production system.</p>
           <div class="hero-os-metrics">
             {proofSnapshot.slice(0, 3).map((item) => (
               <div>
@@ -355,7 +355,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
         </div>
         <a href="/signals" class="view-all">Open signals</a>
       </div>
-      <p class="section-orient">The benchmark points to one clear lane: AI agents can help with finance-risk work when they preserve evidence, show reasoning, and leave final decisions with people. The public surface now separates public system cards from evidence catalog lanes so readers do not confuse project count with evidence-map structure.</p>
+      <p class="section-orient">The benchmark points to one clear path: AI agents can help with finance-risk work when they preserve evidence, show reasoning, and leave final decisions with people. The public surface now separates public system cards from catalog sections so readers do not confuse project count with evidence structure.</p>
       <div class="proof-route-grid">
         {marketPositioningCards.map((card) => (
           <article class="article-card">
@@ -407,16 +407,16 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
 
         <section class="proof-panel">
           <div class="proof-panel-head">
-            <span>Visible Lanes</span>
-            <strong>{visibleLanes.length} shown here</strong>
+            <span>Visible Sections</span>
+            <strong>{visibleSections.length} shown here</strong>
           </div>
           <div class="proof-lane-list">
-            {visibleLanes.map((lane) => (
+            {visibleSections.map((section) => (
               <article>
-                <h3>{lane.name}</h3>
-                <p>{lane.numbers[0] ?? 'Evidence row available in catalog.'}</p>
-                {lane.numbers[1] && <p>{lane.numbers[1]}</p>}
-                <div>{lane.sourceCount} sources / {lane.limitCount} limits</div>
+                <h3>{section.name}</h3>
+                <p>{section.numbers[0] ?? 'Evidence row available in catalog.'}</p>
+                {section.numbers[1] && <p>{section.numbers[1]}</p>}
+                <div>{section.sourceCount} sources / {section.limitCount} limits</div>
               </article>
             ))}
           </div>
@@ -539,7 +539,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
         <a href="/fraud-alert-triage" class="article-card">
           <div class="article-tags"><span class="tag-pill tag-green">Fraud Ops</span></div>
           <h3>Fraud alert triage workflow</h3>
-          <p>Synthetic signals assembled into an evidence packet, reviewer note, and human approval boundary.</p>
+          <p>Synthetic signals assembled into an evidence packet, case note, and human approval step.</p>
           <div class="card-footer"><span class="read-more">Inspect workflow</span></div>
         </a>
         <a href="/reports" class="article-card">
@@ -664,7 +664,7 @@ const geoDescription = `Bionic Banker is a public evidence spine for AI-assisted
           </div>
           <div class="about-stat-row">
             <div class="astat"><div class="astat-n">{articleCount}</div><div class="astat-l">Articles</div></div>
-            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Catalog lanes</div></div>
+            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Catalog sections</div></div>
             <div class="astat"><div class="astat-n">5+</div><div class="astat-l">Years</div></div>
             <div class="astat"><div class="astat-n">∞</div><div class="astat-l">Questions</div></div>
           </div>

@@ -28,7 +28,7 @@ const displayClaims = {
   'aml-engine-roaster': 'A wallet risk assessment where detection notes and plain-language assessment notes sit side by side.',
   'agent-chess': 'A turn-based way for two AI workers to leave notes, check each other, and keep a shared board readable.',
   'agent-heartbeat-lab': 'A small live loop that publishes enough state to show motion without exposing the machinery behind it.',
-  'agent-framework-proof-v2': 'A local agent workflow lab with tools, roles, traces, retrieval notes, and observability lanes.',
+  'agent-framework-proof-v2': 'A local agent workflow system with tools, roles, traces, retrieval notes, and observability records.',
 };
 
 const scenes = [
@@ -105,11 +105,11 @@ const inspectionRows = scenes
     <section class="tour-hero">
       <div>
         <h1>Risk & Evidence Overview</h1>
-        <p>Start here if the site feels too big. Pick a lane, watch what is moving, read the limit, then follow the next question.</p>
+        <p>Start here if the site feels too big. Pick a section, watch what is moving, read the limit, then follow the next question.</p>
       </div>
       <div class="tour-status">
         <span>Verified {verifiedDate}</span>
-        <strong>{projects.length} evidence catalog lanes</strong>
+        <strong>{projects.length} catalog sections</strong>
         <strong>{questions.length} questions</strong>
       </div>
     </section>
@@ -196,7 +196,7 @@ const inspectionRows = scenes
                     <p>{getStatus(scene.project).review_state}</p>
                   </div>
                   <div>
-                    <span>Boundary</span>
+                    <span>What it cannot do</span>
                     <p>{getStatus(scene.project).approval_boundary}</p>
                   </div>
                 </div>
@@ -255,7 +255,7 @@ const inspectionRows = scenes
                   <span>Next question</span>
                   <p>{scene.next}</p>
                 </div>
-                 <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>Open route -></a>
+                 <a href={scene.route} target={scene.route.startsWith('http') ? '_blank' : undefined} rel={scene.route.startsWith('http') ? 'noopener' : undefined}>View details</a>
               </div>
             </article>
           ))}
@@ -271,7 +271,7 @@ const inspectionRows = scenes
             <small>{metric.unit}</small>
           </div>
         ))}
-        <a href="/reports">Open reports -></a>
+        <a href="/reports">Open reports</a>
       </aside>
     </section>
 
@@ -281,7 +281,7 @@ const inspectionRows = scenes
       <div class="chess-hero-card">
         <div>
           <span class="section-kicker">Agent Chess board</span>
-          <h2 id="agent-chess-showcase-title">Move, review, gate, artifact</h2>
+          <h2 id="agent-chess-showcase-title">Coordinated AI work with human approval</h2>
           <p>{agentChess.summary}</p>
         </div>
         <div class="chess-now-card">
@@ -309,7 +309,7 @@ const inspectionRows = scenes
               <h3>{lane.label}</h3>
             </div>
             <p>{lane.purpose}</p>
-            <small>Public artifact: {lane.public_artifact}</small>
+            <small>Public record: {lane.public_artifact}</small>
           </article>
         ))}
       </div>
@@ -343,7 +343,7 @@ const inspectionRows = scenes
 
     <section class="route-rail" aria-label="Bionic Banker learning route">
       <div>
-        <span>Route</span>
+        <span>Reading path</span>
         <h2>Follow the evidence workflow</h2>
         <p>Start with a question, learn the term, open the risk and evidence overview, then check the numbers. This overview is the middle step.</p>
       </div>
@@ -351,7 +351,7 @@ const inspectionRows = scenes
         <a href="/gaps">Questions</a>
         <a href="/learn">Knowledge Base</a>
         <a href="/risk-evidence-overview">Risk & Evidence Overview</a>
-        <a href="/aml-status-evidence">AML Status Evidence</a>
+        <a href="/aml-status-evidence">AML Status</a>
         <a href="/dashboard">Signal dashboard</a>
         <a href="/reports">Field notes</a>
         <a href="/intelligence">Risk signals</a>
@@ -362,7 +362,7 @@ const inspectionRows = scenes
       <div class="deep-head">
         <span>How to read it</span>
         <h2>Thing to source to next question</h2>
-        <p>Each lane is a visible piece of work, not a product certification. The goal is simple: understand what exists, what points to it, what the limit is, and what question comes next.</p>
+        <p>Each section is a visible piece of work, not a product certification. The goal is simple: understand what exists, what points to it, what the limit is, and what question comes next.</p>
       </div>
       <div class="method-grid">
         <div>
@@ -386,8 +386,8 @@ const inspectionRows = scenes
 
     <section class="deep-panel">
       <div class="deep-head">
-        <span>Route map</span>
-        <h2>How easy each lane is to inspect today</h2>
+        <span>Review map</span>
+        <h2>How easy each section is to inspect today</h2>
         <p>This is a local display score from source links, number notes, and named limits. It is not a product maturity score.</p>
       </div>
       <div class="readiness-list">
@@ -454,7 +454,7 @@ const inspectionRows = scenes
       <div class="deep-head">
         <span>Source list</span>
         <h2>Where the questions came from</h2>
-        <p>The questions come from current AI engineering roles, demonstration patterns, and the way modern teams talk about agents, evals, observability, and deployment.</p>
+        <p>The questions come from current AI engineering roles, public example patterns, and the way modern teams talk about agents, evals, observability, and deployment.</p>
       </div>
       <div class="source-ledger">
         {marketSources.map((source) => (

@@ -32,10 +32,10 @@ const requiredSourcePhrases = [
   'Hermes Kite',
   'Kite testnet and decentralized-infrastructure work',
   'paper-mode portfolio state',
-  'No real-fund execution, no wallet authority, no order authority',
+  'No real-fund execution, no wallet power, no order power',
   'Hardware Compute Environment',
   'bounded local-compute and agent-infrastructure environment',
-  'No private topology, addresses, credentials, wallet control, external action authority',
+  'No private topology, addresses, credentials, wallet control, outside action control',
 ];
 
 for (const phrase of requiredSourcePhrases) {
@@ -46,10 +46,10 @@ const requiredBuiltPhrases = [
   'Hermes Kite',
   'Kite testnet and decentralized-infrastructure work',
   'paper-mode portfolio state',
-  'No real-fund execution, no wallet authority, no order authority',
+  'No real-fund execution, no wallet power, no order power',
   'Hardware Compute Environment',
   'bounded local-compute and agent-infrastructure environment',
-  'No private topology, addresses, credentials, wallet control, external action authority',
+  'No private topology, addresses, credentials, wallet control, outside action control',
 ];
 
 for (const phrase of requiredBuiltPhrases) {
@@ -62,14 +62,14 @@ assert(hermesKite, 'Catalog missing hermes-kite entry.');
 assert(hardware, 'Catalog missing hardware-compute-environment entry.');
 
 assert(hermesKite.sources.some((source) => source.url === 'https://github.com/hash02/hermes-kite'), 'Hermes Kite catalog entry must cite the public GitHub repository.');
-assert(hermesKite.limits.some((limit) => /No real-fund execution authority/i.test(limit)), 'Hermes Kite catalog entry must state no real-fund authority.');
-assert(hermesKite.limits.some((limit) => /No wallet authority/i.test(limit)), 'Hermes Kite catalog entry must state no wallet authority.');
-assert(hermesKite.limits.some((limit) => /No order authority/i.test(limit)), 'Hermes Kite catalog entry must state no order authority.');
+assert(hermesKite.limits.some((limit) => /No real-fund execution power/i.test(limit)), 'Hermes Kite catalog entry must state no real-fund authority.');
+assert(hermesKite.limits.some((limit) => /No wallet power/i.test(limit)), 'Hermes Kite catalog entry must state no wallet authority.');
+assert(hermesKite.limits.some((limit) => /No order power/i.test(limit)), 'Hermes Kite catalog entry must state no order authority.');
 
 assert(hardware.sources.some((source) => source.url === 'https://bionicbanker.tech/blog/agent-graveyard/'), 'Hardware compute catalog entry must cite the public field note.');
 assert(hardware.limits.some((limit) => /No private topology or addresses/i.test(limit)), 'Hardware compute catalog entry must state topology/address boundary.');
 assert(hardware.limits.some((limit) => /No credentials/i.test(limit)), 'Hardware compute catalog entry must state credential boundary.');
-assert(hardware.limits.some((limit) => /No wallet control or external action authority/i.test(limit)), 'Hardware compute catalog entry must state authority boundary.');
+assert(hardware.limits.some((limit) => /No wallet control or outside-action power/i.test(limit)), 'Hardware compute catalog entry must state outside action limits.');
 
 const publicSurface = [source, built, sourceCatalogText, rootCatalogText].join('\n').toLowerCase();
 const banned = [

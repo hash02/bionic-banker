@@ -11,16 +11,16 @@ const projects = [
   {
     name: 'Wallet Risk Assessment',
     surface: 'Interactive web app',
-    signal: 'Risk UX + reviewer-ready evidence',
+    signal: 'Risk UX + review notes',
     flagship: true,
-    description: 'A small evidence view for reading blockchain wallet-risk rows without turning every score into a verdict.',
-    reviewerQuestion: 'Can Hash reason about risk signals without turning a score into a verdict?',
+    description: 'A small wallet-risk review page for reading blockchain rows without turning every score into a verdict.',
+    reviewerQuestion: 'A wallet row can be scored and explained without pretending the score is a final verdict.',
     role: 'Wallets / Risk / Notes',
     url: '/wallet-risk',
-    proof: 'Demonstrates wallet-screening judgment: 28 mapped detection abilities, 23 direct functions, visible scoring logic, and a plain-language reviewer note.',
+    proof: 'Demonstrates wallet-screening judgment: 28 mapped detection abilities, 23 direct functions, visible scoring logic, and a plain-language case note.',
     limitation: 'Research and learning page. Not legal advice, filing software, or a licensed compliance product.',
     links: [
-      { label: 'Open wallet risk', url: '/wallet-risk' },
+      { label: 'View wallet risk', url: '/wallet-risk' },
       { label: 'Field note', url: '/blog/wallet-risk-notes' },
       { label: 'Engine notes', url: '/blog/aml-engine' },
       { label: 'GitHub', url: 'https://github.com/hash02/aml-detection-engine' },
@@ -29,19 +29,19 @@ const projects = [
     ],
   },
   {
-    name: 'AML Status Evidence',
-    surface: 'Evidence web app',
-    signal: 'AML status + audit boundaries',
+    name: 'AML Status',
+    surface: 'AML status page',
+    signal: 'AML status + clear audit limits',
     flagship: true,
-    description: 'A public-safe AML status evidence page for the AML Layer 1 evidence contract, artifact provenance, planner gate, and authority boundaries.',
-    reviewerQuestion: 'Can Hash preserve auditability and authority boundaries?',
-    role: 'AML / Evidence / Boundary',
+    description: 'An AML status page for the Layer 1 status contract, source trail, planner gate, and clear limits.',
+    reviewerQuestion: 'An AML status can show what was checked while still refusing to approve, file, trade, deploy, or execute.',
+    role: 'AML / Evidence / Limits',
     url: '/aml-status-evidence',
-    proof: 'Shows how an AML-related evidence record can be inspected without giving the system authority to approve, file, trade, deploy, or execute.',
-    limitation: 'Evidence surface only. No wallet, trade, filing, deploy, or KYC approval authority.',
+    proof: 'Shows how an AML-related evidence record can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
+    limitation: 'Status summary only. No wallet, trade, filing, deploy, or KYC approval power.',
     links: [
-      { label: 'Open AML status evidence', url: '/aml-status-evidence' },
-      { label: 'Evidence JSON', url: '/dashboard-data/aml-status-evidence-public.json' },
+      { label: 'View AML status', url: '/aml-status-evidence' },
+      { label: 'Status JSON', url: '/dashboard-data/aml-status-evidence-public.json' },
       { label: 'Wallet risk', url: '/wallet-risk' },
       { label: 'AML', url: '/learn#aml' },
     ],
@@ -49,33 +49,33 @@ const projects = [
   {
     name: 'Fraud Alert Triage Workflow',
     surface: 'Synthetic fraud workflow',
-    signal: 'Alert-to-evidence packet',
+    signal: 'Alert-to-review packet',
     flagship: true,
-    description: 'A public-safe fraud operations page showing how suspicious signals become an evidence packet, reviewer note, and explicit human approval boundary.',
-    reviewerQuestion: 'Can Hash turn messy fraud signals into a review-ready packet?',
+    description: 'A fraud operations page showing how suspicious signals become a review packet, case note, and human approval step.',
+    reviewerQuestion: 'Messy fraud signals can become a simple case note, source list, and human next step.',
     role: 'Fraud Ops / Evidence / Review',
     url: '/fraud-alert-triage',
-    proof: 'Demonstrates the market-positioning pattern from alert signal to source evidence, rule explanation, analyst-ready case note, and bounded next action.',
-    limitation: 'Synthetic sample only. Not fraud prevention software, enforcement authority, guaranteed detection, or autonomous case decisioning.',
+    proof: 'Demonstrates the market-positioning pattern from alert signal to source trail, rule explanation, analyst-ready case note, and bounded next action.',
+    limitation: 'Synthetic sample only. Not fraud prevention software, enforcement power, guaranteed detection, or autonomous case decisioning.',
     links: [
-      { label: 'Open fraud triage', url: '/fraud-alert-triage' },
+      { label: 'View fraud triage', url: '/fraud-alert-triage' },
       { label: 'One-page card', url: '/proof/fraud-alert-triage/one-page-card.html' },
-      { label: 'Evidence page', url: '/evidence' },
+      { label: 'Catalog', url: '/evidence' },
       { label: 'Audit log', url: '/learn#audit-log' },
     ],
   },
   {
-    name: 'Evidence-Preserved Agent Workflow Sprint',
-    surface: 'Agent workflow sprint page',
-    signal: 'Move, review, gate, artifact',
-    description: 'A focused public route showing how an agent sprint can preserve evidence, keep review visible, and ship a bounded public artifact without exposing private prompts.',
-    reviewerQuestion: 'Can Hash turn an AI-agent sprint into inspectable public proof without overclaiming authority?',
+    name: 'Agent Workflow Case Review',
+    surface: 'Agent workflow case page',
+    signal: 'Move, review, gate, record',
+    description: 'A focused page showing how an agent-assisted workflow can keep the source trail visible, preserve review steps, and publish a bounded summary without exposing private prompts.',
+    reviewerQuestion: 'AI-assisted case work can leave a readable record without exposing private prompts or taking outside action.',
     role: 'Agents / Evidence / Review',
     url: '/agent-prototype-sprint',
-    proof: 'Shows the sprint pattern from agent move to review, approval gate, public-safe artifact, Field Pack placement, and clear boundaries around external action authority.',
-    limitation: 'Workflow proof only. No autonomous deployment, wallet movement, compliance decision, or private prompt disclosure.',
+    proof: 'Shows the path from AI-assisted case work to review, approval, Field Pack placement, and clear limits on outside action control.',
+    limitation: 'Workflow summary only. No autonomous deployment, wallet movement, compliance decision, or private prompt disclosure.',
     links: [
-      { label: 'Open sprint proof', url: '/agent-prototype-sprint' },
+      { label: 'View case review', url: '/agent-prototype-sprint' },
       { label: 'Field Pack', url: '/proof-pack' },
       { label: 'Fraud triage', url: '/fraud-alert-triage' },
       { label: 'AI agent', url: '/learn#agent' },
@@ -85,18 +85,18 @@ const projects = [
   {
     name: 'Agent Chess',
     surface: 'Agent-operations surface',
-    signal: 'Human-gated orchestration',
+    signal: 'Human-reviewed agent work',
     flagship: true,
     description: 'A two-agent operating pattern where independent agents take turns, review each other, preserve board state, and hold external actions behind approval.',
-    reviewerQuestion: 'Can Hash design AI-agent workflows where humans keep authority?',
+    reviewerQuestion: 'Two AI workers can pass work back and forth while a person keeps final control.',
     role: 'Agents / Memory / Turns',
     url: '/blog/two-agent-finance-operating-system',
-    proof: 'Demonstrates human-gated agent operations: independent turns, review roles, recoverable board state, and public artifacts without exposing private prompts.',
+    proof: 'Demonstrates human-reviewed agent operations: independent turns, review roles, recoverable board state, and public records without exposing private prompts.',
     limitation: 'Personal operating system. The public page shows tempo and broad roles only. No autonomous public publishing or external actions.',
     links: [
       { label: 'Story', url: '/blog/two-agent-finance-operating-system' },
-      { label: 'Evidence page', url: '/evidence' },
-      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
       { label: 'AI agent', url: '/learn#agent' },
       { label: 'Audit log', url: '/learn#audit-log' },
     ],
@@ -104,16 +104,16 @@ const projects = [
   {
     name: 'Agent Workflow System',
     surface: 'Engineering repository',
-    signal: 'Inspectable AI-agent operations',
+    signal: 'Readable AI-agent records',
     flagship: true,
     description: 'A local evidence stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
-    reviewerQuestion: 'Can Hash make AI-agent work inspectable after the run?',
+    reviewerQuestion: 'An AI-agent run should leave tool calls, notes, permissions, and checks that another person can inspect.',
     role: 'Agent Tools / Traces / Permissions',
     url: 'https://github.com/hash02/agent-framework-proof',
-    proof: 'Demonstrates inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, permission checks, trace rows, observability output, and 70 local checks.',
+    proof: 'Demonstrates inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, permission checks, trace rows, monitoring output, and 70 local checks.',
     limitation: 'Local evidence stack, not a production hosted agent or credentialed integration.',
     links: [
-      { label: 'GitHub Repo', url: 'https://github.com/hash02/agent-framework-proof' },
+      { label: 'GitHub repository', url: 'https://github.com/hash02/agent-framework-proof' },
       { label: 'LangChain', url: '/learn#langchain' },
       { label: 'LangGraph', url: '/learn#langgraph' },
       { label: 'RAG', url: '/learn#rag' },
@@ -123,18 +123,18 @@ const projects = [
   {
     name: 'Agent Monitoring Heartbeat',
     surface: 'Status JSON + dashboard feed',
-    signal: 'Monitoring and scoring loop',
+    signal: 'Status and scoring loop',
     description: 'A visible status snapshot showing an agent loop can wake up, write state, score prior predictions, and expose recent health.',
     role: 'Signals / Health / Loop',
     url: '/dashboard-data/heartbeat.json',
     proof: 'Latest snapshot shows alive and healthy status, 2,514 predictions made, and 53 percent accuracy over the last 100 BTC direction checks.',
-    limitation: 'Research and observability only. Not investment advice, live trading performance, or infrastructure disclosure.',
+    limitation: 'Research and monitoring only. Not investment advice, live trading performance, or infrastructure disclosure.',
     links: [
       { label: 'Heartbeat JSON', url: '/dashboard-data/heartbeat.json' },
-      { label: 'Evidence page', url: '/evidence' },
-      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
       { label: 'Heartbeat', url: '/learn#heartbeat' },
-      { label: 'Observability', url: '/learn#observability' },
+      { label: 'System health', url: '/learn#observability' },
     ],
   },
   {
@@ -145,9 +145,9 @@ const projects = [
     role: 'Testnet / Decentralized Infra / Agents',
     url: 'https://github.com/hash02/hermes-kite',
     proof: 'The public repository presents a Kite AI Global Hackathon 2026 submission with paper-mode portfolio state, one-shot workers, and Kite testnet settlement markers.',
-    limitation: 'Public testnet and paper-mode engineering record only. No real-fund execution, no wallet authority, no order authority, and no production capital management claim.',
+    limitation: 'Public testnet and paper-mode engineering record only. No real-fund execution, no wallet power, no order power, and no production capital management claim.',
     links: [
-      { label: 'GitHub Repo', url: 'https://github.com/hash02/hermes-kite' },
+      { label: 'GitHub repository', url: 'https://github.com/hash02/hermes-kite' },
       { label: 'Portfolio monitor', url: '/portfolio' },
       { label: 'Docker', url: '/learn#docker' },
       { label: 'Kubernetes', url: '/learn#kubernetes' },
@@ -158,14 +158,14 @@ const projects = [
     surface: 'Architecture field note',
     signal: 'Local compute and recovery discipline',
     description: 'A bounded local-compute and agent-infrastructure environment for learning how small AI systems behave when they have to run, recover, and leave inspectable state.',
-    role: 'Compute / Agents / Observability',
+    role: 'Compute / Agents / Health',
     url: '/blog/agent-graveyard',
-    proof: 'The public field note documents a modest always-on server, a second security-testing machine, local model usage, one-job agents, queueing, recovery, and observability lessons.',
-    limitation: 'Public architecture summary only. No private topology, addresses, credentials, wallet control, external action authority, or production-service guarantee.',
+    proof: 'The public field note documents a modest always-on server, a second security-testing machine, local model usage, one-job agents, queueing, recovery, and monitoring lessons.',
+    limitation: 'Public architecture summary only. No private topology, addresses, credentials, wallet control, outside action control, or production-service guarantee.',
     links: [
       { label: 'Field note', url: '/blog/agent-graveyard' },
       { label: 'Agent workflow system', url: 'https://github.com/hash02/agent-framework-proof' },
-      { label: 'Observability', url: '/learn#observability' },
+      { label: 'System health', url: '/learn#observability' },
       { label: 'RBAC', url: '/learn#rbac' },
     ],
   },
@@ -179,8 +179,8 @@ const projects = [
     proof: 'The package has seven small files: a manifest, queue notes, trace examples, tool boundaries, and approval gates.',
     limitation: 'Template kit. Not legal advice, certification, or enterprise governance software.',
     links: [
-      { label: 'Evidence page', url: '/evidence' },
-      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
       { label: 'Tool calling', url: '/learn#tool-calling' },
       { label: 'RBAC', url: '/learn#rbac' },
       { label: 'Audit log', url: '/learn#audit-log' },
@@ -196,7 +196,7 @@ const projects = [
     proof: 'Supports Ethereum, Polygon, Base, Arbitrum, Optimism, and 50+ EVM chains through Blockscout according to the README.',
     limitation: 'Quick triage helper, not a replacement for full blockchain intelligence platforms.',
     links: [
-      { label: 'GitHub Repo', url: 'https://github.com/hash02/wallet-risk-check' },
+      { label: 'GitHub repository', url: 'https://github.com/hash02/wallet-risk-check' },
       { label: 'EVM', url: '/learn#evm' },
       { label: 'AML', url: '/learn#aml' },
     ],
@@ -212,8 +212,8 @@ const projects = [
     limitation: 'This page exists because the work used to be scattered across GitHub, articles, and notes.',
     links: [
       { label: 'Articles', url: '/articles' },
-      { label: 'Evidence page', url: '/evidence' },
-      { label: 'Raw JSON', url: '/dashboard-data/public-proof-catalog.json' },
+      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source JSON', url: '/dashboard-data/public-proof-catalog.json' },
       { label: 'Knowledge Base', url: '/learn' },
       { label: 'Field notes', url: '/reports' },
       { label: 'Questions', url: '/gaps' },
@@ -225,12 +225,12 @@ const projects = [
   <div class="page-header">
     <div class="page-label">Systems</div>
     <h1 class="page-title">Systems</h1>
-    <p class="page-sub">A public index of finance, AI-agent, and wallet-risk systems with supporting evidence, limitations, and inspection paths. Each card shows what it assesses, what supports it, and where human review remains required.</p>
-    <div class="page-metric-row" aria-label="Systems evidence snapshot">
+    <p class="page-sub">A public index of finance, AI-agent, and wallet-risk systems with supporting records, limitations, and inspection paths. Each card shows what it assesses, what supports it, and where human review remains required.</p>
+    <div class="page-metric-row" aria-label="Systems snapshot">
       <div><strong>{projects.length}</strong><span>public system cards</span></div>
-      <div><strong>{catalogProjectCount}</strong><span>evidence catalog lanes</span></div>
+      <div><strong>{catalogProjectCount}</strong><span>catalog sections</span></div>
       <div><strong>{catalogSourceCount}</strong><span>catalog evidence sources</span></div>
-      <div><strong>{catalogLimitCount}</strong><span>catalog boundaries</span></div>
+      <div><strong>{catalogLimitCount}</strong><span>catalog limits</span></div>
     </div>
   </div>
 
@@ -243,19 +243,19 @@ const projects = [
       <div class="lab-strip-links">
         <span>Wallet risk</span>
         <span>Agents</span>
-        <span>Observability</span>
+        <span>System health</span>
         <a href="https://github.com/hash02" target="_blank" rel="noopener">GitHub</a>
         <a href="/reports">Field Notes</a>
       </div>
     </div>
-    <p class="verified-note">Evidence snapshot: {verifiedDate}. “Public system cards” counts the cards on this page. “Evidence catalog lanes,” sources, and boundaries come from the public proof catalog.</p>
+    <p class="verified-note">Checked on {verifiedDate}. “Public system cards” counts the cards on this page. “Catalog sections” and source counts come from the public data behind the site.</p>
 
     <section class="systems-audit-panel" aria-label="How this systems page should be judged">
       <div>
         <span class="systems-audit-label">Quality rule</span>
-        <strong>Every card has to earn its surface area.</strong>
+        <strong>Every card has to be clear.</strong>
       </div>
-      <p>What runs, what supporting evidence is visible, what boundary is explicit, and where a reader can inspect the source. Anything weaker stays in private notes until it has evidence.</p>
+      <p>Each card should answer five plain questions: what it is, what it does, why it matters, what you can check, and what it cannot do. Anything weaker stays in private notes until it is clearer.</p>
     </section>
 
     <div class="article-card systems-guide-card" style="margin-bottom: 1.25rem;">
@@ -263,13 +263,13 @@ const projects = [
         <span class="tag-pill tag-green">How to read it</span>
       </div>
       <h3>Recommended path</h3>
-      <p>Start with Wallet Risk Assessment for risk judgment, AML Status Evidence for audit boundaries, Fraud Alert Triage for case assembly, Evidence-Preserved Agent Workflow Sprint for review discipline, then Agent Chess for human-gated agent operations. That sequence shows the core pattern: assess a financial object, preserve the evidence record, review the agent move, and keep external authority behind a human gate.</p>
-        <p><strong>Evidence rule:</strong> if a line cannot point to a source, a number, a screenshot, a test, or a clear boundary, it does not belong here yet.</p>
+      <p>Start with Wallet Risk Assessment for risk judgment, AML Status for clear audit limits, Fraud Alert Triage for case assembly, Agent Workflow Case Review for review discipline, then Agent Chess for human-reviewed agent operations. That sequence shows the core pattern: assess a financial object, keep the source visible, review the AI move, and keep outside actions behind human approval.</p>
+        <p><strong>Evidence rule:</strong> if a line cannot point to a source, a number, a screenshot, a test, or a clear limit, it does not belong here yet.</p>
       <div class="card-footer">
-        <a href="/reports" class="read-more">Open field notes -></a>
-        <a href="/gaps" class="read-more">See questions -></a>
-        <a href="/learn" class="read-more">Learn the concepts -></a>
-        <a href="/evidence" class="read-more">Open evidence catalog -></a>
+        <a href="/reports" class="read-more">Open field notes</a>
+        <a href="/gaps" class="read-more">See questions</a>
+        <a href="/learn" class="read-more">Learn concepts</a>
+        <a href="/evidence" class="read-more">View catalog</a>
       </div>
     </div>
 
@@ -288,7 +288,7 @@ const projects = [
           <p class="system-desc">{project.description}</p>
           {project.reviewerQuestion && (
             <div class="reviewer-question">
-              <span>Reviewer question</span>
+              <span>What this shows</span>
               <strong>{project.reviewerQuestion}</strong>
             </div>
           )}
@@ -298,7 +298,7 @@ const projects = [
               <p>{project.proof}</p>
             </div>
             <div>
-              <span>Boundary</span>
+              <span>What it cannot do</span>
               <p>{project.limitation}</p>
             </div>
           </div>
@@ -310,7 +310,7 @@ const projects = [
             </div>
           )}
           <div class="card-footer">
-            <a href={project.url} class="read-more" target={project.url.startsWith('http') ? '_blank' : undefined} rel={project.url.startsWith('http') ? 'noopener' : undefined}>View system -></a>
+            <a href={project.url} class="read-more" target={project.url.startsWith('http') ? '_blank' : undefined} rel={project.url.startsWith('http') ? 'noopener' : undefined}>View system</a>
           </div>
         </article>
       ))}

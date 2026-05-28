@@ -7,16 +7,16 @@ const generatedDate = new Date(data.generated_at).toISOString().replace('T', ' '
 const metrics = data.metrics ?? {};
 const checks = data.checks ?? [];
 ---
-<BaseLayout title="Site Health / Proof QA" description="Public-safe QA status for the Bionic Banker public evidence spine.">
+<BaseLayout title="Site Health" description="QA status for the Bionic Banker public site and review paths.">
   <main class="page-shell systems-wrap">
     <section class="page-hero">
-      <span class="eyebrow">SITE HEALTH / PROOF QA</span>
-      <h1 class="page-title">The proof surface audits itself.</h1>
-      <p class="page-sub">A public-safe status page for Layer 3 proof hygiene: metric contract, reader-facing evidence routes, link and asset health, and the current public-proof spine.</p>
+      <span class="eyebrow">SITE HEALTH</span>
+      <h1 class="page-title">The site checks its own public claims.</h1>
+      <p class="page-sub">A status page for metric contracts, reader-facing pages, link and asset health, and the current review path.</p>
       <div class="page-metric-row" aria-label="Site health metrics">
-        <div><strong>{data.status}</strong><span>proof QA status</span></div>
+        <div><strong>{data.status}</strong><span>QA status</span></div>
         <div><strong>{metrics.public_system_cards}</strong><span>public system cards</span></div>
-        <div><strong>{metrics.evidence_catalog_lanes}</strong><span>evidence catalog lanes</span></div>
+        <div><strong>{metrics.evidence_catalog_lanes}</strong><span>catalog sections</span></div>
         <div><strong>{metrics.articles}</strong><span>articles</span></div>
       </div>
     </section>
@@ -39,7 +39,7 @@ const checks = data.checks ?? [];
       </div>
     </section>
 
-    <section class="articles-grid" aria-label="Proof QA checks">
+    <section class="articles-grid" aria-label="Site QA checks">
       {checks.map((check) => (
         <article class="article-card">
           <span>{check.status}</span>
@@ -60,7 +60,7 @@ const checks = data.checks ?? [];
       <div>
         <span class="systems-audit-label">LAST GENERATED</span>
         <strong>{generatedDate} UTC</strong>
-        <p>Generated from deterministic local checks during the Layer 3 proof spine hardening workflow.</p>
+        <p>Generated from deterministic local checks during the site hardening workflow.</p>
       </div>
     </section>
   </main>

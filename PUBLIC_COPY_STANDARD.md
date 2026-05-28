@@ -1,6 +1,6 @@
 # Bionic Banker Public Copy Standard
 
-Bionic Banker is a public AI + finance + compliance/risk platform. Public pages should sound like a serious risk, evidence, monitoring, and audit system — not a proof/lab/demo/hacker toy.
+Bionic Banker is a public AI + finance + compliance/risk platform. Public pages should use simple reader-first language: what it is, what it does, what supports it, what stays private, and what the system cannot do. Keep the serious risk, monitoring, and audit tone, but do not make readers decode internal agent language.
 
 ## Core standard
 
@@ -10,24 +10,25 @@ Use public language that a compliance, risk, data, audit, or governance buyer wo
 - wallet screening
 - transaction monitoring
 - risk signal
-- supporting evidence
-- evidence record
+- supporting records
+- evidence records
 - audit trail
 - decision history
 - controls
 - monitoring
 - reporting
-- limitation
-- authority boundary
-- reviewer-ready summary
+- clear limits
+- requires human approval
+- plain-language summary
 - risk rationale
 
-Every public claim should answer:
+Every public page or card should answer:
 
-1. What is being assessed or monitored?
-2. What evidence supports it?
-3. What are the limits?
-4. What authority is explicitly not granted?
+1. What is this?
+2. What does it do?
+3. Why does it matter?
+4. What can the reader check?
+5. What can it not do?
 
 ## Do not use publicly
 
@@ -57,27 +58,30 @@ Avoid these words/phrases in navigation, titles, hero sections, route labels, pr
 - autonomous profit
 - guaranteed return
 - live execution enabled
-- wallet authority: true
-- trade authority: true
+- wallet power: true
+- trade power: true
 - roast / roaster / roasts, except in historical repository URLs that cannot be renamed safely
 
 ## Preferred replacements
 
 - Proof Tour → Risk & Evidence Overview
 - proof page → evidence page or status evidence page
-- proof surface → evidence view
-- proof path / proof route → evidence workflow or system overview
-- proof → supporting evidence, evidence record, verification, audit trail, or benchmark result
+- proof surface → public page, evidence view, or what you can inspect
+- proof path / proof route → review map, system overview, or page
+- proof → supporting record, evidence record, verification, audit trail, or benchmark result
 - Wallet Risk Lab → Wallet Risk Assessment
 - Live Signals → Risk Signals or Market & Risk Signals
 - Experiments → Systems, Case Studies, Workflows, or Field Notes
 - AI Learning → Knowledge Base
 - receipt → evidence record or audit entry
-- roast / roaster → risk note, assessment note, risk-note generator, reviewer-ready summary, risk rationale
+- roast / roaster → risk note, assessment note, risk-note generator, reader-ready summary, risk rationale
 - truth layer → evidence layer, review layer, or verification layer
 - clean wallet / safe wallet → lower-risk wallet, no current risk signal, no elevated signal in this sample
 - demo → public demonstration, prototype, walkthrough, or reproducible example
 - lab → system, sandbox, research environment, or controlled environment
+- approval power / outside-action power → what the system cannot do or clear limit
+- human-gated → requires human approval
+- reviewer question → what this shows
 
 ## Allowed technical exceptions
 
@@ -99,7 +103,7 @@ Compliance, AML, wallet-risk, trading, or finance pages should include clear bou
 - not a KYC approval
 - not SAR filing software
 - not a licensed compliance product
-- no wallet authority
+- no wallet power
 - no trade/order authority
 - no filing authority
 - human review required

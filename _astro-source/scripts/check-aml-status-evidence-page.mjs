@@ -25,13 +25,13 @@ const projects = read(projectsPath);
 const proofTour = read(proofTourPath);
 const catalog = JSON.parse(read(catalogPath));
 
-assert(page.includes('<BaseLayout title="AML Status Evidence"'), 'AML status evidence page must use BaseLayout with title "AML Status Evidence".');
+assert(page.includes('<BaseLayout title="AML Status"'), 'AML status page must use BaseLayout with title "AML Status".');
 assert(page.includes('aml-status-evidence-public.json'), 'AML status evidence page must import the public AML status evidence JSON catalog.');
-assert(page.includes('may_execute'), 'AML status evidence page must visibly explain the may_execute boundary.');
-assert(page.includes('false'), 'AML status evidence page must visibly show false execution authority.');
-assert(page.includes('No KYC approval authority'), 'AML status evidence page must state the KYC boundary exactly.');
-assert(page.includes('No wallet, trade, filing, or deploy authority'), 'AML status evidence page must state the execution boundary exactly.');
-assert(page.includes('artifact provenance'), 'AML status evidence page must include artifact provenance wording.');
+assert(page.includes('Can approve outside action') || page.includes('No outside action'), 'AML status page must explain action approval in reader-facing language.');
+assert(page.includes('Can approve outside action') && page.includes('No outside action'), 'AML status page must visibly explain that outside action is not approved.');
+assert(page.includes('No wallet, trade, filing, deploy, or KYC approval power'), 'AML status page must state the KYC and execution limits plainly.');
+assert(page.includes('No wallet, trade, filing, deploy, or KYC approval power'), 'AML status page must state the execution limits plainly.');
+assert(page.includes('source trail'), 'AML status page must include source trail wording.');
 
 assert(layout.includes('href="/aml-status-evidence"'), 'Primary layout must expose /aml-status-evidence in navigation/mobile/footer.');
 assert(projects.includes('/aml-status-evidence'), 'Systems page must link to the AML status evidence page.');

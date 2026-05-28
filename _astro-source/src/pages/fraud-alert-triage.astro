@@ -2,13 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Fraud Alert Triage Workflow';
-const description = 'A public-safe synthetic proof sample showing how fraud signals become reviewer-ready evidence packets with human approval boundaries.';
+const description = 'A synthetic review sample showing how fraud signals become clear case packets with human approval steps.';
 
 const proofMap = [
   ['1', 'Detect the pattern', 'A fictional transfer sequence combines device, geography, recipient, and payment-timing signals.'],
-  ['2', 'Assemble the evidence', 'The workflow turns scattered events into a traceable packet a reviewer can inspect.'],
-  ['3', 'Draft the reviewer note', 'The system proposes a concise case note without declaring fraud or taking account action.'],
-  ['4', 'Keep authority human', 'Final decisions stay with a reviewer operating under approved policy.']
+  ['2', 'Assemble the record', 'The workflow turns scattered events into a traceable packet a human can inspect.'],
+  ['3', 'Draft the case note', 'The system proposes a concise case note without declaring fraud or taking account action.'],
+  ['4', 'Keep final action human', 'Final decisions stay with a person operating under approved policy.']
 ];
 
 const alertSignals = [
@@ -16,17 +16,17 @@ const alertSignals = [
   ['Trigger window', '18 minutes', 'Short gap between login anomaly, test payments, and larger transfer attempt.'],
   ['Device signal', 'New device', 'Risk-relevant only when paired with payment anomalies.'],
   ['Geography signal', 'New geography', 'Context signal requiring human review, not a standalone fraud decision.'],
-  ['Payment signal', '2 low-value tests + 1 larger transfer attempt', 'Common suspicious pattern, but not conclusive without reviewer context.'],
+  ['Payment signal', '2 low-value tests + 1 larger transfer attempt', 'Common suspicious pattern, but not conclusive without human context.'],
   ['Recipient history', 'No prior recipient history', 'Recipient novelty increases review priority.'],
-  ['Automation boundary', 'Decision-support only', 'No automatic block, release, reimbursement, or account action.']
+  ['Automation limit', 'Decision-support only', 'No automatic block, release, reimbursement, or account action.']
 ];
 
 const evidencePacket = [
   ['Event timeline', 'Synthetic event sequence', 'Shows order of login anomaly, test transactions, and larger transfer attempt.'],
-  ['Rule contribution', 'Deterministic indicators', 'Reviewer can see which checks fired and challenge the logic.'],
+  ['Rule contribution', 'Deterministic indicators', 'A reader can see which checks fired and challenge the logic.'],
   ['Priority tier', 'High review', 'Queue sorting support, not a final fraud decision.'],
-  ['Case note', 'Generated draft from source evidence', 'Reduces documentation burden while preserving traceability.'],
-  ['Human next step', 'Reviewer checklist', 'Keeps final decision inside approved policy and human judgment.']
+  ['Case note', 'Generated draft from source records', 'Reduces documentation burden while preserving traceability.'],
+  ['Human next step', 'Review checklist', 'Keeps final decision inside approved policy and human judgment.']
 ];
 
 const ruleSnapshot = [
@@ -38,11 +38,11 @@ const ruleSnapshot = [
 ];
 
 const canSupport = [
-  'Evidence collection',
+  'Record collection',
   'Case-note drafting',
   'Rule explanation',
   'Triage priority',
-  'Reviewer checklist creation',
+  'Review checklist creation',
   'Outcome capture for feedback loops'
 ];
 
@@ -55,34 +55,34 @@ const mustNotClaim = [
 ];
 
 const roleFit = [
-  ['Fraud / AML / RegTech', 'Shows alert review judgment: suspicious activity framing, escalation context, reviewer-ready evidence, and clear limits.'],
-  ['Applied AI Ops', 'Shows bounded automation: messy event signals become operational artifacts without hiding source evidence.'],
-  ['AI governance / model risk', 'Shows separation between source facts, generated text, deterministic rules, and human authority.'],
+  ['Fraud / AML / RegTech', 'Shows alert review judgment: suspicious activity framing, escalation context, readable source trail, and clear limits.'],
+  ['Applied AI Ops', 'Shows bounded automation: messy event signals become operational case records without hiding the source trail.'],
+  ['AI governance / model risk', 'Shows separation between source facts, generated text, deterministic rules, and human approval.'],
   ['FinTech decision support', 'Shows product sense for regulated workflows: useful assistance without pretending to be the final decision-maker.']
 ];
 ---
 <BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/fraud-alert-triage/">
   <main class="proof-page">
     <section class="proof-hero">
-      <div class="proof-kicker">Public-safe proof sample</div>
+      <div class="proof-kicker">Public-safe case sample</div>
       <h1>Fraud Alert Triage Workflow</h1>
-      <p class="proof-lede">A synthetic example of evidence-preserving automation for regulated financial workflows: suspicious signal → source evidence → rule explanation → reviewer-ready case note → human-approved next action.</p>
-      <div class="reviewer-callout"><span>Reviewer question</span><strong>Can Hash turn messy fraud signals into a review-ready packet?</strong></div>
-      <p class="proof-positioning">Built as a portfolio proof for AI + finance + fraud operations: not a production claim, not a compliance promise, and not real customer data.</p>
-      <div class="proof-actions" aria-label="Proof exports">
+      <p class="proof-lede">A synthetic example of source-preserving automation for regulated financial workflows: suspicious signal, source trail, rule explanation, case note, human-approved next step.</p>
+      <div class="reviewer-callout"><span>What this shows</span><strong>Messy fraud signals can become a simple case note, source list, and human next step.</strong></div>
+      <p class="proof-positioning">Built as a portfolio case record for AI + finance + fraud operations: not a production claim, not a compliance promise, and not real customer data.</p>
+      <div class="proof-actions" aria-label="Case exports">
         <a href="/proof/fraud-alert-triage/one-page-card.html">Open one-page card</a>
         <a href="/proof/fraud-alert-triage/one-page-card.pdf">Download PDF card</a>
         <a href="/proof/fraud-alert-triage/linkedin-project-bullets.md">LinkedIn / project bullets</a>
       </div>
-      <div class="proof-badges" aria-label="Proof boundaries">
+      <div class="proof-badges" aria-label="Case boundaries">
         <span>Synthetic data only</span>
         <span>Decision support</span>
         <span>Human approval required</span>
       </div>
     </section>
 
-    <section class="proof-section proof-map" aria-label="90-second proof map">
-      <div class="section-label">90-second proof map</div>
+    <section class="proof-section proof-map" aria-label="90-second case map">
+      <div class="section-label">90-second case map</div>
       <div class="proof-map-grid">
         {proofMap.map(([step, heading, body]) => (
           <article class="proof-map-card">
@@ -99,7 +99,7 @@ const roleFit = [
         <div class="section-label">Problem</div>
         <h2>Fraud alerts are not just predictions. They are review workflows.</h2>
       </div>
-      <p>In regulated finance, the useful artifact is not an unexplained score. Reviewers need a traceable packet: what happened, which rules contributed, what evidence is attached, what action is suggested, and which decisions remain human-owned. This draft shows that workflow using fictional data only.</p>
+      <p>In regulated finance, the useful output is not an unexplained score. Reviewers need a traceable packet: what happened, which rules contributed, what source detail is attached, what action is suggested, and which decisions remain human-owned. This draft shows that workflow using fictional data only.</p>
     </section>
 
     <section class="proof-section">
@@ -118,7 +118,7 @@ const roleFit = [
     <section class="proof-grid">
       <div class="proof-card wide">
         <div class="section-label">Evidence packet</div>
-        <h2>What a reviewer should receive</h2>
+        <h2>What a human should receive</h2>
         <div class="packet-list">
           {evidencePacket.map(([item, status, reason]) => (
             <article class="packet-item">
@@ -130,7 +130,7 @@ const roleFit = [
         </div>
       </div>
       <aside class="proof-card boundary-card">
-        <div class="section-label">Boundary</div>
+        <div class="section-label">What it cannot do</div>
         <h2>No autonomous account action</h2>
         <p>This sample supports review. It does not block accounts, move money, release funds, reimburse customers, file regulatory reports, approve KYC, or make final fraud determinations.</p>
       </aside>
@@ -152,7 +152,7 @@ const roleFit = [
     </section>
 
     <section class="proof-section case-note">
-      <div class="section-label">Reviewer-ready case note draft</div>
+      <div class="section-label">Reader-ready case note draft</div>
       <blockquote>
         Priority: high review. A new device and new geography appeared before two low-value transfers to new recipients, followed by a larger transfer attempt. The pattern may indicate account-takeover probing, but this workflow does not declare fraud automatically. Route to human fraud review with event timeline, recipient history, device/session context, and transfer authorization evidence attached. Reviewer should decide whether to block, release, reimburse, escalate, or request more information according to approved policy.
       </blockquote>
@@ -186,9 +186,9 @@ const roleFit = [
     </section>
 
     <section class="proof-section approval-box">
-      <div class="section-label">Public-use boundary</div>
-      <h2>Public proof, bounded claims.</h2>
-      <p>This page is a public-safe evidence artifact for reviewer inspection. It uses no employer data, client data, private wallet data, secrets, or real customer identifiers. It should be read as a synthetic workflow demonstration, not as a claim of live fraud-detection performance.</p>
+      <div class="section-label">Public-use limit</div>
+      <h2>Public summary, bounded claims.</h2>
+      <p>This page is a public review summary for human inspection. It uses no employer data, client data, private wallet data, secrets, or real customer identifiers. It should be read as a synthetic workflow demonstration, not as a claim of live fraud-detection performance.</p>
     </section>
   </main>
 

@@ -6,58 +6,58 @@ const reviewerPath = [
     step: '01',
     title: 'Wallet Risk Assessment',
     href: '/wallet-risk',
-    proves: 'Risk judgment: a suspicious wallet row becomes a score, rule explanation, and reviewer note.',
-    question: 'Can Hash reason about risk signals without turning a score into a verdict?',
+    proves: 'Risk judgment: a suspicious wallet row becomes a score, rule explanation, and case note.',
+    question: 'A wallet row can be scored and explained without pretending the score is a final verdict.',
   },
   {
     step: '02',
-    title: 'AML Status Evidence',
+    title: 'AML Status',
     href: '/aml-status-evidence',
-    proves: 'Auditability: a status claim includes artifact provenance, checks, and authority boundaries.',
-    question: 'Can Hash preserve evidence and make compliance boundaries explicit?',
+    proves: 'Auditability: a status claim includes source trail, checks, and clear limits.',
+    question: 'An AML status can show what was checked and what the system cannot do.',
   },
   {
     step: '03',
     title: 'Fraud Alert Triage Workflow',
     href: '/fraud-alert-triage',
     proves: 'Operations design: synthetic alert signals become a review-ready field packet and case note.',
-    question: 'Can Hash turn messy alerts into a human-review workflow?',
+    question: 'Messy alerts can become a clear case note and human next step.',
   },
   {
     step: '04',
     title: 'Agent Chess / Agent Workflow',
     href: '/risk-evidence-overview#agent-chess-showcase',
-    proves: 'Human-gated agent operations: agents prepare artifacts, preserve state, and wait at approval gates.',
-    question: 'Can Hash design AI-agent workflows where humans keep authority?',
+    proves: 'Human-reviewed agent operations: agents prepare work, preserve state, and wait at approval gates.',
+    question: 'AI workers can help with the work while a person keeps final control.',
   },
   {
     step: '05',
     title: 'Site Health / Health Board',
     href: '/proof/site-health',
     proves: 'Self-checking public map: metric, link, JSON-framing, and mobile gates protect the public site.',
-    question: 'Can Hash build systems that check their own public claims?',
+    question: 'A public site can check its own links, numbers, and copy before readers see it.',
   },
 ];
 
 const audienceCards = [
-  ['Recruiter', 'Look for risk judgment, product sense, field packaging, and delivery discipline.', 'Start with Wallet Risk, then AML Status Evidence, then Health Board.'],
-  ['Collaborator', 'Look for where a workflow could become a shared prototype or research path.', 'Start with Fraud Alert Triage, Agent Chess, and the field pack.'],
-  ['Executive / investor', 'Look for category clarity, regulated-workflow restraint, and credible scope boundaries.', 'Start with the one-line thesis, market positioning, and boundaries.'],
-  ['Technical explorer', 'Look for routes, source links, deterministic gates, public JSON, and what is intentionally not exposed.', 'Start with Systems, Evidence Catalog, and Site Health / Health Board.'],
+  ['Recruiter', 'Look for risk judgment, product sense, field packaging, and delivery discipline.', 'Start with Wallet Risk, then AML Status, then Health Board.'],
+  ['Collaborator', 'Look for where a workflow could become a shared test case or research path.', 'Start with Fraud Alert Triage, Agent Chess, and the field pack.'],
+  ['Executive / investor', 'Look for category clarity, regulated-workflow restraint, and credible limits.', 'Start with the one-line thesis, market positioning, and boundaries.'],
+  ['Technical explorer', 'Look for pages, source links, deterministic checks, public JSON, and what is intentionally not exposed.', 'Start with Systems, Evidence Catalog, and Site Health / Health Board.'],
 ];
 
 const boundaries = [
   'No live trading, wallet movement, or fund transfer authority.',
-  'No SAR filing, KYC approval, enforcement, or final compliance authority.',
+  'No SAR filing, KYC approval, enforcement, or final compliance power.',
   'No customer, employer, private wallet, private prompt, key, token, or internal infrastructure data.',
-  'Portfolio grade public evidence, not a commercial deployment claim.',
+  'Portfolio grade public summary, not a commercial deployment claim.',
 ];
 
 const conversationFit = [
   'AI-assisted finance risk workflows',
   'AML, fraud, wallet-risk, and RegTech field packaging',
-  'Human-gated agent operations and observability',
-  'Product evidence surfaces for regulated or high-trust systems',
+  'Human-reviewed agent operations and system health',
+  'Product summaries for regulated or high-trust systems',
   'Founder/operator roles where evidence, shipping, and judgment matter',
 ];
 ---
@@ -66,9 +66,9 @@ const conversationFit = [
     <section class="guide-hero">
       <div class="guide-kicker">Start Quest / Mission Map</div>
       <h1>AI-assisted finance risk workflows, mapped like missions with humans in control.</h1>
-      <p>Bionic Banker is a playable map of Hash's finance-risk and agent-systems work. Each stop has a task, evidence, and a boundary.</p>
+      <p>Bionic Banker is a playable map of Hash's finance-risk and agent-systems work. Each stop has a task, a record, and a clear limit.</p>
       <div class="guide-actions">
-        <a href="/proof-pack">Open Field Pack</a>
+        <a href="/proof-pack">View Field Pack</a>
         <a href="/projects">Enter Systems</a>
         <a href="/proof/site-health">Check Health Board</a>
       </div>
@@ -82,7 +82,7 @@ const conversationFit = [
           <a class="path-card" href={item.href}>
             <span>{item.step}</span>
             <h3>{item.title}</h3>
-            <p><strong>Mission question:</strong> {item.question}</p>
+            <p><strong>What this shows:</strong> {item.question}</p>
             <p>{item.proves}</p>
           </a>
         ))}
@@ -92,16 +92,16 @@ const conversationFit = [
     <section class="guide-section split">
       <div>
         <div class="section-label">What this unlocks</div>
-        <h2>The loop is signal to evidence to review to artifact.</h2>
-        <p>The strongest signal is not that an agent can write text. It is that a finance-risk workflow can keep the source trail visible, explain the reasoning, state the limit, and hand the decision to a person.</p>
+        <h2>The loop is signal to source to review to human decision.</h2>
+        <p>The strongest signal is not that an agent can write text. It is that a finance-risk workflow can keep the source visible, explain the reason, state the limit, and hand the decision to a person.</p>
       </div>
       <div class="evidence-list-card">
         <strong>Player stats</strong>
         <ul>
           <li>risk judgment</li>
-          <li>evidence preservation</li>
-          <li>audit-boundary thinking</li>
-          <li>human-gated automation</li>
+          <li>source preservation</li>
+          <li>clear-limit thinking</li>
+          <li>human-reviewed automation</li>
           <li>public QA discipline</li>
         </ul>
       </div>
@@ -109,7 +109,7 @@ const conversationFit = [
 
     <section class="guide-section">
       <div class="section-label">Choose your lens</div>
-      <h2>Different readers can choose different routes.</h2>
+      <h2>Different readers can choose different paths.</h2>
       <div class="audience-grid">
         {audienceCards.map(([role, lookFor, path]) => (
           <article class="audience-card">
@@ -123,9 +123,9 @@ const conversationFit = [
 
     <section class="guide-section split boundary-panel">
       <div>
-        <div class="section-label">Trust boundary</div>
+        <div class="section-label">Clear limits</div>
         <h2>What stays outside the game.</h2>
-        <p>The site stays careful. It shows judgment and system design while keeping authority, private data, and regulated decisions out of scope.</p>
+        <p>The site stays careful. It shows judgment and system design while keeping outside-action power, private data, and regulated decisions out of scope.</p>
       </div>
       <ul>
         {boundaries.map((item) => <li>{item}</li>)}
@@ -140,7 +140,7 @@ const conversationFit = [
       </div>
       <div class="closing-cta">
         <strong>If you only send one link, send the mission map.</strong>
-        <a href="/proof-pack">Then open the field pack</a>
+        <a href="/proof-pack">Then view the field pack</a>
       </div>
     </section>
   </main>

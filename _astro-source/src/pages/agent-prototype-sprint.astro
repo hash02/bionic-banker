@@ -1,23 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = 'Evidence-Preserved Agent Workflow Sprint';
-const description = 'A public-safe one-page evidence view showing how a messy finance-risk workflow can become a reviewer-ready packet with human approval boundaries.';
+const title = 'Agent Workflow Case Review';
+const description = 'A one-page review summary showing how a messy finance-risk workflow can become a clear case packet with human approval steps.';
 
 const workflowSteps = [
-  ['1', 'Define the boundary', 'Pick one workflow, define inputs and outputs, and list the actions the system is not allowed to take.'],
-  ['2', 'Preserve source evidence', 'Capture the signal row, evidence status, source freshness, missing context, and limitations.'],
-  ['3', 'Draft the reviewer summary', 'Use the agent to classify, explain, and prepare a reviewer-ready note without making the final decision.'],
-  ['4', 'Hand off to a human gate', 'Give the reviewer options, decision history, and authority boundary before any external action.']
+  ['1', 'Define the limit', 'Pick one workflow, define inputs and outputs, and list the actions the system is not allowed to take.'],
+  ['2', 'Preserve the source', 'Capture the signal row, source status, freshness, missing context, and limits.'],
+  ['3', 'Draft the review summary', 'Use the agent to classify, explain, and prepare a review note without making the final decision.'],
+  ['4', 'Hand off to a person', 'Give the human options, decision history, and clear limits before any outside action.']
 ];
 
 const allowedActions = [
   'Ingest a synthetic or sanitized signal row',
   'Classify the signal into a review queue',
-  'Preserve source evidence and limitations',
-  'Draft a reviewer-ready summary',
+  'Preserve source trail and limits',
+  'Draft a review summary',
   'Propose next-action options for a human',
-  'Write an audit-friendly evidence record'
+  'Write an audit-friendly case record'
 ];
 
 const blockedActions = [
@@ -25,52 +25,52 @@ const blockedActions = [
   'KYC, AML, fraud, or legal final decisions',
   'SAR filing, regulatory filing, or sign-off authority',
   'Account block, release, transfer, wallet movement, trade, or payment execution',
-  'Claims of measured savings, loss reduction, accuracy, or false-positive reduction without fresh evidence'
+  'Claims of measured savings, loss reduction, accuracy, or false-positive reduction without fresh records'
 ];
 
 const evidencePacket = [
   ['Case summary', 'Short explanation of the signal and why it deserves review.'],
-  ['Source evidence', 'Timeline, rule hits, source freshness, evidence status, and unavailable fields.'],
+  ['Source trail', 'Timeline, rule hits, source freshness, source status, and unavailable fields.'],
   ['Reasoning draft', 'Plain-English rationale that separates observed facts from generated explanation.'],
-  ['Limitations', 'What the system cannot know from the available data.'],
+  ['Limits', 'What the available data cannot answer.'],
   ['Reviewer options', 'Escalate, request more information, close as low priority, or continue monitoring under approved policy.'],
-  ['Audit trail', 'Timestamp, artifact ID, source status, checksum when available, and decision boundary.']
+  ['Audit trail', 'Timestamp, record ID, source status, checksum when available, and decision limit.']
 ];
 
 const sampleRow = [
   ['Signal type', 'Unusual transfer or counterparty pattern'],
   ['Source status', 'Synthetic or sanitized sample row'],
   ['Review context', 'Possible AML, fraud, or account-risk escalation'],
-  ['Evidence available', 'Timeline, counterparty novelty, rule hits, source freshness, reviewer checklist'],
-  ['Evidence unavailable', 'Customer identity, private transaction history, internal policy documents, live account controls'],
-  ['Prototype authority', 'Decision support only']
+  ['Source details available', 'Timeline, counterparty novelty, rule hits, source freshness, review checklist'],
+  ['Source details unavailable', 'Customer identity, private transaction history, internal policy documents, live account controls'],
+  ['Prototype limit', 'Decision support only']
 ];
 
 const roleFit = [
-  ['Risk and compliance leaders', 'Shows how agent assistance can stay inside review, evidence, limitation, and authority controls.'],
-  ['FinTech founders', 'Turns one workflow into a compact artifact that can be inspected before building a production system.'],
+  ['Risk and compliance leaders', 'Shows how agent assistance can stay inside review, records, limits, and approval controls.'],
+  ['FinTech founders', 'Turns one workflow into a compact review packet that can be inspected before building a production system.'],
   ['Fraud and AML operators', 'Connects scattered signals to a case note, review queue, and escalation checklist.'],
-  ['AI governance reviewers', 'Separates source evidence, generated explanation, human decision authority, and audit trail.']
+  ['AI governance readers', 'Separates source trail, generated explanation, human decision control, and audit trail.']
 ];
 ---
 <BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/agent-prototype-sprint/">
   <main class="evidence-page">
     <section class="evidence-hero">
-      <div class="evidence-kicker">Public-safe evidence view</div>
-      <h1>Evidence-Preserved Agent Workflow Sprint</h1>
-      <p class="evidence-lede">A 90-second case view for turning one messy finance-risk workflow into a reviewer-ready evidence packet. The agent can classify, summarize, explain, and draft. It cannot approve, message, file, trade, move funds, or make the final decision.</p>
-      <div class="reviewer-callout"><span>Reviewer question</span><strong>Can Hash turn a vague agent idea into a controlled finance-risk workflow?</strong></div>
-      <p class="evidence-positioning">This is a public demonstration built from synthetic framing only. It is not customer data, legal advice, investment advice, a licensed compliance product, or a claim of production deployment.</p>
-      <div class="evidence-badges" aria-label="Evidence boundaries">
-        <span>Synthetic framing</span>
+      <div class="evidence-kicker">Agent workflow case review</div>
+      <h1>Agent Workflow Case Review</h1>
+      <p class="evidence-lede">A 90-second case view for turning one messy finance-risk workflow into a clear review packet. The agent can classify, summarize, explain, and draft. It cannot approve, message, file, trade, move funds, or make the final decision.</p>
+      <div class="reviewer-callout"><span>What this shows</span><strong>A vague agent idea can become one clear finance-risk workflow with records, limits, and human approval.</strong></div>
+      <p class="evidence-positioning">This is a public example built from synthetic framing only. It is not customer data, legal advice, investment advice, a licensed compliance product, or a claim of production deployment.</p>
+      <div class="evidence-badges" aria-label="System limits">
+        <span>Synthetic sample</span>
         <span>Decision support</span>
         <span>Human review required</span>
-        <span>No execution authority</span>
+        <span>No execution power</span>
       </div>
     </section>
 
-    <section class="evidence-section evidence-map" aria-label="90-second workflow map">
-      <div class="section-label">90-second workflow map</div>
+    <section class="evidence-section evidence-map" aria-label="90-second case map">
+      <div class="section-label">90-second case map</div>
       <div class="evidence-map-grid">
         {workflowSteps.map(([step, heading, body]) => (
           <article class="evidence-map-card">
@@ -85,9 +85,9 @@ const roleFit = [
     <section class="evidence-section evidence-intro">
       <div>
         <div class="section-label">Why this matters</div>
-        <h2>Agent value appears when the evidence record is clearer than the chat transcript.</h2>
+        <h2>Agent value appears when the case record is clearer than the chat transcript.</h2>
       </div>
-      <p>Finance, risk, and compliance teams do not need an agent that sounds confident. They need a controlled workflow that says what was inspected, what evidence supports the draft, what is missing, and which choices remain human-owned.</p>
+      <p>Finance, risk, and compliance teams do not need an agent that sounds confident. They need a controlled workflow that says what was inspected, what supports the draft, what is missing, and which choices remain human-owned.</p>
     </section>
 
     <section class="evidence-grid">
@@ -105,12 +105,12 @@ const roleFit = [
       <aside class="evidence-card boundary-card">
         <div class="section-label">Authority boundary</div>
         <h2>No external action authority</h2>
-        <p>The output is a reviewer packet. It does not message customers, approve KYC, file reports, block accounts, release funds, move wallets, place trades, or make final compliance decisions.</p>
+        <p>The output is a review packet. It does not message customers, approve KYC, file reports, block accounts, release funds, move wallets, place trades, or make final compliance decisions.</p>
       </aside>
     </section>
 
     <section class="evidence-section">
-      <div class="section-label">Evidence packet</div>
+      <div class="section-label">Review packet</div>
       <div class="packet-grid">
         {evidencePacket.map(([item, body]) => (
           <article class="packet-item">
@@ -122,21 +122,21 @@ const roleFit = [
     </section>
 
     <section class="evidence-section case-note">
-      <div class="section-label">Reviewer-ready summary draft</div>
+      <div class="section-label">Reviewer summary draft</div>
       <blockquote>
-        Review required. The signal shows a short-window pattern involving a novel counterparty and activity that could be relevant to account-risk, fraud, or AML review. The available evidence is enough to prepare a reviewer packet, but not enough to make a final compliance, account, or legal decision. Route the case to a human reviewer with the source timeline, rule contribution summary, unavailable-evidence list, and policy-specific next-action checklist attached.
+        Review required. The signal shows a short-window pattern involving a novel counterparty and activity that could be relevant to account-risk, fraud, or AML review. The available source detail is enough to prepare a review packet, but not enough to make a final compliance, account, or legal decision. Send the case to a human reader with the source timeline, rule contribution summary, unavailable-detail list, and policy-specific next-action checklist attached.
       </blockquote>
     </section>
 
     <section class="evidence-grid">
       <div class="evidence-card">
-        <div class="section-label">The workflow can support</div>
+        <div class="section-label">What the workflow can support</div>
         <ul class="check-list">
           {allowedActions.map((item) => <li>{item}</li>)}
         </ul>
       </div>
       <div class="evidence-card muted-card">
-        <div class="section-label">The workflow must not claim</div>
+        <div class="section-label">What the workflow must not claim</div>
         <ul class="no-list">
           {blockedActions.map((item) => <li>{item}</li>)}
         </ul>
@@ -144,7 +144,7 @@ const roleFit = [
     </section>
 
     <section class="evidence-section">
-      <div class="section-label">Who should inspect it</div>
+      <div class="section-label">Who should review it</div>
       <div class="role-grid">
         {roleFit.map(([role, fit]) => (
           <article class="role-card">
@@ -156,13 +156,13 @@ const roleFit = [
     </section>
 
     <section class="evidence-section approval-box">
-      <div class="section-label">Public-use boundary</div>
-      <h2>Evidence view first, commercial conversation second.</h2>
-      <p>This page is safe to review as a public portfolio artifact after final approval. Any client version would require scoped inputs, approved data handling, policy review, and explicit human gates before use outside a controlled prototype.</p>
+      <div class="section-label">Safe-use boundary</div>
+      <h2>Review summary first, commercial conversation second.</h2>
+      <p>This page is safe to review as a public portfolio summary after final approval. Any client version would require scoped inputs, approved data handling, policy review, and explicit human approval gates before use outside a controlled test setting.</p>
       <div class="approval-links">
-        <a href="/fraud-alert-triage/">Compare fraud triage workflow</a>
-        <a href="/aml-status-evidence/">Inspect AML status evidence</a>
-        <a href="/proof-pack/">Open Field Pack</a>
+        <a href="/fraud-alert-triage/">Compare fraud triage case review</a>
+        <a href="/aml-status-evidence/">View AML status</a>
+        <a href="/proof-pack/">View Field Pack</a>
       </div>
     </section>
   </main>

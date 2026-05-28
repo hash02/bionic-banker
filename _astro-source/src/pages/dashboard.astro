@@ -15,7 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <div class="dashboard-boundary">
-        Public signal dashboard for market rows, yield context, and wallet-risk notes. This is a research and evidence view only: no wallet authority, no trading authority, and no compliance filing authority.
+        Public signal dashboard for market rows, yield context, and wallet-risk notes. This is a research and monitoring view only: no wallet power, no trading power, and no compliance filing power.
     </div>
 
     <div class="kpi-row" id="kpiRow"></div>
@@ -99,7 +99,7 @@ const FALLBACK_ROASTS = {
     findings:[
         {timestamp:"2026-03-08T06:32:00Z",risk_score:530,
          what_happened:"Sample row matched several routing and mixer-style signals in the same transaction window.",
-         public_note:"This row is worth slowing down on. The route matters more than the amount.",
+         public_note:"This row is worth slowing down on. The transaction path matters more than the amount.",
          boundary_note:"A score is a sorting tool. Review the surrounding context before drawing conclusions.",
          rules:["mixer_touch","ofac_hit","mixer_contract_call","structuring","peel_chain_linear","exchange_avoidance"],
          pattern:"Mixer-style routing + structuring"},
@@ -162,12 +162,12 @@ function renderRiskNotes(f){
         const what=safeWhatFor(r,ru);
         const note=r.public_note||publicNoteFor(r,ru);
         const boundary=r.boundary_note||'A score is a sorting tool. The next step is context.';
-        return`<div class="risk-note-card ${sv}"><div class="risk-note-header"><div><span class="risk-note-score ${sv}">Score: ${r.risk_score}</span><span style="margin-left:10px;font-size:0.75rem;color:var(--text-muted)">${r.pattern||'Wallet-risk pattern'}</span></div><div class="risk-note-meta"><span>${ago(r.timestamp)}</span></div></div><div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px">${what}</div><div class="risk-note-text">\u201C${note}\u201D</div>${ru.length?`<div class="risk-note-rules">${ru.map(x=>`<span class="rule-tag">${x}</span>`).join('')}</div>`:''}<div class="boundary-box"><div class="boundary-label">Boundary</div><div style="color:var(--text-secondary);font-size:0.78rem;margin-top:3px">${boundary}</div></div></div>`}).join('');
+        return`<div class="risk-note-card ${sv}"><div class="risk-note-header"><div><span class="risk-note-score ${sv}">Score: ${r.risk_score}</span><span style="margin-left:10px;font-size:0.75rem;color:var(--text-muted)">${r.pattern||'Wallet-risk pattern'}</span></div><div class="risk-note-meta"><span>${ago(r.timestamp)}</span></div></div><div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px">${what}</div><div class="risk-note-text">\u201C${note}\u201D</div>${ru.length?`<div class="risk-note-rules">${ru.map(x=>`<span class="rule-tag">${x}</span>`).join('')}</div>`:''}<div class="boundary-box"><div class="boundary-label">What it cannot do</div><div style="color:var(--text-secondary);font-size:0.78rem;margin-top:3px">${boundary}</div></div></div>`}).join('');
 }
 
 function publicNoteFor(r,ru){
     const pattern=(r.pattern||'').toLowerCase();
-    if(pattern.includes('mixer'))return'This row is worth slowing down on. The route matters more than the amount.';
+    if(pattern.includes('mixer'))return'This row is worth slowing down on. The transaction path matters more than the amount.';
     if(pattern.includes('bridge'))return'The tempo is the signal: move, hop, move again.';
     if(ru.length>=4)return'One rule is a note. Several rules together become a pattern to inspect.';
     return'The system paused here because the row has enough shape to deserve another look.';

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="NEXUS-RISK | Investigate Any Wallet" description="Paste an Ethereum wallet address for a public risk-screening demonstration. Sample wallets show preloaded risk narratives and unknown wallets return sample-mode output.">
+<BaseLayout title="NEXUS-RISK | Investigate Any Wallet" description="Paste an Ethereum wallet address for a public risk-screening example. Sample wallets show preloaded risk narratives and unknown wallets return sample-mode output.">
 
 <div class="investigate-wrap">
 
@@ -9,7 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <h1>Investigate Any <span>Wallet</span></h1>
     <p class="investigate-sub">
-      Paste an Ethereum address. Sample and demonstration-mode risk signals are shown with clear boundaries.
+      Paste an Ethereum address. Sample and example-mode risk signals are shown with clear boundaries.
       The result shows risk signals, supporting context, and assessment limits.
     </p>
 
@@ -85,7 +85,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   
 
   <script is:inline>
-    // SAMPLE DATA: demonstrates engine output without live backend
+    // SAMPLE DATA: shows engine output without live backend
     var SAMPLE_DATA = {
       'lazarus': {
         address: '0x098B716B8Aaf21512996dC57EB0615e2383E2f96',
@@ -284,7 +284,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         return;
       }
 
-      // For unknown addresses, generate a demonstration result
+      // For unknown addresses, generate a example result
       setTimeout(function() {
         var score = 15 + Math.floor(Math.random() * 40);
         var level = score > 60 ? 'HIGH' : score > 35 ? 'MEDIUM' : 'LOW';
@@ -292,14 +292,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           address: address,
           risk_score: score,
           risk_level: level,
-          risk_note: "This address does not match the sample threat-actor patterns in this demonstration dataset. Transaction volume is moderate, no mixer interactions are detected, and the visible behavioral indicators are low risk for this sample view.",
+          risk_note: "This address does not match the sample threat-actor patterns in this example dataset. Transaction volume is moderate, no mixer interactions are detected, and the visible behavioral indicators are low risk for this sample view.",
           tx_count: 50 + Math.floor(Math.random() * 500),
           flagged_count: Math.floor(Math.random() * 5),
           total_volume: 1000 + Math.random() * 500000,
           avg_risk_score: score,
           signals: score > 35 ? ['Moderate Activity Volume', 'Multiple Counterparties'] : ['Low Activity'],
           risk_distribution: score > 35 ? { MEDIUM: 2, LOW: 4 } : { LOW: 3 },
-          engine: 'AML Detection Engine v12, 28 rules (Demonstration)',
+          engine: 'AML Detection Engine v12, 28 rules (Example)',
           elapsed: (2 + Math.random() * 3).toFixed(1)
         });
       }, 5000);

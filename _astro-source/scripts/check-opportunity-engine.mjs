@@ -30,7 +30,7 @@ const startHerePhrases = [
   'Mission Map',
   '90-second quest',
   'Wallet Risk Assessment',
-  'AML Status Evidence',
+  'AML Status',
   'Fraud Alert Triage Workflow',
   'Agent Chess / Agent Workflow',
   'Health Board',
@@ -43,15 +43,15 @@ const startHerePhrases = [
 
 const fieldPackPhrases = [
   'Bionic Banker Field Pack',
-  'AI-assisted finance risk missions',
+  'simple map of AI-assisted finance risk work',
   'Six missions, one map',
-  'Evidence-Preserved Agent Workflow Sprint',
-  'Evidence map',
+  'Agent Workflow Case Review',
+  'Record map',
   'Technical stack',
-  'Trust boundary',
+  'What it cannot do',
   'Questions for Hash',
   'System cards',
-  'Evidence map lanes',
+  'Catalog sections',
   'No SAR filing, KYC approval, enforcement, or final compliance decision',
 ];
 
@@ -80,13 +80,13 @@ for (const phrase of ['/start-here', '/proof-pack', '/about']) {
 }
 
 for (const phrase of [
-  'Can Hash reason about risk signals without turning a score into a verdict?',
-  'Can Hash preserve auditability and authority boundaries?',
-  'Can Hash turn messy fraud signals into a review-ready packet?',
-  'Can Hash design AI-agent workflows where humans keep authority?',
-  'Can Hash turn an AI-agent sprint into inspectable public proof without overclaiming authority?',
+  'A wallet row can be scored and explained without pretending the score is a final verdict.',
+  'An AML status can show what was checked while still refusing to approve, file, trade, deploy, or execute.',
+  'Messy fraud signals can become a simple case note, source list, and human next step.',
+  'Two AI workers can pass work back and forth while a person keeps final control.',
+  'AI-assisted case work can leave a readable record without exposing private prompts or taking outside action.',
 ]) {
-  assert(source.projects.includes(phrase), `Projects source missing reviewer question: ${phrase}`);
+  assert(source.projects.includes(phrase), `Projects source missing plain-language proof line: ${phrase}`);
 }
 
 const noLongDashSurface = [source.startHere, source.fieldPack, source.about, source.home].join('\n');
@@ -108,7 +108,7 @@ for (const [name, text] of Object.entries({
 
 const builtChecks = [
   [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
-  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Field Pack', 'Evidence map', 'Questions for Hash']],
+  [path.join(repoRoot, 'proof-pack/index.html'), ['Bionic Banker Field Pack', 'Record map', 'Questions for Hash']],
   [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],
   [path.join(repoRoot, 'index.html'), ['href="/start-here"', 'href="/proof-pack"']],
 ];

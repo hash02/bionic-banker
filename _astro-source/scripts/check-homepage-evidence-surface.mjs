@@ -29,7 +29,7 @@ const requiredSourcePhrases = [
   'agent-chess-showcase',
   'hero-mobile-route-strip',
   'Evidence-first workflow',
-  'No wallet or trade authority',
+  'No wallet or trade power',
   'Human review required',
   'No autonomous compliance decisions',
   'Market Positioning Intelligence',
@@ -45,11 +45,11 @@ const requiredBuiltPhrases = [
   'Operating view',
   'Signal becomes evidence. Evidence becomes a decision.',
   'Wallet Risk Assessment',
-  'AML Status Evidence',
+  'AML Status',
   'Fraud Alert Workflow',
   'Agent Chess board',
   'Market Positioning Intelligence',
-  'No wallet or trade authority',
+  'No wallet or trade power',
   'Human review required',
 ];
 

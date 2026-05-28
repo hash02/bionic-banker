@@ -202,7 +202,7 @@ I went looking for whether anyone else was doing this kind of work. They are, bu
 MetaQA out of ACM (2025) does metamorphic testing on LLMs: same question, multiple phrasings, check consistency. SYOS does this too, but adds an external anchor. MetaQA checks self-consistency. SYOS checks consistency against a fixed reference point. The difference matters because a model can be perfectly self-consistent and still be wrong.
 
     
-Meta's LlamaFirewall does output guardrails, filtering what the model says before it reaches the user. SYOS operates at a different layer. It guards internal state mutations, not just outputs. The Symbolic Firewall prevents the model's understanding of SYOS from being corrupted, not just its responses.
+Meta's LlamaFirewall does output guardrails, filtering what the model says before it reaches the user. SYOS operates at a different layer. It guards internal state changes, not just outputs. The Symbolic Firewall prevents the model's understanding of SYOS from being corrupted, not just its responses.
 
     
 The drift measurement work (MCD, SDR metrics from 2025) gave me standardized ways to track how fast the model moves away from the anchor over time. SYOS adopted those directly: mean cumulative drift of 0.67 (vocabulary) and a semantic drift rate of 0.005 (near-zero, meaning drift is stable, not accelerating).
