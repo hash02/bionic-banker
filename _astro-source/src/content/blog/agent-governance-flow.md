@@ -1,6 +1,6 @@
 ---
 title: "Agent Governance Flow | Bionic Banker"
-description: "A public note on agent workflow controls: visible evidence, blocked authority, review gates, and human approval before external action."
+description: "A public note on agent workflow controls: visible evidence, blocked authority, review gates, and human review before external action."
 date: "2026-05-24"
 tags: ["AI", "Risk", "Compliance"]
 readTime: "5 min"
