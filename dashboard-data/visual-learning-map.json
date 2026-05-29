@@ -1,0 +1,103 @@
+{
+  "status": "visual_learning_map_v1",
+  "purpose": "Public-safe roadmap for turning AI, finance risk, compliance, and country case studies into reader-first pages, reports, and infographics.",
+  "reader_rule": "Start from a real-world question, show the source trail, explain the system record, name the missing context, then state the clear limit.",
+  "visual_principles": [
+    "Use diagrams to explain systems, not to decorate pages.",
+    "Prefer source trail, system record, missing context, and clear limit over raw code or raw logs.",
+    "Keep country and institution examples educational unless a source record has been checked.",
+    "No trading signal, KYC approval, filing, legal advice, or autonomous action claim."
+  ],
+  "learning_lanes": [
+    {
+      "id": "wallet-watch-map",
+      "label": "Wallet watching",
+      "title": "Public wallet source trail",
+      "reader_question": "How does a public wallet label become a cautious review question instead of a market signal?",
+      "visual_shape": "Source trail map",
+      "next_surface": "/signals",
+      "case_study_sources": ["public explorer label", "movement category", "counterparty context"],
+      "clear_limit": "No copy trading, no wallet control, and no claim that a public label proves wrongdoing."
+    },
+    {
+      "id": "kyc-record-map",
+      "label": "KYC and records",
+      "title": "KYC record path",
+      "reader_question": "What can AI summarize in a KYC file, and what still needs a person or regulated workflow?",
+      "visual_shape": "Document to review record",
+      "next_surface": "/blog/what-claude-cant-do-for-kyc/",
+      "case_study_sources": ["document intake", "screening result", "human review note"],
+      "clear_limit": "Not a KYC approval and not a licensed compliance product."
+    },
+    {
+      "id": "stablecoin-settlement-map",
+      "label": "Settlement",
+      "title": "Stablecoin settlement record",
+      "reader_question": "Where do stablecoins change payment speed, reconciliation, and audit trails without removing counterparty risk?",
+      "visual_shape": "Rail comparison diagram",
+      "next_surface": "/blog/canada-stablecoin-settlement/",
+      "case_study_sources": ["payment rail", "settlement object", "reconciliation record"],
+      "clear_limit": "Educational settlement map only, not financial advice or payment-system certification."
+    },
+    {
+      "id": "agent-risk-map",
+      "label": "Agent controls",
+      "title": "Agent decision and stop map",
+      "reader_question": "When an AI agent can use tools, where are the access checks, records, and human stops?",
+      "visual_shape": "Control flow diagram",
+      "next_surface": "/blog/agent-governance-flow/",
+      "case_study_sources": ["tool request", "access check", "audit log", "human review step"],
+      "clear_limit": "No hidden prompt plumbing or raw private adapter code is published."
+    },
+    {
+      "id": "country-practice-map",
+      "label": "Country practices",
+      "title": "Country-by-country risk practice notes",
+      "reader_question": "How do different countries frame AI, payments, wallet monitoring, and compliance controls?",
+      "visual_shape": "Comparison map",
+      "next_surface": "/ai-intelligence",
+      "case_study_sources": ["regulator note", "public bank or fintech source", "control requirement", "reader-safe summary"],
+      "clear_limit": "No legal advice and no claim that one country model can be copied without local review."
+    },
+    {
+      "id": "failure-library-map",
+      "label": "Failure library",
+      "title": "Learn from other people’s mistakes",
+      "reader_question": "What broke, what record was missing, and what guard would have caught it earlier?",
+      "visual_shape": "Mistake to guardrail card",
+      "next_surface": "/articles",
+      "case_study_sources": ["public incident writeup", "control gap", "safe lesson", "Bionic Banker check"],
+      "clear_limit": "No blame framing, no bank-negative claims, and no unsupported allegation."
+    }
+  ],
+  "infographic_backlog": [
+    {
+      "id": "public-wallet-watch-infographic",
+      "title": "Public wallet watch: source to review question",
+      "layout": "linear-progression",
+      "style": "technical-schematic",
+      "first_page": "/signals"
+    },
+    {
+      "id": "context-engine-infographic",
+      "title": "Context engine: source, question, limit",
+      "layout": "hub-spoke",
+      "style": "technical-schematic",
+      "first_page": "/blog/context-engine-missing-layer/"
+    },
+    {
+      "id": "agent-controls-infographic",
+      "title": "Agent controls: request, record, stop",
+      "layout": "structural-breakdown",
+      "style": "technical-schematic",
+      "first_page": "/blog/agent-governance-flow/"
+    },
+    {
+      "id": "kyc-record-infographic",
+      "title": "KYC record: document, screening, review",
+      "layout": "linear-progression",
+      "style": "ikea-manual",
+      "first_page": "/blog/what-claude-cant-do-for-kyc/"
+    }
+  ]
+}

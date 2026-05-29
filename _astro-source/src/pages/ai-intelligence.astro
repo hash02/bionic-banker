@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const visualMap = await import('../../public/dashboard-data/visual-learning-map.json');
+const learningLanes = visualMap.default.learning_lanes;
+const infographicBacklog = visualMap.default.infographic_backlog;
+
 const intelligenceCards = [
   {
     label: 'Agents',
@@ -82,6 +86,37 @@ const collaborationLoop = [
         ))}
       </div>
       <p class="verified-note">This is the collaboration rule: outside-world signal becomes a question, question becomes a test, test becomes a public summary only when it earns support.</p>
+    </section>
+
+
+    <section class="article-card systems-guide-card" style="margin-top: 1.25rem;" aria-label="Visual learning map">
+      <div class="article-tags"><span class="tag-pill tag-green">Visual learning map</span></div>
+      <h3>Build the site around cases, countries, mistakes, and diagrams</h3>
+      <p>Each new topic should earn the same public shape: real-world question, source trail, system record, missing context, and clear limit. This keeps the site useful for AI finance risk and compliance without turning raw code or raw records into the public lesson.</p>
+      <div class="system-proof-grid">
+        {learningLanes.map((lane) => (
+          <div>
+            <span>{lane.label}</span>
+            <p><strong>{lane.title}</strong></p>
+            <p>{lane.reader_question}</p>
+            <p><strong>Visual:</strong> {lane.visual_shape}</p>
+            <p><strong>Limit:</strong> {lane.clear_limit}</p>
+            <a href={lane.next_surface}>View related page</a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="article-card systems-guide-card" style="margin-top: 1.25rem;" aria-label="Infographic backlog">
+      <div class="article-tags"><span class="tag-pill tag-green">Infographic queue</span></div>
+      <h3>The first visuals should explain systems, not decorate them</h3>
+      <p>Priority goes to diagrams that make a reader understand what is happening: wallet source trail, context engine, agent controls, and KYC record path.</p>
+      <div class="system-link-cloud" aria-label="Infographic backlog">
+        {infographicBacklog.map((item) => (
+          <a href={item.first_page}>{item.title} · {item.layout}</a>
+        ))}
+      </div>
+      <p class="verified-note">This queue is deliberately bounded: every visual needs a source path, a review question, and a normal sentence saying what the system cannot decide.</p>
     </section>
 
     <section class="article-card systems-guide-card" style="margin-top: 1.25rem;">
