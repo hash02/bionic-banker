@@ -25,11 +25,15 @@ for (const [text, phrase, label] of required) {
   if (!text.includes(phrase)) fail(`missing ${label}: ${phrase}`);
 }
 
-if (wallet.status !== 'public_wallet_watch_template_v3') fail('wallet watch template must be v3');
+if (!['public_wallet_watch_template_v3', 'public_wallet_watch_template_v4'].includes(wallet.status)) fail('wallet watch template must be v3 or later');
 const report002 = wallet.report_records?.find((record) => record.id === 'public-wallet-watch-002');
 if (!report002) fail('Report 002 missing');
 if (!/No movement claim/i.test(report002.what_moved)) fail('Report 002 must avoid movement claim before source review');
 if (!/Pancake/i.test(report002.clear_limit)) fail('Report 002 must keep Pancake blocked');
+const report003 = wallet.report_records?.find((record) => record.id === 'public-wallet-watch-003');
+if (!report003) fail('Report 003 missing');
+if (!/Blockscout/i.test(report003.public_source || '')) fail('Report 003 must preserve a public source citation');
+if (!/contract-call \/ treasury-administration activity/i.test(report003.what_moved || '')) fail('Report 003 must be a movement-category record');
 
 const forbidden = [
   /buy now/i,
@@ -47,4 +51,4 @@ for (const [label, text] of [['article', article], ['system-map', systemMap], ['
   }
 }
 
-if (!process.exitCode) console.log('CONTEXT_ENGINE_LAYER PASS — article, visual, system map, and Report 002 are source-led and bounded.');
+if (!process.exitCode) console.log('CONTEXT_ENGINE_LAYER PASS — article, visual, system map, Report 002, and Report 003 are source-led and bounded.');

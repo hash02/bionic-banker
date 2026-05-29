@@ -27,7 +27,7 @@ for (const [text, phrase, label] of requiredSource) {
   if (!text.includes(phrase)) fail(`missing ${label}: ${phrase}`);
 }
 
-if (catalog.status !== 'public_wallet_watch_template_v3') fail('template status must be public_wallet_watch_template_v3');
+if (catalog.status !== 'public_wallet_watch_template_v4') fail('template status must be public_wallet_watch_template_v4');
 if (!catalog.report_fields?.some((field) => field.field === 'aml_review_question')) fail('template must include aml_review_question');
 if (!catalog.blocked_actions?.some((item) => /No trading advice/i.test(item))) fail('template must block trading advice');
 if (!catalog.blocked_actions?.some((item) => /Pancake/i.test(item))) fail('template must keep Pancake blocked');
@@ -36,8 +36,16 @@ if (!catalog.source_review_rule?.includes('source trail')) fail('template must i
 if (!catalog.watchlist_review_queue?.some((item) => /Exchange hot wallet label/i.test(item.label))) fail('watchlist queue must include exchange hot wallet label source class');
 if (!catalog.report_records?.some((record) => record.id === 'public-wallet-watch-001')) fail('report shelf must include public-wallet-watch-001');
 if (!catalog.report_records?.some((record) => record.id === 'public-wallet-watch-002')) fail('report shelf must include public-wallet-watch-002');
+if (!catalog.report_records?.some((record) => record.id === 'public-wallet-watch-003')) fail('report shelf must include public-wallet-watch-003');
 if (!catalog.report_records?.some((record) => /full address withheld until source review/i.test(record.address_or_label))) fail('first report must keep full address withheld until source review');
 if (!catalog.report_records?.some((record) => record.id === 'public-wallet-watch-002' && /No movement claim/i.test(record.what_moved))) fail('Report 002 must avoid movement claims until source review');
+const report003 = catalog.report_records?.find((record) => record.id === 'public-wallet-watch-003');
+if (!report003) fail('Report 003 missing');
+if (!/Blockscout/i.test(report003.public_source || '')) fail('Report 003 must cite Blockscout as public source');
+if (!/EthDev/i.test(report003.address_or_label || '')) fail('Report 003 must include the EthDev public label');
+if (!/contract-call \/ treasury-administration activity/i.test(report003.what_moved || '')) fail('Report 003 must record the movement category');
+if (!/source-category record, not a market signal/i.test(report003.what_moved || '')) fail('Report 003 must block market-signal interpretation');
+if (!/Pancake/i.test(report003.clear_limit || '')) fail('Report 003 must keep Pancake blocked');
 
 const forbidden = [
   /copy this trade/i,
@@ -55,4 +63,4 @@ for (const [label, text] of [['signals', signals], ['wallet-risk', walletRisk], 
   }
 }
 
-if (!process.exitCode) console.log('PUBLIC_WALLET_WATCH PASS — v3 template, report shelf, Report 002, AML connection, Pancake spelling, and safety boundaries are present.');
+if (!process.exitCode) console.log('PUBLIC_WALLET_WATCH PASS — v4 template, report shelf, Report 003 source citation, AML connection, Pancake spelling, and safety boundaries are present.');

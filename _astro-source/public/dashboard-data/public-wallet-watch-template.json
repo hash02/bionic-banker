@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-28T19:25:00Z",
-  "status": "public_wallet_watch_template_v3",
+  "generated_at": "2026-05-28T20:31:00Z",
+  "status": "public_wallet_watch_template_v4",
   "purpose": "Reader-safe template for educational public-address whale-watch reports on Bionic Banker.",
   "privacy_boundary": "Use public addresses and explorer links only. Do not include private wallet data, client data, account data, seed phrases, private keys, or instructions to copy a trade.",
   "publishing_cadence": "Daily or biweekly after the watched-address list is source-reviewed.",
@@ -82,8 +82,8 @@
       "label": "Public entity or foundation wallet label",
       "source_class": "public explorer label or official public disclosure",
       "why_watch": "Shows how known public treasury-style wallets can create market questions without revealing private intent.",
-      "report_use": "Good first education example because the label/source trail matters more than a price call.",
-      "publish_state": "source-review candidate"
+      "report_use": "Used for Report 003 as a first cited explorer-label example: source first, movement category second, no market meaning.",
+      "publish_state": "source-reviewed first report candidate"
     },
     {
       "label": "Exchange hot wallet label",
@@ -130,6 +130,49 @@
       "missing_context": "Private ownership details, intent, off-chain reason, full history, counterparty purpose, and whether any movement relates to a trade.",
       "clear_limit": "Educational source-review record only. No advice, no accusation, no copied trade, no wallet control, no external submission, and no Pancake unfreeze.",
       "next_step": "Verify one public label/source pair, then publish only the source trail and movement category that can be cited."
+    },
+    {
+      "id": "public-wallet-watch-003",
+      "title": "Report 003: EthDev explorer label and contract-call activity",
+      "status": "source-cited movement-category record",
+      "address_or_label": "EthDev / Ethereum Foundation — 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe",
+      "chain": "Ethereum mainnet",
+      "public_source": "Blockscout Ethereum address page labels the address as EthDev and Ethereum Foundation; Etherscan search result also returns EthDev for the same address.",
+      "public_source_url": "https://eth.blockscout.com/address/0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae",
+      "source_snapshot": "Blockscout page read: Contract details, EthDev, Ethereum Foundation, address 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe, balance shown as 9,774.4523225 ETH, 3,237 transactions, 8,376,156 transfers, last balance update 25198264.",
+      "what_moved": "Movement category: contract-call / treasury-administration activity. Latest observed rows in the public Blockscout transaction API included successful isOwner and execute calls with zero ETH value, plus one small failed inbound transaction marked out of gas. This is a source-category record, not a market signal.",
+      "observed_transactions": [
+        {
+          "hash": "0xa814c591d1835c9f8703f5c7f2a07e2d6fa3802ce691c1a658cdf6f5d47c1b48",
+          "timestamp": "2026-05-25T15:49:47Z",
+          "method": "isOwner",
+          "value_wei": "0",
+          "status": "ok",
+          "result": "success"
+        },
+        {
+          "hash": "0x969572fa3738ce7d6cb27dd97653948bac485475c63280837a46754dcd2672ad",
+          "timestamp": "2026-05-25T04:37:11Z",
+          "method": "execute",
+          "value_wei": "0",
+          "status": "ok",
+          "result": "success"
+        },
+        {
+          "hash": "0xc908deb70b81fd9f6dd448effba681e4c33c63039cdfd142303ea53f053c342c",
+          "timestamp": "2026-05-10T08:02:23Z",
+          "method": "unlabeled transfer attempt",
+          "value_wei": "11136837429668",
+          "status": "error",
+          "result": "out of gas"
+        }
+      ],
+      "timing": "Observed during the first source-cited report pass on 2026-05-28. The latest public API rows were dated 2026-05-25 and 2026-05-10.",
+      "why_people_watch": "Known public foundation or treasury-style labels are watched because large balances and administrative calls can raise questions about treasury operations, counterparty patterns, or routing. The label and calls do not explain intent by themselves.",
+      "aml_review_question": "When a known public foundation-label address shows administrative calls or repeated counterparties, is the useful review question about treasury operations, counterparty concentration, routing pattern, or simply a normal contract-management event?",
+      "missing_context": "Intent, signer policy, off-chain reason, internal treasury process, counterparty purpose, whether a call changed balances internally, and whether the activity relates to any trade or market event.",
+      "clear_limit": "Educational source-cited public-address record only. No advice, no accusation, no copied trade, no wallet control, no external submission, and no Pancake unfreeze.",
+      "next_step": "For the next report, choose an exchange hot-wallet label or protocol treasury label only after the explorer label and movement category can be cited with the same source-first discipline."
     }
   ]
 }

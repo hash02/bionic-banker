@@ -321,7 +321,11 @@ const visualRoadmap = [
           <span>{record.status}</span>
           <h3>{record.title}</h3>
           <p><strong>Address or label:</strong> {record.address_or_label}</p>
+          <p><strong>Chain:</strong> {record.chain}</p>
+          <p><strong>Public source:</strong> {record.public_source}</p>
+          {record.public_source_url && <p><a href={record.public_source_url} target="_blank" rel="noopener">Open public source</a></p>}
           <p><strong>What moved:</strong> {record.what_moved}</p>
+          <p><strong>Timing:</strong> {record.timing}</p>
           <p><strong>AML review question:</strong> {record.aml_review_question}</p>
           <p><strong>Missing context:</strong> {record.missing_context}</p>
           <p><strong>Clear limit:</strong> {record.clear_limit}</p>
@@ -546,6 +550,9 @@ const visualRoadmap = [
       background: rgba(255, 255, 255, 0.035);
       border-radius: 8px;
       padding: 1.35rem;
+      box-sizing: border-box;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .alive-console {
@@ -690,6 +697,13 @@ const visualRoadmap = [
       grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
       gap: 1rem;
       align-items: stretch;
+      overflow-wrap: anywhere;
+    }
+
+    .reason-copy,
+    .reason-steps {
+      min-width: 0;
+      max-width: 100%;
     }
 
     .reason-copy h2 {
@@ -716,6 +730,9 @@ const visualRoadmap = [
       border-radius: 8px;
       padding: 0.9rem;
       min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
     }
 
     .reason-steps span {
@@ -940,6 +957,9 @@ const visualRoadmap = [
       border-radius: 10px;
       padding: 1.75rem 1.5rem 1.25rem;
       flex-wrap: wrap;
+      box-sizing: border-box;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .terminal-bar::before {
@@ -956,11 +976,13 @@ const visualRoadmap = [
 
     .tbar-metric {
       flex: 1;
-      min-width: 120px;
+      min-width: min(120px, 100%);
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
       padding: 0.25rem 1rem;
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
       opacity: 0;
       transform: translateY(6px);
       animation: feedRowIn 420ms ease forwards;
@@ -1078,7 +1100,7 @@ const visualRoadmap = [
     @media (max-width: 640px) {
       .terminal-bar { gap: 1rem; padding: 1rem; }
       .tbar-divider { display: none; }
-      .tbar-metric { min-width: calc(50% - 0.5rem); padding: 0; }
+      .tbar-metric { min-width: min(calc(50% - 0.5rem), 100%); padding: 0; }
       .tbar-value { font-size: 1.2rem; }
     }
 
