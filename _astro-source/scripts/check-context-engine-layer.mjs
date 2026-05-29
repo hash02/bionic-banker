@@ -23,7 +23,7 @@ const required = [
   [contextPage, 'missing context', 'context route missing context'],
   [contextPage, 'No trading call or copy-trade instruction.', 'context route trading limit'],
   [contextPage, '/assets/context-engine-map.svg', 'context route infographic'],
-  [systemMap, '7 inspectable systems, one map.', 'system map count label'],
+  [systemMap, '8 inspectable systems, one map.', 'system map count label'],
   [systemMap, 'Context Engine', 'system map row'],
   [systemMap, '/context-engine/', 'system map route link'],
   [systemMap, 'context-engine-map.svg', 'system map image'],

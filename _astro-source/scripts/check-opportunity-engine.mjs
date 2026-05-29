@@ -45,7 +45,7 @@ const startHerePhrases = [
 const systemMapPhrases = [
   'Bionic Banker System Map',
   'simple map of AI-assisted finance risk work',
-  '7 inspectable systems, one map',
+  '8 inspectable systems, one map',
   'Agent Workflow Case Review',
   'Record map',
   'Technical stack',

@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pipeline = [
+  ['Long record', 'A source-led blog, report, signal, diagram, or system page carries the full context: source trail, what changed, what is missing, and the clear limit.'],
+  ['Short note', 'The long record becomes a calm reader note: one idea, one reason it matters, one boundary, and one link back to the site.'],
+  ['Platform draft', 'The same note is shaped for LinkedIn, X, dev.to, Telegram, or email without changing the underlying claim.'],
+  ['Human post', 'Drafts are reviewed before posting. The system can prepare copy, but final public publishing stays with a person.'],
+];
+
+const formats = [
+  {
+    label: 'LinkedIn',
+    body: 'Professional context, one strong opening, plain finance/compliance language, and the link preferably outside the main post when useful.',
+  },
+  {
+    label: 'X',
+    body: 'Short thread or single post: hook, source question, clear limit, and one route back to the full Bionic Banker record.',
+  },
+  {
+    label: 'dev.to',
+    body: 'Technical explainer from the same source record: system shape, boundary, example, and what remains human-reviewed.',
+  },
+  {
+    label: 'Telegram / email',
+    body: 'Reader-facing release note: New, why it matters, clear limit, and one link. No internal build logs.',
+  },
+];
+
+const guardrails = [
+  'No automated public posting until templates are stable and approval is explicit.',
+  'No trading calls, copy-trade instructions, KYC decisions, SAR filings, or wallet-control claims.',
+  'No private prompts, internal paths, employer data, customer data, or agent build logs.',
+  'No claim should grow larger when it moves from blog to social format.',
+  'Each short post should point back to a source-led Bionic Banker page, report, or article.',
+];
+
+const draftShape = [
+  ['Source page', 'The Bionic Banker route that carries the full record.'],
+  ['Reader idea', 'The one useful idea the post should preserve.'],
+  ['Why it matters', 'The finance, AI, risk, or compliance question a reader can inspect.'],
+  ['Clear limit', 'What the record cannot prove, decide, approve, or execute.'],
+  ['Channel draft', 'The platform-specific draft text.'],
+  ['Approval status', 'Draft only, needs review, approved, or posted by human.'],
+];
+---
+<BaseLayout title="Content System" description="Bionic Banker content system: turn source-led website records into shorter platform drafts without changing the claim, removing limits, or auto-posting.">
+  <main class="content-system-shell">
+    <section class="content-hero">
+      <div class="content-kicker">Bionic Banker Content System</div>
+      <h1>One source record. Many public formats. Same limits.</h1>
+      <p>The website stays the source of truth. A blog, report, signal, or system page carries the full record first. Shorter posts for LinkedIn, X, dev.to, Telegram, or email are drafted from that record so the message stays consistent.</p>
+      <div class="content-actions">
+        <a href="/articles">Read articles</a>
+        <a href="/updates">Update promise</a>
+        <a href="/context-engine">Context Engine</a>
+      </div>
+    </section>
+
+    <section class="content-section thesis-card">
+      <span>Operating rule</span>
+      <h2>Publish the full record first. Draft distribution second.</h2>
+      <p>Bionic Banker should not invent disconnected social posts. The sequence is: build the source-led page, compress the useful idea, adapt it to each channel, keep the clear limit, and let a human decide when it goes public.</p>
+    </section>
+
+    <section class="content-section">
+      <span>Pipeline</span>
+      <h2>From website record to public draft.</h2>
+      <div class="pipeline-grid">
+        {pipeline.map(([label, body], index) => (
+          <article>
+            <strong>{String(index + 1).padStart(2, '0')} · {label}</strong>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="content-section split">
+      <div>
+        <span>Platform formats</span>
+        <h2>Different shape, same claim.</h2>
+        <p>Each channel can sound native without changing the source meaning. The blog can hold the full context and diagrams; the short post should carry only the cleanest reader idea and link back.</p>
+      </div>
+      <div class="format-grid">
+        {formats.map((item) => (
+          <article>
+            <strong>{item.label}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="content-section split">
+      <div>
+        <span>Draft contract</span>
+        <h2>Automation can prepare the packet, not publish it by default.</h2>
+        <p>The safe automation target is a draft packet. It should show the source page, target channel, draft text, clear limit, and approval status before anything is posted.</p>
+      </div>
+      <div class="draft-card">
+        <strong>Required draft packet</strong>
+        <ul>
+          {draftShape.map(([label, body]) => <li><b>{label}:</b> {body}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <span>Guardrails</span>
+      <h2>Distribution should not make the claim bigger.</h2>
+      <ul class="guard-list">
+        {guardrails.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="content-section sample-card">
+      <span>Example shape</span>
+      <h2>Reader-facing social draft from a Bionic Banker page.</h2>
+      <p><b>Source page:</b> /context-engine/</p>
+      <p><b>Post idea:</b> In finance and AI, the useful layer is not a bigger prompt. It is the record around the prompt: source trail, missing context, clear limit, and human next step.</p>
+      <p><b>Clear limit:</b> This does not approve KYC, file reports, move funds, accuse a wallet, or tell readers what to trade.</p>
+      <p><b>Status:</b> Draft only until reviewed and posted by a human.</p>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .content-system-shell { max-width: 1120px; margin: 0 auto; padding: 6rem 1.25rem 4rem; color: var(--text); }
+  .content-hero, .content-section { border: 1px solid rgba(31,160,104,.16); background: rgba(3,16,8,.92); border-radius: 28px; padding: clamp(1.4rem, 3vw, 3rem); margin-bottom: 1.25rem; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+  .content-kicker, .content-section > span { color: #1fa068; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; }
+  .content-hero h1 { font-size: clamp(2.25rem, 5.4vw, 4.8rem); line-height: .96; margin: .75rem 0 1rem; max-width: 960px; }
+  .content-hero p, .content-section p, .content-section li { color: #b0b0b8; line-height: 1.72; font-size: 1.02rem; }
+  .content-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+  .content-actions a { text-decoration: none; border-radius: 999px; padding: .82rem 1.05rem; border: 1px solid rgba(31,160,104,.24); color: var(--text); font-weight: 850; }
+  .content-actions a:first-child { background: #1fa068; color: #010302; border: 0; }
+  .pipeline-grid, .format-grid { display: grid; gap: .85rem; }
+  .pipeline-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1rem; }
+  .pipeline-grid article, .format-grid article, .draft-card, .sample-card { border: 1px solid rgba(31,160,104,.14); border-radius: 18px; background: rgba(31,160,104,.055); padding: 1rem; }
+  .pipeline-grid strong, .format-grid strong, .draft-card strong { display: block; color: #f4f7f1; margin-bottom: .45rem; }
+  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.95fr); gap: 1rem; align-items: start; }
+  .draft-card ul, .guard-list { margin: 1rem 0 0 1.25rem; }
+  .draft-card li, .guard-list li { margin-bottom: .6rem; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } .content-system-shell { padding-top: 4.5rem; } }
+</style>
