@@ -49,28 +49,9 @@ For a folder-watching agent, the trigger is a file system event. Something lands
 
 Python's watchdog library solves this. You define a handler class that inherits from FileSystemEventHandler, override the on_created method, and tell watchdog to watch a path. When a file appears, your handler fires automatically.
 
-```python
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-import time
+The safe public version is simple: a watcher notices a new file, a handler checks that it is not a directory, and the process stays alive until a human stops it cleanly. The implementation stays private; the public lesson is that a trigger needs a supervised loop and a shutdown path.
 
-class FolderHandler(FileSystemEventHandler):
-    def on_created(self, event):
-        if not event.is_directory:
-            route_file(event.src_path)
-
-observer = Observer()
-observer.schedule(FolderHandler(), path='./inbox', recursive=False)
-observer.start()
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    observer.stop()
-observer.join()
-```
-
-That while True loop at the bottom is the ignition. The observer is watching. The loop keeps the process alive. The handler fires when something happens.
+That supervised loop is the ignition. The observer is watching. The process stays alive. The handler fires when something happens.
 
 ## The Routing Problem
 
@@ -80,19 +61,7 @@ In my folder agent, routing is a decision about what kind of file just appeared.
 
 I built a simple router. It looks at the filename, checks it against a set of patterns, and dispatches to the right handler function. Nothing clever. Just a chain of if-else blocks that cover the cases I expect and log loudly when something shows up that I did not expect.
 
-```python
-def route_file(path):
-    filename = os.path.basename(path)
-    
-    if filename.startswith('report-') and filename.endswith('.json'):
-        handle_report(path)
-    elif filename.startswith('alert-') and filename.endswith('.json'):
-        handle_alert(path)
-    elif filename.endswith('.csv'):
-        handle_data_import(path)
-    else:
-        log_unknown(path)
-```
+The router classifies the file by type and naming pattern, sends expected files to the right handler, and records unknown files instead of silently dropping them.
 
 The log_unknown call matters as much as the other handlers. An agent that silently drops unexpected inputs is an agent you cannot trust. The unknown log is how you find the gaps in your routing logic.
 
@@ -106,17 +75,7 @@ Recovery has two layers.
 
 The first layer is exception handling inside the handler. Wrap the processing in a try-except block. If something fails, log the error with the filename and the stack trace, and move the file to an error folder rather than leaving it in place.
 
-```python
-def handle_report(path):
-    try:
-        with open(path) as f:
-            data = json.load(f)
-        process_report(data)
-        move_to_processed(path)
-    except Exception as e:
-        log_error(path, e)
-        move_to_error(path)
-```
+The handler reads the file, validates it, writes the result, and moves failed inputs into an error path with a visible reason. The public record shows the control shape, not the executable code.
 
 The second layer is process-level recovery. If the whole observer crashes, it needs to restart itself. I use a supervisor script for this. The supervisor runs a loop. It checks whether the observer process is alive. If it is not, it restarts it and logs the restart event. Restarts get logged because frequent restarts mean something is broken at a deeper level and needs investigation.
 

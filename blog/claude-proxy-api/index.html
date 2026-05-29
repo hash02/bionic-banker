@@ -1,11 +1,11 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-37fxchfa> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Claude Max as Your Personal API - Bionic Banker</title><meta name="description" content="$100/month flat rate. Unlimited API requests. Here's how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint."><meta name="author" content="Himanshu"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-37fxchfa> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Claude Max as a Local Agent Cost Lesson - Bionic Banker</title><meta name="description" content="A public-safe record about why local agent adapters need cost controls, redaction rules, and clear boundaries instead of raw proxy code."><meta name="author" content="Himanshu"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script><script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-YS428H3H44');
-  </script><!-- Open Graph --><meta property="og:title" content="Claude Max as Your Personal API - Bionic Banker"><meta property="og:description" content="$100/month flat rate. Unlimited API requests. Here's how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint."><meta property="og:type" content="article"><meta property="og:url" content="https://bionicbanker.tech/blog/claude-proxy-api/"><meta property="og:site_name" content="Bionic Banker"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Claude Max as Your Personal API - Bionic Banker"><meta name="twitter:description" content="$100/month flat rate. Unlimited API requests. Here's how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint."><meta name="twitter:site" content="@BionicBanker"><meta name="twitter:creator" content="@BionicBanker"><link rel="canonical" href="https://bionicbanker.tech/blog/claude-proxy-api/"><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"><!-- JSON-LD Structured Data --><!-- Styles --><link rel="stylesheet" href="/styles/global.css?v=green-theme-consistent-053955d"><link rel="stylesheet" href="../../styles/global.css?v=green-theme-consistent-053955d"><!-- Lottie player (custom element, defer safe) --><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script><style>body,html{background:#010302}canvas[data-astro-cid-37fxchfa]{background:transparent}.nav-right{display:flex!important;align-items:center;gap:1rem;min-width:0}@media(max-width:1400px){nav{gap:1rem}.nav-links{gap:1rem}.nav-cta{display:none}}@media(max-width:900px){.nav-right{display:none!important}#bb-hamburger{display:inline-flex!important}}
+  </script><!-- Open Graph --><meta property="og:title" content="Claude Max as a Local Agent Cost Lesson - Bionic Banker"><meta property="og:description" content="A public-safe record about why local agent adapters need cost controls, redaction rules, and clear boundaries instead of raw proxy code."><meta property="og:type" content="article"><meta property="og:url" content="https://bionicbanker.tech/blog/claude-proxy-api/"><meta property="og:site_name" content="Bionic Banker"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Claude Max as a Local Agent Cost Lesson - Bionic Banker"><meta name="twitter:description" content="A public-safe record about why local agent adapters need cost controls, redaction rules, and clear boundaries instead of raw proxy code."><meta name="twitter:site" content="@BionicBanker"><meta name="twitter:creator" content="@BionicBanker"><link rel="canonical" href="https://bionicbanker.tech/blog/claude-proxy-api/"><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"><!-- JSON-LD Structured Data --><!-- Styles --><link rel="stylesheet" href="/styles/global.css?v=green-theme-consistent-053955d"><link rel="stylesheet" href="../../styles/global.css?v=green-theme-consistent-053955d"><!-- Lottie player (custom element, defer safe) --><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script><style>body,html{background:#010302}canvas[data-astro-cid-37fxchfa]{background:transparent}.nav-right{display:flex!important;align-items:center;gap:1rem;min-width:0}@media(max-width:1400px){nav{gap:1rem}.nav-links{gap:1rem}.nav-cta{display:none}}@media(max-width:900px){.nav-right{display:none!important}#bb-hamburger{display:inline-flex!important}}
 #reading-progress[data-astro-cid-zm77yjld]{position:fixed;top:56px;left:0;z-index:99;height:2px;width:0%;background:#1fa068;box-shadow:0 0 8px #1fa06880;transition:width 80ms linear;pointer-events:none}#back-to-top[data-astro-cid-zm77yjld]{position:fixed;bottom:2rem;right:1.5rem;z-index:90;width:40px;height:40px;border-radius:50%;background:#1fa068;color:#010302;border:none;font-size:1.1rem;font-weight:700;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 12px #1fa06859;transition:opacity .2s,transform .2s}#back-to-top[data-astro-cid-zm77yjld].btt-visible{display:flex}#back-to-top[data-astro-cid-zm77yjld]:hover{transform:translateY(-2px)}.article-toc[data-astro-cid-zm77yjld]{display:block;position:relative;z-index:2;background:#031008;border:1px solid rgba(31,160,104,.2);border-radius:8px;padding:1rem 1.25rem;margin:0 0 2rem;width:100%;max-width:540px;box-sizing:border-box}.article-toc[data-astro-cid-zm77yjld]:has(ul){min-height:11rem;overflow:hidden}.article-toc[data-astro-cid-zm77yjld]:empty{display:none}.article-toc[data-astro-cid-zm77yjld] .toc-label{display:block;font-size:.72rem;font-family:var(--mono);color:#1fa068;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}.article-toc[data-astro-cid-zm77yjld] ul{list-style:none;margin:0;padding:0}.article-toc[data-astro-cid-zm77yjld] li{margin:.25rem 0}.article-toc[data-astro-cid-zm77yjld] .toc-h3{padding-left:1rem}.article-toc[data-astro-cid-zm77yjld] a{display:block;color:var(--text-2);font-size:.85rem;text-decoration:none;line-height:1.4;transition:color .15s}.article-toc[data-astro-cid-zm77yjld] a:hover,.article-toc[data-astro-cid-zm77yjld] a.toc-active{color:#1fa068}.related-articles[data-astro-cid-zm77yjld]{margin:3rem 0 0;padding-top:2rem;border-top:1px solid rgba(31,160,104,.1)}.related-heading[data-astro-cid-zm77yjld]{font-size:1rem;font-family:var(--mono);color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin:0 0 1rem;font-weight:400}.related-grid[data-astro-cid-zm77yjld]{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem}.related-card[data-astro-cid-zm77yjld]{display:flex;flex-direction:column;gap:.3rem;padding:1rem;border-radius:8px;background:#ffffff08;border:1px solid rgba(255,255,255,.06);text-decoration:none;transition:border-color .18s,box-shadow .18s}.related-card[data-astro-cid-zm77yjld]:hover{border-color:#1fa0684d;box-shadow:0 0 16px #1fa06814}.related-cat[data-astro-cid-zm77yjld]{font-size:.68rem;font-family:var(--mono);color:#1fa068;text-transform:uppercase;letter-spacing:.06em}.related-title[data-astro-cid-zm77yjld]{font-size:.88rem;color:var(--text-1);line-height:1.4}.related-meta[data-astro-cid-zm77yjld]{font-size:.72rem;color:var(--text-3);font-family:var(--mono)}.copy-link-btn[data-astro-cid-zm77yjld]{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--text-2);cursor:pointer;font-family:var(--mono);font-size:.78rem;padding:.35rem .8rem;border-radius:4px;transition:border-color .15s,color .15s}.copy-link-btn[data-astro-cid-zm77yjld]:hover{border-color:#1fa068;color:#1fa068}.article-share[data-astro-cid-zm77yjld] .share-btn[data-astro-cid-zm77yjld]{min-height:44px;display:inline-flex;align-items:center}@media(max-width:640px){.article-toc[data-astro-cid-zm77yjld]{max-width:none;padding:.9rem 1rem}.article-toc[data-astro-cid-zm77yjld] li{margin:.35rem 0}.article-share[data-astro-cid-zm77yjld]{align-items:stretch}.article-share[data-astro-cid-zm77yjld] .share-btn[data-astro-cid-zm77yjld]{justify-content:center}}
-</style></head> <body data-astro-cid-37fxchfa> <!-- NAV --> <nav data-astro-cid-37fxchfa> <a href="/" class="nav-logo" data-astro-cid-37fxchfa>Bionic <span data-astro-cid-37fxchfa>Banker</span></a> <div class="nav-right" data-astro-cid-37fxchfa> <ul class="nav-links" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/start-here" data-astro-cid-37fxchfa>Start Quest</a></li> <li data-astro-cid-37fxchfa><a href="/apps" data-astro-cid-37fxchfa>Apps</a></li> <li data-astro-cid-37fxchfa><a href="/signals" data-astro-cid-37fxchfa>Signals</a></li> <li data-astro-cid-37fxchfa><a href="/ai-intelligence" data-astro-cid-37fxchfa>AI Intelligence</a></li> <li data-astro-cid-37fxchfa><a href="/articles" data-astro-cid-37fxchfa>Blog</a></li> <li data-astro-cid-37fxchfa><a href="/about" data-astro-cid-37fxchfa>About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu" data-astro-cid-37fxchfa>&#9776;</button> </nav> <!-- MAIN CONTENT -->  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Claude Max as Your Personal API","description":"$100/month flat rate. Unlimited API requests. Here's how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint.","datePublished":"2026-03-17T00:00:00.000Z","dateModified":"2026-03-17T00:00:00.000Z","author":{"@type":"Person","name":"Himanshu","url":"https://linkedin.com/in/himanshu-h-a357684a"},"publisher":{"@type":"Organization","name":"Bionic Banker","url":"https://bionicbanker.tech"},"mainEntityOfPage":"https://bionicbanker.tech/blog/claude-proxy-api/","keywords":"AI · Economics · Code"}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bionicbanker.tech"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://bionicbanker.tech/articles"},{"@type":"ListItem","position":3,"name":"Claude Max as Your Personal API","item":"https://bionicbanker.tech/blog/claude-proxy-api/"}]}</script> <div id="reading-progress" aria-hidden="true" data-astro-cid-zm77yjld></div> <script>
+</style></head> <body data-astro-cid-37fxchfa> <!-- NAV --> <nav data-astro-cid-37fxchfa> <a href="/" class="nav-logo" data-astro-cid-37fxchfa>Bionic <span data-astro-cid-37fxchfa>Banker</span></a> <div class="nav-right" data-astro-cid-37fxchfa> <ul class="nav-links" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/start-here" data-astro-cid-37fxchfa>Start Quest</a></li> <li data-astro-cid-37fxchfa><a href="/apps" data-astro-cid-37fxchfa>Apps</a></li> <li data-astro-cid-37fxchfa><a href="/signals" data-astro-cid-37fxchfa>Signals</a></li> <li data-astro-cid-37fxchfa><a href="/ai-intelligence" data-astro-cid-37fxchfa>AI Intelligence</a></li> <li data-astro-cid-37fxchfa><a href="/articles" data-astro-cid-37fxchfa>Blog</a></li> <li data-astro-cid-37fxchfa><a href="/about" data-astro-cid-37fxchfa>About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu" data-astro-cid-37fxchfa>&#9776;</button> </nav> <!-- MAIN CONTENT -->  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Claude Max as a Local Agent Cost Lesson","description":"A public-safe record about why local agent adapters need cost controls, redaction rules, and clear boundaries instead of raw proxy code.","datePublished":"2026-03-17T00:00:00.000Z","dateModified":"2026-03-17T00:00:00.000Z","author":{"@type":"Person","name":"Himanshu","url":"https://linkedin.com/in/himanshu-h-a357684a"},"publisher":{"@type":"Organization","name":"Bionic Banker","url":"https://bionicbanker.tech"},"mainEntityOfPage":"https://bionicbanker.tech/blog/claude-proxy-api/","keywords":"AI · Economics · Systems"}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bionicbanker.tech"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://bionicbanker.tech/articles"},{"@type":"ListItem","position":3,"name":"Claude Max as a Local Agent Cost Lesson","item":"https://bionicbanker.tech/blog/claude-proxy-api/"}]}</script> <div id="reading-progress" aria-hidden="true" data-astro-cid-zm77yjld></div> <script>
   (function() {
     var bar = document.getElementById('reading-progress');
     if (!bar) return;
@@ -18,251 +18,61 @@
     window.addEventListener('scroll', update, { passive: true });
     update();
   })();
-  </script>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-hero" data-astro-cid-zm77yjld> <div class="article-meta-top" data-astro-cid-zm77yjld> <span class="article-category" data-astro-cid-zm77yjld>Tech</span> <span class="article-date" data-astro-cid-zm77yjld>March 16, 2026</span> <span class="article-read-time" data-astro-cid-zm77yjld>11 min read</span> </div> <h1 class="article-title" data-astro-cid-zm77yjld>Claude Max as Your Personal API</h1> <p class="article-desc" data-astro-cid-zm77yjld>$100/month flat rate. Unlimited API requests. Here&#39;s how I built a proxy that turns Claude Max into an OpenAI-compatible endpoint.</p> <div class="article-tags" data-astro-cid-zm77yjld> <span class="tag" data-astro-cid-zm77yjld>AI · Economics · Code</span> </div> </div> <nav id="article-toc" class="article-toc" aria-label="In this article" data-astro-cid-zm77yjld></nav> <div class="article-body" data-astro-cid-zm77yjld>  <p>A local Flask proxy turns Claude Max into an OpenAI-shaped endpoint with <code>/v1/chat/completions</code>, <code>/v1/models</code>, streaming responses, and a Groq fallback. This note walks through the thin translation layer that lets local agent tests run against a flat $100/month subscription instead of per-token API billing.</p>
-<p>Okay so, here’s the problem. Claude API is metered per token. Every request costs something. You’re building an agent? That’s 100 requests a day minimum. Testing a chatbot? Friction everywhere. And if you’re serious about AI, you want to experiment without checking your credit card balance after every spike.</p>
-<p>But Claude Max is $100 a month. Flat rate. Unlimited requests. No per-token treadmill.</p>
-<p>The gap between these two worlds is wild. You’ve already paid for Claude Max on your local machine. But there’s no official way to use it programmatically. The <code>claude</code> CLI talks to you. It doesn’t talk to code.</p>
-<p>Until now.</p>
-<p>Here’s what I built: a Python proxy that wraps the Claude CLI into an OpenAI-compatible API endpoint. Your agents and tools think they’re hitting a normal API. They’re actually talking to the <code>claude</code> command on your local machine. Same interface shape. Different engine underneath.</p>
-<p>$100/month flat rate. Unlimited agent requests. Problem solved.</p>
-<h2 id="why-this-matters">Why This Matters</h2>
-<p>Think about the economics for a second. Claude API is like $3 per million input tokens, $15 per million output tokens. You run a few agent tests and you’re bleeding money. Not a lot of money individually, but it adds up. Every experiment costs something. Every iteration costs something.</p>
-<p>With Max, you’ve already paid $100. One time. The marginal cost of the next request is zero. And I mean zero. Not “small”. Actually zero.</p>
-<p>Now imagine building an agent system. Or running 100 variations of a prompt. Or doing recursive reasoning where the model thinks about its own thinking. In the cloud, you’re optimizing for fewer tests because tests cost money. When tests are free? You run everything. You stress-test without fear. You find the breaking points because you’re not afraid to look.</p>
-<p>That’s a different way of working entirely.</p>
-<h2 id="how-the-proxy-works">How the Proxy Works</h2>
-<p>The architecture is straightforward. Three layers.</p>
-<p><strong>Layer 1: HTTP Server.</strong> Flask app listening on localhost:8000. It exposes the OpenAI-compatible endpoints: <code>/v1/chat/completions</code>, <code>/v1/models</code>, etc. Any tool that speaks OpenAI just works.</p>
-<p><strong>Layer 2: Request Translation.</strong> When a request arrives, the proxy reads the OpenAI format and rebuilds it as a Claude prompt. System message goes to the system parameter, user messages get concatenated, parameters like <code>temperature</code> and <code>max_tokens</code> get passed through.</p>
-<p><strong>Layer 3: CLI Bridge.</strong> The key part. Instead of hitting the API endpoint, we call <code>claude -p</code> in a subprocess. Same tool you use in the terminal. Same authentication (Claude CLI already has your credentials). Same underlying service.</p>
-<p>Here’s the core logic:</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>import subprocess</span></span>
-<span class="line"><span>import json</span></span>
-<span class="line"><span>import time</span></span>
-<span class="line"><span>from flask import Flask, request, jsonify, Response</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>app = Flask(__name__)</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>@app.route('/v1/chat/completions', methods=['POST'])</span></span>
-<span class="line"><span>def chat_completions():</span></span>
-<span class="line"><span>    """</span></span>
-<span class="line"><span>    Accept OpenAI-format request, proxy to claude CLI, return response.</span></span>
-<span class="line"><span>    Why subprocess: Claude CLI is already auth'd. We just shell out to it.</span></span>
-<span class="line"><span>    Why jsonify: OpenAI format is standardized. Tools expect it.</span></span>
-<span class="line"><span>    """</span></span>
-<span class="line"><span>    data = request.json</span></span>
-<span class="line"><span>    messages = data.get('messages', [])</span></span>
-<span class="line"><span>    temperature = data.get('temperature', 1)</span></span>
-<span class="line"><span>    max_tokens = data.get('max_tokens', 8096)</span></span>
-<span class="line"><span>    stream = data.get('stream', False)</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    # Extract system prompt and user messages</span></span>
-<span class="line"><span>    system_msg = next((m['content'] for m in messages if m['role'] == 'system'), '')</span></span>
-<span class="line"><span>    user_msgs = [m['content'] for m in messages if m['role'] == 'user']</span></span>
-<span class="line"><span>    prompt_text = '\n'.join(user_msgs)</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    # Build CLI command</span></span>
-<span class="line"><span>    # Why CLI args: The claude tool expects these flags.</span></span>
-<span class="line"><span>    # Why we pass them: temperature affects response randomness, max_tokens prevents runaway</span></span>
-<span class="line"><span>    cmd = ['claude', '--temperature', str(temperature), '--max-tokens', str(max_tokens)]</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    if system_msg:</span></span>
-<span class="line"><span>        cmd.extend(['--system', system_msg])</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    cmd.extend(['-p', prompt_text])</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    # Run subprocess</span></span>
-<span class="line"><span>    result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    if result.returncode != 0:</span></span>
-<span class="line"><span>        return {'error': result.stderr}, 500</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    response_text = result.stdout.strip()</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    # Return OpenAI-compatible response</span></span>
-<span class="line"><span>    # Why this format: Any tool expecting OpenAI API just consumes it</span></span>
-<span class="line"><span>    openai_response = {</span></span>
-<span class="line"><span>        'id': 'claude-proxy-' + str(int(time.time())),</span></span>
-<span class="line"><span>        'object': 'chat.completion',</span></span>
-<span class="line"><span>        'created': int(time.time()),</span></span>
-<span class="line"><span>        'model': 'claude-3-5-sonnet',</span></span>
-<span class="line"><span>        'choices': [{</span></span>
-<span class="line"><span>            'index': 0,</span></span>
-<span class="line"><span>            'message': {'role': 'assistant', 'content': response_text},</span></span>
-<span class="line"><span>            'finish_reason': 'stop'</span></span>
-<span class="line"><span>        }],</span></span>
-<span class="line"><span>        'usage': {</span></span>
-<span class="line"><span>            'prompt_tokens': len(prompt_text.split()),</span></span>
-<span class="line"><span>            'completion_tokens': len(response_text.split()),</span></span>
-<span class="line"><span>            'total_tokens': len((prompt_text + response_text).split())</span></span>
-<span class="line"><span>        }</span></span>
-<span class="line"><span>    }</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    return jsonify(openai_response)</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>if __name__ == '__main__':</span></span>
-<span class="line"><span>    app.run(host='localhost', port=8000, debug=False)</span></span></code></pre>
-<p>That’s it. You point your tool at <code>http://localhost:8000</code>, set the model to <code>claude-3-5-sonnet</code>, and it works. LangChain, CrewAI, custom agents. Doesn’t matter. They all speak OpenAI format. The proxy translates it to CLI calls. The tool never knows the difference.</p>
-<h2 id="streaming-the-real-time-version">Streaming: The Real-Time Version</h2>
-<p>The basic version works for batch calls. But here’s where it gets better: streaming.</p>
-<p>Most LLM tools want responses arriving in real time, chunk by chunk. Not one giant blob at the end. The Claude CLI supports streaming natively (add the <code>--stream</code> flag), so the proxy just pipes it through:</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@app.route('/v1/chat/completions', methods=['POST'])</span></span>
-<span class="line"><span>def chat_completions():</span></span>
-<span class="line"><span>    data = request.json</span></span>
-<span class="line"><span>    stream = data.get('stream', False)</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    # ... build command same as before ...</span></span>
-<span class="line"><span>    cmd = ['claude', '--stream', '-p', prompt_text]</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    if stream:</span></span>
-<span class="line"><span>        def generate():</span></span>
-<span class="line"><span>            """</span></span>
-<span class="line"><span>            Stream chunks back as Server-Sent Events (SSE).</span></span>
-<span class="line"><span>            Why SSE: It's the standard for streaming responses.</span></span>
-<span class="line"><span>            Any HTTP client can parse it. Browsers, Python, everything.</span></span>
-<span class="line"><span>            """</span></span>
-<span class="line"><span>            process = subprocess.Popen(</span></span>
-<span class="line"><span>                cmd,</span></span>
-<span class="line"><span>                stdout=subprocess.PIPE,</span></span>
-<span class="line"><span>                stderr=subprocess.PIPE,</span></span>
-<span class="line"><span>                text=True,</span></span>
-<span class="line"><span>                bufsize=1</span></span>
-<span class="line"><span>            )</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>            for line in process.stdout:</span></span>
-<span class="line"><span>                # Convert to OpenAI streaming format</span></span>
-<span class="line"><span>                chunk = {</span></span>
-<span class="line"><span>                    'choices': [{</span></span>
-<span class="line"><span>                        'delta': {'content': line},</span></span>
-<span class="line"><span>                        'index': 0,</span></span>
-<span class="line"><span>                        'finish_reason': None</span></span>
-<span class="line"><span>                    }]</span></span>
-<span class="line"><span>                }</span></span>
-<span class="line"><span>                yield f"data: {json.dumps(chunk)}\n\n"</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>            # Final chunk signals completion</span></span>
-<span class="line"><span>            yield 'data: [DONE]\n\n'</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>        return Response(generate(), mimetype='text/event-stream')</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    # ... non-streaming path ...</span></span></code></pre>
-<p>The subprocess spawns, output flows back line by line, converted to SSE format. Your tool consumes it exactly like it would from OpenAI. Real-time tokens arriving as they’re generated. There’s maybe 200 to 500ms of subprocess overhead, but that’s noise compared to generation time.</p>
-<h2 id="groq-fallback-because-resilience-matters">Groq Fallback: Because Resilience Matters</h2>
-<p>Here’s something I added because I’m paranoid about uptime, and because systems should have backups.</p>
-<p>If Claude fails (network issue, CLI crash, whatever), the proxy falls back to Groq. Free Groq API. Open source models. Lower quality, but it runs.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>def get_response(prompt, system_msg, max_tokens, temperature):</span></span>
-<span class="line"><span>    """</span></span>
-<span class="line"><span>    Try Claude first. If it fails, use Groq.</span></span>
-<span class="line"><span>    Why fallback: Better to degrade than to crash.</span></span>
-<span class="line"><span>    Why Groq: Free API, reasonable latency, available.</span></span>
-<span class="line"><span>    """</span></span>
-<span class="line"><span>    try:</span></span>
-<span class="line"><span>        cmd = ['claude', '--stream', '--max-tokens', str(max_tokens)]</span></span>
-<span class="line"><span>        if system_msg:</span></span>
-<span class="line"><span>            cmd.extend(['--system', system_msg])</span></span>
-<span class="line"><span>        cmd.extend(['-p', prompt])</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)</span></span>
-<span class="line"><span>        if result.returncode == 0:</span></span>
-<span class="line"><span>            return result.stdout.strip()</span></span>
-<span class="line"><span>    except (subprocess.TimeoutExpired, FileNotFoundError):</span></span>
-<span class="line"><span>        pass</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>    # Fall back to Groq if Claude fails</span></span>
-<span class="line"><span>    return get_groq_response(prompt, system_msg, max_tokens, temperature)</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>def get_groq_response(prompt, system_msg, max_tokens, temperature):</span></span>
-<span class="line"><span>    """Groq fallback using free API key."""</span></span>
-<span class="line"><span>    from groq import Groq</span></span>
-<span class="line"><span>    client = Groq(api_key=os.getenv('GROQ_API_KEY'))</span></span>
-<span class="line"><span>    message = client.messages.create(</span></span>
-<span class="line"><span>        model="mixtral-8x7b-32768",</span></span>
-<span class="line"><span>        max_tokens=max_tokens,</span></span>
-<span class="line"><span>        temperature=temperature,</span></span>
-<span class="line"><span>        system=system_msg,</span></span>
-<span class="line"><span>        messages=[{"role": "user", "content": prompt}]</span></span>
-<span class="line"><span>    )</span></span>
-<span class="line"><span>    return message.content[0].text</span></span></code></pre>
-<p>The effect: Claude goes down, Groq picks up. Tool doesn’t care. It gets a response. Quality drops, but the system keeps running. You get degraded data instead of no data.</p>
-<p>That’s the kind of resilience you want. Not “single point of failure,” but “degraded mode.”</p>
-<h2 id="the-v1models-endpoint">The /v1/models Endpoint</h2>
-<p>Some tools check <code>/v1/models</code> to see what’s available. The proxy fakes this response so tools don’t error out:</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@app.route('/v1/models', methods=['GET'])</span></span>
-<span class="line"><span>def list_models():</span></span>
-<span class="line"><span>    """</span></span>
-<span class="line"><span>    List available models in OpenAI format.</span></span>
-<span class="line"><span>    Why we fake it: Tools check this before making requests.</span></span>
-<span class="line"><span>    Why hardcoded: We're routing everything to the local CLI anyway.</span></span>
-<span class="line"><span>    """</span></span>
-<span class="line"><span>    return jsonify({</span></span>
-<span class="line"><span>        'object': 'list',</span></span>
-<span class="line"><span>        'data': [</span></span>
-<span class="line"><span>            {'id': 'claude-3-5-sonnet', 'object': 'model', 'owned_by': 'anthropic'},</span></span>
-<span class="line"><span>            {'id': 'claude-3-opus', 'object': 'model', 'owned_by': 'anthropic'},</span></span>
-<span class="line"><span>            {'id': 'claude-3-haiku', 'object': 'model', 'owned_by': 'anthropic'}</span></span>
-<span class="line"><span>        ]</span></span>
-<span class="line"><span>    })</span></span></code></pre>
-<p>Right now everything routes to whatever the local <code>claude</code> CLI defaults to. It’s a future feature to pick different models. But this endpoint prevents tools from failing when they check what’s available.</p>
-<h2 id="what-you-get">What You Get</h2>
-<p><strong>Free agent requests.</strong> Claude Max pays for itself if you’re testing agents or building systems.</p>
-<p><strong>No per-token math.</strong> Your Max subscription is one flat price. No “quota exceeded” errors. No checking the billing page after each experiment.</p>
-<p><strong>OpenAI-compatible.</strong> Any tool that speaks OpenAI format works immediately. LangChain, CrewAI, your own custom code. Drop in the localhost endpoint and it runs.</p>
-<p><strong>Streaming responses.</strong> Real-time tokens arriving as they’re generated. Feels snappy. Tools that consume streaming just work.</p>
-<p><strong>Fallback resilience.</strong> Claude fails? Groq picks up. System keeps running in degraded mode.</p>
-<p><strong>Local execution.</strong> No data leaves your machine. No third-party service. Just your CLI, Python, and your network.</p>
-<h2 id="the-limitations-being-honest">The Limitations (Being Honest)</h2>
-<p>This isn’t a replacement for production cloud infrastructure. It’s a proxy, not a platform.</p>
-<p><strong>Single machine.</strong> Everything runs on one box. If your machine goes down, so does the proxy. If you need high availability across multiple regions, you’re back to the API. But for building and testing locally? This is fine.</p>
-<p><strong>No horizontal scaling.</strong> You can’t load-balance across 10 machines. If you need that, you’d write a coordinator that spawns multiple proxy instances on different ports and routes to them. Worth doing if you need it, but it’s not built in.</p>
-<p><strong>CLI latency.</strong> Every request spawns a new subprocess. That overhead, maybe 200 to 500ms, is small compared to token generation time, but it’s there. A direct API call is faster.</p>
-<p><strong>Sequential requests.</strong> If two requests arrive simultaneously, they queue. The CLI processes them one at a time. For local development and small agent systems, this is fine. For high-concurrency scenarios, you’d need to rearchitect.</p>
-<p><strong>ToS gray area.</strong> I’m reading Anthropic’s terms. Using Claude Max programmatically isn’t explicitly forbidden, but it’s not explicitly blessed either. The CLI is a first-party tool, so technically you own the request. But if you’re building something commercial, you should probably ask Anthropic first.</p>
-<p><strong>No multi-turn state.</strong> Every request is independent. The proxy doesn’t remember conversation history. You pass it back each time. It’s doable. You manage state in your calling code, but it’s not automatic.</p>
-<h2 id="what-we-actually-learned">What We Actually Learned</h2>
-<p>The real insight here isn’t about saving money on Claude API. It’s about abstraction layers.</p>
-<p>The Claude CLI and the Claude API are two different interfaces to the same underlying service. Both are useful. The API scales horizontally but costs per token. The CLI is local and flat-rate but doesn’t integrate with code.</p>
-<p>By writing a translation layer between them, we’re not exploiting a loophole. We’re just adapting one interface to work with tools that expect another. This is how good systems get built. Stripe’s API wraps payment processing. OpenAI’s API wraps their models. A proxy wraps the CLI.</p>
-<p>The proxy itself is thin. Maybe 100 lines of real logic. It doesn’t add intelligence. It just adapts. And that’s the lesson: sometimes the biggest value is in the glue layer. The thing that makes incompatible pieces talk to each other.</p>
-<h2 id="how-to-build-this">How to Build This</h2>
-<p>Here’s what you need:</p>
+  </script>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-hero" data-astro-cid-zm77yjld> <div class="article-meta-top" data-astro-cid-zm77yjld> <span class="article-category" data-astro-cid-zm77yjld>Tech</span> <span class="article-date" data-astro-cid-zm77yjld>March 16, 2026</span> <span class="article-read-time" data-astro-cid-zm77yjld>6 min read</span> </div> <h1 class="article-title" data-astro-cid-zm77yjld>Claude Max as a Local Agent Cost Lesson</h1> <p class="article-desc" data-astro-cid-zm77yjld>A public-safe record about why local agent adapters need cost controls, redaction rules, and clear boundaries instead of raw proxy code.</p> <div class="article-tags" data-astro-cid-zm77yjld> <span class="tag" data-astro-cid-zm77yjld>AI · Economics · Systems</span> </div> </div> <nav id="article-toc" class="article-toc" aria-label="In this article" data-astro-cid-zm77yjld></nav> <div class="article-body" data-astro-cid-zm77yjld>  <p>A note about local agent economics used to be a code-heavy proxy walkthrough. That was the wrong public shape for Bionic Banker.</p>
+<p>The useful lesson is not the private implementation. The useful lesson is the control pattern: when a local tool is wrapped for agent use, the public record should explain cost, routing, failure modes, and boundaries without publishing the adapter code, local ports, prompt plumbing, or credential assumptions.</p>
+<h2 id="what-the-original-experiment-proved">What the original experiment proved</h2>
+<p>The experiment started with a simple pressure: API testing gets expensive when agents make many small calls. A flat subscription can make experimentation feel cheaper, but a cheap path still needs rules.</p>
+<p>The important questions are:</p>
+<ul>
+<li>What is the request allowed to do?</li>
+<li>Which model or provider is allowed to answer?</li>
+<li>What happens when the preferred path fails?</li>
+<li>What is logged?</li>
+<li>What is never shown to the public?</li>
+<li>Which parts stay local?</li>
+</ul>
+<p>Those questions matter more than a copy-paste server snippet.</p>
+<h2 id="why-raw-proxy-code-does-not-belong-here">Why raw proxy code does not belong here</h2>
+<p>A public website can show architecture. It should not casually publish operational glue that includes local endpoint shapes, subprocess behavior, prompt routing, fallback mechanics, or credential assumptions.</p>
+<p>Even when no secret value is present, raw integration code can teach the wrong thing. It can reveal the shape of a private test harness. It can make a public page feel like a repository dump. It can invite a reader to focus on implementation tricks instead of the system record.</p>
+<p>For Bionic Banker, the safer public pattern is:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>problem -> control rule -> source record -> clear limit -> next human question</span></span></code></pre>
+<p>Not:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>private adapter code -> local endpoint -> prompt plumbing -> raw fallback logic</span></span></code></pre>
+<h2 id="the-public-version-of-the-architecture">The public version of the architecture</h2>
+<p>A safe local-agent adapter has four public ideas:</p>
 <ol>
-<li>
-<p><strong>Prerequisites:</strong> Claude Max subscription + Claude CLI installed + Python 3.8+ with Flask</p>
-</li>
-<li>
-<p><strong>Optional:</strong> Groq API key (free account) if you want fallback resilience</p>
-</li>
-<li>
-<p><strong>Port:</strong> Run on 8000. You can change it, but 8000 is clean.</p>
-</li>
-<li>
-<p><strong>Networking:</strong> For local development, <code>localhost:8000</code> works fine. If you need to access it from another machine, bind to <code>0.0.0.0</code> and firewall appropriately (or use Tailscale).</p>
-</li>
+<li><strong>Interface boundary.</strong> A tool sends a request in a standard shape.</li>
+<li><strong>Translation boundary.</strong> A private adapter converts that request for the local environment.</li>
+<li><strong>Policy boundary.</strong> The adapter refuses unsafe calls, logs the reason, and keeps private prompts and credentials out of the public record.</li>
+<li><strong>Failure boundary.</strong> If the preferred route fails, the system degrades visibly instead of silently switching into an unexpected mode.</li>
 </ol>
-<p>The full code is about 250 lines. Flask app, streaming, fallback, model endpoint. Took me about 4 hours to stabilize and test.</p>
-<h2 id="why-this-actually-matters">Why This Actually Matters</h2>
-<p>Here’s the thing: you already bought Claude Max. You’re paying $100 a month. The cost of the next request is actually zero. Not “small,” literally zero.</p>
-<p>This changes how you work. When every test costs money, you optimize for fewer tests. You polish arguments instead of running them. You guess instead of verify.</p>
-<p>When tests are free? You run 100 variations. You break things intentionally. You find the breaking points because you’re not afraid to look.</p>
-<p>That’s a different system entirely.</p>
-<p>Also: if you’re serious about agents, about building systems that think, about running experiments, this pays for itself immediately. Your Max subscription probably costs you nothing per agent request, when the economics actually matter.</p>
-<h2 id="one-last-thing">One Last Thing</h2>
-<p>If Anthropic releases an official way to use Claude Max programmatically, this post becomes a museum piece. And that’s fine. That’s the healthy outcome. But until they do, this is a working exploit of the economics. $100/month beats per-token billing every time, if your use case fits.</p>
-<p>You already own the tool. Might as well make it work for what you’re actually building.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>&#x3C;!-- CTA BLOCK --></span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>  &#x3C;!-- gradient top line --></span></span>
-<span class="line"><span>  </span></span>
-<span class="line"><span></span></span>
-<span class="line"><span>  </span></span>
-<span class="line"><span>    🚀 Ready to Build</span></span>
-<span class="line"><span>  </span></span>
-<span class="line"><span>  </span></span></code></pre>
-<h3 id="unlock-free-agent-requests">Unlock Free Agent Requests</h3>
-<p>The proxy code runs locally. No APIs, no cloud bills, no per-token math. Just your Claude Max and the freedom to experiment.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>    [</span></span>
-<span class="line"><span>      View on GitHub</span></span>
-<span class="line"><span>    ](https://github.com/hash02)</span></span></code></pre>  </div> <section class="related-articles" data-astro-cid-zm77yjld> <h2 class="related-heading" data-astro-cid-zm77yjld>Keep reading</h2> <div class="related-grid" data-astro-cid-zm77yjld> <a href="/blog/agent-governance-flow/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>Agent Governance Flow | Bionic Banker</strong> <span class="related-meta" data-astro-cid-zm77yjld>5 min read</span> </a><a href="/blog/what-claude-cant-do-for-kyc/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>What AI Still Cannot Do for KYC Records</strong> <span class="related-meta" data-astro-cid-zm77yjld>7 min read</span> </a><a href="/blog/30-agents-which-ones-i-built/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>A 30-Agent Framework, Read Against Real Build Records</strong> <span class="related-meta" data-astro-cid-zm77yjld>11 min read</span> </a> </div> </section> <div class="article-footer" data-astro-cid-zm77yjld> <div class="article-share" data-astro-cid-zm77yjld> <span data-astro-cid-zm77yjld>Share this:</span> <a href="https://twitter.com/intent/tweet?text=Claude%20Max%20as%20Your%20Personal%20API&#38;url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fclaude-proxy-api%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>X / Twitter</a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fclaude-proxy-api%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>LinkedIn</a> <button class="share-btn copy-link-btn" data-url="https://bionicbanker.tech/blog/claude-proxy-api/" data-astro-cid-zm77yjld>Copy link</button> </div> <a href="/articles" class="back-to-articles" data-astro-cid-zm77yjld>&larr; All Articles</a> </div> </article> <button id="back-to-top" aria-label="Back to top" title="Back to top" data-astro-cid-zm77yjld>&#8593;</button> <script>
+<p>That is enough for a reader to understand the design without seeing the private wiring.</p>
+<h2 id="what-the-record-can-safely-show">What the record can safely show</h2>
+<p>A public page can show:</p>
+<ul>
+<li>the reason the adapter exists</li>
+<li>the cost-control lesson</li>
+<li>the difference between prototype and reliable system</li>
+<li>the kinds of checks a wrapper needs</li>
+<li>a diagram of request, policy, and response boundaries</li>
+<li>a statement that credentials, prompts, local paths, and raw logs stay private</li>
+</ul>
+<p>A public page should not show:</p>
+<ul>
+<li>private endpoint details</li>
+<li>executable adapter code</li>
+<li>prompt extraction logic</li>
+<li>credential-loading assumptions</li>
+<li>local machine paths or hostnames</li>
+<li>raw logs from a private run</li>
+<li>instructions that turn the article into an operational recipe</li>
+</ul>
+<h2 id="the-bionic-banker-lesson">The Bionic Banker lesson</h2>
+<p>The model is not the proof. The wrapper is not the proof. The proof is the traceable control surface around the wrapper.</p>
+<p>If a local adapter exists, the public question is not “can I paste the code?” The public question is:</p>
+<p><strong>Can a reader see what the system is allowed to do, what it refused to do, and what stays private?</strong></p>
+<p>That is the standard this site should use going forward.</p>  </div> <section class="related-articles" data-astro-cid-zm77yjld> <h2 class="related-heading" data-astro-cid-zm77yjld>Keep reading</h2> <div class="related-grid" data-astro-cid-zm77yjld> <a href="/blog/context-engine-missing-layer/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>The Context Engine Is the Missing Layer</strong> <span class="related-meta" data-astro-cid-zm77yjld>8 min read</span> </a><a href="/blog/agent-governance-flow/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>Agent Governance Flow | Bionic Banker</strong> <span class="related-meta" data-astro-cid-zm77yjld>5 min read</span> </a><a href="/blog/what-claude-cant-do-for-kyc/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>What AI Still Cannot Do for KYC Records</strong> <span class="related-meta" data-astro-cid-zm77yjld>7 min read</span> </a> </div> </section> <div class="article-footer" data-astro-cid-zm77yjld> <div class="article-share" data-astro-cid-zm77yjld> <span data-astro-cid-zm77yjld>Share this:</span> <a href="https://twitter.com/intent/tweet?text=Claude%20Max%20as%20a%20Local%20Agent%20Cost%20Lesson&#38;url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fclaude-proxy-api%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>X / Twitter</a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fclaude-proxy-api%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>LinkedIn</a> <button class="share-btn copy-link-btn" data-url="https://bionicbanker.tech/blog/claude-proxy-api/" data-astro-cid-zm77yjld>Copy link</button> </div> <a href="/articles" class="back-to-articles" data-astro-cid-zm77yjld>&larr; All Articles</a> </div> </article> <button id="back-to-top" aria-label="Back to top" title="Back to top" data-astro-cid-zm77yjld>&#8593;</button> <script>
   (function() {
     // Copy link
     var copyBtn = document.querySelector('.copy-link-btn');

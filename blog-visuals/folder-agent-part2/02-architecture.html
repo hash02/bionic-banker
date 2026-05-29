@@ -74,9 +74,9 @@ h2 { font-size:20px; font-weight:700; text-align:center; margin-bottom:6px; }
     <div class="step s2">
       <div class="step-num"><div class="circle">2</div><div class="line"></div></div>
       <div class="step-content">
-        <div class="step-file">brain.py — Call Claude API</div>
-        <div class="step-desc">Sends compressed state + constrained system prompt. Gets back JSON with actions. Model: Haiku for routine, Sonnet for complex decisions.</div>
-        <div class="step-detail">decisions = think(state)  # returns {"actions": [...]}</div>
+        <div class="step-file">Decision layer — private model call</div>
+        <div class="step-desc">Receives a compact state summary, applies a private decision rule, and returns the next allowed action without exposing prompts or provider routing.</div>
+        <div class="step-detail">Private decision record → allowed next action</div>
       </div>
     </div>
 

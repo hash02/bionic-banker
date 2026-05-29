@@ -24,7 +24,7 @@ So I built a test. And the first thing it told me was that SYOS was broken.
 ## v1: The Wrong Instrument
 
     
-The idea was simple. Take the SYOS capsule, the core document that defines what SYOS is, its traits, its principles, everything, and feed it to a model as a system prompt. Then ask 50 different questions about SYOS and measure whether the responses stay consistent with the capsule.
+The idea was simple. Take the SYOS capsule, the core document that defines what SYOS is, its traits, its principles, everything, and feed it to a model as a private instruction context. Then ask 50 different questions about SYOS and measure whether the responses stay consistent with the capsule.
 
     
 I used TF-IDF cosine similarity. You turn each text into a vector of word frequencies, compare the angles between vectors. Standard information retrieval stuff. If the response vectors point in the same direction as the capsule vector, the model is staying anchored. If they drift apart, something's wrong.
@@ -70,7 +70,7 @@ LLM-as-judge. Using meaning to measure meaning, instead of using word counts to 
     #### Semantic Anchoring
 
         
-Mean across 50 prompts. The capsule was holding after all.
+Mean across 50 questions. The capsule was holding after all.
 
       
       #### Hallucination Rate
@@ -85,7 +85,7 @@ Almost no invented content. Model stayed within the capsule's boundaries.
 8.0 out of 10 anchoring. 1.8 out of 10 hallucination. The capsule wasn't broken. My test was broken.
 
     
-But here's the part that actually matters. I ran a correlation between v1 scores and v2 scores. Same 50 prompts, same responses, just measured differently. The correlation was **0.177**.
+But here's the part that actually matters. I ran a correlation between v1 scores and v2 scores. Same 50 questions, same responses, just measured differently. The correlation was **0.177**.
 
     
 For context, 1.0 means perfect agreement, 0.0 means completely unrelated. 0.177 is basically noise. The two instruments were measuring fundamentally different things, and they almost never agreed on which responses were good or bad.
@@ -94,7 +94,7 @@ For context, 1.0 means perfect agreement, 0.0 means completely unrelated. 0.177 
 > **The actual finding:** Vocabulary consistency and semantic consistency are almost completely uncorrelated (r=0.177). A response can use entirely different words than the capsule and still perfectly capture its meaning. This is the gap between surface-level evaluation and real evaluation. Most LLM benchmarks live on the wrong side of it.
 
     
-Better. Not solved. Single-shot adversarial attacks, where someone hits the model with one hostile prompt and no prior context, are the hardest thing to defend against because the model has no conversational momentum to lean on. No previous correct answers to reinforce the anchor.
+Better. Not solved. Single-shot adversarial attacks, where someone hits the model with one hostile input and no prior context, are the hardest thing to defend against because the model has no conversational momentum to lean on. No previous correct answers to reinforce the anchor.
 
     
 Which raised an interesting question. What about sustained attacks?
@@ -178,7 +178,7 @@ Design principle that falls out of this: capsules need more than 50 words to be 
 Six rounds of testing. Here's what survived:
 
     
-**The capsule works.** 8.0/10 semantic anchoring across 50 prompts, 9.0/10 metamorphic consistency across 25 rephrased questions, 9.7/10 under sustained multi-turn attacks. The model stays anchored to what the capsule defines and doesn't invent new concepts.
+**The capsule works.** 8.0/10 semantic anchoring across 50 questions, 9.0/10 metamorphic consistency across 25 rephrased questions, 9.7/10 under sustained multi-turn attacks. The model stays anchored to what the capsule defines and doesn't invent new concepts.
 
     
 **The instrument matters more than the score.** v1's TF-IDF said the capsule was broken. v2's semantic judge said it was solid. Correlation between them: 0.177. They were measuring completely different things and reaching completely different conclusions from the same data. If I'd stopped at v1, I would have thrown SYOS away based on a bad measurement.

@@ -65,7 +65,7 @@ Every agent I have run has done at least one of these three. The ones that survi
 
 The agent compresses its memory to save tokens. The compression is lossy. The thing it compressed was the one thing it needed.
 
-I lost three different agents to this. The first was a content drafting agent that had been told in its system prompt exactly which words never to use. After a long session, the system prompt got summarized into "write in a conversational style." Every banned word came back the next day. I did not notice for a week because the drafts looked fine until you read them carefully.
+I lost three different agents to this. The first was a content drafting agent that had been told in its private instruction set exactly which words never to use. After a long session, that source rule got summarized into "write in a conversational style." Every banned word came back the next day. I did not notice for a week because the drafts looked fine until you read them carefully.
 
 Fix that came late: never compress the source of truth. Keep both the full version and the cache. If there is a conflict, full wins.
 
@@ -89,7 +89,7 @@ Fix that came late: never trust a silent downgrade. If the router changes which 
 
 ### Death by permission gate at the worst hour
 
-An agent was configured to ask for human approval before a trade-like action. Reasonable on paper. In practice, the agent hit its approval prompt at 3am, sat waiting for me to wake up, and by the time I saw the prompt the opportunity had moved. Six hours of silence while the world changed.
+An agent was configured to ask for human approval before a trade-like action. Reasonable on paper. In practice, the agent hit its approval request at 3am, sat waiting for me to wake up, and by the time I saw the request the opportunity had moved. Six hours of silence while the world changed.
 
 Fix that came late: either the agent has authority to act within a bounded decision space, or it does not act at all. Asking for permission is only valuable during hours when permission can be granted. Outside those hours, I pre-approve a budget or I let the moment pass.
 

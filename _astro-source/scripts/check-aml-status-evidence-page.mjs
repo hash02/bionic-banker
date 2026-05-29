@@ -37,12 +37,17 @@ assert(layout.includes('href="/aml-status-evidence"'), 'Primary layout must expo
 assert(projects.includes('/aml-status-evidence'), 'Systems page must link to the AML status evidence page.');
 assert(proofTour.includes('/aml-status-evidence'), 'Proof tour must link to the AML status evidence page.');
 
-assert(catalog.status === 'public_aml_status_evidence_v1', 'AML status evidence catalog status must be public_aml_status_evidence_v1.');
+assert(catalog.status === 'public_aml_status_record_v2', 'AML status record catalog status must be public_aml_status_record_v2.');
 assert(catalog.boundary?.may_execute === false, 'Public AML status evidence catalog must keep may_execute false.');
 assert(catalog.boundary?.kyc_approval_authority === false, 'Public AML status evidence catalog must keep KYC approval authority false.');
 assert(catalog.boundary?.wallet_or_trade_authority === false, 'Public AML status evidence catalog must keep wallet/trade authority false.');
-assert(catalog.provenance?.contract_doc?.includes('AML_LAYER1_STATUS_CONTRACT.md'), 'Catalog must point to the public-safe contract doc provenance.');
+assert(catalog.provenance?.contract_doc === 'AML status contract summary', 'Catalog must use public-safe source summary labels instead of private paths.');
 assert(Array.isArray(catalog.visible_claims) && catalog.visible_claims.length >= 4, 'Catalog must contain visible public claims.');
+
+const publicSafeText = JSON.stringify(catalog);
+for (const phrase of ['console-api/', 'wukong-side', 'console/src/pages', '70-ops-logs', 'python -m', 'py_compile', 'artifact path']) {
+  assert(!publicSafeText.toLowerCase().includes(phrase.toLowerCase()), `Public AML status record exposes private implementation detail: ${phrase}`);
+}
 
 const combined = [page, JSON.stringify(catalog)].join('\n').toLowerCase();
 const banned = [

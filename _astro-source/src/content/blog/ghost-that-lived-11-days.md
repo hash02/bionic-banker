@@ -33,11 +33,7 @@ Underneath that: 128 TCP connections to api.groq.com, openrouter.ai, generativel
 
 The loop was:
 
-```python
-while True:
-    run_next_experiment(db)
-    time.sleep(300)
-```
+The loop kept the runner alive on a fixed cycle, but it had no recovery path, no backoff, no circuit breaker, and no health signal when network connections started leaking.
 
 No try-except. No exponential backoff. No circuit breaker. No connection cleanup between cycles. No health check that said "hey, you have 122 leaked sockets, something is off." The loop just kept going because nothing was watching.
 
@@ -73,23 +69,11 @@ The fix for CLOSE-WAIT is the same as the fix for any long-running HTTP client: 
 
 ## What I changed
 
-One, `call_ollama()` now actually calls Ollama. Direct `urllib.request` to `http://localhost:11434/api/generate`, model gemma2:9b, 300s timeout. No router. No fallback chain to paid providers. If Ollama is down, the function raises and the loop handles it.
+One, `call_ollama()` now actually calls Ollama. A direct local-model call with an explicit timeout replaced the router chain. No router. No fallback chain to paid providers. If Ollama is down, the function raises and the loop handles it.
 
 Two, the loop has an immune system:
 
-```python
-error_count = 0
-while True:
-    try:
-        result = run_next_experiment(db)
-        error_count = 0
-    except Exception as e:
-        error_count += 1
-        backoff = min(60 * (2 ** error_count), 900)
-        time.sleep(backoff)
-        continue
-    time.sleep(300 if result else 600)
-```
+The replacement loop had an error counter, bounded backoff, a longer idle pause, and a clean reset after a successful cycle. The public point is the pattern, not the raw implementation.
 
 Exponential backoff capped at fifteen minutes. Longer sleep when the queue is empty. Error counter resets on success. Keyboard interrupt exits cleanly.
 
@@ -97,13 +81,13 @@ Three, I killed the old process. PID 2185230. All 128 leaked connections cleared
 
 ## Lessons that go wider than this bug
 
-One, long-running `while True` loops are infrastructure. They need the same hygiene as any production service. Error handling, backoff, observability, health checks. "It is just a script" is how you get an eleven-day zombie.
+One, long-running loops are infrastructure. They need the same hygiene as any production service. Error handling, backoff, observability, health checks. "It is just a script" is how you get an eleven-day zombie.
 
 Two, policy without enforcement is theater. If the law says "no external API calls" and the code does not check, the law will be violated eventually. The only real policy is the one compiled into the call graph.
 
 Three, name things honestly. `call_ollama` that routes through thirteen cloud providers is a failure of the first contract between a function and its caller. The reader trusts the name. Betray the name and the reader stops reading.
 
-Four, CLOSE-WAIT is invisible until it kills you. If you run long-lived HTTP clients, put socket counts into your observability surface. `ss -tnp | wc -l` on a cron, alerting above a threshold. The visible symptoms arrive after the system is already in trouble.
+Four, CLOSE-WAIT is invisible until it kills you. If you run long-lived HTTP clients, put socket counts into your observability surface. A small socket-count check on a schedule, alerting above a threshold. The visible symptoms arrive after the system is already in trouble.
 
 ## Closing
 

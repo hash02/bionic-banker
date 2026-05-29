@@ -26,7 +26,7 @@ const proofCards = [
   {
     label: 'Source trail',
     title: 'The record shape comes before the public claim.',
-    body: 'The local contract defines JSON and Markdown records, latest aliases, and SHA-256 sidecars so a later reader can inspect what supported the status.',
+    body: 'Private records keep timestamped snapshots and checksum sidecars; the public page shows only the summary needed to understand the status.',
     source: provenance.local_artifact_pattern,
   },
 ];
@@ -44,7 +44,7 @@ const proofCards = [
         <div class="proof-actions">
           <a href="#proof-cards">Review supporting records</a>
           <a href="/wallet-risk">Open wallet risk assessment</a>
-          <a href="/dashboard-data/aml-status-evidence-public.json">View source data</a>
+          <a href="/system-map">View system map</a>
         </div>
       </div>
       <aside class="authority-card" aria-label="AML status limit">
@@ -57,7 +57,7 @@ const proofCards = [
 
     <DataRepresentationCard
       signal="An AML-related status is only useful when the checked rule, source trail, and action boundary are visible together."
-      source="The public status JSON, contract documentation, provenance fields, check rows, and local artifact pattern."
+      source="A redacted public status record, source summary, check categories, and explicit outside-action refusal."
       record="A status snapshot with visible claims, freshness checks, source references, and explicit outside-action refusal."
       missing="Private logs, customer data, employer data, confidential policy, and any real filing or approval context."
       nextQuestion="Which missing field would a human need before treating the status as operationally meaningful?"
@@ -115,19 +115,19 @@ const proofCards = [
       <div class="panel-head">
         <span>Source trail</span>
         <h2>The record has a source trail. It is not just a claim.</h2>
-        <p>Readers can see repository-relative source references. Local machine details, private paths, and operational internals stay off the public site.</p>
+        <p>Readers can see the public source summary. Private modules, raw commands, local paths, and operational internals stay off the public site.</p>
       </div>
       <div class="provenance-grid">
         <article>
-          <span>Contract doc</span>
+          <span>Contract summary</span>
           <strong>{provenance.contract_doc}</strong>
         </article>
         <article>
-          <span>Contract module</span>
+          <span>Private module</span>
           <strong>{provenance.contract_module}</strong>
         </article>
         <article>
-          <span>Refresher module</span>
+          <span>Private refresher</span>
           <strong>{provenance.refresher_module}</strong>
         </article>
         <article>
@@ -141,13 +141,13 @@ const proofCards = [
       <div class="panel-head">
         <span>Verification records</span>
         <h2>What was checked locally</h2>
-        <p>These local verification commands are recorded beside the status. They show what was checked; they are not hosted compliance certification.</p>
+        <p>The public page records check categories and results. Raw commands, private paths, and internal module names stay out of the reader-facing page.</p>
       </div>
       <div class="check-list">
         {checks.map((check) => (
           <article>
             <span>{check.label}</span>
-            <code>{check.command}</code>
+            <strong>{check.command}</strong>
             <p>{check.recorded_result}</p>
           </article>
         ))}

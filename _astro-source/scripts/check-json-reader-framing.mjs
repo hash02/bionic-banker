@@ -6,19 +6,30 @@ const root = path.resolve('..');
 const sourceFiles = [
   'src/pages/index.astro',
   'src/pages/projects.astro',
+  'src/pages/apps.astro',
+  'src/pages/evidence.astro',
+  'src/pages/intelligence.astro',
+  'src/pages/aml-status-evidence.astro',
   'src/pages/risk-evidence-overview.astro',
   'src/pages/reports.astro',
   'src/pages/fraud-alert-triage.astro',
 ].map((p) => path.join(sourceRoot, p)).filter(fs.existsSync);
 
 const allowedPrimary = new Set([
-  '/dashboard-data/heartbeat.json',
   '/dashboard-data/aml-status-proof.json',
 ]);
 const failures = [];
 
 for (const file of sourceFiles) {
   const text = fs.readFileSync(file, 'utf8');
+
+  for (const match of text.matchAll(/route:\s*['"]([^'"]+\.json)['"]/g)) {
+    const url = match[1];
+    if (url.includes('/dashboard-data/') && !allowedPrimary.has(url)) {
+      failures.push(`${path.relative(sourceRoot, file)} uses raw JSON as a reader route: ${url}; point readers to a rendered page.`);
+    }
+  }
+
   for (const match of text.matchAll(/\{\s*label:\s*['"]([^'"]+)['"]\s*,\s*url:\s*['"]([^'"]+\.json)['"]/g)) {
     const label = match[1];
     const url = match[2];
@@ -43,4 +54,4 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
-console.log('JSON_READER_FRAMING PASS — rendered evidence/site-health pages exist and catalog JSON is not a primary reader link');
+console.log('JSON_READER_FRAMING PASS — rendered pages are primary and raw JSON is not a first-reader proof link');
