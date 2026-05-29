@@ -32,7 +32,7 @@ It tells us the question has changed from "is this real?" to "where does this fi
 
 The signal here is not that a blockchain moved value. It is that the compliance wrapper stayed intact through the settlement leg.
 
-T+3 persists not because faster settlement is technically unavailable. The rails can clear faster. It persists because the clearing and reconciliation stack was built around that cadence, and unwinding it is counterparty risk and operational complexity, not an engineering problem. The pilot tested a bypass: stablecoin settlement for the finality leg, with an on-chain receipt instead of a chain of delayed clearing messages.
+T+3 persists not because faster settlement is technically unavailable. The rails can clear faster. It persists because the clearing and reconciliation stack was built around that cadence, and unwinding it is counterparty risk and operational complexity, not an engineering problem. The pilot tested a bypass: stablecoin settlement for the finality leg, with an on-chain transaction record instead of a chain of delayed clearing messages.
 
 KYC did not disappear. Compliance did not disappear. Visa did not disappear. Wealthsimple did not become a bankless island.
 

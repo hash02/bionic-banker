@@ -80,7 +80,7 @@ Their approach proves that smaller institutions can compete with the Big Five on
 
 ## What This Means
 
-The pattern across these institutions is clear. AI is no longer a pilot project or an innovation lab experiment. It is becoming infrastructure. Every bank is building, deploying, and measuring.
+The pattern across these institutions is clear. AI is no longer only a pilot project or innovation experiment. It is becoming infrastructure. Every bank is building, deploying, and measuring.
 
 The differences are in approach, not ambition. RBC invested in research first. TD is pushing toward autonomous agents. BMO is augmenting advisors. Scotiabank is solving multi-market complexity.
 

@@ -81,7 +81,7 @@ Or worse,latency attack. You don't compromise Agent A **now**. You hide a malici
 
 82% of models will obey peer agents **even if they'd refuse the same instruction from a human**. Trust escalation. You've got a hierarchy of trust, except the hierarchy is broken because it assumes peers are automatically trustworthy.
 
-Palo Alto's research team did a demo: they poisoned an orchestration agent with a prompt injection. That agent then passed instructions to a stock-trading agent. The trading agent leaked API keys to unauthorized accounts. Nobody wrote malicious code,just one agent poisoning another through normal communication.
+Palo Alto's research team showed a case: they poisoned an orchestration agent with a prompt injection. That agent then passed instructions to a stock-trading agent. The trading agent leaked API keys to unauthorized accounts. Nobody wrote malicious code,just one agent poisoning another through normal communication.
 
 Cascading failures. Silent compromise. The whole mesh architecture assumes integrity at every node, and if one node is compromised, you don't have a detection problem,you have a lateral movement problem.
 

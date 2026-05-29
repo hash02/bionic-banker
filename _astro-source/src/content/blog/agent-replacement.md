@@ -78,7 +78,7 @@ The people who understand agent systems will be managing 10 agents doing the wor
 
 ## What's Actually Happening Right Now
 
-NVIDIA's NemoClaw isn't a research paper. It's an open-source agent platform that shipped with 17 enterprise partners on day one at GTC. That's not a demo. That's deployment.
+NVIDIA's NemoClaw isn't a research paper. It's an open-source agent platform that shipped with 17 enterprise partners on day one at GTC. That's not a stage sample. That's deployment.
 
 Salesforce didn't just talk about agents. They built Agentforce, launched it, and it's generating $2.9 billion in ARR. That's not a pilot program. That's a product line bigger than most companies.
 

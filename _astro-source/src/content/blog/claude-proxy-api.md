@@ -80,7 +80,7 @@ A public page should not show:
 
 ## The Bionic Banker lesson
 
-The model is not the proof. The wrapper is not the proof. The proof is the traceable control surface around the wrapper.
+The model is not the record. The wrapper is not the record. The useful signal is the traceable control surface around the wrapper.
 
 If a local adapter exists, the public question is not "can I paste the code?" The public question is:
 

@@ -133,7 +133,7 @@ The system has already produced real public-facing artifacts:
 - a corrected AML Detection Engine README
 - a crypto AML and RegTech resume variant
 - draft material for crypto compliance roles
-- a public project lab-route spec
+- a public project route spec
 - this case study as the missing bridge between private system and visible source trail
 
 None of those required pretending the system is bigger than it is.

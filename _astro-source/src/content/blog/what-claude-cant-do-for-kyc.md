@@ -42,7 +42,7 @@ That is useful. I do not want to minimize it.
 
 A model that can read messy documents, normalize names, catch expiry dates, and explain inconsistencies is valuable. It saves time. It gives analysts a better first pass. It can reduce the boring part of review.
 
-But calling that "KYC solved" is like looking at a receipt scanner and saying accounting is solved.
+But calling that "KYC solved" is like looking at an invoice scanner and saying accounting is solved.
 
 The scanner helps. It does not close the books.
 

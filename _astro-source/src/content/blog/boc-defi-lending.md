@@ -90,7 +90,7 @@ But here's the part that most people miss.
 
 Every single transaction I made on Aave and Compound six years ago is still visible on the blockchain today. Every reckless trade, every liquidation, every painful lesson. Timestamped, permanent, verifiable by anyone.
 
-That is one of the most underrated powers of blockchain: proof of behavior over time.
+That is one of the most underrated powers of blockchain: a public behavior record over time.
 
 Try asking your bank for a complete, detailed record of every loan, every interest payment, every fee from six years ago. You'll wait weeks and probably get an incomplete PDF. On-chain, it's all there. Instantly. Forever.
 

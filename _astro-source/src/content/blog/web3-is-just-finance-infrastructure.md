@@ -56,7 +56,7 @@ Let me map it directly.
 
 **Monad and Berachain** are execution layers competing on speed, liquidity design, and developer experience. The finance analogy is exchange infrastructure. Exchanges compete on performance, depth, reliability, and participant incentives. Layer-1 chains do a similar thing for applications.
 
-**Celestia and StarkWare** sit deeper in the stack. Celestia is modular data availability infrastructure. StarkWare is proof and scaling infrastructure. The finance analogy is not perfect, but the function is familiar: make the back office more reliable, verifiable, and scalable.
+**Celestia and StarkWare** sit deeper in the stack. Celestia is modular data availability infrastructure. StarkWare is verification and scaling infrastructure. The finance analogy is not perfect, but the function is familiar: make the back office faster, cheaper, and easier to audit.
 
 The names sound new.
 

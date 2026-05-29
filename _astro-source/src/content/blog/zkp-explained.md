@@ -129,4 +129,4 @@ Read [Web3 Is Just Finance Infrastructure](/blog/web3-is-just-finance-infrastruc
 
 ## Diagram hook
 
-Best visual: a simple explainer diagram: `private input`, `proof`, `public verifier`, `what is proven`, and `what is still unknown`.
+Best visual: a simple explainer diagram: `private input`, `verification record`, `public verifier`, `what is shown`, and `what is still unknown`.
