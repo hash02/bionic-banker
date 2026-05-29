@@ -39,8 +39,9 @@ for (const phrase of [
   'what changed, what source supports it, what Bionic Banker recorded, and what the record cannot decide',
   'What it cannot do',
   'No trade instruction, no compliance approval, no KYC decision, no automated filing, and no wallet control.',
-  'Telegram format',
-  'Short release notes, with the limit included.',
+  'New on Bionic Banker:',
+  'Why it matters:',
+  'Clear limit:',
   'These are learning records, not trading or compliance instructions.',
 ]) {
   requireIncludes(updates, phrase, 'updates reader promise');
@@ -56,6 +57,10 @@ for (const pattern of [
   /buy now/i,
   /sell now/i,
   /profit/i,
+  /Bionic Banker update:/i,
+  /\bI (added|shipped|pushed|built|changed)\b/i,
+  /\bHash (asked|said|approved)\b/i,
+  /commit [0-9a-f]{7,40}/i,
   /may_execute:\s*true/i,
   /wallet power:\s*true/i,
   /trade power:\s*true/i,
@@ -69,4 +74,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('UPDATE_PROMISE_CHECK PASS — subscription and Telegram promise stay source-led, non-advisory, and bounded.');
+console.log('UPDATE_PROMISE_CHECK PASS — subscription and Telegram promise stay reader-facing, source-led, non-advisory, and bounded.');
