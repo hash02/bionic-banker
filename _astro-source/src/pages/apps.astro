@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const proofCatalog = await import('../../public/dashboard-data/source-catalog.json');
-const verifiedDate = new Date(proofCatalog.default.generated_at).toISOString().slice(0, 10);
-const catalogProjectCount = proofCatalog.default.projects.length;
-const catalogSourceCount = proofCatalog.default.projects.reduce((sum, project) => sum + (project.sources?.length ?? 0), 0);
-const catalogLimitCount = proofCatalog.default.projects.reduce((sum, project) => sum + (project.limits?.length ?? 0), 0);
+const sourceCatalog = await import('../../public/dashboard-data/source-catalog.json');
+const verifiedDate = new Date(sourceCatalog.default.generated_at).toISOString().slice(0, 10);
+const catalogProjectCount = sourceCatalog.default.projects.length;
+const catalogSourceCount = sourceCatalog.default.projects.reduce((sum, project) => sum + (project.sources?.length ?? 0), 0);
+const catalogLimitCount = sourceCatalog.default.projects.reduce((sum, project) => sum + (project.limits?.length ?? 0), 0);
 
 const projects = [
   {
@@ -17,7 +17,7 @@ const projects = [
     reviewerQuestion: 'A wallet row can be scored and explained without pretending the score is a final verdict.',
     role: 'Wallets / Risk / Notes',
     url: '/wallet-risk',
-    proof: 'Demonstrates wallet-screening judgment: 28 mapped detection abilities, 23 direct functions, visible scoring logic, and a plain-language case note.',
+    record: 'Records wallet-screening judgment: 28 mapped detection abilities, 23 direct functions, visible scoring logic, and a plain-language case note.',
     limitation: 'Research and learning page. Not legal advice, filing software, or a licensed compliance product.',
     links: [
       { label: 'View wallet risk', url: '/wallet-risk' },
@@ -37,11 +37,11 @@ const projects = [
     reviewerQuestion: 'An AML status can show what was checked while still refusing to approve, file, trade, deploy, or execute.',
     role: 'AML / Records / Limits',
     url: '/aml-status-evidence',
-    proof: 'Shows how an AML-related status record can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
+    record: 'Records how an AML-related status can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
     limitation: 'Status summary only. No wallet, trade, filing, deploy, or KYC approval power.',
     links: [
       { label: 'View AML status', url: '/aml-status-evidence' },
-      { label: 'Status JSON', url: '/dashboard-data/aml-status-evidence-public.json' },
+      { label: 'Status data', url: '/dashboard-data/aml-status-evidence-public.json' },
       { label: 'Wallet risk', url: '/wallet-risk' },
       { label: 'AML', url: '/learn#aml' },
     ],
@@ -55,12 +55,12 @@ const projects = [
     reviewerQuestion: 'Messy fraud signals can become a simple case note, source list, and human next step.',
     role: 'Fraud Ops / Records / Review',
     url: '/fraud-alert-triage',
-    proof: 'Demonstrates the market-positioning pattern from alert signal to source trail, rule explanation, analyst-ready case note, and bounded next action.',
+    record: 'Shows the path from alert signal to source trail, rule explanation, analyst-ready case note, and bounded next action.',
     limitation: 'Synthetic sample only. Not fraud prevention software, enforcement power, guaranteed detection, or autonomous case decisioning.',
     links: [
       { label: 'View fraud triage', url: '/fraud-alert-triage' },
       { label: 'One-page card', url: '/proof/fraud-alert-triage/one-page-card.html' },
-      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source Catalog', url: '/evidence' },
       { label: 'Audit log', url: '/learn#audit-log' },
     ],
   },
@@ -72,7 +72,7 @@ const projects = [
     reviewerQuestion: 'AI-assisted case work can leave a readable record without exposing private prompts or taking outside action.',
     role: 'Agents / Records / Review',
     url: '/agent-prototype-sprint',
-    proof: 'Shows the path from AI-assisted case work to review, system map placement, and clear limits on outside action control.',
+    record: 'Records the path from AI-assisted case work to review, system map placement, and clear limits on outside action control.',
     limitation: 'Workflow summary only. No autonomous deployment, wallet movement, compliance decision, or private prompt disclosure.',
     links: [
       { label: 'View case review', url: '/agent-prototype-sprint' },
@@ -91,11 +91,11 @@ const projects = [
     reviewerQuestion: 'Two AI workers can pass work back and forth while a person keeps final control.',
     role: 'Agents / Memory / Turns',
     url: '/blog/two-agent-finance-operating-system',
-    proof: 'Demonstrates human-reviewed agent operations: independent turns, review roles, recoverable board state, and public records without exposing private prompts.',
+    record: 'Records human-reviewed agent operations: independent turns, review roles, recoverable board state, and public records without exposing private prompts.',
     limitation: 'Personal operating system. The public page shows tempo and broad roles only. No autonomous public publishing or external actions.',
     links: [
       { label: 'Story', url: '/blog/two-agent-finance-operating-system' },
-      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source Catalog', url: '/evidence' },
       { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'AI agent', url: '/learn#agent' },
       { label: 'Audit log', url: '/learn#audit-log' },
@@ -110,7 +110,7 @@ const projects = [
     reviewerQuestion: 'An AI-agent run should leave tool calls, notes, limits, and checks that another person can inspect.',
     role: 'Agent Tools / Traces / Limits',
     url: 'https://github.com/hash02/agent-framework-proof',
-    proof: 'Demonstrates inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, access checks, trace rows, monitoring output, and 70 local checks.',
+    record: 'Shows inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, access checks, trace rows, monitoring output, and 70 local checks.',
     limitation: 'Local review stack, not a production hosted agent or credentialed integration.',
     links: [
       { label: 'GitHub repository', url: 'https://github.com/hash02/agent-framework-proof' },
@@ -122,16 +122,16 @@ const projects = [
   },
   {
     name: 'Agent Monitoring Heartbeat',
-    surface: 'Status JSON + dashboard feed',
+    surface: 'Status data + dashboard feed',
     signal: 'Status and scoring loop',
     description: 'A visible status snapshot showing an agent loop can wake up, write state, score prior predictions, and expose recent health.',
     role: 'Signals / Health / Loop',
     url: '/dashboard-data/heartbeat.json',
-    proof: 'Latest snapshot shows alive and healthy status, 2,514 predictions made, and 53 percent accuracy over the last 100 BTC direction checks.',
+    record: 'Latest snapshot shows alive and healthy status, 2,514 predictions made, and 53 percent accuracy over the last 100 BTC direction checks.',
     limitation: 'Research and monitoring only. Not investment advice, live trading performance, or infrastructure disclosure.',
     links: [
-      { label: 'Heartbeat JSON', url: '/dashboard-data/heartbeat.json' },
-      { label: 'Catalog', url: '/evidence' },
+      { label: 'Heartbeat data', url: '/dashboard-data/heartbeat.json' },
+      { label: 'Source Catalog', url: '/evidence' },
       { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'Heartbeat', url: '/learn#heartbeat' },
       { label: 'System health', url: '/learn#observability' },
@@ -144,7 +144,7 @@ const projects = [
     description: 'Kite testnet and decentralized-infrastructure work framed as a bounded engineering record: paper portfolio state, public testnet markers, and agent-run discipline.',
     role: 'Testnet / Decentralized Infra / Agents',
     url: 'https://github.com/hash02/hermes-kite',
-    proof: 'The public repository presents a Kite AI Global Hackathon 2026 submission with paper-mode portfolio state, one-shot workers, and Kite testnet settlement markers.',
+    record: 'The public repository presents a Kite AI Global Hackathon 2026 submission with paper-mode portfolio state, one-shot workers, and Kite testnet settlement markers.',
     limitation: 'Public testnet and paper-mode engineering record only. No real-fund execution, no wallet power, no order power, and no production capital management claim.',
     links: [
       { label: 'GitHub repository', url: 'https://github.com/hash02/hermes-kite' },
@@ -160,7 +160,7 @@ const projects = [
     description: 'A bounded local-compute and agent-infrastructure environment for learning how small AI systems behave when they have to run, recover, and leave inspectable state.',
     role: 'Compute / Agents / Health',
     url: '/blog/agent-graveyard',
-    proof: 'The public report documents a modest always-on server, a second security-testing machine, local model usage, one-job agents, queueing, recovery, and monitoring lessons.',
+    record: 'The public report documents a modest always-on server, a second security-testing machine, local model usage, one-job agents, queueing, recovery, and monitoring lessons.',
     limitation: 'Public architecture summary only. No private topology, addresses, credentials, wallet control, outside action control, or production-service guarantee.',
     links: [
       { label: 'Report', url: '/blog/agent-graveyard' },
@@ -176,10 +176,10 @@ const projects = [
     description: 'A small starter kit for writing down how an agent is allowed to use tools, leave traces, and wait for a human before the serious moves.',
     role: 'Agent Rules / Review / Tools',
     url: '/evidence',
-    proof: 'The package has seven small files: a manifest, queue notes, trace examples, tool boundaries, and review steps.',
+    record: 'The package has seven small files: a manifest, queue notes, trace examples, tool boundaries, and review steps.',
     limitation: 'Template kit. Not legal advice, certification, or enterprise governance software.',
     links: [
-      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source Catalog', url: '/evidence' },
       { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'Tool calling', url: '/learn#tool-calling' },
       { label: 'RBAC', url: '/learn#rbac' },
@@ -193,7 +193,7 @@ const projects = [
     description: 'Lightweight EVM wallet triage helper that converts wallet signals into RED / YELLOW / GREEN risk ratings.',
     role: 'Wallets / Risk / Triage',
     url: 'https://github.com/hash02/wallet-risk-check',
-    proof: 'Supports Ethereum, Polygon, Base, Arbitrum, Optimism, and 50+ EVM chains through Blockscout according to the README.',
+    record: 'Supports Ethereum, Polygon, Base, Arbitrum, Optimism, and 50+ EVM chains through Blockscout according to the README.',
     limitation: 'Quick triage helper, not a replacement for full blockchain intelligence platforms.',
     links: [
       { label: 'GitHub repository', url: 'https://github.com/hash02/wallet-risk-check' },
@@ -208,11 +208,11 @@ const projects = [
     description: 'The public writing and systems page for AI, finance, blockchain, risk-system design, and builder systems.',
     role: 'Articles / Signals / Systems',
     url: 'https://bionicbanker.tech',
-    proof: 'Live site with 45 source articles, signal snapshots, case records, and linked pages that keep growing with the work.',
+    record: 'Live site with 45 source articles, signal snapshots, case records, and linked pages that keep growing with the work.',
     limitation: 'This page exists because the work used to be scattered across GitHub, articles, and notes.',
     links: [
       { label: 'Articles', url: '/articles' },
-      { label: 'Catalog', url: '/evidence' },
+      { label: 'Source Catalog', url: '/evidence' },
       { label: 'Source JSON', url: '/dashboard-data/source-catalog.json' },
       { label: 'Knowledge Base', url: '/learn' },
       { label: 'Reports', url: '/reports' },
@@ -270,7 +270,7 @@ const projects = [
         <a href="/reports" class="read-more">View reports</a>
         <a href="/gaps" class="read-more">See questions</a>
         <a href="/learn" class="read-more">Learn concepts</a>
-        <a href="/evidence" class="read-more">View catalog</a>
+        <a href="/evidence" class="read-more">View source catalog</a>
       </div>
     </div>
 
@@ -295,8 +295,8 @@ const projects = [
           )}
           <div class="system-proof-grid">
             <div>
-              <span>What to notice</span>
-              <p>{project.proof}</p>
+              <span>Record</span>
+              <p>{project.record}</p>
             </div>
             <div>
               <span>What it cannot do</span>

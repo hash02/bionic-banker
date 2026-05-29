@@ -17,6 +17,11 @@ function readJson(file) {
 
 const projectsSourcePath = path.join(sourceRoot, 'src/pages/projects.astro');
 const builtProjectsPath = path.join(repoRoot, 'projects/index.html');
+
+const appsSourcePath = path.join(sourceRoot, 'src/pages/apps.astro');
+const builtAppsPath = path.join(repoRoot, 'apps/index.html');
+const appsSource = read(appsSourcePath);
+const builtApps = read(builtAppsPath);
 const sourceCatalogPath = path.join(sourceRoot, 'public/dashboard-data/public-proof-catalog.json');
 const rootCatalogPath = path.join(repoRoot, 'dashboard-data/public-proof-catalog.json');
 
@@ -71,7 +76,29 @@ assert(hardware.limits.some((limit) => /No private topology or addresses/i.test(
 assert(hardware.limits.some((limit) => /No credentials/i.test(limit)), 'Hardware compute catalog entry must state credential boundary.');
 assert(hardware.limits.some((limit) => /No wallet control or outside-action power/i.test(limit)), 'Hardware compute catalog entry must state outside action limits.');
 
-const publicSurface = [source, built, sourceCatalogText, rootCatalogText].join('\n').toLowerCase();
+
+const cardLanguageSurface = [source, built, appsSource, builtApps].join('\n');
+const requiredCardLanguage = [
+  'Record',
+  'What it cannot do',
+  'Source Catalog',
+  'Records wallet-screening judgment',
+  'Records human-reviewed agent operations',
+];
+for (const phrase of requiredCardLanguage) {
+  assert(cardLanguageSurface.includes(phrase), `Projects/Apps card surface missing record-language phrase: ${phrase}`);
+}
+const blockedCardLanguage = [
+  'Demonstrates wallet-screening judgment',
+  'Demonstrates human-reviewed agent operations',
+  'Demonstrates inspectable AI-agent operations',
+  '>What to notice<',
+];
+for (const phrase of blockedCardLanguage) {
+  assert(!cardLanguageSurface.includes(phrase), `Projects/Apps card surface still contains old proof-style wording: ${phrase}`);
+}
+
+const publicSurface = [source, built, appsSource, builtApps, sourceCatalogText, rootCatalogText].join('\n').toLowerCase();
 const banned = [
   'c:/users/',
   'c:\\users\\',
