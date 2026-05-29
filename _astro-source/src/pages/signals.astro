@@ -74,6 +74,12 @@ const signalRoutes = [
     title: 'Report format',
     text: 'A repeatable daily or biweekly record shape for public wallet watching.',
     href: '#wallet-watch-report-template'
+  },
+  {
+    eyebrow: 'Reports',
+    title: 'Report shelf',
+    text: 'The first source-led wallet-watch report record and source-review queue.',
+    href: '#wallet-watch-report-shelf'
   }
 ];
 
@@ -292,6 +298,37 @@ const visualRoadmap = [
         <p><strong>Clear limit:</strong> {walletWatch.sample_record.clear_limit}</p>
         <a href="/dashboard-data/public-wallet-watch-template.json" target="_blank" rel="noopener">View source JSON</a>
       </article>
+    </section>
+
+    <section class="reason-panel" id="wallet-watch-report-shelf" aria-label="Public wallet watch report shelf">
+      <div class="reason-copy">
+        <span class="section-label">Report shelf</span>
+        <h2>First public-wallet report shelf.</h2>
+        <p>The first record is intentionally source-led. It does not publish a trade call or a full watched address yet. It locks the repeatable report shape, the source-review queue, and the AML question before a daily or biweekly cadence starts.</p>
+      </div>
+      <div class="reason-steps">
+        {walletWatch.watchlist_review_queue.map((item) => (
+          <article>
+            <span>{item.publish_state}</span>
+            <strong>{item.label}</strong>
+            <p>{item.why_watch}</p>
+            <p><strong>Source class:</strong> {item.source_class}</p>
+          </article>
+        ))}
+      </div>
+      {walletWatch.report_records.map((record) => (
+        <article class="wallet-watch-sample">
+          <span>{record.status}</span>
+          <h3>{record.title}</h3>
+          <p><strong>Address or label:</strong> {record.address_or_label}</p>
+          <p><strong>What moved:</strong> {record.what_moved}</p>
+          <p><strong>AML review question:</strong> {record.aml_review_question}</p>
+          <p><strong>Missing context:</strong> {record.missing_context}</p>
+          <p><strong>Clear limit:</strong> {record.clear_limit}</p>
+          <p><strong>Next step:</strong> {record.next_step}</p>
+          <a href="/dashboard-data/public-wallet-watch-template.json" target="_blank" rel="noopener">View report data JSON</a>
+        </article>
+      ))}
     </section>
 
     <section class="reason-panel" id="visual-roadmap" aria-label="Website visual roadmap">

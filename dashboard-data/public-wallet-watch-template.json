@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-05-28T19:25:00Z",
-  "status": "public_wallet_watch_template_v1",
+  "status": "public_wallet_watch_template_v2",
   "purpose": "Reader-safe template for educational public-address whale-watch reports on Bionic Banker.",
   "privacy_boundary": "Use public addresses and explorer links only. Do not include private wallet data, client data, account data, seed phrases, private keys, or instructions to copy a trade.",
   "publishing_cadence": "Daily or biweekly after the watched-address list is source-reviewed.",
@@ -75,5 +75,46 @@
     "aml_review_question": "Does the surrounding activity repeat a routing, exchange, bridge, mixer, or consolidation pattern that deserves slower human review?",
     "missing_context": "Owner intent, private identity, off-chain reason, complete transaction history, and whether the movement relates to a trade.",
     "clear_limit": "Educational public-address context only. Do not copy a trade, accuse a wallet, move funds, or treat this as a filing decision."
-  }
+  },
+  "source_review_rule": "A watched source is publishable only when the public label/source can be cited and the source trail keeps intent, ownership, identity, and trading meaning unresolved.",
+  "watchlist_review_queue": [
+    {
+      "label": "Public entity or foundation wallet label",
+      "source_class": "public explorer label or official public disclosure",
+      "why_watch": "Shows how known public treasury-style wallets can create market questions without revealing private intent.",
+      "report_use": "Good first education example because the label/source trail matters more than a price call.",
+      "publish_state": "source-review candidate"
+    },
+    {
+      "label": "Exchange hot wallet label",
+      "source_class": "public explorer label",
+      "why_watch": "Exchange inflows and outflows are commonly watched because they can change liquidity questions.",
+      "report_use": "Useful for explaining exchange in/out context while avoiding a trade recommendation.",
+      "publish_state": "source-review candidate"
+    },
+    {
+      "label": "Large bridge or protocol treasury label",
+      "source_class": "public explorer label, protocol dashboard, or governance disclosure",
+      "why_watch": "Bridge, treasury, and protocol movements can raise routing and concentration questions.",
+      "report_use": "Useful AML-learning context for routing, consolidation, and cross-chain movement features.",
+      "publish_state": "source-review candidate"
+    }
+  ],
+  "report_records": [
+    {
+      "id": "public-wallet-watch-001",
+      "title": "Report 001: Public source trail before wallet meaning",
+      "status": "template-backed sample",
+      "address_or_label": "Public-label candidate, full address withheld until source review",
+      "chain": "Ethereum / EVM watch pattern",
+      "public_source": "Public explorer label or official public disclosure, to be cited before publication",
+      "what_moved": "No movement claim yet. This first report records the shape: label, source, movement type, timing, missing context, and limit.",
+      "timing": "Prepared as the first report shelf record before automated cadence starts.",
+      "why_people_watch": "Whale-watch readers often start with known public labels because the label helps them ask better questions about flows.",
+      "aml_review_question": "If this source later shows repeated exchange, bridge, mixer, or consolidation behavior, what human review question should be asked before any interpretation?",
+      "missing_context": "Intent, private ownership, off-chain reason, customer identity, complete history, and whether any movement relates to a trade.",
+      "clear_limit": "Educational source-trail record only. No advice, no accusation, no wallet control, no external submission, and no Pancake unfreeze.",
+      "next_step": "Pick one source-reviewed public label, cite the explorer/source page, then publish a movement record only if the source trail is clear."
+    }
+  ]
 }
