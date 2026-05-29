@@ -106,3 +106,27 @@ Zero-knowledge is one of the more interesting tools because it does not ask priv
 It asks a better question:
 
 What is the smallest thing the system needs to reveal for the next step to be trusted?
+
+## Source trail
+
+- [Ethereum zero-knowledge proof documentation](https://ethereum.org/en/zero-knowledge-proofs/) gives a public technical entry point for ZK concepts.
+- [Zcash technology documentation](https://z.cash/technology/) gives a public example of zero-knowledge proofs in a privacy-focused cryptocurrency system.
+- Bionic Banker connection: [Articles](/articles/) keeps this as a concept explainer, while [System Map](/system-map/) connects privacy technology to records and limits.
+
+## Related Bionic Banker records
+
+- [Articles](/articles/) places ZKPs beside blockchain, DeFi, AI, and finance-risk notes.
+- [Signals](/signals/) is where privacy or wallet-activity concepts should be treated as questions, not conclusions.
+- [System Map](/system-map/) shows how technical concepts connect to review records and clear limits.
+
+## Clear limits
+
+This article is not investment advice, not trading advice, and not a claim that privacy technology removes compliance, legal, operational, or human-review requirements. Zero-knowledge systems can prove selected facts, but they do not automatically prove intent, safety, or legitimacy.
+
+## Next read
+
+Read [Web3 Is Just Finance Infrastructure](/blog/web3-is-just-finance-infrastructure/) next for the infrastructure frame, then [Wallet Risk Notes](/blog/wallet-risk-notes/) for the review-record frame.
+
+## Diagram hook
+
+Best visual: a simple explainer diagram: `private input`, `proof`, `public verifier`, `what is proven`, and `what is still unknown`.

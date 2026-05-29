@@ -256,3 +256,27 @@ That is what I am trying to build toward.
 Not the screen.
 
 The records behind the screen.
+
+## Source trail
+
+- [FINTRAC compliance program requirements](https://fintrac-canafe.canada.ca/guidance-directives/compliance-conformite/1-eng) show why AML/KYC work requires policies, controls, recordkeeping, and review beyond text generation.
+- [FATF digital identity guidance](https://www.fatf-gafi.org/en/publications/Financialinclusionandnpoissues/Digital-identity-guidance.html) gives the public reference point for identity assurance, risk, and verification limits.
+- Bionic Banker connection: [AML Status](/aml-status-evidence/) shows the bounded status-record pattern, and [Fraud Alert Triage](/fraud-alert-triage/) shows case-review packaging.
+
+## Related Bionic Banker records
+
+- [AML Status](/aml-status-evidence/) shows why a generated explanation must sit beside source trail, checks, and limits.
+- [Fraud Alert Triage Workflow](/fraud-alert-triage/) shows how suspicious signals can become a review record without becoming an automated decision.
+- [System Map](/system-map/) connects KYC, AML review, wallet risk, and agent review as record systems.
+
+## Clear limits
+
+This article is not a compliance verdict and not a KYC approval method. An AI model can summarize and organize a file, but it cannot verify identity by itself, approve onboarding, file a report, or replace the required control process. Human review remains required.
+
+## Next read
+
+Read [The Context Engine Is the Missing Layer](/blog/context-engine-missing-layer/) next, then open [AML Status](/aml-status-evidence/) to see the public-safe status pattern.
+
+## Diagram hook
+
+Best visual: a KYC record diagram with five layers: `document intake`, `screening source`, `risk note`, `missing context`, and `human approval required`.

@@ -173,3 +173,27 @@ That is where the next few years get interesting.
 ---
 
 *I work inside a Canadian financial institution and build compliance and signal systems on the side. This is my personal read, not my employer's position.*
+
+## Source trail
+
+- [Bank of Canada payments research](https://www.bankofcanada.ca/research/digital-currencies-and-fintech/) is the macro reference point for Canadian digital money, payments, and settlement questions.
+- [Payments Canada modernization](https://www.payments.ca/systems-services/payment-modernization) gives the public infrastructure backdrop for how payment rails and settlement expectations are changing.
+- Bionic Banker connection: [Signals](/signals/) tracks money-behavior questions, and [AI Intelligence](/ai-intelligence/) frames how system records become risk-aware interpretation.
+
+## Related Bionic Banker records
+
+- [Signals](/signals/) is where settlement or market-structure movement should become a question, not a trade call.
+- [System Map](/system-map/) places stablecoin settlement beside wallet risk, AML status, and public-source records.
+- [Articles](/articles/) groups this as a finance-risk concept note, not a product recommendation.
+
+## Clear limits
+
+This article is not investment advice, not trading advice, and not a claim that any stablecoin, tokenized asset, bank, or payment rail is safe or approved. Settlement records can explain a market-structure question, but they do not remove legal, liquidity, counterparty, operational, or human-review risk.
+
+## Next read
+
+Read [Web3 Is Just Finance Infrastructure](/blog/web3-is-just-finance-infrastructure/) next to compare token rails with familiar finance infrastructure. Then open [Signals](/signals/) for the public-money-trail reading pattern.
+
+## Diagram hook
+
+Best visual: a side-by-side settlement infographic: `traditional payment rail`, `stablecoin transfer`, `tokenized asset record`, and `missing legal/context layer`.

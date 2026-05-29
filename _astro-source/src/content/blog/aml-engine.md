@@ -162,3 +162,27 @@ That is the lane I keep returning to.
 A good detection engine should not only say, "look here."
 
 It should say, "look here, because this pattern moved this way, and here is where the signal stops."
+
+## Source trail
+
+- [FATF virtual asset guidance](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html) provides the public AML backdrop for virtual-asset risk-based review.
+- [FINTRAC suspicious transaction reporting guidance](https://fintrac-canafe.canada.ca/guidance-directives/transaction-operation/str-dod/str-dod-eng) is a Canadian public reference for suspicious transaction reporting expectations and human compliance obligations.
+- Bionic Banker connection: [AML Status](/aml-status-evidence/) is the bounded status surface, and [Wallet Risk Assessment](/wallet-risk/) is the reader-facing wallet-risk system.
+
+## Related Bionic Banker records
+
+- [AML Status](/aml-status-evidence/) shows source trail, checks, and clear limits around AML-related status.
+- [Wallet Risk Assessment](/wallet-risk/) shows how row-level signals become reader-facing rationale.
+- [Risk Review Overview](/risk-evidence-overview/) connects AML, fraud triage, wallet risk, and agent workflow records.
+
+## Clear limits
+
+This article is not a compliance verdict and not a filing decision. The engine can organize patterns, scores, and notes, but it does not prove wrongdoing, approve KYC, file a report, or replace human review. Any real escalation requires the full source record and authorized review process.
+
+## Next read
+
+Read [Wallet Risk Notes](/blog/wallet-risk-notes/) next to see the row-level explanation layer, then open [AML Status](/aml-status-evidence/) for the public-safe status record.
+
+## Diagram hook
+
+Best visual: an AML review flow showing `transaction row`, `rule match`, `risk note`, `source trail`, `missing context`, and `human decision`.

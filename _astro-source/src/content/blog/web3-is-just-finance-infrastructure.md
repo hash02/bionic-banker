@@ -165,3 +165,27 @@ The rails are new. The physics are not.
 ---
 
 *Building at the intersection of blockchain, compliance, and AI. Working inside finance, building on the outside.*
+
+## Source trail
+
+- [BIS innovation hub work on tokenisation](https://www.bis.org/about/bisih/topics/fmis/tokenisation.htm) is a public reference for tokenized finance infrastructure and settlement experiments.
+- [Ethereum documentation](https://ethereum.org/en/developers/docs/) gives the technical reference point for public blockchain infrastructure, smart contracts, and execution environments.
+- Bionic Banker connection: [System Map](/system-map/) keeps the infrastructure lens tied to records, sources, and limits instead of hype.
+
+## Related Bionic Banker records
+
+- [Signals](/signals/) shows how infrastructure movement becomes a public question instead of a recommendation.
+- [Wallet Risk Assessment](/wallet-risk/) shows one concrete record system built around blockchain-style activity.
+- [Articles](/articles/) groups this with finance-risk and blockchain learning notes.
+
+## Clear limits
+
+This article is not investment advice, not trading advice, and not a claim that Web3 infrastructure is automatically safer, cheaper, or compliant. Infrastructure analogies are learning tools. They do not prove asset quality, legal status, or operational safety.
+
+## Next read
+
+Read [Canada Stablecoin Settlement](/blog/canada-stablecoin-settlement/) next for the payments angle, then [Wallet Risk Notes](/blog/wallet-risk-notes/) for the risk-review angle.
+
+## Diagram hook
+
+Best visual: an infrastructure stack diagram with `asset`, `rail`, `execution layer`, `risk record`, and `human/legal context` separated clearly.

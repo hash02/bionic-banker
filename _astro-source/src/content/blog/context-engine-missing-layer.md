@@ -142,3 +142,27 @@ The next useful layer is not a bigger claim. It is a better context loop:
 7. let a human decide what, if anything, should happen next
 
 That is how public blockchain watching becomes useful without becoming advice, accusation, or action authority.
+
+## Source trail
+
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) gives the governance backdrop for why AI output needs documented context, testing, and limits.
+- [FATF guidance on virtual assets](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html) is the finance-risk backdrop for source context, wallet activity review, and the difference between a signal and a decision.
+- Bionic Banker connection: [Signals](/signals/) is where a row becomes a question, and [AML Status](/aml-status-evidence/) is where source trail, checks, and limits stay visible.
+
+## Related Bionic Banker records
+
+- [Signals](/signals/) shows the same source-first pattern at the row level: source, reason, age, and limit before interpretation.
+- [System Map](/system-map/) shows how context records connect across wallet risk, AML status, fraud triage, and site health.
+- [Wallet Risk Assessment](/wallet-risk/) is the concrete system example: a row gets scored, explained, and bounded for human review.
+
+## Clear limits
+
+This article is not investment advice, not trading advice, and not a compliance verdict. A context engine can organize source trails and missing context, but it cannot approve KYC, file a report, move funds, or decide intent. Those steps require human review.
+
+## Next read
+
+Read [Wallet Risk Notes](/blog/wallet-risk-notes/) next to see how one wallet-risk row becomes a plain-language review note. Then open [Signals](/signals/) to see the public-wallet report lane that uses the same source-before-interpretation rule.
+
+## Diagram hook
+
+Best visual: a linear infographic showing `source row -> context check -> missing context -> human next question -> clear limit`. Use it as the visual standard for future context-engine, wallet-watch, and AML learning notes.

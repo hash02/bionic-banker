@@ -152,3 +152,27 @@ That's not about competing globally. That's about leading locally. And then bein
 ---
 
 **Sources:** Evident AI Index 2025 · KPMG Agentic AI Market Report · Deloitte "Agentic AI in Banking" (2026) · BCG "How Retail Banks Can Put Agentic AI to Work" (2026) · Oracle "Future of Banking" (2026) · Wolters Kluwer Finance Team Survey · JPMorgan COiN Case Studies · ANZ Newsroom (Feb 2026) · RBC/NVIDIA Capital Markets Case Study · PYMNTS "RBC Embeds AI at the Core" (Mar 2026) · Scotiabank GTB "AI Agents Transforming Payment Operations" · Scotiabank Perspectives "Agentic AI" (Jul 2025) · HDFC Bank Eva Documentation · CIO Dive "Banks Aim for Agentic AI Scale" (2026)
+
+## Source trail
+
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) is the public risk-management reference for AI systems that need governance, mapping, measuring, and managing.
+- [OSFI technology and cyber risk guidance B-13](https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/technology-cyber-risk-management-guideline-2024) gives the Canadian financial-institution backdrop for technology risk and controls.
+- Bionic Banker connection: [AI Intelligence](/ai-intelligence/) turns agentic banking ideas into source-led tracking, not autonomous action.
+
+## Related Bionic Banker records
+
+- [AI Intelligence](/ai-intelligence/) shows what Bionic Banker tracks when AI systems touch finance work.
+- [Fraud Alert Triage Workflow](/fraud-alert-triage/) shows a bounded agent-style workflow with review steps.
+- [System Map](/system-map/) connects agent systems to wallet risk, AML status, and clear limits.
+
+## Clear limits
+
+This article is not a claim that agents should run banking decisions by themselves. It is not investment advice, not compliance approval, and not production authorization. Agentic finance systems need access checks, source records, supervision, auditability, and human review.
+
+## Next read
+
+Read [What Claude Can’t Do for KYC](/blog/what-claude-cant-do-for-kyc/) next, then open [AI Intelligence](/ai-intelligence/) for the public tracking surface.
+
+## Diagram hook
+
+Best visual: an agent banking workflow diagram showing `request`, `source check`, `risk note`, `review step`, and `blocked action`.

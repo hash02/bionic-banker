@@ -142,3 +142,27 @@ Because the Elon skill wasn't the exception. It was just the one someone bothere
 **The real security wins aren't dramatic.** They're boring. Hierarchical agents. Credential rotation. Kill switches. Sandboxing. The stuff that slows you down but keeps you alive.
 
 That's the game we're in now.
+
+## Source trail
+
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) is the public reference for prompt injection, insecure tool use, and agent security risks.
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) gives the broader AI risk-control frame for identifying, measuring, and managing failures.
+- Bionic Banker connection: [AI Intelligence](/ai-intelligence/) tracks AI risk patterns, and [System Map](/system-map/) keeps agent behavior tied to records and limits.
+
+## Related Bionic Banker records
+
+- [AI Intelligence](/ai-intelligence/) is the right public surface for agent-security lessons.
+- [Fraud Alert Triage Workflow](/fraud-alert-triage/) shows how a case workflow can preserve review records without giving a model outside-action power.
+- [System Map](/system-map/) shows why agent tools belong behind access checks and human review.
+
+## Clear limits
+
+This article is not a live security assessment of any specific company, not a claim of exploitability, and not a deployment guide for misuse. It is an educational risk note. Any real system review requires human review by a security owner, authorized testing, and scoped access.
+
+## Next read
+
+Read [Agentic AI Banking](/blog/agentic-ai-banking/) next to see why agent security matters more when AI touches financial workflows.
+
+## Diagram hook
+
+Best visual: a supply-chain style diagram showing `user instruction`, `agent tool`, `external action`, `injection risk`, and `human gate`.

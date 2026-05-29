@@ -98,3 +98,27 @@ It shows what happens when money becomes programmable, visible, composable, and 
 That can make finance more open. It can also make mistakes faster.
 
 So the best way to understand DeFi is not to cheer for it or dismiss it. The best way is to watch the rails, follow the risk, and notice where the simple button stops being simple.
+
+## Source trail
+
+- [Ethereum DeFi overview](https://ethereum.org/en/defi/) gives a public technical entry point for decentralized finance concepts.
+- [Uniswap documentation](https://docs.uniswap.org/) gives a concrete public reference for automated market-maker infrastructure.
+- Bionic Banker connection: [Signals](/signals/) and [Wallet Risk Assessment](/wallet-risk/) turn DeFi activity into questions, records, and limits.
+
+## Related Bionic Banker records
+
+- [Signals](/signals/) shows how DeFi movement should be read as a source trail before interpretation.
+- [Wallet Risk Assessment](/wallet-risk/) shows how wallet behavior can be turned into a review note.
+- [Articles](/articles/) keeps DeFi in the learning-note archive instead of making it the whole site identity.
+
+## Clear limits
+
+This article is not investment advice, not trading advice, and not a recommendation to use a protocol, wallet, token, or exchange. DeFi records can teach market structure and risk patterns, but they do not remove smart-contract, liquidity, legal, custody, tax, or human-review risk.
+
+## Next read
+
+Read [Web3 Is Just Finance Infrastructure](/blog/web3-is-just-finance-infrastructure/) next, then [Canada Stablecoin Settlement](/blog/canada-stablecoin-settlement/) for the bridge from DeFi rails to traditional payment questions.
+
+## Diagram hook
+
+Best visual: a DeFi reading map with `wallet`, `protocol`, `pool`, `price movement`, `risk question`, and `clear limit`.

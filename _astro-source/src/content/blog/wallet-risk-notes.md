@@ -112,3 +112,27 @@ The cleaner front door for this idea is now the Wallet Risk Assessment:
 If you want the numbers and source trail, start with the reports:
 
 [View Reports](/reports/)
+
+## Source trail
+
+- [FATF virtual asset guidance](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html) is the public policy backdrop for why wallet activity needs risk-based review instead of automatic verdicts.
+- [Chainalysis crypto crime reporting](https://www.chainalysis.com/blog/) is a public research reference for how blockchain activity is often discussed through typologies, exposure, and behavior patterns.
+- Bionic Banker connection: [Wallet Risk Assessment](/wallet-risk/) shows the reader-facing system, and [Reports](/reports/) keeps related record summaries in one place.
+
+## Related Bionic Banker records
+
+- [Wallet Risk Assessment](/wallet-risk/) is the safer front door for the scoring and explanation pattern.
+- [AML Status](/aml-status-evidence/) shows how a risk row becomes a bounded status record instead of a decision.
+- [Signals](/signals/) connects wallet-risk learning to the public wallet-watch report lane.
+
+## Clear limits
+
+These notes are not investment advice, not trading advice, and not a compliance verdict. A rule hit does not prove wrongdoing. A score is only a triage aid. Any filing, escalation, account action, or conclusion requires human review and more context.
+
+## Next read
+
+Read [The Context Engine Is the Missing Layer](/blog/context-engine-missing-layer/) next. It explains why a wallet-risk note needs source, context, missing information, and a limit before it becomes useful.
+
+## Diagram hook
+
+Best visual: an infographic with four boxes: `rule hit`, `plain-language note`, `missing context`, and `human review`. This can later become the standard diagram for wallet-risk case studies.
