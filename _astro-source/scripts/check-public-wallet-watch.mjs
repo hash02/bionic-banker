@@ -17,7 +17,7 @@ const requiredSource = [
   [walletRisk, 'Public addresses can improve the AML learning layer', 'wallet-risk AML connection'],
   [walletRisk, 'No wallet control, no private identity claim, no compliance verdict, and no copy-trading instruction', 'wallet-risk public limit'],
   [aml, 'Public blockchain watching belongs here only as source context', 'AML source-context section'],
-  [aml, 'No accusation, no KYC approval, no filing, no wallet control, no Bankache unfreeze', 'AML blocked boundary'],
+  [aml, 'No accusation, no KYC approval, no filing, no wallet control, no Pancake unfreeze', 'AML blocked boundary'],
 ];
 
 for (const [text, phrase, label] of requiredSource) {
@@ -27,7 +27,7 @@ for (const [text, phrase, label] of requiredSource) {
 if (catalog.status !== 'public_wallet_watch_template_v1') fail('template status must be public_wallet_watch_template_v1');
 if (!catalog.report_fields?.some((field) => field.field === 'aml_review_question')) fail('template must include aml_review_question');
 if (!catalog.blocked_actions?.some((item) => /No trading advice/i.test(item))) fail('template must block trading advice');
-if (!catalog.blocked_actions?.some((item) => /Bankache/i.test(item))) fail('template must keep Bankache blocked');
+if (!catalog.blocked_actions?.some((item) => /Pancake/i.test(item))) fail('template must keep Pancake blocked');
 if (!catalog.allowed_actions?.some((item) => /public blockchain explorers/i.test(item))) fail('template must allow public explorer sources');
 
 const forbidden = [
