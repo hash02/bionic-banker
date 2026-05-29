@@ -8,13 +8,11 @@ const systems = [
   ['Agent Workflow Case Review', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into a case record, review summary, and human review step.'],
   ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public records without outside-action power.'],
   ['Site Health / Health Board', '/proof/site-health', 'Self-checking records', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
-  ['Context Engine', '/context-engine', 'Source and judgment layer', 'A short public map for turning raw sources into context checks, missing-context notes, clear limits, and human next steps.'],
-  ['Content System', '/content-system', 'Distribution discipline', 'A public map for turning website records into platform-specific drafts while keeping the same source, limit, and human review step.'],
 ];
 
 const sourceMap = [
   ['System cards', '12', 'Rendered systems a reader can inspect.'],
-  ['Catalog sections', '8', 'Catalog-backed sections with sources and boundaries.'],
+  ['Reader sections', '8', 'Reader-facing sections with sources and boundaries.'],
   ['Source links', '21', 'Public-safe sources linked from the source catalog.'],
   ['Named limits', '36', 'Explicit limits that prevent overclaiming.'],
   ['Articles / notes', '46', 'Writing that supports the finance, AI, and agent-system context.'],
@@ -38,7 +36,6 @@ const visualAnchors = [
   ['SQLite', 'Record and queue layer', 'Good future visual: ledger row, message queue, run history, or recovery record.'],
   ['GitHub', 'Public change history', 'Good future visual: commit trail, issue map, release note, or validator check.'],
   ['OpenClaw / agent security research', 'External risk reference', 'Good future visual: skill supply-chain diagram, trust boundary, or malicious-skill case note.'],
-  ['Context engine', 'Source and judgment layer', 'Good current visual: raw sources, context checks, compressed outputs, and clear limits.'],
 ];
 
 const questions = [
@@ -71,7 +68,7 @@ const questions = [
 
     <section class="pack-section">
       <span>Flagship systems</span>
-      <h2>8 inspectable systems, one map.</h2>
+      <h2>6 inspectable systems, one map.</h2>
       <div class="system-table">
         {systems.map(([name, href, signal, detail]) => (
           <a href={href} class="system-row">
@@ -97,13 +94,6 @@ const questions = [
       </div>
     </section>
 
-    <section class="pack-section">
-      <span>Context engine layer</span>
-      <h2>The useful agent layer sits between raw sources and action.</h2>
-      <p>A context engine checks source, conflict, permission, pattern, missing context, and limit before it hands a smaller record to an agent or human. That is the same shape used for Public Wallet Watch: public source trail, movement record, AML review question, missing context, and clear limit.</p>
-      <p><a href="/context-engine/">Open the context-engine map</a> or <a href="/blog/context-engine-missing-layer/">read the context-engine note</a>.</p>
-      <img class="context-map-img" src="/assets/context-engine-map.svg" alt="Context engine map showing raw sources, checks, and bounded outputs" loading="lazy" />
-    </section>
 
     <section class="pack-section split">
       <div>

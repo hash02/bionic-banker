@@ -275,7 +275,6 @@ This article is not a compliance verdict and not a KYC approval method. An AI mo
 
 ## Next read
 
-Read [The Context Engine Is the Missing Layer](/blog/context-engine-missing-layer/) next, then open [AML Status](/aml-status-evidence/) to see the public-safe status pattern.
 
 ## Diagram hook
 

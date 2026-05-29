@@ -7,7 +7,6 @@ const distDir = path.join(root, 'dist', 'blog');
 const failures = [];
 
 const priority = [
-  'context-engine-missing-layer',
   'wallet-risk-notes',
   'what-claude-cant-do-for-kyc',
   'canada-stablecoin-settlement',

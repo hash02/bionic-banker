@@ -131,7 +131,6 @@ These notes are not investment advice, not trading advice, and not a compliance 
 
 ## Next read
 
-Read [The Context Engine Is the Missing Layer](/blog/context-engine-missing-layer/) next. It explains why a wallet-risk note needs source, context, missing information, and a limit before it becomes useful.
 
 ## Diagram hook
 
