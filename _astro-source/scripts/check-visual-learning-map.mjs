@@ -26,7 +26,8 @@ try {
   map = { learning_lanes: [], infographic_backlog: [] };
 }
 
-if (map.status !== 'visual_learning_map_v1') failures.push('visual learning map status must be visual_learning_map_v1');
+if (map.status !== 'visual_learning_map_v2') failures.push('visual learning map status must be visual_learning_map_v2');
+if (!map.risk_pattern_thesis) failures.push('visual learning map must include risk_pattern_thesis');
 if (!Array.isArray(map.learning_lanes) || map.learning_lanes.length < 6) failures.push('visual learning map must include at least 6 learning lanes');
 if (!Array.isArray(map.infographic_backlog) || map.infographic_backlog.length < 4) failures.push('visual learning map must include at least 4 infographic backlog items');
 
@@ -44,7 +45,7 @@ for (const id of requiredLaneIds) {
 }
 
 for (const lane of map.learning_lanes ?? []) {
-  for (const field of ['label', 'title', 'reader_question', 'visual_shape', 'next_surface', 'clear_limit']) {
+  for (const field of ['label', 'title', 'reader_question', 'behavior_lens', 'visual_shape', 'next_surface', 'clear_limit']) {
     if (!lane[field]) failures.push(`${lane.id ?? 'unknown lane'} missing ${field}`);
   }
   if (!/limit|No |Not |not |cannot|human|approval/i.test(lane.clear_limit ?? '')) {
@@ -57,6 +58,8 @@ const signalsPage = read('src/pages/signals.astro');
 const walletFlowSvg = read('public/assets/public-wallet-watch-flow.svg');
 for (const phrase of [
   'visual-learning-map.json',
+  'Risk pattern thesis',
+  'Critical feedback: the idea is strong only if each page follows one concrete trail.',
   'Visual learning map',
   'source trail, system record, missing context, and clear limit',
   'Infographic queue',
@@ -65,12 +68,33 @@ for (const phrase of [
 }
 
 const plan = read('../VISUAL_LEARNING_ROADMAP.md');
+const thesisPlan = read('../BIONIC_BANKER_RISK_PATTERN_THESIS.md');
 for (const phrase of [
   'Bionic Banker Visual Learning Roadmap Implementation Plan',
   'country / public source / practice / what it teaches / what cannot be concluded',
   'what broke / missing control / safer check / Bionic Banker page that teaches it',
 ]) {
   requirePhrase(plan, phrase, 'visual roadmap plan phrase');
+}
+
+
+for (const phrase of [
+  'Bionic Banker Risk Pattern Thesis',
+  'technology shift → behavior change → money trail → risk pattern → compliance question → software/filter idea → clear limit',
+  'compare record shapes, not tribes.',
+  'Patterns create questions, not commands.',
+]) {
+  requirePhrase(thesisPlan, phrase, 'risk pattern thesis plan phrase');
+}
+
+for (const phrase of [
+  'Technology changes behavior. Behavior leaves trails.',
+  'risk pattern',
+  'software or filter idea',
+  'Public trails are incomplete records.',
+  'DeFi and centralized finance are different record systems',
+]) {
+  requirePhrase(mapText, phrase, 'risk pattern thesis data phrase');
 }
 
 
@@ -95,13 +119,16 @@ for (const phrase of ['Country-by-country risk practice notes', 'Learn from othe
   requirePhrase(mapText, phrase, 'visual learning map data phrase');
 }
 
-const combined = [mapText, aiPage, signalsPage, walletFlowSvg, plan].join('\n');
+const combined = [mapText, aiPage, signalsPage, walletFlowSvg, plan, thesisPlan].join('\n');
 const banned = [
   /copy this trade/i,
   /buy now/i,
   /sell now/i,
   /KYC approved/i,
   /guaranteed compliance/i,
+  /prediction engine/i,
+  /market prediction/i,
+  /legal determination/i,
   /live execution enabled/i,
   /wallet power:\s*true/i,
   /trade power:\s*true/i,
@@ -125,4 +152,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('VISUAL_LEARNING_MAP_CHECK PASS — AI finance risk, compliance case-study, country-practice, and infographic roadmap is source-led and bounded.');
+console.log('VISUAL_LEARNING_MAP_CHECK PASS — AI finance risk, behavior trails, compliance case-study, country-practice, and infographic roadmap are source-led and bounded.');

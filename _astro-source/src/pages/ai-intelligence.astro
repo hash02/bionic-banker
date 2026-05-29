@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const visualMap = await import('../../public/dashboard-data/visual-learning-map.json');
 const learningLanes = visualMap.default.learning_lanes;
 const infographicBacklog = visualMap.default.infographic_backlog;
+const riskPatternThesis = visualMap.default.risk_pattern_thesis;
 
 const intelligenceCards = [
   {
@@ -89,6 +90,26 @@ const collaborationLoop = [
     </section>
 
 
+
+    <section class="article-card systems-guide-card" style="margin-top: 1.25rem;" aria-label="Risk pattern thesis">
+      <div class="article-tags"><span class="tag-pill tag-green">Risk pattern thesis</span></div>
+      <h3>{riskPatternThesis.title}</h3>
+      <p>{riskPatternThesis.summary}</p>
+      <div class="system-link-cloud" aria-label="Risk pattern chain">
+        {riskPatternThesis.chain.map((step) => <span>{step}</span>)}
+      </div>
+      <div class="system-proof-grid">
+        {riskPatternThesis.critical_limits.map((limit) => (
+          <div>
+            <span>Reader rule</span>
+            <p>{limit}</p>
+          </div>
+        ))}
+      </div>
+      <p class="verified-note">Critical feedback: the idea is strong only if each page follows one concrete trail. Broad future-of-finance claims stay out until a source record supports them.</p>
+    </section>
+
+
     <section class="article-card systems-guide-card" style="margin-top: 1.25rem;" aria-label="Visual learning map">
       <div class="article-tags"><span class="tag-pill tag-green">Visual learning map</span></div>
       <h3>Build the site around cases, countries, mistakes, and diagrams</h3>
@@ -99,6 +120,7 @@ const collaborationLoop = [
             <span>{lane.label}</span>
             <p><strong>{lane.title}</strong></p>
             <p>{lane.reader_question}</p>
+            <p><strong>Behavior lens:</strong> {lane.behavior_lens}</p>
             <p><strong>Visual:</strong> {lane.visual_shape}</p>
             <p><strong>Limit:</strong> {lane.clear_limit}</p>
             <a href={lane.next_surface}>View related page</a>

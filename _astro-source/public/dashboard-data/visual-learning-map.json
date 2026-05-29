@@ -1,10 +1,11 @@
 {
-  "status": "visual_learning_map_v1",
+  "status": "visual_learning_map_v2",
   "purpose": "Public-safe roadmap for turning AI, finance risk, compliance, and country case studies into reader-first pages, reports, and infographics.",
   "reader_rule": "Start from a real-world question, show the source trail, explain the system record, name the missing context, then state the clear limit.",
   "visual_principles": [
-    "Use diagrams to explain systems, not to decorate pages.",
+    "Use diagrams to explain causal chains, not to decorate pages.",
     "Prefer source trail, system record, missing context, and clear limit over raw code or raw logs.",
+    "Compare DeFi and centralized finance as different record systems, not tribes.",
     "Keep country and institution examples educational unless a source record has been checked.",
     "No trading signal, KYC approval, filing, legal advice, or autonomous action claim."
   ],
@@ -16,8 +17,13 @@
       "reader_question": "How does a public wallet label become a cautious review question instead of a market signal?",
       "visual_shape": "Source trail map",
       "next_surface": "/signals",
-      "case_study_sources": ["public explorer label", "movement category", "counterparty context"],
-      "clear_limit": "No copy trading, no wallet control, and no claim that a public label proves wrongdoing."
+      "case_study_sources": [
+        "public explorer label",
+        "movement category",
+        "counterparty context"
+      ],
+      "clear_limit": "No copy trading, no wallet control, and no claim that a public label proves wrongdoing.",
+      "behavior_lens": "Public wallet movement changes what observers can ask, but not what they can know."
     },
     {
       "id": "kyc-record-map",
@@ -26,8 +32,13 @@
       "reader_question": "What can AI summarize in a KYC file, and what still needs a person or regulated workflow?",
       "visual_shape": "Document to review record",
       "next_surface": "/blog/what-claude-cant-do-for-kyc/",
-      "case_study_sources": ["document intake", "screening result", "human review note"],
-      "clear_limit": "Not a KYC approval and not a licensed compliance product."
+      "case_study_sources": [
+        "document intake",
+        "screening result",
+        "human review note"
+      ],
+      "clear_limit": "Not a KYC approval and not a licensed compliance product.",
+      "behavior_lens": "Digital identity tools can speed review, but human context and regulated workflow still matter."
     },
     {
       "id": "stablecoin-settlement-map",
@@ -36,8 +47,13 @@
       "reader_question": "Where do stablecoins change payment speed, reconciliation, and audit trails without removing counterparty risk?",
       "visual_shape": "Rail comparison diagram",
       "next_surface": "/blog/canada-stablecoin-settlement/",
-      "case_study_sources": ["payment rail", "settlement object", "reconciliation record"],
-      "clear_limit": "Educational settlement map only, not financial advice or payment-system certification."
+      "case_study_sources": [
+        "payment rail",
+        "settlement object",
+        "reconciliation record"
+      ],
+      "clear_limit": "Educational settlement map only, not financial advice or payment-system certification.",
+      "behavior_lens": "Faster rails change reconciliation behavior and the timing of risk checks."
     },
     {
       "id": "agent-risk-map",
@@ -46,8 +62,14 @@
       "reader_question": "When an AI agent can use tools, where are the access checks, records, and human stops?",
       "visual_shape": "Control flow diagram",
       "next_surface": "/blog/agent-governance-flow/",
-      "case_study_sources": ["tool request", "access check", "audit log", "human review step"],
-      "clear_limit": "No hidden prompt plumbing or raw private adapter code is published."
+      "case_study_sources": [
+        "tool request",
+        "access check",
+        "audit log",
+        "human review step"
+      ],
+      "clear_limit": "No hidden prompt plumbing or raw private adapter code is published.",
+      "behavior_lens": "Tool-using agents change who acts, when records are created, and where stops must exist."
     },
     {
       "id": "country-practice-map",
@@ -56,8 +78,14 @@
       "reader_question": "How do different countries frame AI, payments, wallet monitoring, and compliance controls?",
       "visual_shape": "Comparison map",
       "next_surface": "/ai-intelligence",
-      "case_study_sources": ["regulator note", "public bank or fintech source", "control requirement", "reader-safe summary"],
-      "clear_limit": "No legal advice and no claim that one country model can be copied without local review."
+      "case_study_sources": [
+        "regulator note",
+        "public bank or fintech source",
+        "control requirement",
+        "reader-safe summary"
+      ],
+      "clear_limit": "No legal advice and no claim that one country model can be copied without local review.",
+      "behavior_lens": "Different jurisdictions turn the same technology pressure into different control habits."
     },
     {
       "id": "failure-library-map",
@@ -66,8 +94,14 @@
       "reader_question": "What broke, what record was missing, and what guard would have caught it earlier?",
       "visual_shape": "Mistake to guardrail card",
       "next_surface": "/articles",
-      "case_study_sources": ["public incident writeup", "control gap", "safe lesson", "Bionic Banker check"],
-      "clear_limit": "No blame framing, no bank-negative claims, and no unsupported allegation."
+      "case_study_sources": [
+        "public incident writeup",
+        "control gap",
+        "safe lesson",
+        "Bionic Banker check"
+      ],
+      "clear_limit": "No blame framing, no bank-negative claims, and no unsupported allegation.",
+      "behavior_lens": "Failures show where incentives, records, and controls did not line up soon enough."
     }
   ],
   "infographic_backlog": [
@@ -99,5 +133,25 @@
       "style": "ikea-manual",
       "first_page": "/blog/what-claude-cant-do-for-kyc/"
     }
-  ]
+  ],
+  "risk_pattern_thesis": {
+    "title": "Technology changes behavior. Behavior leaves trails.",
+    "summary": "Bionic Banker studies how AI, payment rails, wallets, institutions, and agent tools change behavior, then turns those trails into cautious risk and compliance questions.",
+    "chain": [
+      "technology shift",
+      "behavior change",
+      "money trail",
+      "risk pattern",
+      "compliance question",
+      "software or filter idea",
+      "clear limit"
+    ],
+    "critical_limits": [
+      "Risk awareness, not trading advice.",
+      "Patterns create questions, not commands.",
+      "Public trails are incomplete records.",
+      "Compliance learning means better review questions and safer controls.",
+      "DeFi and centralized finance are different record systems around the same human problem: moving value with trust, speed, and limits."
+    ]
+  }
 }
