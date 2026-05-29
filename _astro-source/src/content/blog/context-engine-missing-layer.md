@@ -14,6 +14,8 @@ A smart agent without context is not a teammate yet. It is a bright person dropp
 
 That is why agent work still feels like babysitting. The model can write, search, summarize, and code, but it does not automatically know which source matters, which note is stale, which record overrides another record, which action is blocked, or what question a human needs answered next.
 
+A larger prompt is not enough by itself. The useful harness is the file, source, test, and record structure around the model. That harness tells the agent what counts as current, what must stay private, which route is safe to publish, and when the next step belongs to a human.
+
 The missing layer is a context engine.
 
 ![Context engine map](/assets/context-engine-map.svg)
@@ -153,6 +155,7 @@ That is how public blockchain watching becomes useful without becoming advice, a
 
 - [Signals](/signals/) shows the same source-first pattern at the row level: source, reason, age, and limit before interpretation.
 - [System Map](/system-map/) shows how context records connect across wallet risk, AML status, fraud triage, and site health.
+- [Context Engine](/context-engine/) gives the short public map for the context loop: source trail, missing context, clear limit, and human next step.
 - [Wallet Risk Assessment](/wallet-risk/) is the concrete system example: a row gets scored, explained, and bounded for human review.
 
 ## Clear limits

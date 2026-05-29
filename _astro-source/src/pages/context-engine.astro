@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const loop = [
+  {
+    label: 'Source',
+    title: 'Start with one public source trail',
+    body: 'A price row, wallet label, explorer page, article, system record, or human correction enters the map with its source still visible.'
+  },
+  {
+    label: 'Context',
+    title: 'Ask what the source can and cannot support',
+    body: 'The context check looks for date, source quality, conflict, related records, stale notes, and the narrow question the source can answer.'
+  },
+  {
+    label: 'Missing context',
+    title: 'Name the gap before interpretation',
+    body: 'A movement, model answer, or risk note is incomplete until the page says what is unknown, what would change the reading, and what must stay private.'
+  },
+  {
+    label: 'Limit',
+    title: 'Keep the action boundary beside the record',
+    body: 'The system can organize a record. It cannot approve KYC, file a report, move funds, control a wallet, or tell a reader what to trade.'
+  },
+  {
+    label: 'Human next step',
+    title: 'Compress the work into one useful question',
+    body: 'The output should be small enough to use: a review question, source note, report update, article fix, or system check that a person can inspect.'
+  }
+];
+
+const surfaces = [
+  ['Signals', '/signals/', 'Turns market rows and public wallet notes into records for questions, not trading calls.'],
+  ['AML Status', '/aml-status-evidence/', 'Shows the source trail, visible checks, clear limits, and human-review boundary.'],
+  ['Wallet Risk', '/wallet-risk/', 'Packages a sample risk row as a score, rationale, note, and limit.'],
+  ['System Map', '/system-map/', 'Shows how the context layer connects records across the public site.'],
+  ['Updates', '/updates/', 'Uses the same rule for releases: what changed, why it matters, source, and limit.']
+];
+
+const blocked = [
+  'No trading call or copy-trade instruction.',
+  'No KYC approval, SAR filing, enforcement, or compliance verdict.',
+  'No wallet, transfer, exchange, or fund-control power.',
+  'No hidden private prompt, customer data, employer data, or secret source.',
+  'No claim that one row proves intent, ownership, or future price movement.'
+];
+---
+<BaseLayout title="Context Engine" description="The Bionic Banker context engine turns source trails into review questions, missing-context notes, clear limits, and human next steps.">
+  <main class="context-shell">
+    <section class="context-hero">
+      <div class="context-kicker">Bionic Banker Context Engine</div>
+      <h1>Show the source. Show the question. Show what the system cannot decide.</h1>
+      <p>The context engine is the layer between raw source access and action. It keeps Bionic Banker useful without turning signals into advice, wallet movement into accusation, or agent output into unchecked authority.</p>
+      <div class="context-actions">
+        <a href="/blog/context-engine-missing-layer/">Read the note</a>
+        <a href="/system-map/">Open system map</a>
+      </div>
+    </section>
+
+    <section class="context-section context-rule">
+      <span>Operating rule</span>
+      <h2>Source trail to human next step.</h2>
+      <p>A context engine is not just search. Search can find a plausible line. A context engine keeps the source, missing context, disagreement, privacy limit, and human next question attached to the line.</p>
+      <div class="rule-strip" aria-label="Context engine operating rule">
+        <strong>source trail</strong>
+        <strong>context question</strong>
+        <strong>missing context</strong>
+        <strong>clear limit</strong>
+        <strong>human next step</strong>
+      </div>
+    </section>
+
+    <section class="context-section">
+      <span>Five checks</span>
+      <h2>Every useful record should survive this loop.</h2>
+      <div class="loop-grid">
+        {loop.map((item, index) => (
+          <article>
+            <small>{String(index + 1).padStart(2, '0')} / {item.label}</small>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="context-section split">
+      <div>
+        <span>Where it shows up</span>
+        <h2>The same rule appears across the site.</h2>
+        <div class="surface-list">
+          {surfaces.map(([name, href, body]) => (
+            <a href={href}>
+              <strong>{name}</strong>
+              <p>{body}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+      <aside class="limit-card">
+        <span>Blocked actions</span>
+        <h2>What this layer cannot do.</h2>
+        <ul>{blocked.map((item) => <li>{item}</li>)}</ul>
+      </aside>
+    </section>
+
+    <section class="context-section visual-card">
+      <span>Visual standard</span>
+      <h2>The map should make the limit visible.</h2>
+      <p>This diagram is the standard for future Bionic Banker source notes and wallet-watch reports: raw sources enter on the left, context checks happen in the middle, and bounded outputs leave on the right.</p>
+      <img src="/assets/context-engine-map.svg" alt="Context engine map from raw sources through checks to bounded outputs" loading="lazy" />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .context-shell { max-width: 1160px; margin: 0 auto; padding: 6rem 1.25rem 4rem; color: var(--text); }
+  .context-hero, .context-section { border: 1px solid rgba(31,160,104,.16); background: rgba(3,16,8,.92); border-radius: 28px; padding: clamp(1.4rem, 3vw, 3rem); margin-bottom: 1.25rem; }
+  .context-kicker, .context-section > span, .limit-card span { color: #1fa068; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; }
+  .context-hero h1 { font-size: clamp(2.1rem, 5vw, 4.4rem); line-height: .98; max-width: 980px; margin: .8rem 0 1rem; }
+  .context-hero p, .context-section p, .context-section li { color: #b0b0b8; line-height: 1.7; }
+  .context-actions, .rule-strip { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
+  .context-actions a, .rule-strip strong { border-radius: 999px; padding: .78rem 1rem; text-decoration: none; font-weight: 900; }
+  .context-actions a:first-child { background: #1fa068; color: #010302; }
+  .context-actions a:last-child, .rule-strip strong { color: var(--text); border: 1px solid rgba(31,160,104,.24); background: rgba(31,160,104,.055); }
+  .loop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .9rem; margin-top: 1rem; }
+  .loop-grid article, .surface-list a, .limit-card { border: 1px solid rgba(31,160,104,.16); border-radius: 18px; padding: 1rem; background: rgba(31,160,104,.055); }
+  .loop-grid small { color: #1fa068; font-weight: 900; letter-spacing: .08em; }
+  .loop-grid h3 { margin: .55rem 0 .4rem; }
+  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.85fr); gap: 1rem; }
+  .surface-list { display: grid; gap: .75rem; margin-top: 1rem; }
+  .surface-list a { display: block; color: inherit; text-decoration: none; }
+  .surface-list p { margin: .35rem 0 0; }
+  .visual-card img { width: 100%; margin-top: 1rem; border-radius: 22px; border: 1px solid rgba(31,160,104,.18); background: #020604; }
+  @media (max-width: 760px) { .context-shell { padding-top: 4.5rem; } .split { grid-template-columns: 1fr; } }
+</style>
