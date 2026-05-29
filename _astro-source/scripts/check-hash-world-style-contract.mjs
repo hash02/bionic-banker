@@ -33,7 +33,7 @@ const required = [
   [pages.systemMap, 'AI agents for finance risk. Simple records first, human control always.', 'System Map thesis'],
   [pages.home, 'AI-assisted finance risk workflows', 'homepage category phrase'],
   [pages.home, 'Agents prepare. Humans decide', 'homepage human-control phrase'],
-  [pages.baseLayout, 'Start Quest', 'nav start quest'],
+  [pages.baseLayout, 'Start Here', 'nav start here'],
   [pages.baseLayout, 'System Map', 'nav/footer system map'],
 ];
 

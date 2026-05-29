@@ -13,11 +13,11 @@ const files = {
 };
 
 const required = [
-  ['layout', 'Start Quest'],
+  ['layout', 'Start Here'],
   ['layout', '/apps'],
   ['layout', '/signals'],
   ['layout', '/ai-intelligence'],
-  ['layout', 'Blog'],
+  ['layout', 'Articles'],
   ['home', 'AI, finance, and the world ahead.'],
   ['home', 'Bionic Banker follows how technology is changing money, risk, work, and the systems people trust.'],
   ['apps', 'Apps you can enter'],
@@ -25,11 +25,11 @@ const required = [
   ['apps', 'The clearest path is Wallet Risk'],
   ['apps', 'Agent Workflow Case Review'],
   ['apps', '/agent-prototype-sprint'],
-  ['signals', '<h1 class="page-title">Signals</h1>'],
-  ['signals', 'It is a research board, not a trading board.'],
+  ['signals', '<h1 class="page-title">Signals are records for questions</h1>'],
+  ['signals', 'source trails, review questions, and clear limits'],
   ['signals', 'Signals are prompts for judgment'],
-  ['ai', 'What Agent Her is watching'],
-  ['ai', 'How Hash and Agent Her watch the AI world'],
+  ['ai', 'What Bionic Banker is tracking'],
+  ['ai', 'How the research loop works'],
   ['ai', 'outside-world signal becomes a question'],
   ['css', '--bg:   #010302'],
   ['css', '--text:   #f7fff9'],
@@ -51,7 +51,7 @@ for (const file of shellFiles) {
   if (/\s->\s/.test(text)) failures.push(`${file} contains visible arrow glyph`);
 }
 
-const bannedMainNav = ['Knowledge Base', 'Systems</a>', 'Risk Signals</a>', 'Articles</a>'];
+const bannedMainNav = ['Knowledge Base', 'Start Quest</a>', 'Blog</a>'];
 for (const phrase of bannedMainNav) {
   if (files.layout.includes(phrase)) failures.push(`layout still exposes old main nav label: ${phrase}`);
 }

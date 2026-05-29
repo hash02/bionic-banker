@@ -9,13 +9,19 @@ const sortedPosts = allPosts.sort((a, b) =>
   new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 
-const categories = ['AI', 'Blockchain', 'Finance', 'Tech'];
+const categories = ['AI Systems', 'Finance Risk', 'Blockchain / DeFi', 'Builder Notes'];
+const normalizeCategory = (value = '') => {
+  if (['AI', 'Tech'].includes(value)) return 'AI Systems';
+  if (value === 'Finance') return 'Finance Risk';
+  if (['Blockchain', 'DeFi'].includes(value)) return 'Blockchain / DeFi';
+  return 'Builder Notes';
+};
 
 const tagColorMap: Record<string, string> = {
   'AI': 'tag-cyan', 'Agents': 'tag-cyan', 'SYOS': 'tag-cyan',
   'Blockchain': 'tag-cyan', 'DeFi': 'tag-cyan', 'AML': 'tag-red',
   'Finance': 'tag-amber', 'Fintech': 'tag-amber', 'Crypto': 'tag-cyan',
-  'Tech': 'tag-cyan', 'Thoughts': 'tag-rose', 'Gaming': 'tag-cyan',
+  'Tech': 'tag-cyan', 'AI Systems': 'tag-cyan', 'Finance Risk': 'tag-amber', 'Blockchain / DeFi': 'tag-cyan', 'Builder Notes': 'tag-green', 'Thoughts': 'tag-rose', 'Gaming': 'tag-cyan',
   'Nobel Prize': 'tag-amber', 'Physics': 'tag-cyan',
 };
 
@@ -80,6 +86,20 @@ const routeLabels: Record<string, string> = {
     </div>
   </section>
 
+  <section class="learn-bridge article-discipline" aria-label="Article discipline">
+    <div>
+      <p class="section-kicker">Article discipline</p>
+      <h2>Every strong note should connect the reader to the record.</h2>
+      <p>Use this archive as a learning system, not a pile of posts. The cleanup standard for important articles is: Source links, Internal records, Limits, and Next read.</p>
+    </div>
+    <div class="discipline-list" aria-label="Article ending standard">
+      <span>Source links</span>
+      <span>Internal records</span>
+      <span>Limits</span>
+      <span>Next read</span>
+    </div>
+  </section>
+
   <section class="learn-bridge" aria-label="Learning route">
     <div>
       <p class="section-kicker">New to the terms?</p>
@@ -95,7 +115,7 @@ const routeLabels: Record<string, string> = {
     </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (
-        <a href={`/blog/${getSlug(post)}`} class="article-card animate-on-scroll" data-category={post.data.category}>
+        <a href={`/blog/${getSlug(post)}`} class="article-card animate-on-scroll" data-category={normalizeCategory(post.data.category)}>
           {post.data.image && (
             <div class="card-thumb">
               <img src={post.data.image} alt={cleanText(post.data.title)} loading="lazy" />
@@ -231,6 +251,25 @@ const routeLabels: Record<string, string> = {
       margin: 0 auto 1rem;
     }
 
+
+
+    .discipline-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: flex-end;
+    }
+
+    .discipline-list span {
+      border: 1px solid rgba(31, 160, 104, 0.28);
+      border-radius: 999px;
+      padding: 0.45rem 0.7rem;
+      color: var(--text-primary, #f4f7f4);
+      background: rgba(31, 160, 104, 0.07);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
     .learn-bridge {
       width: min(1180px, calc(100% - 32px));
       margin: -0.75rem auto 2.25rem;
@@ -308,7 +347,12 @@ const routeLabels: Record<string, string> = {
         min-height: 220px;
       }
 
-      .learn-bridge {
+
+      .discipline-list {
+        justify-content: flex-start;
+      }
+
+    .learn-bridge {
         width: min(100% - 24px, 1180px);
         flex-direction: column;
         align-items: flex-start;

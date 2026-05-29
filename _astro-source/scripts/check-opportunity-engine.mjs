@@ -27,7 +27,7 @@ const sourceFiles = {
 const source = Object.fromEntries(Object.entries(sourceFiles).map(([key, file]) => [key, read(file)]));
 
 const startHerePhrases = [
-  'Start Quest',
+  'Start Here',
   'Mission Map',
   '90-second quest',
   'Wallet Risk Assessment',
@@ -125,7 +125,7 @@ for (const [name, text] of Object.entries({
 }
 
 const builtChecks = [
-  [path.join(repoRoot, 'start-here/index.html'), ['Start Quest', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
+  [path.join(repoRoot, 'start-here/index.html'), ['Start Here', '90-second quest', 'No live trading, wallet movement, or fund transfer authority']],
   [path.join(repoRoot, 'system-map/index.html'), ['Bionic Banker System Map', 'Record map', 'Questions for the reader']],
   [path.join(repoRoot, 'world-map/index.html'), ['AI + Finance World Map', 'Five systems, one data story', 'Reading paths']],
   [path.join(repoRoot, 'about/index.html'), ['About Hash', 'Serious work can still feel alive']],

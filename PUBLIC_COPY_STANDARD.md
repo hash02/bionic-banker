@@ -31,6 +31,10 @@ Every public page or card should answer:
 5. What can it not do?
 
 
+## Article and concept discipline
+
+Every public concept page should end with source links, internal records, limits, and a next read. This turns strong ideas into a reader path instead of another isolated note. The order is: source links first, internal records second, limits third, next read last.
+
 ## Explanation ladder
 
 When a page explains a hard finance, AI, wallet, or agent concept, use this ladder before adding polish:

@@ -73,7 +73,7 @@ for (const link of requiredBuiltLinks) {
 }
 
 assert(built.includes('class="hero-wrap"'), 'Built homepage is missing the hero body. The BaseLayout slot may be empty or commented out.');
-assert(built.includes('Mission map for a 90-second visit'), 'Built homepage is missing the gamified Start Quest section.');
+assert(built.includes('Public reading room for a 90-second visit'), 'Built homepage is missing the disciplined Start Here section.');
 
 const stylesheetRefs = Array.from(built.matchAll(/href="([^"]+\.css)"/g), (match) => match[1]);
 assert(stylesheetRefs.length > 0, 'Built homepage must reference at least one stylesheet.');

@@ -111,16 +111,16 @@ const visualRoadmap = [
 ---
 <BaseLayout title="Signals" description="Market, risk, and agent signal board from Bionic Banker. Research only, not trading advice.">
   <div class="page-header">
-    <div class="page-label">Signal Board</div>
-    <h1 class="page-title">Signals</h1>
-    <p class="page-sub">Some ideas only make sense when you watch them move. This page collects market rows, risk reads, agent heartbeat data, and the limits around each signal. It is a research board, not a trading board.</p>
+    <div class="page-label">Risk Signals</div>
+    <h1 class="page-title">Signals are records for questions</h1>
+    <p class="page-sub">Some ideas only make sense when you watch them move, but movement is not a command. This page turns market rows, wallet-watch notes, and agent heartbeat data into source trails, review questions, and clear limits.</p>
   </div>
 
   <main class="intel-shell">
     <section class="alive-console">
       <div class="console-copy">
         <span class="section-label">Right Now</span>
-        <h2>What moved recently</h2>
+        <h2>What moved recently and what it can mean</h2>
         <p>Market rows refresh when the public source answers. Saved signal rows show the last read, when it happened, why it was recorded, and what it cannot decide.</p>
         <div class="console-actions">
           <a href="/risk-evidence-overview/" class="action-btn primary">Open Risk Review Overview</a>
@@ -135,15 +135,15 @@ const visualRoadmap = [
         </div>
         <div class="tbar-divider"></div>
         <div class="tbar-metric">
-          <span class="tbar-label">Last 100</span>
+          <span class="tbar-label">Last 100 saved rows</span>
           <strong class="tbar-value tbar-accent">{accuracy}</strong>
-          <span class="tbar-sub">accuracy</span>
+          <span class="tbar-sub">record check rate</span>
         </div>
         <div class="tbar-divider"></div>
         <div class="tbar-metric">
           <span class="tbar-label">Last Read</span>
           <strong class="tbar-value">{predictionValue.direction || 'n/a'}</strong>
-          <span class="tbar-sub">{confidence} confidence</span>
+          <span class="tbar-sub">{confidence} source-note confidence</span>
         </div>
         <div class="tbar-divider"></div>
         <div class="tbar-metric">
@@ -155,7 +155,7 @@ const visualRoadmap = [
           <span class="tbar-sub">{generatedAt ? generatedAt.slice(0, 10) : 'snapshot'}</span>
         </div>
       </div>
-      <p class="snapshot-note" style="margin-top:0.75rem;">For research only. Not investment advice, not trading performance, not a recommendation, and not a claim that the next row can be predicted.</p>
+      <p class="snapshot-note" style="margin-top:0.75rem;">For research only. This is not investment advice, not trading performance, not a recommendation, and not a claim that the next row can be predicted.</p>
     </section>
 
     <section class="market-strip" id="market-row" data-feeds={JSON.stringify(feeds)}>
@@ -188,7 +188,7 @@ const visualRoadmap = [
       <div class="reason-copy">
         <span class="section-label">Source Trail</span>
         <h2>Why the row says that</h2>
-        <p>A signal is useful only when it shows where it came from, why it moved, and what it is not saying. This is the small trail behind the latest saved row.</p>
+        <p>A signal is useful only when it shows where it came from, why it moved, and what it is not saying. Record accuracy, not trading accuracy, is the point: the row should preserve a source trail before interpretation.</p>
       </div>
       <div class="reason-steps">
         <article>
@@ -199,7 +199,7 @@ const visualRoadmap = [
         <article>
           <span>Reason</span>
           <strong>{leadRow.prediction?.direction || predictionValue.direction || 'No direction yet'}</strong>
-          <p>{typeof leadRow.prediction?.confidence === 'number' ? `${(leadRow.prediction.confidence * 100).toFixed(1)}% confidence on this saved read.` : 'Confidence appears only when the row carries it.'}</p>
+          <p>{typeof leadRow.prediction?.confidence === 'number' ? `${(leadRow.prediction.confidence * 100).toFixed(1)}% confidence on this saved read.` : 'Source-note confidence appears only when the row carries it.'}</p>
         </article>
         <article>
           <span>Age</span>
@@ -247,10 +247,26 @@ const visualRoadmap = [
         <p>A useful signal should create a better question, not a blind action. The board is allowed to observe, compare, and explain. It is not allowed to recommend a trade or hide uncertainty.</p>
       </div>
       <div class="reason-steps">
-        <article><span>Observe</span><strong>What changed</strong><p>Market price, heartbeat state, confidence, or a source row.</p></article>
+        <article><span>Observe</span><strong>What changed</strong><p>Market price, heartbeat state, source-note confidence, or a source row.</p></article>
         <article><span>Explain</span><strong>Why it matters</strong><p>Connect the row to risk, workflow design, or a learning note.</p></article>
         <article><span>Bound</span><strong>What it cannot do</strong><p>No advice, no autonomous action, no performance claim.</p></article>
         <article><span>Package</span><strong>What comes next</strong><p>Turn useful patterns into an app improvement, report, or checker.</p></article>
+      </div>
+    </section>
+
+
+
+    <section class="reason-panel" aria-label="Related signal records">
+      <div class="reason-copy">
+        <span class="section-label">Connections</span>
+        <h2>Every useful signal should point somewhere slower.</h2>
+        <p>Signals are only a first read. The stronger site path connects each row to a study, a system, a source record, and a limit so the reader can check the idea without treating it as a trade.</p>
+      </div>
+      <div class="reason-steps">
+        <article><span>Related study</span><strong>Wallet risk notes</strong><p>Use the article when the reader needs the concept before the row.</p><a href="/blog/wallet-risk-notes/">Read note</a></article>
+        <article><span>Related system</span><strong>Wallet Risk Assessment</strong><p>Use the system page when the reader wants the record shape and clear limit.</p><a href="/wallet-risk/">View system</a></article>
+        <article><span>Related record</span><strong>AML Status</strong><p>Use the status page when the question becomes compliance context, not a verdict.</p><a href="/aml-status-evidence/">View status</a></article>
+        <article><span>Next read</span><strong>AI Intelligence</strong><p>Use the intelligence page when the pattern becomes a larger tool, behavior, or risk thesis.</p><a href="/ai-intelligence/">Open map</a></article>
       </div>
     </section>
 
