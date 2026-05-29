@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-05-28T19:25:00Z",
+  "status": "public_wallet_watch_template_v1",
+  "purpose": "Reader-safe template for educational public-address whale-watch reports on Bionic Banker.",
+  "privacy_boundary": "Use public addresses and explorer links only. Do not include private wallet data, client data, account data, seed phrases, private keys, or instructions to copy a trade.",
+  "publishing_cadence": "Daily or biweekly after the watched-address list is source-reviewed.",
+  "aml_connection": "Public blockchain rows can feed the AML learning layer as source records: address label, transaction source, movement type, pattern flags, missing context, and human-review question.",
+  "allowed_actions": [
+    "Document public wallet movements as educational reports",
+    "Link to public blockchain explorers and public label sources",
+    "Record movement type, timing, size band, direction, and missing context",
+    "Connect recurring public patterns to AML review questions"
+  ],
+  "blocked_actions": [
+    "No trading advice or copy-trading instruction",
+    "No fund movement, wallet control, or account registration",
+    "No external submissions or Bankache unfreeze",
+    "No accusation, filing decision, KYC approval, or compliance verdict"
+  ],
+  "report_fields": [
+    {
+      "field": "address_or_label",
+      "reader_label": "Address or public label",
+      "purpose": "The public wallet, entity label, or watch-list name. Use a public label/source when available."
+    },
+    {
+      "field": "chain",
+      "reader_label": "Chain",
+      "purpose": "The public blockchain where the movement was observed."
+    },
+    {
+      "field": "public_source",
+      "reader_label": "Public source",
+      "purpose": "Explorer, public label page, dashboard, or community-maintained public watch list."
+    },
+    {
+      "field": "what_moved",
+      "reader_label": "What moved",
+      "purpose": "Asset, amount band, transaction type, exchange in/out, bridge, swap, consolidation, or distribution."
+    },
+    {
+      "field": "timing",
+      "reader_label": "Timing",
+      "purpose": "When the row was observed and whether it relates to nearby market/news context."
+    },
+    {
+      "field": "why_people_watch",
+      "reader_label": "Why people watch this",
+      "purpose": "Why the address or behavior is notable in public-market culture."
+    },
+    {
+      "field": "aml_review_question",
+      "reader_label": "AML review question",
+      "purpose": "The human question this public row would raise inside a bounded review workflow."
+    },
+    {
+      "field": "missing_context",
+      "reader_label": "Missing context",
+      "purpose": "What the row cannot know: intent, ownership, off-chain reason, customer identity, or full history."
+    },
+    {
+      "field": "clear_limit",
+      "reader_label": "Clear limit",
+      "purpose": "The report is context only, not advice, accusation, or a compliance decision."
+    }
+  ],
+  "sample_record": {
+    "title": "Sample public-wallet watch row",
+    "address_or_label": "Community-known whale wallet or public entity label",
+    "chain": "Ethereum / EVM example",
+    "public_source": "Public explorer and public label source",
+    "what_moved": "Large exchange deposit or withdrawal, size band only until source-reviewed",
+    "timing": "Observed near a market move or news window",
+    "why_people_watch": "Large public wallets can show behavior that traders discuss, but the movement does not reveal intent by itself.",
+    "aml_review_question": "Does the surrounding activity repeat a routing, exchange, bridge, mixer, or consolidation pattern that deserves slower human review?",
+    "missing_context": "Owner intent, private identity, off-chain reason, complete transaction history, and whether the movement relates to a trade.",
+    "clear_limit": "Educational public-address context only. Do not copy a trade, accuse a wallet, move funds, or treat this as a filing decision."
+  }
+}
