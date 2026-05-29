@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Canada Just Settled Dollars on a Blockchain. Nobody Noticed."
 description: "Wealthsimple and Visa ran a stablecoin settlement pilot in Canada. The technology is old. The timing is the story."
 date: "2026-05-22T12:00:00-07:00"
@@ -58,7 +58,7 @@ I think there were five blockers.
 
 None of this means banks are asleep.
 
-It means they are waiting for the evidence stack to be strong enough.
+It means they are waiting for the operating record to be strong enough.
 
 <div class="embed-visual">
   <iframe src="/blog-visuals/canada-stablecoin-settlement/canada-timeline/" title="Why Canada took years to get here" style="width:100%;min-height:520px;border:none;border-radius:12px;" loading="lazy"></iframe>
@@ -70,7 +70,7 @@ This is where I want to be careful.
 
 I do not think the right claim is "the Big 6 are doing nothing." That is too easy, and probably wrong.
 
-The public record shows Canadian banks have been around digital assets, blockchain experiments, CBDC research, venture investing, payment modernization, and real-time rails for years. BMO tested a blockchain mirror of a Canadian-dollar fixed income issuance back in 2018. Scotiabank had a blockchain proof-of-technology with AlphaPoint in 2017. RBCx and RBC Ventures show that RBC has a structure for technology investing. Bank of Canada research around digital money and Project Jasper pulled in major Canadian financial infrastructure players.
+The public record shows Canadian banks have been around digital assets, blockchain experiments, CBDC research, venture investing, payment modernization, and real-time rails for years. BMO tested a blockchain mirror of a Canadian-dollar fixed income issuance back in 2018. Scotiabank tested blockchain technology with AlphaPoint in 2017. RBCx and RBC Ventures show that RBC has a structure for technology investing. Bank of Canada research around digital money and Project Jasper pulled in major Canadian financial infrastructure players.
 
 But that is different from saying each Big 6 bank has a public stablecoin settlement product ready to ship.
 
@@ -82,13 +82,13 @@ The CFTC has authorized USDC as eligible collateral for derivatives markets. Not
 
 These are not pilots. These are operating conditions.
 
-The question is no longer "will institutions use this?" It is "when does each institution decide the evidence stack is sufficient to move?"
+The question is no longer "will institutions use this?" It is "when does each institution decide the operating record is sufficient to move?"
 
 So the clean read is this:
 
 The banks are not ignoring the space. They are staying close to it without turning it into a public product until the regulatory, operational, and reputational risk makes sense.
 
-That is not cowardice. That is banking.
+That is not cowardice. That is banking risk discipline.
 
 And this is why the Wealthsimple and Visa pilot matters. It gives the market a clean example to point at.
 
@@ -122,6 +122,8 @@ CAD stablecoin settlement.
 
 Merchant, broker, fintech, or treasury workflow.
 
+The named pieces matter because they make the picture concrete: Visa as a network layer, Wealthsimple as the regulated fintech surface, a CAD stablecoin as the settlement object, and open banking APIs as the possible funding bridge. A future visual should show those as system roles, not as hype logos.
+
 That stack does not kill banks. That is not the point. Banks still hold deposits, manage credit, run risk, and maintain trust.
 
 What it does is pressure the middle.
@@ -154,13 +156,13 @@ It wins by becoming invisible.
 
 Here is what I keep coming back to.
 
-In finance, proof compounds.
+In finance, records compound.
 
-One pilot does not change the system. But one clean pilot gives everyone else permission to run the next one. Then that second pilot becomes a policy memo. Then the policy memo becomes a product plan. Then the product plan becomes normal infrastructure.
+One pilot does not change the system. But one clean record gives everyone else something to inspect. Then the next record becomes a policy memo. Then the policy memo becomes a product plan. Then the product plan becomes normal infrastructure.
 
 That is the actual game.
 
-The Wealthsimple and Visa pilot is not the finish line. It is a proof point. And in a market like Canada, evidence points matter more than hype because nobody wants to be the first institution explaining to a regulator why a shiny idea broke something important.
+The Wealthsimple and Visa pilot is not the finish line. It is a settlement record other institutions can study. And in a market like Canada, operating records matter more than hype because nobody wants to be the first institution explaining to a regulator why a shiny idea broke something important.
 
 So yes, the headline is stablecoins.
 

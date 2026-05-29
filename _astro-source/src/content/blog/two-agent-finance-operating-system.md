@@ -152,19 +152,19 @@ Trust comes from clean edges.
 
 In finance and compliance, a draft and an action are not the same thing.
 
-A model that writes a case narrative is useful. A model that writes a case narrative, stores the evidence, marks the assumptions, asks for review, and refuses to send anything without approval is a different class of tool.
+A model that writes a case narrative is useful. A model that writes a case narrative, stores the source trail, marks the assumptions, asks for review, and refuses to send anything without approval is a different class of tool.
 
 The workflow has to know the difference between those steps. Not because compliance says so. Because the moment an AI system collapses draft and action into one move, you lose the control surface.
 
 That is what the two-agent architecture actually builds: a control surface between output and consequence.
 
-AI carries the memory, drafting, comparison, and evidence. Humans keep judgment, accountability, and final action.
+AI carries the memory, drafting, comparison, and source trail. Humans keep judgment, accountability, and final action.
 
 ## The Honest Limitation
 
 This is a personal-scale production system.
 
-Not an enterprise compliance deployment. Not a vendor product. A working proof of the architecture pattern: agentic workflows, shared board state, approval gates, audit trails, policy boundaries, evidence-preserving automation.
+Not an enterprise compliance deployment. Not a vendor product. A working record of the architecture pattern: agentic workflows, shared board state, approval gates, audit trails, policy boundaries, and source-preserving automation.
 
 The pattern itself is what scales. The next step is running it inside a team, under real compliance leadership, with real data governance, access controls, model-risk review, and production ownership.
 

@@ -1,5 +1,5 @@
-﻿---
-title: "What Claude Can't Do for KYC Yet (And Why That Matters for Canadian Banks)"
+---
+title: "What AI Still Cannot Do for KYC Records"
 description: "AI can read documents and flag issues. Production KYC is a bigger system: screening, case review, audit trail, and accountability."
 date: "2026-05-22T12:00:00-07:00"
 tags: ["AI", "Banking", "Compliance", "KYC", "AML", "Canada"]
@@ -8,11 +8,11 @@ category: "AI"
 image: "/blog-visuals/what-claude-cant-do-for-kyc/hero.svg"
 ---
 
-# What Claude Can't Do for KYC Yet (And Why That Matters for Canadian Banks)
+# What AI Still Cannot Do for KYC Records
 
 Okay so here is the thing.
 
-Most AI demos for KYC look amazing for about 90 seconds.
+Most AI KYC screens look impressive for about 90 seconds.
 
 You upload a passport. The model reads the name, date of birth, address, maybe the expiry date. It spots a mismatch. It gives a clean little summary. Maybe it says "high risk" or "needs review."
 
@@ -22,15 +22,15 @@ But if you have worked near the banking side of it, you know that is only the fr
 
 The real KYC problem is not "can a model read a document?"
 
-The real question is: can the system prove why it accepted or rejected a person, keep that proof, route the weird cases to a human, and still explain the decision months later when someone asks?
+The real question is: can the system explain why it accepted, rejected, or escalated a file, keep the supporting record, route the weird cases to a human, and still answer questions months later?
 
-That is the part most demos skip.
+That is the part most polished screens skip.
 
-And honestly, I get why. The skipped part is not as pretty. It is not a clean upload screen. It is not one prompt. It is a chain.
+And honestly, I get why. The skipped part is not as pretty. It is not a clean upload screen. It is not one prompt. It is a chain of records.
 
-## The Demo Version
+## The Extraction Screen
 
-The demo version of KYC is simple.
+The simple extraction screen is useful, but incomplete.
 
 1. Upload document.
 2. Extract fields.
@@ -58,7 +58,7 @@ What if the model flags something, but the reviewer disagrees?
 
 What if six months later a regulator asks why the file was approved?
 
-That is where the demo stops and production starts.
+That is where extraction stops and production record keeping starts.
 
 ## The Production Chain
 
@@ -68,7 +68,7 @@ KYC is an eight-step chain.
   <iframe src="/blog-visuals/what-claude-cant-do-for-kyc/production-chain/" title="KYC is an eight-step production chain" style="width:100%;min-height:620px;border:none;border-radius:12px;" loading="lazy"></iframe>
 </div>
 
-1. Collect identity evidence.
+1. Collect identity source records.
 2. Extract and normalize fields.
 3. Screen against sanctions, PEP, adverse media, and internal risk lists.
 4. Check document authenticity and liveness where needed.
@@ -77,7 +77,9 @@ KYC is an eight-step chain.
 7. Preserve a regulator-readable audit trail.
 8. Monitor after onboarding.
 
-Most AI demos are strongest at step 1 and step 2.
+A useful diagram here would show boring technology on purpose: document intake, screening adapters, a case-management queue, a reviewer lane, a SQLite-style event ledger, and a read-only reporting surface. The point is not the logo. The point is that every decision has a place to live.
+
+Most AI screens are strongest at step 1 and step 2.
 
 That is the "look, it read the passport" moment.
 
@@ -137,7 +139,7 @@ Do we keep monitoring?
 
 And then the system has to remember that decision.
 
-Not in a chat message. Not in a screenshot. In a case record with evidence, timestamps, reviewer identity, reason codes, and the final outcome.
+Not in a chat message. Not in a screenshot. In a case record with source pointers, timestamps, reviewer identity, reason codes, and the final outcome.
 
 That is what I mean when I say AI is not enough by itself.
 
@@ -149,7 +151,7 @@ Canada is a careful banking market.
 
 That can be frustrating if you are building fast. But it also means the bar for trust is real.
 
-A Canadian bank cannot treat KYC like a hackathon demo.
+A Canadian bank cannot treat KYC like a temporary experiment.
 
 The system has to survive internal audit, regulator questions, and FINTRAC obligations. Record keeping, ongoing monitoring, suspicious transaction reporting, beneficial ownership. All of it has to hold up under examination, not just at onboarding.
 
@@ -161,7 +163,7 @@ Not:
 
 But:
 
-"Here is the customer evidence. Here are the fields. Here are the screening results. Here is why the match was accepted or dismissed. Here is the reviewer. Here is the timestamp. Here is the ongoing monitoring state. Here is what changed."
+"Here is the customer source record. Here are the fields. Here are the screening results. Here is why the match was accepted or dismissed. Here is the reviewer. Here is the timestamp. Here is the ongoing monitoring state. Here is what changed."
 
 That is the difference between an AI assistant and a compliance system.
 
@@ -173,7 +175,7 @@ The other leaves a trail.
 
 This is the part I keep coming back to because I sit in a weird place.
 
-On one side, I work inside banking. I see how slowly real systems move, and why they move slowly. It is not always because people lack imagination. Sometimes it is because the system has to answer to things the demo never sees.
+On one side, I work inside banking. I see how slowly real systems move, and why they move slowly. It is not always because people lack imagination. Sometimes it is because the system has to answer to things a simple screen never sees.
 
 On the other side, I build these engines myself.
 
@@ -207,17 +209,17 @@ If I were designing the real version, I would not start with "one AI agent does 
 
 I would build it as modules.
 
-First, a document intake layer. It reads documents, extracts fields, normalizes names, and keeps the raw evidence.
+First, a document intake layer. It reads documents, extracts fields, normalizes names, and keeps the source record.
 
 Second, a screening adapter. Sanctions, PEP, adverse media, internal lists, source timestamps, match scores, and explanations.
 
 Third, a transaction-risk layer. That is where something like my AML Engine belongs. Wallets, counterparties, flow patterns, risk rules, ongoing behavior.
 
-Fourth, a case store. Every flag becomes a case event. Every decision has a reviewer, reason, timestamp, and evidence pointer.
+Fourth, a case store. Every flag becomes a case event. Every decision has a reviewer, reason, timestamp, and source pointer.
 
 Fifth, a human review lane. The model can suggest. The human approves, rejects, escalates, or asks for more.
 
-Sixth, an audit log. Not because audit logs are exciting. Because without one, the system cannot prove itself later.
+Sixth, an audit log. Not because audit logs are exciting. Because without one, the system cannot explain itself later.
 
 That is the real KYC AI product.
 
@@ -237,20 +239,20 @@ But I am not bullish on the lazy version of the story.
 
 The lazy version says: "AI reads KYC docs, so KYC is automated."
 
-The real version says: "AI can reduce the manual load in parts of KYC, but production KYC needs screening, review, evidence, audit, and ongoing monitoring."
+The real version says: "AI can reduce the manual load in parts of KYC, but production KYC needs screening, review, source records, audit, and ongoing monitoring."
 
 That difference is not small.
 
 It is the whole thing.
 
-And for Canadian banks, that difference is where the opportunity is.
+And for Canadian banks, that difference is where the operating work is.
 
-The bank that wins will not be the one with the flashiest document extraction demo.
+The strongest institution will not be the one with the flashiest document extraction screen.
 
-It will be the one that can connect identity, transaction behavior, human review, and audit proof into one system that people inside the institution can actually trust.
+It will be the one that can connect identity, transaction behavior, human review, and audit records into one system that people inside the institution can actually trust.
 
 That is what I am trying to build toward.
 
-Not the demo.
+Not the screen.
 
-The system behind the demo.
+The records behind the screen.
