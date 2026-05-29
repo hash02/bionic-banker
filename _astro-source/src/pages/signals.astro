@@ -60,7 +60,39 @@ const signalRoutes = [
     title: 'View the review map',
     text: 'If the numbers feel too raw, the risk review overview turns them into a slower walk.',
     href: '/risk-evidence-overview/'
+  },
+  {
+    eyebrow: 'Unblocked',
+    title: 'Public wallet watch',
+    text: 'Whale-watching can be documented as public-address context without telling anyone to copy a trade.',
+    href: '#public-wallet-watch'
   }
+];
+
+const publicWalletWatch = [
+  {
+    label: 'Why it belongs',
+    title: 'Whale watching is already common market behavior',
+    body: 'Traders often watch popular public wallets, large transfers, exchange flows, and known community addresses to understand what other actors may be doing. The useful version explains the context instead of turning the movement into a command.'
+  },
+  {
+    label: 'What the report can record',
+    title: 'Address, movement, source, context, and limit',
+    body: 'A public-wallet report can preserve the address label source, chain, transaction link, timing, size, direction, and a plain note about why the row is interesting.'
+  },
+  {
+    label: 'What stays blocked',
+    title: 'No copy-trade signal or external submission',
+    body: 'The page can publish educational records. It cannot recommend trades, move funds, register accounts, submit to outside programs, or unfreeze Bankache without review.'
+  }
+];
+
+const visualRoadmap = [
+  'Whale-watch map: wallet, explorer, exchange flow, market context, and limit card.',
+  'Hermes Agent operating-layer image or mythology-inspired Hermes visual for agent orchestration articles.',
+  'OpenClaw-style supply-chain diagram for skill packages, secrets, external APIs, and review gates.',
+  'KYC record diagram: document intake, screening adapters, case queue, reviewer lane, SQLite-style event ledger, and read-only report.',
+  'Stablecoin settlement diagram: Visa network layer, regulated fintech surface, CAD stablecoin object, and open-banking bridge.'
 ];
 ---
 <BaseLayout title="Signals" description="Market, risk, and agent signal board from Bionic Banker. Research only, not trading advice.">
@@ -205,6 +237,41 @@ const signalRoutes = [
         <article><span>Explain</span><strong>Why it matters</strong><p>Connect the row to risk, workflow design, or a learning note.</p></article>
         <article><span>Bound</span><strong>What it cannot do</strong><p>No advice, no autonomous action, no performance claim.</p></article>
         <article><span>Package</span><strong>What comes next</strong><p>Turn useful patterns into an app improvement, report, or checker.</p></article>
+      </div>
+    </section>
+
+    <section class="reason-panel" id="public-wallet-watch" aria-label="Public wallet watch signal lane">
+      <div class="reason-copy">
+        <span class="section-label">Unblocked lane</span>
+        <h2>Public wallet watch can become a report lane.</h2>
+        <p>Whale-watching is a normal public-market habit: people watch known wallets, large transfers, exchange flows, and community-tracked addresses to ask better questions about market behavior. Bionic Banker can document those rows as public-address analysis while keeping the line clear: context, not copy-trading advice.</p>
+      </div>
+      <div class="reason-steps">
+        {publicWalletWatch.map((item) => (
+          <article>
+            <span>{item.label}</span>
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="snapshot-note">Allowed: publish educational public-wallet reports and examples. Still blocked: Bankache, account registration, external submissions, fund movement, wallet control, and any recommendation to follow a wallet trade.</p>
+    </section>
+
+    <section class="reason-panel" id="visual-roadmap" aria-label="Website visual roadmap">
+      <div class="reason-copy">
+        <span class="section-label">Visual roadmap</span>
+        <h2>Where images and infographics should come next.</h2>
+        <p>The copy is getting cleaner. The next visual layer should explain systems that are hard to picture from text alone. These are image slots, not decoration slots: each one should teach the reader what connects to what.</p>
+      </div>
+      <div class="reason-steps">
+        {visualRoadmap.map((item, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <strong>Infographic slot</strong>
+            <p>{item}</p>
+          </article>
+        ))}
       </div>
     </section>
 
