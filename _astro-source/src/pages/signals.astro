@@ -3,11 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const signalCatalog = await import('../../public/dashboard-data/intelligence-signal-catalog.json');
 const heartbeatSnapshot = await import('../../public/dashboard-data/heartbeat.json');
+const walletWatchTemplate = await import('../../public/dashboard-data/public-wallet-watch-template.json');
 
 const lanes = signalCatalog.default.signal_lanes;
 const tickets = signalCatalog.default.ticket_rows;
 const feeds = signalCatalog.default.external_feeds;
 const heartbeat = heartbeatSnapshot.default;
+const walletWatch = walletWatchTemplate.default;
 const status = heartbeat.status || {};
 const lastPrediction = status.last_prediction || {};
 const predictionValue = lastPrediction.value || {};
@@ -66,6 +68,12 @@ const signalRoutes = [
     title: 'Public wallet watch',
     text: 'Whale-watching can be documented as public-address context without telling anyone to copy a trade.',
     href: '#public-wallet-watch'
+  },
+  {
+    eyebrow: 'Template',
+    title: 'Report format',
+    text: 'A repeatable daily or biweekly record shape for public wallet watching.',
+    href: '#wallet-watch-report-template'
   }
 ];
 
@@ -256,6 +264,34 @@ const visualRoadmap = [
         ))}
       </div>
       <p class="snapshot-note">Allowed: publish educational public-wallet reports and examples. Still blocked: Bankache, account registration, external submissions, fund movement, wallet control, and any recommendation to follow a wallet trade.</p>
+    </section>
+
+
+
+    <section class="reason-panel" id="wallet-watch-report-template" aria-label="Public wallet watch report template">
+      <div class="reason-copy">
+        <span class="section-label">Report template</span>
+        <h2>Public Wallet Watch report format.</h2>
+        <p>This is the repeatable shape for a daily or biweekly public-address report. It turns whale watching into a source record: public address, public source, what moved, why people watch it, what is missing, and the AML review question it raises.</p>
+      </div>
+      <div class="reason-steps">
+        {walletWatch.report_fields.map((field) => (
+          <article>
+            <span>{field.reader_label}</span>
+            <strong>{field.field.replaceAll('_', ' ')}</strong>
+            <p>{field.purpose}</p>
+          </article>
+        ))}
+      </div>
+      <article class="wallet-watch-sample">
+        <span>Sample row</span>
+        <h3>{walletWatch.sample_record.title}</h3>
+        <p><strong>Address or label:</strong> {walletWatch.sample_record.address_or_label}</p>
+        <p><strong>What moved:</strong> {walletWatch.sample_record.what_moved}</p>
+        <p><strong>AML review question:</strong> {walletWatch.sample_record.aml_review_question}</p>
+        <p><strong>Clear limit:</strong> {walletWatch.sample_record.clear_limit}</p>
+        <a href="/dashboard-data/public-wallet-watch-template.json" target="_blank" rel="noopener">View source JSON</a>
+      </article>
     </section>
 
     <section class="reason-panel" id="visual-roadmap" aria-label="Website visual roadmap">
@@ -1035,6 +1071,40 @@ const visualRoadmap = [
       .panel-head {
         flex-direction: column;
       }
+    }
+
+    .wallet-watch-sample {
+      margin-top: 1rem;
+      border: 1px solid rgba(31, 160, 104, 0.22);
+      border-radius: 14px;
+      padding: 1rem;
+      background: rgba(31, 160, 104, 0.06);
+    }
+
+    .wallet-watch-sample span {
+      display: inline-flex;
+      color: var(--accent);
+      font-family: var(--mono, monospace);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
+    .wallet-watch-sample h3 {
+      margin: 0 0 0.75rem;
+    }
+
+    .wallet-watch-sample p {
+      color: var(--muted);
+      margin: 0.35rem 0;
+    }
+
+    .wallet-watch-sample a {
+      display: inline-flex;
+      margin-top: 0.85rem;
+      color: var(--fg);
+      font-weight: 800;
     }
   </style>
 </BaseLayout>
