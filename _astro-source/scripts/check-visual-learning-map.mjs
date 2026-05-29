@@ -53,6 +53,8 @@ for (const lane of map.learning_lanes ?? []) {
 }
 
 const aiPage = read('src/pages/ai-intelligence.astro');
+const signalsPage = read('src/pages/signals.astro');
+const walletFlowSvg = read('public/assets/public-wallet-watch-flow.svg');
 for (const phrase of [
   'visual-learning-map.json',
   'Visual learning map',
@@ -71,11 +73,29 @@ for (const phrase of [
   requirePhrase(plan, phrase, 'visual roadmap plan phrase');
 }
 
+
+for (const phrase of [
+  'wallet-watch-infographic',
+  'public-wallet-watch-flow.svg',
+  'Source trail before interpretation.',
+  'public source, label context, activity category, AML review question, missing context, and clear limit',
+]) {
+  requirePhrase(signalsPage, phrase, 'signals infographic phrase');
+}
+
+for (const phrase of [
+  'Public wallet watch source to review question flow',
+  'Source trail before interpretation',
+  'Reader rule: show the source, show the question, show what the system cannot decide.',
+]) {
+  requirePhrase(walletFlowSvg, phrase, 'wallet watch SVG phrase');
+}
+
 for (const phrase of ['Country-by-country risk practice notes', 'Learn from other people’s mistakes']) {
   requirePhrase(mapText, phrase, 'visual learning map data phrase');
 }
 
-const combined = [mapText, aiPage, plan].join('\n');
+const combined = [mapText, aiPage, signalsPage, walletFlowSvg, plan].join('\n');
 const banned = [
   /copy this trade/i,
   /buy now/i,
