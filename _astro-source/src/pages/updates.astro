@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const updateTypes = [
+  {
+    label: 'Source notes',
+    body: 'Short notes when a public source changes the way a finance, AI, compliance, or wallet-risk question should be read.',
+  },
+  {
+    label: 'System records',
+    body: 'Small releases from Bionic Banker: article updates, Signals context, AML Status notes, diagrams, and reader-facing checks.',
+  },
+  {
+    label: 'Clear limits',
+    body: 'Every useful update should say what the record cannot prove and what still needs human review.',
+  },
+];
+
+const sampleUpdates = [
+  'A public source changed or clarified a risk question.',
+  'A Bionic Banker article gained source trails, related records, or clearer limits.',
+  'A new diagram or system map makes a hard finance/AI pattern easier to inspect.',
+];
+---
+<BaseLayout title="Updates" description="Subscribe to Bionic Banker source notes and system records: finance, AI, risk, source trails, and clear limits without trading calls or hype.">
+  <main class="updates-shell">
+    <section class="updates-hero">
+      <div class="updates-kicker">Bionic Banker updates</div>
+      <h1>Source notes and system records, not trading calls.</h1>
+      <p>Subscribe when you want the short version of what changed, what source supports it, what Bionic Banker recorded, and what the record cannot decide.</p>
+      <div class="updates-actions">
+        <a href="#newsletter">Subscribe by email</a>
+        <a href="https://t.me/BionicBanker" target="_blank" rel="noopener">Join Telegram</a>
+      </div>
+    </section>
+
+    <section class="updates-section">
+      <span>Reader promise</span>
+      <h2>Each update should answer four simple questions.</h2>
+      <div class="promise-grid">
+        <article>
+          <strong>What changed?</strong>
+          <p>The source note, system record, article, signal, report, or diagram that moved.</p>
+        </article>
+        <article>
+          <strong>Why it matters</strong>
+          <p>The finance, AI, risk, money-trail, or review question a careful reader can inspect.</p>
+        </article>
+        <article>
+          <strong>What supports it</strong>
+          <p>The public source trail or Bionic Banker record behind the update.</p>
+        </article>
+        <article>
+          <strong>What it cannot do</strong>
+          <p>No trade instruction, no compliance approval, no KYC decision, no automated filing, and no wallet control.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="updates-section split">
+      <div>
+        <span>What gets sent</span>
+        <h2>Useful, quiet, and inspectable.</h2>
+        <p>Bionic Banker updates should help readers follow the map without turning the site into a hype channel. The point is to make a source trail easier to inspect, not to push urgency.</p>
+      </div>
+      <div class="update-types">
+        {updateTypes.map((item) => (
+          <article>
+            <strong>{item.label}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="updates-section split">
+      <div>
+        <span>Telegram format</span>
+        <h2>Short release notes, with the limit included.</h2>
+        <p>The Telegram channel should be a fast reading layer for source notes and site changes. It should not become a trading alert feed.</p>
+      </div>
+      <div class="telegram-card">
+        <strong>Example update shape</strong>
+        <p><b>Bionic Banker update:</b> 10 priority articles now include source trails, related records, clear limits, next reads, and diagram hooks.</p>
+        <p><b>Why it matters:</b> Posts are no longer isolated notes; they now connect into the site’s system map.</p>
+        <p><b>Clear limit:</b> These are learning records, not trading or compliance instructions.</p>
+      </div>
+    </section>
+
+    <section class="updates-section">
+      <span>Good reasons to subscribe</span>
+      <h2>Follow the records when something concrete changes.</h2>
+      <ul class="reason-list">
+        {sampleUpdates.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .updates-shell { max-width: 1120px; margin: 0 auto; padding: 6rem 1.25rem 4rem; color: var(--text); }
+  .updates-hero, .updates-section { border: 1px solid rgba(31,160,104,.14); background: rgba(3,16,8,.92); border-radius: 24px; padding: clamp(1.4rem, 3vw, 3rem); margin-bottom: 1.25rem; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+  .updates-kicker, .updates-section > span { color: #1fa068; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; }
+  .updates-hero h1 { font-size: clamp(2.25rem, 5vw, 4.75rem); line-height: .98; margin: .75rem 0 1rem; max-width: 920px; }
+  .updates-hero p, .updates-section p, .reason-list li { color: #b0b0b8; line-height: 1.72; font-size: 1.02rem; }
+  .updates-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+  .updates-actions a { text-decoration: none; border-radius: 999px; padding: .82rem 1.05rem; border: 1px solid rgba(31,160,104,.24); color: var(--text); font-weight: 850; }
+  .updates-actions a:first-child { background: #1fa068; color: #010302; border: 0; }
+  .promise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .9rem; margin-top: 1rem; }
+  .promise-grid article, .update-types article, .telegram-card { border: 1px solid rgba(31,160,104,.14); border-radius: 18px; background: rgba(31,160,104,.05); padding: 1rem; }
+  .promise-grid strong, .update-types strong, .telegram-card strong { display: block; color: var(--text); margin-bottom: .45rem; }
+  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.9fr); gap: 1rem; }
+  .update-types { display: grid; gap: .75rem; }
+  .telegram-card p { margin-bottom: .75rem; }
+  .reason-list { margin: 1rem 0 0 1.25rem; }
+  .reason-list li { margin-bottom: .55rem; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } .updates-shell { padding-top: 4.5rem; } }
+</style>
