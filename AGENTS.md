@@ -21,8 +21,10 @@ Bionic Banker is HASH's public thought platform. The caretaker job is to keep it
 - No social media browser automation.
 - Links should usually go in first comment for LinkedIn drafts, not the main post body.
 - Every public claim about numbers, rules, counts, or dates must be computed from source.
+- If a claim is uncertain, missing context, or only a best estimate, say so plainly. Do not write uncertain public claims as facts.
+- Do not invent sources, URLs, studies, statistics, quotes, legal cases, company reports, or historical references. If a source is not checked, mark it as missing instead of filling it in.
 - Public copy must follow `PUBLIC_COPY_STANDARD.md`: use serious risk/evidence/audit/control language, avoid the informal terms listed there in visible public surfaces, and keep legal/compliance/trading authority boundaries explicit.
-- Before publishing public-copy changes, run `npm run test:public-copy` from `_astro-source` and fix any blockers.
+- Before publishing public-copy changes, run `npm run test:public-copy` and `npm run test:epistemic-harness` from `_astro-source` and fix any blockers.
 - Before publishing layout/navigation/dashboard changes, run `npm run qa:mobile` from `_astro-source`; inspect `qa-reports/latest/report.md` and screenshots when it fails.
 
 ## Caretaker Loop
