@@ -23,7 +23,8 @@ function requireAbsent(text, pattern, label) {
 
 const layout = read('src/layouts/BaseLayout.astro');
 const updates = read('src/pages/updates.astro');
-const combined = `${layout}\n${updates}`;
+const homepage = read('src/pages/index.astro');
+const combined = `${layout}\n${updates}\n${homepage}`;
 
 for (const phrase of [
   'Get source notes and system records when Bionic Banker publishes a finance and AI source report. No trading calls, no hype.',
@@ -32,6 +33,14 @@ for (const phrase of [
   'https://t.me/BionicBanker',
 ]) {
   requireIncludes(layout, phrase, 'newsletter/update layout');
+}
+
+for (const phrase of [
+  'Stay with the records',
+  'Get source notes and system records when Bionic Banker publishes a finance and AI report.',
+  'No trading calls, no hype.',
+]) {
+  requireIncludes(homepage, phrase, 'homepage inline newsletter');
 }
 
 for (const phrase of [
@@ -57,6 +66,9 @@ for (const pattern of [
   /buy now/i,
   /sell now/i,
   /profit/i,
+  /no fluff/i,
+  /no schedule/i,
+  /Finance, blockchain, AI - one piece at a time/i,
   /Bionic Banker update:/i,
   /\bI (added|shipped|pushed|built|changed)\b/i,
   /\bHash (asked|said|approved)\b/i,
