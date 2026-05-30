@@ -35,6 +35,36 @@ Every public page or card should answer:
 
 Every public concept page should end with source links, internal records, limits, and a next read. This turns strong ideas into a reader path instead of another isolated note. The order is: source links first, internal records second, limits third, next read last.
 
+## Uncertainty and source honesty harness
+
+Bionic Banker should sound correct before it sounds confident. Public copy must separate what is known, what is checked, what is missing, and what the system cannot decide.
+
+Use these rules for every page, article, report, card, and public announcement:
+
+1. If a fact is not fully checked, say so clearly instead of writing it as settled.
+2. If the answer depends on missing context, name the missing context.
+3. If multiple explanations are plausible, show the main possibilities rather than pretending there is only one.
+4. Do not invent paper titles, URLs, authors, studies, statistics, books, legal cases, quotes, company reports, or historical references.
+5. A number, date, article count, status, source label, or public claim needs a source file, public source link, or explicit `not verified yet` label.
+6. A page can be useful with a missing source; it is not allowed to hide the missing source.
+
+Preferred public phrases:
+
+- `Based on the public source trail...`
+- `This page can show...`
+- `This page cannot decide...`
+- `The missing context is...`
+- `This is a source note, not a conclusion.`
+- `This should be verified before it becomes a public claim.`
+
+Blocked public behavior:
+
+- invented citations;
+- exact statistics with no source trail;
+- legal/compliance conclusions without review;
+- confident claims about wallet intent, fraud, approval, compliance, or safety when the page only has a partial signal;
+- language that implies Bionic Banker can decide, approve, trade, file, or act by itself.
+
 ## Explanation ladder
 
 When a page explains a hard finance, AI, wallet, or agent concept, use this ladder before adding polish:
