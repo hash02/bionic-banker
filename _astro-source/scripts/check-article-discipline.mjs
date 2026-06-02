@@ -12,6 +12,7 @@ const priority = [
   'canada-stablecoin-settlement',
   'web3-is-just-finance-infrastructure',
   'agentic-ai-banking',
+  'consensus-is-not-truth',
   'openclaw-security',
   'zkp-explained',
   'defi',
@@ -47,7 +48,7 @@ for (const slug of priority) {
     if (!md.includes(heading)) failures.push(`${slug}: missing ${heading}`);
   }
 
-  const bionicLinks = [...md.matchAll(/\]\((\/(?:wallet-risk|signals|ai-intelligence|aml-status-evidence|risk-evidence-overview|system-map|reports|articles|start-here)[^)]+)\)/g)].map((m) => m[1]);
+  const bionicLinks = [...md.matchAll(/\]\((\/(?:blog|wallet-risk|signals|ai-intelligence|aml-status-evidence|risk-evidence-overview|system-map|reports|articles|start-here)[^)]+)\)/g)].map((m) => m[1]);
   if (new Set(bionicLinks).size < 2) failures.push(`${slug}: needs at least two internal Bionic Banker record links`);
 
   const httpLinks = [...md.matchAll(/https?:\/\/[^\s)]+/g)].map((m) => m[0]);
