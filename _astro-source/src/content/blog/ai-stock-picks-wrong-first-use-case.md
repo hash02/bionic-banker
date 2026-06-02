@@ -5,6 +5,7 @@ date: "2026-06-02"
 tags: ["AI", "Finance", "Risk"]
 readTime: "7 min"
 category: "AI + Finance"
+image: "/blog-visuals/ai-stock-picks-wrong-first-use-case/hero.svg"
 featured: false
 slug: "ai-stock-picks-wrong-first-use-case"
 ---
@@ -106,6 +107,10 @@ The goal is not to make the machine sound smart. The goal is to make the decisio
 
 A safer workflow looks like this:
 
+<div class="embed-visual">
+  <img src="/blog-visuals/ai-stock-picks-wrong-first-use-case/hero.svg" alt="AI finance workflow from source to assumptions, risks, missing context, and human decision" loading="lazy" style="width:100%;border-radius:16px;border:1px solid rgba(40,255,147,.28);" />
+</div>
+
 ```text
 source
   -> summary
@@ -165,7 +170,7 @@ It will stop the AI from sounding more certain than it should.
 
 ## Clear limit
 
-This article is educational. It is not investment advice, legal advice, tax advice, or a recommendation to buy or sell any asset.
+This article is educational. It is not investment advice. It is not legal advice. It is not tax advice. It is not a recommendation to buy or sell any asset.
 
 The point is narrower: AI can help organize financial thinking, but the authority boundary still matters.
 
