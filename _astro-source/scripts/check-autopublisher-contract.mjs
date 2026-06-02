@@ -34,6 +34,9 @@ for (const slug of autopublishedSlugs) {
   if (image) {
     const imagePath = path.join(publicDir, image.replace(/^\//, ''));
     if (!fs.existsSync(imagePath)) failures.push(`${slug}: image asset missing at ${path.relative(root, imagePath)}`);
+
+    const staticRootPath = path.join(root, '..', image.replace(/^\//, ''));
+    if (!fs.existsSync(staticRootPath)) failures.push(`${slug}: built/root static image asset missing at ${path.relative(path.join(root, '..'), staticRootPath)}`);
   }
 
   if (!/## Source trail/i.test(md)) failures.push(`${slug}: missing Source trail section`);
