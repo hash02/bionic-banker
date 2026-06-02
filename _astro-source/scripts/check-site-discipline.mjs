@@ -46,7 +46,9 @@ for (const phrase of [
   'What this is',
   'What you can inspect',
   'What it cannot do',
-  'View systems',
+  'See a Wallet Risk Record',
+  'Inspect the Source Map',
+  'Read Source Notes',
   'System records, source trails, and limits',
 ]) {
   requireIncludes(home, phrase, 'homepage front-door discipline');

@@ -20,8 +20,15 @@ assert(!source.includes('<!-- HERO -\n'), 'Homepage source has a damaged HERO co
 
 const requiredSourcePhrases = [
   'AI, finance, and the world ahead.',
-  'Bionic Banker follows how technology is changing money, risk, work, and the systems people trust.',
+  'Auditable AI workflows for finance risk.',
+  'Bionic Banker shows how wallet risk, AML status, and fraud-triage systems turn signals into source trails, rationale, limitations, and human review decisions.',
+  'Example: wallet row, risk score, rationale, limitation, human decision.',
+  'See a Wallet Risk Record',
+  'Inspect the Source Map',
+  'Read Source Notes',
   '/wallet-risk',
+  '/system-map',
+  '/articles',
   '/apps',
   '/signals',
   '/fraud-alert-triage',
@@ -42,6 +49,12 @@ for (const phrase of requiredSourcePhrases) {
 
 const requiredBuiltPhrases = [
   'AI, finance, and the world ahead.',
+  'Auditable AI workflows for finance risk.',
+  'Bionic Banker shows how wallet risk, AML status, and fraud-triage systems turn signals into source trails, rationale, limitations, and human review decisions.',
+  'Example: wallet row, risk score, rationale, limitation, human decision.',
+  'See a Wallet Risk Record',
+  'Inspect the Source Map',
+  'Read Source Notes',
   'Operating view',
   'Signal becomes a record. A record becomes a decision.',
   'Wallet Risk Assessment',
