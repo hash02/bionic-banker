@@ -20,7 +20,7 @@ assert(!source.includes('<!-- HERO -\n'), 'Homepage source has a damaged HERO co
 
 const requiredSourcePhrases = [
   'AI, finance, and the world ahead.',
-  'AI is entering finance. Bionic Banker shows how to use it safely.',
+  'Auditable AI workflows for finance risk.',
   'It studies how AI can help banks and crypto companies catch fraud, check risky wallets, and review money movement while keeping humans in charge.',
   'We test AI finance workflows, explain fraud and AML in plain language, and show what AI must not decide alone.',
   'See a Risky Wallet Example',
@@ -49,7 +49,7 @@ for (const phrase of requiredSourcePhrases) {
 
 const requiredBuiltPhrases = [
   'AI, finance, and the world ahead.',
-  'AI is entering finance. Bionic Banker shows how to use it safely.',
+  'Auditable AI workflows for finance risk.',
   'It studies how AI can help banks and crypto companies catch fraud, check risky wallets, and review money movement while keeping humans in charge.',
   'We test AI finance workflows, explain fraud and AML in plain language, and show what AI must not decide alone.',
   'See a Risky Wallet Example',
