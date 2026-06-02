@@ -21,7 +21,7 @@ const publicCardCount = [...projectsSource.matchAll(/name:\s*'/g)].length;
 if (catalogSections !== 8) fail(`expected 8 catalog records, found ${catalogSections}`);
 if (catalogSources !== 21) fail(`expected 21 catalog sources, found ${catalogSources}`);
 if (catalogLimits !== 36) fail(`expected 36 catalog limits, found ${catalogLimits}`);
-if (articleCount !== 45) fail(`expected 45 source articles, found ${articleCount}`);
+if (articleCount !== 46) fail(`expected 46 source articles, found ${articleCount}`);
 if (publicCardCount !== 13) fail(`expected 13 systems, found ${publicCardCount}`);
 
 const requiredPhrases = [
