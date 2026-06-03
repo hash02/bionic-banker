@@ -7,7 +7,8 @@ const publicDir = path.join(root, 'public');
 const failures = [];
 
 const autopublishedSlugs = [
-  'ai-stock-picks-wrong-first-use-case'
+  'ai-stock-picks-wrong-first-use-case',
+  'fraud-controls-platform-controls'
 ];
 
 function read(file) {
