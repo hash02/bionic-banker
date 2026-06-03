@@ -1,0 +1,38 @@
+name: Bionic Banker Agent Watch
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: _astro-source
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: _astro-source/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Bionic agent contract
+        run: npm run test:bionic-agent-contract
+
+      - name: Run read-only watcher
+        run: node scripts/bionic-agent-watch.mjs --json
+        env:
+          BIONIC_BASE_URL: https://bionicbanker.tech

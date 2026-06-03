@@ -17,37 +17,22 @@ const contextCards = contextSignals.default.cards ?? [];
 const contextSources = contextSignals.default.sources ?? [];
 const reportMetrics = reportCatalog.default.summary_metrics ?? [];
 const benchmarkMetrics = reportCatalog.default.benchmark_metrics ?? [];
+const hb = heartbeatData.default;
 const featuredPosts = allPosts.filter(p => p.data.featured);
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const latestPost = sortedPosts[0];
 const featuredArticle = featuredPosts[0] || sortedPosts[0];
 const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 3);
 
-// Heartbeat snapshot - used as instant fallback before client-side refresh
-const hb = heartbeatData.default;
-const snapshotPrice = hb?.status?.last_prediction?.price_now;
-const snapshotPriceStr = typeof snapshotPrice === 'number'
-  ? `$${Math.round(snapshotPrice).toLocaleString('en-US')}`
-  : null;
-const snapshotTime = (() => {
-  const iso = hb?.generated_at;
-  if (!iso) return null;
-  try {
-    const d = new Date(iso);
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' · ' +
-      d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-  } catch { return null; }
-})();
-
 const movingRows = [
   {
     id: 'market',
     label: 'Market',
-    title: snapshotPriceStr ? `BTC · ${snapshotPriceStr}` : 'BTC on watch',
-    detail: 'Price updates from a public API when available. Snapshot from the public heartbeat as fallback.',
-    source: 'Live · CoinGecko',
+    title: 'Market signals need source checks',
+    detail: 'Public market rows belong on the Signals page, where the source, freshness, and limits are shown together.',
+    source: 'Source trail',
     href: '/signals',
-    livePrice: true
+    livePrice: false
   },
   {
     id: 'wallets',
@@ -117,9 +102,9 @@ const heartbeatSnapshot = [
     detail: 'BTC direction accuracy snapshot',
   },
   {
-    label: 'Last price',
-    value: snapshotPriceStr ?? 'n/a',
-    detail: snapshotTime ? `snapshot ${snapshotTime}` : 'public heartbeat snapshot',
+    label: 'Review limit',
+    value: 'not advice',
+    detail: 'market records are for source review, not trading direction',
   },
 ];
 
@@ -494,7 +479,7 @@ const geoDescription = `Bionic Banker is a public source trail for AI-assisted f
         </div>
         <a href="/intelligence" class="view-all">Open risk signals</a>
       </div>
-      <p class="section-orient">A live market price, a wallet risk snapshot, and the latest piece of writing, refreshed automatically.</p>
+      <p class="section-orient">A source-check market prompt, a wallet risk snapshot, and the latest piece of writing, kept together with limits.</p>
       <div class="moving-now-grid">
         {movingRows.map(row => (
           <a href={row.href} class="moving-now-card" data-moving-id={row.id}>
@@ -504,12 +489,6 @@ const geoDescription = `Bionic Banker is a public source trail for AI-assisted f
               <span class="mn-source">{row.source}</span>
             </div>
             <h3 data-moving-title>{row.title}</h3>
-            {row.livePrice && (
-              <div class="mn-price-row">
-                <span class="mn-price" data-live-price>{snapshotPriceStr ?? '-'}</span>
-                <span class="mn-change" data-live-change></span>
-              </div>
-            )}
             <p>{row.detail}</p>
           </a>
         ))}
@@ -687,42 +666,6 @@ const geoDescription = `Bionic Banker is a public source trail for AI-assisted f
       </div>
     </div>
   </div>
-
-  <script>
-    (function () {
-      const card = document.querySelector('[data-moving-id="market"]');
-      if (!card) return;
-      const priceEl = card.querySelector('[data-live-price]');
-      const changeEl = card.querySelector('[data-live-change]');
-      const titleEl = card.querySelector('[data-moving-title]');
-
-      async function refresh() {
-        try {
-          const res = await fetch(
-            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true',
-            { headers: { accept: 'application/json' } }
-          );
-          if (!res.ok) return;
-          const d = await res.json();
-          const price = d?.bitcoin?.usd;
-          const change = d?.bitcoin?.usd_24h_change;
-          if (typeof price === 'number') {
-            const fmt = '$' + Math.round(price).toLocaleString('en-US');
-            if (priceEl) priceEl.textContent = fmt;
-            if (titleEl) titleEl.textContent = 'BTC · ' + fmt;
-          }
-          if (typeof change === 'number' && changeEl) {
-            const sign = change >= 0 ? '+' : '';
-            changeEl.textContent = sign + change.toFixed(2) + '% 24h';
-            changeEl.style.color = change >= 0 ? 'var(--accent)' : '#e05555';
-          }
-        } catch (_) {}
-      }
-
-      refresh();
-      window.setInterval(refresh, 120000);
-    })();
-  </script>
 
   <style>
 

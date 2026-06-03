@@ -41,6 +41,7 @@ const forbiddenCombos = [
   [projectsSource, /system areas/i, 'projects must not use ambiguous system areas'],
   [projectsSource, /explicit boundaries/i, 'projects should use catalog limits'],
   [overviewSource, /\{projects\.length\}\s*systems/i, 'overview must not label catalog records as systems'],
+  [indexSource, /snapshotPriceStr|last_prediction|price_now|data-live-price|CoinGecko|Live · CoinGecko|BTC · \$|\$75,483/i, 'homepage must not render live-looking or stale BTC price literals'],
 ];
 for (const [text, pattern, label] of forbiddenCombos) {
   if (pattern.test(text)) fail(label);
