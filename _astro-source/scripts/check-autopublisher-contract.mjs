@@ -8,7 +8,8 @@ const failures = [];
 
 const autopublishedSlugs = [
   'ai-stock-picks-wrong-first-use-case',
-  'fraud-controls-platform-controls'
+  'fraud-controls-platform-controls',
+  'agentic-payments-receipt-layer'
 ];
 
 function read(file) {
