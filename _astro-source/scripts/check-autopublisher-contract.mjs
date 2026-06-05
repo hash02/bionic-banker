@@ -9,7 +9,8 @@ const failures = [];
 const autopublishedSlugs = [
   'ai-stock-picks-wrong-first-use-case',
   'fraud-controls-platform-controls',
-  'agentic-payments-receipt-layer'
+  'agentic-payments-receipt-layer',
+  'private-stablecoin-settlement-control-map'
 ];
 
 function read(file) {
