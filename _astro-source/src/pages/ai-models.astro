@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const definitionArticles = [
+  {
+    title: 'What Does Open Weight Mean in AI?',
+    href: '/blog/what-does-open-weight-mean-ai/',
+    summary: 'Model weights, open weight vs open source, and why the license matters before the hype.'
+  },
+  { title: 'What Is an AI Model?', href: '#planned-definitions', summary: 'The machine, the learned parameters, and the workflow around it.' },
+  { title: 'What Is a Context Window?', href: '#planned-definitions', summary: 'How much a model can hold at once, and why long context is not the same thing as memory.' },
+  { title: 'What Is RAG?', href: '#planned-definitions', summary: 'Retrieval explained as a file room: the model answers after looking things up.' },
+  { title: 'What Is Prompt Caching?', href: '#planned-definitions', summary: 'The economics of reusing repeated context instead of paying again.' },
+  { title: 'What Is Model Routing?', href: '#planned-definitions', summary: 'Choosing the right model for the job instead of using the most expensive one for everything.' },
+];
+
+const modelArticles = [
+  {
+    title: 'Claude Fable 5: What It Is, What It Does, and Why Finance Should Watch It',
+    href: '/blog/claude-fable-5-finance-guide/',
+    label: 'Claude',
+    summary: 'Launch date, specs, pricing, benchmarks, long-running agents, and finance/crypto use cases.'
+  },
+  { title: 'Gemini for Financial Research', href: '#planned-models', label: 'Gemini', summary: 'Long-context documents, Google Workspace, and due diligence workflows.' },
+  { title: 'GPT for Finance Workflows', href: '#planned-models', label: 'GPT', summary: 'Mainstream adoption, productivity, coding, and multimodal business workflows.' },
+  { title: 'DeepSeek for Cost-Performance', href: '#planned-models', label: 'DeepSeek', summary: 'Low-cost reasoning, batch work, and back-office automation.' },
+  { title: 'Llama for Private AI', href: '#planned-models', label: 'Llama', summary: 'Open-weight/local deployment, privacy, and self-hosted finance workflows.' },
+  { title: 'Qwen for Local AI Agents', href: '#planned-models', label: 'Qwen', summary: 'Open model automation, multilingual work, and builder workflows.' },
+  { title: 'Grok for Market Intelligence', href: '#planned-models', label: 'Grok', summary: 'Real-time social/news narratives with verification discipline.' },
+  { title: 'Mistral and Sovereign AI', href: '#planned-models', label: 'Mistral', summary: 'European enterprise AI, regulated deployment, and privacy.' },
+];
+
+const comparisonArticles = [
+  'Claude vs Gemini for Financial Research',
+  'Claude vs GPT for Coding Agents',
+  'Gemini vs Perplexity for Source Research',
+  'DeepSeek vs Qwen for Low-Cost Automation',
+  'Llama vs Cloud Models for Private Finance Data',
+  'Best AI Models for KYC Workflows',
+  'Best AI Models for Crypto Risk Analysis',
+  'Best AI Models for Long PDFs and Policy Documents',
+];
+---
+<BaseLayout
+  title="AI Models"
+  description="Plain-English guides to AI models, open weights, context windows, benchmarks, pricing, and what these systems mean for finance, fintech, crypto, and builders."
+>
+  <div class="page-header ai-models-hero">
+    <div class="page-label">AI Models</div>
+    <h1 class="page-title">The AI Model Economy.</h1>
+    <p class="page-sub">A plain-English guide to AI models, model weights, context windows, benchmarks, pricing, and what these systems actually mean for finance, fintech, crypto, and builders.</p>
+    <div class="model-hero-actions">
+      <a href="/blog/claude-fable-5-finance-guide/">Start with Claude Fable 5</a>
+      <a href="/blog/what-does-open-weight-mean-ai/">Learn open weight</a>
+      <a href="#comparison-map">See comparison queue</a>
+    </div>
+  </div>
+
+  <main class="models-wrap">
+    <section class="model-intro-card">
+      <span class="section-label">Why this exists</span>
+      <h2>Most AI model coverage answers the wrong question.</h2>
+      <p>The question is not only which model has the highest score. The better question is: what is this model, what does it cost, what work is it good for, where does it fail, and what changes when you put it inside a financial workflow?</p>
+      <p>This hub organizes the series into definitions, model explainers, comparisons, techniques, and creator/business opportunities.</p>
+    </section>
+
+    <section class="model-section" id="definitions">
+      <div class="section-headline">
+        <span class="section-label">Part 1</span>
+        <h2>Definitions before opinions.</h2>
+        <p>Start here if terms like open weight, context window, RAG, inference, prompt caching, and model routing are still fuzzy.</p>
+      </div>
+      <div class="model-card-grid">
+        {definitionArticles.map((item) => (
+          <a class="model-card" href={item.href}>
+            <span>Definition</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="model-section" id="models">
+      <div class="section-headline">
+        <span class="section-label">Part 2</span>
+        <h2>Model families.</h2>
+        <p>Each model guide follows the same structure: what it is, launch/source facts, what it does, pricing/specs, benchmarks, finance use cases, limitations, and creator opportunities.</p>
+      </div>
+      <div class="model-card-grid">
+        {modelArticles.map((item) => (
+          <a class="model-card" href={item.href}>
+            <span>{item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="model-section comparison-panel" id="comparison-map">
+      <div class="section-headline">
+        <span class="section-label">Part 3</span>
+        <h2>Comparison pages for search intent.</h2>
+        <p>These are the pages people search when they are trying to choose a tool, workflow, or content angle.</p>
+      </div>
+      <div class="comparison-list">
+        {comparisonArticles.map((title, index) => (
+          <article>
+            <strong>{String(index + 1).padStart(2, '0')}</strong>
+            <span>{title}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="model-section revenue-panel">
+      <div>
+        <span class="section-label">Revenue flywheel</span>
+        <h2>Turn model knowledge into traffic and products.</h2>
+        <p>Model launches create recurring search demand. The opportunity is to translate each launch into explainers, comparisons, templates, spreadsheets, and workflow kits.</p>
+      </div>
+      <ol>
+        <li>Publish factual explainer.</li>
+        <li>Add it to this hub.</li>
+        <li>Create a comparison article.</li>
+        <li>Turn the research into a spreadsheet or checklist.</li>
+        <li>Use traffic to decide the next article/product.</li>
+      </ol>
+    </section>
+  </main>
+
+  <style>
+    .ai-models-hero { padding-bottom: 1rem; }
+    .model-hero-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center; margin-top: 1.25rem; }
+    .model-hero-actions a {
+      border: 1px solid rgba(31,160,104,0.3); border-radius: 999px; color: #e4e4ec;
+      padding: 0.55rem 0.85rem; background: rgba(31,160,104,0.08); font-size: 0.9rem;
+    }
+    .models-wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto 4rem; }
+    .model-intro-card, .revenue-panel, .comparison-panel {
+      border: 1px solid rgba(31,160,104,0.18); background: rgba(31,160,104,0.045);
+      border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem;
+    }
+    .model-intro-card h2, .section-headline h2, .revenue-panel h2 { margin: 0.25rem 0 0.65rem; font-size: clamp(1.45rem, 2.6vw, 2.2rem); letter-spacing: 0; }
+    .model-intro-card p, .section-headline p, .revenue-panel p { color: var(--text-2); line-height: 1.7; margin: 0.4rem 0; }
+    .model-section { margin-bottom: 2rem; }
+    .section-headline { margin-bottom: 1rem; }
+    .model-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 0.9rem; }
+    .model-card {
+      min-height: 210px; display: flex; flex-direction: column; gap: 0.55rem;
+      border: 1px solid rgba(255,255,255,0.08); border-top-color: rgba(31,160,104,0.28);
+      border-radius: 10px; padding: 1rem; background: rgba(255,255,255,0.035); color: inherit;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .model-card:hover, .model-card:focus-visible { transform: translateY(-3px); border-color: rgba(31,160,104,0.55); background: rgba(31,160,104,0.07); outline: none; }
+    .model-card span { color: var(--accent); font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .model-card h3 { margin: 0; line-height: 1.25; font-size: 1.08rem; }
+    .model-card p { color: var(--text-2); line-height: 1.6; margin: 0; font-size: 0.9rem; }
+    .comparison-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.65rem; }
+    .comparison-list article { display: flex; gap: 0.75rem; align-items: center; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; background: rgba(0,0,0,0.18); }
+    .comparison-list strong { color: var(--accent); font-family: var(--mono); }
+    .comparison-list span { color: var(--text); }
+    .revenue-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 0.75fr); gap: 1rem; align-items: start; }
+    .revenue-panel ol { color: var(--text-2); line-height: 1.8; padding-left: 1.25rem; }
+    @media (max-width: 760px) { .revenue-panel { grid-template-columns: 1fr; } }
+  </style>
+</BaseLayout>
