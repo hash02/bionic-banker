@@ -36,7 +36,7 @@ const quickSections = [
     label: 'Risk Profiles',
     title: 'Finance and crypto risk notes',
     text: 'Wallet risk, fraud triage, AML status, and explainable review workflows.',
-    href: '/risk-evidence-overview/',
+    href: '/risk-evidence/',
   },
   {
     label: 'Signals',
@@ -133,7 +133,7 @@ const quickSections = [
           <h3>Finance Risk</h3>
           <p>KYC, AML, fraud triage, advisor workflows, and risk evidence.</p>
           {financePosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
-          <a class="topic-more" href="/risk-evidence-overview/">Open risk profiles →</a>
+          <a class="topic-more" href="/risk-evidence/">Open risk profiles →</a>
         </div>
         <div class="topic-column">
           <h3>Crypto & Signals</h3>
