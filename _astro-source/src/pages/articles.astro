@@ -76,7 +76,7 @@ const routeLabels: Record<string, string> = {
     </div>
     <div class="featured-grid">
       {featuredPosts.map((post) => (
-        <a href={`/blog/${getSlug(post)}`} class="featured-card">
+        <a href={`/blog/${getSlug(post)}/`} class="featured-card">
           <span>{routeLabels[getSlug(post)]}</span>
           <h3>{cleanText(post.data.title)}</h3>
           <p>{cleanText(post.data.description)}</p>
@@ -139,7 +139,7 @@ const routeLabels: Record<string, string> = {
     </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (
-        <a href={`/blog/${getSlug(post)}`} class="article-card animate-on-scroll" data-category={normalizeCategory(post.data.category)}>
+        <a href={`/blog/${getSlug(post)}/`} class="article-card animate-on-scroll" data-category={normalizeCategory(post.data.category)}>
           {post.data.image && (
             <div class="card-thumb">
               <img src={post.data.image} alt={cleanText(post.data.title)} loading="lazy" />
