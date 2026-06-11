@@ -1,1370 +1,452 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ParticleHero from '../components/ParticleHero.astro';
 import { getCollection } from 'astro:content';
-const proofCatalog = await import('../../public/dashboard-data/public-proof-catalog.json');
-const gapCatalog = await import('../../public/dashboard-data/market-gap-catalog.json');
-const heartbeatData = await import('../../public/dashboard-data/heartbeat.json');
-const contextSignals = await import('../../public/dashboard-data/context-signals.json');
-const reportCatalog = await import('../../public/dashboard-data/engineering-report-catalog.json');
 
-// GET ARTICLE COUNT - computed, never hardcoded again
 const allPosts = await getCollection('blog');
-const articleCount = allPosts.length;
-const proofCount = proofCatalog.default.projects.length;
-const questionCount = gapCatalog.default.modern_questions.length;
-const contextCards = contextSignals.default.cards ?? [];
-const contextSources = contextSignals.default.sources ?? [];
-const reportMetrics = reportCatalog.default.summary_metrics ?? [];
-const benchmarkMetrics = reportCatalog.default.benchmark_metrics ?? [];
-const hb = heartbeatData.default;
-const featuredPosts = allPosts.filter(p => p.data.featured);
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-const latestPost = sortedPosts[0];
-const featuredArticle = featuredPosts[0] || sortedPosts[0];
-const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 3);
-const aiModelPosts = sortedPosts
-  .filter((post) => {
-    const slug = post.data.slug || post.id;
-    const tags = post.data.tags ?? [];
-    return slug.includes('ai-model')
-      || slug.includes('open-weight')
-      || slug.includes('claude-fable')
-      || tags.includes('Models');
-  })
-  .slice(0, 3);
+const articleCount = sortedPosts.length;
 
-const movingRows = [
-  {
-    id: 'market',
-    label: 'Market',
-    title: 'Market signals need source checks',
-    detail: 'Public market rows belong on the Signals page, where the source, freshness, and limits are shown together.',
-    source: 'Source trail',
-    href: '/signals',
-    livePrice: false
-  },
-  {
-    id: 'wallets',
-    label: 'Wallets',
-    title: 'Wallet Risk is open',
-    detail: 'Score, rule, plain note, and the limit of what the row is claiming.',
-    source: 'Risk notes',
-    href: '/wallet-risk',
-    livePrice: false
-  },
-  {
-    id: 'writing',
-    label: 'Articles',
-    title: latestPost.data.title,
-    detail: latestPost.data.description,
-    source: latestPost.data.readTime,
-    href: `/blog/${latestPost.data.slug || latestPost.id}`,
-    livePrice: false
-  }
-];
+const slugOf = (post) => post.data.slug || post.id;
+const hrefOf = (post) => `/blog/${slugOf(post)}/`;
+const hasAny = (post, terms) => {
+  const text = `${slugOf(post)} ${post.data.title} ${post.data.description} ${(post.data.tags ?? []).join(' ')}`.toLowerCase();
+  return terms.some((term) => text.includes(term));
+};
 
-const metricByLabel = (label) => reportMetrics.find((metric) => metric.label === label);
-const proofSnapshot = [
-  {
-    label: 'Reader sections',
-    value: proofCount,
-    unit: 'catalog sections',
-    source: 'public source map',
-  },
+const aiPosts = sortedPosts.filter((post) => hasAny(post, ['ai model', 'claude', 'gemini', 'open weight', 'llm', 'agent', 'artificial intelligence'])).slice(0, 6);
+const financePosts = sortedPosts.filter((post) => hasAny(post, ['finance', 'bank', 'aml', 'kyc', 'fraud', 'risk', 'advisor'])).slice(0, 6);
+const cryptoPosts = sortedPosts.filter((post) => hasAny(post, ['crypto', 'wallet', 'blockchain', 'token', 'stablecoin', 'defi'])).slice(0, 6);
+const latestPosts = sortedPosts.slice(0, 8);
+
+const featured = aiPosts[0] ?? sortedPosts[0];
+const quickSections = [
   {
     label: 'Articles',
-    value: articleCount,
-    unit: 'notes',
-    source: 'content collection',
+    title: 'Read the latest explainers',
+    text: 'Plain-English notes on AI, finance, crypto, risk, and the tools changing work.',
+    href: '/articles/',
   },
   {
-    label: 'Number notes',
-    value: metricByLabel('Number notes')?.value ?? 0,
-    unit: 'measured rows',
-    source: 'reports',
+    label: 'AI Intelligence',
+    title: 'Understand AI models and tools',
+    text: 'Model guides, AI concepts, comparisons, and practical use cases for builders.',
+    href: '/ai-models/',
   },
   {
-    label: 'Limits named',
-    value: metricByLabel('Limits named')?.value ?? 0,
-    unit: 'boundaries',
-    source: 'reports',
+    label: 'Risk Profiles',
+    title: 'Finance and crypto risk notes',
+    text: 'Wallet risk, fraud triage, AML status, and explainable review workflows.',
+    href: '/risk-evidence-overview/',
+  },
+  {
+    label: 'Signals',
+    title: 'Market and source signals',
+    text: 'Public signals, reports, and source trails without trading calls or hype.',
+    href: '/signals/',
   },
 ];
-const benchmarkSnapshot = benchmarkMetrics.slice(0, 4);
-const visibleSections = proofCatalog.default.projects.slice(0, 4).map((project) => ({
-  name: project.name,
-  numbers: project.numbers?.slice(0, 2) ?? [],
-  sourceCount: project.sources?.length ?? 0,
-  limitCount: project.limits?.length ?? 0,
-}));
-const heartbeatSnapshot = [
-  {
-    label: 'Heartbeat',
-    value: hb?.status?.mode ?? 'n/a',
-    detail: `${(hb?.status?.predictions_made ?? 0).toLocaleString('en-US')} predictions logged`,
-  },
-  {
-    label: 'Last 100',
-    value: typeof hb?.status?.accuracy_last_100 === 'number'
-      ? `${Math.round(hb.status.accuracy_last_100 * 100)}%`
-      : 'n/a',
-    detail: 'BTC direction accuracy snapshot',
-  },
-  {
-    label: 'Review limit',
-    value: 'not advice',
-    detail: 'market records are for source review, not trading direction',
-  },
-];
-
-const heroRoutes = [
-  {
-    label: 'Wallet Risk',
-    title: 'Wallet Risk Assessment',
-    detail: 'Reader-ready score, rationale, and limitation for sample wallet screening rows.',
-    href: '/wallet-risk',
-  },
-  {
-    label: 'AML Status',
-    title: 'AML Status',
-    detail: 'Source trail, checks, and clear limits for human review.',
-    href: '/aml-status-evidence',
-  },
-  {
-    label: 'Fraud Triage',
-    title: 'Fraud Alert Workflow',
-    detail: 'Synthetic alert signals assembled into a clear case record.',
-    href: '/fraud-alert-triage',
-  },
-  {
-    label: 'Agents',
-    title: 'Agent Chess board',
-    detail: 'Move, review, gate, record orchestration without exposing prompt content or outside-action power.',
-    href: '/risk-evidence-overview#agent-chess-showcase',
-  },
-];
-
-const heroSystemChecks = [
-  'Source-first workflow',
-  'No wallet or trade power',
-  'Human review required',
-  'No autonomous compliance decisions',
-];
-
-const marketPositioningCards = [
-  {
-    label: 'World gap',
-    title: 'Finance work needs better records around AI output',
-    body: 'Many systems can generate answers. Fewer show the source trail, missing context, review step, and authority boundary in a way a careful reader can inspect.',
-  },
-  {
-    label: 'Method',
-    title: 'Signals become records before they become decisions',
-    body: 'The core pattern is signal intake to risk reasoning to source trail to case note to human decision limit, not a black-box compliance answer.',
-  },
-  {
-    label: 'Clear limits',
-    title: 'Agents prepare. Humans decide',
-    body: 'The site does not claim filing, trading, wallet, enforcement, or final compliance power. It shows review notes and guardrails.',
-  },
-];
-
-const readerEntryCards = [
-  {
-    role: 'Reader',
-    href: '/world-map',
-    prompt: 'World map',
-    body: 'Follow the work as a data story: signals, source trails, system records, limits, and the questions each page can answer.',
-  },
-  {
-    role: 'Collaborator',
-    href: '/system-map',
-    prompt: 'System map',
-    body: 'Open the short map: systems, records, limits, and the questions worth asking.',
-  },
-  {
-    role: 'Technical reader',
-    href: '/proof/site-health',
-    prompt: 'System health board',
-    body: 'Check the tests that keep the public map honest.',
-  },
-];
-
-const flagshipSystems = [
-  {
-    label: 'Interactive Web App',
-    title: 'Wallet Risk Assessment',
-    href: '/wallet-risk',
-    status: 'Visible interface',
-    outcome: 'Turns wallet-risk signals into a review score, rationale, and limitation so a human can inspect the row instead of trusting a black box.',
-    skills: ['Risk UX', 'Review notes', 'Clear-limit language'],
-  },
-  {
-    label: 'Status App',
-    title: 'AML Status',
-    href: '/aml-status-evidence',
-    status: 'Audit view',
-    outcome: 'Packages AML-related status, source trail, checks, and clear limits into a public-safe page without granting approval, filing, wallet, or trade power.',
-    skills: ['AML status', 'Audit trail', 'Human review'],
-  },
-  {
-    label: 'Agent Ops Surface',
-    title: 'Agent Chess',
-    href: '/risk-evidence-overview#agent-chess-showcase',
-    status: 'Human-reviewed workflow',
-    outcome: 'Shows how agents can move, review, recover state, and publish bounded records while external actions remain behind explicit human review.',
-    skills: ['Agent orchestration', 'Review gates', 'Operational memory'],
-  },
-  {
-    label: 'Synthetic Fraud Workflow',
-    title: 'Fraud Alert Triage Workflow',
-    href: '/fraud-alert-triage',
-    status: 'Review record',
-    outcome: 'Packages suspicious financial signals into source trail, rule explanation, case note, and explicit human review step.',
-    skills: ['Fraud ops', 'Review records', 'Human review'],
-  },
-];
-
-const geoDescription = `Bionic Banker is a public source trail for AI-assisted finance risk workflows: wallet risk, AML status, fraud triage, and human reviewed agent systems.`;
 ---
-<BaseLayout title="Home" description={geoDescription}>
 
-  <!-- HERO -->
-  <div class="hero-wrap">
-    <div class="glow-orb glow-orb-1"></div>
-    <div class="glow-orb glow-orb-2"></div>
-    <ParticleHero />
-    <div class="hero">
-      <div class="hero-left">
-        <div class="hero-eyebrow">AI, finance, and the world ahead.</div>
-        <h1>Auditable AI workflows for finance risk.</h1>
-        <p class="hero-sub">It studies how AI can help banks and crypto companies catch fraud, check risky wallets, and review money movement while keeping humans in charge.</p>
-        <p class="hero-sub">We test AI finance workflows, explain fraud and AML in plain language, and show what AI must not decide alone.</p>
-        <div class="hero-actions">
-          <a href="/wallet-risk" class="btn-primary">See a Risky Wallet Example</a>
-          <a href="/system-map" class="btn-ghost">See What AI Can Help With</a>
-          <a href="/articles" class="btn-ghost">Read Plain-Language Notes</a>
-        </div>
-        <div class="hero-signal-row" aria-label="Signals on the table">
-          {movingRows.map(row => (
-            <a href={row.href} class="hero-signal-pill">
-              <span>{row.label}</span>
-              <strong>{row.title}</strong>
-            </a>
-          ))}
-        </div>
-        <nav class="hero-mobile-route-strip" aria-label="Mobile review routes">
-          <a href="/start-here">Start Here</a>
-          <a href="/world-map">World Map</a>
-          <a href="/system-map">System Map</a>
-          <a href="/signals">Signals</a>
-          <a href="/apps">Systems</a>
-          <a href="/wallet-risk">Wallet Risk</a>
-          <a href="/fraud-alert-triage">Fraud Triage</a>
-          <a href="/aml-status-evidence">AML Status</a>
-        </nav>
+<BaseLayout
+  title="Home"
+  description="Bionic Banker publishes plain-English articles on AI models, finance, fintech, crypto, risk, and source-backed systems."
+>
+  <main class="simple-home">
+    <section class="simple-hero">
+      <div class="eyebrow">Bionic Banker</div>
+      <h1>Plain-English articles about AI, finance, crypto, and risk.</h1>
+      <p class="hero-copy">Start with the newest explainers. Learn what AI models are, how finance workflows use them, where crypto risk appears, and what builders should verify before trusting a system.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="/articles/">Read articles</a>
+        <a class="btn-ghost" href="/ai-models/">Explore AI Models</a>
       </div>
-
-      <div class="hero-right">
-        <div class="hero-card-label">Operating view</div>
-        <section class="hero-os-panel" aria-label="Bionic Banker operating-system routes">
-          <div class="hero-os-topline">
-            <span>Market position</span>
-            <strong>AI-assisted risk workflows</strong>
-          </div>
-          <div class="hero-os-title">Signal becomes a record. A record becomes a decision.</div>
-          <p>Closest to agentic fraud/AML ops and wallet intelligence. Framed as a public source trail, not a production system.</p>
-          <div class="hero-os-metrics">
-            {proofSnapshot.slice(0, 3).map((item) => (
-              <div>
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
-              </div>
-            ))}
-          </div>
-          <div class="hero-route-stack">
-            {heroRoutes.map((route) => (
-              <a href={route.href} class="hero-route-card">
-                <span>{route.label}</span>
-                <strong>{route.title}</strong>
-                <small>{route.detail}</small>
-              </a>
-            ))}
-          </div>
-          <div class="hero-boundary-row">
-            {heroSystemChecks.map((check) => <span>{check}</span>)}
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="content-wrap reader-front-door-wrap">
-    <section class="reader-front-door section-divide animate-on-scroll" aria-label="Starting points">
-      <div class="section-header">
-        <div>
-          <div class="section-label-text">Start Here</div>
-          <div class="section-title-text">Public reading room for a 90-second visit</div>
-        </div>
-        <a href="/start-here" class="view-all">Start Here</a>
-      </div>
-      <p class="section-orient">If you are trying to understand the work, start with one concrete object: a system record, a source trail, and a clear limit. This site is a public reading room for AI, finance risk, money trails, and human-reviewed systems.</p>
-      <div class="reader-entry-grid" aria-label="Reader-specific entry points">
-        {readerEntryCards.map((card) => (
-          <a href={card.href} class="reader-entry-card">
-            <span>{card.role}</span>
-            <strong>{card.prompt}</strong>
-            <p>{card.body}</p>
-          </a>
-        ))}
-      </div>
-      <div class="flagship-system-grid">
-        {flagshipSystems.map((system) => (
-          <a href={system.href} class="flagship-system-card">
-            <div class="flagship-card-top">
-              <span>{system.label}</span>
-              <strong>{system.status}</strong>
-            </div>
-            <h3>{system.title}</h3>
-            <p>{system.outcome}</p>
-            <div class="flagship-skill-row">
-              {system.skills.map((skill) => <span>{skill}</span>)}
-            </div>
-            <div class="flagship-card-footer">Enter system</div>
-          </a>
-        ))}
-      </div>
-      <div class="operator-positioning-strip">
-        <strong>System records, source trails, and limits:</strong>
-        <span>What this is: AI-assisted finance-risk learning. What you can inspect: wallet risk, AML status, fraud triage, signals, and articles. What it cannot do: trade, approve KYC, file reports, or replace human review.</span>
-      </div>
-    </section>
-  </div>
-
-  <div class="content-wrap market-positioning-wrap">
-    <section class="proof-route-section section-alt animate-on-scroll" aria-label="World signal intelligence">
-      <div class="section-header">
-        <div>
-          <div class="section-label-text">Market Positioning Intelligence</div>
-          <div class="section-title-text">What gap this is studying</div>
-        </div>
-        <a href="/signals" class="view-all">Open signals</a>
-      </div>
-      <p class="section-orient">The useful path is narrower than the hype: AI can help with finance-risk work when it preserves records, shows reasoning, names missing context, and leaves final decisions with people. The public surface separates system cards from catalog sections so readers do not confuse project count with record structure.</p>
-      <div class="proof-route-grid">
-        {marketPositioningCards.map((card) => (
-          <article class="article-card">
-            <div class="article-tags"><span class="tag-pill tag-green">{card.label}</span></div>
-            <h3>{card.title}</h3>
-            <p>{card.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  </div>
-
-  <div class="content-wrap proof-data-wrap">
-    <section class="proof-data-section section-divide animate-on-scroll">
-      <div class="section-header">
-        <div>
-          <div class="section-label-text">Source Snapshot</div>
-          <div class="section-title-text">The data on the table</div>
-        </div>
-      </div>
-      <p class="section-orient">A compact read of the public surface: what exists, how many source rows sit behind it, and which live signal is moving now.</p>
-
-      <div class="proof-stat-grid">
-        {proofSnapshot.map((item) => (
-          <article class="proof-stat-card">
-            <span>{item.label}</span>
-            <strong>{item.value}</strong>
-            <small>{item.unit}</small>
-            <em>{item.source}</em>
-          </article>
-        ))}
-      </div>
-
-      <div class="proof-data-grid">
-        <section class="proof-panel">
-          <div class="proof-panel-head">
-            <span>Benchmarks</span>
-            <strong>{benchmarkSnapshot.length} measured rows</strong>
-          </div>
-          <div class="proof-metric-list">
-            {benchmarkSnapshot.map((metric) => (
-              <div class="proof-metric-row">
-                <span>{metric.label}</span>
-                <strong>{metric.value} {metric.unit}</strong>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section class="proof-panel">
-          <div class="proof-panel-head">
-            <span>Visible Sections</span>
-            <strong>{visibleSections.length} shown here</strong>
-          </div>
-          <div class="proof-lane-list">
-            {visibleSections.map((section) => (
-              <article>
-                <h3>{section.name}</h3>
-                <p>{section.numbers[0] ?? 'Source row available in catalog.'}</p>
-                {section.numbers[1] && <p>{section.numbers[1]}</p>}
-                <div>{section.sourceCount} sources / {section.limitCount} limits</div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section class="proof-panel">
-          <div class="proof-panel-head">
-            <span>Live Row</span>
-            <strong>{heartbeatData.default.generated_at}</strong>
-          </div>
-          <div class="proof-heartbeat-list">
-            {heartbeatSnapshot.map((item) => (
-              <div>
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-                <small>{item.detail}</small>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </section>
-  </div>
-
-  <div class="content-wrap context-wrap">
-    <section class="context-signal-section section-alt animate-on-scroll">
-      <div class="section-header">
-        <div>
-          <div class="section-label-text">Context Signals</div>
-          <div class="section-title-text">Numbers that explain why this work matters</div>
-        </div>
-        <a href="/reports" class="view-all">View reports</a>
-      </div>
-      <p class="section-orient">Three numbers that show why building in this space right now is not a hobby. It is a bet on timing.</p>
-      <div class="context-signal-grid">
-        {contextCards.map(card => (
-          <article class="context-signal-card">
-            <div class="context-card-top">
-              <span class="context-label">{card.label}</span>
-              {card.source_url && <a href={card.source_url} class="context-source" target={card.source_url.startsWith('http') ? '_blank' : undefined} rel={card.source_url.startsWith('http') ? 'noopener noreferrer' : undefined}>Source</a>}
-            </div>
-            <h3>{card.title}</h3>
-            <div class="context-value-row">
-              <strong>{card.value}</strong>
-              <span>{card.unit}</span>
-            </div>
-            <p>{card.detail}</p>
-            <div class="context-bars" aria-hidden="true">
-              {card.series.map(point => (
-                <span class="context-bar" style={`--h:${point.pct}%`}>
-                  <i>{point.year}</i>
-                </span>
-              ))}
-            </div>
-            <div class="context-credit">{card.source}</div>
-          </article>
-        ))}
-      </div>
-      <p class="context-note">
-        External context uses public Our World in Data chart data with source links. Bionic Banker is responsible for this page and interpretation.
-        {contextSources[0]?.url && <a href={contextSources[0].url} target="_blank" rel="noopener noreferrer"> API notes</a>}.
-      </p>
-    </section>
-  </div>
-
-  <!-- ARTICLES -->
-  <div class="content-wrap" id="articles">
-    <section class="moving-now-section section-divide animate-on-scroll">
-      <div class="section-header">
-        <div>
-          <div class="section-label-text">Moving Now</div>
-          <div class="section-title-text">A few signals on the table</div>
-        </div>
-        <a href="/intelligence" class="view-all">Open risk signals</a>
-      </div>
-      <p class="section-orient">A source-check market prompt, a wallet risk snapshot, and the latest piece of writing, kept together with limits.</p>
-      <div class="moving-now-grid">
-        {movingRows.map(row => (
-          <a href={row.href} class="moving-now-card" data-moving-id={row.id}>
-            <div class="moving-now-top">
-              <span class="mn-label">{row.label}</span>
-              {row.livePrice && <span class="mn-live-badge" data-live-dot>live</span>}
-              <span class="mn-source">{row.source}</span>
-            </div>
-            <h3 data-moving-title>{row.title}</h3>
-            <p>{row.detail}</p>
-          </a>
-        ))}
+      <div class="hero-stats" aria-label="Site summary">
+        <div><strong>{articleCount}</strong><span>articles</span></div>
+        <div><strong>4</strong><span>main sections</span></div>
+        <div><strong>0</strong><span>hype claims</span></div>
       </div>
     </section>
 
-    <section class="proof-route-section section-alt animate-on-scroll">
-      <div class="section-header">
-        <div>
-          <div class="section-label-text">Systems</div>
-          <div class="section-title-text">Pick where to start</div>
-        </div>
-        <a href="/projects" class="view-all">Open systems</a>
-      </div>
-      <p class="section-orient">Six entry points into the work. Pick whichever fits where you are right now.</p>
-      <div class="proof-route-grid">
-        <a href="/risk-evidence-overview" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Tour</span></div>
-          <h3>Open the risk review overview</h3>
-          <p>AML stories, agent loops, signals, and what is moving.</p>
-          <div class="card-footer"><span class="read-more">View overview</span></div>
-        </a>
-        <a href="/projects" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Systems</span></div>
-          <h3>Working systems</h3>
-          <p>Wallet risk, AML status, fraud triage, and agent workflows with visible records and limits.</p>
-          <div class="card-footer"><span class="read-more">Open systems</span></div>
-        </a>
-        <a href="/fraud-alert-triage" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Fraud Ops</span></div>
-          <h3>Fraud alert triage workflow</h3>
-          <p>Synthetic signals assembled into a review record, case note, and human review step.</p>
-          <div class="card-footer"><span class="read-more">Inspect workflow</span></div>
-        </a>
-        <a href="/reports" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Reports</span></div>
-          <h3>Numbers with context</h3>
-          <p>Charts, benchmarks, and limits. Measured, not guessed.</p>
-          <div class="card-footer"><span class="read-more">Read reports</span></div>
-        </a>
-        <a href="/gaps" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Questions</span></div>
-          <h3>Open questions</h3>
-          <p>Open problems worth answering with sources, records, and clear next questions.</p>
-          <div class="card-footer"><span class="read-more">Open questions</span></div>
-        </a>
-        <a href="/learn" class="article-card">
-          <div class="article-tags"><span class="tag-pill tag-green">Knowledge Base</span></div>
-          <h3>Concepts without fog</h3>
-          <p>RAG, agents, AML, embeddings. Less fog, more signal.</p>
-          <div class="card-footer"><span class="read-more">Learn the terms</span></div>
-        </a>
-      </div>
-      <div style="text-align:center;margin:2rem 0 0.5rem;">
-        <a href="/risk-evidence-overview" class="btn-primary">Open the Risk Review Overview</a>
-      </div>
-    </section>
-
-    <section class="ai-models-spotlight animate-on-scroll" id="ai-models-spotlight">
-      <div class="ai-models-spotlight-head">
-        <div>
-          <div class="section-label-text">New Series</div>
-          <div class="section-title-text">AI Models, explained clearly</div>
-          <p class="section-orient">Plain-English guides to models, weights, context windows, benchmarks, pricing, and what these systems mean for finance, fintech, crypto, and builders.</p>
-        </div>
-        <a href="/ai-models" class="view-all">Open AI Models →</a>
-      </div>
-
-      <div class="ai-models-hero-card">
-        <div class="ai-models-hero-copy">
-          <span class="tag-pill tag-green">AI Model Economy</span>
-          <h3>Start here if AI model names are moving faster than the explanations.</h3>
-          <p>Begin with the basics, then move into model families and comparisons: Claude, GPT, Gemini, DeepSeek, Llama, Qwen, Grok, Mistral, and the tools around them.</p>
-          <div class="ai-models-actions">
-            <a href="/blog/what-is-an-ai-model/" class="btn-primary">Read: What is an AI model?</a>
-            <a href="/ai-models" class="btn-ghost">View the series</a>
-          </div>
-        </div>
-        <div class="ai-models-mini-map" aria-label="AI Models series map">
-          <div>Definitions</div>
-          <div>Model families</div>
-          <div>Comparisons</div>
-          <div>Finance use cases</div>
-          <div>Creator products</div>
-        </div>
-      </div>
-
-      <div class="ai-models-post-grid">
-        {aiModelPosts.map(post => (
-          <a href={`/blog/${post.data.slug || post.id}`} class="article-card ai-models-post-card">
-            {post.data.image && (
-              <div class="card-thumb">
-                <img src={post.data.image} alt={post.data.title} loading="lazy" />
-              </div>
-            )}
-            <div class="article-tags">
-              {post.data.tags.slice(0, 4).map(tag => (
-                <span class="tag-pill">{tag}</span>
-              ))}
-            </div>
-            <h3>{post.data.title}</h3>
-            <p>{post.data.description}</p>
-            <div class="card-footer">
-              <span class="read-more">Read guide →</span>
-              <span class="read-time">{post.data.readTime}</span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <div class="section-header section-divide">
-      <div>
-        <div class="section-label-text">Articles</div>
-        <div class="section-title-text">Articles</div>
-      </div>
-      <a href="/articles" class="view-all">View all {articleCount} →</a>
-    </div>
-
-    <p class="section-orient">A living notebook on AML detection, blockchain infrastructure, AI agents, Canadian finance, and the practical work of learning by building.</p>
-    <div class="mag-grid animate-on-scroll">
-      <div class="mag-featured">
-        <a href={`/blog/${featuredArticle.data.slug || featuredArticle.id}`} class="article-card-featured">
-          {featuredArticle.data.image && (
-            <div class="featured-thumb">
-              <img src={featuredArticle.data.image} alt={featuredArticle.data.title} loading="lazy" />
-            </div>
-          )}
-          <div class="featured-badge">★ Featured</div>
-          <div class="article-tags">
-            {featuredArticle.data.tags.map(tag => (
-              <span class="tag-pill">{tag}</span>
-            ))}
-          </div>
-          <h3>{featuredArticle.data.title}</h3>
-          <p>{featuredArticle.data.description}</p>
-          <div class="featured-footer">
-            <div class="featured-stats">
-              <span class="featured-stat"><strong>{featuredArticle.data.readTime}</strong> read</span>
-            </div>
-            <span class="read-more">Read note →</span>
-          </div>
-        </a>
-      </div>
-
-      {gridPosts.map(post => (
-        <a href={`/blog/${post.data.slug || post.id}`} class="article-card">
-          {post.data.image && (
-            <div class="card-thumb">
-              <img src={post.data.image} alt={post.data.title} loading="lazy" />
-            </div>
-          )}
-          <div class="article-tags">
-            {post.data.tags.map(tag => (
-              <span class="tag-pill">{tag}</span>
-            ))}
-          </div>
-          <h3>{post.data.title}</h3>
-          <p>{post.data.description}</p>
-          <div class="card-footer">
-            <span class="read-more">Read →</span>
-            <span class="read-time">{post.data.readTime}</span>
-          </div>
+    <section class="quick-grid" aria-label="Main website sections">
+      {quickSections.map((section) => (
+        <a class="quick-card" href={section.href}>
+          <span>{section.label}</span>
+          <h2>{section.title}</h2>
+          <p>{section.text}</p>
+          <em>Open →</em>
         </a>
       ))}
-    </div>
-    <div style="text-align:center;margin:2rem 0 1rem;">
-      <a href="/articles" class="btn-primary">Read all {articleCount} articles</a>
-    </div>
+    </section>
 
-    <!-- BOTTOM SPLIT -->
-    <div class="bottom-split animate-on-scroll">
-      <div>
-        <div class="section-header" style="margin-bottom:0.75rem;">
-          <div>
-            <div class="section-label-text">Personal Notes</div>
-            <div class="section-title-text">Thoughts</div>
-          </div>
-        </div>
-        <a href="/blog/the-anchor" class="thoughts-card">
-          <div class="article-tags">
-            <span class="tag-pill">Thoughts</span>
-            <span class="tag-pill">AI</span>
-          </div>
-          <h3>The Anchor Problem</h3>
-          <p>I went looking for a template for life. Found a return mechanism instead. Then realized I'd built the exact same structure into my AI systems - without ever consciously making the connection.</p>
-          <div class="tc-footer">
-            <span class="read-more">Read →</span>
-            <span class="read-time">6 min · March 2026</span>
-          </div>
+    <section class="featured-strip" aria-label="Featured article">
+      <div class="featured-copy">
+        <div class="eyebrow">Start here</div>
+        <h2>{featured.data.title}</h2>
+        <p>{featured.data.description}</p>
+        <a class="btn-primary" href={hrefOf(featured)}>Read this guide</a>
+      </div>
+      {featured.data.image && (
+        <a class="featured-image" href={hrefOf(featured)}>
+          <img src={featured.data.image} alt={featured.data.title} loading="eager" />
         </a>
-      </div>
+      )}
+    </section>
 
-      <div id="about">
-        <div class="section-header" style="margin-bottom:0.75rem;">
-          <div>
-            <div class="section-label-text">Who</div>
-            <div class="section-title-text">About</div>
-          </div>
+    <section class="content-section" id="latest">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Latest</div>
+          <h2>Newest articles</h2>
         </div>
-        <div class="about-col">
-          <div>
-            <div class="about-name">Himanshu</div>
-            <div class="about-role">Finance / Blockchain / Builder</div>
-            <p class="about-bio">Computer engineer. Financial advisor. Builder. I work inside banking and build systems around the things it cannot easily explain: fraud patterns, risk signals, agent coordination, and the gap between what financial tools report and what they actually see.</p>
-            <p class="about-bio">This site is the reader-facing layer: articles, reports, wallet-risk explanations, AI systems pages, and selected systems that can be shown without exposing workbench details.</p>
-          </div>
-          <div class="about-stat-row">
-            <div class="astat"><div class="astat-n">{articleCount}</div><div class="astat-l">Articles</div></div>
-            <div class="astat"><div class="astat-n">{proofCount}</div><div class="astat-l">Reader sections</div></div>
-            <div class="astat"><div class="astat-n">5+</div><div class="astat-l">Years</div></div>
-            <div class="astat"><div class="astat-n">∞</div><div class="astat-l">Questions</div></div>
-          </div>
-        </div>
+        <a href="/articles/">View all →</a>
       </div>
-    </div>
+      <div class="article-grid">
+        {latestPosts.map((post) => (
+          <a class="article-card" href={hrefOf(post)}>
+            {post.data.image && <img src={post.data.image} alt={post.data.title} loading="lazy" />}
+            <div class="card-body">
+              <div class="tags">{(post.data.tags ?? []).slice(0, 3).map((tag) => <span>{tag}</span>)}</div>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <small>{post.data.readTime}</small>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
 
-    <!-- NEWSLETTER + TELEGRAM -->
-    <div class="newsletter-strip animate-on-scroll" id="newsletter-inline">
-      <div class="nl-text">
-        <h3>Stay with the records</h3>
-        <p>Get source notes and system records when Bionic Banker publishes a finance and AI report.<br>No trading calls, no hype.</p>
+    <section class="content-section topic-section" id="topics">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Topics</div>
+          <h2>Choose what you want to understand</h2>
+        </div>
       </div>
-      <div class="telegram-cta-wrap">
-        <a href="https://t.me/BionicBanker" class="telegram-cta" target="_blank" rel="noopener">
-          Join the Telegram &rarr;
-        </a>
+      <div class="topic-columns">
+        <div class="topic-column">
+          <h3>AI Intelligence</h3>
+          <p>AI models, model weights, context windows, benchmarks, agents, and tools.</p>
+          {aiPosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
+          <a class="topic-more" href="/ai-models/">Open AI Models hub →</a>
+        </div>
+        <div class="topic-column">
+          <h3>Finance Risk</h3>
+          <p>KYC, AML, fraud triage, advisor workflows, and risk evidence.</p>
+          {financePosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
+          <a class="topic-more" href="/risk-evidence-overview/">Open risk profiles →</a>
+        </div>
+        <div class="topic-column">
+          <h3>Crypto & Signals</h3>
+          <p>Wallet risk, blockchain infrastructure, tokens, stablecoins, and public signals.</p>
+          {cryptoPosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
+          <a class="topic-more" href="/signals/">Open signals →</a>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+
+    <section class="plain-note">
+      <h2>What this site is</h2>
+      <p>Bionic Banker is a public learning and publishing site. It explains AI, finance, crypto, and risk systems in simple language. It does not give trading, legal, tax, or investment advice.</p>
+    </section>
+  </main>
 
   <style>
-
-    .ai-models-spotlight {
-      margin: 3rem 0 2.4rem;
-      padding: 1.15rem;
-      border: 1px solid rgba(31,160,104,0.25);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(31,160,104,0.18), transparent 32%),
-        linear-gradient(135deg, rgba(31,160,104,0.08), rgba(255,255,255,0.025));
-      box-shadow: 0 24px 80px rgba(0,0,0,0.26);
+    .simple-home {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 3.2rem 0 5rem;
     }
 
-    .ai-models-spotlight-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1.25rem;
-      margin-bottom: 1rem;
+    .simple-hero {
+      padding: clamp(3rem, 7vw, 6.5rem) 0 2.2rem;
+      max-width: 940px;
     }
 
-    .ai-models-spotlight-head .section-orient {
-      max-width: 760px;
-      margin: 0.4rem 0 0;
-    }
-
-    .ai-models-hero-card {
-      display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.75fr);
-      gap: 1rem;
-      padding: 1.25rem;
-      border: 1px solid rgba(31,160,104,0.30);
-      border-radius: 22px;
-      background: rgba(5, 10, 8, 0.72);
-      margin-bottom: 1rem;
-    }
-
-    .ai-models-hero-copy h3 {
-      margin: 0.65rem 0 0.55rem;
-      color: var(--text);
-      font-size: clamp(1.45rem, 3vw, 2.35rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .ai-models-hero-copy p {
-      color: var(--text-2);
-      max-width: 720px;
-      line-height: 1.7;
-    }
-
-    .ai-models-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-
-    .ai-models-mini-map {
-      display: grid;
-      gap: 0.65rem;
-      align-content: center;
-    }
-
-    .ai-models-mini-map div {
-      padding: 0.78rem 0.9rem;
-      border: 1px solid rgba(31,160,104,0.28);
-      border-radius: 14px;
-      color: var(--text);
-      background: linear-gradient(135deg, rgba(31,160,104,0.11), rgba(255,255,255,0.02));
-      font-family: var(--mono);
-      font-size: 0.78rem;
-    }
-
-    .ai-models-post-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .ai-models-post-card {
-      background: rgba(8, 18, 13, 0.86);
-    }
-
-    .reader-front-door-wrap {
-      padding-top: 0;
-      padding-bottom: 0.5rem;
-    }
-    .reader-front-door {
-      padding-bottom: 2.4rem;
-    }
-    .flagship-system-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin: 1.25rem 0 1rem;
-    }
-    .reader-entry-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.85rem;
-      margin: 1rem 0 1.25rem;
-    }
-    .reader-entry-card {
-      display: grid;
-      gap: 0.45rem;
-      padding: 1rem;
-      border: 1px solid rgba(31, 160, 104, 0.24);
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, rgba(31,160,104,0.10), rgba(255,255,255,0.025));
-      min-width: 0;
-    }
-    .reader-entry-card span {
+    .eyebrow {
       color: #1fa068;
       font-family: var(--mono);
-      font-size: 0.66rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.8rem;
     }
-    .reader-entry-card strong {
+
+    .simple-hero h1 {
+      margin: 0;
       color: var(--text);
-      font-size: 1rem;
-      line-height: 1.25;
+      font-size: clamp(2.65rem, 7vw, 6.3rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      max-width: 980px;
     }
-    .reader-entry-card p {
+
+    .hero-copy {
       color: var(--text-2);
-      font-size: 0.82rem;
-      line-height: 1.5;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.65;
+      max-width: 790px;
+      margin: 1.35rem 0 0;
     }
-    .flagship-system-card {
-      position: relative;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      padding: 1.15rem;
-      border: 1px solid rgba(31,160,104,0.26);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(135deg, rgba(31,160,104,0.12), rgba(31,160,104,0.025) 42%, rgba(255,255,255,0.025)),
-        #0b0d14;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.22);
-      overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-    .flagship-system-card::after {
-      content: '';
-      position: absolute;
-      inset: auto 1.15rem 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0.7;
-    }
-    .flagship-system-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(31,160,104,0.52);
-      background:
-        linear-gradient(135deg, rgba(31,160,104,0.16), rgba(31,160,104,0.035) 42%, rgba(255,255,255,0.035)),
-        #0b0d14;
-    }
-    .flagship-card-top {
+
+    .hero-actions,
+    .section-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
-      font-family: var(--mono);
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      font-size: 0.62rem;
-    }
-    .flagship-card-top span { color: var(--accent); }
-    .flagship-card-top strong {
-      color: var(--text-3);
-      font-weight: 600;
-      text-align: right;
-    }
-    .flagship-system-card h3 {
-      color: var(--text);
-      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-      line-height: 1.05;
-    }
-    .flagship-system-card p {
-      color: var(--text-2);
-      font-size: 0.88rem;
-      line-height: 1.6;
-      flex: 1;
-    }
-    .flagship-skill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .flagship-skill-row span {
-      color: var(--text-2);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(0,0,0,0.16);
-      border-radius: 999px;
-      padding: 0.28rem 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .flagship-card-footer {
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .operator-positioning-strip {
-      display: flex;
-      gap: 0.55rem;
-      align-items: baseline;
-      flex-wrap: wrap;
-      padding: 0.9rem 1rem;
-      border: 1px solid var(--b1);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.025);
-      color: var(--text-2);
-      font-size: 0.86rem;
-      line-height: 1.5;
-    }
-    .operator-positioning-strip strong {
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .context-wrap {
-      padding-top: 0;
-      padding-bottom: 0.5rem;
-    }
-    .proof-data-wrap {
-      padding-top: 0;
-      padding-bottom: 0.5rem;
-    }
-    .proof-data-section {
-      padding-bottom: 2.25rem;
-    }
-    .proof-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.8rem;
-      margin: 1.25rem 0;
-    }
-    .proof-stat-card,
-    .proof-panel {
-      background: rgba(31,160,104,0.035);
-      border: 1px solid var(--b1);
-      border-radius: var(--radius);
-      min-width: 0;
-    }
-    .proof-stat-card {
-      padding: 1rem;
-      display: grid;
-      gap: 0.3rem;
-    }
-    .proof-stat-card span,
-    .proof-stat-card small,
-    .proof-stat-card em,
-    .proof-panel-head span,
-    .proof-panel-head strong,
-    .proof-metric-row span,
-    .proof-metric-row strong,
-    .proof-heartbeat-list span,
-    .proof-heartbeat-list small,
-    .proof-lane-list div {
-      font-family: var(--mono);
-    }
-    .proof-stat-card span,
-    .proof-panel-head span,
-    .proof-heartbeat-list span {
-      color: var(--text-3);
-      font-size: 0.64rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .proof-stat-card strong {
-      color: var(--accent);
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 0.95;
-    }
-    .proof-stat-card small {
-      color: var(--text);
-      font-size: 0.72rem;
-    }
-    .proof-stat-card em {
-      color: var(--text-4);
-      font-size: 0.62rem;
-      font-style: normal;
-    }
-    .proof-data-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.35fr 0.95fr;
       gap: 1rem;
-      align-items: stretch;
+      flex-wrap: wrap;
     }
-    .proof-panel {
+
+    .hero-actions {
+      justify-content: flex-start;
+      margin-top: 1.5rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.8rem 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid rgba(31,160,104,0.35);
+    }
+
+    .btn-primary {
+      background: #1fa068;
+      color: #03130d;
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.8rem;
+    }
+
+    .hero-stats div {
+      min-width: 130px;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(31,160,104,0.18);
+      border-radius: 18px;
+      background: rgba(31,160,104,0.055);
+    }
+
+    .hero-stats strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.45rem;
+    }
+
+    .hero-stats span {
+      color: var(--text-2);
+      font-size: 0.82rem;
+    }
+
+    .quick-grid,
+    .article-grid,
+    .topic-columns {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .quick-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 1.5rem 0 3rem;
+    }
+
+    .quick-card,
+    .article-card,
+    .topic-column,
+    .featured-strip,
+    .plain-note {
+      border: 1px solid rgba(31,160,104,0.18);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(31,160,104,0.08), rgba(255,255,255,0.025));
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .quick-card {
+      padding: 1.1rem;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .quick-card span,
+    .tags span {
+      color: #1fa068;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .quick-card h2,
+    .content-section h2,
+    .featured-copy h2,
+    .plain-note h2 {
+      color: var(--text);
+      letter-spacing: -0.045em;
+    }
+
+    .quick-card h2 {
+      font-size: 1.25rem;
+      line-height: 1.1;
+      margin: 0.7rem 0 0.45rem;
+    }
+
+    .quick-card p,
+    .article-card p,
+    .topic-column p,
+    .featured-copy p,
+    .plain-note p {
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .quick-card em {
+      margin-top: auto;
+      color: #1fa068;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .featured-strip {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 1.2rem;
+      padding: 1.25rem;
+      margin: 0 0 3rem;
+      align-items: center;
+    }
+
+    .featured-copy {
+      padding: 0.75rem;
+    }
+
+    .featured-copy h2,
+    .content-section h2,
+    .plain-note h2 {
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .featured-image img,
+    .article-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(31,160,104,0.16);
+      background: #050a08;
+    }
+
+    .featured-image img {
+      aspect-ratio: 16 / 9;
+    }
+
+    .content-section {
+      margin: 3.2rem 0;
+    }
+
+    .section-head {
+      margin-bottom: 1rem;
+    }
+
+    .section-head a,
+    .topic-column a {
+      color: #1fa068;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .article-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .article-card {
+      overflow: hidden;
+      min-height: 100%;
+    }
+
+    .article-card img {
+      aspect-ratio: 16 / 9;
+      border-radius: 24px 24px 0 0;
+      border: 0;
+      border-bottom: 1px solid rgba(31,160,104,0.16);
+    }
+
+    .card-body {
       padding: 1rem;
     }
-    .proof-panel-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--b1);
-      margin-bottom: 0.9rem;
+
+    .article-card h3 {
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.22;
+      margin: 0.65rem 0 0.4rem;
+      letter-spacing: -0.025em;
     }
-    .proof-panel-head strong {
-      color: var(--accent);
-      font-size: 0.64rem;
-      font-weight: 600;
-      text-align: right;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+
+    .article-card small {
+      color: #1fa068;
+      font-family: var(--mono);
     }
-    .proof-metric-list,
-    .proof-heartbeat-list {
-      display: grid;
-      gap: 0.8rem;
+
+    .topic-columns {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    .proof-metric-row {
-      display: grid;
-      gap: 0.2rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    .topic-column {
+      padding: 1.25rem;
     }
-    .proof-metric-row:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
+
+    .topic-column h3 {
+      color: var(--text);
+      font-size: 1.4rem;
+      margin: 0 0 0.4rem;
     }
-    .proof-metric-row span {
-      color: var(--text-2);
-      font-size: 0.72rem;
+
+    .topic-column a {
+      display: block;
+      padding: 0.65rem 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
       line-height: 1.35;
     }
-    .proof-metric-row strong {
-      color: var(--text);
-      font-size: 0.9rem;
-    }
-    .proof-lane-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-    .proof-lane-list article {
-      background: rgba(0,0,0,0.14);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 6px;
-      padding: 0.8rem;
-      min-width: 0;
-    }
-    .proof-lane-list h3 {
-      color: var(--text);
-      font-size: 0.9rem;
-      line-height: 1.25;
-      margin-bottom: 0.4rem;
-    }
-    .proof-lane-list p {
-      color: var(--text-2);
-      font-size: 0.74rem;
-      line-height: 1.45;
-      margin-bottom: 0.35rem;
-    }
-    .proof-lane-list div {
-      color: var(--accent);
-      font-size: 0.62rem;
-      margin-top: 0.55rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .proof-heartbeat-list div {
-      background: rgba(0,0,0,0.14);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 6px;
-      padding: 0.8rem;
-      display: grid;
-      gap: 0.25rem;
-    }
-    .proof-heartbeat-list strong {
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 1.15rem;
-      line-height: 1.1;
-      overflow-wrap: anywhere;
-    }
-    .proof-heartbeat-list small {
-      color: var(--text-3);
-      font-size: 0.68rem;
-      line-height: 1.4;
-    }
-    .context-signal-section {
-      border-top: 2px solid var(--b1);
-      border-bottom: 1px solid var(--b1);
-      padding: 3rem 0 2.2rem;
-    }
-    .section-divide {
-      border-top: 2px solid var(--b1);
-      padding-top: 3rem;
-    }
-    .section-alt {
-      background: #031008;
-      padding-top: 3rem;
-      padding-bottom: 2rem;
-      margin-left: calc(-50vw + 50%);
-      margin-right: calc(-50vw + 50%);
-      padding-left: calc(50vw - 50%);
-      padding-right: calc(50vw - 50%);
-    }
-    .content-wrap > .section-header {
-      border-top: 2px solid var(--b1);
-      padding-top: 3rem;
-    }
-    .section-orient {
-      color: var(--text-2);
-      font-size: 0.88rem;
-      line-height: 1.6;
-      margin: -0.25rem 0 1.25rem;
-      max-width: 640px;
-    }
-    .context-signal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-    .context-signal-card {
-      background: rgba(31,160,104,0.035);
-      border: 1px solid var(--b1);
-      border-radius: var(--radius);
-      padding: 1.15rem;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .context-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-    .context-label,
-    .context-source,
-    .context-credit {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .context-label { color: var(--accent); }
-    .context-source { color: var(--text-3); transition: color 0.2s; }
-    .context-source:hover { color: var(--accent); }
-    .context-signal-card h3 {
-      font-size: 1rem;
-      line-height: 1.25;
-      color: var(--text);
-    }
-    .context-value-row {
-      display: flex;
-      align-items: baseline;
-      gap: 0.55rem;
-      flex-wrap: wrap;
-    }
-    .context-value-row strong {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1;
-      color: var(--accent);
-    }
-    .context-value-row span {
-      color: var(--text-3);
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .context-signal-card p {
-      color: var(--text-2);
-      font-size: 0.82rem;
-      line-height: 1.6;
-    }
-    .context-bars {
-      display: flex;
-      align-items: end;
-      gap: 0.32rem;
-      min-height: 86px;
-      padding-top: 0.25rem;
-      border-top: 1px solid var(--b1);
-    }
-    .context-bar {
-      position: relative;
-      flex: 1;
-      min-width: 0;
-      height: max(8px, var(--h));
-      background: rgba(31,160,104,0.2);
-      border: 1px solid rgba(31,160,104,0.26);
-      border-radius: 4px 4px 0 0;
-    }
-    .context-bar i {
-      position: absolute;
-      left: 50%;
-      bottom: -1.25rem;
-      transform: translateX(-50%);
-      font-style: normal;
-      color: var(--text-4);
-      font-family: var(--mono);
-      font-size: 0.52rem;
-    }
-    .context-credit {
-      color: var(--text-4);
-      letter-spacing: 0.03em;
-      text-transform: none;
-      line-height: 1.4;
-      margin-top: 0.65rem;
-    }
-    .context-note {
-      margin-top: 1rem;
-      color: var(--text-3);
-      font-size: 0.72rem;
-      line-height: 1.55;
-    }
-    .context-note a {
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 0.68rem;
-    }
-    @media (max-width: 900px) {
-      .ai-models-spotlight-head,
-      .ai-models-hero-card {
-        grid-template-columns: 1fr;
-        flex-direction: column;
-      }
 
-      .ai-models-post-grid {
+    .topic-column .topic-more {
+      margin-top: 0.5rem;
+      color: var(--text);
+    }
+
+    .plain-note {
+      padding: 1.4rem;
+      margin-top: 3rem;
+      max-width: 860px;
+    }
+
+    @media (max-width: 980px) {
+      .quick-grid,
+      .article-grid,
+      .topic-columns,
+      .featured-strip {
         grid-template-columns: 1fr;
       }
 
-      .context-signal-grid { grid-template-columns: 1fr; }
-
-      .flagship-system-grid { grid-template-columns: 1fr; }
-      .reader-entry-grid { grid-template-columns: 1fr; }
-      .proof-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .proof-data-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 640px) {
-      .context-signal-section { padding: 1.4rem 0 1.8rem; }
-      .proof-stat-grid,
-      .proof-lane-list {
-        grid-template-columns: 1fr;
-      }
-      .proof-stat-card strong {
-        font-size: 2.4rem;
-      }
-      .context-signal-card { padding: 1rem; }
-      .context-bars { min-height: 74px; gap: 0.22rem; }
-      .context-bar i { display: none; }
-    }
-    .mn-label { color: var(--text-3); font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; }
-    .mn-source { color: var(--text-3); font-family: var(--mono); font-size: 0.68rem; margin-left: auto; }
-    .mn-live-badge {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(31, 160, 104, 0.4);
-      border-radius: 999px;
-      padding: 0.1rem 0.4rem;
-      animation: pulse-opacity 2.4s ease-in-out infinite;
-    }
-    @keyframes pulse-opacity {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.45; }
-    }
-    .mn-price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 0.6rem;
-      margin: 0.1rem 0 0.3rem;
-    }
-    .mn-price {
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: var(--text);
-      font-family: var(--mono);
-      line-height: 1;
-    }
-    .mn-change {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-    }
-    .contact-section.section-alt {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-    @media (max-width: 640px) {
-      .contact-section.section-alt {
-        width: 100%;
-        max-width: 100%;
-        padding: 2rem max(1.25rem, env(safe-area-inset-right)) 2rem max(1.25rem, env(safe-area-inset-left));
-        overflow-x: hidden;
+      .simple-home {
+        width: min(100% - 1rem, 760px);
+        padding-top: 1.2rem;
       }
     }
   </style>
-
-  <!-- CONTACT -->
-    <div class="contact-section section-alt animate-on-scroll" id="contact">
-    <div class="section-header" style="margin-bottom:1.5rem;">
-      <div>
-        <div class="section-label-text">Get in touch</div>
-        <div class="section-title-text">Contact</div>
-      </div>
-    </div>
-    <div class="contact-social-row">
-      <a href="https://twitter.com/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Twitter / X </a>
-      <a href="https://t.me/BionicBanker" target="_blank" rel="noopener" class="btn-ghost">Telegram </a>
-      <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener" class="btn-ghost">LinkedIn </a>
-    </div>
-    <form class="contact-form" action="https://formspree.io/f/xdaljypn" method="POST">
-      <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required />
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="your@email.com" required />
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
-      </div>
-      <button type="submit" class="btn-primary" style="width:fit-content;">Send →</button>
-    </form>
-  </div>
 </BaseLayout>
