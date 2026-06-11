@@ -23,6 +23,16 @@ const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - ne
 const latestPost = sortedPosts[0];
 const featuredArticle = featuredPosts[0] || sortedPosts[0];
 const gridPosts = sortedPosts.filter(p => p.id !== featuredArticle.id).slice(0, 3);
+const aiModelPosts = sortedPosts
+  .filter((post) => {
+    const slug = post.data.slug || post.id;
+    const tags = post.data.tags ?? [];
+    return slug.includes('ai-model')
+      || slug.includes('open-weight')
+      || slug.includes('claude-fable')
+      || tags.includes('Models');
+  })
+  .slice(0, 3);
 
 const movingRows = [
   {
@@ -547,6 +557,59 @@ const geoDescription = `Bionic Banker is a public source trail for AI-assisted f
       </div>
     </section>
 
+    <section class="ai-models-spotlight animate-on-scroll" id="ai-models-spotlight">
+      <div class="ai-models-spotlight-head">
+        <div>
+          <div class="section-label-text">New Series</div>
+          <div class="section-title-text">AI Models, explained clearly</div>
+          <p class="section-orient">Plain-English guides to models, weights, context windows, benchmarks, pricing, and what these systems mean for finance, fintech, crypto, and builders.</p>
+        </div>
+        <a href="/ai-models" class="view-all">Open AI Models →</a>
+      </div>
+
+      <div class="ai-models-hero-card">
+        <div class="ai-models-hero-copy">
+          <span class="tag-pill tag-green">AI Model Economy</span>
+          <h3>Start here if AI model names are moving faster than the explanations.</h3>
+          <p>Begin with the basics, then move into model families and comparisons: Claude, GPT, Gemini, DeepSeek, Llama, Qwen, Grok, Mistral, and the tools around them.</p>
+          <div class="ai-models-actions">
+            <a href="/blog/what-is-an-ai-model/" class="btn-primary">Read: What is an AI model?</a>
+            <a href="/ai-models" class="btn-ghost">View the series</a>
+          </div>
+        </div>
+        <div class="ai-models-mini-map" aria-label="AI Models series map">
+          <div>Definitions</div>
+          <div>Model families</div>
+          <div>Comparisons</div>
+          <div>Finance use cases</div>
+          <div>Creator products</div>
+        </div>
+      </div>
+
+      <div class="ai-models-post-grid">
+        {aiModelPosts.map(post => (
+          <a href={`/blog/${post.data.slug || post.id}`} class="article-card ai-models-post-card">
+            {post.data.image && (
+              <div class="card-thumb">
+                <img src={post.data.image} alt={post.data.title} loading="lazy" />
+              </div>
+            )}
+            <div class="article-tags">
+              {post.data.tags.slice(0, 4).map(tag => (
+                <span class="tag-pill">{tag}</span>
+              ))}
+            </div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <div class="card-footer">
+              <span class="read-more">Read guide →</span>
+              <span class="read-time">{post.data.readTime}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
     <div class="section-header section-divide">
       <div>
         <div class="section-label-text">Articles</div>
@@ -668,6 +731,88 @@ const geoDescription = `Bionic Banker is a public source trail for AI-assisted f
   </div>
 
   <style>
+
+    .ai-models-spotlight {
+      margin: 3rem 0 2.4rem;
+      padding: 1.15rem;
+      border: 1px solid rgba(31,160,104,0.25);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(31,160,104,0.18), transparent 32%),
+        linear-gradient(135deg, rgba(31,160,104,0.08), rgba(255,255,255,0.025));
+      box-shadow: 0 24px 80px rgba(0,0,0,0.26);
+    }
+
+    .ai-models-spotlight-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .ai-models-spotlight-head .section-orient {
+      max-width: 760px;
+      margin: 0.4rem 0 0;
+    }
+
+    .ai-models-hero-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.75fr);
+      gap: 1rem;
+      padding: 1.25rem;
+      border: 1px solid rgba(31,160,104,0.30);
+      border-radius: 22px;
+      background: rgba(5, 10, 8, 0.72);
+      margin-bottom: 1rem;
+    }
+
+    .ai-models-hero-copy h3 {
+      margin: 0.65rem 0 0.55rem;
+      color: var(--text);
+      font-size: clamp(1.45rem, 3vw, 2.35rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .ai-models-hero-copy p {
+      color: var(--text-2);
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    .ai-models-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .ai-models-mini-map {
+      display: grid;
+      gap: 0.65rem;
+      align-content: center;
+    }
+
+    .ai-models-mini-map div {
+      padding: 0.78rem 0.9rem;
+      border: 1px solid rgba(31,160,104,0.28);
+      border-radius: 14px;
+      color: var(--text);
+      background: linear-gradient(135deg, rgba(31,160,104,0.11), rgba(255,255,255,0.02));
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    .ai-models-post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .ai-models-post-card {
+      background: rgba(8, 18, 13, 0.86);
+    }
 
     .reader-front-door-wrap {
       padding-top: 0;
@@ -1115,6 +1260,16 @@ const geoDescription = `Bionic Banker is a public source trail for AI-assisted f
       font-size: 0.68rem;
     }
     @media (max-width: 900px) {
+      .ai-models-spotlight-head,
+      .ai-models-hero-card {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .ai-models-post-grid {
+        grid-template-columns: 1fr;
+      }
+
       .context-signal-grid { grid-template-columns: 1fr; }
 
       .flagship-system-grid { grid-template-columns: 1fr; }
