@@ -1,5 +1,5 @@
 ---
-title: "What Is an AI Model? A Plain-English Guide for Finance and Tech"
+title: "What Is an AI Model? Finance and Tech Guide"
 description: "A clear guide to what an AI model is, how it learns patterns, what it can and cannot do, and why AI models matter for finance, fintech, crypto, and content businesses."
 date: "2026-06-11"
 tags: ["AI", "Models", "Finance", "Fintech", "Crypto"]

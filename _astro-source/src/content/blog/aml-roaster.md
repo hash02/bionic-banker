@@ -130,7 +130,7 @@ The reviewer gets both the numeric score and the reason it matters: repeated zer
 **Score** — Each rule has a weight. Mixer touch is +100, OFAC hit is +200, structuring is +70. Scores compound. A wallet hitting multiple rules climbs fast — 400+ is CRITICAL.
 
     
-**Assessment Note** — The finding goes to an LLM with context: rules triggered, scores, and transaction details. It generates a plain-English summary, risk rationale, and recommended action. This is where dry data becomes reviewable context.
+**Assessment Note** — The finding goes to an LLM with context: rules triggered, scores, and transaction details. It generates a clear summary, risk rationale, and recommended action. This is where dry data becomes reviewable context.
 
     
 **Dashboard** — Single-page HTML, auto-updates from the scan data. Three stats, assessment cards with the actual text, and two charts. Minimal, clean.

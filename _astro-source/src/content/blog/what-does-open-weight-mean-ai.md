@@ -1,6 +1,6 @@
 ---
 title: "What Does Open Weight Mean in AI?"
-description: "Open weight AI explained in plain English: what model weights are, how open weight differs from open source, why it matters for finance, crypto, and builders."
+description: "Open weight AI explained: what model weights are, how open weight differs from open source, why it matters for finance, crypto, and builders."
 date: "2026-06-10"
 tags: ["AI", "Models", "Open Source", "Finance", "Crypto"]
 readTime: "7 min"
@@ -40,7 +40,7 @@ The weights are the learned numbers inside that structure.
 
 During training, the model sees large amounts of data and adjusts billions or trillions of numbers. Those numbers become the model’s ability to predict, reason, translate, summarize, code, or analyze.
 
-Plain English:
+In short:
 
 ```text
 The architecture is the machine.

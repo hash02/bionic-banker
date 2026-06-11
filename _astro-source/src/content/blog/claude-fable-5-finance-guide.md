@@ -1,6 +1,6 @@
 ---
 title: "Claude Fable 5: What It Is, What It Does, and Why Finance Should Watch It"
-description: "A plain-English guide to Anthropic's Claude Fable 5: launch date, specs, pricing, benchmarks, finance use cases, and why long-running AI agents matter."
+description: "A guide to Anthropic's Claude Fable 5: launch date, specs, pricing, benchmarks, finance use cases, and why long-running AI agents matter."
 date: "2026-06-10"
 tags: ["AI", "Models", "Finance", "Claude", "Fintech"]
 readTime: "8 min"
