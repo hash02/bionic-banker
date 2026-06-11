@@ -16,7 +16,7 @@ That is the short answer.
 
 The more useful answer is this:
 
-An AI model is not magic. It is not a human brain. It is not automatically correct because it sounds confident. It is a trained pattern engine that turns input into output.
+An AI model is not a human brain. It is not automatically correct because it sounds confident. It is a trained pattern engine that turns input into output.
 
 The quality of that output depends on the model, the data, the task, the prompt, the tools around it, and the checks after it.
 
