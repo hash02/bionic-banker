@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Risk Profiles';
+const description = 'Plain-English entry point for Bionic Banker risk profiles, wallet risk notes, fraud triage, and evidence-backed finance AI examples.';
+---
+
+<BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/risk-evidence/">
+  <main class="page-wrap">
+    <section class="hero-section compact">
+      <p class="eyebrow">Risk evidence</p>
+      <h1>Risk Profiles</h1>
+      <p class="lede">
+        Start here for plain-English risk examples: wallet risk, fraud triage, AML notes, agent workflow evidence,
+        and the public records that explain what each system is meant to show.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="/risk-evidence-overview/">Open the full Risk Profiles overview</a>
+        <a class="btn secondary" href="/wallet-risk/">See wallet risk example</a>
+      </div>
+    </section>
+
+    <section class="content-grid three-up" aria-label="Risk profile entry points">
+      <article class="panel-card">
+        <p class="card-label">1. Wallet risk</p>
+        <h2>Transaction patterns in normal language</h2>
+        <p>Follow a suspicious wallet pattern from signal to reason to reader-friendly explanation.</p>
+        <a href="/wallet-risk/">Open wallet risk →</a>
+      </article>
+      <article class="panel-card">
+        <p class="card-label">2. Fraud triage</p>
+        <h2>Case notes before conclusions</h2>
+        <p>Review how evidence, limits, and human-readable triage notes fit together.</p>
+        <a href="/fraud-alert-triage/">Open fraud triage →</a>
+      </article>
+      <article class="panel-card">
+        <p class="card-label">3. Full overview</p>
+        <h2>Risk Profiles hub</h2>
+        <p>Use the full overview for linked projects, public proof records, and related AI finance questions.</p>
+        <a href="/risk-evidence-overview/">Open overview →</a>
+      </article>
+    </section>
+  </main>
+</BaseLayout>
