@@ -66,6 +66,14 @@ const comparisonArticles = [
       <h2>Most AI model coverage answers the wrong question.</h2>
       <p>The question is not only which model has the highest score. The better question is: what is this model, what does it cost, what work is it good for, where does it fail, and what changes when you put it inside a financial workflow?</p>
       <p>This hub organizes the series into definitions, model explainers, comparisons, techniques, and creator/business opportunities.</p>
+      <div class="source-check-card" aria-label="What each guide checks">
+        <strong>Each guide should help a non-technical reader verify the basics:</strong>
+        <span>official launch/source link</span>
+        <span>model ID or product name</span>
+        <span>pricing and access limits</span>
+        <span>context window and output limits</span>
+        <span>finance, fintech, or crypto use case</span>
+      </div>
     </section>
 
     <section class="model-section" id="definitions">
@@ -148,6 +156,9 @@ const comparisonArticles = [
     }
     .model-intro-card h2, .section-headline h2, .revenue-panel h2 { margin: 0.25rem 0 0.65rem; font-size: clamp(1.45rem, 2.6vw, 2.2rem); letter-spacing: 0; }
     .model-intro-card p, .section-headline p, .revenue-panel p { color: var(--text-2); line-height: 1.7; margin: 0.4rem 0; }
+    .source-check-card { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .source-check-card strong { flex-basis: 100%; color: var(--text); font-size: 0.95rem; }
+    .source-check-card span { border: 1px solid rgba(31,160,104,0.24); border-radius: 999px; padding: 0.38rem 0.62rem; color: var(--text-2); background: rgba(0,0,0,0.14); font-size: 0.82rem; }
     .model-section { margin-bottom: 2rem; }
     .section-headline { margin-bottom: 1rem; }
     .model-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 0.9rem; }
