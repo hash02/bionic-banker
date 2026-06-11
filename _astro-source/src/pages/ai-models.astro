@@ -44,6 +44,11 @@ const comparisonArticles = [
   'Best AI Models for Crypto Risk Analysis',
   'Best AI Models for Long PDFs and Policy Documents',
 ];
+
+const publishedDefinitionArticles = definitionArticles.filter((item) => !item.href.startsWith('#'));
+const plannedDefinitionArticles = definitionArticles.filter((item) => item.href.startsWith('#'));
+const publishedModelArticles = modelArticles.filter((item) => !item.href.startsWith('#'));
+const plannedModelArticles = modelArticles.filter((item) => item.href.startsWith('#'));
 ---
 <BaseLayout
   title="AI Models"
@@ -83,12 +88,19 @@ const comparisonArticles = [
         <p>Start here if terms like open weight, context window, RAG, inference, prompt caching, and model routing are still fuzzy.</p>
       </div>
       <div class="model-card-grid">
-        {definitionArticles.map((item) => (
+        {publishedDefinitionArticles.map((item) => (
           <a class="model-card" href={item.href}>
-            <span>Definition</span>
+            <span>Published definition</span>
             <h3>{item.title}</h3>
             <p>{item.summary}</p>
           </a>
+        ))}
+        {plannedDefinitionArticles.map((item) => (
+          <article class="model-card planned-card">
+            <span>Planned definition</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+          </article>
         ))}
       </div>
     </section>
@@ -100,12 +112,19 @@ const comparisonArticles = [
         <p>Each model guide follows the same structure: what it is, launch/source facts, what it does, pricing/specs, benchmarks, finance use cases, limitations, and creator opportunities.</p>
       </div>
       <div class="model-card-grid">
-        {modelArticles.map((item) => (
+        {publishedModelArticles.map((item) => (
           <a class="model-card" href={item.href}>
-            <span>{item.label}</span>
+            <span>Published: {item.label}</span>
             <h3>{item.title}</h3>
             <p>{item.summary}</p>
           </a>
+        ))}
+        {plannedModelArticles.map((item) => (
+          <article class="model-card planned-card">
+            <span>Planned: {item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+          </article>
         ))}
       </div>
     </section>
@@ -169,6 +188,8 @@ const comparisonArticles = [
       transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
     .model-card:hover, .model-card:focus-visible { transform: translateY(-3px); border-color: rgba(31,160,104,0.55); background: rgba(31,160,104,0.07); outline: none; }
+    .planned-card { border-style: dashed; opacity: 0.78; }
+    .planned-card:hover { transform: none; border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.035); }
     .model-card span { color: var(--accent); font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; }
     .model-card h3 { margin: 0; line-height: 1.25; font-size: 1.08rem; }
     .model-card p { color: var(--text-2); line-height: 1.6; margin: 0; font-size: 0.9rem; }
