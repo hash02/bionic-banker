@@ -45,6 +45,15 @@ const comparisonArticles = [
   'Best AI Models for Long PDFs and Policy Documents',
 ];
 
+const techniqueArticles = [
+  {
+    title: 'AI Model Benchmark Cost: The Missing Column',
+    href: '/blog/ai-model-benchmark-cost/',
+    label: 'Benchmarks',
+    summary: 'How to read model leaderboards through cost, task fit, and finance-style tradeoffs instead of headline scores.'
+  }
+];
+
 const publishedDefinitionArticles = definitionArticles.filter((item) => !item.href.startsWith('#'));
 const plannedDefinitionArticles = definitionArticles.filter((item) => item.href.startsWith('#'));
 const publishedModelArticles = modelArticles.filter((item) => !item.href.startsWith('#'));
@@ -141,6 +150,23 @@ const plannedModelArticles = modelArticles.filter((item) => item.href.startsWith
             <strong>{String(index + 1).padStart(2, '0')}</strong>
             <span>{title}</span>
           </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="model-section" id="techniques">
+      <div class="section-headline">
+        <span class="section-label">Part 4</span>
+        <h2>Techniques and buying questions.</h2>
+        <p>These guides explain how to evaluate models in practice: benchmarks, costs, routing, context, caching, and the limits a finance reader should check before trusting a result.</p>
+      </div>
+      <div class="model-card-grid">
+        {techniqueArticles.map((item) => (
+          <a class="model-card" href={item.href}>
+            <span>Published: {item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+          </a>
         ))}
       </div>
     </section>
