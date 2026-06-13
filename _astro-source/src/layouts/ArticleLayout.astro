@@ -112,6 +112,11 @@ const breadcrumbSchema = {
           <span class="tag">{tag}</span>
         ))}
       </div>
+      {image && (
+        <figure class="article-visual">
+          <img src={image} alt={`Visual summary for ${title}`} loading="eager" decoding="async" />
+        </figure>
+      )}
     </div>
 
     <nav id="article-toc" class="article-toc" aria-label="In this article"></nav>
@@ -219,6 +224,20 @@ const breadcrumbSchema = {
     }
     #back-to-top.btt-visible { display: flex; }
     #back-to-top:hover { transform: translateY(-2px); }
+
+    .article-visual {
+      margin: 1.75rem 0 0;
+      border: 1px solid rgba(31,160,104,0.22);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #031008;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+    }
+    .article-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     .article-toc {
       display: block;
