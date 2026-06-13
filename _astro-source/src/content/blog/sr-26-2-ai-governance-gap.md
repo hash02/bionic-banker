@@ -1,7 +1,7 @@
 ---
 title: "SR 26-2 and the AI Governance Gap"
 description: "U.S. banking model-risk guidance has been updated, but generative and agentic AI still require a connected governance layer for decisions, vendors, prompts, retrieval, and audit trails."
-date: "2026-06-13"
+date: "2026-06-13T12:00:00"
 slug: "sr-26-2-ai-governance-gap"
 tags: ["AI", "Model Risk", "Banking", "AI Governance", "Enterprise AI"]
 readTime: "8 min"
