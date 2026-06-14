@@ -173,6 +173,12 @@
     });
     toc.innerHTML = '<span class="toc-label">In this article</span><ul>' + items.join('') + '</ul>';
 
+    function syncTocHeight() {
+      toc.style.minHeight = toc.scrollHeight + 'px';
+    }
+    requestAnimationFrame(syncTocHeight);
+    window.addEventListener('resize', syncTocHeight, { passive: true });
+
     // Highlight active TOC item on scroll
     var links = Array.from(toc.querySelectorAll('a'));
     var hs = headings;
