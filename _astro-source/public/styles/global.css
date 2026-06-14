@@ -659,6 +659,24 @@ a.ps-item:focus-visible .ps-l {
   box-shadow: var(--shadow-card);
 }
 .article-body strong { color: var(--text); }
+.article-body pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow-x: visible;
+}
+.article-body pre code,
+.article-body pre .line,
+.article-body pre span {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.article-body :not(pre) > code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
 /* Pull quote */
 .pull-quote {
