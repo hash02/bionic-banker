@@ -272,6 +272,25 @@ const breadcrumbSchema = {
     }
     .article-toc :global(a:hover), .article-toc :global(a.toc-active) { color: #1fa068; }
 
+    .article-body :global(pre) {
+      max-width: 100%;
+      white-space: pre-wrap !important;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      overflow-x: visible !important;
+    }
+    .article-body :global(pre code),
+    .article-body :global(pre .line),
+    .article-body :global(pre span) {
+      white-space: pre-wrap !important;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .article-body :global(:not(pre) > code) {
+      white-space: normal !important;
+      overflow-wrap: anywhere;
+    }
+
     .related-articles {
       margin: 3rem 0 0;
       padding-top: 2rem;
