@@ -34,6 +34,22 @@ The better question is:
 What is this system allowed to do, under whose authority, with what evidence, and where does it have to stop?
 ```
 
+<div class="intel-block authority-ladder" aria-label="Authority governance ladder">
+  <div class="intel-block-head">
+    <span>Authority ladder</span>
+    <strong>Not every AI action has the same control weight.</strong>
+  </div>
+  <div class="ladder-steps">
+    <div><span>00</span><strong>Observe</strong><em>read-only context</em></div>
+    <div><span>01</span><strong>Summarize</strong><em>draft / explain</em></div>
+    <div><span>02</span><strong>Recommend</strong><em>human decides</em></div>
+    <div><span>03</span><strong>Prioritize</strong><em>queue influence</em></div>
+    <div><span>04</span><strong>Trigger review</strong><em>workflow handoff</em></div>
+    <div><span>05</span><strong>Execute</strong><em>bounded internal step</em></div>
+    <div class="blocked"><span>06</span><strong>External action</strong><em>human approval gate</em></div>
+  </div>
+</div>
+
 ## Why this matters now
 
 On June 10, 2026, the Financial Stability Board published a consultation report on sound practices for responsible AI adoption by financial institutions.
@@ -54,13 +70,30 @@ Once AI systems can plan and act across workflows, finance teams need a governan
 
 Tool governance asks useful questions:
 
-- Which vendor is approved?
-- What data can be entered?
-- Which teams can use the system?
-- What retention policy applies?
-- What model or platform is being used?
-- What does procurement allow?
-- What risk tier is assigned?
+<div class="intel-block split-governance" aria-label="Tool governance versus authority governance">
+  <div class="intel-block-head">
+    <span>Control split</span>
+    <strong>Tool governance approves the instrument. Authority governance bounds the action.</strong>
+  </div>
+  <div class="split-grid">
+    <section>
+      <h3>Tool governance</h3>
+      <p>Which vendor is approved?</p>
+      <p>What data can be entered?</p>
+      <p>Which teams can use it?</p>
+      <p>What retention policy applies?</p>
+      <p>What risk tier is assigned?</p>
+    </section>
+    <section>
+      <h3>Authority governance</h3>
+      <p>What can the system decide?</p>
+      <p>Which systems can it touch?</p>
+      <p>What evidence must it keep?</p>
+      <p>Where must a human approve?</p>
+      <p>Who owns the outcome?</p>
+    </section>
+  </div>
+</div>
 
 Those questions still matter.
 
@@ -132,17 +165,21 @@ Not just the final answer.
 
 The useful record includes:
 
-- input data used
-- source documents retrieved
-- model or vendor used
-- prompt or instruction class
-- tools called
-- outputs generated
-- human reviewer
-- approval or rejection
-- timestamp
-- escalation path
-- final action taken
+<div class="intel-block workflow-chain" aria-label="Finance AI audit record chain">
+  <div class="intel-block-head">
+    <span>Evidence chain</span>
+    <strong>A finance AI output is only useful when the review trail survives it.</strong>
+  </div>
+  <ol>
+    <li><span>01</span><strong>Input data</strong><em>customer, transaction, case, document</em></li>
+    <li><span>02</span><strong>Source retrieval</strong><em>policy, prior notes, public record</em></li>
+    <li><span>03</span><strong>Model / vendor</strong><em>system used and instruction class</em></li>
+    <li><span>04</span><strong>Tools called</strong><em>read, draft, search, classify, update</em></li>
+    <li><span>05</span><strong>Output generated</strong><em>summary, risk note, recommendation</em></li>
+    <li><span>06</span><strong>Human review</strong><em>approval, rejection, override</em></li>
+    <li><span>07</span><strong>Outcome record</strong><em>timestamp, escalation path, final action</em></li>
+  </ol>
+</div>
 
 Without that trail, the system may be fast but not reviewable.
 

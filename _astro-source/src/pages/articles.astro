@@ -51,12 +51,12 @@ const routeLabels: Record<string, string> = {
   'two-agent-finance-operating-system': 'AI systems',
 };
 ---
-<BaseLayout title="Articles" description={`${articleCount} articles on finance, AI, agents, blockchain, and learning by building.`}>
+<BaseLayout title="Blog" description={`${articleCount} blog notes on finance, AI, agents, blockchain, and learning by building.`}>
 
   <div class="page-header">
-    <div class="page-label">Articles</div>
-    <h1 class="page-title">Start with a clear article.</h1>
-    <p class="page-sub">{articleCount} notes on finance, AI, agents, blockchain, and learning by building. Choose a topic below, or start with one of the guided routes.</p>
+    <div class="page-label">Blog</div>
+    <h1 class="page-title">Start with a clear blog note.</h1>
+    <p class="page-sub">{articleCount} blog notes on finance, AI, agents, blockchain, and learning by building. Choose a topic below, or start with one of the guided routes.</p>
 
     <div class="filter-bar" id="filter-bar">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -90,7 +90,7 @@ const routeLabels: Record<string, string> = {
     <div>
       <p class="section-kicker">Article discipline</p>
       <h2>Every strong note should help a reader verify and remember the idea.</h2>
-      <p>Use this archive as a learning system, not a pile of posts. The cleanup standard for important articles is: source links, a simple diagram or table, clear limits, and a next read.</p>
+      <p>Use this archive as a learning system, not a pile of posts. The cleanup standard for important blog notes is: source links, a simple diagram or table, clear limits, and a next read.</p>
     </div>
     <div class="discipline-list" aria-label="Article ending standard">
       <span>Source links</span>
@@ -100,36 +100,17 @@ const routeLabels: Record<string, string> = {
     </div>
   </section>
 
-  <section class="learn-bridge" aria-label="Learning route">
-    <div>
-      <p class="section-kicker">New to the terms?</p>
-      <h2>Open Knowledge Base first, then come back to the articles.</h2>
+  <section class="route-map" aria-label="Curated reading routes">
+    <div class="route-map-head">
+      <p class="section-kicker">Reading routes</p>
+      <h2>Use the archive as a system map, not a pile of posts.</h2>
     </div>
-    <a href="/learn/">Open Knowledge Base</a>
-  </section>
-
-  <section class="learn-bridge" aria-label="AI model route">
-    <div>
-      <p class="section-kicker">Following AI model news?</p>
-      <h2>Use the AI Models hub for definitions, model explainers, and finance use cases.</h2>
+    <div class="route-map-grid">
+      <a href="/learn/"><span>01</span><strong>Knowledge Base</strong><p>Definitions before the archive.</p></a>
+      <a href="/ai-models/"><span>02</span><strong>AI Models</strong><p>Model explainers and finance use cases.</p></a>
+      <a href="/risk-evidence/"><span>03</span><strong>Risk</strong><p>Evidence trails, controls, and limits.</p></a>
+      <a href="/signals/"><span>04</span><strong>Signals</strong><p>Market rows and source trails without trade calls.</p></a>
     </div>
-    <a href="/ai-models/">Open AI Models</a>
-  </section>
-
-  <section class="learn-bridge" aria-label="Risk profile route">
-    <div>
-      <p class="section-kicker">Need examples?</p>
-      <h2>Risk Profiles turn finance and crypto stories into evidence trails.</h2>
-    </div>
-    <a href="/risk-evidence/">Open Risk Profiles</a>
-  </section>
-
-  <section class="learn-bridge" aria-label="Signals route">
-    <div>
-      <p class="section-kicker">Watching public signals?</p>
-      <h2>Signals collect market rows, wallet-watch notes, and source trails without turning them into trading calls.</h2>
-    </div>
-    <a href="/signals/">Open Signals</a>
   </section>
 
   <div class="articles-wrap">
@@ -294,6 +275,58 @@ const routeLabels: Record<string, string> = {
       font-weight: 700;
     }
 
+
+    .route-map {
+      width: min(1180px, calc(100% - 32px));
+      margin: -0.75rem auto 2.25rem;
+      padding: 1rem;
+      border: 1px solid rgba(128,255,196,0.16);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(8,32,20,0.70), rgba(2,10,6,0.88));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 24px 70px rgba(0,0,0,0.22);
+    }
+
+    .route-map-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .route-map-head h2 {
+      max-width: 720px;
+      margin: 0;
+      color: var(--text-primary, var(--text));
+      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .route-map-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .route-map-grid a {
+      min-height: 148px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.035);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .route-map-grid span { color: rgba(137,255,198,0.66); font-family: var(--mono); font-size: 0.68rem; }
+    .route-map-grid strong { color: #f2fff7; font-size: 1rem; }
+    .route-map-grid p { margin: 0; color: var(--text-muted, #9a9aaa); font-size: 0.86rem; line-height: 1.45; }
+
+
     .learn-bridge {
       width: min(1180px, calc(100% - 32px));
       margin: -0.75rem auto 2.25rem;
@@ -355,6 +388,9 @@ const routeLabels: Record<string, string> = {
       .featured-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .route-map-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 560px) {
@@ -383,9 +419,12 @@ const routeLabels: Record<string, string> = {
         margin-top: -0.5rem;
       }
 
-      .archive-note {
+      .archive-note,
+      .route-map {
         width: min(100% - 24px, 1180px);
       }
+      .route-map-head { align-items: flex-start; flex-direction: column; }
+      .route-map-grid { grid-template-columns: 1fr; }
     }
   </style>
 </BaseLayout>

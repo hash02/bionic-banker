@@ -98,20 +98,13 @@
     var body = document.querySelector('.article-body');
     var toc = document.getElementById('article-toc');
     if (!body || !toc) return;
-    var headings = Array.from(body.querySelectorAll('h2, h3'));
+    var headings = Array.from(body.querySelectorAll('h2')).filter(function(h) { return !h.closest('.intel-block'); });
     if (headings.length < 2) { toc.style.display = 'none'; return; }
     var items = headings.map(function(h, i) {
       if (!h.id) h.id = 'h-' + i;
-      var level = h.tagName === 'H2' ? 'toc-h2' : 'toc-h3';
-      return '<li class="' + level + '"><a href="#' + h.id + '">' + h.textContent + '</a></li>';
+      return '<li class="toc-h2"><a href="#' + h.id + '">' + h.textContent + '</a></li>';
     });
     toc.innerHTML = '<span class="toc-label">In this article</span><ul>' + items.join('') + '</ul>';
-
-    function syncTocHeight() {
-      toc.style.minHeight = toc.scrollHeight + 'px';
-    }
-    requestAnimationFrame(syncTocHeight);
-    window.addEventListener('resize', syncTocHeight, { passive: true });
 
     // Highlight active TOC item on scroll
     var links = Array.from(toc.querySelectorAll('a'));
