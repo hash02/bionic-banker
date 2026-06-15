@@ -31,9 +31,18 @@ const flow = [
         control layer around the score: rules, anomaly signals, evidence notes, triage labels, and review limits.
       </p>
       <div class="hero-actions">
-        <a class="btn-primary" href="https://github.com/hash02/aml-detection-engine">View repository</a>
+        <a class="btn-primary" href="/downloads/aml-demo-pack/aml-demo-pack-summary.pdf">Download demo summary</a>
+        <a class="btn-ghost" href="/downloads/aml-demo-pack/README.md">Open demo pack README</a>
+        <a class="btn-ghost" href="https://github.com/hash02/aml-detection-engine">View repository</a>
         <a class="btn-ghost" href="/risk-evidence/">Risk evidence hub</a>
       </div>
+    </section>
+
+    <section class="panel-card" aria-label="AML control map">
+      <p class="card-label">Visual proof</p>
+      <h2>Control map</h2>
+      <p>The lab is framed around a reviewable trail, not a black-box risk score.</p>
+      <img class="lab-visual" src="/blog-visuals/aml-engine-lab/aml-control-map.png" alt="AML Review Engine control map showing wallet activity, rules, anomaly layer, triage, evidence note, and human review" loading="eager" />
     </section>
 
     <section class="content-grid two-up" aria-label="AML lab metrics">
@@ -118,6 +127,7 @@ python3 -m pytest -q
     .panel-card h2 { margin: 0 0 .8rem; font-size: clamp(1.35rem, 2.6vw, 2rem); }
     .panel-card p, .panel-card li { color: #dceee3; line-height: 1.65; }
     .panel-card a { color: #7ee0aa; font-weight: 800; }
+    .lab-visual { width: 100%; border-radius: 18px; border: 1px solid rgba(31,160,104,.28); margin-top: 1rem; }
     .content-grid { display: grid; gap: 1rem; margin: 1rem 0; }
     .two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     pre { background: #020604; border: 1px solid rgba(31,160,104,.35); border-radius: 16px; padding: 1rem; overflow: auto; color: #e4e4ec; }
