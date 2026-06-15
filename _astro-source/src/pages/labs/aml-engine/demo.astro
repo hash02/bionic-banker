@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = 'AML Review Dashboard Demo';
+const description = 'A static Bionic Banker AML review dashboard demo showing alert queue, rule hits, evidence notes, and human review boundaries.';
+
+const alerts = [
+  {
+    id: 'AML-027',
+    priority: 'Critical',
+    score: 365,
+    entity: '0x7d9e…a87a',
+    amount: '$1,037,680.09',
+    pattern: 'fan-in + concentrated inflow + high-risk jurisdiction',
+    status: 'Needs analyst review',
+  },
+  {
+    id: 'AML-015',
+    priority: 'Critical',
+    score: 335,
+    entity: '0x7446…5737',
+    amount: '$1,105,317.26',
+    pattern: 'coordinated burst + novel wallet dump + concentrated inflow',
+    status: 'Hold conclusion',
+  },
+  {
+    id: 'AML-022',
+    priority: 'High',
+    score: 290,
+    entity: '0x29c0…b826',
+    amount: '$3,200.00',
+    pattern: 'mixer withdrawal + OFAC watchlist context + burst pattern',
+    status: 'Escalate evidence check',
+  },
+];
+
+const ruleHits = [
+  ['large_amount', 'Amount exceeds review threshold', 'Review supporting transfer context'],
+  ['coordinated_burst', 'Multiple related transfers close together', 'Check whether burst is operational or suspicious'],
+  ['concentrated_inflow', 'Funds converge into one receiver', 'Map source diversity and timing'],
+  ['mixer_withdraw', 'Mixer-adjacent withdrawal pattern', 'Validate address/source before escalation'],
+  ['high_risk_jurisdiction', 'Jurisdiction/context risk marker', 'Do not infer identity or intent alone'],
+];
+
+const evidence = [
+  ['Observed', 'Transactions show high scores due to multiple rule hits, especially concentrated inflow and burst behavior.'],
+  ['Evidence available', 'Sender/receiver, amount, timestamp, country/context marker, rule-hit reasons, alert flag.'],
+  ['Evidence missing', 'Off-chain identity, customer profile, stated business purpose, source-of-funds documentation, verified entity attribution.'],
+  ['Allowed next step', 'Escalate to human analyst for source review and false-positive check.'],
+  ['Not allowed', 'No filing, freezing, accusation, wallet action, or customer decision from this dashboard alone.'],
+];
+---
+
+<BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/labs/aml-engine/demo/">
+  <main class="demo-wrap">
+    <section class="demo-hero">
+      <div>
+        <p class="eyebrow">Bionic Lab 01 · Static Product Demo</p>
+        <h1>AML Review Dashboard</h1>
+        <p class="lede">A polished static view of how the AML Review Engine should feel as a product surface: alert queue, rule hits, evidence notes, and a human decision gate.</p>
+      </div>
+      <aside class="verdict-card">
+        <span>Boundary</span>
+        <strong>Not a final verdict</strong>
+        <p>Risk scoring supports triage. Human review owns the decision.</p>
+      </aside>
+    </section>
+
+    <section class="metric-row" aria-label="Dashboard metrics">
+      <article><span>Local tests</span><strong>46 passing</strong></article>
+      <article><span>Demo rows</span><strong>30 reviewed</strong></article>
+      <article><span>Flagged</span><strong>30</strong></article>
+      <article><span>Mode</span><strong>Human review</strong></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="panel wide">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Alert queue</p>
+            <h2>Cases requiring review</h2>
+          </div>
+          <a href="/downloads/aml-demo-pack/sample-output.json">Sample output JSON</a>
+        </div>
+        <div class="alert-table">
+          <div class="row header"><span>ID</span><span>Priority</span><span>Entity</span><span>Amount</span><span>Pattern</span><span>Status</span></div>
+          {alerts.map((alert) => (
+            <div class="row">
+              <span>{alert.id}</span>
+              <span><b class={alert.priority.toLowerCase()}>{alert.priority}</b><em>{alert.score}</em></span>
+              <span>{alert.entity}</span>
+              <span>{alert.amount}</span>
+              <span>{alert.pattern}</span>
+              <span>{alert.status}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="panel">
+        <p class="eyebrow">Rule hits</p>
+        <h2>Why the alert fired</h2>
+        <div class="rule-list">
+          {ruleHits.map(([rule, meaning, review]) => (
+            <article>
+              <strong>{rule}</strong>
+              <p>{meaning}</p>
+              <small>{review}</small>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="panel">
+        <p class="eyebrow">Evidence note</p>
+        <h2>Analyst-readable record</h2>
+        <div class="evidence-list">
+          {evidence.map(([label, text]) => (
+            <article>
+              <span>{label}</span>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="panel decision wide">
+        <p class="eyebrow">Human review decision box</p>
+        <h2>Recommended action: escalate for review, not enforcement.</h2>
+        <p>The correct system behavior is to preserve the source trail, list missing evidence, and ask a human analyst to review. It should not claim criminality or trigger autonomous action.</p>
+        <div class="decision-actions">
+          <button disabled>Approve escalation note</button>
+          <button disabled>Request more evidence</button>
+          <button disabled>Mark false-positive candidate</button>
+        </div>
+        <small>Buttons are intentionally disabled in the public demo. This is a proof surface, not an operational compliance system.</small>
+      </div>
+    </section>
+  </main>
+
+  <style is:global>
+    .demo-wrap { max-width: 1240px; margin: 0 auto; padding: 5.5rem 1.2rem 4rem; }
+    .demo-hero { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 1rem; align-items: stretch; border: 1px solid rgba(31,160,104,.35); border-radius: 30px; padding: 2rem; background: radial-gradient(circle at 15% 0%, rgba(31,160,104,.22), transparent 45%), #020704; }
+    .eyebrow { color: #7ee0aa; text-transform: uppercase; letter-spacing: .16em; font-size: .76rem; font-weight: 800; margin: 0 0 .7rem; }
+    h1 { font-size: clamp(3rem, 8vw, 6.6rem); letter-spacing: -.065em; line-height: .9; margin: 0 0 1rem; }
+    h2 { margin: 0 0 .8rem; letter-spacing: -.03em; }
+    .lede { color: #d8eee1; font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 790px; line-height: 1.55; }
+    .verdict-card, .panel, .metric-row article { border: 1px solid rgba(138,138,160,.25); background: rgba(5,18,11,.78); border-radius: 24px; padding: 1.2rem; }
+    .verdict-card span, .metric-row span, .evidence-list span { color: #7ee0aa; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 800; }
+    .verdict-card strong { display: block; font-size: 1.75rem; margin: .8rem 0; color: #fff; }
+    .verdict-card p, .panel p, .panel small { color: #dbece2; line-height: 1.55; }
+    .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1rem 0; }
+    .metric-row strong { display: block; font-size: clamp(1.25rem, 2vw, 1.85rem); color: #fff; margin-top: .35rem; }
+    .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .wide { grid-column: 1 / -1; }
+    .panel-head { display: flex; justify-content: space-between; gap: 1rem; align-items: start; }
+    .panel a { color: #7ee0aa; font-weight: 800; }
+    .alert-table { display: grid; gap: .55rem; }
+    .row { display: grid; grid-template-columns: .7fr .9fr .9fr 1fr 2fr 1.2fr; gap: .8rem; align-items: center; padding: .85rem; border-radius: 14px; background: rgba(255,255,255,.035); color: #eaf5ee; }
+    .row.header { color: #7ee0aa; text-transform: uppercase; letter-spacing: .09em; font-size: .72rem; background: transparent; border-bottom: 1px solid rgba(31,160,104,.25); border-radius: 0; }
+    .row em { display: block; color: #9fb0a7; font-style: normal; font-size: .82rem; }
+    .critical { color: #ff9a9a; } .high { color: #ffd479; }
+    .rule-list, .evidence-list { display: grid; gap: .75rem; }
+    .rule-list article, .evidence-list article { border: 1px solid rgba(31,160,104,.18); border-radius: 16px; padding: .9rem; background: rgba(0,0,0,.18); }
+    .rule-list strong { color: #fff; }
+    .rule-list small { display: block; color: #9eb4a8; }
+    .decision { border-color: rgba(126,224,170,.45); background: linear-gradient(135deg, rgba(31,160,104,.14), rgba(5,18,11,.86)); }
+    .decision-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin: 1rem 0; }
+    .decision-actions button { border: 1px solid rgba(126,224,170,.35); color: #dff6e9; background: rgba(2,8,5,.75); border-radius: 999px; padding: .75rem 1rem; }
+    @media (max-width: 900px) { .demo-hero, .dashboard-grid, .metric-row { grid-template-columns: 1fr; } .row { grid-template-columns: 1fr; } }
+  </style>
+</BaseLayout>
