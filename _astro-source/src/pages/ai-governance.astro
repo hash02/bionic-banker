@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const slugOf = (post) => post.data.slug || post.id;
+const hrefOf = (post) => `/blog/${slugOf(post)}/`;
+const governancePosts = posts
+  .filter((post) => {
+    const text = `${post.data.title} ${post.data.description} ${(post.data.tags || []).join(' ')} ${slugOf(post)}`.toLowerCase();
+    return ['governance', 'agentic', 'authority', 'model risk', 'control', 'fsb', 'sr 26-2', 'audit'].some((term) => text.includes(term));
+  })
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 9);
+
+const faqs = [
+  ['What is AI governance in finance?', 'AI governance in finance is the control layer around how AI systems are selected, used, monitored, reviewed, and limited before they affect customers, money movement, risk decisions, or regulated workflows.'],
+  ['What is authority governance for AI agents?', 'Authority governance defines what an AI agent is allowed to observe, recommend, update, trigger, or execute, and where human approval is required before an action leaves the system.'],
+  ['Why is agentic AI different from a chatbot?', 'A chatbot mostly responds. An agentic workflow can plan steps, call tools, move across systems, and trigger actions. That makes the permission boundary and evidence trail more important.'],
+  ['What should financial institutions record when AI influences a workflow?', 'They should preserve input data, source documents, model or vendor used, instruction class, tools called, output, human reviewer, approval or rejection, timestamp, escalation path, and final action.'],
+  ['Does Bionic Banker provide compliance or investment advice?', 'No. Bionic Banker publishes educational source trails, risk maps, and system notes. It does not provide trading, legal, tax, compliance approval, or investment advice.'],
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(([question, answer]) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer },
+  })),
+};
+---
+<BaseLayout
+  title="AI Governance in Finance"
+  description="AI governance in finance explained through agent authority, model risk, source trails, evidence records, human review, and clear control boundaries."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <main class="governance-shell">
+    <section class="governance-hero">
+      <div>
+        <span class="kicker">AI Governance</span>
+        <h1>AI governance in finance is an authority problem.</h1>
+        <p>Finance teams do not only need to know which model is being used. They need to know what the system can decide, which tools it can touch, what evidence it keeps, and where it must stop for human review.</p>
+        <div class="hero-actions">
+          <a href="/blog/agentic-ai-authority-governance-finance/">Read authority guide</a>
+          <a href="/risk-evidence/">Open risk evidence</a>
+        </div>
+      </div>
+      <aside class="authority-stack" aria-label="AI governance control stack">
+        <div><span>01</span><strong>Model output</strong><em>claim, draft, score, summary</em></div>
+        <div><span>02</span><strong>Source trail</strong><em>records before interpretation</em></div>
+        <div><span>03</span><strong>Authority boundary</strong><em>what the agent may do</em></div>
+        <div><span>04</span><strong>Human review</strong><em>approval before external action</em></div>
+        <div><span>05</span><strong>Audit record</strong><em>evidence that survives the workflow</em></div>
+      </aside>
+    </section>
+
+    <section class="governance-grid" aria-label="Core governance questions">
+      {[
+        ['Decisions', 'What can the AI system decide, recommend, prioritize, or only draft?'],
+        ['Systems', 'Which records, tools, queues, vendors, repositories, or payment rails can it touch?'],
+        ['Evidence', 'What inputs, retrieved sources, outputs, reviewer decisions, and timestamps are preserved?'],
+        ['Stops', 'Which actions require human review, approval, override, or rejection before they proceed?'],
+      ].map(([title, body], index) => (
+        <article>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <h2>{title}</h2>
+          <p>{body}</p>
+        </article>
+      ))}
+    </section>
+
+    <section class="governance-section split">
+      <div>
+        <span class="kicker">Control map</span>
+        <h2>Tool governance is not enough for agentic workflows.</h2>
+        <p>Tool governance asks whether a model, platform, vendor, or dataset is approved. Authority governance asks what the connected workflow is allowed to influence after the tool is approved.</p>
+      </div>
+      <div class="compare-card">
+        <section><strong>Tool governance</strong><p>Vendor, data, procurement, retention, risk tier.</p></section>
+        <section><strong>Authority governance</strong><p>Decision rights, tool permissions, stop conditions, evidence records, human accountability.</p></section>
+      </div>
+    </section>
+
+    <section class="governance-section">
+      <span class="kicker">Related Bionic notes</span>
+      <h2>Start with the source-backed guides.</h2>
+      <div class="post-grid">
+        {governancePosts.map((post) => (
+          <a href={hrefOf(post)}>
+            <span>{post.data.category || 'Note'}</span>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <em>{post.data.readTime} read</em>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="governance-section faq-section">
+      <span class="kicker">FAQ</span>
+      <h2>Questions people usually ask first.</h2>
+      <div class="faq-list">
+        {faqs.map(([question, answer]) => (
+          <details>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+  <style>
+    .governance-shell { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; padding: 5rem 0; color: var(--text); }
+    .governance-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.75fr); gap: clamp(1.2rem, 4vw, 3rem); align-items: center; padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid rgba(128,255,196,0.16); border-radius: 28px; background: radial-gradient(circle at top left, rgba(31,160,104,0.16), transparent 40%), linear-gradient(180deg, rgba(6,28,17,0.78), rgba(1,8,5,0.94)); box-shadow: 0 30px 90px rgba(0,0,0,0.32); }
+    .kicker { color: #55d995; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; }
+    .governance-hero h1 { max-width: 780px; margin: 0.8rem 0 1rem; font-size: clamp(2.4rem, 6vw, 5.8rem); line-height: 0.94; letter-spacing: -0.065em; }
+    .governance-hero p, .governance-section p, .governance-grid p { color: var(--text-2); line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.2rem; }
+    .hero-actions a { min-height: 44px; display: inline-flex; align-items: center; padding: 0.72rem 1rem; border: 1px solid rgba(255,255,255,0.10); border-radius: 999px; color: var(--text); text-decoration: none; font-weight: 800; }
+    .hero-actions a:first-child { background: #1fa068; color: #010302; border-color: transparent; }
+    .authority-stack { display: grid; gap: 0.7rem; perspective: 900px; }
+    .authority-stack div { padding: 0.9rem; border: 1px solid rgba(128,255,196,0.18); border-radius: 16px; background: rgba(255,255,255,0.035); transform: rotateY(-7deg); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 50px rgba(0,0,0,0.22); }
+    .authority-stack span { color: rgba(137,255,198,0.66); font-family: var(--mono); font-size: 0.68rem; }
+    .authority-stack strong { display: block; margin: 0.2rem 0; color: #f1fff7; }
+    .authority-stack em { color: rgba(216,255,233,0.62); font-family: var(--mono); font-size: 0.68rem; font-style: normal; }
+    .governance-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+    .governance-grid article, .governance-section { border: 1px solid rgba(128,255,196,0.14); border-radius: 22px; background: rgba(255,255,255,0.025); padding: clamp(1rem, 3vw, 1.4rem); }
+    .governance-grid span { color: rgba(137,255,198,0.68); font-family: var(--mono); font-size: 0.68rem; }
+    .governance-grid h2, .governance-section h2 { margin: 0.45rem 0 0.7rem; line-height: 1.1; letter-spacing: -0.035em; }
+    .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,0.82fr); gap: 1rem; margin-bottom: 1rem; }
+    .compare-card { display: grid; gap: 0.7rem; }
+    .compare-card section, .post-grid a, .faq-list details { border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; background: rgba(255,255,255,0.035); padding: 1rem; }
+    .post-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+    .post-grid a { color: inherit; text-decoration: none; }
+    .post-grid span { color: #55d995; font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; }
+    .post-grid h3 { margin: 0.55rem 0; font-size: 1rem; line-height: 1.25; }
+    .post-grid p { font-size: 0.86rem; margin: 0 0 0.8rem; }
+    .post-grid em { color: var(--text-3); font-family: var(--mono); font-size: 0.72rem; font-style: normal; }
+    .faq-section { margin-top: 1rem; }
+    .faq-list { display: grid; gap: 0.65rem; margin-top: 1rem; }
+    .faq-list summary { cursor: pointer; color: #f1fff7; font-weight: 800; }
+    .faq-list p { margin-bottom: 0; }
+    @media (max-width: 900px) { .governance-hero, .split { grid-template-columns: 1fr; } .governance-grid, .post-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) { .governance-shell { width: min(100% - 1.2rem, 1180px); padding-top: 4rem; } .governance-grid, .post-grid { grid-template-columns: 1fr; } .governance-hero h1 { font-size: clamp(2.3rem, 13vw, 3.4rem); } }
+  </style>
+</BaseLayout>

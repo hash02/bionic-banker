@@ -12,7 +12,7 @@ image: "/blog-visuals/png/karpathy-banking-hero.png"
 
 Andrej Karpathy's AI Startup School talk described three generations of software and why LLMs represent a genuinely new type of computer. Every layer he mapped is actively playing out inside financial services right now. Most people watching that talk work in tech. I work inside a bank. The view is different from here.
 
-# Karpathy Drew the Map. Here Is What It Looks Like From Inside a Bank.
+## Karpathy Drew the Map. Here Is What It Looks Like From Inside a Bank.
 
 Okay so there is a mind map of Karpathy's talk going around right now. Software 1.0, 2.0, 3.0. The autonomy slider. Agents are coming slowly over the next decade. LLMs as CPUs where context is memory and prompts are instructions.
 

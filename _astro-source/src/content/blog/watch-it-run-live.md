@@ -12,7 +12,7 @@ category: "AI"
 
 Six scanner workers, three funds, sixteen sleeves, and one guardian layer. The page is useful only if the status, coverage, heartbeat, and boundaries stay visible.
 
-# A Live Portfolio Monitor With Visible Guardrails
+## A Live Portfolio Monitor With Visible Guardrails
 
 Most public AI finance pages hide the operating layer. They show a promise, not the state of the system. The better question is simpler: what is running, what is stale, what is bounded, and what still needs a person?
 

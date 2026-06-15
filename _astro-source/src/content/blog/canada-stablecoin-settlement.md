@@ -8,7 +8,7 @@ category: "Finance"
 image: "/blog-visuals/canada-stablecoin-settlement/hero.svg"
 ---
 
-# Canada Just Settled Dollars on a Blockchain. Nobody Noticed.
+## Canada Just Settled Dollars on a Blockchain. Nobody Noticed.
 
 Okay so here is the thing.
 

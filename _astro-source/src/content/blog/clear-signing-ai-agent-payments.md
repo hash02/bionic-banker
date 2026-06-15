@@ -7,7 +7,7 @@ readTime: "7 min"
 category: "AI"
 ---
 
-# When AI Agents Can Pay, Wallet Approvals Need to Be Clear
+## When AI Agents Can Pay, Wallet Approvals Need to Be Clear
 
 Crypto payment systems are moving toward a world where humans, wallets, apps, and AI agents may all request transactions.
 

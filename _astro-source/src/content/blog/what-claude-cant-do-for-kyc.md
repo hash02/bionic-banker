@@ -8,7 +8,7 @@ category: "AI"
 image: "/blog-visuals/what-claude-cant-do-for-kyc/hero.svg"
 ---
 
-# What AI Still Cannot Do for KYC Records
+## What AI Still Cannot Do for KYC Records
 
 Okay so here is the thing.
 

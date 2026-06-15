@@ -12,7 +12,7 @@ image: "/blog-visuals/png/boc-defi-hero.png"
 
 In April 2026, the Bank of Canada published a formal research paper on Aave V3, concluding that decentralized lending is technically and operationally viable and identifying it as a functioning non-bank lender with zero bad debt in its history.
 
-# The Bank of Canada Just Studied Aave. I Was Using It Six Years Ago.
+## The Bank of Canada Just Studied Aave. I Was Using It Six Years Ago.
 
 In April 2026, the Bank of Canada released a formal research paper on Aave V3, the biggest DeFi lending protocol in the world. They concluded that decentralized lending is technically and operationally viable. This is what that means, why it matters, and what I learned the hard way years before the report existed.
 

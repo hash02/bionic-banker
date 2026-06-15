@@ -12,7 +12,7 @@ image: "/blog-visuals/agentic-ai-banking/01-hero-banner.png"
 
 99% of global banks plan to deploy autonomous AI agents. Only 11% have. JPMorgan, HDFC, ANZ, RBC, and Scotiabank are in that 11%. This is what each of them is actually running, and where Canada sits in the gap.
 
-# The Agentic Gap
+## The Agentic Gap
 
 Okay so here's the thing. We're watching something happen right now in global banking that feels like the difference between a chess player who studies openings and a chess player who plays 8 games a day. One's optimizing in theory. The other's building muscle memory in the real game.
 

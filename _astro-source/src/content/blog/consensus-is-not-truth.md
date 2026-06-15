@@ -7,7 +7,7 @@ readTime: "8 min"
 category: "AI"
 ---
 
-# Consensus Is Not Truth
+## Consensus Is Not Truth
 
 A single AI answer is not a financial control.
 

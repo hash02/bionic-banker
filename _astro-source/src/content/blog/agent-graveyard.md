@@ -12,7 +12,7 @@ category: "AI"
 
 More than a dozen AI agents were built and tested. A handful kept running. The useful part is the failure record: what broke, what signal was missing, and what control would have made the failure visible earlier.
 
-# Agent Failure Records: What Survived, What Broke, and Why
+## Agent Failure Records: What Survived, What Broke, and Why
 
 Everyone is talking about agents like they are easy. Build an agent. Deploy an agent. Buy an agent. Scroll any feed for ten minutes and you will see five posts selling the same clean story.
 

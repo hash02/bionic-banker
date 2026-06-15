@@ -14,7 +14,7 @@ A 30-agent engineering map is useful when it is compared against real build reco
 
 That timing changed how I read it. I was not asking, "What should I build?" I was asking a better question: "Which parts did I accidentally build, which layers are still missing, and which failures would this map have prevented?"
 
-# A 30-Agent Framework, Read Against Real Build Records
+## A 30-Agent Framework, Read Against Real Build Records
 
 There is a reference going around right now. 30 AI agents, organized by category, with a DASH framework for designing each one, a 30-rule prompt core, and a rules list at the bottom. GenAI Works published it. Six million people follow that account. The image has been reshared across LinkedIn and Twitter more times than I can count.
 

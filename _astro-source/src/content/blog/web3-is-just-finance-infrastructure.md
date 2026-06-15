@@ -8,7 +8,7 @@ category: "Finance"
 image: "/blog-visuals/web3-is-just-finance-infrastructure/hero.svg"
 ---
 
-# Web3 Companies Are Just Rebuilding Finance Infrastructure. With Different Names.
+## Web3 Companies Are Just Rebuilding Finance Infrastructure. With Different Names.
 
 Here is a list I keep seeing shared around finance and crypto circles.
 

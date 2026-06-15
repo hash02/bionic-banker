@@ -58,11 +58,17 @@ const routeLabels: Record<string, string> = {
     <h1 class="page-title">Start with a clear blog note.</h1>
     <p class="page-sub">{articleCount} blog notes on finance, AI, agents, blockchain, and learning by building. Choose a topic below, or start with one of the guided routes.</p>
 
-    <div class="filter-bar" id="filter-bar">
-      <button class="filter-btn active" data-filter="all">All</button>
-      {categories.map(cat => (
-        <button class="filter-btn" data-filter={cat}>{cat}</button>
-      ))}
+    <div class="archive-tools" aria-label="Blog search and filters">
+      <label class="search-wrap" for="blog-search">
+        <span>Search</span>
+        <input id="blog-search" type="search" placeholder="Search AI governance, wallet risk, stablecoins..." autocomplete="off" />
+      </label>
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        {categories.map(cat => (
+          <button class="filter-btn" data-filter={cat}>{cat}</button>
+        ))}
+      </div>
     </div>
   </div>
 
@@ -120,7 +126,7 @@ const routeLabels: Record<string, string> = {
     </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (
-        <a href={`/blog/${getSlug(post)}/`} class="article-card animate-on-scroll" data-category={normalizeCategory(post.data.category)}>
+        <a href={`/blog/${getSlug(post)}/`} class="article-card animate-on-scroll" data-category={normalizeCategory(post.data.category)} data-search={`${post.data.title} ${post.data.description} ${(post.data.tags || []).join(' ')} ${normalizeCategory(post.data.category)}`.toLowerCase()}>
           {post.data.image && (
             <div class="card-thumb">
               <img src={post.data.image} alt={cleanText(post.data.title)} loading="lazy" />
@@ -143,22 +149,66 @@ const routeLabels: Record<string, string> = {
   </div>
 
   <script is:inline>
+    var activeFilter = 'all';
+    var searchInput = document.getElementById('blog-search');
+    function applyArchiveFilters() {
+      var query = (searchInput && searchInput.value || '').trim().toLowerCase();
+      document.querySelectorAll('.article-card').forEach(function(card) {
+        var matchesFilter = activeFilter === 'all' || card.getAttribute('data-category') === activeFilter;
+        var matchesSearch = !query || (card.getAttribute('data-search') || '').includes(query);
+        card.style.display = matchesFilter && matchesSearch ? '' : 'none';
+      });
+    }
     document.querySelectorAll('.filter-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        var filter = btn.getAttribute('data-filter');
-        document.querySelectorAll('.article-card').forEach(function(card) {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+        activeFilter = btn.getAttribute('data-filter');
+        applyArchiveFilters();
       });
     });
+    if (searchInput) searchInput.addEventListener('input', applyArchiveFilters);
   </script>
   <style>
+
+    .archive-tools {
+      width: min(100%, 900px);
+      display: grid;
+      gap: 0.8rem;
+      margin: 1.5rem auto 0;
+    }
+
+    .search-wrap {
+      display: grid;
+      gap: 0.42rem;
+      text-align: left;
+    }
+
+    .search-wrap span {
+      color: var(--accent, #1fa068);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .search-wrap input {
+      min-height: 48px;
+      width: 100%;
+      border: 1px solid rgba(128,255,196,0.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.035);
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      font: inherit;
+      outline: none;
+    }
+
+    .search-wrap input:focus {
+      border-color: rgba(31,160,104,0.62);
+      box-shadow: 0 0 0 3px rgba(31,160,104,0.10);
+    }
+
     .featured-articles {
       width: min(1180px, calc(100% - 32px));
       margin: -1.2rem auto 2.25rem;
@@ -394,7 +444,46 @@ const routeLabels: Record<string, string> = {
     }
 
     @media (max-width: 560px) {
-      .featured-articles {
+
+    .archive-tools {
+      width: min(100%, 900px);
+      display: grid;
+      gap: 0.8rem;
+      margin: 1.5rem auto 0;
+    }
+
+    .search-wrap {
+      display: grid;
+      gap: 0.42rem;
+      text-align: left;
+    }
+
+    .search-wrap span {
+      color: var(--accent, #1fa068);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .search-wrap input {
+      min-height: 48px;
+      width: 100%;
+      border: 1px solid rgba(128,255,196,0.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.035);
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      font: inherit;
+      outline: none;
+    }
+
+    .search-wrap input:focus {
+      border-color: rgba(31,160,104,0.62);
+      box-shadow: 0 0 0 3px rgba(31,160,104,0.10);
+    }
+
+    .featured-articles {
         width: min(100% - 24px, 1180px);
         margin-top: -0.6rem;
       }
