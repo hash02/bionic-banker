@@ -31,8 +31,8 @@ const flow = [
         control layer around the score: rules, anomaly signals, evidence notes, triage labels, and review limits.
       </p>
       <div class="hero-actions">
-        <a class="btn primary" href="https://github.com/hash02/aml-detection-engine">View repository</a>
-        <a class="btn secondary" href="/risk-evidence/">Risk evidence hub</a>
+        <a class="btn-primary" href="https://github.com/hash02/aml-detection-engine">View repository</a>
+        <a class="btn-ghost" href="/risk-evidence/">Risk evidence hub</a>
       </div>
     </section>
 
@@ -107,4 +107,21 @@ python3 -m pytest -q
       </article>
     </section>
   </main>
+  <style>
+    .page-wrap { max-width: 1180px; margin: 0 auto; padding: 5.5rem 1.5rem 4rem; }
+    .hero-section { border: 1px solid rgba(31,160,104,.35); border-radius: 28px; padding: 3rem; background: radial-gradient(circle at 20% 0%, rgba(31,160,104,.18), transparent 42%), rgba(2,10,6,.72); box-shadow: 0 0 50px rgba(31,160,104,.08); }
+    .eyebrow, .card-label { color: #7ee0aa; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 800; margin: 0 0 .75rem; }
+    h1 { font-size: clamp(2.6rem, 7vw, 5.8rem); line-height: .94; margin: 0 0 1.25rem; letter-spacing: -.055em; }
+    .lede { max-width: 870px; color: #d7eee0; font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.55; }
+    .hero-actions { display: flex; gap: .9rem; flex-wrap: wrap; margin-top: 2rem; }
+    .panel-card { border: 1px solid rgba(138,138,160,.28); border-radius: 22px; padding: 1.35rem; background: rgba(3,13,8,.72); }
+    .panel-card h2 { margin: 0 0 .8rem; font-size: clamp(1.35rem, 2.6vw, 2rem); }
+    .panel-card p, .panel-card li { color: #dceee3; line-height: 1.65; }
+    .panel-card a { color: #7ee0aa; font-weight: 800; }
+    .content-grid { display: grid; gap: 1rem; margin: 1rem 0; }
+    .two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    pre { background: #020604; border: 1px solid rgba(31,160,104,.35); border-radius: 16px; padding: 1rem; overflow: auto; color: #e4e4ec; }
+    section + section { margin-top: 1rem; }
+    @media (max-width: 860px) { .two-up { grid-template-columns: 1fr; } .hero-section { padding: 2rem; } }
+  </style>
 </BaseLayout>
