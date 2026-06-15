@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Stablecoin agent payment control stack</title>
+<desc id="desc">A Bionic Banker control map showing AI agent request, stablecoin payment, receipt, delivery check, reconciliation, exception review, and audit record.</desc>
+<defs>
+  <radialGradient id="bg" cx="22%" cy="18%" r="80%"><stop offset="0" stop-color="#103d29"/><stop offset="0.42" stop-color="#04120b"/><stop offset="1" stop-color="#010302"/></radialGradient>
+  <linearGradient id="card" x1="0" x2="1"><stop offset="0" stop-color="#0b2b1b" stop-opacity=".92"/><stop offset="1" stop-color="#06100b" stop-opacity=".96"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1200" height="675" fill="url(#bg)"/>
+<g opacity=".22" stroke="#6cffb1" stroke-width="1">
+  <path d="M90 540 C280 420 310 240 520 210 S830 300 1080 120" fill="none"/>
+  <path d="M140 160 C340 250 430 110 630 180 S870 330 1110 300" fill="none"/>
+  <path d="M70 340 H1130"/>
+</g>
+<text x="70" y="88" fill="#eafff2" font-family="Inter,Arial,sans-serif" font-size="46" font-weight="800" letter-spacing="-1.5">Stablecoins do not remove the back office.</text>
+<text x="72" y="128" fill="#95d8b3" font-family="ui-monospace,Menlo,monospace" font-size="17">AI agent payments need evidence, receipts, reconciliation, and human review.</text>
+<g transform="translate(70 190)">
+  <g fill="url(#card)" stroke="#49d98b" stroke-opacity=".38" stroke-width="1.2">
+    <rect x="0" y="0" width="150" height="120" rx="18"/><rect x="170" y="0" width="150" height="120" rx="18"/><rect x="340" y="0" width="150" height="120" rx="18"/><rect x="510" y="0" width="150" height="120" rx="18"/><rect x="680" y="0" width="150" height="120" rx="18"/><rect x="850" y="0" width="150" height="120" rx="18"/>
+  </g>
+  <g fill="#5cff9d" font-family="ui-monospace,Menlo,monospace" font-size="14" font-weight="700">
+    <text x="18" y="28">01 REQUEST</text><text x="188" y="28">02 RULE</text><text x="358" y="28">03 PAYMENT</text><text x="528" y="28">04 RECEIPT</text><text x="698" y="28">05 DELIVERY</text><text x="868" y="28">06 AUDIT</text>
+  </g>
+  <g fill="#eafff2" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">
+    <text x="18" y="62">What did the</text><text x="18" y="86">agent ask for?</text>
+    <text x="188" y="62">Was spend</text><text x="188" y="86">authorized?</text>
+    <text x="358" y="62">Which wallet,</text><text x="358" y="86">token, chain?</text>
+    <text x="528" y="62">What proof</text><text x="528" y="86">came back?</text>
+    <text x="698" y="62">Was service</text><text x="698" y="86">received?</text>
+    <text x="868" y="62">Can a human</text><text x="868" y="86">replay it?</text>
+  </g>
+  <g stroke="#5cff9d" stroke-width="2" opacity=".75" fill="none" marker-end="url(#none)">
+    <path d="M150 60 H170"/><path d="M320 60 H340"/><path d="M490 60 H510"/><path d="M660 60 H680"/><path d="M830 60 H850"/>
+  </g>
+</g>
+<g transform="translate(90 390)">
+  <rect width="1020" height="155" rx="24" fill="#020906" stroke="#49d98b" stroke-opacity=".28"/>
+  <text x="32" y="48" fill="#eafff2" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="800">Bionic read</text>
+  <text x="32" y="88" fill="#b9e7ca" font-family="Inter,Arial,sans-serif" font-size="21">The chain can prove value moved. It cannot prove the agent had authority, the vendor delivered, or the payment belongs in the ledger.</text>
+  <text x="32" y="124" fill="#5cff9d" font-family="ui-monospace,Menlo,monospace" font-size="16">source claim → authorization rule → transaction proof → delivery check → exception review</text>
+</g>
+<circle cx="1060" cy="106" r="44" fill="none" stroke="#5cff9d" stroke-width="2" opacity=".65" filter="url(#glow)"/>
+<text x="1028" y="113" fill="#5cff9d" font-family="ui-monospace,Menlo,monospace" font-size="18" font-weight="800">BB</text>
+</svg>

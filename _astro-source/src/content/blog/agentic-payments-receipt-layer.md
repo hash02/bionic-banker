@@ -1,9 +1,9 @@
 ---
 title: "AI agents can pay now. The control gap is the receipt layer."
-description: "x402 makes machine payments easier to imagine. Finance teams still need request records, authorization rules, payment proof, delivery checks, and human review."
+description: "New AI-agent payment data shows stablecoins are becoming machine payment rails, but finance teams still need receipts, delivery checks, reconciliation, and human review."
 date: "2026-06-04"
 tags: ["AI", "Finance", "Payments", "Crypto", "Risk"]
-readTime: "7 min"
+readTime: "9 min"
 category: "AI + Finance"
 image: "/blog-visuals/agentic-payments-receipt-layer/hero.svg"
 featured: false
@@ -43,6 +43,28 @@ Three signals matter here:
 3. Control: stablecoin payments can settle quickly, but speed does not replace permissioning, logs, spending limits, or review.
 
 The lesson is simple: if agents can initiate payment, the receipt layer becomes infrastructure.
+
+
+
+## New signal: stablecoins are becoming the default rail for agent payments
+
+A newer market signal makes the same control problem more urgent. FinanceFeeds summarized Keyrock's *Who Pays the Agent?* report, produced with Coinbase, Tempo, and Virtuals, saying AI agents settled more than $73 million across 176 million onchain transactions from May 2025 to April 2026. The reported average transaction size was only $0.31 to $0.48, and 98.6% of the analyzed agent payments used USDC.
+
+Those numbers should not be read as proof that autonomous finance is mature. They should be read as a warning that a new operational surface is forming. If agents can make many small payments cheaply, the important finance question becomes less about the chain and more about the back office:
+
+- who authorized the agent to spend?
+- what was the agent trying to buy?
+- which rule approved or blocked the payment?
+- what proof shows the payment happened?
+- what proof shows the service was delivered?
+- what happens when the receipt, delivery, wallet, or source claim does not match?
+
+Stablecoins may solve one cost problem for machine payments. They do not automatically solve permissioning, reconciliation, dispute handling, sanctions review, vendor review, or audit.
+
+That is the Bionic edge: do not treat stablecoins as a price story. Treat them as a control-system story.
+
+<img src="/blog-visuals/agentic-payments-receipt-layer/stablecoin-control-stack.svg" alt="Stablecoin AI agent payment control stack" class="article-hero-inline" />
+
 
 ## The risk and control boundary
 
@@ -111,6 +133,8 @@ That is where the trust lives.
 - Coinbase Developer Documentation, x402 overview. Supports the protocol description, HTTP-native flow, and stablecoin payment framing for APIs and digital content. https://docs.cdp.coinbase.com/x402/welcome
 - Coinbase protocol guide, x402. Supports the developer-facing payment-infrastructure framing. https://www.coinbase.com/developer-platform/discover/protocol-guides/x402
 - Coinbase x402 GitHub repository. Supports the public technical framing of x402 as an HTTP-based payments protocol. https://github.com/coinbase/x402
+- FinanceFeeds summary of Keyrock, *Who Pays the Agent?* Supports the reported $73M+ settlement value, 176M transaction count, USDC concentration, and machine-payment framing. https://financefeeds.com/ai-agents-73m-stablecoin-payments-keyrock-report/
+- Keyrock, *Who Pays the Agent?* Primary report cited by FinanceFeeds and used as the source trail for the reported agent-payment dataset. https://keyrock.com/who-pays-the-agent/
 
 ## Related Bionic Banker records
 
