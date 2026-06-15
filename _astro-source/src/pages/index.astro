@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ParticleHero from '../components/ParticleHero.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
@@ -21,20 +22,20 @@ const latestPosts = sortedPosts.slice(0, 8);
 const featured = aiPosts[0] ?? sortedPosts[0];
 const quickSections = [
   {
-    label: 'Articles',
-    title: 'Read the latest explainers',
-    text: 'AI finance notes on models, crypto, risk, and the tools changing work.',
+    label: 'Blog',
+    title: 'Read the latest guides',
+    text: 'Source-backed notes on AI models, crypto, risk, and the systems changing finance.',
     href: '/articles/',
   },
   {
-    label: 'AI Intelligence',
-    title: 'Understand AI models and tools',
+    label: 'AI Models',
+    title: 'Understand models and tools',
     text: 'Model guides, AI concepts, comparisons, and practical use cases for builders.',
     href: '/ai-models/',
   },
   {
-    label: 'Risk Profiles',
-    title: 'Finance and crypto risk notes',
+    label: 'Risk',
+    title: 'Read finance and crypto risk notes',
     text: 'Wallet risk, fraud triage, AML status, and explainable review workflows.',
     href: '/risk-evidence/',
   },
@@ -52,21 +53,34 @@ const quickSections = [
   description="Bionic Banker publishes AI finance, fintech, crypto, risk, and source-backed systems research."
 >
   <main class="simple-home">
-    <section class="simple-hero">
-      <div class="eyebrow">Bionic Banker</div>
-      <h1>AI finance, crypto, and risk intelligence.</h1>
-      <p class="hero-copy">Start with the newest explainers. Learn what AI models are, how finance workflows use them, where crypto risk appears, and what builders should verify before trusting a system.</p>
-      <div class="hero-actions" aria-label="Primary reading paths">
-        <a class="btn-primary" href="/articles/">Read articles</a>
-        <a class="btn-ghost" href="/ai-models/">Explore AI Models</a>
-        <a class="btn-ghost" href="/risk-evidence/">Risk Profiles</a>
-        <a class="btn-ghost" href="/signals/">Signals</a>
+    <section class="simple-hero hero-system">
+      <div class="hero-copy-block">
+        <div class="eyebrow">Bionic Banker</div>
+        <h1>AI finance, crypto, and risk intelligence.</h1>
+        <p class="hero-copy">A minimal field guide for AI models, crypto infrastructure, risk signals, and source-backed finance systems. Clear writing, useful diagrams, and no trading hype.</p>
+        <div class="hero-actions" aria-label="Primary reading paths">
+          <a class="btn-primary" href="/articles/">Read the Blog</a>
+          <a class="btn-ghost" href="/ai-models/">Explore AI Models</a>
+          <a class="btn-ghost" href="/risk-evidence/">Risk</a>
+          <a class="btn-ghost" href="/signals/">Signals</a>
+        </div>
+        <div class="hero-stats" aria-label="Site summary">
+          <div><strong>{articleCount}</strong><span>blog posts</span></div>
+          <div><strong>4</strong><span>clear paths</span></div>
+          <div><strong>Signals</strong><span>verified rows</span></div>
+        </div>
       </div>
-      <div class="hero-stats" aria-label="Site summary">
-        <div><strong>{articleCount}</strong><span>articles</span></div>
-        <div><strong>4</strong><span>main sections</span></div>
-        <div><strong>Source</strong><span>linked analysis</span></div>
-      </div>
+      <aside class="hero-visual" aria-label="AI and crypto signal map">
+        <ParticleHero />
+        <div class="orb orb-ai">AI</div>
+        <div class="orb orb-risk">Risk</div>
+        <div class="orb orb-chain">Crypto</div>
+        <div class="hero-visual-card">
+          <span>Source trail</span>
+          <strong>Signal → evidence → limit</strong>
+          <p>Advanced topics need a clean map before they need more noise.</p>
+        </div>
+      </aside>
     </section>
 
     <section class="quick-grid" aria-label="Main website sections">
@@ -98,7 +112,7 @@ const quickSections = [
       <div class="section-head">
         <div>
           <div class="eyebrow">Latest</div>
-          <h2>Newest articles</h2>
+          <h2>Latest from the Blog</h2>
         </div>
         <a href="/articles/">View all →</a>
       </div>
@@ -126,16 +140,16 @@ const quickSections = [
       </div>
       <div class="topic-columns">
         <div class="topic-column">
-          <h3>AI Intelligence</h3>
+          <h3>AI Models</h3>
           <p>AI models, model weights, context windows, benchmarks, agents, and tools.</p>
           {aiPosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
-          <a class="topic-more" href="/ai-models/">Open AI Models hub →</a>
+          <a class="topic-more" href="/ai-models/">Open AI Models →</a>
         </div>
         <div class="topic-column">
-          <h3>Finance Risk</h3>
+          <h3>Risk</h3>
           <p>KYC, AML, fraud triage, advisor workflows, and risk evidence.</p>
           {financePosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
-          <a class="topic-more" href="/risk-evidence/">Open risk profiles →</a>
+          <a class="topic-more" href="/risk-evidence/">Open Risk →</a>
         </div>
         <div class="topic-column">
           <h3>Crypto & Signals</h3>
@@ -148,7 +162,7 @@ const quickSections = [
 
     <section class="plain-note">
       <h2>What this site is</h2>
-      <p>Bionic Banker is a public learning and publishing site. It explains AI, finance, crypto, and risk systems in simple language. It does not give trading, legal, tax, or investment advice.</p>
+      <p>Bionic Banker is a public learning and publishing site for AI, finance, crypto, and risk systems. It packages advanced topics with clear writing, source trails, and selective visual systems. It does not give trading, legal, tax, or investment advice.</p>
     </section>
   </main>
 
@@ -163,6 +177,70 @@ const quickSections = [
       padding: clamp(3rem, 7vw, 6.5rem) 0 2.2rem;
       max-width: 940px;
     }
+
+    .hero-system {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.65fr);
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      max-width: none;
+    }
+
+    .hero-copy-block {
+      max-width: 940px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: clamp(360px, 48vw, 560px);
+      border: 1px solid rgba(31,160,104,0.22);
+      border-radius: 32px;
+      overflow: hidden;
+      background: radial-gradient(circle at 30% 25%, rgba(31,160,104,0.20), transparent 34%), radial-gradient(circle at 82% 70%, rgba(115,255,190,0.10), transparent 34%), linear-gradient(145deg, rgba(4,20,12,0.98), rgba(1,3,2,0.92));
+      box-shadow: 0 30px 90px rgba(0,0,0,0.36);
+    }
+
+    .hero-visual #particle-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .orb {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(137,255,198,0.34);
+      background: rgba(3,16,9,0.72);
+      color: #e9fff4;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: inset 0 0 24px rgba(31,160,104,0.20), 0 0 28px rgba(31,160,104,0.12);
+    }
+
+    .orb-ai { width: 8.5rem; height: 8.5rem; top: 18%; left: 14%; }
+    .orb-risk { width: 7.2rem; height: 7.2rem; top: 34%; right: 13%; }
+    .orb-chain { width: 6.6rem; height: 6.6rem; bottom: 18%; left: 30%; }
+
+    .hero-visual-card {
+      position: absolute;
+      left: 1.1rem;
+      right: 1.1rem;
+      bottom: 1.1rem;
+      padding: 1rem;
+      border: 1px solid rgba(31,160,104,0.25);
+      border-radius: 22px;
+      background: rgba(1,8,5,0.78);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-visual-card span { display:block; color:#1fa068; font-family:var(--mono); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.35rem; }
+    .hero-visual-card strong { display:block; color:var(--text); font-size:1.05rem; }
+    .hero-visual-card p { color:var(--text-2); margin:0.35rem 0 0; line-height:1.5; font-size:0.92rem; }
 
     .eyebrow {
       color: #1fa068;
@@ -450,5 +528,11 @@ const quickSections = [
         padding-top: 1.2rem;
       }
     }
+
+    @media (max-width: 900px) {
+      .hero-system { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 340px; }
+    }
+
   </style>
 </BaseLayout>

@@ -109,22 +109,22 @@ const visualRoadmap = [
   'Stablecoin settlement diagram: Visa network layer, regulated fintech surface, CAD stablecoin object, and open-banking bridge.'
 ];
 ---
-<BaseLayout title="Signals" description="Market, risk, and agent signal board from Bionic Banker. Research only, not trading advice.">
+<BaseLayout title="Signals" description="Latest source and market signals from Bionic Banker. Research only, not trading advice.">
   <div class="page-header">
-    <div class="page-label">Risk Signals</div>
-    <h1 class="page-title">Signals are records for questions</h1>
-    <p class="page-sub">Some ideas only make sense when you watch them move, but movement is not a command. This page turns market rows, wallet-watch notes, and agent heartbeat data into source trails, review questions, and clear limits.</p>
+    <div class="page-label">Signals</div>
+    <h1 class="page-title">Signals, sources, and limits.</h1>
+    <p class="page-sub">A simple board for what moved recently, where the row came from, and what it does not claim. Signals are records for questions: market context, source trails, and report links without trading calls.</p>
   </div>
 
   <main class="intel-shell">
     <section class="alive-console">
       <div class="console-copy">
-        <span class="section-label">Right Now</span>
-        <h2>What moved recently and what it can mean</h2>
-        <p>Market rows refresh when the public source answers. Saved signal rows show the last read, when it happened, why it was recorded, and what it cannot decide.</p>
+        <span class="section-label">Today</span>
+        <h2>What moved recently</h2>
+        <p>Saved rows show the last read, when it happened, and the limit around it. The page gives context, not instructions.</p>
         <div class="console-actions">
-          <a href="/risk-evidence-overview/" class="action-btn primary">Open Risk Review Overview</a>
-          <a href="/gaps/" class="action-btn secondary">Open Questions</a>
+          <a href="/risk-evidence-overview/" class="action-btn primary">Open Risk Review</a>
+          <a href="/gaps/" class="action-btn secondary">Questions</a>
         </div>
       </div>
       <div class="terminal-bar">
@@ -239,6 +239,10 @@ const visualRoadmap = [
         ))}
       </div>
     </section>
+
+    <details class="signals-archive">
+      <summary>Reports, wallet watch, and archive</summary>
+      <div class="signals-archive-body">
 
     <section class="reason-panel" aria-label="Signal operating rule">
       <div class="reason-copy">
@@ -429,6 +433,8 @@ const visualRoadmap = [
         </a>
       ))}
     </section>
+      </div>
+    </details>
   </main>
 
   <script>
@@ -1198,5 +1204,30 @@ const visualRoadmap = [
       color: var(--fg);
       font-weight: 800;
     }
+
+    .signals-archive {
+      border: 1px solid rgba(31,160,104,0.22);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.025);
+      padding: 0.95rem;
+    }
+
+    .signals-archive > summary {
+      cursor: pointer;
+      color: var(--text);
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      padding: 0.9rem 1rem;
+      list-style-position: inside;
+    }
+
+    .signals-archive-body {
+      display: grid;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      padding-top: 0.5rem;
+    }
+
   </style>
 </BaseLayout>
