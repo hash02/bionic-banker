@@ -55,8 +55,8 @@ const routeLabels: Record<string, string> = {
 
   <div class="page-header">
     <div class="page-label">Blog</div>
-    <h1 class="page-title">Start with a clear blog note.</h1>
-    <p class="page-sub">{articleCount} blog notes on finance, AI, agents, blockchain, and learning by building. Choose a topic below, or start with one of the guided routes.</p>
+    <h1 class="page-title">Blog notes.</h1>
+    <p class="page-sub">{articleCount} notes on AI, finance, crypto, and projects. Search or choose a topic.</p>
 
     <div class="archive-tools" aria-label="Blog search and filters">
       <label class="search-wrap" for="blog-search">
@@ -72,57 +72,10 @@ const routeLabels: Record<string, string> = {
     </div>
   </div>
 
-  <section class="featured-articles" aria-label="Start here">
-    <div class="featured-head">
-      <div>
-        <p class="section-kicker">Start here</p>
-        <h2>Four system-first starting points.</h2>
-      </div>
-      <p>Start with records, controls, wallet-risk notes, and the operating pattern before scanning the full archive.</p>
-    </div>
-    <div class="featured-grid">
-      {featuredPosts.map((post) => (
-        <a href={`/blog/${getSlug(post)}/`} class="featured-card">
-          <span>{routeLabels[getSlug(post)]}</span>
-          <h3>{cleanText(post.data.title)}</h3>
-          <p>{cleanText(post.data.description)}</p>
-          <strong>Open note</strong>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="learn-bridge article-discipline" aria-label="Article discipline">
-    <div>
-      <p class="section-kicker">Article discipline</p>
-      <h2>Every strong note should help a reader verify and remember the idea.</h2>
-      <p>Use this archive as a learning system, not a pile of posts. The cleanup standard for important blog notes is: source links, a simple diagram or table, clear limits, and a next read.</p>
-    </div>
-    <div class="discipline-list" aria-label="Article ending standard">
-      <span>Source links</span>
-      <span>Simple visual</span>
-      <span>Clear limits</span>
-      <span>Next read</span>
-    </div>
-  </section>
-
-  <section class="route-map" aria-label="Curated reading routes">
-    <div class="route-map-head">
-      <p class="section-kicker">Reading routes</p>
-      <h2>Use the archive as a system map, not a pile of posts.</h2>
-    </div>
-    <div class="route-map-grid">
-      <a href="/learn/"><span>01</span><strong>Knowledge Base</strong><p>Definitions before the archive.</p></a>
-      <a href="/ai-models/"><span>02</span><strong>AI Models</strong><p>Model explainers and finance use cases.</p></a>
-      <a href="/risk-evidence/"><span>03</span><strong>Risk</strong><p>Evidence trails, controls, and limits.</p></a>
-      <a href="/signals/"><span>04</span><strong>Signals</strong><p>Market rows and source trails without trade calls.</p></a>
-    </div>
-  </section>
-
   <div class="articles-wrap">
     <div class="archive-note">
-      <p class="section-kicker">Full archive</p>
-      <p>The full archive is useful, but the system-first notes above are the cleaner front door.</p>
+      <p class="section-kicker">Archive</p>
+      <p>Newest notes first.</p>
     </div>
     <div class="articles-grid stagger-children" id="articles-grid">
       {sortedPosts.map((post) => (
