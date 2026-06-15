@@ -149,8 +149,7 @@ const visualRoadmap = [
         <div class="tbar-metric">
           <span class="tbar-label">Status</span>
           <strong class="tbar-value tbar-accent">
-            <span class="pulse-dot" aria-hidden="true" style="display:inline-block;margin-right:0.3rem;"></span>
-            {status.mode || 'LIVE'}
+            Archived snapshot
           </strong>
           <span class="tbar-sub">{generatedAt ? generatedAt.slice(0, 10) : 'snapshot'}</span>
         </div>
@@ -175,7 +174,7 @@ const visualRoadmap = [
           </article>
         ))}
       </div>
-      <p class="feed-note" data-feed-note>Prices load when the public market API answers. The rest of this page is a saved snapshot.</p>
+      <p class="feed-note" data-feed-note>Prices load when the public market API answers. The saved signal rows are an archive, not a live feed.</p>
     </section>
 
     <div id="btc-spark-data" data-prices={JSON.stringify(recentRows.map(r => typeof r.price_now === 'number' ? r.price_now : null))} data-labels={JSON.stringify(recentRows.map(r => formatTime(r.iso)))} style="display:none"></div>
