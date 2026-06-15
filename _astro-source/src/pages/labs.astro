@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Bionic Labs: Control Layer Demos';
+const description = 'Practical Bionic Banker demos for AML triage, AI-agent payment controls, human review, and source-backed finance risk workflows.';
+
+const labs = [
+  {
+    label: 'LAB 01',
+    name: 'AML Review Engine',
+    status: 'verified locally',
+    signal: '46 tests passing',
+    href: '/labs/aml-engine/',
+    summary: 'A blockchain AML triage demo that turns wallet activity into rules, anomaly signals, triage labels, evidence notes, and human-review boundaries.',
+  },
+  {
+    label: 'LAB 02',
+    name: 'AI-Agent Payment Control',
+    status: 'published checklist',
+    signal: 'receipt layer',
+    href: '/blog/agentic-payments-receipt-layer/',
+    summary: 'A control map for agentic payments: request, authority rule, transaction proof, delivery check, reconciliation, and exception review.',
+  },
+  {
+    label: 'LAB 03',
+    name: 'Human-in-the-Loop Operator Tutorial',
+    status: 'published tutorial',
+    signal: 'AI for finance operators',
+    href: '/blog/human-in-loop-agent-payments/',
+    summary: 'A practical tutorial showing how to keep AI near finance workflows without giving it unchecked payment or decision authority.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/labs/">
+  <main class="page-wrap">
+    <section class="hero-section compact">
+      <p class="eyebrow">Control Layer Demos</p>
+      <h1>Bionic Labs</h1>
+      <p class="lede">
+        Practical experiments behind the writing: AML triage, agent-payment controls, source trails,
+        and human review loops. These are proof surfaces, not compliance certifications or trading systems.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="/labs/aml-engine/">Open AML lab</a>
+        <a class="btn secondary" href="/projects/">View all projects</a>
+      </div>
+    </section>
+
+    <section class="panel-card" aria-label="Lab doctrine">
+      <p class="card-label">Doctrine</p>
+      <h2>Each lab must show the control layer.</h2>
+      <p>
+        Bionic Labs exists to show what happens between an AI or crypto signal and a human decision:
+        the source record, the rule, the risk label, the limitation, and the review step. If a demo cannot
+        show those records, it is not ready for public trust.
+      </p>
+    </section>
+
+    <section class="content-grid three-up" aria-label="Bionic lab demos">
+      {labs.map((lab) => (
+        <article class="panel-card">
+          <p class="card-label">{lab.label} · {lab.status}</p>
+          <h2>{lab.name}</h2>
+          <p>{lab.summary}</p>
+          <p><strong>Visible signal:</strong> {lab.signal}</p>
+          <a href={lab.href}>Open lab →</a>
+        </article>
+      ))}
+    </section>
+
+    <section class="panel-card" aria-label="Lab boundaries">
+      <p class="card-label">Boundaries</p>
+      <h2>What these labs do not claim</h2>
+      <ul>
+        <li>No legal, tax, compliance, trading, investment, custody, or KYC advice.</li>
+        <li>No production wallet authority or autonomous fund movement.</li>
+        <li>No claim that a risk score is a final verdict.</li>
+        <li>No claim that public evidence proves private intent or identity.</li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

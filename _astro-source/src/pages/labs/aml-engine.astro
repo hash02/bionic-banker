@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'AML Review Engine Lab';
+const description = 'A Bionic Banker control-layer demo for blockchain AML triage: rules, anomaly signals, evidence records, human review, and clear limits.';
+
+const metrics = [
+  ['Local verification', '46 tests passing'],
+  ['Detection claim in repo', '94.9% overall detection rate'],
+  ['Rules documented', '28 rules'],
+  ['Analyst queue reduction', '63% triage reduction'],
+];
+
+const flow = [
+  ['1. Input', 'Wallet or transaction activity enters the review lane.'],
+  ['2. Rules', 'Known patterns flag threshold, velocity, sanctions, mixer, bridge, phishing, or structuring signals.'],
+  ['3. Anomaly layer', 'Isolation Forest-style anomaly detection adds a second view for unusual graph behavior.'],
+  ['4. Triage', 'Signals become priority labels so human review focuses on the highest-value cases.'],
+  ['5. Evidence note', 'The output must explain what was seen, what sources support it, and what remains uncertain.'],
+  ['6. Human boundary', 'The system informs review. It does not approve, file, freeze, trade, or accuse.'],
+];
+---
+
+<BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/labs/aml-engine/">
+  <main class="page-wrap">
+    <section class="hero-section compact">
+      <p class="eyebrow">Bionic Lab 01</p>
+      <h1>AML Review Engine Lab</h1>
+      <p class="lede">
+        A practical blockchain AML triage demo. The useful part is not only the score — it is the
+        control layer around the score: rules, anomaly signals, evidence notes, triage labels, and review limits.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="https://github.com/hash02/aml-detection-engine">View repository</a>
+        <a class="btn secondary" href="/risk-evidence/">Risk evidence hub</a>
+      </div>
+    </section>
+
+    <section class="content-grid two-up" aria-label="AML lab metrics">
+      {metrics.map(([label, value]) => (
+        <article class="panel-card">
+          <p class="card-label">{label}</p>
+          <h2>{value}</h2>
+        </article>
+      ))}
+    </section>
+
+    <section class="panel-card" aria-label="What this proves">
+      <p class="card-label">Control layer</p>
+      <h2>What this lab proves</h2>
+      <p>
+        The lab shows how a crypto-risk workflow can move from raw activity to a reviewable record.
+        It separates detection from decision, which is the core Bionic Banker principle: software can surface
+        risk, but a human-controlled process owns the final interpretation and next action.
+      </p>
+    </section>
+
+    <section class="panel-card" aria-label="AML review flow">
+      <p class="card-label">Review flow</p>
+      <h2>From wallet activity to review queue</h2>
+      <div class="content-grid two-up">
+        {flow.map(([step, text]) => (
+          <article class="panel-card">
+            <p class="card-label">{step}</p>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="panel-card" aria-label="Verification record">
+      <p class="card-label">Verification</p>
+      <h2>Latest local check</h2>
+      <p>The Wukong local copy was tested before this page was created.</p>
+      <pre><code>cd /home/hash/aml-detection-engine
+python3 -m pytest -q
+..............................................                           [100%]</code></pre>
+      <p>
+        The local repository is currently behind its GitHub remote and has uncommitted changes, so the next
+        engineering step is to reconcile the repo before publishing a packaged release.
+      </p>
+    </section>
+
+    <section class="panel-card" aria-label="Limitations">
+      <p class="card-label">Limits</p>
+      <h2>What this lab does not do</h2>
+      <ul>
+        <li>It does not provide legal, regulatory, tax, compliance, trading, or investment advice.</li>
+        <li>It does not identify a private actor behind an address without off-chain evidence.</li>
+        <li>It does not freeze funds, file reports, approve KYC, or take enforcement action.</li>
+        <li>It does not claim that every suspicious pattern is illicit activity.</li>
+      </ul>
+    </section>
+
+    <section class="content-grid two-up" aria-label="Related Bionic records">
+      <article class="panel-card">
+        <p class="card-label">Related</p>
+        <h2>Wallet risk notes</h2>
+        <p>Read the public wallet-risk explanation and how risk rows should be interpreted.</p>
+        <a href="/wallet-risk/">Open wallet risk →</a>
+      </article>
+      <article class="panel-card">
+        <p class="card-label">Next</p>
+        <h2>Package the demo</h2>
+        <p>The next step is a sanitized demo bundle: sample input, sample output, risk memo, and visual control map.</p>
+        <a href="/labs/">Back to Labs →</a>
+      </article>
+    </section>
+  </main>
+</BaseLayout>
