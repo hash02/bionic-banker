@@ -150,6 +150,13 @@ This article is educational commentary. It is not investment advice, not trading
 
 Read [fraud controls are becoming platform controls](/blog/fraud-controls-platform-controls/) next if you want the broader control-layer argument behind this payment example.
 
-## Diagram hook
+## Visual assets
 
-Use the companion visual at `/blog-visuals/agentic-payments-receipt-layer/hero.svg` as a compact infographic: source claim, payment request, authorization rule, transaction proof, delivery check, and human review.
+The companion visual at `/blog-visuals/agentic-payments-receipt-layer/hero.svg` maps source claim, payment request, authorization rule, transaction proof, delivery check, and human review.
+
+A LinkedIn carousel version is also available as a reusable public asset:
+
+- [Download the carousel PDF](/blog-visuals/agentic-payments-receipt-layer/carousel/agentic-payments-stablecoin-control-carousel.pdf)
+- [Open the contact sheet](/blog-visuals/agentic-payments-receipt-layer/carousel/contact-sheet.png)
+
+<img src="/blog-visuals/agentic-payments-receipt-layer/carousel/contact-sheet.png" alt="Contact sheet for the stablecoin AI agent payment control carousel" class="article-hero-inline" />
