@@ -154,6 +154,13 @@ Read [fraud controls are becoming platform controls](/blog/fraud-controls-platfo
 
 The companion visual at `/blog-visuals/agentic-payments-receipt-layer/hero.svg` maps source claim, payment request, authorization rule, transaction proof, delivery check, and human review.
 
+A practical one-page checklist is available for operators who want to review the control layer before letting an AI agent initiate stablecoin or API payments:
+
+- [Download the AI Agent Payment Control Checklist PDF](/blog-visuals/agentic-payments-receipt-layer/checklist/ai-agent-payment-control-checklist.pdf)
+- [Open the checklist PNG](/blog-visuals/agentic-payments-receipt-layer/checklist/ai-agent-payment-control-checklist.png)
+
+<img src="/blog-visuals/agentic-payments-receipt-layer/checklist/ai-agent-payment-control-checklist.png" alt="AI Agent Payment Control Checklist" class="article-hero-inline" />
+
 A LinkedIn carousel version is also available as a reusable public asset:
 
 - [Download the carousel PDF](/blog-visuals/agentic-payments-receipt-layer/carousel/agentic-payments-stablecoin-control-carousel.pdf)

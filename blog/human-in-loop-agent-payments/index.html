@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-37fxchfa> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>How to keep a human in the loop for AI-agent payments - Bionic Banker</title><meta name="description" content="A practical tutorial for using AI near payments without giving it unchecked authority: source trail, control map, receipt layer, exception review, and human approval."><meta name="author" content="Himanshu"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-YS428H3H44"></script><script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YS428H3H44');
+  </script><!-- Open Graph --><meta property="og:title" content="How to keep a human in the loop for AI-agent payments - Bionic Banker"><meta property="og:description" content="A practical tutorial for using AI near payments without giving it unchecked authority: source trail, control map, receipt layer, exception review, and human approval."><meta property="og:type" content="article"><meta property="og:url" content="https://bionicbanker.tech/blog/human-in-loop-agent-payments/"><meta property="og:site_name" content="Bionic Banker"><meta property="og:image" content="https://bionicbanker.tech/blog-visuals/human-in-loop-agent-payments/hero.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to keep a human in the loop for AI-agent payments - Bionic Banker"><meta name="twitter:description" content="A practical tutorial for using AI near payments without giving it unchecked authority: source trail, control map, receipt layer, exception review, and human approval."><meta name="twitter:image" content="https://bionicbanker.tech/blog-visuals/human-in-loop-agent-payments/hero.svg"><meta name="twitter:site" content="@BionicBanker"><meta name="twitter:creator" content="@BionicBanker"><link rel="canonical" href="https://bionicbanker.tech/blog/human-in-loop-agent-payments/"><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"><!-- JSON-LD Structured Data --><!-- Styles --><link rel="stylesheet" href="/styles/global.css?v=green-theme-consistent-053955d"><link rel="stylesheet" href="../../styles/global.css?v=green-theme-consistent-053955d"><!-- Lottie player (custom element, defer safe) --><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script><style>body,html{background:#010302}canvas[data-astro-cid-37fxchfa]{background:transparent}.nav-right{display:flex!important;align-items:center;gap:1rem;min-width:0}@media(max-width:1400px){nav{gap:1rem}.nav-links{gap:1rem}.nav-cta{display:none}}@media(max-width:900px){.nav-right{display:none!important}#bb-hamburger{display:inline-flex!important}}
+</style>
+<link rel="stylesheet" href="/_astro/_..vtVk0o7q.css"></head> <body data-astro-cid-37fxchfa> <!-- NAV --> <nav data-astro-cid-37fxchfa> <a href="/" class="nav-logo" data-astro-cid-37fxchfa>Bionic <span data-astro-cid-37fxchfa>Banker</span></a> <div class="nav-right" data-astro-cid-37fxchfa> <ul class="nav-links" data-astro-cid-37fxchfa> <li data-astro-cid-37fxchfa><a href="/articles" data-astro-cid-37fxchfa>Blog</a></li> <li data-astro-cid-37fxchfa><a href="/ai-models" data-astro-cid-37fxchfa>AI Models</a></li> <li data-astro-cid-37fxchfa><a href="/ai-governance/" data-astro-cid-37fxchfa>AI Governance</a></li> <li data-astro-cid-37fxchfa><a href="/risk-evidence/" data-astro-cid-37fxchfa>Risk</a></li> <li data-astro-cid-37fxchfa><a href="/signals" data-astro-cid-37fxchfa>Signals</a></li> <li data-astro-cid-37fxchfa><a href="/about" data-astro-cid-37fxchfa>About</a></li> </ul> <a href="https://t.me/BionicBanker" class="nav-cta" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Join Telegram</a> </div> <button id="bb-hamburger" aria-label="Menu" data-astro-cid-37fxchfa>&#9776;</button> </nav> <!-- MAIN CONTENT -->  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to keep a human in the loop for AI-agent payments","description":"A practical tutorial for using AI near payments without giving it unchecked authority: source trail, control map, receipt layer, exception review, and human approval.","datePublished":"2026-06-15T19:00:00.000Z","dateModified":"2026-06-15T19:00:00.000Z","author":{"@type":"Person","name":"Himanshu","url":"https://linkedin.com/in/himanshu-h-a357684a"},"publisher":{"@type":"Organization","name":"Bionic Banker","url":"https://bionicbanker.tech"},"mainEntityOfPage":"https://bionicbanker.tech/blog/human-in-loop-agent-payments/","image":"https://bionicbanker.tech/blog-visuals/human-in-loop-agent-payments/hero.svg","keywords":"AI, Finance, Payments, Risk, Tutorial"}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bionicbanker.tech"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://bionicbanker.tech/articles"},{"@type":"ListItem","position":3,"name":"How to keep a human in the loop for AI-agent payments","item":"https://bionicbanker.tech/blog/human-in-loop-agent-payments/"}]}</script> <div id="reading-progress" aria-hidden="true" data-astro-cid-zm77yjld></div> <script>
+  (function() {
+    var bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    function update() {
+      var doc = document.documentElement;
+      var scrolled = doc.scrollTop || document.body.scrollTop;
+      var total = doc.scrollHeight - doc.clientHeight;
+      bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+  </script>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-hero" data-astro-cid-zm77yjld> <div class="article-meta-top" data-astro-cid-zm77yjld> <span class="article-category" data-astro-cid-zm77yjld>AI + Finance</span> <span class="article-date" data-astro-cid-zm77yjld>June 15, 2026</span> <span class="article-read-time" data-astro-cid-zm77yjld>8 min read</span> </div> <h1 class="article-title" data-astro-cid-zm77yjld>How to keep a human in the loop for AI-agent payments</h1> <p class="article-desc" data-astro-cid-zm77yjld>A practical tutorial for using AI near payments without giving it unchecked authority: source trail, control map, receipt layer, exception review, and human approval.</p> <div class="article-tags" data-astro-cid-zm77yjld> <span class="tag" data-astro-cid-zm77yjld>AI</span><span class="tag" data-astro-cid-zm77yjld>Finance</span><span class="tag" data-astro-cid-zm77yjld>Payments</span><span class="tag" data-astro-cid-zm77yjld>Risk</span><span class="tag" data-astro-cid-zm77yjld>Tutorial</span> </div> <figure class="article-visual" data-astro-cid-zm77yjld> <img src="/blog-visuals/human-in-loop-agent-payments/hero.svg" alt="Visual summary for How to keep a human in the loop for AI-agent payments" loading="eager" decoding="async" data-astro-cid-zm77yjld> </figure> </div> <nav id="article-toc" class="article-toc" aria-label="In this article" data-astro-cid-zm77yjld></nav> <div class="article-body" data-astro-cid-zm77yjld>  <p>AI can help research a payment, prepare a transaction note, compare vendors, summarize a policy, or draft a reconciliation memo.</p>
+<p>That does not mean AI should be allowed to spend money without a human-readable control trail.</p>
+<p>This tutorial shows a simple way to keep a human in the loop when an AI agent is near stablecoin payments, API payments, vendor payments, or any machine-initiated transaction.</p>
+<p>The goal is not to slow everything down. The goal is to make the system explainable before it becomes autonomous.</p>
+<h2 id="the-basic-pattern">The basic pattern</h2>
+<p>Use this chain:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>request -> source trail -> authority rule -> payment proof -> delivery check -> exception review -> human approval</span></span></code></pre>
+<p>If any part is missing, the agent should not get more autonomy.</p>
+<h2 id="step-1-capture-the-request">Step 1: Capture the request</h2>
+<p>Before an agent pays for anything, store the original request.</p>
+<p>Ask:</p>
+<ul>
+<li>What did the agent try to buy or access?</li>
+<li>Which user, workflow, or system instruction triggered it?</li>
+<li>What amount, asset, chain, wallet, vendor, or API was involved?</li>
+<li>Was this a one-time request or part of a recurring workflow?</li>
+</ul>
+<p>The request is the first record. Without it, the payment becomes hard to explain later.</p>
+<h2 id="step-2-build-the-source-trail">Step 2: Build the source trail</h2>
+<p>Do not trust an AI summary by itself.</p>
+<p>For payment-related decisions, store the source trail:</p>
+<ul>
+<li>vendor page or API documentation</li>
+<li>pricing page</li>
+<li>terms or usage limits when relevant</li>
+<li>invoice, quote, or payment requirement</li>
+<li>risk note if the vendor, wallet, jurisdiction, or asset type is unusual</li>
+</ul>
+<p>The source trail lets a human reviewer separate what the model said from what the record actually supports.</p>
+<h2 id="step-3-check-the-authority-rule">Step 3: Check the authority rule</h2>
+<p>An agent should have a written boundary.</p>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Allowed:</span></span>
+<span class="line"><span>- pay approved API vendors</span></span>
+<span class="line"><span>- maximum $5 per transaction</span></span>
+<span class="line"><span>- maximum $25 per day</span></span>
+<span class="line"><span>- USDC only</span></span>
+<span class="line"><span>- approved wallet only</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Blocked:</span></span>
+<span class="line"><span>- new vendors</span></span>
+<span class="line"><span>- wallet-to-wallet transfers</span></span>
+<span class="line"><span>- personal accounts</span></span>
+<span class="line"><span>- sanctioned or high-risk destinations</span></span>
+<span class="line"><span>- unclear payment requests</span></span></code></pre>
+<p>This is the difference between controlled automation and blind autonomy.</p>
+<h2 id="step-4-store-payment-proof">Step 4: Store payment proof</h2>
+<p>If payment happens, store the proof beside the request.</p>
+<p>For stablecoins or onchain payments, that usually means:</p>
+<ul>
+<li>transaction hash</li>
+<li>chain/network</li>
+<li>token</li>
+<li>wallet address</li>
+<li>amount</li>
+<li>fee</li>
+<li>timestamp</li>
+</ul>
+<p>For card, bank, or platform payments, it means:</p>
+<ul>
+<li>receipt</li>
+<li>invoice</li>
+<li>payment processor reference</li>
+<li>account or vendor identifier</li>
+<li>timestamp</li>
+</ul>
+<p>The payment proof can show that value moved. It cannot prove the agent had authority or that the vendor delivered.</p>
+<h2 id="step-5-check-delivery">Step 5: Check delivery</h2>
+<p>After payment, ask what came back.</p>
+<ul>
+<li>Did the API call succeed?</li>
+<li>Was the data file delivered?</li>
+<li>Did the model receive the service it paid for?</li>
+<li>Was the output usable?</li>
+<li>Was there a mismatch between request and delivery?</li>
+</ul>
+<p>Delivery matters because a transaction alone is not a completed business process.</p>
+<h2 id="step-6-define-exception-review">Step 6: Define exception review</h2>
+<p>Some cases should stop automatically:</p>
+<ul>
+<li>repeated payment failures</li>
+<li>destination changed</li>
+<li>amount changed</li>
+<li>vendor not recognized</li>
+<li>delivery missing</li>
+<li>payment succeeded but output failed</li>
+<li>source trail does not support the request</li>
+<li>daily limit reached</li>
+</ul>
+<p>These should enter a human review queue.</p>
+<p>The human does not need to approve every tiny action. The human needs to review the cases where the system cannot explain itself clearly.</p>
+<h2 id="step-7-reconcile-the-record">Step 7: Reconcile the record</h2>
+<p>A useful payment record connects:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>original request</span></span>
+<span class="line"><span>approved authority rule</span></span>
+<span class="line"><span>source trail</span></span>
+<span class="line"><span>payment proof</span></span>
+<span class="line"><span>delivered output</span></span>
+<span class="line"><span>exception status</span></span>
+<span class="line"><span>human review note</span></span></code></pre>
+<p>That record should survive outside the chat window.</p>
+<p>If finance, risk, or operations cannot read it later, the system is not ready for more autonomy.</p>
+<h2 id="practical-template">Practical template</h2>
+<p>Use this checklist before increasing an agent’s payment authority:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Control</th><th>Question</th></tr></thead><tbody><tr><td>Request</td><td>Do we know what the agent tried to buy?</td></tr><tr><td>Source</td><td>Do we know which record supports the request?</td></tr><tr><td>Authority</td><td>Was the spend inside written rules?</td></tr><tr><td>Payment</td><td>Is proof stored with the request?</td></tr><tr><td>Delivery</td><td>Did the vendor/API deliver what was requested?</td></tr><tr><td>Exception</td><td>Did unclear cases route to review?</td></tr><tr><td>Audit</td><td>Can a human replay the decision later?</td></tr></tbody></table>
+<h2 id="what-this-means-for-stablecoins">What this means for stablecoins</h2>
+<p>Stablecoins may make small machine payments cheaper and faster.</p>
+<p>That is useful. It is not sufficient.</p>
+<p>A fast rail still needs:</p>
+<ul>
+<li>permissioning</li>
+<li>vendor review</li>
+<li>sanctions and high-risk checks where applicable</li>
+<li>receipt storage</li>
+<li>delivery checks</li>
+<li>reconciliation</li>
+<li>exception review</li>
+<li>human approval boundaries</li>
+</ul>
+<p>The control layer is what makes machine payments usable in finance.</p>
+<h2 id="related-bionic-banker-records">Related Bionic Banker records</h2>
+<ul>
+<li><a href="/blog/agentic-payments-receipt-layer/">AI agents can pay now. The control gap is the receipt layer.</a></li>
+<li><a href="/blog/clear-signing-ai-agent-payments/">When AI agents can pay, wallet approvals need to be clear.</a></li>
+<li><a href="/blog/fraud-controls-platform-controls/">Fraud controls are becoming platform controls.</a></li>
+</ul>
+<h2 id="clear-limits">Clear limits</h2>
+<p>This tutorial is educational commentary. It is not legal advice, tax advice, compliance approval, trading advice, investment advice, or authorization to deploy autonomous payment systems. Any real payment workflow needs review by the relevant finance, legal, compliance, security, and operations owners.</p>  </div> <section class="related-articles" data-astro-cid-zm77yjld> <h2 class="related-heading" data-astro-cid-zm77yjld>Keep reading</h2> <div class="related-grid" data-astro-cid-zm77yjld> <a href="/blog/agentic-ai-authority-governance-finance/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>Agentic AI in Finance Needs Authority Governance</strong> <span class="related-meta" data-astro-cid-zm77yjld>7 min read</span> </a><a href="/blog/sr-26-2-ai-governance-gap/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>SR 26-2 and the AI Governance Gap</strong> <span class="related-meta" data-astro-cid-zm77yjld>8 min read</span> </a><a href="/blog/ai-model-access-sovereignty-question/" class="related-card" data-astro-cid-zm77yjld> <span class="related-cat" data-astro-cid-zm77yjld>AI</span> <strong class="related-title" data-astro-cid-zm77yjld>AI Model Access Is Becoming a Sovereignty Question</strong> <span class="related-meta" data-astro-cid-zm77yjld>9 min read</span> </a> </div> </section> <div class="article-footer" data-astro-cid-zm77yjld> <div class="article-share" data-astro-cid-zm77yjld> <span data-astro-cid-zm77yjld>Share this:</span> <a href="https://twitter.com/intent/tweet?text=How%20to%20keep%20a%20human%20in%20the%20loop%20for%20AI-agent%20payments&#38;url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fhuman-in-loop-agent-payments%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>X / Twitter</a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbionicbanker.tech%2Fblog%2Fhuman-in-loop-agent-payments%2F" target="_blank" rel="noopener" class="share-btn" data-astro-cid-zm77yjld>LinkedIn</a> <button class="share-btn copy-link-btn" data-url="https://bionicbanker.tech/blog/human-in-loop-agent-payments/" data-astro-cid-zm77yjld>Copy link</button> </div> <a href="/articles" class="back-to-articles" data-astro-cid-zm77yjld>&larr; All Blog Posts</a> </div> </article> <button id="back-to-top" aria-label="Back to top" title="Back to top" data-astro-cid-zm77yjld>&#8593;</button> <script>
+  (function() {
+    // Copy link
+    var copyBtn = document.querySelector('.copy-link-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        var url = this.dataset.url;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(function() {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(function() { copyBtn.textContent = 'Copy link'; }, 1800);
+          });
+        } else {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(function() { copyBtn.textContent = 'Copy link'; }, 1800);
+        }
+      });
+    }
+
+    // Back to top
+    var btt = document.getElementById('back-to-top');
+    if (btt) {
+      window.addEventListener('scroll', function() {
+        btt.classList.toggle('btt-visible', window.scrollY > 500);
+      }, { passive: true });
+      btt.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Table of contents
+    var body = document.querySelector('.article-body');
+    var toc = document.getElementById('article-toc');
+    if (!body || !toc) return;
+    var headings = Array.from(body.querySelectorAll('h2')).filter(function(h) { return !h.closest('.intel-block'); });
+    if (headings.length < 2) { toc.style.display = 'none'; return; }
+    var items = headings.map(function(h, i) {
+      if (!h.id) h.id = 'h-' + i;
+      return '<li class="toc-h2"><a href="#' + h.id + '">' + h.textContent + '</a></li>';
+    });
+    toc.innerHTML = '<span class="toc-label">In this article</span><ul>' + items.join('') + '</ul>';
+
+    // Highlight active TOC item on scroll
+    var links = Array.from(toc.querySelectorAll('a'));
+    var hs = headings;
+    window.addEventListener('scroll', function() {
+      var scrollY = window.scrollY + 90;
+      var active = hs.reduce(function(acc, h) {
+        return h.offsetTop <= scrollY ? h : acc;
+      }, hs[0]);
+      if (!active) return;
+      links.forEach(function(l) { l.classList.remove('toc-active'); });
+      var al = toc.querySelector('a[href="#' + active.id + '"]');
+      if (al) al.classList.add('toc-active');
+    }, { passive: true });
+  })();
+  </script>  <!-- NEWSLETTER --> <section id="newsletter" class="newsletter-section" data-astro-cid-37fxchfa> <div class="newsletter-wrap" data-astro-cid-37fxchfa> <h2 data-astro-cid-37fxchfa>Get the Bionic source trail</h2> <p data-astro-cid-37fxchfa>One short note when an AI, finance, crypto, or risk signal becomes worth documenting. Source-backed notes only. No trading calls, no hype.</p> <form action="https://formspree.io/f/xdaljypn" method="POST" class="newsletter-form" data-astro-cid-37fxchfa> <input type="hidden" name="_form_type" value="newsletter" data-astro-cid-37fxchfa> <input type="hidden" name="_subject" value="New Bionic Banker newsletter subscriber" data-astro-cid-37fxchfa> <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" data-astro-cid-37fxchfa> <input type="email" name="email" placeholder="you@domain.com" required class="newsletter-input" aria-label="Email address" data-astro-cid-37fxchfa> <button type="submit" class="nl-btn primary" data-astro-cid-37fxchfa>Subscribe</button> </form> <div class="newsletter-actions newsletter-secondary-row" data-astro-cid-37fxchfa> <a href="/updates" class="nl-btn secondary" data-astro-cid-37fxchfa>Read the update promise</a> <a href="https://t.me/BionicBanker" class="nl-btn secondary" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Or join the Telegram</a> </div> </div> </section> <!-- FOOTER --> <footer class="site-footer" data-astro-cid-37fxchfa> <div class="footer-wrap" data-astro-cid-37fxchfa> <div class="footer-brand" data-astro-cid-37fxchfa> <a href="/" class="footer-logo" data-astro-cid-37fxchfa>Bionic <span data-astro-cid-37fxchfa>Banker</span></a> <p class="footer-tagline" data-astro-cid-37fxchfa>AI finance research on models, crypto, risk, and source-backed systems.</p> </div> <div class="footer-links" data-astro-cid-37fxchfa> <div class="footer-col" data-astro-cid-37fxchfa> <h4 data-astro-cid-37fxchfa>Explore</h4> <a href="/articles" data-astro-cid-37fxchfa>Blog</a> <a href="/ai-models" data-astro-cid-37fxchfa>AI Models</a> <a href="/ai-governance/" data-astro-cid-37fxchfa>AI Governance</a> <a href="/risk-evidence/" data-astro-cid-37fxchfa>Risk</a> <a href="/signals" data-astro-cid-37fxchfa>Signals</a> <a href="/about" data-astro-cid-37fxchfa>About</a> <a href="/updates" data-astro-cid-37fxchfa>Updates</a> </div> <div class="footer-col" data-astro-cid-37fxchfa> <h4 data-astro-cid-37fxchfa>Connect</h4> <a href="https://t.me/BionicBanker" target="_blank" rel="noopener" data-astro-cid-37fxchfa>Telegram</a> <a href="https://linkedin.com/in/himanshu-h-a357684a" target="_blank" rel="noopener" data-astro-cid-37fxchfa>LinkedIn</a> <a href="https://github.com/hash02" target="_blank" rel="noopener" data-astro-cid-37fxchfa>GitHub</a> </div> </div> <div class="footer-bottom" data-astro-cid-37fxchfa> <p data-astro-cid-37fxchfa>&copy; 2026 Bionic Banker. All rights reserved.</p> </div> </div> </footer> <!-- Mobile Menu --> <script>
+  (function() {
+    var hamburger = document.getElementById('bb-hamburger');
+    if (!hamburger) return;
+
+    var overlay = document.createElement('div');
+    overlay.id = 'bb-overlay';
+    document.body.appendChild(overlay);
+
+    var panel = document.createElement('div');
+    panel.id = 'bb-panel';
+    panel.innerHTML =
+      '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
+      '<a href="/articles" class="bb-panel-primary">Blog</a>' +
+      '<a href="/ai-models" class="bb-panel-primary">AI Models</a>' +
+      '<a href="/ai-governance/" class="bb-panel-primary">AI Governance</a>' +
+      '<a href="/risk-evidence/" class="bb-panel-primary">Risk</a>' +
+      '<a href="/signals" class="bb-panel-primary">Signals</a>' +
+      '<a href="/about" class="bb-panel-primary">About</a>' +
+      '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
+    document.body.appendChild(panel);
+
+    function openMenu() { panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+    hamburger.addEventListener('click', openMenu);
+    document.getElementById('bb-panel-close').addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+    panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+  })();
+  </script> <!-- 3D background handled by ParticleHero component on homepage --> <!-- Scroll Animations - GSAP ScrollTrigger with IO fallback --> <script>
+  (function() {
+    function initGSAP() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+      window.gsap.registerPlugin(window.ScrollTrigger);
+
+      window.gsap.utils.toArray('.animate-on-scroll').forEach(function(el) {
+        window.gsap.fromTo(el,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+          }
+        );
+      });
+
+      window.gsap.utils.toArray('.proof-route-grid, .mag-grid').forEach(function(grid) {
+        var cards = grid.querySelectorAll('.article-card, .moving-now-card');
+        if (!cards.length) return;
+        window.gsap.fromTo(cards,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
+          }
+        );
+      });
+    }
+
+    function revealElement(el) {
+      el.classList.add('animate-in');
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      if (el.matches && el.matches('.proof-route-grid, .mag-grid')) {
+        Array.prototype.slice.call(el.querySelectorAll('.article-card, .article-card-featured, .moving-now-card')).forEach(function(card) {
+          card.dataset.revealed = '1';
+          card.classList.add('animate-in');
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      }
+    }
+
+    function initRevealFallback() {
+      var targets = Array.prototype.slice.call(document.querySelectorAll('.animate-on-scroll'));
+      var cardTargets = Array.prototype.slice.call(document.querySelectorAll('.proof-route-grid .article-card, .mag-grid .article-card, .mag-grid .article-card-featured'));
+      targets = targets.concat(cardTargets);
+      if (!targets.length) return;
+
+      // Public pages must never look empty when a browser screenshot,
+      // crawler, or slow third-party animation script misses scroll events.
+      // Reveal immediately; CSS transitions still keep the page calm.
+      targets.forEach(revealElement);
+
+      function revealVisible() {
+        targets.forEach(function(el) {
+          if (el.dataset.revealed === '1') return;
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.96 && rect.bottom > -80) {
+            el.dataset.revealed = '1';
+            revealElement(el);
+          }
+        });
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach(revealElement);
+        return;
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.dataset.revealed = '1';
+          revealElement(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -4% 0px', threshold: 0 });
+      targets.forEach(function(el) { observer.observe(el); });
+      revealVisible();
+      window.addEventListener('scroll', revealVisible, { passive: true });
+      window.addEventListener('resize', revealVisible);
+      var fallbackTicks = 0;
+      var fallbackTimer = window.setInterval(function() {
+        revealVisible();
+        fallbackTicks += 1;
+        if (fallbackTicks > 16) window.clearInterval(fallbackTimer);
+      }, 500);
+    }
+
+    function loadScript(src, onload) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = onload;
+      s.onerror = initRevealFallback;
+      document.head.appendChild(s);
+    }
+
+    initRevealFallback();
+    window.setTimeout(initRevealFallback, 500);
+  })();
+  </script> </body> </html>
