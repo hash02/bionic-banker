@@ -1,360 +1,141 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const sourceCatalog = await import('../../public/dashboard-data/source-catalog.json');
-const verifiedDate = new Date(sourceCatalog.default.generated_at).toISOString().slice(0, 10);
-const catalogProjectCount = sourceCatalog.default.projects.length;
-const catalogSourceCount = sourceCatalog.default.projects.reduce((sum, project) => sum + (project.sources?.length ?? 0), 0);
-const catalogLimitCount = sourceCatalog.default.projects.reduce((sum, project) => sum + (project.limits?.length ?? 0), 0);
+const title = 'Projects';
+const description = 'A minimal portfolio of Bionic Banker project apps: what each project does, what it produces, where to open it, and what boundary it keeps.';
 
 const projects = [
   {
-    name: 'Wallet Risk Assessment',
-    surface: 'Interactive web app',
-    signal: 'Risk UX + review notes',
-    flagship: true,
-    description: 'A small wallet-risk review page for reading blockchain rows without turning every score into a verdict.',
-    reviewerQuestion: 'A wallet row can be scored and explained without pretending the score is a final verdict.',
-    role: 'Wallets / Risk / Notes',
-    url: '/wallet-risk',
-    record: 'Records wallet-screening judgment: 28 mapped detection abilities, 23 direct functions, visible scoring logic, and a plain-language case note.',
-    limitation: 'Research and learning page. Not legal advice, filing software, or a licensed compliance product.',
+    label: 'Project 01',
+    name: 'AML Review Engine',
+    status: '46 tests passing',
+    oneLine: 'Turns transaction rows into risk flags, evidence notes, and a human-review queue.',
+    input: 'Transaction rows',
+    output: 'Risk queue + rule reasons + evidence note',
+    boundary: 'Triage only. It does not accuse, file, freeze, approve, or make a final compliance decision.',
+    primary: { label: 'Launch dashboard', href: '/labs/aml-engine/demo/' },
     links: [
-      { label: 'View wallet risk', url: '/wallet-risk' },
-      { label: 'Report', url: '/blog/wallet-risk-notes' },
-      { label: 'Engine notes', url: '/blog/aml-engine' },
-      { label: 'GitHub', url: 'https://github.com/hash02/aml-detection-engine' },
-      { label: 'AML', url: '/learn#aml' },
-      { label: 'False positives', url: '/learn#false-positive' },
+      { label: 'View lab', href: '/labs/aml-engine/' },
+      { label: 'Download pack', href: '/downloads/aml-demo-pack/README.md' },
+      { label: 'GitHub', href: 'https://github.com/hash02/aml-detection-engine' },
     ],
   },
   {
-    name: 'Public Wallet Watch',
-    surface: 'Public-address signal reports',
-    signal: 'Whale watching + source trails',
-    flagship: true,
-    description: 'A bounded signal lane for reading popular public wallet addresses, large movements, and community-known on-chain activity without turning the row into copy-trading advice.',
-    reviewerQuestion: 'Public wallet movement can be documented as context while still refusing to tell the reader what to buy, sell, or copy.',
-    role: 'Wallets / Signals / Reports',
-    url: '/signals/#public-wallet-watch',
-    record: 'Records public address, explorer source, movement type, timing, size, context note, missing context, and clear trading limits.',
-    limitation: 'Educational public-address analysis only. No trading advice, fund movement, wallet control, external submissions, registrations, or Pancake unfreeze.',
+    label: 'Project 02',
+    name: 'AI-Agent Payment Control',
+    status: 'checklist + tutorial live',
+    oneLine: 'Shows how AI-agent payments should leave a receipt trail before autonomy increases.',
+    input: 'Request + rule + payment event',
+    output: 'Control checklist + receipt-layer review path',
+    boundary: 'No wallet authority. No production payment execution. Human approval stays outside the agent.',
+    primary: { label: 'Open control article', href: '/blog/agentic-payments-receipt-layer/' },
     links: [
-      { label: 'Risk Signals', url: '/signals/#public-wallet-watch' },
-      { label: 'Wallet risk', url: '/wallet-risk' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'AML', url: '/learn#aml' },
+      { label: 'Checklist PDF', href: '/blog-visuals/agentic-payments-receipt-layer/checklist/ai-agent-payment-control-checklist.pdf' },
+      { label: 'Human-in-loop tutorial', href: '/blog/human-in-loop-agent-payments/' },
+      { label: 'Labs', href: '/labs/' },
     ],
   },
   {
-    name: 'AML Status',
-    surface: 'AML status page',
-    signal: 'AML status + clear audit limits',
-    flagship: true,
-    description: 'An AML status page for the Layer 1 status contract, source trail, planner gate, and clear limits.',
-    reviewerQuestion: 'An AML status can show what was checked while still refusing to approve, file, trade, deploy, or execute.',
-    role: 'AML / Records / Limits',
-    url: '/aml-status-evidence',
-    record: 'Records how an AML-related status can be inspected without giving the system power to approve, file, trade, deploy, or execute.',
-    limitation: 'Status summary only. No wallet, trade, filing, deploy, or KYC approval power.',
+    label: 'Project 03',
+    name: 'Wallet & Fraud Risk Review',
+    status: 'interactive pages live',
+    oneLine: 'Packages wallet-risk and fraud signals into readable case notes instead of verdicts.',
+    input: 'Wallet row / fraud signal',
+    output: 'Risk explanation + source limits + next review step',
+    boundary: 'Educational review surface. Not trading advice, legal advice, enforcement, or customer decisioning.',
+    primary: { label: 'Open wallet risk', href: '/wallet-risk/' },
     links: [
-      { label: 'View AML status', url: '/aml-status-evidence' },
-      { label: 'Status data', url: '/dashboard-data/aml-status-evidence-public.json' },
-      { label: 'Wallet risk', url: '/wallet-risk' },
-      { label: 'AML', url: '/learn#aml' },
-    ],
-  },
-  {
-    name: 'Fraud Alert Triage Workflow',
-    surface: 'Synthetic fraud workflow',
-    signal: 'Alert-to-review record',
-    flagship: true,
-    description: 'A fraud operations page showing how suspicious signals become a review record, case note, and human review step.',
-    reviewerQuestion: 'Messy fraud signals can become a simple case note, source list, and human next step.',
-    role: 'Fraud Ops / Records / Review',
-    url: '/fraud-alert-triage',
-    record: 'Shows the path from alert signal to source trail, rule explanation, analyst-ready case note, and bounded next action.',
-    limitation: 'Synthetic sample only. Not fraud prevention software, enforcement power, guaranteed detection, or autonomous case decisioning.',
-    links: [
-      { label: 'View fraud triage', url: '/fraud-alert-triage' },
-      { label: 'One-page card', url: '/proof/fraud-alert-triage/one-page-card.html' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'Audit log', url: '/learn#audit-log' },
-    ],
-  },
-  {
-    name: 'Agent Workflow Case Review',
-    surface: 'Agent workflow case page',
-    signal: 'Move, review, gate, record',
-    description: 'A focused page showing how an agent-assisted workflow can keep the source trail visible, preserve review steps, and publish a bounded summary without exposing private prompts.',
-    reviewerQuestion: 'AI-assisted case work can leave a readable record without exposing private prompts or taking outside action.',
-    role: 'Agents / Records / Review',
-    url: '/agent-prototype-sprint',
-    record: 'Records the path from AI-assisted case work to review, system map placement, and clear limits on outside action control.',
-    limitation: 'Workflow summary only. No autonomous deployment, wallet movement, compliance decision, or private prompt disclosure.',
-    links: [
-      { label: 'View case review', url: '/agent-prototype-sprint' },
-      { label: 'System Map', url: '/system-map' },
-      { label: 'Fraud triage', url: '/fraud-alert-triage' },
-      { label: 'AI agent', url: '/learn#agent' },
-      { label: 'Audit log', url: '/learn#audit-log' },
-    ],
-  },
-  {
-    name: 'Agent Chess',
-    surface: 'Agent-operations surface',
-    signal: 'Human-reviewed agent work',
-    flagship: true,
-    description: 'A two-agent operating pattern where independent agents take turns, review each other, preserve board state, and hold external actions behind approval.',
-    reviewerQuestion: 'Two AI workers can pass work back and forth while a person keeps final control.',
-    role: 'Agents / Memory / Turns',
-    url: '/blog/two-agent-finance-operating-system',
-    record: 'Records human-reviewed agent operations: independent turns, review roles, recoverable board state, and public records without exposing private prompts.',
-    limitation: 'Personal operating system. The public page shows tempo and broad roles only. No autonomous public publishing or external actions.',
-    links: [
-      { label: 'Story', url: '/blog/two-agent-finance-operating-system' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'AI agent', url: '/learn#agent' },
-      { label: 'Audit log', url: '/learn#audit-log' },
-    ],
-  },
-  {
-    name: 'Agent Workflow System',
-    surface: 'Engineering repository',
-    signal: 'Readable AI-agent records',
-    flagship: true,
-    description: 'A local review stack for asking a simple question: what should an AI-agent run leave behind so another person can inspect it later?',
-    reviewerQuestion: 'An AI-agent run should leave tool calls, notes, limits, and checks that another person can inspect.',
-    role: 'Agent Tools / Traces / Limits',
-    url: 'https://github.com/hash02/agent-framework-proof',
-    record: 'Shows inspectable AI-agent operations: tool calls, graph workflows, retrieval notes, access checks, trace rows, monitoring output, and 70 local checks.',
-    limitation: 'Local review stack, not a production hosted agent or credentialed integration.',
-    links: [
-      { label: 'GitHub repository', url: 'https://github.com/hash02/agent-framework-proof' },
-      { label: 'LangChain', url: '/learn#langchain' },
-      { label: 'LangGraph', url: '/learn#langgraph' },
-      { label: 'RAG', url: '/learn#rag' },
-      { label: 'RBAC', url: '/learn#rbac' },
-    ],
-  },
-  {
-    name: 'Agent Monitoring Heartbeat',
-    surface: 'Status data + dashboard feed',
-    signal: 'Status and scoring loop',
-    description: 'A visible status snapshot showing an agent loop can wake up, write state, score prior predictions, and expose recent health.',
-    role: 'Signals / Health / Loop',
-    url: '/signals',
-    record: 'Latest public snapshot shows alive status, 3,792 research rows recorded, and 44 percent accuracy over the last 100 BTC direction checks.',
-    limitation: 'Research and monitoring only. Not investment advice, live trading performance, or infrastructure disclosure.',
-    links: [
-      { label: 'Signals page', url: '/signals' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'System map', url: '/system-map' },
-      { label: 'Heartbeat', url: '/learn#heartbeat' },
-      { label: 'System health', url: '/learn#observability' },
-    ],
-  },
-  {
-    name: 'Hermes Kite',
-    surface: 'Public testnet repository',
-    signal: 'Paper-mode agent discipline',
-    description: 'Kite testnet and decentralized-infrastructure work framed as a bounded engineering record: paper portfolio state, public testnet markers, and agent-run discipline.',
-    role: 'Testnet / Decentralized Infra / Agents',
-    url: 'https://github.com/hash02/hermes-kite',
-    record: 'The public repository presents a Kite AI Global Hackathon 2026 submission with paper-mode portfolio state, one-shot workers, and Kite testnet settlement markers.',
-    limitation: 'Public testnet and paper-mode engineering record only. No real-fund execution, no wallet power, no order power, and no production capital management claim.',
-    links: [
-      { label: 'GitHub repository', url: 'https://github.com/hash02/hermes-kite' },
-      { label: 'Portfolio monitor', url: '/portfolio' },
-      { label: 'Docker', url: '/learn#docker' },
-      { label: 'Kubernetes', url: '/learn#kubernetes' },
-    ],
-  },
-  {
-    name: 'Hardware Compute Environment',
-    surface: 'Architecture report',
-    signal: 'Local compute and recovery discipline',
-    description: 'A bounded local-compute and agent-infrastructure environment for learning how small AI systems behave when they have to run, recover, and leave inspectable state.',
-    role: 'Compute / Agents / Health',
-    url: '/blog/agent-graveyard',
-    record: 'The public report documents a modest always-on server, a second security-testing machine, local model usage, one-job agents, queueing, recovery, and monitoring lessons.',
-    limitation: 'Public architecture summary only. No private topology, addresses, credentials, wallet control, outside action control, or production-service guarantee.',
-    links: [
-      { label: 'Report', url: '/blog/agent-graveyard' },
-      { label: 'Agent workflow system', url: 'https://github.com/hash02/agent-framework-proof' },
-      { label: 'System health', url: '/learn#observability' },
-      { label: 'RBAC', url: '/learn#rbac' },
-    ],
-  },
-  {
-    name: 'Agent Rules Starter Kit',
-    surface: 'Governance starter kit',
-    signal: 'Tool boundaries and review steps',
-    description: 'A small starter kit for writing down how an agent is allowed to use tools, leave traces, and wait for a human before the serious moves.',
-    role: 'Agent Rules / Review / Tools',
-    url: '/evidence',
-    record: 'The package has seven small files: a manifest, queue notes, trace examples, tool boundaries, and review steps.',
-    limitation: 'Template kit. Not legal advice, certification, or enterprise governance software.',
-    links: [
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'Tool calling', url: '/learn#tool-calling' },
-      { label: 'RBAC', url: '/learn#rbac' },
-      { label: 'Audit log', url: '/learn#audit-log' },
-    ],
-  },
-  {
-    name: 'Wallet Risk Check',
-    surface: 'CLI / repository',
-    signal: 'EVM wallet triage',
-    description: 'Lightweight EVM wallet triage helper that converts wallet signals into RED / YELLOW / GREEN risk ratings.',
-    role: 'Wallets / Risk / Triage',
-    url: 'https://github.com/hash02/wallet-risk-check',
-    record: 'Supports Ethereum, Polygon, Base, Arbitrum, Optimism, and 50+ EVM chains through Blockscout according to the README.',
-    limitation: 'Quick triage helper, not a replacement for full blockchain intelligence platforms.',
-    links: [
-      { label: 'GitHub repository', url: 'https://github.com/hash02/wallet-risk-check' },
-      { label: 'EVM', url: '/learn#evm' },
-      { label: 'AML', url: '/learn#aml' },
-    ],
-  },
-  {
-    name: 'Bionic Banker',
-    surface: 'Public systems website',
-    signal: 'Writing + systems packaging',
-    description: 'The public writing and systems page for AI, finance, blockchain, risk-system design, and builder systems.',
-    role: 'Blog / Signals / Systems',
-    url: 'https://bionicbanker.tech',
-    record: 'Live site with 49 source blog notes, signal snapshots, case records, and linked pages that keep growing with the work.',
-    limitation: 'This page exists because the work used to be scattered across GitHub, blog notes, and notes.',
-    links: [
-      { label: 'Blog', url: '/articles' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'Source Catalog', url: '/evidence' },
-      { label: 'Knowledge Base', url: '/learn' },
-      { label: 'Reports', url: '/reports' },
-      { label: 'Questions', url: '/gaps' },
+      { label: 'Fraud triage', href: '/fraud-alert-triage/' },
+      { label: 'Risk evidence', href: '/risk-evidence/' },
+      { label: 'Wallet notes', href: '/blog/wallet-risk-notes/' },
     ],
   },
 ];
+
+const doneSignals = [
+  'Each priority project has a one-line explanation.',
+  'Each project has a working demo or clickable surface.',
+  'Each project states input, output, and boundary.',
+  'Each project links to evidence, source, or downloadable proof.',
+];
 ---
-<BaseLayout title="Systems" description="AI, finance, wallet-risk, and agent-system systems by Himanshu. What runs, what it shows, and where the limits are.">
-  <div class="page-header">
-    <div class="page-label">Systems</div>
-    <h1 class="page-title">Systems</h1>
-    <p class="page-sub">A public index of finance, AI-agent, and wallet-risk systems with supporting records, limitations, and inspection paths. Each card shows what it assesses, what supports it, and where human review remains required.</p>
-    <div class="page-metric-row" aria-label="Systems snapshot">
-      <div><strong>{projects.length}</strong><span>systems</span></div>
-      <div><strong>{catalogProjectCount}</strong><span>catalog sections</span></div>
-      <div><strong>{catalogSourceCount}</strong><span>catalog source trails</span></div>
-      <div><strong>{catalogLimitCount}</strong><span>catalog limits</span></div>
-    </div>
-  </div>
 
-  <div class="articles-wrap systems-wrap">
-    <div class="lab-strip">
-      <div>
-        <h2>Start with the systems that show judgment</h2>
-        <p>For readers, collaborators, and careful builders: this page condenses the work into inspectable systems rather than scattered posts, screenshots, or claims.</p>
-      </div>
-      <div class="lab-strip-links">
-        <span>Wallet risk</span>
-        <span>Agents</span>
-        <span>System health</span>
-        <a href="https://github.com/hash02" target="_blank" rel="noopener">GitHub</a>
-        <a href="/reports">Reports</a>
-      </div>
-    </div>
-
-    <section class="systems-audit-panel" aria-label="How this systems page should be judged">
-      <div>
-        <span class="systems-audit-label">Quality rule</span>
-        <strong>Every card has to be clear.</strong>
-      </div>
-      <p>Each card should answer five plain questions: what it is, what it does, why it matters, what you can check, and what it cannot do. Anything weaker stays in private notes until it is clearer.</p>
+<BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/projects/">
+  <main class="project-apps-wrap">
+    <section class="project-hero">
+      <p class="eyebrow">Projects as Apps</p>
+      <h1>Built projects, packaged simply.</h1>
+      <p class="lede">
+        Three working surfaces first. Click a project, see what it does, inspect the proof, and read the boundary.
+        No maze. No over-explaining.
+      </p>
     </section>
 
-    <div class="article-card systems-guide-card" style="margin-bottom: 1.25rem;">
-      <div class="article-tags">
-        <span class="tag-pill tag-green">How to read it</span>
-      </div>
-      <h3>Recommended path</h3>
-      <p>Start with Wallet Risk Assessment for risk judgment, AML Status for clear audit limits, Fraud Alert Triage for case assembly, Agent Workflow Case Review for review discipline, then Agent Chess for human-reviewed agent operations. That sequence shows the core pattern: assess a financial object, keep the source visible, review the AI move, and keep outside actions behind human review.</p>
-        <p><strong>Source rule:</strong> if a line cannot point to a source, a number, a screenshot, a test, or a clear limit, it does not belong here yet.</p>
-      <div class="card-footer">
-        <a href="/reports" class="read-more">View reports</a>
-        <a href="/gaps" class="read-more">See questions</a>
-        <a href="/learn" class="read-more">Learn concepts</a>
-        <a href="/evidence" class="read-more">View source catalog</a>
-      </div>
-    </div>
-
-    <div class="articles-grid stagger-children">
+    <section class="project-grid" aria-label="Packaged Bionic projects">
       {projects.map((project) => (
-        <article class={`article-card animate-on-scroll ${project.flagship ? 'system-flagship-card' : ''}`}>
-          <div class="article-tags system-card-tags">
-            {project.flagship && <span class="tag-pill tag-green">Start here</span>}
-            <span class="tag-pill">{project.surface}</span>
+        <article class="project-card">
+          <div class="project-topline">
+            <span>{project.label}</span>
+            <em>{project.status}</em>
           </div>
-          <div class="system-signal-row">
-            <span>{project.role}</span>
-            <strong>{project.signal}</strong>
+          <h2>{project.name}</h2>
+          <p class="one-line">{project.oneLine}</p>
+          <div class="io-strip" aria-label={`${project.name} input output`}>
+            <div><span>Input</span><strong>{project.input}</strong></div>
+            <div><span>Output</span><strong>{project.output}</strong></div>
           </div>
-          <h3>{project.name}</h3>
-          <p class="system-desc">{project.description}</p>
-          {project.reviewerQuestion && (
-            <div class="reviewer-question">
-              <span>What this shows</span>
-              <strong>{project.reviewerQuestion}</strong>
-            </div>
-          )}
-          <div class="system-proof-grid">
-            <div>
-              <span>Record</span>
-              <p>{project.record}</p>
-            </div>
-            <div>
-              <span>What it cannot do</span>
-              <p>{project.limitation}</p>
-            </div>
+          <div class="boundary-box">
+            <span>Boundary</span>
+            <p>{project.boundary}</p>
           </div>
-          {project.links && (
-            <div class="system-link-cloud" aria-label={`Inspection links for ${project.name}`}>
-              {project.links.map((link) => (
-                <a href={link.url} target={link.url.startsWith('http') ? '_blank' : undefined} rel={link.url.startsWith('http') ? 'noopener' : undefined}>{link.label}</a>
-              ))}
-            </div>
-          )}
-          <div class="card-footer">
-            <a href={project.url} class="read-more" target={project.url.startsWith('http') ? '_blank' : undefined} rel={project.url.startsWith('http') ? 'noopener' : undefined}>View system</a>
+          <div class="project-actions">
+            <a class="primary-action" href={project.primary.href}>{project.primary.label}</a>
+            {project.links.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
           </div>
         </article>
       ))}
-    </div>
-  </div>
-</BaseLayout>
+    </section>
 
-<style>
-  .reviewer-question {
-    display: grid;
-    gap: 0.35rem;
-    padding: 0.8rem;
-    margin: 0.15rem 0 0.65rem;
-    border: 1px solid rgba(31, 160, 104, 0.22);
-    border-radius: 12px;
-    background: rgba(31, 160, 104, 0.06);
-  }
-  .reviewer-question span {
-    color: #1fa068;
-    font-family: var(--mono, monospace);
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-  }
-  .reviewer-question strong {
-    color: var(--text, var(--text));
-    font-size: 0.9rem;
-    line-height: 1.35;
-  }
-</style>
+    <section class="done-panel" aria-label="Website packaging completion criteria">
+      <div>
+        <p class="eyebrow">Packaging standard</p>
+        <h2>When is the website “done enough” for this layer?</h2>
+        <p>
+          This layer is done when a recruiter, collaborator, or potential client can understand the work in one screen,
+          open a demo, and see the risk boundary without asking for a long explanation.
+        </p>
+      </div>
+      <ul>
+        {doneSignals.map((signal) => <li>{signal}</li>)}
+      </ul>
+    </section>
+  </main>
+
+  <style is:global>
+    .project-apps-wrap { max-width: 1220px; margin: 0 auto; padding: 5.5rem 1.2rem 4rem; }
+    .project-hero { border: 1px solid rgba(31,160,104,.35); border-radius: 30px; padding: clamp(2rem, 5vw, 4rem); background: radial-gradient(circle at 20% 0%, rgba(31,160,104,.2), transparent 42%), #020704; }
+    .eyebrow { color: #7ee0aa; text-transform: uppercase; letter-spacing: .16em; font-size: .76rem; font-weight: 800; margin: 0 0 .75rem; }
+    .project-hero h1 { font-size: clamp(3rem, 8vw, 7rem); line-height: .9; letter-spacing: -.07em; margin: 0 0 1rem; max-width: 950px; }
+    .lede { color: #d8eee1; font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 820px; line-height: 1.55; }
+    .project-grid { display: grid; gap: 1rem; margin: 1rem 0; }
+    .project-card { border: 1px solid rgba(138,138,160,.25); background: rgba(5,18,11,.78); border-radius: 26px; padding: clamp(1.2rem, 2.5vw, 2rem); }
+    .project-topline { display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin-bottom: .8rem; }
+    .project-topline span, .project-topline em, .io-strip span, .boundary-box span { color: #7ee0aa; text-transform: uppercase; letter-spacing: .13em; font-size: .74rem; font-weight: 800; font-style: normal; }
+    .project-card h2 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -.055em; margin: 0 0 .75rem; }
+    .one-line { font-size: clamp(1.05rem, 2vw, 1.25rem); color: #e5f4ea; line-height: 1.5; max-width: 850px; }
+    .io-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0; }
+    .io-strip div, .boundary-box { border: 1px solid rgba(31,160,104,.22); border-radius: 18px; background: rgba(0,0,0,.18); padding: 1rem; }
+    .io-strip strong { display: block; color: #fff; margin-top: .35rem; }
+    .boundary-box p { color: #dceee3; line-height: 1.55; margin: .45rem 0 0; }
+    .project-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.15rem; }
+    .project-actions a { border: 1px solid rgba(126,224,170,.3); color: #dff6e9; border-radius: 999px; padding: .72rem 1rem; font-weight: 800; text-decoration: none; }
+    .project-actions .primary-action { background: #7ee0aa; color: #041009; border-color: #7ee0aa; }
+    .done-panel { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 1rem; border: 1px solid rgba(31,160,104,.35); border-radius: 26px; padding: 2rem; background: rgba(3,13,8,.74); }
+    .done-panel h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 0 0 .75rem; letter-spacing: -.045em; }
+    .done-panel p, .done-panel li { color: #dceee3; line-height: 1.6; }
+    .done-panel ul { margin: 0; padding-left: 1.2rem; }
+    @media (max-width: 900px) { .io-strip, .done-panel { grid-template-columns: 1fr; } .project-topline { align-items: flex-start; flex-direction: column; } }
+  </style>
+</BaseLayout>
