@@ -17,11 +17,11 @@ const reportRoot = resolve(sourceRoot, '..', 'qa-reports', 'latest');
 const screenshotRoot = join(reportRoot, 'screenshots');
 
 const routes = [
-  { path: '/', name: 'home', requiredText: ['Bionic Banker', 'Start Here', 'Signals', 'Systems'] },
+  { path: '/', name: 'home', requiredText: ['Bionic Banker', 'AI Intelligence', 'Projects', 'Blog'] },
   { path: '/risk-evidence-overview/', name: 'risk-evidence-overview', requiredText: ['Risk Review Overview', 'Wallet Risk', 'Agent Chess'] },
   { path: '/signals/', name: 'signals', requiredText: ['Signals are records for questions', 'not trading performance'] },
   { path: '/apps/', name: 'apps', requiredText: ['Apps you can enter', 'Wallet Risk Assessment'] },
-  { path: '/ai-intelligence/', name: 'ai-intelligence', requiredText: ['AI Intelligence', 'What Bionic Banker is tracking'] },
+  { path: '/ai-intelligence/', name: 'ai-intelligence', requiredText: ['AI Intelligence', 'Public notes from the Bionic Banker AI desk'] },
   { path: '/aml-status-evidence/', name: 'aml-status-evidence', requiredText: ['AML Status', 'status record'] },
 ];
 
