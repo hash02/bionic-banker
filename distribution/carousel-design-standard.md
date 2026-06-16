@@ -10,7 +10,8 @@ Default LinkedIn format:
 
 - 3 slides for one argument
 - 1080 x 1350 portrait
-- deterministic HTML/SVG/Python rendering
+- deterministic HTML/CSS/SVG/Python rendering
+- browser-rendered HD output preferred: 2160 x 2700 PNG generated from 1080 x 1350 HTML/CSS using device scale factor 2
 - no AI-generated text inside images
 - contact sheet required before upload
 
