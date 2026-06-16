@@ -16,7 +16,7 @@ const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
 const globalCssVersion = 'green-theme-consistent-053955d';
 const hiddenPublicRoutes = [
   '/signals/', '/risk-evidence/', '/risk-evidence-overview/', '/ai-governance/', '/reports/',
-  '/system-map/', '/start-here/', '/apps/', '/ai-intelligence/', '/intelligence/', '/dashboard/',
+  '/system-map/', '/start-here/', '/apps/', '/intelligence/', '/dashboard/',
   '/proof/', '/evidence/', '/gaps/', '/investigate/', '/learn/', '/world-map/', '/updates/'
 ];
 const shouldNoindex = hiddenPublicRoutes.some((route) => Astro.url.pathname === route || Astro.url.pathname.startsWith(route));
@@ -111,6 +111,7 @@ const shouldNoindex = hiddenPublicRoutes.some((route) => Astro.url.pathname === 
       <ul class="nav-links">
         <li><a href="/articles">Blog</a></li>
         <li><a href="/ai-models">AI Models</a></li>
+        <li><a href="/ai-intelligence/">AI Intelligence</a></li>
         <li><a href="/projects/">Projects</a></li>
         <li><a href="/about">About</a></li>
       </ul>
@@ -153,6 +154,7 @@ const shouldNoindex = hiddenPublicRoutes.some((route) => Astro.url.pathname === 
           <h4>Explore</h4>
           <a href="/articles">Blog</a>
           <a href="/ai-models">AI Models</a>
+          <a href="/ai-intelligence/">AI Intelligence</a>
           <a href="/projects/">Projects</a>
           <a href="/about">About</a>
           <a href="/updates">Updates</a>
@@ -186,6 +188,7 @@ const shouldNoindex = hiddenPublicRoutes.some((route) => Astro.url.pathname === 
       '<button id="bb-panel-close" aria-label="Close menu">&times;</button>' +
       '<a href="/articles" class="bb-panel-primary">Blog</a>' +
       '<a href="/ai-models" class="bb-panel-primary">AI Models</a>' +
+      '<a href="/ai-intelligence/" class="bb-panel-primary">AI Intelligence</a>' +
       '<a href="/projects/" class="bb-panel-primary">Projects</a>' +
       '<a href="/about" class="bb-panel-primary">About</a>' +
       '<a href="https://t.me/BionicBanker" class="bb-panel-cta" target="_blank" rel="noopener">Join Telegram</a>';
