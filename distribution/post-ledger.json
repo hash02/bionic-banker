@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "purpose": "Prevent duplicate public posts without expensive live feed checks every time.",
+  "rules": {
+    "pre_post_local_check": [
+      "Compute normalized caption hash.",
+      "Check article_url, carousel_asset, and title against this ledger.",
+      "If exact caption_hash or same article_url within 30 days, stop unless explicitly approved.",
+      "If same carousel_asset has been posted before, stop unless explicitly approved."
+    ],
+    "live_check": "Only use browser/live feed when ledger is missing, uncertain, or user asks for direct verification.",
+    "cadence": "Default max one LinkedIn post per 24 hours unless user explicitly asks for same-day follow-up."
+  },
+  "posts": [
+    {
+      "platform": "linkedin",
+      "status": "kept_live",
+      "posted_at_local": "2026-06-16T00:00:00-07:00",
+      "title": "Stablecoins are becoming machine payment rails",
+      "article_url": "https://bionicbanker.tech/blog/agentic-payments-receipt-layer/",
+      "carousel_asset": "/home/hash/bionic-banker/social-assets/linkedin-ready/agentic-payments-receipt-layer/",
+      "caption_hash": "28c17a4fa6474baf",
+      "linkedin_url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7472556753100886016/",
+      "notes": "Duplicate newer post was removed by Himanshu. Keep this topic out of the next post cycle."
+    }
+  ]
+}
