@@ -69,6 +69,11 @@ const allow = [
 
   // Boundary wording may say the product is not licensed.
   { pattern: /Not a licensed compliance product|not a licensed compliance product/i },
+
+  // Deliberate Bionic hook for the governed-agent post; allowed only as this exact phrase.
+  { pattern: /AI agents need gates, not vibes/i },
+  { pattern: /ai-agents-need-gates-not-vibes/i },
+  { pattern: /gates, not vibes\./i },
 ];
 
 function* walk(path) {
