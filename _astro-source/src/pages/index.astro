@@ -91,7 +91,7 @@ const quickSections = [
 
     <section class="featured-strip" aria-label="Featured article">
       <div class="featured-copy">
-        <div class="eyebrow">Start here</div>
+        <div class="eyebrow">Featured</div>
         <h2>{featured.data.title}</h2>
         <p>{featured.data.description}</p>
         <a class="btn-primary" href={hrefOf(featured)}>Read this guide</a>
@@ -126,38 +126,9 @@ const quickSections = [
       </div>
     </section>
 
-    <section class="content-section topic-section" id="topics">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Topics</div>
-          <h2>Choose what you want to understand</h2>
-        </div>
-      </div>
-      <div class="topic-columns">
-        <div class="topic-column">
-          <h3>AI Models</h3>
-          <p>AI models, model weights, context windows, benchmarks, agents, and tools.</p>
-          {aiPosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
-          <a class="topic-more" href="/ai-models/">Open AI Models →</a>
-        </div>
-        <div class="topic-column">
-          <h3>Risk</h3>
-          <p>KYC, AML, fraud triage, advisor workflows, and risk evidence.</p>
-          {financePosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
-          <a class="topic-more" href="/risk-evidence/">Open Risk →</a>
-        </div>
-        <div class="topic-column">
-          <h3>Crypto & Signals</h3>
-          <p>Wallet risk, blockchain infrastructure, tokens, stablecoins, and public signals.</p>
-          {cryptoPosts.slice(0, 4).map((post) => <a href={hrefOf(post)}>{post.data.title}</a>)}
-          <a class="topic-more" href="/signals/">Open signals →</a>
-        </div>
-      </div>
-    </section>
-
     <section class="plain-note">
       <h2>What this site is</h2>
-      <p>Bionic Banker is a public learning and publishing site for AI, finance, crypto, and risk systems. It packages advanced topics with clear writing, source trails, and selective visual systems. It does not give trading, legal, tax, or investment advice.</p>
+      <p>Bionic Banker is a public learning site for AI, finance, crypto, and practical projects. It explains advanced topics with clear writing and useful visuals. It does not give trading, legal, tax, or investment advice.</p>
     </section>
   </main>
 

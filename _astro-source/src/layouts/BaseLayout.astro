@@ -14,6 +14,12 @@ const isHome = title === 'Home';
 const routeDepth = Astro.url.pathname === '/' ? 0 : Astro.url.pathname.split('/').filter(Boolean).length;
 const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
 const globalCssVersion = 'green-theme-consistent-053955d';
+const hiddenPublicRoutes = [
+  '/signals/', '/risk-evidence/', '/risk-evidence-overview/', '/ai-governance/', '/reports/',
+  '/system-map/', '/start-here/', '/apps/', '/ai-intelligence/', '/intelligence/', '/dashboard/',
+  '/proof/', '/evidence/', '/gaps/', '/investigate/', '/learn/', '/world-map/', '/updates/'
+];
+const shouldNoindex = hiddenPublicRoutes.some((route) => Astro.url.pathname === route || Astro.url.pathname.startsWith(route));
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +28,7 @@ const globalCssVersion = 'green-theme-consistent-053955d';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
+  {shouldNoindex && <meta name="robots" content="noindex,follow" />}
   <meta name="author" content="Himanshu" />
 
   <!-- Favicon -->
