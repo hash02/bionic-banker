@@ -34,7 +34,7 @@ const sourceCatalog = JSON.parse(sourceCatalogText);
 assert(sourceCatalogText === rootCatalogText, 'Root public-proof catalog must match Astro source catalog exactly.');
 
 const requiredSourcePhrases = [
-  'Hermes Kite',
+  'Kite Testnet Proof',
   'Kite testnet and decentralized-infrastructure work',
   'paper-mode portfolio state',
   'No real-fund execution, no wallet power, no order power',
@@ -48,7 +48,7 @@ for (const phrase of requiredSourcePhrases) {
 }
 
 const requiredBuiltPhrases = [
-  'Hermes Kite',
+  'Kite Testnet Proof',
   'Kite testnet and decentralized-infrastructure work',
   'paper-mode portfolio state',
   'No real-fund execution, no wallet power, no order power',
