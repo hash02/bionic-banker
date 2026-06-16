@@ -2,7 +2,7 @@
 
 Status: ready for posting after ledger check
 Source article: https://bionicbanker.tech/blog/ai-agents-need-gates-not-vibes/
-Carousel assets: `/home/hash/bionic-banker/social-assets/linkedin-ready/ai-agents-need-gates-not-vibes/`
+Carousel assets: `/home/hash/bionic-banker/social-assets/linkedin-ready/ai-agents-need-gates-not-vibes-v2/`
 
 ## Post copy
 
@@ -86,11 +86,7 @@ https://bionicbanker.tech/blog/ai-agents-need-gates-not-vibes/
 1. `slide-01.png`
 2. `slide-02.png`
 3. `slide-03.png`
-4. `slide-04.png`
-5. `slide-05.png`
-6. `slide-06.png`
-7. `slide-07.png`
 
 ## Visual QA note
 
-Contact sheet reviewed. Suitable to post. Strong readable cover, consistent Bionic identity, and clear control-layer argument. Slide 2 body is the smallest; acceptable for LinkedIn but future versions should keep body text larger when possible.
+Revised after user feedback. The carousel is now compressed from seven sparse slides into three denser evidence/control cards. Contact sheet reviewed: improved information density, stronger panel hierarchy, less dead space, and clearer Bionic source-map style.
