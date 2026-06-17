@@ -211,6 +211,57 @@ const breadcrumbSchema = {
   })();
   </script>
 
+  <script type="module" is:inline>
+  (async function() {
+    var rawBlocks = Array.from(document.querySelectorAll('.article-body .mermaid'));
+    var codeBlocks = Array.from(document.querySelectorAll('.article-body pre[data-language="mermaid"] code, .article-body pre code.language-mermaid, .article-body pre code.lang-mermaid'));
+    var blocks = rawBlocks.concat(codeBlocks);
+    if (!blocks.length) return;
+    var module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+    var mermaid = module.default;
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      securityLevel: 'strict',
+      themeVariables: {
+        background: '#031008',
+        mainBkg: '#062014',
+        secondBkg: '#16060a',
+        primaryColor: '#062014',
+        primaryTextColor: '#f2fff8',
+        primaryBorderColor: '#2ef29a',
+        lineColor: '#2ef29a',
+        secondaryColor: '#16060a',
+        secondaryTextColor: '#fff4f6',
+        tertiaryColor: '#031008',
+        fontFamily: 'Inter, Arial, sans-serif'
+      }
+    });
+    for (var i = 0; i < blocks.length; i++) {
+      var code = blocks[i];
+      var pre = code.closest('pre');
+      var source = code.classList && code.classList.contains('mermaid')
+        ? (code.textContent || '')
+        : (Array.from(code.querySelectorAll('.line')).map(function(line) { return line.textContent || ''; }).join('\n') || code.textContent || '');
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-panel';
+      try {
+        var rendered = await mermaid.render('mermaid-diagram-' + i, source);
+        wrapper.innerHTML = rendered.svg;
+      } catch (err) {
+        wrapper.classList.add('mermaid-panel-error');
+        wrapper.textContent = 'Diagram could not render. Source kept below.';
+        pre.style.display = '';
+      }
+      if (pre && !wrapper.classList.contains('mermaid-panel-error')) {
+        pre.replaceWith(wrapper);
+      } else if (pre) {
+        pre.parentNode.insertBefore(wrapper, pre);
+      }
+    }
+  })();
+  </script>
+
   <style>
     #back-to-top {
       position: fixed; bottom: 2rem; right: 1.5rem; z-index: 90;
@@ -287,6 +338,28 @@ const breadcrumbSchema = {
     .article-body :global(:not(pre) > code) {
       white-space: normal !important;
       overflow-wrap: anywhere;
+    }
+
+    .article-body :global(.mermaid-panel) {
+      margin: 1.5rem 0 2rem;
+      padding: 1rem;
+      border: 1px solid rgba(46,242,154,0.24);
+      border-radius: 16px;
+      background: radial-gradient(circle at 20% 10%, rgba(46,242,154,0.08), transparent 28%), #031008;
+      overflow-x: auto;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.24);
+    }
+    .article-body :global(.mermaid-panel svg) {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      min-width: 620px;
+    }
+    .article-body :global(.mermaid-panel-error) {
+      color: #ffb6c4;
+      font-family: var(--mono);
+      font-size: 0.85rem;
     }
 
     .related-articles {

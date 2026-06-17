@@ -1,0 +1,84 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Prompt injection control boundary map</title>
+  <desc id="desc">A Bionic Banker style diagram showing trusted instructions, untrusted content, model context, tool gate, audit log, and blocked external action.</desc>
+  <rect width="1600" height="900" fill="#020604"/>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#062014"/>
+      <stop offset="1" stop-color="#010302"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2ef29a"/>
+    </marker>
+    <marker id="redArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff5c7a"/>
+    </marker>
+  </defs>
+  <g opacity="0.16">
+    <path d="M0 130H1600M0 260H1600M0 390H1600M0 520H1600M0 650H1600M0 780H1600" stroke="#1fa068"/>
+    <path d="M160 0V900M320 0V900M480 0V900M640 0V900M800 0V900M960 0V900M1120 0V900M1280 0V900M1440 0V900" stroke="#1fa068"/>
+  </g>
+  <text x="80" y="88" fill="#f2fff8" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="800">Prompt injection is a control failure</text>
+  <text x="82" y="132" fill="#9fbfaf" font-family="Inter, Arial, sans-serif" font-size="22">Untrusted text becomes dangerous when it crosses into trusted instruction, tool, or approval space.</text>
+
+  <g transform="translate(80 210)">
+    <rect x="0" y="0" width="330" height="180" rx="22" fill="url(#panel)" stroke="#2ef29a" stroke-width="2"/>
+    <text x="28" y="42" fill="#2ef29a" font-family="monospace" font-size="16">TRUSTED LAYER</text>
+    <text x="28" y="84" fill="#f2fff8" font-family="Inter, Arial" font-size="30" font-weight="800">System rules</text>
+    <text x="28" y="124" fill="#b7d6c7" font-family="Inter, Arial" font-size="18">Policy, role, tool limits,</text>
+    <text x="28" y="150" fill="#b7d6c7" font-family="Inter, Arial" font-size="18">approval requirements.</text>
+  </g>
+
+  <g transform="translate(80 510)">
+    <rect x="0" y="0" width="330" height="180" rx="22" fill="#16060a" stroke="#ff5c7a" stroke-width="2"/>
+    <text x="28" y="42" fill="#ff5c7a" font-family="monospace" font-size="16">UNTRUSTED INPUT</text>
+    <text x="28" y="84" fill="#fff4f6" font-family="Inter, Arial" font-size="30" font-weight="800">Hidden instruction</text>
+    <text x="28" y="124" fill="#ffd0d8" font-family="Inter, Arial" font-size="18">Web page, email, PDF,</text>
+    <text x="28" y="150" fill="#ffd0d8" font-family="Inter, Arial" font-size="18">retrieved note, tool result.</text>
+  </g>
+
+  <g transform="translate(560 300)">
+    <rect x="0" y="0" width="360" height="270" rx="30" fill="#06160f" stroke="#77ffc0" stroke-width="3" filter="url(#glow)"/>
+    <text x="40" y="55" fill="#77ffc0" font-family="monospace" font-size="16">MODEL CONTEXT</text>
+    <text x="40" y="104" fill="#f2fff8" font-family="Inter, Arial" font-size="34" font-weight="800">What the AI sees</text>
+    <text x="40" y="150" fill="#c9ead9" font-family="Inter, Arial" font-size="19">The model does not automatically</text>
+    <text x="40" y="178" fill="#c9ead9" font-family="Inter, Arial" font-size="19">know which text is instruction</text>
+    <text x="40" y="206" fill="#c9ead9" font-family="Inter, Arial" font-size="19">and which text is evidence.</text>
+    <rect x="40" y="226" width="280" height="20" rx="10" fill="#123525"/>
+    <rect x="40" y="226" width="175" height="20" rx="10" fill="#2ef29a"/>
+  </g>
+
+  <g transform="translate(1080 150)">
+    <rect x="0" y="0" width="410" height="160" rx="22" fill="url(#panel)" stroke="#2ef29a" stroke-width="2"/>
+    <text x="28" y="42" fill="#2ef29a" font-family="monospace" font-size="16">GATE 01</text>
+    <text x="28" y="82" fill="#f2fff8" font-family="Inter, Arial" font-size="28" font-weight="800">Separate data from instructions</text>
+    <text x="28" y="122" fill="#b7d6c7" font-family="Inter, Arial" font-size="18">Label sources. Treat documents as evidence, not commands.</text>
+  </g>
+  <g transform="translate(1080 370)">
+    <rect x="0" y="0" width="410" height="160" rx="22" fill="url(#panel)" stroke="#2ef29a" stroke-width="2"/>
+    <text x="28" y="42" fill="#2ef29a" font-family="monospace" font-size="16">GATE 02</text>
+    <text x="28" y="82" fill="#f2fff8" font-family="Inter, Arial" font-size="28" font-weight="800">Restrict tools and secrets</text>
+    <text x="28" y="122" fill="#b7d6c7" font-family="Inter, Arial" font-size="18">No passwords, keys, bank data, or private records in chat.</text>
+  </g>
+  <g transform="translate(1080 590)">
+    <rect x="0" y="0" width="410" height="160" rx="22" fill="url(#panel)" stroke="#2ef29a" stroke-width="2"/>
+    <text x="28" y="42" fill="#2ef29a" font-family="monospace" font-size="16">GATE 03</text>
+    <text x="28" y="82" fill="#f2fff8" font-family="Inter, Arial" font-size="28" font-weight="800">Log and review</text>
+    <text x="28" y="122" fill="#b7d6c7" font-family="Inter, Arial" font-size="18">Record request, source, tool call, approval, and outcome.</text>
+  </g>
+
+  <path d="M410 300 C470 300 500 360 560 385" stroke="#2ef29a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M410 600 C495 600 505 500 560 470" stroke="#ff5c7a" stroke-width="4" fill="none" stroke-dasharray="12 10" marker-end="url(#redArrow)"/>
+  <path d="M920 435 C985 400 1015 260 1080 235" stroke="#2ef29a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M920 445 C1000 445 1015 450 1080 450" stroke="#2ef29a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M920 470 C985 520 1015 650 1080 670" stroke="#2ef29a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <g transform="translate(80 805)">
+    <text x="0" y="0" fill="#f2fff8" font-family="Inter, Arial" font-size="22" font-weight="700">Safe rule:</text>
+    <text x="116" y="0" fill="#b7d6c7" font-family="Inter, Arial" font-size="22">if you cannot trace what the AI saw, trusted, called, and approved, do not trust it with sensitive work.</text>
+  </g>
+</svg>
