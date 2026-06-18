@@ -50,6 +50,12 @@ const routeLabels: Record<string, string> = {
   'aml-engine': 'AML notes',
   'two-agent-finance-operating-system': 'AI systems',
 };
+
+const controlLanes = [
+  { label: 'AI security', tone: 'pink', text: 'Prompt injection, agent boundaries, and what should never be trusted blindly.', href: '/blog/ai-prompt-injection-control-failure/' },
+  { label: 'Agent controls', tone: 'blue', text: 'Gates, traces, source records, and human review before an agent can act.', href: '/blog/ai-agents-need-gates-not-vibes/' },
+  { label: 'Finance risk', tone: 'green', text: 'Wallet, fraud, payment, and AML notes framed as review records, not verdicts.', href: '/blog/wallet-risk-notes/' },
+];
 ---
 <BaseLayout title="Blog" description={`${articleCount} blog notes on finance, AI, agents, blockchain, and learning by building.`}>
 
@@ -71,6 +77,37 @@ const routeLabels: Record<string, string> = {
       </div>
     </div>
   </div>
+
+  <section class="archive-console" aria-label="Bionic Control Desk article map">
+    <aside class="archive-rail">
+      <span class="rail-dot"></span>
+      <strong>control-desk/articles</strong>
+      <a href="/ai-models/">AI Models</a>
+      <a href="/ai-intelligence/">AI Intelligence</a>
+      <a href="/projects/">Projects</a>
+      <a href="/signals/">Signals</a>
+    </aside>
+    <div class="archive-console-main">
+      <div class="archive-path"><span>bionic</span><span>source → review → limit → next read</span></div>
+      <div class="archive-console-head">
+        <div>
+          <p class="section-kicker">Bionic Control Desk</p>
+          <h2>Read the archive as an intelligence library.</h2>
+          <p>Start from the lane, inspect the source trail, and keep the limit visible. The goal is not more posts. The goal is a sharper review map.</p>
+        </div>
+        <div class="archive-count"><strong>{articleCount}</strong><span>records</span></div>
+      </div>
+      <div class="lane-grid">
+        {controlLanes.map((lane) => (
+          <a class={`lane-card tone-${lane.tone}`} href={lane.href}>
+            <span>{lane.label}</span>
+            <p>{lane.text}</p>
+            <em>Inspect lane →</em>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="articles-wrap">
     <div class="archive-note">
@@ -123,6 +160,180 @@ const routeLabels: Record<string, string> = {
     if (searchInput) searchInput.addEventListener('input', applyArchiveFilters);
   </script>
   <style>
+
+    .archive-console {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: -1rem auto 2rem;
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      overflow: hidden;
+      border: 1px solid rgba(94, 188, 255, 0.16);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 84% 0%, rgba(94,188,255,0.12), transparent 28%),
+        radial-gradient(circle at 10% 75%, rgba(31,160,104,0.12), transparent 30%),
+        linear-gradient(135deg, rgba(3,18,34,0.92), rgba(1,8,7,0.98));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.045);
+    }
+
+    .archive-console::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(94,188,255,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94,188,255,0.07) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: 0.55;
+    }
+
+    .archive-rail,
+    .archive-console-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .archive-rail {
+      padding: 1rem;
+      display: grid;
+      align-content: start;
+      gap: 0.58rem;
+      border-right: 1px solid rgba(94,188,255,0.12);
+      background: rgba(2,12,22,0.56);
+      font-family: var(--mono);
+    }
+
+    .rail-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: #2ef29a;
+      box-shadow: 0 0 18px rgba(46,242,154,0.55);
+    }
+
+    .archive-rail strong {
+      color: rgba(246,255,249,0.82);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      margin: 0.1rem 0 0.45rem;
+      overflow-wrap: anywhere;
+    }
+
+    .archive-rail a {
+      color: rgba(213,237,255,0.68);
+      font-size: 0.74rem;
+      text-decoration: none;
+    }
+
+    .archive-rail a:hover { color: #86ccff; }
+
+    .archive-console-main { padding: 0 1.35rem 1.35rem; }
+
+    .archive-path {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      color: rgba(222,248,229,0.58);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+    }
+
+    .archive-console-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 0.7rem 0 1rem;
+    }
+
+    .archive-console-head h2 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(2rem, 4.8vw, 4.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.065em;
+      max-width: 850px;
+    }
+
+    .archive-console-head p:not(.section-kicker) {
+      margin: 0.85rem 0 0;
+      color: rgba(222,248,229,0.8);
+      line-height: 1.55;
+      max-width: 760px;
+      font-weight: 650;
+    }
+
+    .archive-count {
+      display: grid;
+      justify-items: end;
+      gap: 0.08rem;
+      padding-top: 1.8rem;
+      font-family: var(--mono);
+      color: rgba(213,237,255,0.62);
+    }
+
+    .archive-count strong { color: #2ef29a; font-size: 1.55rem; }
+    .archive-count span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; }
+
+    .lane-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .lane-card {
+      min-height: 178px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+      border: 1px solid rgba(94,188,255,0.18);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .lane-card:hover,
+    .lane-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(46,242,154,0.42);
+      background: rgba(31,160,104,0.075);
+      outline: none;
+    }
+
+    .lane-card span {
+      color: #86ccff;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+    }
+
+    .lane-card p {
+      margin: 0.9rem 0;
+      color: rgba(232,255,240,0.86);
+      line-height: 1.48;
+      font-weight: 650;
+    }
+
+    .lane-card em { color: #2ef29a; font-style: normal; font-weight: 850; }
+    .tone-pink span { color: #ff82d8; }
+    .tone-green span { color: #74f2ae; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lane-card,
+      .featured-card,
+      .article-card { transition: none !important; }
+      .lane-card:hover,
+      .lane-card:focus-visible { transform: none; }
+    }
 
     .archive-tools {
       width: min(100%, 900px);
@@ -384,6 +595,24 @@ const routeLabels: Record<string, string> = {
     }
 
     @media (max-width: 920px) {
+      .archive-console {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-rail {
+        display: none;
+      }
+
+      .archive-console-head,
+      .lane-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-count {
+        justify-items: start;
+        padding-top: 0;
+      }
+
       .featured-head {
         grid-template-columns: 1fr;
       }

@@ -117,6 +117,12 @@ const publicSafetyChecks = [
   'Keep private operations, draft strategy, service state, credentials, and account details off the page.',
   'Use a clear boundary line wherever a project touches AI, risk, wallet, payment, or compliance language.',
 ];
+
+const revenueLanes = [
+  { label: 'First lane', title: 'AI control review', text: 'Turn agent, model, or workflow ideas into a source-trail, boundary map, and human-review checklist.' },
+  { label: 'Second lane', title: 'Project packaging', text: 'Package technical work into a public demo, evidence record, boundary note, and buyer-readable page.' },
+  { label: 'Later lane', title: 'Templates + checklists', text: 'Only after enough proof exists: sell repeatable AI safety, evidence, and finance-control templates.' },
+];
 ---
 
 <BaseLayout title={title} description={description} canonical="https://bionicbanker.tech/projects/">
@@ -155,6 +161,24 @@ const publicSafetyChecks = [
           </div>
         </article>
       ))}
+    </section>
+
+    <section class="revenue-console" aria-label="Project packaging revenue direction">
+      <div class="revenue-path"><span>bionic</span><span>project → evidence → boundary → buyer edge</span></div>
+      <div class="revenue-head">
+        <p class="eyebrow">Packaging edge</p>
+        <h2>The revenue direction is trust before product.</h2>
+        <p>Projects should prove judgment, implementation taste, and control discipline. The first lane is not a hard sell. It is a packaged review surface people can understand and trust.</p>
+      </div>
+      <div class="revenue-lanes">
+        {revenueLanes.map((lane) => (
+          <article>
+            <span>{lane.label}</span>
+            <h3>{lane.title}</h3>
+            <p>{lane.text}</p>
+          </article>
+        ))}
+      </div>
     </section>
 
     <section class="done-panel" aria-label="Website packaging completion criteria">
@@ -205,11 +229,22 @@ const publicSafetyChecks = [
     .project-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.15rem; }
     .project-actions a { border: 1px solid rgba(126,224,170,.3); color: #dff6e9; border-radius: 999px; padding: .72rem 1rem; font-weight: 800; text-decoration: none; }
     .project-actions .primary-action { background: #7ee0aa; color: #041009; border-color: #7ee0aa; }
+    .revenue-console { position: relative; overflow: hidden; border: 1px solid rgba(94,188,255,.18); border-radius: 28px; padding: 0 1.25rem 1.25rem; background: radial-gradient(circle at 88% 0%, rgba(94,188,255,.13), transparent 30%), radial-gradient(circle at 12% 80%, rgba(31,160,104,.13), transparent 32%), linear-gradient(135deg, rgba(3,18,34,.92), rgba(1,8,7,.98)); box-shadow: 0 28px 90px rgba(0,0,0,.32); margin: 1rem 0; }
+    .revenue-console::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(94,188,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(94,188,255,.07) 1px, transparent 1px); background-size: 42px 42px; opacity: .55; }
+    .revenue-path, .revenue-head, .revenue-lanes { position: relative; z-index: 1; }
+    .revenue-path { height: 38px; display: flex; justify-content: flex-end; align-items: center; gap: .6rem; color: rgba(222,248,229,.58); font-family: var(--mono); font-size: .68rem; }
+    .revenue-head h2 { max-width: 880px; font-size: clamp(2rem, 5vw, 4.6rem); line-height: .92; letter-spacing: -.065em; margin: 0 0 .85rem; }
+    .revenue-head p:not(.eyebrow) { max-width: 850px; color: #dceee3; font-size: clamp(1rem, 1.8vw, 1.18rem); line-height: 1.55; font-weight: 650; }
+    .revenue-lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin-top: 1rem; }
+    .revenue-lanes article { min-height: 190px; border: 1px solid rgba(126,224,170,.22); border-radius: 18px; background: rgba(255,255,255,.035); padding: 1rem; }
+    .revenue-lanes span { color: #86ccff; font-family: var(--mono); text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 800; }
+    .revenue-lanes h3 { color: #fff; margin: .75rem 0 .5rem; font-size: 1.35rem; }
+    .revenue-lanes p { color: #dceee3; line-height: 1.55; margin: 0; }
     .done-panel { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 1rem; border: 1px solid rgba(31,160,104,.35); border-radius: 26px; padding: 2rem; background: rgba(3,13,8,.74); margin-top: 1rem; }
     .safety-panel { border-color: rgba(126,224,170,.25); background: rgba(2,8,5,.82); }
     .done-panel h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 0 0 .75rem; letter-spacing: -.045em; }
     .done-panel p, .done-panel li { color: #dceee3; line-height: 1.6; }
     .done-panel ul { margin: 0; padding-left: 1.2rem; }
-    @media (max-width: 900px) { .io-strip, .done-panel { grid-template-columns: 1fr; } .project-topline { align-items: flex-start; flex-direction: column; } }
+    @media (max-width: 900px) { .io-strip, .done-panel, .revenue-lanes { grid-template-columns: 1fr; } .project-topline { align-items: flex-start; flex-direction: column; } }
   </style>
 </BaseLayout>
