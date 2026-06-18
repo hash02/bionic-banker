@@ -91,12 +91,12 @@ const projects = [
   },
   {
     label: 'Project 07',
-    name: 'Hardware Compute Environment',
+    name: 'Agent Operations Lessons',
     status: 'public boundary stated',
-    oneLine: 'Records a bounded local-compute and agent-infrastructure environment for learning and review.',
-    input: 'Local compute notes + public-safe reports',
-    output: 'Environment record + operating boundary',
-    boundary: 'No private topology, addresses, credentials, wallet control, outside action control.',
+    oneLine: 'Records public lessons from running small agent systems without exposing the private operating layer.',
+    input: 'Public-safe reports',
+    output: 'Operating lessons + review boundary',
+    boundary: 'Public lessons only. No private infrastructure, credentials, account access, wallet control, or outside-action power.',
     primary: { label: 'Read public report', href: '/blog/agent-graveyard/' },
     links: [
       { label: 'Source catalog', href: '/dashboard-data/public-proof-catalog.json' },
@@ -112,16 +112,16 @@ const doneSignals = [
 ];
 
 const publicSafetyChecks = [
-  'Show the artifact, not the workshop behind it.',
+  'Show the artifact, not the private operating layer.',
   'Use public repos, public demos, screenshots, tests, and sanitized docs as proof.',
-  'Keep private operations, draft strategy, service state, credentials, and account details off the page.',
+  'Keep private operations and account-level details off the page.',
   'Use a clear boundary line wherever a project touches AI, risk, wallet, payment, or compliance language.',
 ];
 
 const revenueLanes = [
   { label: 'First lane', title: 'AI control review', text: 'Turn agent, model, or workflow ideas into a source-trail, boundary map, and human-review checklist.' },
-  { label: 'Second lane', title: 'Project packaging', text: 'Package technical work into a public demo, evidence record, boundary note, and buyer-readable page.' },
-  { label: 'Later lane', title: 'Templates + checklists', text: 'Only after enough proof exists: sell repeatable AI safety, evidence, and finance-control templates.' },
+  { label: 'Second lane', title: 'Project packaging', text: 'Package technical work into a public demo, evidence record, boundary note, and reader-readable page.' },
+  { label: 'Later lane', title: 'Templates + checklists', text: 'Only after enough proof exists: publish reusable AI safety, evidence, and finance-control templates.' },
 ];
 ---
 
@@ -163,12 +163,12 @@ const revenueLanes = [
       ))}
     </section>
 
-    <section class="revenue-console" aria-label="Project packaging revenue direction">
-      <div class="revenue-path"><span>bionic</span><span>project → evidence → boundary → buyer edge</span></div>
+    <section class="revenue-console" aria-label="Project packaging trust direction">
+      <div class="revenue-path"><span>bionic</span><span>project → evidence → boundary → reader trust</span></div>
       <div class="revenue-head">
-        <p class="eyebrow">Packaging edge</p>
-        <h2>The revenue direction is trust before product.</h2>
-        <p>Projects should prove judgment, implementation taste, and control discipline. The first lane is not a hard sell. It is a packaged review surface people can understand and trust.</p>
+        <p class="eyebrow">Packaging standard</p>
+        <h2>The project direction is trust before claims.</h2>
+        <p>Projects should prove judgment, implementation taste, and control discipline. The first lane is a packaged review surface people can understand and trust.</p>
       </div>
       <div class="revenue-lanes">
         {revenueLanes.map((lane) => (
@@ -186,7 +186,7 @@ const revenueLanes = [
         <p class="eyebrow">Packaging standard</p>
         <h2>When is the website “done enough” for this layer?</h2>
         <p>
-          This layer is done when a recruiter, collaborator, or potential client can understand the work in one screen,
+          This layer is done when a recruiter, collaborator, or technical reviewer can understand the work in one screen,
           open a demo, and see the risk boundary without asking for a long explanation.
         </p>
       </div>
@@ -198,7 +198,7 @@ const revenueLanes = [
     <section class="done-panel safety-panel" aria-label="Public safety packaging checks">
       <div>
         <p class="eyebrow">Public safety rule</p>
-        <h2>The project page shows proof, not private machinery.</h2>
+        <h2>The project page shows proof, not the private operating layer.</h2>
         <p>
           Packaging is intentionally narrow: clear demos, reproducible evidence, and boundaries. Internal working notes
           stay out of the public surface.
