@@ -33,8 +33,8 @@ assert(page.includes('No wallet, trade, filing, deploy, or KYC approval power'),
 assert(page.includes('No wallet, trade, filing, deploy, or KYC approval power'), 'AML status page must state the execution limits plainly.');
 assert(page.includes('source trail'), 'AML status page must include source trail wording.');
 
-assert(layout.includes('href="/aml-status-evidence"'), 'Primary layout must expose /aml-status-evidence in navigation/mobile/footer.');
-assert(projects.includes('/aml-status-evidence'), 'Systems page must link to the AML status evidence page.');
+assert(!layout.includes('href="/aml-status-evidence"'), 'Primary layout must not expose /aml-status-evidence in top navigation/mobile/footer; keep it as a deep evidence route.');
+assert(projects.includes('/labs/aml-engine') || projects.includes('/risk-evidence'), 'Projects page must link to a public AML proof surface.');
 assert(proofTour.includes('/aml-status-evidence'), 'Proof tour must link to the AML status evidence page.');
 
 assert(catalog.status === 'public_aml_status_record_v2', 'AML status record catalog status must be public_aml_status_record_v2.');

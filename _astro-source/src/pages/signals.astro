@@ -97,13 +97,13 @@ const publicWalletWatch = [
   {
     label: 'What stays blocked',
     title: 'No copy-trade signal or external submission',
-    body: 'The page can publish educational records. It cannot recommend trades, move funds, register accounts, submit to outside programs, or unfreeze Pancake without review.'
+    body: 'The page can publish educational records. It cannot recommend trades, move funds, register accounts, submit to outside programs, or take third-party account actions without review.'
   }
 ];
 
 const visualRoadmap = [
   'Whale-watch map: wallet, explorer, exchange flow, market context, and limit card.',
-  'Hermes Agent operating-layer image or mythology-inspired Hermes visual for agent orchestration articles.',
+  'Agent operations diagram: scheduled run, tool-call trace, and review gate.',
   'OpenClaw-style supply-chain diagram for skill packages, secrets, external APIs, and review gates.',
   'KYC record diagram: document intake, screening adapters, case queue, reviewer lane, SQLite-style event ledger, and read-only report.',
   'Stablecoin settlement diagram: Visa network layer, regulated fintech surface, CAD stablecoin object, and open-banking bridge.'
@@ -129,15 +129,15 @@ const visualRoadmap = [
       </div>
       <div class="terminal-bar">
         <div class="tbar-metric">
-          <span class="tbar-label">Signal Rows</span>
-          <strong class="tbar-value">{status.predictions_made || 'n/a'}</strong>
-          <span class="tbar-sub">total logged</span>
+          <span class="tbar-label">Archive</span>
+          <strong class="tbar-value">Snapshot</strong>
+          <span class="tbar-sub">saved rows only</span>
         </div>
         <div class="tbar-divider"></div>
         <div class="tbar-metric">
-          <span class="tbar-label">Last 100 saved rows</span>
-          <strong class="tbar-value tbar-accent">{accuracy}</strong>
-          <span class="tbar-sub">record check rate</span>
+          <span class="tbar-label">Mode</span>
+          <strong class="tbar-value tbar-accent">Archive only</strong>
+          <span class="tbar-sub">no performance claim</span>
         </div>
         <div class="tbar-divider"></div>
         <div class="tbar-metric">
@@ -219,7 +219,7 @@ const visualRoadmap = [
           <span class="section-label">Signal Rows</span>
           <h2>Recent reads</h2>
         </div>
-        <a href="/dashboard-data/heartbeat.json" target="_blank" rel="noopener">Open snapshot</a>
+        <a href="/evidence/">Open evidence hub</a>
       </div>
       <div class="recent-table">
         <div class="recent-row recent-head">
@@ -288,7 +288,7 @@ const visualRoadmap = [
           </article>
         ))}
       </div>
-      <p class="snapshot-note">Allowed: publish educational public-wallet reports and examples. Still blocked: Pancake, account registration, external submissions, fund movement, wallet control, and any recommendation to follow a wallet trade.</p>
+      <p class="snapshot-note">Allowed: publish educational public-wallet reports and examples. Still blocked: third-party account actions, account registration, external submissions, fund movement, wallet control, and any recommendation to follow a wallet trade.</p>
     </section>
 
 
@@ -332,7 +332,7 @@ const visualRoadmap = [
         <p><strong>What moved:</strong> {walletWatch.sample_record.what_moved}</p>
         <p><strong>AML review question:</strong> {walletWatch.sample_record.aml_review_question}</p>
         <p><strong>Clear limit:</strong> {walletWatch.sample_record.clear_limit}</p>
-        <a href="/dashboard-data/public-wallet-watch-template.json" target="_blank" rel="noopener">View source JSON</a>
+        <a href="/evidence/">View evidence hub</a>
       </article>
     </section>
 
@@ -366,7 +366,7 @@ const visualRoadmap = [
           <p><strong>Missing context:</strong> {record.missing_context}</p>
           <p><strong>Clear limit:</strong> {record.clear_limit}</p>
           <p><strong>Next step:</strong> {record.next_step}</p>
-          <a href="/dashboard-data/public-wallet-watch-template.json" target="_blank" rel="noopener">View report data JSON</a>
+          <a href="/evidence/">View evidence hub</a>
         </article>
       ))}
     </section>

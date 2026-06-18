@@ -69,6 +69,8 @@ checkNo('public/dashboard-data/aml-status-evidence-public.json', amlText, [
 ]);
 
 for (const rel of [
+  'src/pages/signals.astro',
+  'src/pages/labs/aml-engine.astro',
   'src/pages/apps.astro',
   'src/pages/projects.astro',
   'src/pages/evidence.astro',
@@ -78,6 +80,7 @@ for (const rel of [
   'src/pages/risk-evidence-overview.astro',
   'public/dashboard-data/source-catalog.json',
   'public/dashboard-data/public-proof-catalog.json',
+  'public/heartbeat/index.html',
 ]) {
   const text = read(rel);
   checkNo(rel, text, [
@@ -88,6 +91,12 @@ for (const rel of [
     [/open snapshot\s*->/i, 'reader CTA opens raw heartbeat snapshot'],
     [/2,514 predictions made/i, 'stale prediction count is public'],
     [/53 percent accuracy/i, 'stale accuracy metric is public'],
+    [/44 percent accuracy/i, 'weak/stale accuracy metric is public'],
+    [/3,792 research rows/i, 'stale research-row volume metric is public'],
+    [/BTC direction checks/i, 'trading-performance phrasing is public'],
+    [/Hardware Compute Environment/i, 'infrastructure-facing display name is public'],
+    [/Hermes Kite(?! GitHub URL slug)/i, 'internal display name is public; use Kite Testnet Proof'],
+    [/revenue direction|buyer edge|buyer-readable|potential client|private machinery|sell repeatable/i, 'sales-coded/internal packaging language is public'],
     [/route:\s*['"]\/dashboard-data\/[^'"]+\.json['"]/i, 'reader route points directly to raw dashboard JSON'],
   ]);
 }

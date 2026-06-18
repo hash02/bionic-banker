@@ -20,7 +20,7 @@ const requiredSource = [
   [walletRisk, 'Public addresses can improve the AML learning layer', 'wallet-risk AML connection'],
   [walletRisk, 'No wallet control, no private identity claim, no compliance verdict, and no copy-trading instruction', 'wallet-risk public limit'],
   [aml, 'Public blockchain watching belongs here only as source context', 'AML source-context section'],
-  [aml, 'No accusation, no KYC approval, no filing, no wallet control, no Pancake unfreeze', 'AML blocked boundary'],
+  [aml, 'No accusation, no KYC approval, no filing, no wallet control, no third-party account actions', 'AML blocked boundary'],
 ];
 
 for (const [text, phrase, label] of requiredSource) {
@@ -30,7 +30,7 @@ for (const [text, phrase, label] of requiredSource) {
 if (catalog.status !== 'public_wallet_watch_template_v4') fail('template status must be public_wallet_watch_template_v4');
 if (!catalog.report_fields?.some((field) => field.field === 'aml_review_question')) fail('template must include aml_review_question');
 if (!catalog.blocked_actions?.some((item) => /No trading advice/i.test(item))) fail('template must block trading advice');
-if (!catalog.blocked_actions?.some((item) => /Pancake/i.test(item))) fail('template must keep Pancake blocked');
+if (!catalog.blocked_actions?.some((item) => /third-party account actions/i.test(item))) fail('template must keep third-party account actions blocked');
 if (!catalog.allowed_actions?.some((item) => /public blockchain explorers/i.test(item))) fail('template must allow public explorer sources');
 if (!catalog.source_review_rule?.includes('source trail')) fail('template must include a source-review rule');
 if (!catalog.watchlist_review_queue?.some((item) => /Exchange hot wallet label/i.test(item.label))) fail('watchlist queue must include exchange hot wallet label source class');
@@ -45,7 +45,7 @@ if (!/Blockscout/i.test(report003.public_source || '')) fail('Report 003 must ci
 if (!/EthDev/i.test(report003.address_or_label || '')) fail('Report 003 must include the EthDev public label');
 if (!/contract-call \/ treasury-administration activity/i.test(report003.what_moved || '')) fail('Report 003 must record the movement category');
 if (!/source-category record, not a market signal/i.test(report003.what_moved || '')) fail('Report 003 must block market-signal interpretation');
-if (!/Pancake/i.test(report003.clear_limit || '')) fail('Report 003 must keep Pancake blocked');
+if (!/third-party account actions/i.test(report003.clear_limit || '')) fail('Report 003 must keep third-party account actions blocked');
 
 const forbidden = [
   /copy this trade/i,
@@ -63,4 +63,4 @@ for (const [label, text] of [['signals', signals], ['wallet-risk', walletRisk], 
   }
 }
 
-if (!process.exitCode) console.log('PUBLIC_WALLET_WATCH PASS — v4 template, report shelf, Report 003 source citation, AML connection, Pancake spelling, and safety boundaries are present.');
+if (!process.exitCode) console.log('PUBLIC_WALLET_WATCH PASS — v4 template, report shelf, Report 003 source citation, AML connection, third-party account actions spelling, and safety boundaries are present.');
