@@ -2322,9 +2322,22 @@ canvas { background: transparent; }
 }
 .article-body li::marker { color: #55d995; }
 @media (max-width: 760px) {
-  .article-page { padding: 0 1rem; }
-  .article-title { font-size: clamp(2rem, 10vw, 2.7rem); letter-spacing: -0.045em; }
-  .article-desc { font-size: 1rem; line-height: 1.55; }
+  .article-page { padding: 0 1rem; overflow-x: clip; }
+  .article-title {
+    font-size: clamp(1.86rem, 8.8vw, 2.42rem);
+    letter-spacing: -0.052em;
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    max-width: 100%;
+  }
+  .article-desc { font-size: 1rem; line-height: 1.55; overflow-wrap: anywhere; }
+  .article-meta-top { gap: 0.55rem; }
+  .article-category,
+  .article-page .article-date,
+  .article-read-time { font-size: 0.62rem; }
+  .article-page .article-tags { gap: 0.32rem; }
+  .article-page .tag { max-width: 100%; overflow-wrap: anywhere; }
   .article-body p { font-size: 1rem; line-height: 1.72; margin-bottom: 1.35rem; }
   .article-body h2 { margin-top: 2.4rem; font-size: 1.45rem; }
   .article-body .ladder-steps { grid-template-columns: 1fr; }
