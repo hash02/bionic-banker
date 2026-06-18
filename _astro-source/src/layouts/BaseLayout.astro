@@ -13,7 +13,7 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 const isHome = title === 'Home';
 const routeDepth = Astro.url.pathname === '/' ? 0 : Astro.url.pathname.split('/').filter(Boolean).length;
 const relativeAssetRoot = routeDepth === 0 ? './' : '../'.repeat(routeDepth);
-const globalCssVersion = 'green-theme-consistent-053955d';
+const globalCssVersion = 'mobile-article-overflow-8b71c42e';
 const hiddenPublicRoutes = [
   '/signals/', '/risk-evidence/', '/risk-evidence-overview/', '/ai-governance/', '/reports/',
   '/system-map/', '/start-here/', '/apps/', '/intelligence/', '/dashboard/',
