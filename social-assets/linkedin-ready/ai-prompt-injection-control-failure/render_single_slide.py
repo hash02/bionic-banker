@@ -1,184 +1,115 @@
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from pathlib import Path
-import math
+import math, hashlib
 
-W, H = 2160, 2700
-BG = '#020604'
-GREEN = '#2ef29a'
-GREEN_SOFT = '#77ffc0'
-RED = '#ff5c7a'
-WHITE = '#f4fff9'
-MUTED = '#b9d7c8'
-GRID = '#0d4a31'
+W,H=2160,2700
+BG='#020604'; GREEN='#2ef29a'; SOFT='#77ffc0'; RED='#ff5c7a'; WHITE='#f4fff9'; MUTED='#cfe7d9'
+img=Image.new('RGB',(W,H),BG)
+d=ImageDraw.Draw(img)
 
-img = Image.new('RGB', (W, H), BG)
-d = ImageDraw.Draw(img)
+def font(size,bold=False,mono=False):
+    if mono: p='/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'
+    else: p='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' if bold else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+    return ImageFont.truetype(p,size)
 
+F_k=font(34,True,True); F_brand=font(28,False,True); F_title=font(142,True); F_sub=font(52)
+F_label=font(26,True,True); F_ct=font(54,True); F_cb=font(34); F_num=font(34,True); F_strip=font(48,True); F_item=font(36,True); F_url=font(42,False,True); F_take=font(56,True); F_foot=font(26,False,True)
 
-def font(size, bold=False, mono=False):
-    if mono:
-        p = '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'
-    else:
-        p = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' if bold else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
-    return ImageFont.truetype(p, size)
+# background grid
+for x in range(0,W,180): d.line((x,0,x,H),fill='#0b3d28',width=2)
+for y in range(0,H,180): d.line((0,y,W,y),fill='#0b3d28',width=2)
+for x in range(0,W,60): d.line((x,0,x,H),fill='#052417',width=1)
+for y in range(0,H,60): d.line((0,y,W,y),fill='#052417',width=1)
+# glows
+for cx,cy,col in [(230,120,(46,242,154)),(1960,620,(255,92,122)),(1060,1500,(46,242,154))]:
+    for r,a in [(850,18),(560,24),(320,28)]:
+        ov=Image.new('RGBA',(W,H),(0,0,0,0)); od=ImageDraw.Draw(ov)
+        od.ellipse((cx-r,cy-r,cx+r,cy+r),fill=(*col,a))
+        img=Image.alpha_composite(img.convert('RGBA'),ov).convert('RGB'); d=ImageDraw.Draw(img)
 
-
-F_kicker = font(34, mono=True)
-F_brand = font(28, mono=True)
-F_title = font(120, True)
-F_sub = font(50)
-F_label = font(30, mono=True)
-F_card_title = font(54, True)
-F_card_body = font(38)
-F_context_title = font(54, True)
-F_context_body = font(40)
-F_gate_title = font(32, True)
-F_gate_body = font(31)
-F_take = font(52, True)
-F_url = font(42, mono=True)
-
-# Background grid: finer + low-contrast, with stronger safe margins.
-for x in range(0, W, 180):
-    d.line((x, 0, x, H), fill=GRID, width=2)
-for y in range(0, H, 180):
-    d.line((0, y, W, y), fill=GRID, width=2)
-for x in range(0, W, 90):
-    d.line((x, 0, x, H), fill='#062417', width=1)
-for y in range(0, H, 90):
-    d.line((0, y, W, y), fill='#062417', width=1)
-
-# Atmospheric glow + subtle arc shape.
-for r, alpha in [(950, 18), (680, 24), (440, 30)]:
-    overlay = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-    od = ImageDraw.Draw(overlay)
-    od.ellipse((120-r, 40-r, 120+r, 40+r), fill=(31, 160, 104, alpha))
-    img = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
-
-d = ImageDraw.Draw(img)
-
-
-def tw(text, f):
-    box = d.textbbox((0, 0), text, font=f)
-    return box[2] - box[0]
-
-
-def wrap(text, f, maxw):
-    words = text.split()
-    lines, cur = [], ''
-    for w in words:
-        test = (cur + ' ' + w).strip()
-        if tw(test, f) <= maxw:
-            cur = test
+def tw(text,f):
+    b=d.textbbox((0,0),text,font=f); return b[2]-b[0]
+def wrap(text,f,maxw):
+    out=[]; cur=''
+    for w in text.split():
+        t=(cur+' '+w).strip()
+        if tw(t,f)<=maxw: cur=t
         else:
-            if cur:
-                lines.append(cur)
-            cur = w
-    if cur:
-        lines.append(cur)
-    return lines
-
-
-def tb(x, y, text, f, fill, maxw, leading=1.18):
-    for line in wrap(text, f, maxw):
-        d.text((x, y), line, font=f, fill=fill)
-        y += int(f.size * leading)
+            if cur: out.append(cur)
+            cur=w
+    if cur: out.append(cur)
+    return out
+def tb(x,y,text,f,fill,maxw,leading=1.18):
+    for line in wrap(text,f,maxw):
+        d.text((x,y),line,font=f,fill=fill)
+        y+=int(f.size*leading)
     return y
+def glow_rect(xy,fill,outline,width=5,r=42,glow=(46,242,154,60)):
+    ov=Image.new('RGBA',(W,H),(0,0,0,0)); od=ImageDraw.Draw(ov)
+    od.rounded_rectangle(xy,radius=r,outline=glow,width=16)
+    ov=ov.filter(ImageFilter.GaussianBlur(12))
+    global img,d
+    img=Image.alpha_composite(img.convert('RGBA'),ov).convert('RGB'); d=ImageDraw.Draw(img)
+    d.rounded_rectangle(xy,radius=r,fill=fill,outline=outline,width=width)
+def arrow(x1,y1,x2,y2,color):
+    d.line((x1,y1,x2,y2),fill=color,width=10)
+    ang=math.atan2(y2-y1,x2-x1); L=40
+    d.polygon([(x2,y2),(x2-L*math.cos(ang-math.pi/7),y2-L*math.sin(ang-math.pi/7)),(x2-L*math.cos(ang+math.pi/7),y2-L*math.sin(ang+math.pi/7))],fill=color)
 
+L=150; R=2010
+# header
+d.text((L,135),'PROMPT INJECTION',font=F_k,fill=GREEN)
+d.text((1445,142),'BIONIC BANKER / AI SECURITY',font=F_brand,fill='#9ebdab')
+# title
+for i,line in enumerate(['AI can be hacked','through instructions.']):
+    d.text((L,235+i*146),line,font=F_title,fill=WHITE if i==0 else GREEN)
+tb(L,550,'The real risk is not a clever phrase. It is untrusted text crossing into trusted instruction, tool, or approval space.',F_sub,MUTED,1740,1.14)
 
-def glow_round(xy, fill, outline, width=4, radius=44, glow=None):
-    if glow:
-        layer = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-        ld = ImageDraw.Draw(layer)
-        ld.rounded_rectangle(xy, radius=radius, outline=glow, width=10)
-        blurred = layer.filter(ImageFilter.GaussianBlur(10))
-        global img, d
-        img = Image.alpha_composite(img.convert('RGBA'), blurred).convert('RGB')
-        d = ImageDraw.Draw(img)
-    d.rounded_rectangle(xy, radius=radius, fill=fill, outline=outline, width=width)
-
-
-def arrow(x1, y1, x2, y2, color, width=10):
-    d.line((x1, y1, x2, y2), fill=color, width=width)
-    ang = math.atan2(y2 - y1, x2 - x1)
-    L = 40
-    d.polygon([
-        (x2, y2),
-        (x2 - L * math.cos(ang - math.pi / 7), y2 - L * math.sin(ang - math.pi / 7)),
-        (x2 - L * math.cos(ang + math.pi / 7), y2 - L * math.sin(ang + math.pi / 7)),
-    ], fill=color)
-
-
-# Header
-left, right = 150, 2010
-d.text((left, 145), 'PROMPT INJECTION', font=F_kicker, fill=GREEN)
-d.text((1470, 150), 'BIONIC BANKER / AI SECURITY', font=F_brand, fill='#9ebdab')
-
-# Title block: slightly tighter, more intentional, more breathing above diagram.
-y = 230
-for line in ['AI can be hacked', 'through instructions.']:
-    d.text((left, y), line, font=F_title, fill=WHITE)
-    y += 126
-
-tb(left, 515, 'The risk is untrusted text crossing into trusted instruction, tool, or approval space.', F_sub, '#cfe7d9', 1660, 1.15)
-
-# Diagram layout: bigger cards, cleaner alignment, no cramped gate text.
-trusted = (150, 760, 805, 1125)
-untrusted = (150, 1360, 805, 1760)
-context = (930, 1015, 1545, 1515)
-gates = (1640, 760, 2025, 1760)
-
-glow_round(trusted, '#062014', GREEN, 5, 36, (46, 242, 154, 72))
-glow_round(untrusted, '#21070d', RED, 5, 36, (255, 92, 122, 58))
-glow_round(context, '#06160f', GREEN_SOFT, 6, 38, (119, 255, 192, 64))
-glow_round(gates, '#06160f', GREEN, 5, 36, (46, 242, 154, 54))
-
-# Card text positions improved: labels up, body has bigger line length.
-d.text((205, 825), 'TRUSTED', font=F_label, fill=GREEN)
-d.text((205, 898), 'System rules', font=F_card_title, fill=WHITE)
-tb(205, 985, 'Policy, role, tool limits, approvals.', F_card_body, '#d5efe2', 520, 1.16)
-
-d.text((205, 1428), 'UNTRUSTED', font=F_label, fill='#ff7890')
-d.text((205, 1502), 'Hidden instruction', font=F_card_title, fill='#fff4f6')
-tb(205, 1594, 'Email, PDF, web page, retrieved note, tool result.', F_card_body, '#ffd6dd', 520, 1.16)
-
-d.text((995, 1085), 'MODEL CONTEXT', font=F_label, fill=GREEN_SOFT)
-d.text((995, 1180), 'What the AI sees', font=F_context_title, fill=WHITE)
-tb(995, 1282, 'The model needs a boundary between evidence and commands.', F_context_body, '#d5efe2', 455, 1.13)
-
-# Control gates: more vertical rhythm; no tiny words jammed against border.
-d.text((1695, 835), 'CONTROL GATES', font=F_label, fill=GREEN)
-gates_text = [
-    ('1', 'Label source', 'Data is not instruction.'),
-    ('2', 'Restrict tools', 'No secret or action by default.'),
-    ('3', 'Log review', 'Request, source, tool, outcome.'),
+# central compact rail — no cramped right panel
+cards=[
+    ('01 / UNTRUSTED','Outside content','Email, PDF, web page, retrieved note, browser text, or tool result.','#21070d',RED,'#ffd6dd'),
+    ('02 / MODEL','Context window','The AI reads evidence and instructions in the same place unless the system separates them.','#062014',GREEN,'#d5efe2'),
+    ('03 / GATES','Control layer','Label source, restrict tools, require approval, and keep an audit log.','#06160f',SOFT,'#d5efe2'),
+    ('04 / ACTION','Safe output','Answer, summarize, draft, or escalate without leaking secrets or taking hidden actions.','#062014',GREEN,'#d5efe2'),
 ]
-y = 970
-for n, title, body in gates_text:
-    d.ellipse((1695, y, 1778, y + 83), fill=GREEN)
-    d.text((1722, y + 14), n, font=font(42, True), fill='#031008')
-    d.text((1795, y + 6), title, font=F_gate_title, fill='#eafff4')
-    tb(1795, y + 62, body, F_gate_body, MUTED, 185, 1.08)
-    y += 252
+y0=790; cardw=428; gap=44; cardh=510
+xs=[L+i*(cardw+gap) for i in range(4)]
+for idx,(lab,title,body,fill,outline,bodyfill) in enumerate(cards):
+    x=xs[idx]
+    glow=(255,92,122,58) if idx==0 else (46,242,154,58)
+    glow_rect((x,y0,x+cardw,y0+cardh),fill,outline,5,44,glow)
+    # number badge
+    d.rounded_rectangle((x+28,y0+28,x+98,y0+98),radius=20,fill=outline)
+    d.text((x+47,y0+45),str(idx+1),font=F_num,fill='#031008')
+    d.text((x+116,y0+45),lab,font=F_label,fill=outline if idx!=0 else '#ff7890')
+    tb(x+32,y0+145,title,F_ct,WHITE,cardw-64,1.05)
+    tb(x+32,y0+265,body,F_cb,bodyfill,cardw-70,1.18)
+# arrows between cards, centered
+for i,c in enumerate([GREEN,GREEN,GREEN]):
+    arrow(xs[i]+cardw+8,y0+255,xs[i+1]-10,y0+255,c)
 
-# Arrows drawn after cards for crisp heads, aligned to centers.
-arrow(805, 935, 930, 1180, GREEN)
-arrow(805, 1560, 930, 1390, RED)
-arrow(1545, 1265, 1640, 1265, GREEN)
+# knowledge strip
+strip=(L,1390,R,1810)
+glow_rect(strip,'#031008','#1d8f5b',4,42,(46,242,154,42))
+d.text((L+42,1435),'WHAT NORMAL USERS SHOULD KNOW',font=F_label,fill=GREEN)
+tb(L+42,1500,'Do not paste secrets into a system that cannot show what it trusted.',F_strip,WHITE,800,1.1)
+items=[('1','Treat outside text as data, not authority.'),('2','Keep passwords, keys, IDs, and private files out.'),('3','Never let an AI spend, send, approve, or delete by default.')]
+ix=1125; iy=1458
+for n,t in items:
+    d.ellipse((ix,iy,ix+58,iy+58),fill=GREEN)
+    d.text((ix+19,iy+11),n,font=font(28,True),fill='#031008')
+    tb(ix+82,iy+1,t,F_item,'#eafff4',720,1.08)
+    iy+=108
 
-# Add subtle labels near arrows so the concept is readable at phone size.
-d.text((835, 880), 'rules', font=font(26, mono=True), fill='#7cfac4')
-d.text((830, 1602), 'payload', font=font(26, mono=True), fill='#ff8aa0')
-d.text((1568, 1214), 'gate', font=font(26, mono=True), fill='#7cfac4')
+# takeaway panel: fills the bottom intentionally instead of leaving dead grid space
+take=(L,1950,R,2365)
+glow_rect(take,'#031008','#166b47',4,42,(46,242,154,34))
+d.text((L+42,2028),'bionicbanker.tech',font=F_url,fill=GREEN)
+tb(720,2000,'If you cannot trace what the AI saw, trusted, called, and approved, do not trust it with sensitive work.',F_take,WHITE,1210,1.12)
+d.line((L,2468,R,2468),fill='#0f5135',width=2)
+d.text((L,2525),'CONTROL MAP / DEFENSIVE AI SECURITY LITERACY',font=F_foot,fill='#628f79')
 
-# Footer: move up and widen text; remove huge dead lower third.
-d.line((left, 2200, right, 2200), fill='#1c6b47', width=2)
-d.text((left, 2278), 'bionicbanker.tech', font=F_url, fill=GREEN)
-tb(720, 2258, 'If you cannot trace what the AI saw, trusted, called, and approved, do not trust it with sensitive work.', F_take, WHITE, 1220, 1.12)
-
-# Thin bottom rule to make crop feel intentional.
-d.line((left, 2525, right, 2525), fill='#0f5135', width=2)
-d.text((left, 2575), 'CONTROL MAP / DEFENSIVE AI SECURITY LITERACY', font=font(28, mono=True), fill='#628f79')
-
-out = Path('/home/hash/bionic-banker/social-assets/linkedin-ready/ai-prompt-injection-control-failure/prompt-injection-single-slide.png')
-img.save(out, quality=98, subsampling=0)
-print(out, img.size)
+# save
+out=Path('/home/hash/bionic-banker/social-assets/linkedin-ready/ai-prompt-injection-control-failure/prompt-injection-single-slide.png')
+img.save(out,quality=98,subsampling=0)
+print(out,img.size,out.stat().st_size,hashlib.sha256(out.read_bytes()).hexdigest())
