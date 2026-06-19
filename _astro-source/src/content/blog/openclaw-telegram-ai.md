@@ -47,7 +47,7 @@ Why markdown? Because it's human-readable. You can version it. You can edit it. 
 
 **Layer 4: Skills.** These are the actions your AI can take. Message you. Set a reminder. Query a database. Fetch data from the web. Run a Python script. Execute a trade (okay, don't do that without thinking hard first). Skills are hot-reloadable,you can add new ones without restarting the whole system. They're functions written in a language the agent understands (JavaScript, Python, whatever). And they're modular. Each skill does one thing.
 
-**Layer 5: The Heartbeat.** This is the scheduler. Your AI doesn't just wait for you to message it. It runs scheduled tasks. Check your email every morning. Scan the markets at market open. Generate a summary of yesterday. Remind you of something you asked to be reminded of. The heartbeat keeps the system alive even when you're not paying attention.
+**Layer 5: The Heartbeat.** This is the scheduler. Your AI doesn't just wait for you to message it. It runs scheduled tasks. Check your email every morning. Scan the markets at market open. Generate a summary of yesterday. Remind you of something a user asked to be reminded of. The heartbeat keeps the system alive even when you're not paying attention.
 
 These five pieces talking to each other,gateway, brain, memory, skills, heartbeat,that's what makes it a companion instead of a chatbot.
 
