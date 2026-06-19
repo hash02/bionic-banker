@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-05-24T06:14:25Z",
   "status": "public_aml_status_record_v2",
-  "purpose": "Public-safe AML status record. It explains what was checked, what the source trail proves, and what authority the system still does not have without exposing private code locations or local record locations.",
+  "purpose": "AML status record. It explains what was checked, what the source trail proves, and what authority the system still does not have without exposing code locations or local record locations.",
   "privacy_boundary": "Public summaries only. No local machine paths, private module locations, raw commands, secrets, private infrastructure, account-level details, employer data, or client data.",
   "reading_rule": "Every visible claim should resolve to a contract doc, test evidence record, record contract, or explicit boundary.",
   "visible_claims": [
@@ -48,7 +48,7 @@
   },
   "next_steps": [
     "Keep public AML records summary-first and raw-command-free.",
-    "Keep private checksums and detailed records local unless a redacted public summary is prepared.",
+    "Keep detailed records out of the reader-facing summary unless a redacted version is prepared.",
     "Review new status records for private locations, instruction text, account data, and operational internals before publishing."
   ]
 }

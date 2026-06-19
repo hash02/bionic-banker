@@ -44,7 +44,7 @@ I didn't plan this as a six-layer system. It emerged. Each layer solved a specif
 
 **Layer 2: Scripted.** Here's where it gets interesting. Instead of scripts, you build skills: repeatable workflows that encode not just the commands but the sequence, the edge cases, the "don't forget to also do this" steps. Publish a blog post becomes: create HTML, add meta tags, generate infographics, update article index, queue deployment. One trigger, full sequence.
 
-**Layer 3: Scheduled.** The system runs itself on a clock. Health checks every Sunday. Staleness detection daily. You stop needing to remember to check things. The folder checks itself and tells you what's wrong. This is where most people stop. Cron jobs, GitHub Actions, done. Ship it.
+**Layer 3: Scheduled.** The system checks itself on a clock. Health checks and staleness detection reduce manual babysitting. The folder reports what needs attention. This is where most people stop. Cron jobs, GitHub Actions, done. Ship it.
 
 **Layer 4: Reactive.** Now the folder has a nervous system. Events happen, the right response fires automatically. Someone pushes code, content audit runs. Health check fails, event gets routed to the right handler, self-healing kicks in for known issues. This is real-time responsiveness, not clock-based checking.
 

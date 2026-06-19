@@ -19,7 +19,7 @@
     update();
   })();
   </script>  <article class="article-page" data-astro-cid-zm77yjld> <div class="article-hero" data-astro-cid-zm77yjld> <div class="article-meta-top" data-astro-cid-zm77yjld> <span class="article-category" data-astro-cid-zm77yjld>Tech</span> <span class="article-date" data-astro-cid-zm77yjld>March 16, 2026</span> <span class="article-read-time" data-astro-cid-zm77yjld>6 min read</span> </div> <h1 class="article-title" data-astro-cid-zm77yjld>Claude Max as a Local Agent Cost Lesson</h1> <p class="article-desc" data-astro-cid-zm77yjld>A public-safe record about why local agent adapters need cost controls, redaction rules, and clear boundaries instead of raw proxy code.</p> <div class="article-tags" data-astro-cid-zm77yjld> <span class="tag" data-astro-cid-zm77yjld>AI · Economics · Systems</span> </div>  </div> <nav id="article-toc" class="article-toc" aria-label="In this article" data-astro-cid-zm77yjld></nav> <div class="article-body" data-astro-cid-zm77yjld>  <p>A note about local agent economics used to be a code-heavy proxy walkthrough. That was the wrong public shape for Bionic Banker.</p>
-<p>The useful lesson is not the private implementation. The useful lesson is the control pattern: when a local tool is wrapped for agent use, the public record should explain cost, routing, failure modes, and boundaries without publishing the adapter code, local ports, prompt plumbing, or credential assumptions.</p>
+<p>The useful lesson is the control pattern: when a tool is wrapped for agent use, the record should explain cost, routing, failure modes, and boundaries without publishing the adapter code, local ports, prompt plumbing, or credential assumptions.</p>
 <h2 id="what-the-original-experiment-proved">What the original experiment proved</h2>
 <p>The experiment started with a simple pressure: API testing gets expensive when agents make many small calls. A flat subscription can make experimentation feel cheaper, but a cheap path still needs rules.</p>
 <p>The important questions are:</p>
@@ -33,7 +33,7 @@
 </ul>
 <p>Those questions matter more than a copy-paste server snippet.</p>
 <h2 id="why-raw-proxy-code-does-not-belong-here">Why raw proxy code does not belong here</h2>
-<p>A public website can show architecture. It should not casually publish operational glue that includes local endpoint shapes, subprocess behavior, prompt routing, fallback mechanics, or credential assumptions.</p>
+<p>A reader-facing architecture note can explain the control pattern without publishing endpoint shapes, subprocess behavior, prompt routing, fallback mechanics, or credential assumptions.</p>
 <p>Even when no secret value is present, raw integration code can teach the wrong thing. It can reveal the shape of a private test harness. It can make a public page feel like a repository dump. It can invite a reader to focus on implementation tricks instead of the system record.</p>
 <p>For Bionic Banker, the safer public pattern is:</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>problem -> control rule -> source record -> clear limit -> next human question</span></span></code></pre>
@@ -56,7 +56,7 @@
 <li>the difference between prototype and reliable system</li>
 <li>the kinds of checks a wrapper needs</li>
 <li>a diagram of request, policy, and response boundaries</li>
-<li>a statement that credentials, prompts, local paths, and raw logs stay private</li>
+<li>a statement that credentials, prompts, local paths, and raw logs are not part of the published record</li>
 </ul>
 <p>A public page should not show:</p>
 <ul>

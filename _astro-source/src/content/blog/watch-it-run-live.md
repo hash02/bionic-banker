@@ -45,7 +45,7 @@ Six workers. Same four rules. Different strategies. Grid versus momentum versus 
 
 The part nobody builds and everybody should is the layer that watches the watcher.
 
-Mine is called the nursery. Four cron jobs on the server, running every hour, doing one thing each.
+The demo uses a nursery model: four scheduled checks, each with one narrow responsibility.
 
 - **Blind spot drift** checks that every status file is fresh. If a worker has not heartbeat in three hours, that is a flag. If a fund has sleeves claiming to be funded but no live positions underneath, that is a flag. If the hermes brain itself goes silent, that is a flag.
 - **Health** checks disk, cron integrity, log rotation, and the message queue depth.

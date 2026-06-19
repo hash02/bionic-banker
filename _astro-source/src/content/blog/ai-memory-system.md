@@ -11,7 +11,7 @@ slug: "ai-memory-system"
 
 A five-layer AI memory architecture built in markdown files, with an immune system instead of a database, tested across 30 days of multi-agent work. The problem is not retrieval. The problem is continuity across context resets.
 
-Okay so here's where this started. I had a multi-agent system running. Automated jobs, notification pipelines, a RAG layer, the whole thing. And every time I opened a new Claude session to work on the system, it was like talking to someone with amnesia. Same agent, same files, same projects, but zero memory of what we'd done 30 minutes ago.
+Okay so here's where this started. A useful AI system needs memory across sessions. Without it, every new work session starts cold: talking to someone with amnesia. Same agent, same files, same projects, but zero memory of what we'd done 30 minutes ago.
 
       
 The context window resets. Everyone knows this. But knowing it and *feeling* it when your agent asks you what the AML engine version is for the fifth time, those are different things.
@@ -72,7 +72,7 @@ Layer three is current state memory. This is what was happening at the end of th
 
 I keep this in a session log file. Short entries. Timestamp and a few sentences about where things were left. The agent reads this on startup and knows where to pick up.
 
-Layer four is working knowledge. This is the accumulated understanding of the project. Architecture decisions, component descriptions, what each file does, what each agent's job is. Not facts in a database. A living document that gets updated as the system changes.
+Layer four is working knowledge: architecture decisions, component descriptions, and project context. Not just facts in a database. A living document that gets updated as the system changes.
 
 This is the layer that most resembles a wiki. It goes stale if it is not maintained. I update it when something significant changes, not after every session.
 

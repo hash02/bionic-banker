@@ -26,7 +26,7 @@ const proofCards = [
   {
     label: 'Source trail',
     title: 'The record shape comes before the public claim.',
-    body: 'Private records keep timestamped snapshots and checksum sidecars; the public page shows only the summary needed to understand the status.',
+    body: 'Timestamped snapshots and checksum sidecars support the record; this page shows only the summary needed to understand the status.',
     source: provenance.local_artifact_pattern,
   },
 ];
@@ -57,7 +57,7 @@ const proofCards = [
 
     <DataRepresentationCard
       signal="An AML-related status is only useful when the checked rule, source trail, and action boundary are visible together."
-      source="A redacted public status record, source summary, check categories, and explicit outside-action refusal."
+      source="A redacted reader status record, source summary, check categories, and explicit outside-action refusal."
       record="A status snapshot with visible claims, freshness checks, source references, and explicit outside-action refusal."
       missing="Private logs, customer data, employer data, confidential policy, and any real filing or approval context."
       nextQuestion="Which missing field would a human need before treating the status as operationally meaningful?"
@@ -78,7 +78,7 @@ const proofCards = [
     <section class="proof-panel split-panel">
       <div>
         <span class="eyebrow">What is visible</span>
-        <h2>Public-safe claims</h2>
+        <h2>Reader-safe claims</h2>
         <ul class="proof-list">
           {claims.map((claim) => <li>{claim}</li>)}
         </ul>
@@ -115,7 +115,7 @@ const proofCards = [
       <div class="panel-head">
         <span>Source trail</span>
         <h2>The record has a source trail. It is not just a claim.</h2>
-        <p>Readers can see the public source summary. Private modules, raw commands, local paths, and operational internals stay off the public site.</p>
+        <p>Readers can see the source summary. Raw commands, local paths, and operational internals are not part of the reader-facing page.</p>
       </div>
       <div class="provenance-grid">
         <article>
@@ -141,7 +141,7 @@ const proofCards = [
       <div class="panel-head">
         <span>Verification records</span>
         <h2>What was checked locally</h2>
-        <p>The public page records check categories and results. Raw commands, private paths, and internal module names stay out of the reader-facing page.</p>
+        <p>The page records check categories and results. Raw commands, private paths, and module internals stay out of the reader-facing page.</p>
       </div>
       <div class="check-list">
         {checks.map((check) => (

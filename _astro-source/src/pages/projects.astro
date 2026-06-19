@@ -151,7 +151,7 @@ const projects = [
     input: 'AI output + source trail + exception context',
     output: 'Reviewer queue item + decision reason + audit note',
     boundary: 'Review interface only. It does not approve, deny, escalate, file, or execute regulated actions.',
-    primary: { label: 'Open AI Intelligence', href: '/ai-intelligence/#packaging-backlog' },
+    primary: { label: 'Open AI Intelligence', href: '/ai-intelligence/#next-project-surfaces' },
     links: [
       { label: 'Authority governance article', href: '/blog/agentic-ai-authority-governance-finance/' },
       { label: 'Prompt injection control article', href: '/blog/ai-prompt-injection-control-failure/' },
@@ -164,11 +164,40 @@ const projects = [
     oneLine: 'Turns a public claim into a compact packet: source, claim, boundary, artifact, and reviewer action.',
     input: 'Public claim + source links + artifact',
     output: 'Evidence packet + reusable checklist + publishing boundary',
-    boundary: 'Packaging workflow only. It does not guarantee truth, certify compliance, or replace expert review.',
-    primary: { label: 'Open AI Intelligence', href: '/ai-intelligence/#packaging-backlog' },
+    boundary: 'Evidence workflow only. It does not guarantee truth, certify compliance, or replace expert review.',
+    primary: { label: 'Open AI Intelligence', href: '/ai-intelligence/#next-project-surfaces' },
     links: [
       { label: 'Evidence article', href: '/blog/ai-content-fails-when-it-has-nothing-to-prove/' },
       { label: 'Hallucination checklist', href: '/blog/ai-hallucination-evidence-checklist-finance/' },
+    ],
+  },
+
+  {
+    label: 'Project 13',
+    name: 'AI Claim Boundary Mapper',
+    status: 'feature concept',
+    oneLine: 'Turns an AI or finance claim into a source trail, confidence note, missing-evidence list, and reader-safe boundary.',
+    input: 'Claim + source links + intended use',
+    output: 'Claim map + evidence gaps + review action',
+    boundary: 'Analysis aid only. It does not certify truth, approve compliance, or replace expert judgment.',
+    primary: { label: 'Open related article', href: '/blog/ai-hallucination-evidence-checklist-finance/' },
+    links: [
+      { label: 'Prompt injection controls', href: '/blog/ai-prompt-injection-control-failure/' },
+      { label: 'Consensus limits', href: '/blog/consensus-is-not-truth/' },
+    ],
+  },
+  {
+    label: 'Project 14',
+    name: 'Source-to-Decision Control Map',
+    status: 'feature concept',
+    oneLine: 'Shows the path from public source, model output, validation check, human review, and final decision boundary.',
+    input: 'Source note + model output + review question',
+    output: 'Control map + decision boundary + next review step',
+    boundary: 'Mapping surface only. It does not automate approvals, filings, payments, trades, or customer actions.',
+    primary: { label: 'Open governance article', href: '/blog/agentic-ai-authority-governance-finance/' },
+    links: [
+      { label: 'AI governance page', href: '/ai-governance/' },
+      { label: 'Human-in-loop tutorial', href: '/blog/human-in-loop-agent-payments/' },
     ],
   },
 ];
@@ -211,7 +240,7 @@ const projectPrinciples = [
       </p>
     </section>
 
-    <section class="project-grid" aria-label="Packaged Bionic projects">
+    <section class="project-grid" aria-label="Bionic projects">
       {projects.map((project) => (
         <article class="project-card">
           <div class="project-topline">

@@ -71,7 +71,7 @@ Fix that came late: never compress the source of truth. Keep both the full versi
 
 ### Death by silent failure
 
-An early version of the content collector ran a daily 6am cron. One morning the script hit a dependency error, logged it to a file, and exited. The cron kept firing. Every day it logged the same error. Every day nothing got collected. I noticed six days later when the dashboard looked stale.
+An early automation check ran on a schedule. One morning the script hit a dependency error, logged it, and exited. The schedule kept firing. Every day it logged the same error. Every day nothing got collected. I noticed six days later when the dashboard looked stale.
 
 Fix that came late: if I cannot see it, it does not exist. Every long-running agent needs a visibility layer. Not just a log file. A dashboard line, a heartbeat timestamp, a message in the morning, something that actively shows up in my day and tells me the truth.
 
@@ -101,7 +101,7 @@ Fix that came late: one job per agent, and the name encodes the specific job, no
 
 ### Death by cost explosion
 
-A paid-API agent ran in a retry loop for three days because one upstream service was throwing a flaky 503. The retry logic was correct in the narrow sense. It was catastrophic in the wide sense. Four hundred dollars of API spend for zero output.
+A paid-API workflow ran in a retry loop for three days because one upstream service was throwing a flaky 503. The retry logic was correct in the narrow sense and wrong in the wide sense. The useful lesson was cost caps, alerts, and kill switches. API spend for zero output.
 
 Fix that came late: every paid-API agent gets a daily spend cap, enforced at the code level, not the wishful-thinking level. And for anything that does not genuinely need a paid model, the free-tier local runtime wins by default. Most of the agents now hit a local model first. The point is the cap: paid routes need explicit limits, and local routes should be the default when quality is good enough.
 
@@ -131,7 +131,7 @@ For heavier reasoning I use a paid model route with a strict budget. For fallbac
 
 **Named roles in the crew.** One custom Python orchestrator handles paper-mode portfolio state. One research worker reads public sources. One small coding-agent pattern is used for study. The AML engine and content pipeline are custom Python. The security-testing node remains experimental and separated from the main system.
 
-**Coding agents I drive, and how they differ.** I use Claude Code for one kind of work, Hermes Agent for local tool use and scheduled runs, and open coding agents such as OpenHands for another kind of test. Each one has a different kind of friction. Claude Code is sharp but narrow. Hermes Agent is useful when the job needs local files, tools, schedules, and messaging in the same operating layer. OpenHands makes you feel more of the raw edge. The honest answer is I use multiple tools, and when one is giving me a bad day I try the same problem on another and see if the rhythm comes back.
+**Coding agents and how they differ.** Different coding agents are useful for different work: code edits, local tool use, scheduled checks, and sandbox tests. Each one has a different kind of friction. Claude Code is sharp but narrow. Hermes Agent is useful when the job needs local files, tools, schedules, and messaging in the same operating layer. OpenHands makes you feel more of the raw edge. The honest answer is I use multiple tools, and when one is giving me a bad day I try the same problem on another and see if the rhythm comes back.
 
 **Memory and knowledge layer.** Obsidian holds every session transcript and every note, with a graph view that lets me find things I half-remember. Notion holds the project board, the career log, and the investigation databases. A single SQLite file holds the message queue that lets all the agents talk to each other. I have tried fancier stacks. This one keeps working.
 
@@ -147,7 +147,7 @@ Here is what the living have that the dead ones did not.
 
 **A recovery runbook written before the agent shipped.** Five-minute restart from any failure mode. I can follow it half asleep. I have.
 
-**Self-heal cron.** If the service dies, a cron job restarts it within the hour. Not because the code was right. Because I assumed the code was wrong and planned for the restart.
+**Recovery path.** If a service dies, a recovery path should restore it or alert a person. Not because the code is perfect. Because production reality is not perfect.
 
 **External ground truth.** No agent is allowed to validate its own output. The AML engine checks itself against a public sanctions list. The trading orchestrator checks itself against the actual on-chain portfolio. The content pipeline checks itself against the live article count on the public site. If the agent has no external validator, it does not go into production.
 

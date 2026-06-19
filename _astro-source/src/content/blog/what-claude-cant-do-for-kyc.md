@@ -251,7 +251,7 @@ The strongest institution will not be the one with the flashiest document extrac
 
 It will be the one that can connect identity, transaction behavior, human review, and audit records into one system that people inside the institution can actually trust.
 
-That is what I am trying to build toward.
+That is the useful direction: AI systems that prepare evidence, show limits, and leave regulated decisions to accountable people.
 
 Not the screen.
 

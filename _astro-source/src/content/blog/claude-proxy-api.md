@@ -11,7 +11,7 @@ slug: "claude-proxy-api"
 
 A note about local agent economics used to be a code-heavy proxy walkthrough. That was the wrong public shape for Bionic Banker.
 
-The useful lesson is not the private implementation. The useful lesson is the control pattern: when a local tool is wrapped for agent use, the public record should explain cost, routing, failure modes, and boundaries without publishing the adapter code, local ports, prompt plumbing, or credential assumptions.
+The useful lesson is the control pattern: when a tool is wrapped for agent use, the record should explain cost, routing, failure modes, and boundaries without publishing the adapter code, local ports, prompt plumbing, or credential assumptions.
 
 ## What the original experiment proved
 
@@ -30,7 +30,7 @@ Those questions matter more than a copy-paste server snippet.
 
 ## Why raw proxy code does not belong here
 
-A public website can show architecture. It should not casually publish operational glue that includes local endpoint shapes, subprocess behavior, prompt routing, fallback mechanics, or credential assumptions.
+A reader-facing architecture note can explain the control pattern without publishing endpoint shapes, subprocess behavior, prompt routing, fallback mechanics, or credential assumptions.
 
 Even when no secret value is present, raw integration code can teach the wrong thing. It can reveal the shape of a private test harness. It can make a public page feel like a repository dump. It can invite a reader to focus on implementation tricks instead of the system record.
 
@@ -66,7 +66,7 @@ A public page can show:
 - the difference between prototype and reliable system
 - the kinds of checks a wrapper needs
 - a diagram of request, policy, and response boundaries
-- a statement that credentials, prompts, local paths, and raw logs stay private
+- a statement that credentials, prompts, local paths, and raw logs are not part of the published record
 
 A public page should not show:
 
