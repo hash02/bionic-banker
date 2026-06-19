@@ -16,9 +16,9 @@ const signals = [
     text: 'Banking and enterprise teams are updating how they document models, vendors, prompts, data, approvals, and review trails. AI needs visible limits before it touches important workflows.',
   },
   {
-    label: 'Builder economy',
+    label: 'Builder systems',
     title: 'Small teams can now ship serious systems.',
-    text: 'The opportunity is to package useful demos, explain the boundary, and make the work easy to inspect. The best projects will feel simple outside and disciplined inside.',
+    text: 'Useful systems should be easy to inspect: what they take in, what they produce, where the limits are, and how a person reviews the output.',
   },
 ];
 
@@ -36,11 +36,11 @@ const publicQueue = [
   },
   {
     title: 'Human review before authority',
-    text: 'How to keep humans responsible for approvals while still using AI for research, drafts, checks, and triage.',
+    text: 'How to keep people responsible for approvals while using AI for research, checks, and triage support.',
   },
   {
-    title: 'Project packaging',
-    text: 'How to turn a code project into a simple demo: input, output, screenshot, limitation, and source link.',
+    title: 'Project features',
+    text: 'How a project works: input, output, feature, limitation, and source link.',
   },
 ];
 
@@ -49,8 +49,8 @@ const packagedWork = [
   {
     label: 'Proof project',
     title: 'Agent Framework Proof',
-    text: 'A recruiter-safe governed-agent demo with retrieval, tool calls, safety checks, queue state, trace records, role boundaries, and audit rows.',
-    proof: 'Existing repo package with README, demo pack, architecture card, data card, safety evaluation, and test suite.',
+    text: 'A governed-agent demo with retrieval, tool calls, safety checks, queue state, trace records, role boundaries, and audit rows.',
+    proof: 'README, demo pack, architecture card, data card, safety evaluation, and test suite.',
     boundary: 'Local proof only. No production customer decisions or external authority.',
     href: 'https://github.com/hash02/agent-framework-proof',
   },
@@ -66,15 +66,15 @@ const packagedWork = [
     label: 'Review kit',
     title: 'Technical AI Writing Review Kit',
     text: 'A reusable worksheet/checklist package for turning AI or finance writing into claim, source, boundary, artifact, and review evidence.',
-    proof: 'Existing pack includes worksheets, checklists, templates, an example audit, preview assets, and checksums.',
+    proof: 'Worksheets, checklists, templates, an example audit, preview assets, and checksums.',
     boundary: 'Evidence discipline only. It does not certify truth or replace subject-matter review.',
     href: '/blog/ai-content-fails-when-it-has-nothing-to-prove/',
   },
   {
-    label: 'Simulation draft',
+    label: 'Simulation model',
     title: 'Agent Agreement Arena',
     text: 'A board-style model for two agents proposing, challenging, and scoring bounded decisions while preserving an agreement record and review gate.',
-    proof: 'Derived from the existing Agent Chess board, payment-control writing, and agreement-record research notes.',
+    proof: 'Connects the Agent Chess board, payment-control writing, and agreement-record model.',
     boundary: 'Simulation and receipt layer only. No live trades, deposits, wallet custody, or autonomous financial action.',
     href: '/risk-evidence-overview/#agent-chess-showcase',
   },
@@ -95,35 +95,35 @@ const researchMaps = [
   },
   {
     title: 'AI-native publishing stack',
-    text: 'Source capture, content queues, SEO telemetry, social packaging, and public knowledge systems framed as ethical publishing infrastructure.',
+    text: 'Source capture, content systems, search telemetry, distribution formats, and public knowledge systems framed as ethical publishing infrastructure.',
   },
 ];
 
 
 const packagingBacklog = [
   {
-    title: 'Review queues are the missing interface for finance AI',
-    text: 'Existing draft package about making AI outputs reviewable before they become finance decisions.',
+    title: 'Review queues for finance AI',
+    text: 'A feature lane for making AI outputs reviewable before they become finance decisions.',
     output: 'Article, checklist, and one control-map visual.',
   },
   {
     title: 'Simulate before agents act',
-    text: 'Existing draft package about dry-runs, scoring rules, and human gates before any agent touches external systems.',
+    text: 'A feature lane for dry-runs, scoring rules, and human gates before any agent touches external systems.',
     output: 'Agent-governance explainer connected to the Agent Agreement Arena.',
   },
   {
     title: 'The evidence pack is the product',
-    text: 'Existing draft package that turns the site direction into a simple principle: source, boundary, proof, and reader trust.',
-    output: 'Umbrella essay for proof projects and project-packaging work.',
+    text: 'A feature lane for turning public claims into source, boundary, evidence, and reader trust.',
+    output: 'Guide for evidence-led AI and finance projects.',
   },
   {
     title: 'AI models for KYC workflows',
-    text: 'Existing AI Models brief that can become a sourced guide after provider/regulatory source verification.',
+    text: 'A sourced guide lane for comparing AI models in KYC and review workflows.',
     output: 'AI Models hub entry plus finance-control diagram.',
   },
   {
     title: 'AML red flags are context, not conclusions',
-    text: 'Existing draft/source-pack lane for red flags, review notes, and educational AML visuals.',
+    text: 'A source-led lane for AML red flags, review notes, and educational visuals.',
     output: 'Reference article or lead-magnet checklist with careful non-legal boundary.',
   },
 ];
@@ -140,9 +140,9 @@ const sources = [
   <main class="ai-intel-wrap">
     <section class="ai-intel-hero">
       <p class="eyebrow">AI Intelligence</p>
-      <h1>Public notes from the Bionic Banker AI desk.</h1>
+      <h1>AI systems, finance controls, and project notes.</h1>
       <p class="lede">
-        A read-only page for AI, finance, agents, model risk, and practical project ideas. Written by Himanshu with Bionic Banker AI assistance. Public notes only.
+        A read-only page for AI, finance, agents, model risk, and practical systems that make authority, evidence, and review easier to understand.
       </p>
       <div class="hero-actions">
         <a class="btn-primary" href="/projects/">Open Projects</a>
@@ -170,15 +170,15 @@ const sources = [
 
     <section class="two-col">
       <article class="simple-panel">
-        <p class="eyebrow">North star</p>
-        <h2>What this page is trying to help with.</h2>
+        <p class="eyebrow">What this covers</p>
+        <h2>AI work is useful when the output can be inspected.</h2>
         <ul>
           {northStar.map((item) => <li>{item}</li>)}
         </ul>
       </article>
       <article class="simple-panel">
-        <p class="eyebrow">Next public notes</p>
-        <h2>What Bionic Banker AI will watch.</h2>
+        <p class="eyebrow">Topics</p>
+        <h2>Areas this page connects.</h2>
         <div class="mini-list">
           {publicQueue.map((item) => (
             <div>
@@ -192,10 +192,10 @@ const sources = [
 
 
     <section id="packaged-work" class="simple-panel work-draft-panel">
-      <p class="eyebrow">Packaged work</p>
-      <h2>Existing projects being surfaced as public proof.</h2>
+      <p class="eyebrow">Project surfaces</p>
+      <h2>Projects with features, evidence, and boundaries.</h2>
       <p>
-        These are not new claims. They are existing artifacts arranged so a technical reviewer, collaborator, or hiring manager can see the work, the proof, and the boundary quickly.
+        Each surface shows what the project does, what it produces, and what decision it does not make.
       </p>
       <div class="work-grid" aria-label="Packaged Bionic work">
         {packagedWork.map((item) => (
@@ -212,8 +212,8 @@ const sources = [
     </section>
 
     <section id="work-drafts" class="simple-panel work-draft-panel">
-      <p class="eyebrow">Work drafts</p>
-      <h2>Agent Agreement Arena: a public-safe version of the chess-board idea.</h2>
+      <p class="eyebrow">System model</p>
+      <h2>Agent Agreement Arena: a chess-board model for AI decisions.</h2>
       <p>
         The chess-board idea is strongest when it stays as a review game, not a trading product. Two agents can make moves against a bounded objective, critique each other, commit to an agreement record, and produce a receipt. A human or deterministic scorer reviews the result before anything external happens.
       </p>
@@ -228,7 +228,7 @@ const sources = [
 
     <section id="research-maps" class="simple-panel work-draft-panel">
       <p class="eyebrow">Research maps</p>
-      <h2>What the archive proves without exposing the archive.</h2>
+      <h2>Research themes behind the work.</h2>
       <div class="research-grid">
         {researchMaps.map((item) => (
           <article>
@@ -241,10 +241,10 @@ const sources = [
 
 
     <section id="packaging-backlog" class="simple-panel work-draft-panel">
-      <p class="eyebrow">Packaging backlog</p>
-      <h2>Next existing drafts to turn into public surfaces.</h2>
+      <p class="eyebrow">Next project surfaces</p>
+      <h2>More useful project directions already represented in the work.</h2>
       <p>
-        This queue is a public-facing summary of work already found in the archive. Each item still needs source checks and a public-safety pass before becoming a standalone article or project page.
+        These topics will become standalone pages only when the source trail, feature, and boundary are clear.
       </p>
       <div class="backlog-list">
         {packagingBacklog.map((item) => (
@@ -258,9 +258,9 @@ const sources = [
     </section>
 
     <section class="simple-panel source-panel">
-      <p class="eyebrow">Source watch</p>
-      <h2>Outside signals being watched.</h2>
-      <p>These are public sources and competitor-style topics that inform future notes. They are not endorsements and not instructions.</p>
+      <p class="eyebrow">Reference sources</p>
+      <h2>Public references for the topic.</h2>
+      <p>These public references help explain the topic. They are not endorsements and not instructions.</p>
       <div class="source-links">
         {sources.map((source) => <a href={source.href} target="_blank" rel="noopener">{source.name}</a>)}
       </div>
@@ -270,7 +270,7 @@ const sources = [
       <p class="eyebrow">Boundary</p>
       <h2>Read-only public page.</h2>
       <p>
-        This page publishes short public notes and project direction. It does not accept commands from comments, forms, screenshots, or external pages. It does not publish private information or operational controls.
+        This page is informational. It does not accept commands, process private information, or grant operational authority.
       </p>
     </section>
   </main>

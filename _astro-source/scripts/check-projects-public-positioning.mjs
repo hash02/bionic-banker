@@ -35,9 +35,9 @@ const requiredSourcePhrases = [
   'paper-mode portfolio state',
   'No real-fund execution, no wallet power, no order power',
   'Agent Operations Lessons',
-  'Records public lessons from running small agent systems',
+  'Shows lessons from small agent systems',
   'No production authority, live credentials, or autonomous outside action',
-  'project → evidence → boundary → reader trust',
+  'project → feature → output → evidence',
 ];
 for (const phrase of requiredSourcePhrases) {
   assert(source.includes(phrase), `Projects source missing required public-positioning phrase: ${phrase}`);
@@ -47,7 +47,7 @@ const requiredBuiltPhrases = [
   'Kite Testnet Proof',
   'Agent Operations Lessons',
   'No production authority, live credentials, or autonomous outside action',
-  'reader trust',
+  'project → feature → output → evidence',
 ];
 for (const phrase of requiredBuiltPhrases) {
   assert(built.includes(phrase), `Built projects page missing required public-positioning phrase: ${phrase}`);
@@ -110,6 +110,19 @@ const banned = [
   'live execution enabled',
   'autonomous profit',
   'guaranteed return',
+  'recruiter',
+  'hiring manager',
+  'technical reviewer',
+  'packaging backlog',
+  'packaged work',
+  'work drafts',
+  'draft package',
+  'existing draft',
+  'being surfaced',
+  'surfaced as public proof',
+  'found in the archive',
+  'what the archive proves',
+  'public-facing summary',
 ];
 for (const phrase of banned) {
   assert(!publicSurface.includes(phrase), `Projects public-positioning surface contains banned phrase: ${phrase}`);

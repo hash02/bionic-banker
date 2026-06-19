@@ -41,7 +41,28 @@
     { "term": "View source catalog JSON", "replacement": "View evidence hub", "reason": "raw JSON as primary CTA" },
     { "term": "View source JSON", "replacement": "View evidence hub", "reason": "raw JSON as primary CTA" },
     { "term": "View report data JSON", "replacement": "View evidence hub", "reason": "raw JSON as primary CTA" },
-    { "term": "Heartbeat data", "replacement": "Evidence hub", "reason": "raw JSON as primary CTA" }
+    { "term": "Heartbeat data", "replacement": "Evidence hub", "reason": "raw JSON as primary CTA" },
+
+    { "term": "recruiter", "replacement": "reader", "reason": "public site should provide value, not expose job-search intent" },
+    { "term": "hiring manager", "replacement": "reader", "reason": "public site should provide value, not expose job-search intent" },
+    { "term": "technical reviewer", "replacement": "reader", "reason": "public site should not narrate target-audience strategy" },
+    { "term": "same-minded", "replacement": "people working on similar problems", "reason": "private intent language" },
+    { "term": "packaging backlog", "replacement": "next project surfaces", "reason": "internal workflow label" },
+    { "term": "packaged work", "replacement": "project surfaces", "reason": "internal workflow label" },
+    { "term": "work drafts", "replacement": "system model", "reason": "internal draft-state label" },
+    { "term": "draft package", "replacement": "project surface", "reason": "internal draft-state label" },
+    { "term": "existing draft", "replacement": "topic lane", "reason": "internal draft-state label" },
+    { "term": "being surfaced", "replacement": "shown", "reason": "internal packaging process language" },
+    { "term": "surfaced as public proof", "replacement": "shown as a project", "reason": "internal packaging process language" },
+    { "term": "found in the archive", "replacement": "represented in the work", "reason": "internal archive-mining process language" },
+    { "term": "what the archive proves", "replacement": "research themes behind the work", "reason": "internal archive-mining process language" },
+    { "term": "public-facing summary", "replacement": "reader summary", "reason": "meta-publication language" },
+    { "term": "what this page is trying", "replacement": "what this page covers", "reason": "meta-process language" },
+    { "term": "what Bionic Banker AI will watch", "replacement": "areas this page connects", "reason": "private assistant-process language" },
+    { "term": "source watch", "replacement": "reference sources", "reason": "monitoring-process language" },
+    { "term": "outside signals being watched", "replacement": "public references for the topic", "reason": "monitoring-process language" },
+    { "term": "internal process notes", "replacement": "process notes", "reason": "points at hidden workflow" },
+    { "term": "project packaging", "replacement": "project features", "reason": "internal workflow label" }
   ],
   "allowed_exceptions": [
     { "term": "hermes-kite", "where": "URL slug only, e.g. github.com/hash02/hermes-kite", "reason": "repository URL cannot be renamed without breaking links" },
@@ -49,5 +70,5 @@
     { "term": "No credentials", "where": "negated boundary statements only", "reason": "safe boundary language" },
     { "term": "No wallet control", "where": "regulated-finance boundary statements", "reason": "safe boundary language" }
   ],
-  "required_review_question": "Would a recruiter, bank risk leader, collaborator, or builder peer understand this as public proof rather than internal operations?"
+  "required_review_question": "Would a reader understand this as useful public work with clear features, evidence, and boundaries rather than internal operations?"
 }
