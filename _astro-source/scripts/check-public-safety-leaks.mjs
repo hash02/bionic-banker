@@ -30,6 +30,21 @@ function checkNo(rel, text, checks) {
   }
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function termPattern(term) {
+  return new RegExp(escapeRegExp(term).replaceAll('\\ ', '\\s+'), 'i');
+}
+
+const standard = JSON.parse(read('PUBLIC_COPY_STANDARD.json'));
+if (!standard.version?.includes('public-copy-standard')) failures.push('PUBLIC_COPY_STANDARD.json must carry a public-copy-standard version.');
+const standardChecks = (standard.banned_terms || []).map((item) => [
+  termPattern(item.term),
+  `PUBLIC_COPY_STANDARD banned term "${item.term}"; use "${item.replacement}" (${item.reason})`,
+]);
+
 const publicCodeChecks = [
   [/```python/i, 'raw Python fenced code block is public; summarize the control pattern instead'],
   [/from\s+flask\s+import/i, 'Flask/proxy implementation details are public'],
@@ -80,9 +95,12 @@ for (const rel of [
   'src/pages/risk-evidence-overview.astro',
   'public/dashboard-data/source-catalog.json',
   'public/dashboard-data/public-proof-catalog.json',
+  'public/dashboard-data/public-wallet-watch-template.json',
+  'public/dashboard-data/intelligence-signal-catalog.json',
   'public/heartbeat/index.html',
 ]) {
   const text = read(rel);
+  checkNo(rel, text, standardChecks);
   checkNo(rel, text, [
     [/View source catalog JSON/i, 'reader CTA points to raw source catalog JSON'],
     [/Open notebook data/i, 'reader CTA points to raw notebook JSON'],
