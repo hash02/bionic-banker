@@ -21,8 +21,9 @@ Bionic Banker is HASH's public thought platform. The caretaker job is to keep it
 - No social media browser automation.
 - Links should usually go in first comment for LinkedIn drafts, not the main post body.
 - Every public claim about numbers, rules, counts, or dates must be computed from source.
-- Public copy must follow `PUBLIC_COPY_STANDARD.md`: use serious risk/evidence/audit/control language, avoid the informal terms listed there in visible public surfaces, and keep legal/compliance/trading authority boundaries explicit.
-- Before publishing public-copy changes, run `npm run test:public-copy` from `_astro-source` and fix any blockers.
+- Public copy must follow `_astro-source/PUBLIC_COPY_STANDARD.json`: use serious risk/evidence/audit/control language; keep public pages as proof/source/boundary surfaces, not internal ops, sales roadmaps, trading-performance pages, or private machine inventory.
+- Before writing or publishing new public pages, catalogs, dashboards, or blog copy, check the standard first and prefer public-safe blog/repo links over exposing internal machinery directly on the site.
+- Before publishing public-copy changes, run `npm run test:public-safety-leaks`, `npm run test:public-copy`, and the relevant page contract tests from `_astro-source`; fix blockers instead of weakening tests.
 - Before publishing layout/navigation/dashboard changes, run `npm run qa:mobile` from `_astro-source`; inspect `qa-reports/latest/report.md` and screenshots when it fails.
 
 ## Caretaker Loop
@@ -44,7 +45,7 @@ Run this when asked to maintain Bionic Banker:
 
 1. Pick one post idea from current system evidence, not from loose intuition.
 2. Draft in HASH voice: raw, conversational, specific.
-3. Strip internal identifiers, paths, IPs, secrets, and private infrastructure details.
+3. Strip internal identifiers, paths, IPs, secrets, private infrastructure details, sales-roadmap phrasing, and weak/stale trading metrics using `_astro-source/PUBLIC_COPY_STANDARD.json` before writing public output.
 4. Update source content.
 5. Update built output if the production topology requires it.
 6. Run site validation or targeted smoke check.
