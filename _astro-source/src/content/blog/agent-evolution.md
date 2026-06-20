@@ -28,7 +28,7 @@ Here's the thing nobody tells you about building with AI: the hard part isn't th
       
 ## The Numbers, Read as Operating Records
 
-14 agents. 438 reports generated. 190 blockchain wallets monitored in paper mode. Paper trades logged with entry rationale. Drafts produced automatically. Security stress tests running against controlled vulnerabilities. All of this live on a home server while I was sitting at a desk doing a completely different job.
+14 agents. 438 reports generated. 190 blockchain wallets monitored in paper mode. Paper trades logged with entry rationale. Drafts produced automatically. Adversarial review tests running against controlled failure cases. All of this live on a home server while I was sitting at a desk doing a completely different job.
 
 I know that sounds like a LinkedIn brag. I'm telling the story of how it actually happened because the individual steps were much smaller and more embarrassing than the final number suggests.
 
