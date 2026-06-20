@@ -5,7 +5,7 @@ const systems = [
   ['Wallet Risk Assessment', '/wallet-risk', 'Risk judgment', 'Score, rule explanation, and plain-language note for sample wallet-risk rows.'],
   ['AML Status', '/aml-status-evidence', 'Auditability', 'Source trail, checks, visible claims, and explicit clear limits.'],
   ['Fraud Alert Triage Workflow', '/fraud-alert-triage', 'Alert operations', 'Synthetic signals converted into a system record, case note, and human next step.'],
-  ['Agent Workflow Case Review', '/agent-prototype-sprint', 'Workflow packaging', 'One messy finance-risk workflow converted into a case record, review summary, and human review step.'],
+  ['Agent Workflow Case Review', '/agent-prototype-sprint', 'Workflow review', 'One messy finance-risk workflow converted into a case record, review summary, and human review step.'],
   ['Agent Chess / Agent Workflow', '/risk-evidence-overview#agent-chess-showcase', 'Agent operations', 'Turn-taking, state preservation, review gates, and public records without outside-action power.'],
   ['Site Health / Health Board', '/proof/site-health', 'Self-checking records', 'Metric contracts, link checks, JSON-framing checks, mobile QA, and public status.'],
 ];
@@ -13,7 +13,7 @@ const systems = [
 const sourceMap = [
   ['System cards', '12', 'Rendered systems a reader can inspect.'],
   ['Reader sections', '8', 'Reader-facing sections with sources and boundaries.'],
-  ['Source links', '21', 'Reader-facing sources linked from the source catalog.'],
+  ['Source links', '21', 'Reader-facing sources linked from the evidence catalog.'],
   ['Named limits', '36', 'Explicit limits that prevent overclaiming.'],
   ['Blog / notes', '46', 'Writing that supports the finance, AI, and agent-system context.'],
 ];
@@ -31,11 +31,11 @@ const stack = [
 
 const visualAnchors = [
   ['Agent runtime', 'Review and tool-use layer', 'Useful visual: task card, trace row, or review checkpoint.'],
-  ['Claude Code / Codex / OpenCode', 'Builder and reviewer lane', 'Useful visual: code review diff, test gate, reviewer lane, or build trace.'],
+  ['Coding tools', 'Builder and reviewer lane', 'Useful visual: code review diff, test gate, reviewer lane, or build trace.'],
   ['Local models', 'Model route', 'Useful visual: model card, cost cap, or routing decision.'],
-  ['SQLite', 'Record and queue layer', 'Useful visual: ledger row, message queue, run history, or recovery record.'],
+  ['Record store', 'Record and queue layer', 'Useful visual: ledger row, queue item, history row, or recovery record.'],
   ['GitHub', 'Public change history', 'Useful visual: commit trail, issue map, release note, or validator check.'],
-  ['OpenClaw / agent security research', 'External risk reference', 'Useful visual: skill supply-chain diagram, trust boundary, or malicious-skill case note.'],
+  ['Agent security research', 'External risk reference', 'Useful visual: skill supply-chain diagram, trust boundary, or malicious-skill case note.'],
 ];
 
 const questions = [
@@ -56,7 +56,7 @@ const questions = [
         <a href="/start-here">Start Here</a>
         <a href="/world-map">World Map</a>
         <a href="/projects">Systems</a>
-        <a href="/evidence">Source Catalog</a>
+        <a href="/evidence">Evidence catalog</a>
       </div>
     </section>
 
@@ -107,7 +107,7 @@ const questions = [
         <ul>
           <li>No live wallet, trade, transfer, or fund power.</li>
           <li>No SAR filing, KYC approval, enforcement, or final compliance decision.</li>
-          <li>No private prompts, secrets, raw logs, customer data, or employer data.</li>
+          <li>No secrets, raw logs, customer data, or employer data.</li>
           <li>No guarantee that synthetic samples reflect production performance.</li>
         </ul>
       </div>

@@ -14,10 +14,10 @@ const orderedProjects = [
   ...projects.filter((project) => !flagshipOrder.includes(project.id)),
 ];
 ---
-<BaseLayout title="Source Catalog" description="Rendered public source catalog for Bionic Banker catalog sections, sources, numbers, and boundaries.">
+<BaseLayout title="Evidence Catalog" description="Rendered public evidence catalog for Bionic Banker catalog sections, sources, numbers, and boundaries.">
   <main class="page-shell systems-wrap">
     <section class="page-hero">
-      <span class="eyebrow">PUBLIC SOURCE CATALOG</span>
+      <span class="eyebrow">PUBLIC EVIDENCE CATALOG</span>
       <h1 class="page-title">Source trails, not raw JSON first.</h1>
       <p class="page-sub">A rendered reader-facing catalog of the public catalog sections behind Bionic Banker. Raw data is still available, but the primary path explains what each lane shows, what supports it, and what remains bounded.</p>
       <div class="page-metric-row" aria-label="Source catalog metrics">
@@ -28,7 +28,7 @@ const orderedProjects = [
       </div>
     </section>
 
-    <section class="systems-audit-panel representation-strip" aria-label="How to read the source catalog">
+    <section class="systems-audit-panel representation-strip" aria-label="How to read the evidence catalog">
       <div>
         <span class="systems-audit-label">READER PATH</span>
         <strong>Start with the flagship catalog sections.</strong>
@@ -86,7 +86,7 @@ const orderedProjects = [
       <div>
         <span class="systems-audit-label">GENERATED</span>
         <strong>{generatedDate}</strong>
-        <p>Metrics on this page are computed from the public source catalog record.</p>
+        <p>Metrics on this page are computed from the public evidence catalog record.</p>
       </div>
       <div>
         <span class="systems-audit-label">SOURCE RECORD</span>

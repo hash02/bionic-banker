@@ -1,5 +1,5 @@
 ---
-title: "How I Built a Memory System That Survives AI Context Death"
+title: "A Memory System That Survives AI Context Loss"
 description: "Everyone building AI memory is solving retrieval. The actual problem is continuity, and the fix is an immune system, not a database. Five layers, markdown files, real stress test results."
 date: "2026-03-13"
 tags: ["AI", "Agents", "Builder"]
@@ -17,7 +17,7 @@ Okay so here's where this started. A useful AI system needs memory across sessio
 The context window resets. Everyone knows this. But knowing it and *feeling* it when your agent asks you what the AML engine version is for the fifth time, those are different things.
 
       
-So I started building. Not because I had a thesis about AI memory architecture. Because I was annoyed.
+The build started from a practical failure, not a theory about AI memory architecture.
 
       
 ## The Problem Everyone's Solving Wrong
@@ -38,10 +38,10 @@ The actual problem is *continuity*. Not "what do I know?" but "who am I, what wa
 That's the gap. And it's not a database problem. It's an architecture problem.
 
       
-## What Already Exists (I'm Not Going to Pretend I Invented This)
+## What already exists
 
       
-Before I break down the five layers, I need to be honest about prior art. Three established approaches do pieces of what I built.
+Before the five layers, the prior art matters. Three established approaches solve parts of the problem.
 
       
 Stormy AI coined "Compound Engineering", the idea that an agents.md file gets smarter every time the AI makes a mistake. That's functionally what my immune memory file does. GuardLoop built an open-source tool around the same concept. And the A-MEM paper from February 2025 described an agent that autonomously connects new memories to existing ones, which is what my knowledge base layer does.
@@ -50,7 +50,7 @@ Stormy AI coined "Compound Engineering", the idea that an agents.md file gets sm
 So no, I didn't invent mistake logging. I didn't invent agent memory files.
 
       
-What I built that's different is the *layered architecture*. Everyone has one or two of these pieces. Nobody has a five-layer stack where each layer handles a different type of memory failure, with a priority hierarchy that inverts what you'd expect.
+The useful difference is the *layered architecture*. Most systems have one or two of these pieces. A five-layer stack can handle different memory failures, with a priority hierarchy that inverts what you'd expect.
 
       <!-- Layer Architecture Infographic -->
       
@@ -62,7 +62,7 @@ INTERACTIVE The Five-Layer Memory Architecture: hover over each layer for detail
 
 Layer one is identity memory. This is who the agent is, what it is called, and what the rules are. It loads first, before anything else. If an agent does not know its own name and operating constraints, nothing else it knows is trustworthy.
 
-For my system this is the CLAUDE.md file. Not a database. A plain text file that tells the agent its name, its principles, how it interacts with me, and what it is not allowed to do. Every session, this loads first.
+For one implementation this is a plain text file loaded first. Not a database. It defines principles, interaction rules, and limits before the session starts.
 
 Layer two is mistake memory. This is the immune system. Every time the agent does something wrong, breaks something, or misunderstands something, the mistake gets documented here with a rule attached. Not the story of what happened. The rule. "Never do X because Y happened."
 
@@ -76,7 +76,7 @@ Layer four is working knowledge: architecture decisions, component descriptions,
 
 This is the layer that most resembles a wiki. It goes stale if it is not maintained. I update it when something significant changes, not after every session.
 
-Layer five is retrieval. This is the layer everyone builds first and I built last. Semantic search over files and notes. Useful for finding specific information when the other four layers do not have it. Not useful for continuity, identity, or mistake prevention.
+Layer five is retrieval. This is often built first, but it works better after the other layers exist. Semantic search over files and notes. Useful for finding specific information when the other four layers do not have it. Not useful for continuity, identity, or mistake prevention.
 
 The priority order inverts what you would expect. Layer one matters most. Layer five matters least. Almost every AI memory project inverts this, building retrieval first because retrieval is technically interesting and continuity is operationally boring.
 
@@ -84,7 +84,7 @@ The priority order inverts what you would expect. Layer one matters most. Layer 
 
 When I started building I thought retrieval was the core problem. My agent could not find things it had seen before. So obviously I needed semantic search.
 
-I built semantic search. My agent could now find things. It was still asking me which session we were working on because it did not know. It still forgot what it had been doing. It still made the same mistakes it had made before.
+Semantic search helped the agent find things. It still lacked continuity: which session mattered, what work was active, and what mistakes had already happened. It still forgot what it had been doing. It still made the same mistakes it had made before.
 
 Retrieval did not solve continuity. It solved a different problem.
 

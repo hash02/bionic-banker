@@ -52,7 +52,7 @@ A safe local-agent adapter has four public ideas:
 
 1. **Interface boundary.** A tool sends a request in a standard shape.
 2. **Translation boundary.** A private adapter converts that request for the local environment.
-3. **Policy boundary.** The adapter refuses unsafe calls, logs the reason, and keeps private prompts and credentials out of the public record.
+3. **Policy boundary.** The adapter refuses unsafe calls, logs the reason, and keeps restricted prompts and credentials out of the public record.
 4. **Failure boundary.** If the preferred route fails, the system degrades visibly instead of silently switching into an unexpected mode.
 
 That is enough for a reader to understand the design without seeing the private wiring.
@@ -66,7 +66,7 @@ A public page can show:
 - the difference between prototype and reliable system
 - the kinds of checks a wrapper needs
 - a diagram of request, policy, and response boundaries
-- a statement that credentials, prompts, and raw logs are not part of the published record
+- a statement that credentials and prompts are not part of the published record
 
 A public page should not show:
 
@@ -75,7 +75,7 @@ A public page should not show:
 - prompt extraction logic
 - credential-loading assumptions
 - local machine paths or hostnames
-- raw logs from a private run
+- unpublished run logs
 - instructions that turn the article into an operational recipe
 
 ## The Bionic Banker lesson

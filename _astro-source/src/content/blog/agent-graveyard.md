@@ -22,7 +22,7 @@ This is the failure record. The point is not the graveyard. The point is the con
 
 ## The count
 
-On a small local server that stays powered on most days, I have run at different times:
+Across small always-on test environments, agent experiments commonly include:
 
 - A trading orchestrator with four strategy workers. One worker is dead. The orchestrator is alive.
 - An AML detection engine. Twelve versions. Twenty-eight rules. Alive and growing.
@@ -32,7 +32,7 @@ On a small local server that stays powered on most days, I have run at different
 - A minimal coding agent built by someone else that I am still learning from. Alive.
 - A content pipeline with four scripts that chain together. All four alive now, but three died at least once before the current versions.
 - A fund router for portfolio rebalancing. Alive. Scaffold only.
-- A red-team test node on a second older laptop. Still experimental. Its job is to probe the other machines for weaknesses on purpose so someone else does not find them first.
+- A red-team test node in a sandbox environment. Still experimental. Its job is to probe the other machines for weaknesses on purpose so someone else does not find them first.
 - Several early experiments I do not name anymore because naming them makes them too easy to mourn.
 
 More than a dozen is the lower bound. If you count every worker, every sub-process, every retry of a thing that broke, the real number is higher. I stopped counting when the graveyard started outgrowing the living.
@@ -43,7 +43,7 @@ People keep calling this orchestration. I am starting to think the right word is
 
 Orchestration sounds like a conductor reading sheet music. Agents do not read sheet music. They work on a rhythm. The rhythm is fragile. One agent loses the beat at 3am because a context window got pressured, and by morning the whole dance is off. You can have four of them moving in time for weeks, and then one steps on the next one's lines and the whole routine has to be picked up from the floor.
 
-The other thing that makes this harder than it looks is that every tool you pick has a different hardness. Driving an agent through Claude Code feels one way. Driving the same job through an open coding agent like OpenHands feels another way. Running it yourself on a raw model through the API feels a third way. The difficulty does not disappear. It moves. One tool hides the hard parts behind a polished interface, and you only meet them when something breaks at an awkward time. Another tool makes you feel every edge as you go, which is exhausting, but at least you know where the edges are.
+The other thing that makes this harder than it looks is that every tool you pick has a different hardness. Driving one coding tool feels one way. Driving the same job through another open coding tool feels different. Running it yourself on a raw model through the API feels a third way. The difficulty does not disappear. It moves. One tool hides the hard parts behind a polished interface, and you only meet them when something breaks at an awkward time. Another tool makes you feel every edge as you go, which is exhausting, but at least you know where the edges are.
 
 Running a few of them on the same box, talking to each other, staying in rhythm, staying alive, is new enough that nobody has figured out the canonical way yet. Including me. Especially me.
 
@@ -95,7 +95,7 @@ Fix that came late: either the agent has authority to act within a bounded decis
 
 ### Death by name collision
 
-At one point I had three different agents all doing some flavor of treasury work. Each was named for the function it did. Each thought it was the canonical one. Data about the same portfolio went to three different places. Synthesis went to none of them because nobody was responsible for the whole picture.
+At one point three different agents were doing overlapping treasury-style work. Each was named for the function it did. Each thought it was the canonical one. Data about the same portfolio went to three different places. Synthesis went to none of them because nobody was responsible for the whole picture.
 
 Fix that came late: one job per agent, and the name encodes the specific job, not the general domain. No two agents get the same functional identity. If two overlap, one gets retired.
 
@@ -115,7 +115,7 @@ Every morning I wake up to a status message telling me what happened while I sle
 
 The daily routine holds. Content gets collected. The trading world model scores itself. The AML engine audits. The research agent reads. Most of this happens without me. None of it is perfect. All of it is steadier than I would have guessed a year ago.
 
-So I am not discouraged by the graveyard. I am saying honestly that getting here took a lot more dead agents than the clean tweets make it sound.
+The graveyard is the lesson: useful agent systems take more failed versions than clean demos admit.
 
 ## The actual stack, in case you want to try this
 
@@ -127,7 +127,7 @@ A second older laptop runs Kali Linux for security testing. It stays separated f
 
 **Models.** Most of the crew runs on a local model server. Small local models handle reasoning-light work, tool-calling tests, and embeddings. The specific model names matter less than the rule: use local defaults where possible, then pay only when the task genuinely needs stronger reasoning.
 
-For heavier reasoning I use a paid model route with a strict budget. For fallback, I use cheaper routes with logging. The important part is not the vendor. It is that model routing decisions are visible and capped.
+For heavier reasoning, use a paid model route only with a strict budget. For fallback, cheaper routes still need logging. The important part is not the vendor. It is that model routing decisions are visible and capped.
 
 **Named roles in the crew.** One custom Python orchestrator handles paper-mode portfolio state. One research worker reads public sources. One small coding-agent pattern is used for study. The AML engine and content pipeline are custom Python. The security-testing node remains experimental and separated from the main system.
 
@@ -145,7 +145,7 @@ For heavier reasoning I use a paid model route with a strict budget. For fallbac
 
 Here is what the living have that the dead ones did not.
 
-**A recovery runbook written before the agent shipped.** Five-minute restart from any failure mode. I can follow it half asleep. I have.
+**A recovery runbook written before the agent ships.** Five-minute restart from any failure mode. It should be simple enough to follow under stress.
 
 **Recovery path.** If a service dies, a recovery path should restore it or alert a person. Not because the code is perfect. Because production reality is not perfect.
 
@@ -153,7 +153,7 @@ Here is what the living have that the dead ones did not.
 
 **One job.** Each of them does exactly one thing. The paper-mode portfolio worker records. The AML engine flags. The content pipeline publishes. The research agent reads. None of them is allowed to drift. The moment you ask an agent to do two things, it starts forgetting how to do either.
 
-**Visibility.** Every one of them writes to a place I actually look. Dashboard, message queue, public URL, SQLite ledger. If I cannot see it working today, I assume it is broken.
+**Visibility.** Every agent should write to a place people actually inspect. Dashboard, message queue, public URL, SQLite ledger. If nobody can see it working today, assume it is broken.
 
 ## Three rules if you are starting now
 

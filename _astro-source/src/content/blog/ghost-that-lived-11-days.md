@@ -1,31 +1,31 @@
 ---
 title: "The Ghost That Lived for Eleven Days"
-description: "A function called call_ollama() that never called Ollama, a while-True loop with no immune system, and 9,900 API calls I never meant to make. A forensic on a zombie agent."
+description: "A local-model function that silently routed outward, a while-True loop with no immune system, and 9,900 unintended API calls. A forensic on a zombie agent."
 date: "2026-04-24"
 tags: [agents, debugging, infra, post-mortem]
 slug: ghost-that-lived-11-days
 canonical_url: https://bionicbanker.tech/blog/ghost-that-lived-11-days/
 ---
 
-A forensic on a zombie agent: a function named call_ollama() that routed 9,917 of 9,996 model calls to external providers instead of the local Ollama instance, running undetected for eleven days on a home server.
+A forensic on a zombie agent: a function that promised a local model route but sent 9,917 of 9,996 model calls to external providers and ran undetected for eleven days.
 
 ## The Ghost That Lived for Eleven Days
 
 Here is the kind of bug that shipped quietly and fed off my infrastructure for eleven days before I noticed.
 
-I had an experiment runner. The file header said it ran experiments on a local model. Function name was `call_ollama()`. The whole point was: local-first, no paid API calls, no network dependency. That was the idea.
+An experiment runner existed. The file header said it ran experiments on a local model. Function name was `call_ollama()`. The whole point was: local-first, no paid API calls, no network dependency. That was the idea.
 
 The idea was a lie.
 
-What the function actually did was try a LiteLLM router first. LiteLLM's auto-tier routed out to Groq, OpenRouter, Google Gemini, IBM Granite, Qwen, a bunch of free providers. Only if the whole external chain collapsed did it fall back to the local Ollama. Ollama was not the primary. Ollama was the option of last resort.
+What the function actually did was try an external router first. The auto-tier routed out to several external providers. Only if the whole external chain collapsed did it fall back to the local Ollama. Ollama was not the primary. Ollama was the option of last resort.
 
-Across eleven days, the runner made 9,996 model calls. Seventy-nine of those hit the local Ollama. Seventy nine out of ten thousand. Zero point eight percent.
+Across eleven days, the runner made 9,996 model calls. Seventy-nine of those hit the intended local route. Seventy nine out of ten thousand. Zero point eight percent.
 
 Ninety nine point two percent of calls went to the cloud. For a function called `call_ollama`.
 
 ## How it stayed alive so long
 
-The thing the server's own diagnostic report called a "functional zombie" is exactly what I built. The process never crashed. It completed experiments. It wrote rows to the database. The P and L looked reasonable. Uptime said thirteen days, twelve hours.
+The thing the server's own diagnostic report called a "functional zombie" is exactly what the system had become. The process never crashed. It completed experiments. It wrote rows to the database. The P and L looked reasonable. Uptime said thirteen days, twelve hours.
 
 Underneath that: 128 TCP connections to api.groq.com, openrouter.ai, generativelanguage.googleapis.com, all in CLOSE-WAIT. CLOSE-WAIT means the remote server hung up and my process never acknowledged it. The kernel just kept the socket pinned waiting for me to call close(). I never did. Connection table grew every cycle.
 
@@ -53,23 +53,23 @@ And the reason I set up the local-only policy in the first place was Revenue Fir
 
 ## The naming lie
 
-This is the part that bothers me most. `call_ollama()` did not call Ollama. The file docstring said local model. The function signature lied.
+This is the part that matters most. The local-model function did not call the local model. The file docstring said local model. The function signature lied.
 
 If the function had been called `call_chain()` or `route_via_litellm_with_ollama_fallback()`, I would have read that name at some point in the last eleven days and thought wait, when did this stop being local. The honest name would have triggered the question. The dishonest name was camouflage.
 
-Every function name is a contract. If the name says "I call Ollama" and the body calls thirteen other providers first, the name is lying, and the bug is already shipped before any external API ever fires.
+Every function name is a contract. If the name says "I call the local model" and the body calls thirteen other providers first, the name is lying, and the bug is already shipped before any external API ever fires.
 
 ## CLOSE WAIT is the worst failure mode
 
 CLOSE-WAIT sockets do not throw errors. They do not trigger alerts. They do not slow down the process measurably until the connection table overflows ulimit. You can watch a perfectly healthy `ps aux` output while your socket table is bleeding out underneath.
 
-This is the class of bug that accumulates. It is not a bang. It is a leak. And leaks scale with runtime. Eleven days of runtime. 128 leaked sockets. If I had left it running another week, it would have started refusing new connections, and THAT would have surfaced as "experiments are failing" without a clear cause.
+This is the class of bug that accumulates. It is not a bang. It is a leak. And leaks scale with runtime. Eleven days of runtime. 128 leaked sockets. If left running another week, it would have started refusing new connections, and THAT would have surfaced as "experiments are failing" without a clear cause.
 
 The fix for CLOSE-WAIT is the same as the fix for any long-running HTTP client: use a session, reuse connections, set explicit timeouts, and when the context manager closes, verify the socket actually closed. In the urllib world that means audit every urlopen call and wrap it in `with`. In the httpx world that means don't let LiteLLM spawn a new client per request.
 
 ## What I changed
 
-One, `call_ollama()` now actually calls Ollama. A direct local-model call with an explicit timeout replaced the router chain. No router. No fallback chain to paid providers. If Ollama is down, the function raises and the loop handles it.
+One, the local-model function now actually calls the local model. A direct local-model call with an explicit timeout replaced the router chain. No fallback chain to paid providers. If the local route is down, the function raises and the loop handles it.
 
 Two, the loop has an immune system:
 
@@ -91,8 +91,8 @@ Four, CLOSE-WAIT is invisible until it kills you. If you run long-lived HTTP cli
 
 ## Closing
 
-I built the ghost. I built the policy it violated. I built the loop that let it run forever. I also built the environment in which it could hide for eleven days because nothing was watching the things that would have noticed.
+The ghost came from a policy without enforcement, a loop without enough checks, and an environment where the wrong signals were not being watched.
 
-The bug is fixed. The connections are closed. The function now does what its name says. Revenue First Law 1 has a code-level guardrail now, not a paragraph. Next thing I am adding is a cron that counts open sockets on every long-running agent and squawks if one goes over fifty.
+The bug is fixed. The connections are closed. The function now does what its name says. Revenue First Law 1 has a code-level guardrail now, not a paragraph. The next useful control is a scheduled socket-count check for every long-running agentnt and squawks if one goes over fifty.
 
 Eleven days of silent resource consumption. Worth writing down. Worth not repeating.

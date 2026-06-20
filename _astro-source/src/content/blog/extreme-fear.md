@@ -1,6 +1,6 @@
 ---
 title: "What EXTREME FEAR Actually Looks Like From Inside a Bank"
-description: "The Fear & Greed Index hit 18. I'm watching from inside the institution. The gap between how scared the market feels and how calm the building stays is the signal."
+description: "The Fear & Greed Index hit 18. the institutional view looks different. The gap between how scared the market feels and how calm the building stays is the signal."
 date: "2026-03-12"
 tags: ["Finance", "Thoughts"]
 readTime: "5 min"
@@ -11,7 +11,7 @@ slug: "extreme-fear"
 
 The Fear & Greed Index hit 18 out of 100, which means EXTREME FEAR. This note looks at the gap between retail panic, institutional calm, and the pattern recognition that turns a red screen into something useful.
 
-Okay so, the Fear & Greed Index just hit 18. EXTREME FEAR. And I'm watching this from my desk at the bank, and I need to tell you what it actually looks like from this side of the glass.
+Okay so, the Fear & Greed Index just hit 18. EXTREME FEAR. And from inside a banking environment, and I need to tell you what it actually looks like from this side of the glass.
 
       
 Because it's not what you think.

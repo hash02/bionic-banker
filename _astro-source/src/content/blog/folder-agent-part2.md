@@ -20,7 +20,7 @@ After Part 1, the better question became obvious: *is this actually an agent?*
 And the honest answer is no. Not yet.
 
       
-What I built in Part 1 is a really well-organized set of scripts with good file hygiene. The outcome tracker detects patterns. The rule proposer generates proposals. The event router logs everything. It looks like agency. It *feels* like agency. But here's the test that breaks the illusion:
+What Part 1 described is a really well-organized set of scripts with good file hygiene. The outcome tracker detects patterns. The rule proposer generates proposals. The event router logs everything. It looks like agency. It *feels* like agency. But here's the test that breaks the illusion:
 
       
 **If I close my laptop and walk away for a week, does anything happen?**
@@ -59,7 +59,7 @@ Knowing that a file appeared is not enough. You need to know what to do with it.
 
 In my folder agent, routing is a decision about what kind of file just appeared. A PDF needs different handling than a CSV. A file named report-2026-05-20.json needs different handling than a file named alert-HIGH-wallet-flagged.json.
 
-I built a simple router. It looks at the filename, checks it against a set of patterns, and dispatches to the right handler function. Nothing clever. Just a chain of if-else blocks that cover the cases I expect and log loudly when something shows up that I did not expect.
+The next piece is a simple router. It looks at the filename, checks it against a set of patterns, and dispatches to the right handler function. Nothing clever. Just a chain of if-else blocks that cover the cases I expect and log loudly when something shows up that I did not expect.
 
 The router classifies the file by type and naming pattern, sends expected files to the right handler, and records unknown files instead of silently dropping them.
 
@@ -77,7 +77,7 @@ The first layer is exception handling inside the handler. Wrap the processing in
 
 The handler reads the file, validates it, writes the result, and moves failed inputs into an error path with a visible reason. The public record shows the control shape, not the executable code.
 
-The second layer is process-level recovery. If the whole observer crashes, it needs to restart itself. I use a supervisor script for this. The supervisor runs a loop. It checks whether the observer process is alive. If it is not, it restarts it and logs the restart event. Restarts get logged because frequent restarts mean something is broken at a deeper level and needs investigation.
+The second layer is process-level recovery. If the whole observer crashes, it needs to restart itself. A supervisor script handles this. The supervisor runs a loop. It checks whether the observer process is alive. If it is not, it restarts it and logs the restart event. Restarts get logged because frequent restarts mean something is broken at a deeper level and needs investigation.
 
 ## What the Working Agent Looks Like
 
@@ -85,9 +85,9 @@ Once all four pieces are in place, the agent has a different character than the 
 
 You drop a file in the inbox. The observer fires within a second. The router decides what kind of file it is. The right handler processes it, moves it to processed, and writes output to the output folder. If something goes wrong, the file moves to error, the exception gets logged, and the observer keeps running. If the process crashes, the supervisor restarts it and logs the event.
 
-I check the output folder in the morning. I check the error folder if something looks off. I check the restart log once a week.
+The output folder, error folder, and restart log need regular review.
 
-That is it. The agent is handling the work. I am reviewing the output.
+That is it. The agent is handling the work. A person reviews the output.
 
 ## What This Does Not Solve
 

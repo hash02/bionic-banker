@@ -26,7 +26,7 @@ The systems we have for catching money laundering — the compliance reports, th
 Crime is evolving faster than compliance can keep up. And the gap isn't intelligence — we have the data, we have the models, we have the rules. The gap is that the output is so boring that the humans in the loop check out before the signal lands.
 
     
-I built an AML engine that turns suspicious-wallet signals into plain-language risk notes: direct, readable, and difficult to ignore.
+An AML engine can turn suspicious-wallet signals into plain-language risk notes: direct, readable, and difficult to ignore.
 
     
 The useful part is not novelty. It is that the output becomes clear enough for a human reviewer to act on.

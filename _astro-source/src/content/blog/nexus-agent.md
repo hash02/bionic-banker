@@ -1,6 +1,6 @@
 ---
-title: "I Built 3 AI Agents. Here's What Broke Each Time."
-description: "I built three versions of an AI investigation agent. Each one broke differently. Here's what the architecture diagrams don't tell you about memory, bias, and adversarial reasoning."
+title: "Three AI Investigation Agents and What Broke Each Time"
+description: "Three versions of an AI investigation agent broke differently. Each one broke differently. Here's what the architecture diagrams don't tell you about memory, bias, and adversarial reasoning."
 date: "2026-03-05"
 tags: ["AI · Agents · Blockchain"]
 readTime: "7 min"
@@ -10,7 +10,7 @@ slug: "nexus-agent"
 image: "/blog-visuals/nexus-agent/social-preview.png"
 ---
 
-I built three versions of an AI investigation agent for blockchain fraud detection. Each one broke differently. What the architecture diagrams never show: memory scope drift, reasoning bias under adversarial data, and what happens when you let the agent score its own output.
+Three versions of an AI investigation agent for blockchain fraud detection broke differently. Each one broke differently. What the architecture diagrams never show: memory scope drift, reasoning bias under adversarial data, and what happens when you let the agent score its own output.
 
 Okay so. I need to be honest about how this started.
 
@@ -18,7 +18,7 @@ Okay so. I need to be honest about how this started.
 I didn't set out to build three versions of anything. I set out to build ONE thing — an AI that could investigate blockchain fraud. Like actually investigate it, not just flag transactions and hand you a spreadsheet. I wanted something that could look at a wallet address and tell me a story. Who moved what, when, why it looks suspicious, and what I should do about it.
 
     
-Version 1 did that. Kind of. And then it broke. So I built version 2. That broke differently. And version 3 — the one that's actually running right now — broke my assumptions about what an AI agent even is.
+Version 1 did that. Kind of. And then it broke. Version 2 came next. That broke differently. And version 3 — the one that's actually running right now — broke my assumptions about what an AI agent even is.
 
     
 Here's what the architecture diagrams don't tell you.

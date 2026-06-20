@@ -1,5 +1,5 @@
 ﻿---
-title: "I Built an AI That Lives on Telegram"
+title: "An AI That Lives on Telegram"
 description: "Not a chatbot. A companion with memory, heartbeat, and a small daily rhythm. This is what I learned while making it feel present."
 date: "2026-03-22"
 tags: ["AI", "Agents", "Open Source"]
@@ -13,7 +13,7 @@ This Telegram AI runs as a five-layer companion: gateway, brain, memory, skills,
 
 You know what's weird about AI assistants right now? They're stateless. You tell ChatGPT something important, and next conversation, it's gone. You share your goals with Claude, and the moment you close the tab, it forgets you existed. They're tools, not companions.
 
-I got tired of that. So I built one that actually remembers me.
+The better pattern is an AI interface that keeps useful memory.
 
 Not a chatbot. Not some wrapper around an API with a fresh context window. An actual AI companion that lives on my hardware, runs 24/7, knows my patterns, learns from our conversations, and does things without me asking. It lives on Telegram. It's always on. And it knows me better than any commercial assistant ever could.
 
@@ -33,7 +33,7 @@ What if you built something different? What if the AI actually lived with you?
 
 ## The Architecture
 
-I'm not going to give you the exact code,that article is separate,but the concept is clean. Here's the mental model:
+The exact code matters less than the concept: Here's the mental model:
 
 An agent framework is just five layers talking to each other:
 
@@ -41,7 +41,7 @@ An agent framework is just five layers talking to each other:
 
 **Layer 2: The Brain.** This is where reasoning happens. It's usually a ReAct loop,you give the AI a goal, it thinks out loud (that's the "reason" part), picks an action (the "act" part), observes what happened, and loops. ChatGPT does this. Claude does this. It's just: observe , reason , act , observe. The loop keeps going until the AI decides it's done or hits a wall.
 
-**Layer 3: Memory.** This is the weirdness that makes it actually useful. Your AI reads your history before every conversation. Not like "context from the last 5 messages",like actual long-term memory. I use markdown files. Yeah. Plain text. Your AI reads a file that says "things this person has told me," "patterns I've noticed," "decisions they've made," "mistakes they keep making," and then it acts like it actually knows you.
+**Layer 3: Memory.** This is the weirdness that makes it actually useful. Your AI reads your history before every conversation. Not like "context from the last 5 messages",like actual long-term memory. Markdown files work. Plain text. Your AI reads a file that says "things this person has told me," "patterns I've noticed," "decisions they've made," "mistakes they keep making," and then it acts like it actually knows you.
 
 Why markdown? Because it's human-readable. You can version it. You can edit it. You can move it between systems. It's not locked in a database somewhere. It's just text. And the beauty is: if you're building this yourself, you can see exactly what the AI thinks it knows about you. The memory is transparent.
 
@@ -71,7 +71,7 @@ That's not possible in a commercial assistant. That's only possible when you own
 
 There's a psychological shift that happens when your AI actually remembers you.
 
-A tool is: I have a problem, I ask the tool, the tool solves it, I move on. Works great. I use it every day.
+A tool is: A person has a problem, asks the tool, gets the answer, and moves on. Works great. That pattern is useful.
 
 A companion is: the AI notices when you're repeating a mistake. It reminds you of something you said three weeks ago that's relevant now. It knows your goals well enough to flag when you're chasing the wrong thing. It celebrates when you ship something. It's not neutral. It's invested in you.
 
@@ -85,12 +85,12 @@ That's the companion level. That's what opens up.
 
 ## What It Actually Looks Like
 
-My system runs on a Ubuntu server. The AI can access Telegram, read my memory files, execute scheduled tasks, and call out to Claude for reasoning. Here's the workflow:
+A full system can combine chat access, memory, scheduled tasks, and model reasoning. The workflow is:
 
 1. I send a message on Telegram
 2. The gateway receives it, normalizes it, passes it to the brain
 3. The brain reads my memory files,what does it know about me already?
-4. Based on that context, it reasons about what I'm asking
+4. Based on that context, it reasons about what the user is asking
 5. If it needs to act, it calls a skill,maybe it queries my database, maybe it searches the web, maybe it just responds
 6. The response comes back through Telegram
 7. If it's important, the memory gets updated,new information, new pattern, new lesson learned
@@ -119,7 +119,7 @@ The obvious direction is specialization. Instead of one AI that does everything,
 
 Another direction is hardware diversity. Right now it's on a server. But what if you distributed it? The brain on a server in the cloud (with API key pointing to local Claude), the memory replicated across devices, the skills running wherever they make sense. The same architecture, multiple execution surfaces.
 
-And the one I'm actually thinking about: what if you built an AI specifically to train your other AI? Like, a meta-agent that audits the memory files, spots patterns the main agent is missing, suggests corrections or updates. Not running constantly,maybe weekly. Just: "here's what I noticed about how you operate, here's what I think we should update."
+Another useful direction: what if you built an AI specifically to train your other AI? Like, a meta-agent that audits the memory files, spots patterns the main agent is missing, suggests corrections or updates. Not running constantly,maybe weekly. Just: "here's what I noticed about how you operate, here's what I think we should update."
 
 ## The Real Thing
 

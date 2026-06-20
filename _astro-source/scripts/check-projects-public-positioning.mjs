@@ -72,7 +72,7 @@ const cardLanguageSurface = [source, built, appsSource, builtApps].join('\n');
 const requiredCardLanguage = [
   'Record',
   'What it cannot do',
-  'View source catalog',
+  'View evidence catalog',
   'Records wallet-screening judgment',
   'Records human-reviewed agent operations',
 ];

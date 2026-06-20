@@ -44,7 +44,7 @@
 <ol>
 <li><strong>Interface boundary.</strong> A tool sends a request in a standard shape.</li>
 <li><strong>Translation boundary.</strong> A private adapter converts that request for the local environment.</li>
-<li><strong>Policy boundary.</strong> The adapter refuses unsafe calls, logs the reason, and keeps private prompts and credentials out of the public record.</li>
+<li><strong>Policy boundary.</strong> The adapter refuses unsafe calls, logs the reason, and keeps restricted prompts and credentials out of the public record.</li>
 <li><strong>Failure boundary.</strong> If the preferred route fails, the system degrades visibly instead of silently switching into an unexpected mode.</li>
 </ol>
 <p>That is enough for a reader to understand the design without seeing the private wiring.</p>
@@ -56,7 +56,7 @@
 <li>the difference between prototype and reliable system</li>
 <li>the kinds of checks a wrapper needs</li>
 <li>a diagram of request, policy, and response boundaries</li>
-<li>a statement that credentials, prompts, and raw logs are not part of the published record</li>
+<li>a statement that credentials and prompts are not part of the published record</li>
 </ul>
 <p>A public page should not show:</p>
 <ul>
@@ -65,7 +65,7 @@
 <li>prompt extraction logic</li>
 <li>credential-loading assumptions</li>
 <li>local machine paths or hostnames</li>
-<li>raw logs from a private run</li>
+<li>unpublished run logs</li>
 <li>instructions that turn the article into an operational recipe</li>
 </ul>
 <h2 id="the-bionic-banker-lesson">The Bionic Banker lesson</h2>

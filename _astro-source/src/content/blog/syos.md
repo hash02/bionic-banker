@@ -1,6 +1,6 @@
 ---
 title: "SYOS: The Symbolic Operating System"
-description: "I didn't write a single line of code. But I built a reasoning system inside an LLM. And it started evolving on its own."
+description: "No code required: a reasoning system inside an LLM can evolve a reasoning system inside an LLM. And it started evolving on its own."
 date: "2026-02-28"
 tags: ["AI · Reasoning · SYOS"]
 readTime: "9 min"
@@ -100,10 +100,10 @@ SYOS v3 is about 70% deployable. What that means practically: the capsule system
 What's still being built: the falsification layer. A real test, not "does it seem to work" but "here's a specific metric, here's 50 trials, here's a number." That's the next milestone. Because the most interesting claim SYOS makes is that it can detect when an LLM is drifting from sound reasoning, and that claim needs a real test, not just positive impressions from conversations.
 
     
-I'm also thinking about how SYOS and the AML engine converge. A reasoning audit layer that runs on top of financial AI decisions, checking not just whether the model flagged something, but whether the reasoning chain that led to that flag is internally consistent. That's not a hypothetical. That's the next version of what I'm building.
+Another useful direction is how SYOS and the AML engine converge. A reasoning audit layer that runs on top of financial AI decisions, checking not just whether the model flagged something, but whether the reasoning chain that led to that flag is internally consistent. That's not a hypothetical. That's the next version of what I'm building.
 
     
 It all started with one question in a mobile browser. No plan, no whiteboard, just curiosity and enough patience to follow the dots. A year later, there's a framework that crosses AI models, audits its own reasoning, and connects structurally to a fraud detection engine I built in parallel without realizing they were the same thing.
 
     
-That's the part I can't fully explain yet. But I'm working on it.
+That part still needs clearer evidence.

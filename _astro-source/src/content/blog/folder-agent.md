@@ -1,6 +1,6 @@
 ---
 title: "I Turned a Folder Into an Agent"
-description: "What happens when you stop thinking of a folder as storage and start thinking of it as a system that remembers, reacts, and improves itself? I built one to find out."
+description: "What happens when you stop thinking of a folder as storage and start thinking of it as a system that remembers, reacts, and improves itself? The experiment shows why."
 date: "2026-03-08"
 tags: ["AI · Systems · Building"]
 readTime: "10 min"
@@ -20,7 +20,7 @@ Most people see storage. A filing cabinet. You put stuff in, you take stuff out,
 
 I started seeing something different. I started seeing something that could remember what happened yesterday. That could check its own health. That could notice when something keeps breaking and say "hey, maybe we should fix this permanently."
 
-So I built it.
+So the folder became a small system.
 
 ## The Problem Nobody Talks About
 
@@ -74,7 +74,7 @@ The system told me something I didn't ask it to look for. That's the difference.
 
 ## Why This Matters Beyond My Folder
 
-I built this for a blog. 16 articles, a handful of scripts, a static HTML site on Cloudflare. It's not a massive infrastructure project. But the pattern, the actual architecture, is universal.
+The first version was small: 16 articles, a handful of scripts, and a static site. It's not a massive infrastructure project. But the pattern, the actual architecture, is universal.
 
 An AML detection engine that tracks its own false positives, notices which rules generate the most noise, and proposes threshold adjustments? Same loop.
 

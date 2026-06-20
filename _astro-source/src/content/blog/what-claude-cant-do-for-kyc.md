@@ -179,7 +179,7 @@ On one side, I work inside banking. I see how slowly real systems move, and why 
 
 On the other side, I build these engines myself.
 
-I built an AML rules engine because I wanted to understand what a real detection layer looks like. Not a generic "AI will catch fraud" line. Actual rules. Actual behavior. Actual wallet patterns. A manifest that says what the system can and cannot do.
+An AML rules engine is useful because it shows what a real detection layer looks like. Not a generic "AI will catch fraud" line. Actual rules. Actual behavior. Actual wallet patterns. A manifest that says what the system can and cannot do.
 
 That second part made me more humble about the first part.
 
@@ -231,11 +231,11 @@ A controlled decision system with AI inside it.
 
 ## The Honest Take
 
-I am bullish on AI in compliance.
+AI can be useful in compliance.
 
 Very bullish.
 
-But I am not bullish on the lazy version of the story.
+The lazy version of the story is the problem.
 
 The lazy version says: "AI reads KYC docs, so KYC is automated."
 
