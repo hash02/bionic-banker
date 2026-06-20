@@ -28,7 +28,7 @@ Here's the thing about AI tools right now. Everyone's obsessed with the model. H
 
 Nobody's asking the more interesting question: where does the intelligence live between sessions?
 
-Think about it. You have an incredible conversation with an AI. You build something, you solve a problem, you figure out an architecture. Then the context window closes. Next session? Fresh start. The AI has amnesia. All that work, all those decisions, gone unless YOU remembered to write them down somewhere.
+Think about it. You have an incredible AI work session. You build something, solve a problem, and figure out an architecture. Then the context window closes. Next session? Fresh start. The system has amnesia. All that work, all those decisions, gone unless YOU remembered to write them down somewhere.
 
 That's the real bottleneck. Not the model's intelligence. The infrastructure around it. The place where knowledge persists, patterns accumulate, and yesterday's output becomes today's input.
 

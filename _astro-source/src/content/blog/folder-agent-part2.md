@@ -14,7 +14,7 @@ Part 2 of building a folder-watching agent in Python: the gap between an event l
 ## The Honest Confession
 
       
-After I published Part 1, I asked myself a question that I should've asked before writing a single word: *is this actually an agent?*
+After Part 1, the better question became obvious: *is this actually an agent?*
 
       
 And the honest answer is no. Not yet.

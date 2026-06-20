@@ -41,7 +41,7 @@
 <p><em>“TF-IDF measures vocabulary overlap, not meaning overlap. When a model reasons FROM a capsule rather than parroting it, the words change but the meaning holds. The instrument was measuring the wrong thing.”</em></p>
 </blockquote>
 <h2 id="v2-switching-to-semantic">v2: Switching to Semantic</h2>
-<p>I scrapped the TF-IDF approach and built something different. Instead of comparing word frequencies, I used the model itself as a judge. For each of the 50 responses, I asked: on a scale of 0-10, how well does this response capture the capsule’s meaning? How much content was invented beyond the capsule? How specific is it to SYOS versus generic AI talk?</p>
+<p>I scrapped the TF-IDF approach and built something different. Instead of comparing word frequencies, I used the model itself as a judge. For each of the 50 responses, the judging question was: on a scale of 0-10, how well does this response capture the capsule’s meaning? How much content was invented beyond the capsule? How specific is it to SYOS versus generic AI talk?</p>
 <p>LLM-as-judge. Using meaning to measure meaning, instead of using word counts to measure meaning.</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#### Semantic Anchoring</span></span>
 <span class="line"><span></span></span>

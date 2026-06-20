@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-05-24T00:00:00-07:00",
   "title": "Agent Chess Operations Board",
-  "summary": "A public-safe view of how multiple agent roles coordinate work through moves, reviews, gates, and artifacts without exposing internal instructions or private infrastructure.",
+  "summary": "A reader-facing view of how multiple agent roles coordinate work through moves, reviews, gates, and artifacts without exposing instructions or infrastructure.",
   "public_rule": "Public view shows role boundaries, board tempo, review gates, and safe artifact types only.",
   "showcase_status": "public_safe_overview_v1",
   "no_private_data_policy": [
@@ -32,7 +32,7 @@
     {
       "label": "Artifact Lane",
       "status": "inspectable",
-      "purpose": "Only public-safe summaries, JSON snapshots, screenshots, or article links are allowed onto the website.",
+      "purpose": "Only reader-facing summaries, snapshots, screenshots, or article links belong on the website.",
       "public_artifact": "Safe artifact index"
     }
   ],
@@ -86,7 +86,7 @@
       "status": "paused",
       "turns": 1,
       "last_move": "Evidence state is checked before the next public claim.",
-      "next": "Refresh public-safe source state."
+      "next": "Refresh reader-facing source state."
     },
     {
       "label": "Website Operations",
@@ -108,5 +108,5 @@
     "waiting_on": "Reviewer",
     "public_state": "A taste and boundary pass is next."
   },
-  "safety_note": "This page shows orchestration patterns only. It does not expose internal instructions, private paths, credentials, account details, internal infrastructure, or autonomous authority."
+  "safety_note": "This page shows orchestration patterns only. It does not expose instructions, credentials, account details, infrastructure, or autonomous authority."
 }

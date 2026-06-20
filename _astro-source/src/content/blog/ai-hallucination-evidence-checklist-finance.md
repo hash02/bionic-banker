@@ -22,7 +22,7 @@ The better question is:
 
 > What evidence would let a human trust, challenge, or reject this AI-generated claim?
 
-This checklist is a small operating layer for that decision.
+This checklist is a small review layer for that decision.
 
 ## The evidence checklist
 

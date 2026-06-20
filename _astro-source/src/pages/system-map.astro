@@ -13,7 +13,7 @@ const systems = [
 const sourceMap = [
   ['System cards', '12', 'Rendered systems a reader can inspect.'],
   ['Reader sections', '8', 'Reader-facing sections with sources and boundaries.'],
-  ['Source links', '21', 'Public-safe sources linked from the source catalog.'],
+  ['Source links', '21', 'Reader-facing sources linked from the source catalog.'],
   ['Named limits', '36', 'Explicit limits that prevent overclaiming.'],
   ['Blog / notes', '46', 'Writing that supports the finance, AI, and agent-system context.'],
 ];
@@ -117,7 +117,7 @@ const questions = [
     <section class="pack-section">
       <span>Visual stack anchors</span>
       <h2>Named tools are useful when they clarify the system.</h2>
-      <p>Some names should stay private. Some names make the record easier to understand. These are public-safe anchors that can support future diagrams, screenshots, or tool imagery without turning the site into a vendor pitch.</p>
+      <p>Some names make the record easier to understand. These anchors can support future diagrams, screenshots, or tool imagery without turning the site into a vendor pitch.</p>
       <div class="anchor-grid">
         {visualAnchors.map(([name, role, visual]) => (
           <article>

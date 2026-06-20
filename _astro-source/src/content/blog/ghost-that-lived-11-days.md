@@ -13,7 +13,7 @@ A forensic on a zombie agent: a function named call_ollama() that routed 9,917 o
 
 Here is the kind of bug that shipped quietly and fed off my infrastructure for eleven days before I noticed.
 
-I had an experiment runner on a local server I run at home. File header said "Runs queued experiments on local model (gemma2:9b)." Function name was `call_ollama()`. The whole point was: free, offline, no paid API calls, no net dependency. That was the idea.
+I had an experiment runner. The file header said it ran experiments on a local model. Function name was `call_ollama()`. The whole point was: local-first, no paid API calls, no network dependency. That was the idea.
 
 The idea was a lie.
 

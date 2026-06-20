@@ -62,7 +62,7 @@ And that's when it clicked.
 ## v2: Switching to Semantic
 
     
-I scrapped the TF-IDF approach and built something different. Instead of comparing word frequencies, I used the model itself as a judge. For each of the 50 responses, I asked: on a scale of 0-10, how well does this response capture the capsule's meaning? How much content was invented beyond the capsule? How specific is it to SYOS versus generic AI talk?
+I scrapped the TF-IDF approach and built something different. Instead of comparing word frequencies, I used the model itself as a judge. For each of the 50 responses, the judging question was: on a scale of 0-10, how well does this response capture the capsule's meaning? How much content was invented beyond the capsule? How specific is it to SYOS versus generic AI talk?
 
     
 LLM-as-judge. Using meaning to measure meaning, instead of using word counts to measure meaning.

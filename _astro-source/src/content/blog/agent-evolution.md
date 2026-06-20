@@ -80,7 +80,7 @@ Day 15 I counted. 14 agents with distinct roles. 438 reports generated across th
 
 It was not a plan. It was the discipline of solving each immediate problem as cleanly as possible, which usually meant a small dedicated component rather than adding more to something that already worked.
 
-Every time I felt the urge to make an existing script do one more thing, I asked whether the new thing actually belonged there. Usually it did not. Usually the cleaner answer was a new component with a narrow job that plugged into the queue.
+Every time an existing script started gaining one more responsibility, the better question was whether the new thing actually belonged there. Usually it did not. Usually the cleaner answer was a new component with a narrow responsibility that plugged into the queue.
 
 That instinct came from working in finance. In compliance work, you do not bolt new rules onto existing rules. You write discrete checks, run them independently, and surface the results separately. That pattern translated directly into agent design.
 

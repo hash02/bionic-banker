@@ -33,7 +33,7 @@ The six layers of agent architecture. From manual operations to adaptive self-im
 
 Not implements. Proposes. The human stays in the loop. Always.
 
-### The Agent Loop
+### The Agent Workflow
 
 Every session reads context files → operates using skills and tools → writes state updates → persists those updates to the folder → reacts to events triggered by changes → reads everything again on the next pass.
 
@@ -53,7 +53,7 @@ The nervous system listens for seven kinds of events:
 
 ### Two-Brain System
 
-Hermes Agent handles local tools, scheduled runs, file access, and message delivery. Claude Code handles one coding lane. Other open coding agents can be tested as reviewers or builders. They talk through a shared filesystem message board: simple inbox, simple outbox, visible records.
+One agent layer handles tools, checks, files, and message delivery. A coding tool handles one implementation lane. Other coding agents can be tested as reviewers or builders. They talk through a shared message board: simple inbox, simple outbox, visible records.
 
 ### Cross-Folder Portability
 

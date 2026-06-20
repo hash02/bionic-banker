@@ -1,6 +1,6 @@
 ---
 title: "Claude Max as a Local Agent Cost Lesson"
-description: "A public-safe record about why local agent adapters need cost controls, redaction rules, and clear boundaries instead of raw proxy code."
+description: "A reader-facing record about why local agent adapters need cost controls, boundary rules, and clear limits instead of raw proxy code."
 date: "2026-03-17"
 tags: ["AI · Economics · Systems"]
 readTime: "6 min"
@@ -66,7 +66,7 @@ A public page can show:
 - the difference between prototype and reliable system
 - the kinds of checks a wrapper needs
 - a diagram of request, policy, and response boundaries
-- a statement that credentials, prompts, local paths, and raw logs are not part of the published record
+- a statement that credentials, prompts, and raw logs are not part of the published record
 
 A public page should not show:
 

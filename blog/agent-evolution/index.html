@@ -51,7 +51,7 @@
 <p>Day 15 I counted. 14 agents with distinct roles. 438 reports generated across the run. 190 wallets under monitoring. The numbers were not a target. They were what accumulated from following each problem to the next one.</p>
 <h2 id="what-actually-built-it">What Actually Built It</h2>
 <p>It was not a plan. It was the discipline of solving each immediate problem as cleanly as possible, which usually meant a small dedicated component rather than adding more to something that already worked.</p>
-<p>Every time I felt the urge to make an existing script do one more thing, I asked whether the new thing actually belonged there. Usually it did not. Usually the cleaner answer was a new component with a narrow job that plugged into the queue.</p>
+<p>Every time an existing script started gaining one more responsibility, the better question was whether the new thing actually belonged there. Usually it did not. Usually the cleaner answer was a new component with a narrow responsibility that plugged into the queue.</p>
 <p>That instinct came from working in finance. In compliance work, you do not bolt new rules onto existing rules. You write discrete checks, run them independently, and surface the results separately. That pattern translated directly into agent design.</p>
 <p>The other thing was that I kept the constraints visible. No paid API calls unless absolutely necessary. Everything logged with a timestamp and reason. Nothing that could not be explained if someone asked why it fired. Same discipline as the work environment, applied to a personal system.</p>
 <p>That constraint made the system more reliable than most of my early experiments, which were clever but broke in unpredictable ways.</p>

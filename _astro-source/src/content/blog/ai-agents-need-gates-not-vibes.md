@@ -117,7 +117,7 @@ That matters because the claim is not “trust the agent.”
 The claim is narrower:
 
 ```text
-This local proof has tests around retrieval, safety checks, roles, traces, queues, API contracts, and public-safe boundaries.
+This local proof has tests around retrieval, safety checks, roles, traces, queues, API contracts, and reader-facing boundaries.
 ```
 
 That is a better public claim because it can be checked.

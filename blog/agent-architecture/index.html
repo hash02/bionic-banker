@@ -30,7 +30,7 @@
 <p><strong>Layer 4 — Reactive.</strong> Now the folder has a nervous system. Events happen → the right response fires automatically. Someone pushes code → content audit runs. Health check fails → event gets routed to the right handler → self-healing kicks in for known issues. This is real-time responsiveness, not clock-based checking.</p>
 <p><strong>Layer 5 — Adaptive.</strong> The output of one run becomes the input for the next. Failures don’t just get reported—they get accumulated. When the same check fails three times across different runs, the system notices. It flags a pattern. And then it does something no automation layer can do: it proposes a new rule.</p>
 <p>Not implements. Proposes. The human stays in the loop. Always.</p>
-<h3 id="the-agent-loop">The Agent Loop</h3>
+<h3 id="the-agent-workflow">The Agent Workflow</h3>
 <p>Every session reads context files → operates using skills and tools → writes state updates → persists those updates to the folder → reacts to events triggered by changes → reads everything again on the next pass.</p>
 <p>It’s a loop. It closes. And the fold remembers.</p>
 <h3 id="event-router-7-event-types">Event Router (7 Event Types)</h3>
@@ -45,7 +45,7 @@
 <li><strong>on: approval granted</strong> — A reviewed rule activates and logs. The system improves only after a human review step.</li>
 </ol>
 <h3 id="two-brain-system">Two-Brain System</h3>
-<p>Hermes Agent handles local tools, scheduled runs, file access, and message delivery. Claude Code handles one coding lane. Other open coding agents can be tested as reviewers or builders. They talk through a shared filesystem message board: simple inbox, simple outbox, visible records.</p>
+<p>One agent layer handles tools, checks, files, and message delivery. A coding tool handles one implementation lane. Other coding agents can be tested as reviewers or builders. They talk through a shared message board: simple inbox, simple outbox, visible records.</p>
 <h3 id="cross-folder-portability">Cross-Folder Portability</h3>
 <p>Identity and memory travel. SESSION_LOG stays (it’s the current project’s narrative). When the agent moves to a new folder, it carries:</p>
 <ul>

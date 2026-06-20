@@ -14,7 +14,7 @@ Six scanner workers, three funds, sixteen sleeves, and one guardian layer. The p
 
 ## A Live Portfolio Monitor With Visible Guardrails
 
-Most public AI finance pages hide the operating layer. They show a promise, not the state of the system. The better question is simpler: what is running, what is stale, what is bounded, and what still needs a person?
+Most AI finance pages show a promise, not the state of the system. The better question is simpler: what is current, what is stale, what is bounded, and what still needs a person?
 
 So I made that part the record.
 

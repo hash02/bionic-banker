@@ -181,7 +181,7 @@ This article is not a compliance verdict and not a filing decision. The engine c
 
 ## Next read
 
-Read [Wallet Risk Notes](/blog/wallet-risk-notes/) next to see the row-level explanation layer, then open [AML Status](/aml-status-evidence/) for the public-safe status record.
+Read [Wallet Risk Notes](/blog/wallet-risk-notes/) next to see the row-level explanation layer, then open [AML Status](/aml-status-evidence/) for the reader-facing status record.
 
 ## Diagram hook
 

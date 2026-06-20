@@ -18,7 +18,7 @@ Here's something that bothers me about LLMs. They're genuinely impressive. GPT-4
 Smart models. Shallow thinking. That was the gap I kept running into.
 
     
-So one day I asked a simple question, not to the model, to myself. *Can an LLM catch its own reasoning flaws?* Not with external tools. Not with a plugin that checks its output. From inside the conversation itself. Can you build something that actually audits its own logic in real time?
+So the useful question became simple: *Can an LLM catch its own reasoning flaws?* Not with external tools. Not with a plugin that checks its output. From inside its own reasoning process. Can you build something that actually audits its own logic in real time?
 
     
 I didn't know the answer. I just started trying to find it. One question to the next to the next.

@@ -311,7 +311,7 @@ It is becoming the place that explains what AI model progress means for finance.
 That can lead to:
 
 - AI adoption consulting
-- internal workflow audits
+- workflow audits
 - compliance-friendly agent design
 - training material
 - paid research briefs

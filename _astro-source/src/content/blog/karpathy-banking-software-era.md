@@ -58,7 +58,7 @@ This is the most important translation from Karpathy's talk to the banking conte
 
 He described an "autonomy slider" where you can adjust how much of a task an agent executes autonomously versus how much a human verifies. Partial autonomy is preferred to fully autonomous agents right now.
 
-In banking, that slider is not just a product decision. It is a conversation with OSFI (Canada's banking regulator), with your legal team, with your model risk governance framework, and with the board's risk appetite statement.
+In banking, that slider is not just a product decision. It touches OSFI expectations, legal review, model risk governance, and the board's risk appetite statement.
 
 When HDFC's Eva chatbot started handling millions of queries autonomously, that was a business decision AND a regulatory one. ANZ collapsing 20 systems into one agentic dashboard and giving business bankers back a month of time was possible because the agents were doing orchestration and information retrieval, not making credit decisions.
 

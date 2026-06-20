@@ -383,7 +383,7 @@ h1.page-title {
   <h2>The quiet layer underneath.</h2>
   <div class="panel panel-solo">
     <h3>Paper loop</h3>
-    <div id="hermes-panel"><div class="loader">loading...</div></div>
+    <div id="agent-status-panel"><div class="loader">loading...</div></div>
   </div>
 </div>
 
@@ -548,16 +548,16 @@ function renderWorkers(d) {
 }
 
 
-function renderHermes(d) {
-  const h = d.hermes || {};
+function renderAgentStatus(d) {
+  const agentStatus = d.agent_status || d.status_snapshot || {};
   const html = `
-    <div class="kv-row"><span class="kv-key">Mode</span><span class="kv-val">${h.mode || 'paper'}</span></div>
-    <div class="kv-row"><span class="kv-key">Paper portfolio age</span><span class="kv-val">${ageFmt(h.paper_portfolio_age_min)}</span></div>
-    <div class="kv-row"><span class="kv-key">Status age</span><span class="kv-val">${ageFmt(h.orchestrator_age_min)}</span></div>
-    <div class="kv-row"><span class="kv-key">Total positions</span><span class="kv-val">${h.paper_portfolio_positions || 0}</span></div>
-    <div class="kv-row"><span class="kv-key">Currently open</span><span class="kv-val">${h.paper_portfolio_open || 0}</span></div>
+    <div class="kv-row"><span class="kv-key">Mode</span><span class="kv-val">${agentStatus.mode || 'paper'}</span></div>
+    <div class="kv-row"><span class="kv-key">Paper portfolio age</span><span class="kv-val">${ageFmt(agentStatus.paper_portfolio_age_min)}</span></div>
+    <div class="kv-row"><span class="kv-key">Status age</span><span class="kv-val">${ageFmt(agentStatus.orchestrator_age_min)}</span></div>
+    <div class="kv-row"><span class="kv-key">Total positions</span><span class="kv-val">${agentStatus.paper_portfolio_positions || 0}</span></div>
+    <div class="kv-row"><span class="kv-key">Currently open</span><span class="kv-val">${agentStatus.paper_portfolio_open || 0}</span></div>
   `;
-  document.getElementById('hermes-panel').innerHTML = html;
+  document.getElementById('agent-status-panel').innerHTML = html;
 }
 
 async function load() {
@@ -568,7 +568,7 @@ async function load() {
     renderAggregate(d);
     renderFunds(d);
     renderWorkers(d);
-    renderHermes(d);
+    renderAgentStatus(d);
   } catch (e) {
     document.getElementById('sync-ts').textContent = 'sync error. retry soon';
     console.error(e);
