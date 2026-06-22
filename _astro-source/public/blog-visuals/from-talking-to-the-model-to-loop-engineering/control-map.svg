@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Loop engineering control map</title>
+  <desc id="desc">A control map showing observe, reason, act, record, evaluate, correct, human boundary, and repeat.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#08080e"/><stop offset="1" stop-color="#0b1714"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1fa068"/></marker>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <text x="90" y="95" fill="#8fffd1" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="4">CONTROL MAP</text>
+  <text x="90" y="160" fill="#f4fff9" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="900">The loop around the model</text>
+  <text x="90" y="208" fill="#c9d8d2" font-family="Inter, Arial, sans-serif" font-size="25">A model can answer. A system needs to check, record, correct, and stop.</text>
+  <g transform="translate(130 310)" font-family="Inter, Arial, sans-serif" font-weight="800">
+    <g fill="#0d1414" stroke="#31594c" stroke-width="2">
+      <rect x="0" y="0" width="230" height="115" rx="22"/>
+      <rect x="315" y="0" width="230" height="115" rx="22"/>
+      <rect x="630" y="0" width="230" height="115" rx="22"/>
+      <rect x="945" y="0" width="230" height="115" rx="22"/>
+      <rect x="945" y="250" width="230" height="115" rx="22"/>
+      <rect x="630" y="250" width="230" height="115" rx="22"/>
+      <rect x="315" y="250" width="230" height="115" rx="22"/>
+      <rect x="0" y="250" width="230" height="115" rx="22"/>
+    </g>
+    <g fill="#f4fff9" font-size="28" text-anchor="middle">
+      <text x="115" y="70">OBSERVE</text>
+      <text x="430" y="70">REASON</text>
+      <text x="745" y="70">ACT</text>
+      <text x="1060" y="70">RECORD</text>
+      <text x="1060" y="320">EVALUATE</text>
+      <text x="745" y="320">CORRECT</text>
+      <text x="430" y="305">HUMAN</text><text x="430" y="337">BOUNDARY</text>
+      <text x="115" y="320">REPEAT</text>
+    </g>
+    <g stroke="#1fa068" stroke-width="5" marker-end="url(#arrow)" fill="none">
+      <path d="M240 58 H300"/><path d="M555 58 H615"/><path d="M870 58 H930"/>
+      <path d="M1060 125 V235"/><path d="M930 308 H875"/><path d="M615 308 H560"/><path d="M300 308 H245"/>
+      <path d="M115 250 V130"/>
+    </g>
+  </g>
+  <g transform="translate(160 780)" font-family="Inter, Arial, sans-serif">
+    <rect width="1280" height="120" rx="28" fill="#10201b" stroke="#31594c"/>
+    <text x="44" y="48" fill="#8fffd1" font-size="22" font-weight="900">FINANCE VERSION</text>
+    <text x="44" y="88" fill="#f4fff9" font-size="30" font-weight="800">source → claim → reasoning → risk signal → drift check → human review → record</text>
+  </g>
+</svg>

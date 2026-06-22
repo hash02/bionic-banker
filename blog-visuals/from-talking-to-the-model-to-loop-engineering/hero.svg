@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">From talking to the model to loop engineering</title>
+  <desc id="desc">A dark Bionic Banker hero graphic showing conversation becoming a control loop with memory, drift checks, evaluation, and human review.</desc>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1fa068" stop-opacity="0.35"/>
+      <stop offset="45%" stop-color="#10251d" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#08080e" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#1fa068"/>
+      <stop offset="100%" stop-color="#88ffd2"/>
+    </linearGradient>
+    <filter id="softGlow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <g opacity="0.16" stroke="#7af0c1" stroke-width="1">
+    <path d="M80 160 C360 80 540 230 780 160 S1210 70 1510 170" fill="none"/>
+    <path d="M120 710 C390 590 550 760 790 680 S1180 610 1470 740" fill="none"/>
+    <path d="M245 120 V790M520 95 V810M795 80 V820M1070 95 V810M1345 120 V790"/>
+  </g>
+  <text x="110" y="120" fill="#8fffd1" font-family="Inter, Arial, sans-serif" font-size="24" letter-spacing="4">BIONIC BANKER / AI CONTROL NOTE</text>
+  <text x="110" y="250" fill="#f4fff9" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="800">From talking to</text>
+  <text x="110" y="340" fill="#f4fff9" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="800">the model to</text>
+  <text x="110" y="430" fill="#1fa068" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="900">loop engineering</text>
+  <text x="115" y="505" fill="#c9d8d2" font-family="Inter, Arial, sans-serif" font-size="28">Conversation → memory → drift checks → evaluation → human boundary</text>
+  <g transform="translate(930 170)">
+    <circle cx="230" cy="230" r="185" fill="none" stroke="#1fa068" stroke-width="7" filter="url(#softGlow)"/>
+    <path d="M365 105 L430 104 L394 161" fill="none" stroke="#88ffd2" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <g font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#f4fff9">
+      <text x="190" y="38">OBSERVE</text>
+      <text x="378" y="225">CHECK</text>
+      <text x="205" y="455">CORRECT</text>
+      <text x="-4" y="225">RECORD</text>
+    </g>
+    <rect x="122" y="155" width="220" height="150" rx="24" fill="#0d1414" stroke="#31594c"/>
+    <text x="232" y="205" text-anchor="middle" fill="#8fffd1" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="800">HUMAN</text>
+    <text x="232" y="242" text-anchor="middle" fill="#f4fff9" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="900">BOUNDARY</text>
+    <text x="232" y="278" text-anchor="middle" fill="#c9d8d2" font-family="Inter, Arial, sans-serif" font-size="18">stop / inspect / approve</text>
+  </g>
+  <g transform="translate(110 650)" font-family="Inter, Arial, sans-serif">
+    <rect width="1380" height="100" rx="24" fill="#0a1010" stroke="#263d36"/>
+    <text x="40" y="42" fill="#8fffd1" font-size="22" font-weight="800">Working thesis</text>
+    <text x="40" y="76" fill="#f4fff9" font-size="30" font-weight="800">The output is not the product. The loop that checks the output is the product.</text>
+  </g>
+</svg>
