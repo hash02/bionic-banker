@@ -1,10 +1,10 @@
 # Fraud Alert Triage Workflow — LinkedIn / project bullets
 
-Public-safe draft copy for LinkedIn, project sections, or short system summaries.
+Draft copy for LinkedIn, project sections, or short system summaries.
 
 ## One-line project description
 
-Built a public-safe synthetic fraud-alert triage workflow that shows how suspicious financial signals can become reviewer-ready evidence packets while keeping final account, compliance, and escalation decisions human-owned.
+Built a synthetic fraud-alert triage workflow that shows how suspicious financial signals can become reviewer-ready evidence packets while keeping final account, compliance, and escalation decisions human-owned.
 
 ## Short LinkedIn project blurb
 
@@ -12,10 +12,10 @@ I packaged a synthetic fraud-alert triage workflow as a public proof artifact fo
 
 ## Resume / profile bullets
 
-- Designed a public-safe fraud-alert triage proof workflow translating suspicious payment, device, geography, and recipient signals into a reviewer-ready evidence packet.
+- Designed a synthetic fraud-alert triage proof workflow translating suspicious payment, device, geography, and recipient signals into a reviewer-ready evidence packet.
 - Framed AI assistance around regulated-workflow boundaries: evidence collection, rule explanation, case-note drafting, triage priority, and human approval.
 - Built a synthetic case-note example that supports fraud review without declaring fraud, filing regulatory reports, approving KYC, moving funds, or blocking accounts autonomously.
-- Packaged the workflow as a reader-friendly Bionic Banker system page with explicit limitations, source trails, and public-safety guardrails.
+- Packaged the workflow as a reader-friendly Bionic Banker system page with explicit limitations, source trails, and reader-facing guardrails.
 
 ## Reader-facing summary
 

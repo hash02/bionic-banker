@@ -5,7 +5,7 @@ This pack supports the Bionic Banker AML Review Engine Lab.
 ## What is inside
 
 - `sample-input.csv` — small redacted-style sample input shape.
-- `sample-output.json` — metrics and sample scored rows from the local Wukong run.
+- `sample-output.json` — metrics and sample scored rows from the demo run.
 - `risk-memo-sample.md` — analyst-style memo explaining one review scenario.
 - `control-map.png` — visual workflow map.
 - `limitations.md` — boundaries and non-claims.
