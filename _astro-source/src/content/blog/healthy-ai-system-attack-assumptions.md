@@ -9,9 +9,6 @@ featured: false
 slug: "healthy-ai-system-attack-assumptions"
 image: "/blog-visuals/healthy-ai-system-attack-assumptions/hero.png"
 ---
-<img src="/blog-visuals/healthy-ai-system-attack-assumptions/hero.png" alt="A Kill Agent challenges AI system assumptions before action" class="article-hero-inline" />
-
-
 
 A loop without contradiction is automation.
 
