@@ -26,17 +26,24 @@ function sanitizeEnvPresence(names) {
 async function checkRoute(route) {
   const url = `${baseUrl}${route}`;
   const started = Date.now();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000);
-    const res = await fetch(url, { method: 'GET', signal: controller.signal });
-    clearTimeout(timeout);
+    const res = await fetch(url, {
+      method: 'GET',
+      signal: controller.signal,
+      headers: {
+        'User-Agent': 'BionicBankerHealth/1.0 (+https://bionicbanker.tech)',
+        Accept: 'text/html',
+      },
+    });
     const text = await res.text();
     return {
       route,
       url,
       status: res.status,
       ok: res.ok,
+      ...(res.headers.get('cf-mitigated') === 'challenge' ? { error: 'access_challenge' } : {}),
       ms: Date.now() - started,
       bytes: text.length,
       hasHtml: /<html/i.test(text),
@@ -49,6 +56,8 @@ async function checkRoute(route) {
       error: error?.name === 'AbortError' ? 'timeout' : String(error?.message || error),
       ms: Date.now() - started,
     };
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
@@ -138,4 +147,4 @@ if (outputJson) {
   }
 }
 
-if (blockers.some((b) => b.includes('missing') || b.includes('failed'))) process.exit(1);
+if (blockers.length) process.exitCode = 1;

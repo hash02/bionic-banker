@@ -73,7 +73,7 @@ requireText('agents/tasks/publish.md', publishTask, [
 ]);
 
 requireText('.github/workflows/bionic-watch.yml', workflow, [
-  [/cron: '\*\/15 \* \* \* \*'/i, '15-minute schedule'],
+  [/cron: '0,15,30,45 \* \* \* \*'/i, '15-minute schedule'],
   [/permissions:\s*\n\s*contents: read/i, 'read-only workflow permissions'],
   [/npm run test:bionic-agent-contract/i, 'contract check step'],
   [/node scripts\/bionic-agent-watch\.mjs --json/i, 'watcher step'],
