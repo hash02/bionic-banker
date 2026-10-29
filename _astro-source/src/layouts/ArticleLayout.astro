@@ -9,12 +9,14 @@ interface Props {
   tags: string[];
   readTime: string;
   image?: string;
+  imageAlt?: string;
   category?: string;
+  author?: string;
 }
 
-const { title, description, date, tags, readTime, image, category = 'Tech' } = Astro.props;
+const { title, description, date, tags, readTime, image, imageAlt, category = 'Tech', author = 'Himanshu' } = Astro.props;
 
-const allPosts = await getCollection('blog');
+const allPosts = (await getCollection('blog')).filter((post) => !post.data.draft);
 const currentPath = Astro.url.pathname;
 const currentSlug = currentPath.replace(/^\/blog\//, '').replace(/\/$/, '');
 const getPostSlug = (post: typeof allPosts[number]) => post.data.slug || post.id;
@@ -46,8 +48,8 @@ const articleSchema = {
   "dateModified": isoDate,
   "author": {
     "@type": "Person",
-    "name": "Himanshu",
-    "url": "https://linkedin.com/in/himanshu-h-a357684a"
+    "name": author,
+    ...(author === 'Himanshu' ? { "url": "https://linkedin.com/in/himanshu-h-a357684a" } : {}),
   },
   "publisher": {
     "@type": "Organization",
@@ -114,7 +116,7 @@ const breadcrumbSchema = {
       </div>
       {image && (
         <figure class="article-visual">
-          <img src={image} alt={`Visual summary for ${title}`} loading="eager" decoding="async" />
+          <img src={image} alt={imageAlt || `Visual summary for ${title}`} loading="eager" decoding="async" />
         </figure>
       )}
     </div>

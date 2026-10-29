@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('blog');
+const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
 const slugOf = (post) => post.data.slug || post.id;
 const hrefOf = (post) => `/blog/${slugOf(post)}/`;
 const governancePosts = posts
