@@ -10,7 +10,7 @@ featured: false
 slug: "black-october-php"
 image: "/blog-visuals/black-october-php/black-october-bold.jpg"
 imageAlt: "BLACK OCTOBER headline over a cracked glowing world map with an AI eye scanning it"
-draft: true
+draft: false
 ---
 
 By Hash
