@@ -12,6 +12,9 @@ const blog = defineCollection({
     readTime: z.string().default('5 min'),
     featured: z.boolean().default(false),
     image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    author: z.string().optional(),
+    draft: z.boolean().default(false),
     category: z.string().default('Tech'),
   }),
 });
